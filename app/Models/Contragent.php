@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\ContragentManager;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -27,5 +28,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Contragent extends Model
 {
-    //
+    public function managers()
+    {
+        return $this->hasMany(ContragentManager::class);
+    }
 }

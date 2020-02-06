@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Contragent;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -14,5 +15,13 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ContragentManager extends Model
 {
-    //
+    const PSEUDO = 'managers';
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function contragent()
+    {
+        return $this->belongsTo(Contragent::class);
+    }
 }

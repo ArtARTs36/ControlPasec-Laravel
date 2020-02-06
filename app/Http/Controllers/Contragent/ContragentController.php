@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Contragent;
 
+use App\ContragentManager;
 use App\Http\Requests\ContragentRequest;
 use App\Models\Contragent;
 use App\Http\Controllers\Controller;
@@ -16,7 +17,7 @@ class ContragentController extends Controller
      */
     public function index()
     {
-        return Contragent::paginate(10);
+        return Contragent::with(ContragentManager::PSEUDO)->paginate(10);
     }
 
     /**
