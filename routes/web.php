@@ -17,3 +17,7 @@ Route::get('/', function () {
 
 Route::apiResource('contragent', 'Contragent\ContragentController');
 Route::get('contragent/find-external-by-inn/{inn}', 'Contragent\ContragentController@findInExternalNetworkByInn');
+
+Route::apiResource('contract', 'ContractController');
+
+Route::apiResource('product', 'Product\ProductController');
