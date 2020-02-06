@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 
 Route::apiResource('contragent', 'Contragent\ContragentController');
+Route::get('contragent/find-external-by-inn/{inn}', 'Contragent\ContragentController@findInExternalNetworkByInn');

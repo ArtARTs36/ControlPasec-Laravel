@@ -18,7 +18,7 @@ class CreateContragentsTable extends Migration
         Schema::create(self::TABLE, function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->string('title', 60);
+            $table->string('title', 60)->unique();
             $table->string('full_title', 255)->nullable();
             $table->string('full_title_with_opf', 255)->nullable();
 
@@ -31,7 +31,7 @@ class CreateContragentsTable extends Migration
             $table->string('okved')->nullable();
             $table->string('okved_type')->nullable();
 
-            $table->string('address', 15)->nullable();
+            $table->string('address', 255)->nullable();
             $table->integer('address_postal')->nullable();
 
             $table->integer('status');

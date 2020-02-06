@@ -23,10 +23,10 @@ class CreateContragentManagersTable extends Migration
             $table->string('patronymic', 20);
             $table->string('family', 20);
 
-            $table->string('phone', 20);
-            $table->string('email', 40);
+            $table->string('phone', 20)->nullable();
+            $table->string('email', 40)->nullable();
 
-            $table->string('post', 20);
+            $table->string('post', 20)->nullable();
 
             $table->unsignedInteger('contragent_id');
         });

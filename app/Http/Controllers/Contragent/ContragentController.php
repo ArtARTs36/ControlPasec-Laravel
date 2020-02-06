@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Contragent;
 use App\Http\Requests\ContragentRequest;
 use App\Models\Contragent;
 use App\Http\Controllers\Controller;
+use App\Parsers\DaDataParser\DaDataParser;
 
 class ContragentController extends Controller
 {
@@ -65,11 +66,11 @@ class ContragentController extends Controller
 
     public function findInExternalNetworkByInn($inn)
     {
-
+        return DaDataParser::findContragentByInnOrOGRN($inn);
     }
 
     public function syncWithExternalNetwork(Contragent $contragent)
     {
-
+        // todo
     }
 }
