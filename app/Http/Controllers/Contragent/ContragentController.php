@@ -31,18 +31,21 @@ class ContragentController extends Controller
      */
     public function store(ContragentRequest $request)
     {
-        //
+        $contragent = new Contragent();
+
+        $contragent->fillable($contragent->getFillable())
+        ->fill($request->only($contragent->getFillable()));
     }
 
     /**
      * Display the specified resource.
      *
      * @param Contragent $contragent
-     * @return \Illuminate\Http\Response
+     * @return Contragent|\Illuminate\Http\Response
      */
     public function show(Contragent $contragent)
     {
-        //
+        return $contragent;
     }
 
     /**

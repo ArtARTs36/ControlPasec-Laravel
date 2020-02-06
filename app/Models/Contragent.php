@@ -21,14 +21,20 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer|null oktmo
  * @property mixed|null okved
  * @property mixed|null okved_type
- * @property mixed address
- * @property mixed address_postal
+ * @property string|null address
+ * @property string|null address_postal
  * @property int status
  *
  * @mixin Builder
  */
 class Contragent extends Model
 {
+    protected $fillable = [
+        'title', 'full_title', 'full_title_with_opf',
+        'inn', 'kpp', 'ogrn', 'okato', 'oktmo', 'okved', 'okved_type',
+        'address', 'address_postal'
+    ];
+
     public function managers()
     {
         return $this->hasMany(ContragentManager::class);

@@ -25,6 +25,11 @@ class ContragentRequest extends FormRequest
 
             'address' => 'string',
             'address_postal' => 'string',
+
+            'requisites.score' => 'sometimes|string',
+            'requisites.bank_id' => 'sometimes|integer',
+
+            'status' => 'default_value:0'
         ];
     }
 }
