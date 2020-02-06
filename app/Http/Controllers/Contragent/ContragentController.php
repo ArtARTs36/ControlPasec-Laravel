@@ -17,7 +17,10 @@ class ContragentController extends Controller
      */
     public function index()
     {
-        return Contragent::with(ContragentManager::PSEUDO)->paginate(10);
+        return Contragent::with([
+            ContragentManager::PSEUDO,
+            Contragent\BankRequisites::PSEUDO
+        ])->paginate(10);
     }
 
     /**

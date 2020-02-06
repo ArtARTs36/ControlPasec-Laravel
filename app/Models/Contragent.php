@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\ContragentManager;
+use App\Models\Contragent\BankRequisites;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -31,5 +32,10 @@ class Contragent extends Model
     public function managers()
     {
         return $this->hasMany(ContragentManager::class);
+    }
+
+    public function requisites()
+    {
+        return $this->hasMany(BankRequisites::class);
     }
 }
