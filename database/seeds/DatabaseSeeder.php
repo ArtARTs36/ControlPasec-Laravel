@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
 
         $this->call(VocabBankSeeder::class);
         $this->call(BankRequisitesSeeder::class);
+        $this->call(MyContragentSeeder::class);
     }
 }

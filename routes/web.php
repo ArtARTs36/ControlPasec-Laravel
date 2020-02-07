@@ -15,9 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::apiResource('contragent', 'Contragent\ContragentController');
-Route::get('contragent/find-external-by-inn/{inn}', 'Contragent\ContragentController@findInExternalNetworkByInn');
+Route::apiResource('contragents', 'Contragent\ContragentController');
+Route::get('contragents/find-external-by-inn/{inn}', 'Contragent\ContragentController@findInExternalNetworkByInn');
 
-Route::apiResource('contract', 'ContractController');
+Route::apiResource('contracts', 'ContractController');
 
-Route::apiResource('product', 'Product\ProductController');
+Route::apiResource('products', 'Product\ProductController');
+
+Route::apiResource('my-contragents', 'Contragent\MyContragentController');
