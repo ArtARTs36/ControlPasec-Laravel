@@ -4,9 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContractsTable extends Migration
+class CreateSupplyProductsTable extends Migration
 {
-    const TABLE = 'contracts';
+    const TABLE = 'supply_products';
 
     /**
      * Run the migrations.
@@ -19,18 +19,21 @@ class CreateContractsTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
 
-            $table->unsignedInteger('supplier_id');
-            $table->unsignedInteger('customer_id');
+            $table->double('price');
+            $table->integer('mount');
+
+            $table->unsignedInteger('product_id');
+            $table->unsignedInteger('supply_id');
         });
 
         Schema::table(self::TABLE, function (Blueprint $table) {
-            $table->foreign('supplier_id')
+            $table->foreign('product_id')
                 ->references('id')
-                ->on('contragents');
+                ->on('products');
 
-            $table->foreign('customer_id')
+            $table->foreign('supply_id')
                 ->references('id')
-                ->on('contragents');
+                ->on('supplies');
         });
     }
 
