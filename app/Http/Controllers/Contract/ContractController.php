@@ -3,30 +3,32 @@
 namespace App\Http\Controllers\Contract;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ContractRequest;
 use App\Models\Contract\Contract;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class ContractController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function index()
     {
-        //
+        return Contract::paginate(10);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param ContractRequest $request
+     * @return Contract|Response
      */
-    public function store(Request $request)
+    public function store(ContractRequest $request)
     {
-        //
+        return Contract::create($request->toArray());
     }
 
     /**
@@ -37,17 +39,17 @@ class ContractController extends Controller
      */
     public function show(Contract $contract)
     {
-        //
+        return $contract;
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param ContractRequest $request
      * @param Contract $contract
      * @return void
      */
-    public function update(Request $request, Contract $contract)
+    public function update(ContractRequest $request, Contract $contract)
     {
         //
     }

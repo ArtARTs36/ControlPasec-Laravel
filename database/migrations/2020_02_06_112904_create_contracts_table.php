@@ -19,6 +19,10 @@ class CreateContractsTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
 
+            $table->string('title', 255);
+            $table->date('planned_date')->nullable();
+            $table->date('executed_date')->nullable();
+
             $table->unsignedInteger('supplier_id');
             $table->unsignedInteger('customer_id');
         });
