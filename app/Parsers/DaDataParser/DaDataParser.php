@@ -59,7 +59,7 @@ class DaDataParser extends DaDataSender
         return $contragent ?? null;
     }
 
-    private static function parseManager($response, Contragent $contragent)
+    public static function parseManager($response, Contragent $contragent, $save = true)
     {
         if (!isset($response['management'])) {
             return false;
@@ -86,9 +86,11 @@ class DaDataParser extends DaDataSender
 
         $manager->contragent_id = $contragent->id;
 
-        $manager->save();
+        if ($save === true) {
+            $manager->save();
 
-        WordService::checkVocabs($words);
+            WordService::checkVocabs($words);
+        }
 
         return $manager;
     }

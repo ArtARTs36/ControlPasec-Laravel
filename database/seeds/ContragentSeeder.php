@@ -11,6 +11,25 @@ class ContragentSeeder extends Seeder
      */
     public function run()
     {
+        $this->createMyAgent();
+
+        $this->seedExternalAgents([
+            '3612006131', // МКОУ Писаревская СОШ
+            '3629004693', // МКОУ Таловская СОШ
+            '3612005716' // МКОУ Охрозаводская СОШ
+        ]);
+    }
+
+    public function seedExternalAgents($inns)
+    {
+        foreach ($inns as $inn)
+        {
+            \App\Parsers\DaDataParser\DaDataParser::findContragentByInnOrOGRN($inn);
+        }
+    }
+
+    public function createMyAgent()
+    {
         $contragent = new App\Models\Contragent();
         $contragent->title = 'Украинский ВН';
         $contragent->full_title = 'Украинский ВН';
