@@ -37,7 +37,7 @@ class Contragent extends Model
 
     public function managers()
     {
-        return $this->hasMany(ContragentManager::class);
+        return $this->hasMany(ContragentManager::class, 'contragent_id');
     }
 
     public function requisites()

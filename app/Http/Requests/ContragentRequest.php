@@ -14,22 +14,22 @@ class ContragentRequest extends FormRequest
             'full_title_with_opf' => 'string',
 
             'inn' => 'required|integer',
-            'kpp' => 'integer',
+            'kpp' => 'sometimes',
 
-            'ogrn' => 'integer',
-            'okato' => 'integer',
-            'oktmo' => 'integer',
+            'ogrn' => 'sometimes',
+            'okato' => 'sometimes',
+            'oktmo' => 'sometimes',
 
-            'okved' => 'string',
-            'okved_type' => 'string',
+            'okved' => 'sometimes',
+            'okved_type' => 'sometimes',
 
-            'address' => 'string',
-            'address_postal' => 'string',
+            'address' => 'sometimes',
+            'address_postal' => 'sometimes',
 
             'requisites.score' => 'sometimes|string',
             'requisites.bank_id' => 'sometimes|integer',
 
-            'status' => 'default_value:0'
+            //'status' => 'default_value:0'
         ];
     }
 }

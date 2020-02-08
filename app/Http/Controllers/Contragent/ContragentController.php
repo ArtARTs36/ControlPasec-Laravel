@@ -4,16 +4,19 @@ namespace App\Http\Controllers\Contragent;
 
 use App\ContragentManager;
 use App\Http\Requests\ContragentRequest;
+use App\Http\Responses\ActionResponse;
 use App\Models\Contragent;
 use App\Http\Controllers\Controller;
 use App\Parsers\DaDataParser\DaDataParser;
+use App\Services\ContragentService;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class ContragentController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Получить список контрагентов
      *
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     * @return LengthAwarePaginator
      */
     public function index()
     {
@@ -41,39 +44,55 @@ class ContragentController extends Controller
      * Display the specified resource.
      *
      * @param Contragent $contragent
-     * @return Contragent|\Illuminate\Http\Response
+     * @return ActionResponse
      */
-    public function show(Contragent $contragent)
+    public function show(Contragent $contragent): ActionResponse
     {
-        return $contragent;
+        return new ActionResponse(true, ContragentService::getFullInfo($contragent));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Обновить данные о контрагенте
      *
      * @param ContragentRequest $request
      * @param Contragent $contragent
-     * @return void
+     * @return ActionResponse
      */
     public function update(ContragentRequest $request, Contragent $contragent)
     {
-        //
+        $data = $request->all();
+
+        $contragent->update($data);
+
+        ContragentService::updateScoresInRequisiteByRequest($request);
+
+        return new ActionResponse(true, $contragent);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Удалить контрагента
      *
      * @param Contragent $contragent
-     * @return \Illuminate\Http\Response
+     * @return ActionResponse
      */
     public function destroy(Contragent $contragent)
     {
         $contragent->delete();
+
+        return new ActionResponse(true);
     }
 
-    public function findInExternalNetworkByInn($inn)
+    /**
+     * Поиск контрагента во внешней системе
+     *
+     * @param $inn
+     * @return ActionResponse
+     */
+    public function findInExternalNetworkByInn($inn): ActionResponse
     {
-        return DaDataParser::findContragentByInnOrOGRN($inn);
+        $contragent = DaDataParser::findContragentByInnOrOGRN($inn);
+
+        return new ActionResponse($contragent instanceof Contragent ? true : false, $contragent);
     }
 
     public function syncWithExternalNetwork(Contragent $contragent)
