@@ -31,6 +31,6 @@ class CreateVocabCurrenciesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vocab_price_of_units');
+        Schema::dropIfExists('vocab_currencies');
     }
 }
