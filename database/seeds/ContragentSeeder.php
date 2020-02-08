@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Seeder;
+use App\Models\Contragent;
 
-class ContragentSeeder extends Seeder
+class ContragentSeeder extends MyDataBaseSeeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,7 @@ class ContragentSeeder extends Seeder
      */
     public function run()
     {
-        $this->createMyAgent();
+        $this->fillModel(Contragent::class, 'data_contragent');
 
         $this->seedExternalAgents([
             '3612006131', // МКОУ Писаревская СОШ
@@ -26,16 +26,5 @@ class ContragentSeeder extends Seeder
         {
             \App\Parsers\DaDataParser\DaDataParser::findContragentByInnOrOGRN($inn);
         }
-    }
-
-    public function createMyAgent()
-    {
-        $contragent = new App\Models\Contragent();
-        $contragent->title = 'Украинский ВН';
-        $contragent->full_title = 'Украинский ВН';
-        $contragent->full_title_with_opf = 'Украинский ВН';
-        $contragent->inn = 361200066399;
-        $contragent->status = 0;
-        $contragent->save();
     }
 }

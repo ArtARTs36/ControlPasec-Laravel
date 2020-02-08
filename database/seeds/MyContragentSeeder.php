@@ -1,12 +1,11 @@
 <?php
 
-class MyContragentSeeder extends \Illuminate\Database\Seeder
+use App\Models\Contragent\MyContragent;
+
+class MyContragentSeeder extends MyDataBaseSeeder
 {
     public function run()
     {
-        $myContragent = new \App\Models\Contragent\MyContragent();
-        $myContragent->name = 'ИП ГКФХ Украинский В Н';
-        $myContragent->contragent_id = 1;
-        $myContragent->save();
+        $this->fillModel(MyContragent::class, 'data_my_contragent');
     }
 }
