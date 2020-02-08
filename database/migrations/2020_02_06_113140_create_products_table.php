@@ -22,17 +22,21 @@ class CreateProductsTable extends Migration
             $table->string('name', 50);
             $table->string('name_for_document', 50);
 
-            $table->integer('size');
+            $table->double('size');
             $table->unsignedInteger('size_of_unit_id');
 
-            $table->bigInteger('price');
-            $table->unsignedInteger('price_of_unit_id');
+            $table->double('price');
+            $table->unsignedInteger('currency_id');
         });
 
         Schema::table(self::TABLE, function (Blueprint $table) {
             $table->foreign('size_of_unit_id')
                 ->references('id')
                 ->on('size_of_units');
+
+            $table->foreign('currency_id')
+                ->references('id')
+                ->on('vocab_currencies');
         });
     }
 

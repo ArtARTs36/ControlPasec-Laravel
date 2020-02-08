@@ -18,5 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(BankRequisitesSeeder::class);
         $this->call(MyContragentSeeder::class);
         $this->call(SizeOfUnitSeeder::class);
+        $this->call(VocabCurrencySeeder::class);
+        $this->call(ProductSeeder::class);
     }
 }
