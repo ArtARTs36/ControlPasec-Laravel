@@ -3,7 +3,7 @@
 namespace App\Models\Product;
 
 use App\Models\Vocab\SizeOfUnit;
-use App\VocabPriceOfUnit;
+use App\Models\Vocab\VocabCurrency;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -26,13 +26,13 @@ class Product extends Model
         'name', 'name_for_document', 'size', 'size_of_unit_id', 'price', 'currency_id'
     ];
 
-    public function getSizeOfUnit()
+    public function sizeOfUnit()
     {
         return $this->belongsTo(SizeOfUnit::class);
     }
 
-    public function getPriceOfUnit()
+    public function currency()
     {
-        return $this->belongsTo(VocabPriceOfUnit::class);
+        return $this->belongsTo(VocabCurrency::class);
     }
 }

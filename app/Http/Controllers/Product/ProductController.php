@@ -11,11 +11,11 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function index()
     {
-        return Product::paginate(10);
+        return Product::with(['currency', 'sizeOfUnit'])->paginate(10);
     }
 
     /**
