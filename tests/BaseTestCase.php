@@ -15,4 +15,9 @@ abstract class BaseTestCase extends TestCase
     {
         return parent::json($method, $this->url($uri), $data, $headers);
     }
+
+    protected function decodeResponse($response)
+    {
+        return json_decode($response->getContent(), true);
+    }
 }

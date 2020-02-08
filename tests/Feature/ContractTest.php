@@ -14,8 +14,17 @@ class ContractTest extends BaseTestCase
             'supplier_id' => 2
         ]);
 
-        $response = json_decode($response->getContent(), true);
+        $response = $this->decodeResponse($response);
 
         self::assertTrue($response['customer_id'] == 1 && $response['supplier_id'] == 2);
+    }
+
+    public function testContractDelete()
+    {
+        $response = $this->deleteJson('contracts/5');
+
+        $response = $this->decodeResponse($response);
+
+        self::assertTrue($response === null);
     }
 }

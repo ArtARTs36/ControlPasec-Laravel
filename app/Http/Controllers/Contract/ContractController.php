@@ -58,10 +58,14 @@ class ContractController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Contract $contract
-     * @return void
+     * @return bool|void
      */
     public function destroy(Contract $contract)
     {
-        //
+        if ($contract->delete()) {
+            return response(null, 204);
+        }
+
+        return '';
     }
 }
