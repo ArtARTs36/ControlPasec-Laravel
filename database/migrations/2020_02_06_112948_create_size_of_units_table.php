@@ -18,7 +18,9 @@ class CreateSizeOfUnitsTable extends Migration
             $table->timestamps();
 
             $table->string('name', 15);
+            $table->string('short_name', 15);
             $table->string('name_en', 15);
+            $table->string('short_name_en', 15);
         });
     }
 
