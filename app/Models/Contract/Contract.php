@@ -17,13 +17,14 @@ use Illuminate\Database\Query\Builder;
  * @property string executed_date
  * @property int supplier_id
  * @property int customer_id
+ * @property int template_id
  *
  * @mixin Builder
  */
 class Contract extends Model
 {
     protected $fillable = [
-        'title', 'planned_date', 'executed_date', 'supplier_id', 'customer_id'
+        'title', 'planned_date', 'executed_date', 'supplier_id', 'customer_id', 'template_id'
     ];
 
     public function supplier()
@@ -34,6 +35,11 @@ class Contract extends Model
     public function customer()
     {
         return $this->belongsTo(Contragent::class);
+    }
+
+    public function template()
+    {
+        return $this->belongsTo(ContractTemplate::class);
     }
 
     /**

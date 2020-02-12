@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SizeOfUnitSeeder::class);
         $this->call(VocabCurrencySeeder::class);
         $this->call(ProductSeeder::class);
+        $this->call(ContractTemplateSeeder::class);
     }
 }

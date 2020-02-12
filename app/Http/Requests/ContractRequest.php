@@ -19,6 +19,7 @@ class ContractRequest extends FormRequest
             'customer_id' => 'required',
             'planned_date' => 'sometimes|date',
             'executed_date' => 'sometimes|date',
+            'template_id' => 'sometimes',
         ];
     }
 }

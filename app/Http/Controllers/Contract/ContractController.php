@@ -12,7 +12,7 @@ use Illuminate\Http\Response;
 class ContractController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Отобразить договора
      *
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
@@ -22,10 +22,10 @@ class ContractController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Создать договор
      *
      * @param ContractRequest $request
-     * @return Contract|Response
+     * @return ActionResponse
      */
     public function store(ContractRequest $request)
     {
@@ -34,11 +34,11 @@ class ContractController extends Controller
         $contract->supplier_id = env('ONE_SUPPLIER_ID');
         $contract->save();
 
-        return $contract;
+        return new ActionResponse(true, $contract);
     }
 
     /**
-     * Display the specified resource.
+     * Отобразить договор
      *
      * @param Contract $contract
      * @return Contract
@@ -48,12 +48,15 @@ class ContractController extends Controller
         return $contract->load([
             'customer',
             'supplier',
-            'supplies'
+            'template',
+            'supplies' => function ($query) {
+                return $query->with('customer');
+            },
         ]);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Обновить договор
      *
      * @param ContractRequest $request
      * @param Contract $contract
@@ -65,7 +68,7 @@ class ContractController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Удалить договор
      *
      * @param Contract $contract
      * @return bool|void
