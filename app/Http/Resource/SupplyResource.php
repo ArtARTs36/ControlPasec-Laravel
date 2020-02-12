@@ -22,7 +22,9 @@ class SupplyResource extends JsonResource
             'totalPrice' => SupplyService::bringTotalPriceByProducts($this->products),
             'planned_date' => $this->planned_date,
             'execute_date' => $this->execute_date,
-            'products' => $this->products
+            'products' => $this->products,
+            'contract' => $this->contract,
+            'contract_id' => $this->contract_id
         ];
     }
 }

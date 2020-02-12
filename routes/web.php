@@ -8,6 +8,7 @@ Route::apiResource('contragents', 'Contragent\ContragentController');
 Route::get('contragents/find-external-by-inn/{inn}', 'Contragent\ContragentController@findInExternalNetworkByInn');
 
 Route::apiResource('contracts', 'Contract\ContractController');
+Route::get('contracts/find-by-customer/{customerId}', 'Contract\ContractController@findByCustomer');
 
 Route::apiResource('supplies', 'Supply\SupplyController');
 

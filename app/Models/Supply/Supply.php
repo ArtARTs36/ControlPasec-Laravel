@@ -2,6 +2,7 @@
 
 namespace App\Models\Supply;
 
+use App\Models\Contract\Contract;
 use App\Models\Contragent;
 use App\Models\Product\Product;
 use Illuminate\Database\Eloquent\Model;
@@ -20,13 +21,15 @@ use Illuminate\Database\Query\Builder;
  * @property Contragent customer
  * @property Contragent supplier
  * @property Product products
+ * @property Contract contract
+ * @property int contract_id
  *
  * @mixin Builder
  */
 class Supply extends Model
 {
     protected $fillable = [
-        'planned_date', 'execute_date', 'supplier_id', 'customer_id'
+        'planned_date', 'execute_date', 'supplier_id', 'customer_id', 'contract_id'
     ];
 
     /**
@@ -40,5 +43,10 @@ class Supply extends Model
     public function customer()
     {
         return $this->belongsTo(Contragent::class);
+    }
+
+    public function contract()
+    {
+        return $this->belongsTo(Contract::class);
     }
 }

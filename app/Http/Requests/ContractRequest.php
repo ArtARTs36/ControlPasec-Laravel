@@ -16,8 +16,7 @@ class ContractRequest extends FormRequest
     {
         return [
             'title' => 'required|string',
-            'supplier_id' => 'required|integer',
-            'customer_id' => 'required|integer',
+            'customer_id' => 'required',
             'planned_date' => 'sometimes|date',
             'executed_date' => 'sometimes|date',
         ];
