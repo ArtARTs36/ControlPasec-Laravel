@@ -1,85 +1,84 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Supply;
 
-use App\Supply;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\SupplyRequest;
+use App\Http\Resource\SupplyResource;
+use App\Http\Responses\ActionResponse;
+use App\Models\Supply\Supply;
+use App\Services\SupplyService;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class SupplyController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Получить список поставок
      *
-     * @return \Illuminate\Http\Response
+     * @return AnonymousResourceCollection
      */
     public function index()
     {
-        //
+        $supplies = Supply::with(['customer', 'products'])->paginate(10);
+
+        return SupplyResource::collection($supplies);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Создать поставку
      *
-     * @return \Illuminate\Http\Response
+     * @param SupplyRequest $request
+     * @return ActionResponse
      */
-    public function create()
+    public function store(SupplyRequest $request)
     {
-        //
+        $supply = new Supply();
+        $supply->supplier_id = env('ONE_SUPPLIER_ID');
+        $supply->fill($request->all());
+        $supply->save();
+
+        SupplyService::checkProductsInSupply($request, $supply->id);
+
+        return new ActionResponse(true, $supply);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Открыть поставку
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Supply  $supply
-     * @return \Illuminate\Http\Response
+     * @param Supply $supply
+     * @return SupplyResource
      */
     public function show(Supply $supply)
     {
-        //
+        return new SupplyResource($supply->load([
+            'products' => function ($query) {
+                return $query->with('parent');
+            }
+        ]));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Обновить данные о поставке
      *
-     * @param  \App\Supply  $supply
-     * @return \Illuminate\Http\Response
+     * @param SupplyRequest $request
+     * @param Supply $supply
+     * @return ActionResponse
      */
-    public function edit(Supply $supply)
+    public function update(SupplyRequest $request, Supply $supply)
     {
-        //
+        $requestData = $request->all();
+        $supply->update($requestData);
+
+        SupplyService::checkProductsInSupply($requestData);
+
+        return new ActionResponse(true, $supply);
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Supply  $supply
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Supply $supply)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Supply  $supply
-     * @return \Illuminate\Http\Response
+     * @param Supply $supply
      */
     public function destroy(Supply $supply)
     {
-        //
+        $supply->delete();
     }
 }

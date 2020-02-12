@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
+use App\Http\Responses\ActionResponse;
 use App\Models\Product\Product;
 use Illuminate\Http\Request;
 
@@ -29,15 +30,9 @@ class ProductController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param Product $product
-     * @return void
-     */
-    public function edit(Product $product)
+    public function show(Product $product)
     {
-        //
+        return new ActionResponse(true, $product);
     }
 
     /**
@@ -49,7 +44,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $product->save();
     }
 
     /**

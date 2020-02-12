@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Vocab;
 
-use App\SizeOfUnit;
+use App\Http\Controllers\Controller;
+use App\Http\Responses\ActionResponse;
+use App\Models\Vocab\SizeOfUnit;
 use Illuminate\Http\Request;
 
 class SizeOfUnitController extends Controller
@@ -10,11 +12,11 @@ class SizeOfUnitController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return ActionResponse
      */
     public function index()
     {
-        //
+        return new ActionResponse(true, SizeOfUnit::all());
     }
 
     /**

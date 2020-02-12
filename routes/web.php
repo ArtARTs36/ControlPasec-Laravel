@@ -9,6 +9,12 @@ Route::get('contragents/find-external-by-inn/{inn}', 'Contragent\ContragentContr
 
 Route::apiResource('contracts', 'Contract\ContractController');
 
+Route::apiResource('supplies', 'Supply\SupplyController');
+
 Route::apiResource('products', 'Product\ProductController');
 
 Route::apiResource('my-contragents', 'Contragent\MyContragentController');
+
+Route::apiResource('vocab/size-of-units', 'Vocab\SizeOfUnitController');
+
+Route::apiResource('vocab/currencies', 'Vocab\VocabCurrencyController');

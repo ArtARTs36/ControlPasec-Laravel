@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Vocab;
 
+use App\Http\Controllers\Controller;
+use App\Http\Responses\ActionResponse;
 use App\Models\Vocab\VocabCurrency;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,7 @@ class VocabCurrencyController extends Controller
      */
     public function index()
     {
-        //
+        return new ActionResponse(true, VocabCurrency::all());
     }
 
     /**
