@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null address
  * @property string|null address_postal
  * @property int status
+ * @property BankRequisites requisites
  *
  * @mixin Builder
  */
@@ -43,5 +44,13 @@ class Contragent extends Model
     public function requisites()
     {
         return $this->hasMany(BankRequisites::class);
+    }
+
+    /**
+     * @return BankRequisites
+     */
+    public function getDefaultRequisite()
+    {
+        return $this->requisites[0] ?? null;
     }
 }

@@ -20,7 +20,7 @@ use Illuminate\Database\Query\Builder;
  * @property int customer_id
  * @property Contragent customer
  * @property Contragent supplier
- * @property Product products
+ * @property Product[] products
  * @property Contract contract
  * @property int contract_id
  *
@@ -41,6 +41,11 @@ class Supply extends Model
     }
 
     public function customer()
+    {
+        return $this->belongsTo(Contragent::class);
+    }
+
+    public function supplier()
     {
         return $this->belongsTo(Contragent::class);
     }

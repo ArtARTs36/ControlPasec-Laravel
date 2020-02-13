@@ -14,6 +14,7 @@ use Illuminate\Database\Query\Builder;
  * @property integer supply_id
  * @property integer contract_id
  * @property string date
+ * @property Supply supply
  *
  * @mixin Builder
  */

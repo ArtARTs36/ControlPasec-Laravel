@@ -12,8 +12,8 @@ class DocumentBuilderTest extends BaseTestCase
     {
         $randomDocument = Document::where('status', Document::STATUS_NEW)
             ->inRandomOrder()
-            ->first()
-            ->get()[0];
+            ->get()
+            ->first();
 
         $build = DocumentBuilder::build($randomDocument, true);
 

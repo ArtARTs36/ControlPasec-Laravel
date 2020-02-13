@@ -1,14 +1,29 @@
+@php
+    $score = \App\ScoreForPayment::where('document_id', 7)->first();
+    $supply = $score->supply;
+    $supplier = $supply->supplier->load(['requisites' => function($requisite) {
+        return $requisite->with('bank');
+    }]);
+    $customer = $supply->customer;
+    $products = $supply->products()->with(['parent' => function($parent) {
+        return $parent->with('sizeOfUnit');
+    }])->get();
+@endphp
 <!doctype html>
 <html>
 <head><title>Бланк "Счет на оплату"</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <style>
+        *, body, html {
+            margin: 0;
+            padding: 0;
+        }
         body {
-            width: 210mm;
+            width: 90%;
             margin-left: auto;
             margin-right: auto;
             border: 1px #efefef solid;
-            font-size: 11pt;
+            font-size: 16pt;
         }
 
         table.invoice_bank_rekv {
@@ -31,13 +46,16 @@
     </style>
 </head>
 <body>
+<br/>
+<br/>
+<br/>
 <table width="100%" cellpadding="2" cellspacing="2" class="invoice_bank_rekv">
     <tr>
         <td colspan="2" rowspan="2" style="min-height:13mm; width: 105mm;">
             <table width="100%" border="0" cellpadding="0" cellspacing="0" style="height: 13mm;">
                 <tr>
                     <td valign="top">
-                        <div>Укажите название банка</div>
+                        <div></div>
                     </td>
                 </tr>
                 <tr>
@@ -51,8 +69,8 @@
             <div>БИK</div>
         </td>
         <td rowspan="2" style="vertical-align: top; width: 60mm;">
-            <div style=" height: 7mm; line-height: 7mm; vertical-align: middle;">Бик банка</div>
-            <div>Счет банка</div>
+            <div style=" height: 7mm; line-height: 7mm; vertical-align: middle;">{{ $supplier->getDefaultRequisite()->bank->bik }}</div>
+            <div>{{ $supplier->getDefaultRequisite()->bank->score }}</div>
         </td>
     </tr>
     <tr>
@@ -62,16 +80,16 @@
     </tr>
     <tr>
         <td style="min-height:6mm; height:auto; width: 50mm;">
-            <div>ИНН 0000000</div>
+            <div>ИНН {{ $supplier->inn }}</div>
         </td>
         <td style="min-height:6mm; height:auto; width: 55mm;">
-            <div>КПП</div>
+            <div>КПП {{ $supplier->kpp }}</div>
         </td>
         <td rowspan="2" style="min-height:19mm; height:auto; vertical-align: top; width: 25mm;">
             <div>Сч. №</div>
         </td>
         <td rowspan="2" style="min-height:19mm; height:auto; vertical-align: top; width: 60mm;">
-            <div>Расчетный счет</div>
+            <div>{{ $supplier->getDefaultRequisite()->score }}</div>
         </td>
     </tr>
     <tr>
@@ -79,7 +97,7 @@
             <table border="0" cellpadding="0" cellspacing="0" style="height: 13mm; width: 105mm;">
                 <tr>
                     <td valign="top">
-                        <div>Название организации</div>
+                        <div>{{ $supplier->title }}</div>
                     </td>
                 </tr>
                 <tr>
@@ -101,7 +119,7 @@
             <div style=" padding-left:2px;">Поставщик:</div>
         </td>
         <td>
-            <div style="font-weight:bold;  padding-left:2px;">Название организации</div>
+            <div style="font-weight:bold;  padding-left:2px;">{{ $supplier->full_title_with_opf }}</div>
         </td>
     </tr>
     <tr>
@@ -109,9 +127,9 @@
             <div style=" padding-left:2px;">Покупатель:</div>
         </td>
         <td>
-            <div style="font-weight:bold;  padding-left:2px;">Укажите
-                полной название
-                покупающей организации
+            <div style="font-weight:bold;  padding-left:2px;">
+                {{ $customer->title }}, ИНН {{ $customer->inn }}, КПП {{ $customer->kpp }},
+                {{ $customer->address_postal }}, {{ $customer->address }}
             </div>
         </td>
     </tr>
@@ -120,7 +138,6 @@
     <thead>
     <tr>
         <th style="width:13mm;">№</th>
-        <th style="width:20mm;">Код</th>
         <th>Товар</th>
         <th style="width:20mm;">Кол-во</th>
         <th style="width:17mm;">Ед.</th>
@@ -128,7 +145,30 @@
         <th style="width:27mm;">Сумма</th>
     </tr>
     </thead>
-    <tbody></tbody>
+    <tbody>
+    @foreach ($products as $key => $product)
+        <tr>
+            <td>
+                {{ $key }}
+            </td>
+            <td>
+                {{ $product->parent->name_for_document }}
+            </td>
+            <td>
+                {{ $product->mount }}
+            </td>
+            <td>
+                {{ $product->parent->sizeOfUnit->short_name }}
+            </td>
+            <td>
+                {{ $product->price }}
+            </td>
+            <td>
+                {{ $product->mount * $product->price }}
+            </td>
+        </tr>
+    @endforeach
+    </tbody>
 </table>
 <table border="0" width="100%" cellpadding="1" cellspacing="1">
     <tbody>
@@ -144,12 +184,6 @@
 <br/><br/>
 <div style="background-color:#000000; width:100%; font-size:1px; height:2px;">&nbsp;</div>
 <br/>
-<div>Руководитель ______________________ (Фамилия И.О.)</div>
-<br/>
-<div>Главный бухгалтер ______________________ (Фамилия И.О.)</div>
-<br/>
-<div style="width: 85mm;text-align:center;">М.П.</div>
-<br/>
-<div style="width:800px;text-align:left;font-size:10pt;">Счет действителен к оплате в течении трех дней.</div>
+<div>Подпись ______________________ ({{ $supplier->title }})</div>
 </body>
 </html>

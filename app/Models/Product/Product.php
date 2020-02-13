@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property integer size
  * @property integer size_of_unit_id
+ * @property SizeOfUnit size_of_unit
  *
  * @property integer price
  * @property integer currency_id

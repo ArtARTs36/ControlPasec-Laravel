@@ -12,6 +12,7 @@ use Illuminate\Database\Query\Builder;
  * @property string score
  * @property int contragent_id
  * @property int bank_id
+ * @property VocabBank bank
  *
  * @mixin Builder
  */
