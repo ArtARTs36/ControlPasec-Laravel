@@ -19,4 +19,14 @@ class CSVString
     {
         return $this->_array;
     }
+
+    public function getArrayWithoutKeys($excludeKeys)
+    {
+        $array = $this->_array;
+        foreach ($excludeKeys as $key) {
+            unset($array[$key]);
+        }
+
+        return $array;
+    }
 }

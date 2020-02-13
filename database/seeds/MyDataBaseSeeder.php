@@ -28,4 +28,20 @@ abstract class MyDataBaseSeeder extends Seeder
             $model->save();
         }
     }
+
+    public function fillModelWithMap($class, $file, MapFindManager $mapManager)
+    {
+        foreach ($this->getStringsOfResource($file) as $string) {
+            $data = array_merge(
+                $string->getArrayWithoutKeys($mapManager->getFields()),
+                $mapManager->getValues($string)
+            );
+
+            /** @var Model $model */
+            $model = new $class();
+            $model->fill($data);
+
+            $model->save();
+        }
+    }
 }

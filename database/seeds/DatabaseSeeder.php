@@ -21,5 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(VocabCurrencySeeder::class);
         $this->call(ProductSeeder::class);
         $this->call(ContractTemplateSeeder::class);
+        $this->call(DocumentExtensionSeeder::class);
+        $this->call(DocumentLoaderSeeder::class);
     }
 }
