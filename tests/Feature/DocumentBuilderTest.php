@@ -19,4 +19,16 @@ class DocumentBuilderTest extends BaseTestCase
 
         self::assertTrue($build);
     }
+
+    public function testBuildMany()
+    {
+        $randomDocument = Document::where('status', Document::STATUS_NEW)
+            ->inRandomOrder()
+            ->get()
+            ->first();
+
+        $build = DocumentBuilder::buildMany([$randomDocument, $randomDocument], true);
+
+        self::assertTrue($build);
+    }
 }

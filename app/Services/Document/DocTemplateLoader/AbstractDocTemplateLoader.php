@@ -16,9 +16,16 @@ abstract class AbstractDocTemplateLoader
 
     abstract protected function make(Document $document, $save = false);
 
+    abstract protected function makeMany($documents, $save = false);
+
     public function load(Document $document, $save = false)
     {
         return $this->make($document, $save);
+    }
+
+    public function loadMany($documents, $save = false)
+    {
+        return $this->makeMany($documents, $save);
     }
 
     /**

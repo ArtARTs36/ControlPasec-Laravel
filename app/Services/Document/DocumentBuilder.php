@@ -31,4 +31,25 @@ class DocumentBuilder
 
         return $result;
     }
+
+    public static function buildMany($documents, $save = false)
+    {
+        $document = $documents[0];
+        if (!self::LOADERS[$document->getLoaderName()]) {
+            throw new \LogicException('Не найден загрузчик шаблонов!');
+        }
+
+        $loaderClass = self::LOADERS[$document->getLoaderName()];
+
+        /** @var AbstractDocTemplateLoader $loader */
+        $loader = new $loaderClass();
+
+        $result = $loader->loadMany($documents, $save);
+
+        foreach ($documents as $doc) {
+            $doc->nextStatus(true);
+        }
+
+        return $result;
+    }
 }

@@ -9,46 +9,54 @@
         return $parent->with('sizeOfUnit');
     }])->get();
 @endphp
-<!doctype html>
-<html>
-<head><title>Бланк "Счет на оплату"</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <style>
-        *, body, html {
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            width: 90%;
-            margin-left: auto;
-            margin-right: auto;
-            border: 1px #efefef solid;
-            font-size: 16pt;
-        }
 
-        table.invoice_bank_rekv {
-            border-collapse: collapse;
-            border: 1px solid;
-        }
+@if($isFirstDocument === true)
+    <!doctype html>
+    <html>
+    <head><title>Бланк "Счет на оплату"</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <style>
+            *, body, html {
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                width: 90%;
+                margin-left: auto;
+                margin-right: auto;
+                border: 1px #efefef solid;
+                font-size: 14pt;
+            }
 
-        table.invoice_bank_rekv > tbody > tr > td, table.invoice_bank_rekv > tr > td {
-            border: 1px solid;
-        }
+            table.invoice_bank_rekv {
+                border-collapse: collapse;
+                border: 1px solid;
+            }
 
-        table.invoice_items {
-            border: 1px solid;
-            border-collapse: collapse;
-        }
+            table.invoice_bank_rekv > tbody > tr > td, table.invoice_bank_rekv > tr > td {
+                border: 1px solid;
+            }
 
-        table.invoice_items td, table.invoice_items th {
-            border: 1px solid;
-        }
-    </style>
-</head>
-<body>
+            table.invoice_items {
+                border: 1px solid;
+                border-collapse: collapse;
+            }
+
+            table.invoice_items td, table.invoice_items th {
+                border: 1px solid;
+            }
+
+            div.page_break {
+                page-break-before: always;
+            }
+        </style>
+    </head>
+    <body>
+@endif
 <br/>
 <br/>
 <br/>
+
 <table width="100%" cellpadding="2" cellspacing="2" class="invoice_bank_rekv">
     <tr>
         <td colspan="2" rowspan="2" style="min-height:13mm; width: 105mm;">
@@ -185,5 +193,10 @@
 <div style="background-color:#000000; width:100%; font-size:1px; height:2px;">&nbsp;</div>
 <br/>
 <div>Подпись ______________________ ({{ $supplier->title }})</div>
-</body>
-</html>
+
+@if($isEndDocument === true)
+    </body>
+    </html>
+@else
+    <div class="page_break"></div>
+@endif
