@@ -36,6 +36,20 @@ class DocumentService
 //        self::createTaskToMakeDocument($document);
     }
 
+    /**
+     * Обновить название файла
+     *
+     * @param Document $document
+     * @return Document
+     * @throws \Throwable
+     */
+    public static function refreshFileName(Document $document)
+    {
+        $document->title = self::parseFileName($document);
+        $document->save();
+        return $document;
+    }
+
 //    private static function createTaskToMakeDocument(Document $document)
 //    {
 //        $procedure = $this->getEntityManager()->getRepository(TaskProcedure::class)->findOneByMethod(
