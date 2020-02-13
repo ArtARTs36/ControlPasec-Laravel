@@ -111,8 +111,8 @@ abstract class AbstractDocTemplateLoader
     public function getSavePath(Document $document)
     {
         $dir = implode(DIRECTORY_SEPARATOR, [
-            env('DOCUMENT_SAVE_DIR'),
-            file_get_contents(env('DOCUMENT_SAVE_MAP')),
+            base_path(env('DOCUMENT_SAVE_DIR')),
+            file_get_contents(base_path(env('DOCUMENT_SAVE_MAP'))),
             $document->uuid
         ]);
 

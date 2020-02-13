@@ -5,6 +5,7 @@ namespace App\Models\Document;
 use App\Services\Service\OrfoService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Query\Builder;
 use Ramsey\Uuid\Uuid;
 
 /**
@@ -16,6 +17,8 @@ use Ramsey\Uuid\Uuid;
  * @property int status
  * @property DocumentType type
  * @property string uuid
+ *
+ * @mixin Builder
  */
 class Document extends Model
 {
@@ -40,7 +43,17 @@ class Document extends Model
      */
     public function getExtensionName()
     {
-        return $this->type()->loader()->extension()->name;
+        return $this->type->loader->extension->name;
+    }
+
+    /**
+     * Получить название шаблона
+     *
+     * @return string
+     */
+    public function getTemplate()
+    {
+        return $this->type->template;
     }
 
     /**
@@ -56,7 +69,7 @@ class Document extends Model
      */
     public function getLoaderName()
     {
-        return $this->type()->loader()->name;
+        return $this->type->loader->name;
     }
 
     /**
@@ -65,6 +78,7 @@ class Document extends Model
      */
     public function beforeCreate()
     {
+        $this->status = self::STATUS_NEW;
         $this->uuid = Uuid::getFactory()->uuid4()->toString();
 
         return $this;

@@ -18,11 +18,11 @@ class CreateDocumentsTable extends Migration
             $table->timestamps();
 
             $table->unsignedInteger('type_id');
-            $table->string('file_path', 256);
+            $table->string('file_path', 256)->nullable();
             $table->string('title', 256);
 
-            $table->dateTime('onePeriod');
-            $table->dateTime('twoPeriod');
+            $table->dateTime('onePeriod')->nullable();
+            $table->dateTime('twoPeriod')->nullable();
 
             $table->uuid('uuid');
 

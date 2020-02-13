@@ -12,6 +12,7 @@ class PDFDocTemplateLoader extends AbstractDocTemplateLoader
     /**
      * @param Document $document
      * @param bool $save
+     * @return bool
      * @throws \Exception
      */
     protected function make(Document $document, $save = false)
@@ -20,7 +21,11 @@ class PDFDocTemplateLoader extends AbstractDocTemplateLoader
             'defaultFont' => 'calibri'
         ]);
 
-        $domPdf->loadHtml($this->getTemplate($document, null, true));
+        $domPdf->loadHtml(
+            view($document->getTemplate(), [
+                'document' => $document
+            ])
+        );
 
         $domPdf->setPaper('A4', 'landscape');
 
@@ -31,5 +36,7 @@ class PDFDocTemplateLoader extends AbstractDocTemplateLoader
         } else {
             $domPdf->stream($document->title);
         }
+
+        return true;
     }
 }

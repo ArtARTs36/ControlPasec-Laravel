@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string title
  * @property string template
  * @property int loader_id
+ * @property DocumentLoader loader
  */
 class DocumentType extends Model
 {

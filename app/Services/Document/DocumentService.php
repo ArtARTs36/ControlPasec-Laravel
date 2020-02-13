@@ -1,74 +1,54 @@
 <?php
 
-namespace DocumentBundle\Service;
+namespace App\Service\Document;
 
 use App\Models\Document\Document;
-use AppBundle\Interfaces\CheckNormalizeInterface;
-use AppBundle\Traits\UserOfContainerTrait;
-use AppBundle\Helper\EntityManagerTrait;
-use DocumentBundle\Service\CheckNormalize\DocumentServiceCheckNormalizeTrait;
-use IntegrationBundle\ParseAction\DocumentCreateAction;
-use LinkBundle\Entity\Link;
-use QueueBundle\Entity\Task;
-use QueueBundle\Entity\TaskProcedure;
-use QueueBundle\Service\QueueService;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use UserBundle\Entity\User;
+use App\Models\Document\DocumentType;
+use App\User;
 
-class DocumentService implements CheckNormalizeInterface
+class DocumentService
 {
-    use EntityManagerTrait;
-    use UserOfContainerTrait;
-    use DocumentServiceCheckNormalizeTrait;
-
-    private $container;
-
-    public function __construct(
-        ContainerInterface $container
-    )
-    {
-        $this->entityManager = $container->get('doctrine.orm.entity_manager');
-        $this->container = $container;
-    }
-
     /**
      * Создать документ
      *
      * @param $typeId
-     * @param null $links
-     * @param null $user
      * @param bool $save
      * @param null|array $docFields
-     * @throws \Exception
+     * @return Document
+     * @throws \Throwable
      */
-    public function createDocument($typeId, $save = false, $docFields = null)
+    public static function createDocument($typeId, $save = false, $docFields = null)
     {
         $document = new Document();
         $document->beforeCreate();
 
+        $document->type = DocumentType::find($typeId);
         $document->type_id = $typeId;
-        $document->title = $this->parseFileName($document);
+        $document->title = self::parseFileName($document);
 
-        $this->setDocFields($document, $docFields);
+        self::setDocFields($document, $docFields);
 
+        unset($document->type);
         $document->save();
 
-        $this->createTaskToMakeDocument($document);
+        return $document;
+
+//        self::createTaskToMakeDocument($document);
     }
 
-    private function createTaskToMakeDocument(Document $document)
-    {
-        $procedure = $this->getEntityManager()->getRepository(TaskProcedure::class)->findOneByMethod(
-            DocumentCreateAction::NAME
-        );
-
-        $task = new Task();
-        $task->beforeCreate();
-        $task->setProcedure($procedure);
-        $task->document = $document;
-
-        $this->saveEntity($task);
-    }
+//    private static function createTaskToMakeDocument(Document $document)
+//    {
+//        $procedure = $this->getEntityManager()->getRepository(TaskProcedure::class)->findOneByMethod(
+//            DocumentCreateAction::NAME
+//        );
+//
+//        $task = new Task();
+//        $task->beforeCreate();
+//        $task->setProcedure($procedure);
+//        $task->document = $document;
+//
+//        $this->saveEntity($task);
+//    }
 
     /**
      * Проставить поля в документе
@@ -77,7 +57,7 @@ class DocumentService implements CheckNormalizeInterface
      * @param $fields
      * @return Document|null
      */
-    private function setDocFields(Document $document, $fields)
+    private static function setDocFields(Document $document, $fields)
     {
         if ($fields === null) {
             return $document;
@@ -117,29 +97,18 @@ class DocumentService implements CheckNormalizeInterface
      * @param Document $document
      * @return string
      * @throws \Exception
+     * @throws \Throwable
      */
-    protected function parseFileName(Document $document)
+    protected static function parseFileName(Document $document)
     {
-        $params = [];
+        $tmpFile = time();
+        $path = __DIR__ . '/../../../resources/views/'. $tmpFile . '.blade.php';
+        file_put_contents(
+            $path,
+            $document->type->title
+        );
 
-        $loader = new \Twig\Loader\ArrayLoader([
-            'index.html' => $document->type->title,
-        ]);
-
-        $twig = new \Twig\Environment($loader);
-
-        $links = $document->getLinks();
-
-        if ($links !== null) {
-            $params = array_merge($params, [
-                'links' => $links,
-                'link' => $links[0] ?? null
-            ]);
-        }
-
-        $name = $twig->render('index.html', $params);
-
-        return $name. '.'. $document->getExtensionName();
+        return view($tmpFile, $document)->render() . '.' . $document->getExtensionName();
     }
 
     public function getDownloadLink(Document $document)
@@ -166,7 +135,7 @@ class DocumentService implements CheckNormalizeInterface
 
     public function getDocsWithDownloadLinksByUser(User $user)
     {
-        $documents = $this->getEntityManager()->getRepository(Document::class)->findByUser($user);
+        $documents = Document::where('user', $user->id);
 
         $this->setDownloadLinks($documents);
 
@@ -212,7 +181,7 @@ class DocumentService implements CheckNormalizeInterface
             return $id;
         }
 
-        $document = $this->getEntityManager()->getRepository(Document::class)->find($id);
+        $document = Document::find($id);
         if (null === $document) {
             throw new \LogicException('Документ не найден');
         }
