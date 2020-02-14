@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Supply\Supply;
 use App\ScoreForPayment;
+use App\Services\ScoreForPaymentService;
 use Tests\BaseTestCase;
 
 class ScoreForPaymentTest extends BaseTestCase

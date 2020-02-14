@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddDocumentIdInScoreForPayments extends Migration
+class AddScoreForPaymentsInDocuments extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,19 @@ class AddDocumentIdInScoreForPayments extends Migration
      */
     public function up()
     {
-        Schema::table('score_for_payments', function (Blueprint $table) {
+        Schema::create('document_score_for_payment', function (Blueprint $table) {
             $table->unsignedInteger('document_id');
+            $table->unsignedInteger('score_for_payment_id');
+        });
 
+        Schema::table('document_score_for_payment', function (Blueprint $table) {
             $table->foreign('document_id')
                 ->references('id')
                 ->on('documents');
+
+            $table->foreign('score_for_payment_id')
+                ->references('id')
+                ->on('score_for_payments');
         });
     }
 
@@ -29,9 +36,8 @@ class AddDocumentIdInScoreForPayments extends Migration
      */
     public function down()
     {
-        Schema::table('score_of_payment', function (Blueprint $table) {
-            $table->removeColumn('document_id');
-            $table->dropForeign('document_id');
+        Schema::table('documents', function (Blueprint $table) {
+            //
         });
     }
 }

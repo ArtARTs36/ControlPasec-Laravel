@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Supply;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ScoreForPaymentRequest;
+use App\Http\Resource\DocumentResource;
 use App\Http\Responses\ActionResponse;
 use App\Models\Document\Document;
 use App\Models\Document\DocumentType;
@@ -12,6 +13,7 @@ use App\ScoreForPayment;
 use App\Service\Document\DocumentService;
 use App\Services\Document\DocumentBuilder;
 use App\Services\ScoreForPaymentService;
+use Illuminate\Http\Request;
 
 class ScoreForPaymentController extends Controller
 {
@@ -77,25 +79,34 @@ class ScoreForPaymentController extends Controller
      * @return ActionResponse
      * @throws \Throwable
      */
-    public function downloadDocument($supplyId)
+    public function createDocument($supplyId)
     {
         $supply = Supply::find($supplyId);
         if (null === $supply) {
             return new ActionResponse(false);
         }
 
-        $score = ScoreForPaymentService::getOrCreateBySupply($supply, null, null, false);
-        if (empty($score->document_id)) {
-            $document = DocumentService::createDocument(
-                DocumentType::SCORE_FOR_PAYMENT_ID
-            );
+        ScoreForPaymentService::createDocumentBySupply($supply);
+    }
 
-            $score->document_id = $document->id;
-            $score->save();
-        } else {
-            $document = $score->document;
-        }
+    /**
+     * Создать документ из нескольких счетов
+     *
+     * @param Request $request
+     * @return DocumentResource
+     * @throws \Throwable
+     */
+    public function checkOrCreateDocumentOfManyScores(Request $request)
+    {
+        $supplies = $request->get('supplies');
+//        $scores = ScoreForPayment::whereIn('supply_id', $supplies)->get();
 
-        $build = DocumentBuilder::build($document);
+        $scores = ScoreForPaymentService::getOrCreateBySupplies($supplies);
+
+        $document = DocumentService::createDocument(DocumentType::SCORES_FOR_PAYMENTS_ID, true, null, [
+            'scoreForPayments' => $scores
+        ]);
+
+        return new DocumentResource($document);
     }
 }

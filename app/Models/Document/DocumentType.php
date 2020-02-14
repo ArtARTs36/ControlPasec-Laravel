@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class DocumentType extends Model
 {
     const SCORE_FOR_PAYMENT_ID = 1;
+    const SCORES_FOR_PAYMENTS_ID = 2;
 
     /**
      * @return BelongsTo|DocumentLoader

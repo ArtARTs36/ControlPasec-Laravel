@@ -2,6 +2,7 @@
 
 namespace App\Models\Document;
 
+use App\ScoreForPayment;
 use App\Services\Service\OrfoService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,6 +18,8 @@ use Ramsey\Uuid\Uuid;
  * @property int status
  * @property DocumentType type
  * @property string uuid
+ * @property ScoreForPayment[] scoreForPayments
+ * @property int folder
  *
  * @mixin Builder
  */
@@ -36,6 +39,11 @@ class Document extends Model
     public function type()
     {
         return $this->belongsTo(DocumentType::class);
+    }
+
+    public function scoreForPayments()
+    {
+        return $this->belongsToMany(ScoreForPayment::class);
     }
 
     /**
@@ -102,5 +110,10 @@ class Document extends Model
         }
 
         return false;
+    }
+
+    public function getScoreForPayment()
+    {
+        return $this->scoreForPayments[0];
     }
 }

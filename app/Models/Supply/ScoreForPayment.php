@@ -17,8 +17,7 @@ use Illuminate\Database\Query\Builder;
  * @property string date
  * @property Supply supply
  * @property int order_number
- * @property int document_id
- * @property Document document
+ * @property Document[] documents
  *
  * @mixin Builder
  */
@@ -38,8 +37,13 @@ class ScoreForPayment extends Model
         return $this->belongsTo(Contract::class);
     }
 
-    public function document()
+    public function documents()
     {
-        return $this->belongsTo(Document::class);
+        return $this->belongsToMany(Document::class);
+    }
+
+    public function getDocument()
+    {
+        return $this->documents[0];
     }
 }

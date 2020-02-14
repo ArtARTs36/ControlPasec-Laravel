@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Document;
 
 use App\Http\Controllers\Controller;
+use App\Models\Document\Document;
+use App\Service\Document\DocumentService;
 use Illuminate\Http\Request;
 
 class DocumentController extends Controller
@@ -50,17 +52,6 @@ class DocumentController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Document  $document
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Document $document)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -81,5 +72,30 @@ class DocumentController extends Controller
     public function destroy(Document $document)
     {
         //
+    }
+
+    public function download($documentId)
+    {
+        $document = Document::find($documentId);
+        $path = public_path(DocumentService::getDownloadLink($document));
+        if (!file_exists($path)) {
+            return null;
+        }
+
+        if (ob_get_level()) {
+            ob_end_clean();
+        }
+
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename=' . basename($document->title));
+        header('Content-Transfer-Encoding: binary');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($path));
+
+        readfile($path);
+        exit;
     }
 }

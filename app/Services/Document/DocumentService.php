@@ -4,7 +4,9 @@ namespace App\Service\Document;
 
 use App\Models\Document\Document;
 use App\Models\Document\DocumentType;
+use App\Services\Document\DocumentBuilder;
 use App\User;
+use Illuminate\Database\Eloquent\Model;
 
 class DocumentService
 {
@@ -14,10 +16,11 @@ class DocumentService
      * @param $typeId
      * @param bool $save
      * @param null|array $docFields
+     * @param null $attachData
      * @return Document
      * @throws \Throwable
      */
-    public static function createDocument($typeId, $save = false, $docFields = null)
+    public static function createDocument($typeId, $save = false, $docFields = null, $attachData = null)
     {
         $document = new Document();
         $document->beforeCreate();
@@ -30,6 +33,11 @@ class DocumentService
 
         unset($document->type);
         $document->save();
+        self::setAttachData($document, $attachData);
+
+        if ($save === true) {
+            DocumentBuilder::build($document, true);
+        }
 
         return $document;
 
@@ -84,6 +92,23 @@ class DocumentService
         return $document;
     }
 
+    private static function setAttachData(Document $document, $attachData)
+    {
+        if ($attachData === null) {
+            return $document;
+        }
+
+        foreach ($attachData as $relation => $values) {
+            $values = array_map(function ($value) {
+                return ($value instanceof Model) ? $value->id : $value;
+            }, $values);
+
+            $document->$relation()->attach($values);
+        }
+
+        return $document;
+    }
+
     /**
      * Добавить ссылки к документу
      *
@@ -125,13 +150,14 @@ class DocumentService
         return view($tmpFile, $document)->render() . '.' . $document->getExtensionName();
     }
 
-    public function getDownloadLink(Document $document)
+    public static function getDownloadLink($document)
     {
-        $dir = $this->container->getParameter('document_dir');
+        $document = self::getDocument($document);
 
         return implode(DIRECTORY_SEPARATOR, [
             '',
-            $dir,
+            env('DOCUMENT_DOWNLOAD_DIR'),
+            $document->folder,
             $document->uuid,
             $document->getFileName()
         ]);
@@ -189,7 +215,7 @@ class DocumentService
      * @param $id
      * @return object|null|Document
      */
-    public function getDocument($id)
+    public static function getDocument($id)
     {
         if ($id instanceof Document) {
             return $id;

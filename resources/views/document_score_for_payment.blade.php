@@ -1,5 +1,10 @@
 @php
-    $score = \App\ScoreForPayment::where('document_id', $document->id)->first();
+    $document->load([
+        'scoreForPayments'
+    ]);
+
+    $score = $document->getScoreForPayment();
+
     $supply = $score->supply;
     $supplier = $supply->supplier->load(['requisites' => function($requisite) {
         return $requisite->with('bank');
@@ -59,6 +64,7 @@
 <br/>
 <br/>
 
+@foreach($supply as $supplies)
 <table width="100%" cellpadding="2" cellspacing="2" class="invoice_bank_rekv">
     <tr>
         <td colspan="2" rowspan="2" style="min-height:13mm; width: 105mm;">
@@ -195,6 +201,8 @@
 <div style="background-color:#000000; width:100%; font-size:1px; height:2px;">&nbsp;</div>
 <br/>
 <div>Подпись ______________________ ({{ $supplier->title }})</div>
+
+@endforeach
 
 @if($isEndDocument === true)
     </body>

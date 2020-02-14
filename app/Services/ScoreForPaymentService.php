@@ -2,18 +2,17 @@
 
 namespace App\Services;
 
+use App\Models\Document\DocumentType;
 use App\Models\Supply\Supply;
 use App\ScoreForPayment;
+use App\Service\Document\DocumentService;
+use App\Services\Document\DocumentBuilder;
 
 class ScoreForPaymentService
 {
-    public static function getOrCreateBySupply($supplyId, $date = null, $orderNumber = null, $save = true)
+    public static function getOrCreateBySupply($supplyId, $date = null, $orderNumber = null)
     {
-        if ($supplyId instanceof Supply) {
-            $supplyId = $supplyId->id;
-        }
-
-        $scoreForPayment = ScoreForPayment::where('supply_id', $supplyId)
+        $scoreForPayment = ScoreForPayment::where('supply_id', self::prepareSupplyId($supplyId))
             ->get()
             ->first();
 
@@ -28,10 +27,44 @@ class ScoreForPaymentService
         $scoreForPayment->supply_id = $supplyId;
         $scoreForPayment->date = $date ?? $currentDateTime->format('Y-m-d');
 
-        if ($save === true) {
-            $scoreForPayment->save();
-        }
+        $scoreForPayment->save();
 
         return $scoreForPayment;
+    }
+
+    public static function getOrCreateBySupplies($supplies)
+    {
+        $res = [];
+        foreach ($supplies as $supply) {
+            $res[] = self::getOrCreateBySupply($supply);
+        }
+
+        return $res;
+    }
+
+    public static function prepareSupplyId($supplyId)
+    {
+        return ($supplyId instanceof Supply ? $supplyId->id : $supplyId);
+    }
+
+    public static function createDocumentBySupply(Supply $supply, $save = false)
+    {
+        $score = self::getOrCreateBySupply($supply, null, null);
+        $document = self::createDocumentByScore($score);
+
+        $build = DocumentBuilder::build($document, $save);
+
+        return $build;
+    }
+
+    public static function createDocumentByScore(ScoreForPayment $score)
+    {
+        $document = DocumentService::createDocument(
+            DocumentType::SCORE_FOR_PAYMENT_ID
+        );
+
+        $score->documents()->attach([$document->id]);
+
+        return $document;
     }
 }

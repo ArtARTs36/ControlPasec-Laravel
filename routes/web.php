@@ -23,4 +23,11 @@ Route::apiResource('vocab/size-of-units', 'Vocab\SizeOfUnitController');
 Route::apiResource('vocab/currencies', 'Vocab\VocabCurrencyController');
 
 Route::apiResource('score-for-payments', 'Supply\ScoreForPaymentController');
-Route::get('score-for-payments/download-by-supply/{supplyId}', 'Supply\ScoreForPaymentController@downloadDocument');
+Route::get('score-for-payments/download-by-supply/{supplyId}', 'Supply\ScoreForPaymentController@createDocument');
+Route::post(
+    'score-for-payments/check-document-of-many',
+    'Supply\ScoreForPaymentController@checkOrCreateDocumentOfManyScores'
+);
+
+Route::apiResource('documents', 'Document\DocumentController');
+Route::get('documents/{id}/download', 'Document\DocumentController@download');

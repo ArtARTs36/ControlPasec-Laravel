@@ -29,14 +29,6 @@ abstract class AbstractDocTemplateLoader
     }
 
     /**
-     * @return Environment
-     */
-    protected function getTwigOfContainer()
-    {
-        return $this->container->get('twig');
-    }
-
-    /**
      * Получил файл шаблона
      *
      * @param Document $document
@@ -50,65 +42,6 @@ abstract class AbstractDocTemplateLoader
     }
 
     /**
-     * Создать загрузчик Твига
-     *
-     * @param Document $document
-     * @param &$fakeName
-     * @return Environment
-     */
-    protected function createTwigLoader(Document $document, &$fakeName)
-    {
-        $fakeName = time() . '.html';
-
-        $file = $this->getTemplateFileByDocument($document);
-        TextMinificator::minify($file);
-
-        $loader = new \Twig\Loader\ArrayLoader([
-            $fakeName => $file,
-        ]);
-
-        $twig = new \Twig\Environment($loader);
-
-        foreach ($this->getTwigOfContainer()->getExtensions() as $extension) {
-            if (!$twig->hasExtension(get_class($extension))) {
-                $twig->addExtension($extension);
-            }
-        }
-
-        return $twig;
-    }
-
-    /**
-     * @param Document $document
-     * @param null $appendParams
-     * @param bool $isMinify
-     * @return string
-     * @throws \Exception
-     */
-    protected function getTemplate(
-        Document $document,
-        $appendParams = null,
-        $isMinify = false
-    )
-    {
-        $links = $document->getLinks();
-
-        $params = [
-            'document' => $document,
-            'links' => $links,
-            'link' => $links[0] ?? null
-        ];
-
-        if (is_array($appendParams)) {
-            $params = array_merge($params, $appendParams);
-        }
-
-        return ($isMinify === true) ?
-            $this->createTwigLoader($document, $fakeName)->render($fakeName, $params) :
-            $this->getTwigOfContainer()->render(self::TEMPLATE_DIR . $document->type->template, $params);
-    }
-
-    /**
      * Получить путь для сохранения документа
      *
      * @param Document $document
@@ -117,9 +50,14 @@ abstract class AbstractDocTemplateLoader
      */
     public function getSavePath(Document $document)
     {
+        if (empty($document->folder)) {
+            $document->folder = file_get_contents(base_path(trim(env('DOCUMENT_SAVE_MAP'))));
+            $document->save();
+        }
+
         $dir = implode(DIRECTORY_SEPARATOR, [
             base_path(env('DOCUMENT_SAVE_DIR')),
-            file_get_contents(base_path(env('DOCUMENT_SAVE_MAP'))),
+            $document->folder,
             $document->uuid
         ]);
 

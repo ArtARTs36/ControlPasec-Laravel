@@ -22,7 +22,7 @@ class CreateScoreForPaymentsTable extends Migration
             $table->date('date');
 
             $table->unsignedInteger('supply_id');
-            $table->unsignedInteger('contract_id');
+            $table->unsignedInteger('contract_id')->nullable();
         });
 
         Schema::table(self::TABLE, function (Blueprint $table) {
