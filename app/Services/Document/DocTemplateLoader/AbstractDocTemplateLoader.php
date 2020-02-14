@@ -51,7 +51,7 @@ abstract class AbstractDocTemplateLoader
     public function getSavePath(Document $document)
     {
         if (empty($document->folder)) {
-            $document->folder = file_get_contents(base_path(trim(env('DOCUMENT_SAVE_MAP'))));
+            $document->folder = trim(file_get_contents(base_path(env('DOCUMENT_SAVE_MAP'))));
             $document->save();
         }
 

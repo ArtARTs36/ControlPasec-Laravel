@@ -18,7 +18,8 @@ class DocumentResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'download_url' => $_SERVER['HTTP_HOST'] . DocumentService::getDownloadLink($this->id)
+            //'download_url' => $_SERVER['HTTP_HOST'] . DocumentService::getDownloadLink($this->id)
+            'download_url' => $_SERVER['HTTP_HOST'] . '/documents/' . $this->id . '/download'
         ];
     }
 }

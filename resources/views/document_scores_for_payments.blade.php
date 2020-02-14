@@ -203,7 +203,9 @@
     <br/>
     <div>Подпись ______________________ ({{ $supplier->title }})</div>
 
+    @if(next($scores))
     <div class="page_break"></div>
+    @endif
 
 @endforeach
 
