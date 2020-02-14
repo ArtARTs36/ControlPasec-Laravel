@@ -52,7 +52,7 @@
 <br/>
 <br/>
 
-@foreach($scores as $score)
+@foreach($scores as $scoreIndex => $score)
     @php
         $supply = $score->supply;
         $supplier = $supply->supplier->load(['requisites' => function($requisite) {
@@ -203,7 +203,7 @@
     <br/>
     <div>Подпись ______________________ ({{ $supplier->title }})</div>
 
-    @if(next($scores))
+    @if($scoreIndex < count($scores) - 1)
     <div class="page_break"></div>
     @endif
 
