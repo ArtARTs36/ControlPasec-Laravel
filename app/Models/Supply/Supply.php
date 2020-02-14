@@ -20,7 +20,7 @@ use Illuminate\Database\Query\Builder;
  * @property int customer_id
  * @property Contragent customer
  * @property Contragent supplier
- * @property Product[] products
+ * @property SupplyProduct[] products
  * @property Contract contract
  * @property int contract_id
  *

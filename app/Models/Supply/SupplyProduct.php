@@ -14,6 +14,7 @@ use Illuminate\Database\Query\Builder;
  * @property integer mount
  * @property integer product_id
  * @property integer supply_id
+ * @property Product parent
  *
  * @mixin Builder
  */

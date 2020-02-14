@@ -59,4 +59,18 @@ class SupplyService
             $product->update($productData);
         }
     }
+
+    public static function fullLoadSupply($id)
+    {
+        $supply = Supply::find($id);
+        $supplier = $supply->supplier->load(['requisites' => function($requisite) {
+            return $requisite->with('bank');
+        }]);
+        $customer = $supply->customer;
+        $products = $supply->products()->with(['parent' => function($parent) {
+            return $parent->with('sizeOfUnit');
+        }])->get();
+
+        return $supply;
+    }
 }

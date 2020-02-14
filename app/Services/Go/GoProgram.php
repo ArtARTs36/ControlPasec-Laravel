@@ -6,6 +6,8 @@ abstract class GoProgram
 {
     const GO_ROOT_DIR = __DIR__ . '/../../../go-programs';
 
+    protected $shellResult;
+
     abstract protected function getShellScript();
 
     abstract protected function process();
@@ -16,7 +18,7 @@ abstract class GoProgram
     {
         $this->process();
 
-        shell_exec($this->getShellScript());
+        $this->shellResult = shell_exec($this->getShellScript());
 
         return $this->response();
     }
