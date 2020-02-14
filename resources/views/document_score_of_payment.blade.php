@@ -1,5 +1,5 @@
 @php
-    $score = \App\ScoreForPayment::where('document_id', 7)->first();
+    $score = \App\ScoreForPayment::where('document_id', $document->id)->first();
     $supply = $score->supply;
     $supplier = $supply->supplier->load(['requisites' => function($requisite) {
         return $requisite->with('bank');
@@ -8,12 +8,14 @@
     $products = $supply->products()->with(['parent' => function($parent) {
         return $parent->with('sizeOfUnit');
     }])->get();
+
+    $totalPrice = \App\Services\SupplyService::bringTotalPrice($supply);
 @endphp
 
 @if($isFirstDocument === true)
     <!doctype html>
     <html>
-    <head><title>Бланк "Счет на оплату"</title>
+    <head><title>Счет на оплату - {{ $customer->title }}</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <style>
             *, body, html {
@@ -183,7 +185,7 @@
     <tr>
         <td></td>
         <td style="width:27mm; font-weight:bold;  text-align:right;">Итого:</td>
-        <td style="width:27mm; font-weight:bold;  text-align:right;">0.00</td>
+        <td style="width:27mm; font-weight:bold;  text-align:right;">{{ $totalPrice }}</td>
     </tr>
     </tbody>
 </table>

@@ -21,3 +21,6 @@ Route::apiResource('my-contragents', 'Contragent\MyContragentController');
 Route::apiResource('vocab/size-of-units', 'Vocab\SizeOfUnitController');
 
 Route::apiResource('vocab/currencies', 'Vocab\VocabCurrencyController');
+
+Route::apiResource('score-for-payments', 'Supply\ScoreForPaymentController');
+Route::get('score-for-payments/download-by-supply/{supplyId}', 'Supply\ScoreForPaymentController@downloadDocument');

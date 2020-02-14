@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\Contract\Contract;
+use App\Models\Document\Document;
 use App\Models\Supply\Supply;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
@@ -16,6 +17,8 @@ use Illuminate\Database\Query\Builder;
  * @property string date
  * @property Supply supply
  * @property int order_number
+ * @property int document_id
+ * @property Document document
  *
  * @mixin Builder
  */
@@ -33,5 +36,10 @@ class ScoreForPayment extends Model
     public function contract()
     {
         return $this->belongsTo(Contract::class);
+    }
+
+    public function document()
+    {
+        return $this->belongsTo(Document::class);
     }
 }
