@@ -157,7 +157,7 @@ class DocumentService
         return implode(DIRECTORY_SEPARATOR, [
             '',
             env('DOCUMENT_DOWNLOAD_DIR'),
-            $document->folder,
+            $document->getFolder(),
             $document->uuid,
             $document->getFileName()
         ]);

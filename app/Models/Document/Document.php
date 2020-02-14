@@ -64,6 +64,12 @@ class Document extends Model
         return $this->type->template;
     }
 
+    public function getTemplateFullPath($ext = false)
+    {
+        return resource_path('views/'. $this->getTemplate()) .
+            ($ext ? '.'. $this->getExtensionName() : '');
+    }
+
     /**
      * @return string
      */
@@ -115,5 +121,15 @@ class Document extends Model
     public function getScoreForPayment()
     {
         return $this->scoreForPayments[0];
+    }
+
+    public function getFolder()
+    {
+        if ($this->folder === null) {
+            $this->folder = trim(file_get_contents(base_path(env('DOCUMENT_SAVE_MAP'))));;
+            $this->save();
+        }
+
+        return $this->folder;
     }
 }
