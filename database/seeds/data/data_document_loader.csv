@@ -1,3 +1,4 @@
 name;extension_name
 XLSDocTemplateLoader;xls
 PDFDocTemplateLoader;pdf
+ExcelDocTemplateLoader;xls

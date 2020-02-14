@@ -19,6 +19,7 @@ class DocumentType extends Model
 {
     const SCORE_FOR_PAYMENT_ID = 1;
     const SCORES_FOR_PAYMENTS_ID = 2;
+    const TORG_12_ID = 3;
 
     /**
      * @return BelongsTo|DocumentLoader
