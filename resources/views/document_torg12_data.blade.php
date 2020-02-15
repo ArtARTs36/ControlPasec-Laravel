@@ -1,5 +1,8 @@
 @php
-    $supply = \App\Services\SupplyService::fullLoadSupply(4);
+
+    $document->load('supplies');
+    $supply = $document->getSupply();
+
     $products = $supply->products;
 
     $plannedDate = new DateTime($supply->planned_date);

@@ -135,4 +135,9 @@ class Document extends Model
     {
         return $this->folder;
     }
+
+    public function getSupply()
+    {
+        return $this->supplies[0];
+    }
 }
