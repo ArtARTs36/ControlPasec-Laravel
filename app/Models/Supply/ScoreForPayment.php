@@ -44,6 +44,6 @@ class ScoreForPayment extends Model
 
     public function getDocument()
     {
-        return $this->documents[0];
+        return $this->documents[0] ?? null;
     }
 }

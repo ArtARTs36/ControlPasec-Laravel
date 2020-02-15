@@ -84,7 +84,7 @@ class ScoreForPaymentController extends Controller
             return new ActionResponse(false);
         }
 
-        ScoreForPaymentService::createDocumentBySupply($supply);
+        ScoreForPaymentService::getOrCreateDocumentBySupply($supply);
     }
 
     /**

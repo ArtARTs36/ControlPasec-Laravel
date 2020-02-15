@@ -28,7 +28,7 @@ class ScoreForPaymentServiceTest extends BaseTestCase
             ->get()
             ->first();
 
-        $build = ScoreForPaymentService::createDocumentBySupply($randomSupply, true);
+        $build = ScoreForPaymentService::getOrCreateDocumentBySupply($randomSupply, true);
 
         self::assertTrue($build);
     }

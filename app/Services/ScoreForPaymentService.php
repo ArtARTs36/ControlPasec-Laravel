@@ -42,15 +42,25 @@ class ScoreForPaymentService
         return $res;
     }
 
+    /**
+     * @param Supply|int $supplyId
+     * @return int
+     */
     public static function prepareSupplyId($supplyId)
     {
         return ($supplyId instanceof Supply ? $supplyId->id : $supplyId);
     }
 
-    public static function createDocumentBySupply(Supply $supply, $save = false)
+    /**
+     * @param Supply $supply
+     * @param bool $save
+     * @return mixed
+     * @throws \Throwable
+     */
+    public static function getOrCreateDocumentBySupply(Supply $supply, $save = false)
     {
         $score = self::getOrCreateBySupply($supply, null, null);
-        $document = self::createDocumentByScore($score);
+        $document = $score->getDocument() ?? self::createDocumentByScore($score);
 
         $build = DocumentBuilder::build($document, $save);
 
