@@ -35,3 +35,5 @@ Route::post(
 
 Route::apiResource('documents', 'Document\DocumentController');
 Route::get('documents/{id}/download', 'Document\DocumentController@download');
+
+Route::apiResource('product-transport-waybills', 'Supply\ProductTransportWaybillController');

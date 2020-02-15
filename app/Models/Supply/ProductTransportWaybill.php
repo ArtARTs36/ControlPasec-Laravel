@@ -23,6 +23,10 @@ use Illuminate\Database\Query\Builder;
  */
 class ProductTransportWaybill extends Model
 {
+    protected $fillable = [
+        'order_number', 'date', 'supply_id'
+    ];
+
     public function supply()
     {
         return $this->belongsTo(Supply::class);
