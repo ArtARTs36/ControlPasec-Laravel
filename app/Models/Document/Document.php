@@ -94,6 +94,7 @@ class Document extends Model
     {
         $this->status = self::STATUS_NEW;
         $this->uuid = Uuid::getFactory()->uuid4()->toString();
+        $this->folder = trim(file_get_contents(base_path(env('DOCUMENT_SAVE_MAP'))));
 
         return $this;
     }
@@ -125,11 +126,6 @@ class Document extends Model
 
     public function getFolder()
     {
-        if ($this->folder === null) {
-            $this->folder = trim(file_get_contents(base_path(env('DOCUMENT_SAVE_MAP'))));;
-            $this->save();
-        }
-
         return $this->folder;
     }
 }

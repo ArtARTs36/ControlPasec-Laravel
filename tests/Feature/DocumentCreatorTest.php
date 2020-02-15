@@ -3,14 +3,17 @@
 namespace Tests\Feature;
 
 use App\Models\Document\Document;
+use App\Models\Document\DocumentType;
 use App\Service\Document\DocumentService;
+use App\Services\Document\DocumentCreator;
 use Tests\BaseTestCase;
 
-class DocumentServiceTest extends BaseTestCase
+class DocumentCreatorTest extends BaseTestCase
 {
     public function testCreateDocument()
     {
-        $document = DocumentService::createDocument(1,false);
+        $document = DocumentCreator::getInstance(DocumentType::SCORE_FOR_PAYMENT_ID)
+            ->save();
 
         self::assertTrue($document->id > 0);
     }

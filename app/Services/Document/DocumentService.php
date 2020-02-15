@@ -3,47 +3,10 @@
 namespace App\Service\Document;
 
 use App\Models\Document\Document;
-use App\Models\Document\DocumentType;
-use App\Services\Document\DocumentBuilder;
 use App\User;
-use Illuminate\Database\Eloquent\Model;
 
 class DocumentService
 {
-    /**
-     * Создать документ
-     *
-     * @param $typeId
-     * @param bool $save
-     * @param null|array $docFields
-     * @param null $attachData
-     * @return Document
-     * @throws \Throwable
-     */
-    public static function createDocument($typeId, $save = false, $docFields = null, $attachData = null)
-    {
-        $document = new Document();
-        $document->beforeCreate();
-
-        $document->type = DocumentType::find($typeId);
-        $document->type_id = $typeId;
-        $document->title = self::parseFileName($document);
-
-        self::setDocFields($document, $docFields);
-
-        unset($document->type);
-        $document->save();
-        self::setAttachData($document, $attachData);
-
-        if ($save === true) {
-            DocumentBuilder::build($document, true);
-        }
-
-        return $document;
-
-//        self::createTaskToMakeDocument($document);
-    }
-
     /**
      * Обновить название файла
      *
@@ -73,64 +36,6 @@ class DocumentService
 //    }
 
     /**
-     * Проставить поля в документе
-     *
-     * @param Document $document
-     * @param $fields
-     * @return Document|null
-     */
-    private static function setDocFields(Document $document, $fields)
-    {
-        if ($fields === null) {
-            return $document;
-        }
-
-        foreach ($fields as $field => $value) {
-            $document->$field = $value;
-        }
-
-        return $document;
-    }
-
-    private static function setAttachData(Document $document, $attachData)
-    {
-        if ($attachData === null) {
-            return $document;
-        }
-
-        foreach ($attachData as $relation => $values) {
-            $values = array_map(function ($value) {
-                return ($value instanceof Model) ? $value->id : $value;
-            }, $values);
-
-            $document->$relation()->attach($values);
-        }
-
-        return $document;
-    }
-
-    /**
-     * Добавить ссылки к документу
-     *
-     * @param Document $document
-     * @param array|integer $links
-     */
-    private function addLinksForDocument(Document $document, $links)
-    {
-        if (!is_array($links)) {
-            $links = [$links];
-        }
-
-        foreach ($links as $link) {
-            if ($link instanceof Link) {
-                $document->addLink($link);
-            } else {
-                $document->addLink($this->getEntityManager()->getReference(Link::class, $link));
-            }
-        }
-    }
-
-    /**
      * Сгенерировать название для файла
      *
      * @param Document $document
@@ -138,7 +43,7 @@ class DocumentService
      * @throws \Exception
      * @throws \Throwable
      */
-    protected static function parseFileName(Document $document)
+    public static function parseFileName(Document $document)
     {
         $tmpFile = time();
         $path = __DIR__ . '/../../../resources/views/'. $tmpFile . '.blade.php';
@@ -147,7 +52,7 @@ class DocumentService
             $document->type->title
         );
 
-        return view($tmpFile, $document)->render() . '.' . $document->getExtensionName();
+        return view($tmpFile, ['doc' => $document])->render() . '.' . $document->getExtensionName();
     }
 
     public static function getDownloadLink($document)
@@ -177,7 +82,7 @@ class DocumentService
     {
         $documents = Document::where('user', $user->id);
 
-        $this->setDownloadLinks($documents);
+        $this->setDownloadLinks([$documents]);
 
         return $documents;
     }

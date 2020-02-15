@@ -6,12 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ScoreForPaymentRequest;
 use App\Http\Resource\DocumentResource;
 use App\Http\Responses\ActionResponse;
-use App\Models\Document\Document;
 use App\Models\Document\DocumentType;
 use App\Models\Supply\Supply;
 use App\ScoreForPayment;
-use App\Service\Document\DocumentService;
-use App\Services\Document\DocumentBuilder;
+use App\Services\Document\DocumentCreator;
 use App\Services\ScoreForPaymentService;
 use Illuminate\Http\Request;
 
@@ -79,7 +77,7 @@ class ScoreForPaymentController extends Controller
      * @return ActionResponse
      * @throws \Throwable
      */
-    public function createDocument($supplyId)
+    public function checkOrCreateDocumentBySupply($supplyId)
     {
         $supply = Supply::find($supplyId);
         if (null === $supply) {
@@ -99,13 +97,11 @@ class ScoreForPaymentController extends Controller
     public function checkOrCreateDocumentOfManyScores(Request $request)
     {
         $supplies = $request->get('supplies');
-//        $scores = ScoreForPayment::whereIn('supply_id', $supplies)->get();
 
-        $scores = ScoreForPaymentService::getOrCreateBySupplies($supplies);
-
-        $document = DocumentService::createDocument(DocumentType::SCORES_FOR_PAYMENTS_ID, true, null, [
-            'scoreForPayments' => $scores
-        ]);
+        $document = DocumentCreator::getInstance(DocumentType::SCORES_FOR_PAYMENTS_ID)
+            ->addScores(ScoreForPaymentService::getOrCreateBySupplies($supplies))
+            ->build(true)
+            ->get();
 
         return new DocumentResource($document);
     }

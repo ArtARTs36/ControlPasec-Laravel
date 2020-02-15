@@ -5,8 +5,8 @@ namespace App\Services;
 use App\Models\Document\DocumentType;
 use App\Models\Supply\Supply;
 use App\ScoreForPayment;
-use App\Service\Document\DocumentService;
 use App\Services\Document\DocumentBuilder;
+use App\Services\Document\DocumentCreator;
 
 class ScoreForPaymentService
 {
@@ -57,13 +57,17 @@ class ScoreForPaymentService
         return $build;
     }
 
+    /**
+     * @param ScoreForPayment $score
+     * @return \App\Models\Document\Document
+     * @throws \Exception
+     * @throws \Throwable
+     */
     public static function createDocumentByScore(ScoreForPayment $score)
     {
-        $document = DocumentService::createDocument(
-            DocumentType::SCORE_FOR_PAYMENT_ID
-        );
-
-        $score->documents()->attach([$document->id]);
+        $document = DocumentCreator::getInstance(DocumentType::SCORE_FOR_PAYMENT_ID)
+            ->addScores($score->id)
+            ->save();
 
         return $document;
     }
