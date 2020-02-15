@@ -6,6 +6,8 @@ use App\Models\Document\Document;
 use App\Services\Document\DocTemplateLoader\AbstractDocTemplateLoader;
 use App\Services\Document\DocTemplateLoader\ExcelDocTemplateLoader;
 use App\Services\Document\DocTemplateLoader\PDFDocTemplateLoader;
+use App\Services\Document\DocTemplateLoader\PhpExcelTemplateLoader;
+
 //use App\Services\Document\DocTemplateLoader\XLSDocTemplateLoader;
 
 class DocumentBuilder
@@ -14,6 +16,7 @@ class DocumentBuilder
         PDFDocTemplateLoader::NAME => PDFDocTemplateLoader::class,
 //        XLSDocTemplateLoader::NAME => XLSDocTemplateLoader::class,
         ExcelDocTemplateLoader::NAME => ExcelDocTemplateLoader::class,
+        PhpExcelTemplateLoader::NAME => PhpExcelTemplateLoader::class,
     ];
 
     public static function build(Document $document, $save = false)

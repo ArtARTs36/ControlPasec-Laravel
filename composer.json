@@ -11,6 +11,7 @@
         "php": "^7.2",
         "ext-curl": "*",
         "ext-json": "*",
+        "alhimik1986/php-excel-templator": "^1.0",
         "dompdf/dompdf": "^0.8.4",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.2",

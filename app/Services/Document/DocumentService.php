@@ -55,17 +55,19 @@ class DocumentService
         return view($tmpFile, ['doc' => $document])->render() . '.' . $document->getExtensionName();
     }
 
-    public static function getDownloadLink($document)
+    public static function getDownloadLink($document, $full = false)
     {
         $document = self::getDocument($document);
 
-        return implode(DIRECTORY_SEPARATOR, [
+        $path = implode(DIRECTORY_SEPARATOR, [
             '',
             env('DOCUMENT_DOWNLOAD_DIR'),
             $document->getFolder(),
             $document->uuid,
             $document->getFileName()
         ]);
+
+        return ($full ? public_path($path) : $path);
     }
 
     /**
