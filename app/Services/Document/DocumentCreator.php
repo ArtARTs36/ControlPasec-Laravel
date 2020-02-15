@@ -77,6 +77,22 @@ class DocumentCreator
     }
 
     /**
+     * @param $scores
+     * @return $this
+     * @throws \Throwable
+     */
+    public function addSupplies($scores): self
+    {
+        if ($this->document->id === null) {
+            $this->save();
+        }
+
+        $this->document->supplies()->attach($this->arrIds($scores));
+
+        return $this;
+    }
+
+    /**
      * @return $this
      * @throws \Throwable
      */

@@ -2,6 +2,7 @@
 
 namespace App\Models\Document;
 
+use App\Models\Supply\Supply;
 use App\ScoreForPayment;
 use App\Services\Service\OrfoService;
 use Illuminate\Database\Eloquent\Model;
@@ -20,6 +21,7 @@ use Ramsey\Uuid\Uuid;
  * @property string uuid
  * @property ScoreForPayment[] scoreForPayments
  * @property int folder
+ * @property Supply[] supplies
  *
  * @mixin Builder
  */
@@ -44,6 +46,11 @@ class Document extends Model
     public function scoreForPayments()
     {
         return $this->belongsToMany(ScoreForPayment::class);
+    }
+
+    public function supplies()
+    {
+        return $this->belongsToMany(Supply::class);
     }
 
     /**

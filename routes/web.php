@@ -13,6 +13,7 @@ Route::get('contracts/find-by-customer/{customerId}', 'Contract\ContractControll
 Route::apiResource('contract-templates', 'Contract\ContractTemplateController');
 
 Route::apiResource('supplies', 'Supply\SupplyController');
+Route::get('supplies/{supplyId}/torg12', 'Supply\SupplyController@createTorg12');
 
 Route::apiResource('products', 'Product\ProductController');
 
