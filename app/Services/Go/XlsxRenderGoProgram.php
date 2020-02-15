@@ -7,7 +7,7 @@ use App\Service\Document\DocumentService;
 
 class XlsxRenderGoProgram extends GoProgram
 {
-    const DIR_TO_PROGRAM = self::GO_ROOT_DIR . '/xlsx_render';
+    const NAME = 'xlsx_render';
 
     /** @var string */
     private $savePath;
@@ -30,24 +30,18 @@ class XlsxRenderGoProgram extends GoProgram
         $this->createFolder();
     }
 
-    protected function getShellScript(): string
-    {
-        return implode(' ', [
-            'go run',
-            realpath(self::DIR_TO_PROGRAM . '/xlsx_render.go'),
-            '"' . $this->templatePath . '"',
-            '"' . $this->savePath . '"',
-            '"' . $this->dataFilePath . '"'
-        ]);
-    }
-
     protected function process()
     {
         $this->data = json_encode($this->data);
-        $this->dataFilePath = self::DIR_TO_PROGRAM . '/data/' . time() . '.json';
+        $this->dataFilePath = $this->getExecutor()->getPathToData() . time() . '.json';
 
         file_put_contents($this->dataFilePath, $this->data);
         $this->dataFilePath = realpath($this->dataFilePath);
+
+        $this->getExecutor()
+            ->addParameter($this->templatePath)
+            ->addParameter($this->savePath)
+            ->addParameter($this->dataFilePath);
     }
 
     public static function createByDocument(Document $document, $data): self

@@ -4,21 +4,42 @@ namespace App\Services\Go;
 
 abstract class GoProgram
 {
-    const GO_ROOT_DIR = __DIR__ . '/../../../go-programs';
+    /** @var string  */
+    const NAME = 'GoProgram';
 
-    protected $shellResult;
+    /** @var GoProgramExecutor  */
+    private $executor;
 
-    abstract protected function getShellScript();
-
+    /**
+     * @return mixed
+     */
     abstract protected function process();
 
+    /**
+     * @return mixed
+     */
     abstract protected function response();
 
+    /**
+     * @return GoProgramExecutor
+     */
+    public function getExecutor()
+    {
+        if ($this->executor === null) {
+            $this->executor = new GoProgramExecutor(static::NAME);
+        }
+
+        return $this->executor;
+    }
+
+    /**
+     * @return mixed
+     */
     public function execute()
     {
         $this->process();
 
-        $this->shellResult = shell_exec($this->getShellScript());
+        $this->executor->execute();
 
         return $this->response();
     }
