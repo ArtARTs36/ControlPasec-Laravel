@@ -52,12 +52,15 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "App\\Install\\AppPostInstall::apply",
             "@php artisan package:discover --ansi"
         ],
         "post-root-package-install": [
+            "App\\Install\\AppPostInstall::apply",
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
+            "App\\Install\\AppPostInstall::apply",
             "@php artisan key:generate --ansi"
         ]
     }
