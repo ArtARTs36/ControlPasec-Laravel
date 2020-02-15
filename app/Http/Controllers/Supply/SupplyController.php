@@ -7,13 +7,12 @@ use App\Http\Requests\SupplyRequest;
 use App\Http\Resource\DocumentResource;
 use App\Http\Resource\SupplyResource;
 use App\Http\Responses\ActionResponse;
-use App\Models\Document\Document;
 use App\Models\Document\DocumentType;
+use App\Models\Supply\ProductTransportWaybill;
 use App\Models\Supply\Supply;
 use App\Services\Document\DocumentCreator;
 use App\Services\SupplyService;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use Illuminate\Database\Eloquent\Builder;
 
 class SupplyController extends Controller
 {
@@ -94,15 +93,20 @@ class SupplyController extends Controller
      */
     public function createTorg12($supplyId)
     {
-        $document = Document::whereHas('supplies', function (Builder $q) use ($supplyId) {
-            $q->where('id', $supplyId);
-        })->where('type_id', DocumentType::TORG_12_ID)
-          ->get()
-          ->first();
+        $waybill = ProductTransportWaybill::where('supply_id', $supplyId)->get()->first();
+        if (null === $waybill) {
+            $waybill = new ProductTransportWaybill();
+            $waybill->order_number = 1;
+            $waybill->supply_id = $supplyId;
+            $waybill->date = new \DateTime();
+            $waybill->save();
+        }
+
+        $document = $waybill->getDocument();
 
         if (null === $document) {
             $document = DocumentCreator::getInstance(DocumentType::TORG_12_ID)
-                ->addSupplies($supplyId)
+                ->addProductTransportWaybills($waybill->id)
                 ->build(true)
                 ->get();
         }

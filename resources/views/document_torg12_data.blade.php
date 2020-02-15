@@ -1,7 +1,12 @@
 @php
 
-    $document->load('supplies');
-    $supply = $document->getSupply();
+    /** @var \App\Models\Document\Document $document */
+    $document->load('productTransportWaybills');
+
+    /** @var \App\Models\Supply\ProductTransportWaybill $waybill */
+    $waybill = $document->getProductTransportWaybill();
+
+    $supply = $waybill->supply;
 
     $products = $supply->products;
 

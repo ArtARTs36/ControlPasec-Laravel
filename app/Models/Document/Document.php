@@ -2,6 +2,7 @@
 
 namespace App\Models\Document;
 
+use App\Models\Supply\ProductTransportWaybill;
 use App\Models\Supply\Supply;
 use App\ScoreForPayment;
 use App\Services\Service\OrfoService;
@@ -21,7 +22,7 @@ use Ramsey\Uuid\Uuid;
  * @property string uuid
  * @property ScoreForPayment[] scoreForPayments
  * @property int folder
- * @property Supply[] supplies
+ * @property ProductTransportWaybill[] product_transport_waybills
  *
  * @mixin Builder
  */
@@ -48,9 +49,17 @@ class Document extends Model
         return $this->belongsToMany(ScoreForPayment::class);
     }
 
-    public function supplies()
+    public function productTransportWaybills()
     {
-        return $this->belongsToMany(Supply::class);
+        return $this->belongsToMany(ProductTransportWaybill::class);
+    }
+
+    /**
+     * @return ProductTransportWaybill
+     */
+    public function getProductTransportWaybill()
+    {
+        return $this->product_transport_waybills[0];
     }
 
     /**
@@ -134,10 +143,5 @@ class Document extends Model
     public function getFolder()
     {
         return $this->folder;
-    }
-
-    public function getSupply()
-    {
-        return $this->supplies[0];
     }
 }

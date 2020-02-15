@@ -67,10 +67,7 @@ class DocumentCreator
      */
     public function addScores($scores): self
     {
-        if ($this->document->id === null) {
-            $this->save();
-        }
-
+        $this->beforeAttached();
         $this->document->scoreForPayments()->attach($this->arrIds($scores));
 
         return $this;
@@ -81,13 +78,10 @@ class DocumentCreator
      * @return $this
      * @throws \Throwable
      */
-    public function addSupplies($scores): self
+    public function addProductTransportWaybills($scores): self
     {
-        if ($this->document->id === null) {
-            $this->save();
-        }
-
-        $this->document->supplies()->attach($this->arrIds($scores));
+        $this->beforeAttached();
+        $this->document->productTransportWaybills()->attach($this->arrIds($scores));
 
         return $this;
     }
@@ -148,5 +142,15 @@ class DocumentCreator
         return array_map(function ($value) {
             return ($value instanceof Model) ? $value->id : $value;
         }, $array);
+    }
+
+    /**
+     * @throws \Throwable
+     */
+    private function beforeAttached()
+    {
+        if ($this->document->id === null) {
+            $this->save();
+        }
     }
 }

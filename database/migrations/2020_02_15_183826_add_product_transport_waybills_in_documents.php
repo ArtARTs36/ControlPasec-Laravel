@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddSuppliesInDocuments extends Migration
+class AddProductTransportWaybillsInDocuments extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,19 @@ class AddSuppliesInDocuments extends Migration
      */
     public function up()
     {
-        Schema::create('document_supply', function (Blueprint $table) {
+        Schema::create('document_product_transport_waybill', function (Blueprint $table) {
             $table->unsignedInteger('document_id');
-            $table->unsignedInteger('supply_id');
+            $table->unsignedInteger('product_transport_waybill_id');
         });
 
-        Schema::table('document_supply', function (Blueprint $table) {
+        Schema::table('document_product_transport_waybill', function (Blueprint $table) {
             $table->foreign('document_id')
                 ->references('id')
                 ->on('documents');
 
-            $table->foreign('supply_id')
+            $table->foreign('product_transport_waybill_id')
                 ->references('id')
-                ->on('supplies');
+                ->on('product_transport_waybills');
         });
     }
 
