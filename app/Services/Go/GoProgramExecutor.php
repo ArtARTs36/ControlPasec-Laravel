@@ -46,7 +46,7 @@ class GoProgramExecutor
         $this->parameters = $parameters;
 
         $this->dirToProgram = self::GO_ROOT_DIR . DIRECTORY_SEPARATOR . $programName;
-        $this->pathToData = $this->dirToProgram . DIRECTORY_SEPARATOR . 'data';
+        $this->pathToData = $this->dirToProgram . DIRECTORY_SEPARATOR . 'data'. DIRECTORY_SEPARATOR;
         $this->pathToProgram = $this->dirToProgram . DIRECTORY_SEPARATOR . $programName . '.go';
     }
 
