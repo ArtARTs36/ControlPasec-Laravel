@@ -68,14 +68,20 @@ class GoProgramExecutor
      * @param $value
      * @return $this
      */
-    public function addParameter($value)
+    public function addParameter($value): self
     {
         $this->parameters[] = $value;
 
         return $this;
     }
 
-    public function addOption($value)
+    /**
+     * Добавить опцию в командную строку
+     *
+     * @param $value
+     * @return $this
+     */
+    public function addOption($value): self
     {
         $this->options[] = $value;
 
@@ -87,7 +93,7 @@ class GoProgramExecutor
      *
      * @return string
      */
-    public function getPathToData()
+    public function getPathToData(): string
     {
         return $this->pathToData;
     }
@@ -111,7 +117,7 @@ class GoProgramExecutor
      *
      * @return string
      */
-    private function prepareShellCommand()
+    private function prepareShellCommand(): string
     {
         $parameters = array_map(function ($parameter) {
             return '"' . $parameter . '"';
