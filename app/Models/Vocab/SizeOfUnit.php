@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string short_name
  * @property string name_en
  * @property string short_name_en
+ * @property int okei
  */
 class SizeOfUnit extends Model
 {
