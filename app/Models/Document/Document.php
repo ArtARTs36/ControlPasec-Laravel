@@ -3,7 +3,6 @@
 namespace App\Models\Document;
 
 use App\Models\Supply\ProductTransportWaybill;
-use App\Models\Supply\Supply;
 use App\ScoreForPayment;
 use App\Services\Service\OrfoService;
 use Illuminate\Database\Eloquent\Model;
@@ -22,7 +21,7 @@ use Ramsey\Uuid\Uuid;
  * @property string uuid
  * @property ScoreForPayment[] scoreForPayments
  * @property int folder
- * @property ProductTransportWaybill[] product_transport_waybills
+ * @property ProductTransportWaybill[] productTransportWaybills
  *
  * @mixin Builder
  */
@@ -59,7 +58,7 @@ class Document extends Model
      */
     public function getProductTransportWaybill()
     {
-        return $this->product_transport_waybills[0];
+        return $this->productTransportWaybills[0];
     }
 
     /**

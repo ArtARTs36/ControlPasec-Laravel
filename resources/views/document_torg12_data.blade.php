@@ -1,7 +1,7 @@
 @php
 
     /** @var \App\Models\Document\Document $document */
-    $document->load('productTransportWaybills');
+    $document = $document->load('productTransportWaybills');
 
     /** @var \App\Models\Supply\ProductTransportWaybill $waybill */
     $waybill = $document->getProductTransportWaybill();
