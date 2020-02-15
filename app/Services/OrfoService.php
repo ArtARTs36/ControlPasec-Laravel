@@ -2,8 +2,12 @@
 
 namespace App\Services\Service;
 
+use App\Services\OrfoService\MonthTrait;
+
 class OrfoService
 {
+    use MonthTrait;
+
     const DAY_OF_WEEK = [
         '',
         'Понедельник',

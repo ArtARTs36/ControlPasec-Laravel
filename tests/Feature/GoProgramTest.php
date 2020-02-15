@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Document\Document;
 use App\Models\Document\DocumentType;
+use App\Services\Document\DocumentBuilder;
 use App\Services\Go\XlsxRenderGoProgram;
 use Tests\BaseTestCase;
 
@@ -44,5 +45,20 @@ class GoProgramTest extends BaseTestCase
         }
 
         self::assertNotFalse($executed);
+    }
+
+    public function testByBuilder()
+    {
+        $randomDocument = Document::where('type_id', DocumentType::TORG_12_ID)
+            ->inRandomOrder()
+            ->get()
+            ->first();
+
+        $build = DocumentBuilder::build($randomDocument);
+        if ($build !== false) {
+            dump('Документ: ' . $build);
+        }
+
+        self::assertNotFalse($build);
     }
 }

@@ -20,7 +20,7 @@ func main() {
 
 	var doc = xlst.New()
 
-	doc.ReadTemplate(template)
+	doc.OpenFileTemplate(template)
 
 	//ctx := map[string]interface{}{
 	//	"name":           "Github User",
@@ -47,6 +47,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
+	deleteFileData(dataFile)
 }
 
 func getData(path string) string {
@@ -61,4 +63,13 @@ func getData(path string) string {
 		return string(s)
 	}
 	return ""
+}
+
+func deleteFileData(path string) {
+    err := os.Remove(path)
+
+    if err != nil {
+      fmt.Println(err)
+      return
+    }
 }

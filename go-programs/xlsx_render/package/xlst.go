@@ -13,9 +13,9 @@ import (
 )
 
 var (
-	rgx         = regexp.MustCompile(`\{\{\s*(\w+)\.\w+\s*\}\}`)
-	rangeRgx    = regexp.MustCompile(`\{\{\s*range\s+(\w+)\s*\}\}`)
-	rangeEndRgx = regexp.MustCompile(`\{\{\s*end\s*\}\}`)
+	rgx         = regexp.MustCompile(`{{\s*(\w+)\.\w+\s*}}`)
+	rangeRgx    = regexp.MustCompile(`{{\s*range\s+(\w+)\s*}}`)
+	rangeEndRgx = regexp.MustCompile(`{{\s*end\s*}}`)
 )
 
 // Xlst Represents template struct
@@ -34,17 +34,6 @@ func New() *Xlst {
 	return &Xlst{}
 }
 
-// NewFromBinary creates new Xlst struct puts binary tempate into and returns pointer to it
-func NewFromBinary(content []byte) (*Xlst, error) {
-	file, err := xlsx.OpenBinary(content)
-	if err != nil {
-		return nil, err
-	}
-
-	res := &Xlst{file: file}
-	return res, nil
-}
-
 // Render renders report and stores it in a struct
 func (m *Xlst) Render(in interface{}) error {
 	return m.RenderWithOptions(in, nil)
@@ -58,10 +47,13 @@ func (m *Xlst) RenderWithOptions(in interface{}, options *Options) error {
 	report := xlsx.NewFile()
 	for si, sheet := range m.file.Sheets {
 		ctx := getCtx(in, si)
-		report.AddSheet(sheet.Name)
+		_, err := report.AddSheet(sheet.Name)
+		if err != nil {
+			return err
+		}
 		cloneSheet(sheet, report.Sheets[si])
 
-		err := renderRows(report.Sheets[si], sheet.Rows, ctx, options)
+		err = renderRows(report.Sheets[si], sheet.Rows, ctx, options)
 		if err != nil {
 			return err
 		}
@@ -69,10 +61,6 @@ func (m *Xlst) RenderWithOptions(in interface{}, options *Options) error {
 		sheet.Cols.ForEach(func(idx int, col *xlsx.Col) {
 			report.Sheets[si].Cols.Add(col)
 		}) //todo
-
-		//for _, col := range sheet.Cols {
-		//	report.Sheets[si].Cols = append(report.Sheets[si].Cols, col)
-		//}
 	}
 	m.report = report
 
@@ -80,8 +68,28 @@ func (m *Xlst) RenderWithOptions(in interface{}, options *Options) error {
 }
 
 // ReadTemplate reads template from disk and stores it in a struct
-func (m *Xlst) ReadTemplate(path string) error {
+func (m *Xlst) OpenFileTemplate(path string) error {
 	file, err := xlsx.OpenFile(path)
+	if err != nil {
+		return err
+	}
+	m.file = file
+	return nil
+}
+
+// OpenBinaryTemplate reads template from []byte and stores it in a struct
+func (m *Xlst) OpenBinaryTemplate(content []byte) error {
+	file, err := xlsx.OpenBinary(content)
+	if err != nil {
+		return err
+	}
+	m.file = file
+	return nil
+}
+
+// ReadTemplate reads template from reader and stores it in a struct
+func (m *Xlst) OpenReaderAtTemplate(r io.ReaderAt, size int64) error {
+	file, err := xlsx.OpenReaderAt(r, size)
 	if err != nil {
 		return err
 	}
@@ -126,7 +134,7 @@ func renderRows(sheet *xlsx.Sheet, rows []*xlsx.Row, ctx map[string]interface{},
 			}
 
 			for idx := range rangeCtx {
-				localCtx := mergeCtx(rangeCtx[idx], ctx)
+				localCtx := mergeCtx(rangeCtx[idx].(map[string]interface{}), ctx)
 				err := renderRows(sheet, rows[ri:rangeEndIndex], localCtx, options)
 				if err != nil {
 					return err
@@ -177,7 +185,7 @@ func renderRows(sheet *xlsx.Sheet, rows []*xlsx.Row, ctx map[string]interface{},
 }
 
 func cloneCell(from, to *xlsx.Cell, options *Options) {
-	to.Value = from.Value
+	to.SetString(from.Value)
 	style := from.GetStyle()
 	if options.WrapTextInAllCells {
 		style.Alignment.WrapText = true
@@ -187,12 +195,19 @@ func cloneCell(from, to *xlsx.Cell, options *Options) {
 	to.VMerge = from.VMerge
 	to.Hidden = from.Hidden
 	to.NumFmt = from.NumFmt
+	to.Row = from.Row
+	to.DataValidation = from.DataValidation
+	to.Hyperlink = from.Hyperlink
 }
 
 func cloneRow(from, to *xlsx.Row, options *Options) {
 	if from.Height != 0 {
-		to.SetHeight(from.Height)
+		to.SetHeight(from.Height) // todo
 	}
+
+	to.OutlineLevel = from.OutlineLevel
+	to.Sheet = from.Sheet
+	to.Hidden = from.Hidden
 
 	for _, cell := range from.Cells {
 		newCell := to.AddCell()
@@ -220,7 +235,8 @@ func cloneSheet(from, to *xlsx.Sheet) {
 		newCol := xlsx.Col{}
 		style := col.GetStyle()
 		newCol.SetStyle(style)
-		newCol.Width = col.Width
+		newCol.SetWidth(col.Width)
+		newCol.SetOutlineLevel(col.OutlineLevel)
 		newCol.Hidden = col.Hidden
 		newCol.Collapsed = col.Collapsed
 		newCol.Min = col.Min
@@ -245,14 +261,14 @@ func getCtx(in interface{}, i int) map[string]interface{} {
 	return nil
 }
 
-func getRangeCtx(ctx map[string]interface{}, prop string) []map[string]interface{} {
+func getRangeCtx(ctx map[string]interface{}, prop string) []interface{} {
 	val, ok := ctx[prop]
 	if !ok {
 		return nil
 	}
 
-	if propCtx, ok := val.([]map[string]interface{}); ok {
-		return propCtx
+	if valCtx, ok := val.([]interface{}); ok {
+		return valCtx
 	}
 
 	return nil

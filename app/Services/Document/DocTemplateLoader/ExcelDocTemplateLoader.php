@@ -17,6 +17,8 @@ class ExcelDocTemplateLoader extends AbstractDocTemplateLoader
         $data = json_decode($data, true);
 
         $executed = XlsxRenderGoProgram::createByDocument($document, $data)->execute();
+
+        return $executed;
     }
 
     protected function makeMany($documents, $save = false)
