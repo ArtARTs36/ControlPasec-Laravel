@@ -5,9 +5,9 @@ class MapFindManager
     /** @var MapFind[] */
     private $maps;
 
-    public function add($relationClass, $field, $fieldInModel, $fieldInRelation)
+    public function add($relationClass, $fieldInFile, $fieldInModel, $fieldInRelation)
     {
-        $this->maps[$field] = new MapFind($relationClass, $field, $fieldInModel, $fieldInRelation);
+        $this->maps[$fieldInFile] = new MapFind($relationClass, $fieldInFile, $fieldInModel, $fieldInRelation);
     }
 
     public function getFields()
