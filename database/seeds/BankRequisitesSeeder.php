@@ -16,17 +16,17 @@ class BankRequisitesSeeder extends MyDataBaseSeeder
         // todo
 
         if (env('ENV_TYPE')) {
-            $this->randomData(100);
+            $this->randomData();
         }
     }
 
-    private function randomData($count)
+    private function randomData()
     {
-        for ($i = 0; $i < $count; $i++) {
+        foreach ($this->getAllObjectByRelation(Contragent::class) as $contragent) {
             $requisite = new BankRequisites();
             $requisite->bank_id = $this->getRelation(VocabBank::class);
             $requisite->score = $this->getFaker()->bankAccountNumber;
-            $requisite->contragent_id = $this->getRelation(Contragent::class);
+            $requisite->contragent_id = $contragent;
 
             $requisite->save();
         }
