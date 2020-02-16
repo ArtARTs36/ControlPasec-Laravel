@@ -1,11 +1,16 @@
 <?php
 
 use App\Helper\CSVHelper;
+use Faker\Factory;
+use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 
 abstract class MyDataBaseSeeder extends Seeder
 {
+    /** @var Faker|null */
+    protected $faker = null;
+
     public function loadCsvFile($file, $isTypeFileCsv = true)
     {
         $path = __DIR__ .'/data/'. $file . (($isTypeFileCsv === true) ? '.csv' : '');
@@ -43,5 +48,14 @@ abstract class MyDataBaseSeeder extends Seeder
 
             $model->save();
         }
+    }
+
+    protected function getFaker()
+    {
+        if ($this->faker === null) {
+            $this->faker = Factory::create();
+        }
+
+        return $this->faker;
     }
 }
