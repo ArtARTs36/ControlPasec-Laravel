@@ -69,13 +69,43 @@ abstract class MyDataBaseSeeder extends Seeder
      */
     protected function getRelation($model)
     {
+        $this->getAllObjectByRelation($model);
+
+        $randId = rand(0, $this->relationsCount[$model]);
+
+        return $this->relations[$model][$randId];
+    }
+
+    /**
+     * @param $model
+     * @param null $count
+     * @return array
+     */
+    protected function getRelations($model, $count = null)
+    {
+        if ($count === null) {
+            $count = rand(2, 7);
+        }
+
+        $relations = [];
+        for($i = 0; $i < $count; $i++) {
+            $relations[] = $this->getRelation($model);
+        }
+
+        return $relations;
+    }
+
+    /**
+     * @param $model
+     * @return mixed
+     */
+    protected function getAllObjectByRelation($model)
+    {
         if (!isset($this->relations[$model])) {
             $this->relations[$model] = $model::all()->pluck('id');
             $this->relationsCount[$model] = count($this->relations[$model]) - 2;
         }
 
-        $randId = rand(0, $this->relationsCount[$model]);
-
-        return $this->relations[$model][$randId];
+        return $this->relations[$model];
     }
 }

@@ -31,6 +31,7 @@ class SupplySeeder extends MyDataBaseSeeder
             $supply->save();
 
             $this->createRandomSupplyProducts($supply->id);
+            $this->createScoreForPayment($supply->id);
         }
     }
 
@@ -51,5 +52,20 @@ class SupplySeeder extends MyDataBaseSeeder
 
             $product->save();
         }
+    }
+
+    /**
+     * Создать счет на оплату
+     *
+     * @param $supplyId
+     */
+    private function createScoreForPayment($supplyId)
+    {
+        $score = new \App\ScoreForPayment();
+        $score->date = $this->getFaker()->date();
+        $score->supply_id = $supplyId;
+        $score->order_number = $supplyId;
+
+        $score->save();
     }
 }
