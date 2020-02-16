@@ -7,14 +7,17 @@ use App\Service\Document\DocumentService;
 use App\Services\Shell\ShellCommand;
 
 /**
- * Class DocumentJoiner
+ * Class DocumentPsFileMaker
  *
- * Инструмент для объединения/склеивания документов
+ * Инструмент для создания файла печати .ps
  */
-class DocumentJoiner
+class DocumentPsFileMaker
 {
     /** @var Document[] */
     private $documents = null;
+
+    /** @var string */
+    private $baseFileName = null;
 
     /**
      * @return static
@@ -59,7 +62,7 @@ class DocumentJoiner
         }
 
         $outputFile = FileHelper::changeExtension(
-            $outDir . DIRECTORY_SEPARATOR . $this->documents[0]->getFileName(),
+            $outDir . DIRECTORY_SEPARATOR . $this->baseFileName,
             'ps'
         );
 
@@ -75,9 +78,14 @@ class DocumentJoiner
      */
     private function copyFilesToInputDir(string $inputDir)
     {
-        foreach ($this->documents as $document) {
+        foreach ($this->documents as $key => $document) {
             $path = DocumentService::getDownloadLink($document, true);
-            $newPath = $inputDir . $document->getFileName();
+            $newFileName = 'file-'. $key . '-'. $document->getFileName();
+            $newPath = $inputDir . $newFileName;
+
+            if ($key == 0) {
+                $this->baseFileName = $newFileName;
+            }
 
             copy($path, $newPath);
         }
@@ -89,7 +97,7 @@ class DocumentJoiner
      */
     private function createTmpFolders(&$inputDir, &$outputDir)
     {
-        $root = storage_path('documents_join');
+        $root = storage_path('documents_ps');
         if (!file_exists($root)) {
             mkdir($root, 0775);
         }

@@ -13,3 +13,4 @@ yarn-error.log
 /.idea
 /public/documents/*
 /go-programs/xlsx_render/data/
+/storage/documents_ps/*

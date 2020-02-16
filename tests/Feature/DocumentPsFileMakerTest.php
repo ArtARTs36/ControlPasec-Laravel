@@ -3,19 +3,19 @@
 namespace Tests\Feature;
 
 use App\Models\Document\Document;
-use App\Services\Document\DocumentJoiner;
+use App\Services\Document\DocumentPsFileMaker;
 use Tests\BaseTestCase;
 
-class DocumentJoinerTest extends BaseTestCase
+class DocumentPsFileMakerTest extends BaseTestCase
 {
     public function testJoin()
     {
         $oneDocument = Document::find(62);
         $twoDocument = Document::find(63);
 
-        $joiner = DocumentJoiner::getInstance()
+        $joiner = DocumentPsFileMaker::getInstance()
             ->addDocument($oneDocument)
-            ->addDocument($twoDocument);
+            ->addDocument($oneDocument);
 
         $file = $joiner->join();
 

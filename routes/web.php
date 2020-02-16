@@ -1,6 +1,10 @@
 <?php
 
 Route::get('/', function () {
+    dump(\App\Services\Document\DocumentConverter::xlsxToPdf(
+        public_path('documents/1/3fbba995-918b-4e90-8a83-4e1da5080378/TORG-12.xlsx')
+    ));
+
     return view('welcome');
 });
 
