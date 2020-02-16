@@ -1,8 +1,13 @@
 <?php
 
-use Illuminate\Database\Seeder;
+use App\Models\Vocab\VocabBank;
 
-class VocabBankSeeder extends Seeder
+/**
+ * Class VocabBankSeeder
+ *
+ * Наполнитель для справочника банков
+ */
+class VocabBankSeeder extends MyDataBaseSeeder
 {
     /**
      * Run the database seeds.
@@ -11,12 +16,25 @@ class VocabBankSeeder extends Seeder
      */
     public function run()
     {
-        $bank = new \App\Models\Vocab\VocabBank();
-        $bank->short_name = 'ПАО Сбербанк';
-        $bank->full_name = 'Публичное акционерное общество «Сбербанк России»';
-        $bank->bik = 044525225;
-        $bank->score = '30101810400000000225';
-        $bank->save();
+        $this->fillModel(VocabBank::class, 'data_vocab_bank');
+        if (env('ENV_TYPE') == 'dev') {
+            $this->randomData(100);
+        }
+    }
 
+    /**
+     * @param int $count
+     */
+    private function randomData(int $count): void
+    {
+        for ($i = 0; $i < $count; $i++) {
+            $bank = new VocabBank();
+            $bank->short_name = $this->getFaker()->firstNameMale;
+            $bank->full_name = $bank->short_name . ' ' . $this->getFaker()->lastName;
+            $bank->bik = rand(11111111, 99999999);
+            $bank->score = $this->getFaker()->bankAccountNumber;
+
+            $bank->save();
+        }
     }
 }
