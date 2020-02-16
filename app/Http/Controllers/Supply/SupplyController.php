@@ -113,4 +113,15 @@ class SupplyController extends Controller
 
         return new DocumentResource($document);
     }
+
+    /**
+     * @param $customerId
+     * @return ActionResponse
+     */
+    public function findByCustomer($customerId)
+    {
+        $supplies = Supply::where('customer_id', $customerId)->get();
+
+        return new ActionResponse((count($supplies) > 0), $supplies);
+    }
 }

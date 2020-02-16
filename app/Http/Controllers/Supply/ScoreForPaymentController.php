@@ -11,25 +11,32 @@ use App\Models\Supply\Supply;
 use App\ScoreForPayment;
 use App\Services\Document\DocumentCreator;
 use App\Services\ScoreForPaymentService;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Throwable;
 
 class ScoreForPaymentController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     * @return LengthAwarePaginator
      */
     public function index()
     {
-        return ScoreForPayment::paginate(10);
+        return ScoreForPayment::with([
+            'supply' => function ($query) {
+                return $query->with(['products', 'supplier', 'customer']);
+            }
+        ])->paginate(10);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(ScoreForPaymentRequest $request)
     {
@@ -39,20 +46,24 @@ class ScoreForPaymentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\ScoreForPayment  $scoreForPayment
-     * @return \Illuminate\Http\Response
+     * @param ScoreForPayment $scoreForPayment
+     * @return ScoreForPayment
      */
     public function show(ScoreForPayment $scoreForPayment)
     {
-        return $scoreForPayment;
+        return $scoreForPayment->load([
+            'supply' => function ($query) {
+                return $query->with(['products', 'supplier', 'customer']);
+            }
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ScoreForPayment  $scoreForPayment
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param ScoreForPayment $scoreForPayment
+     * @return Response
      */
     public function update(ScoreForPaymentRequest $request, ScoreForPayment $scoreForPayment)
     {
@@ -62,8 +73,8 @@ class ScoreForPaymentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ScoreForPayment  $scoreForPayment
-     * @return \Illuminate\Http\Response
+     * @param ScoreForPayment $scoreForPayment
+     * @return Response
      */
     public function destroy(ScoreForPayment $scoreForPayment)
     {
@@ -75,7 +86,7 @@ class ScoreForPaymentController extends Controller
      *
      * @param $supplyId
      * @return ActionResponse
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function checkOrCreateDocumentBySupply($supplyId)
     {
@@ -92,7 +103,7 @@ class ScoreForPaymentController extends Controller
      *
      * @param Request $request
      * @return DocumentResource
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function checkOrCreateDocumentOfManyScores(Request $request)
     {
