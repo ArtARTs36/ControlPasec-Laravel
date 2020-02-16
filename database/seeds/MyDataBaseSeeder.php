@@ -71,10 +71,10 @@ abstract class MyDataBaseSeeder extends Seeder
     {
         if (!isset($this->relations[$model])) {
             $this->relations[$model] = $model::all()->pluck('id');
-            $this->relationsCount[$model] = count($this->relations[$model]);
+            $this->relationsCount[$model] = count($this->relations[$model]) - 2;
         }
 
-        $randId = rand(0, $this->relationsCount[$model] - 2);
+        $randId = rand(0, $this->relationsCount[$model]);
 
         return $this->relations[$model][$randId];
     }
