@@ -3,6 +3,8 @@
 namespace Tests\Feature;
 
 use App\Models\Document\Document;
+use App\Models\Document\DocumentType;
+use App\Services\Document\DocumentBuilder;
 use App\Services\Document\DocumentPsFileMaker;
 use Tests\BaseTestCase;
 
@@ -10,12 +12,16 @@ class DocumentPsFileMakerTest extends BaseTestCase
 {
     public function testJoin()
     {
-        $oneDocument = Document::find(62);
-        $twoDocument = Document::find(63);
+        $documents = Document::where('type_id', DocumentType::TORG_12_ID)
+            ->inRandomOrder()
+            ->get()
+            ->take(rand(2, 5));
 
-        $joiner = DocumentPsFileMaker::getInstance()
-            ->addDocument($oneDocument)
-            ->addDocument($oneDocument);
+        foreach ($documents as $document) {
+            DocumentBuilder::build($document);
+        }
+
+        $joiner = DocumentPsFileMaker::getInstanceByDocs($documents);
 
         $file = $joiner->join();
 

@@ -13,7 +13,10 @@ class ScoreForPaymentTest extends BaseTestCase
     {
         $currentDateTime = new \DateTime();
 
-        $randomSupply = Supply::find(5);
+        $randomSupply = Supply::where('id', '>', 0)
+            ->inRandomOrder()
+            ->get()
+            ->first();
 
         $score = new ScoreForPayment();
 

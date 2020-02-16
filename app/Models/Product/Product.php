@@ -4,6 +4,7 @@ namespace App\Models\Product;
 
 use App\Models\Vocab\SizeOfUnit;
 use App\Models\Vocab\VocabCurrency;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -20,6 +21,8 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property integer price
  * @property integer currency_id
+ *
+ * @mixin Builder
  */
 class Product extends Model
 {

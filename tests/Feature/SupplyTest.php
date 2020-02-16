@@ -2,6 +2,8 @@
 
 namespace Tests\Feature;
 
+use App\Models\Product\Product;
+use App\Models\Supply\Supply;
 use App\Models\Supply\SupplyProduct;
 use Tests\BaseTestCase;
 
@@ -18,16 +20,28 @@ class SupplyTest extends BaseTestCase
 
         $response = $this->decodeResponse($response);
 
-        self::assertTrue($response['id'] > 0);
+        self::assertTrue($response['data']['id'] > 0);
     }
 
     public function testSupplyProductCreate()
     {
+        /** @var Supply $randomSupply */
+        $randomSupply = Supply::where('id', '>', 0)
+            ->inRandomOrder()
+            ->get()
+            ->first();
+
+        /** @var Product $randomProduct */
+        $randomProduct = Product::where('id', '>', 0)
+            ->inRandomOrder()
+            ->get()
+            ->first();
+
         $product = new SupplyProduct();
-        $product->product_id = 1;
-        $product->price = 1.4;
-        $product->mount = 30;
-        $product->supply_id = 6;
+        $product->product_id = $randomProduct->id;
+        $product->price = rand(5, 1000);
+        $product->mount = rand(5, 1000);
+        $product->supply_id = $randomSupply->id;
         $product->save();
 
         self::assertTrue($product->id > 0);

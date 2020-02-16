@@ -2,10 +2,14 @@
 
 namespace Tests\Feature;
 
+use App\Models\Contract\Contract;
 use Tests\BaseTestCase;
 
 class ContractTest extends BaseTestCase
 {
+    /**
+     * Тест на создание договора
+     */
     public function testContractCreate()
     {
         $response = $this->postJson('contracts', [
@@ -18,12 +22,23 @@ class ContractTest extends BaseTestCase
 
         $response = $this->decodeResponse($response);
 
-        self::assertTrue($response['customer_id'] == 10 && $response['supplier_id'] == 1);
+        self::assertTrue(
+            $response['data']['customer_id'] == 10 && $response['data']['supplier_id'] == 1
+        );
     }
 
+    /**
+     * Тест на удаление договора
+     */
     public function testContractDelete()
     {
-        $response = $this->deleteJson('contracts/5');
+        /** @var Contract $contract */
+        $contract = Contract::where('id', '>', 0)
+            ->inRandomOrder()
+            ->get()
+            ->first();
+
+        $response = $this->deleteJson('contracts/'. $contract->id);
 
         $response = $this->decodeResponse($response);
 
