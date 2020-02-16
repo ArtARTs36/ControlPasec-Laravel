@@ -1,2 +1,7 @@
-name;short_name;name_en;short_name_en
-рубль;руб;rouble;rub
+name;short_name;name_en;short_name_en;iso_code;iso_short_name
+рубль;руб;rouble;rub;643;RUB
+гривна;гр;Hryvnia;gr;980;UAH
+доллар;дол;dollar;dol;840;USD
+евро;евр;euro;eur;978;EUR
+тенге;т;tenge;ten;398;KZT
+фунт стерлингов;фунт;Pound Sterling;pound;826;GBP

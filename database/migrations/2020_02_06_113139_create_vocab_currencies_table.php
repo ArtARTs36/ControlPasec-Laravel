@@ -17,10 +17,12 @@ class CreateVocabCurrenciesTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
 
-            $table->string('name', 15);
+            $table->string('name', 20);
             $table->string('short_name', 15);
-            $table->string('name_en', 15);
+            $table->string('name_en', 20);
             $table->string('short_name_en', 15);
+            $table->integer('iso_code');
+            $table->string('iso_short_name', 5);
         });
     }
 
