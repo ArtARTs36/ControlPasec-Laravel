@@ -11,6 +11,10 @@ abstract class MyDataBaseSeeder extends Seeder
     /** @var Faker|null */
     protected $faker = null;
 
+    protected $relations = [];
+
+    protected $relationsCount = [];
+
     public function loadCsvFile($file, $isTypeFileCsv = true)
     {
         $path = __DIR__ .'/data/'. $file . (($isTypeFileCsv === true) ? '.csv' : '');
@@ -57,5 +61,21 @@ abstract class MyDataBaseSeeder extends Seeder
         }
 
         return $this->faker;
+    }
+
+    /**
+     * @param $model
+     * @return mixed
+     */
+    protected function getRelation($model)
+    {
+        if (!isset($this->relations[$model])) {
+            $this->relations[$model] = $model::all()->pluck('id');
+            $this->relationsCount[$model] = count($this->relations[$model]);
+        }
+
+        $randId = rand(0, $this->relationsCount[$model] - 2);
+
+        return $this->relations[$model][$randId];
     }
 }

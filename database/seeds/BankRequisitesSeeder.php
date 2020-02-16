@@ -1,15 +1,34 @@
 <?php
 
-use Illuminate\Database\Seeder;
+use App\Models\Contragent;
+use App\Models\Contragent\BankRequisites;
+use App\Models\Vocab\VocabBank;
 
-class BankRequisitesSeeder extends Seeder
+/**
+ * Class BankRequisitesSeeder
+ *
+ * Наполнитель для банковских реквизитов
+ */
+class BankRequisitesSeeder extends MyDataBaseSeeder
 {
     public function run()
     {
-        $requisites = new \App\Models\Contragent\BankRequisites();
-        $requisites->score = 'refreer';
-        $requisites->contragent_id = 1;
-        $requisites->bank_id = 1;
-        $requisites->save();
+        // todo
+
+        if (env('ENV_TYPE')) {
+            $this->randomData(100);
+        }
+    }
+
+    private function randomData($count)
+    {
+        for ($i = 0; $i < $count; $i++) {
+            $requisite = new BankRequisites();
+            $requisite->bank_id = $this->getRelation(VocabBank::class);
+            $requisite->score = $this->getFaker()->bankAccountNumber;
+            $requisite->contragent_id = $this->getRelation(Contragent::class);
+
+            $requisite->save();
+        }
     }
 }
