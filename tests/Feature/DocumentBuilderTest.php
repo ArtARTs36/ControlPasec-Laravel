@@ -15,9 +15,11 @@ class DocumentBuilderTest extends BaseTestCase
             ->get()
             ->first();
 
+        $randomDocument = Document::find(62);
+
         $build = DocumentBuilder::build($randomDocument, true);
 
-        self::assertTrue($build);
+        self::assertNotFalse($build);
     }
 
     public function testBuildMany()

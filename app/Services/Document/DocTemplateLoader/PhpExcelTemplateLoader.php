@@ -23,11 +23,15 @@ class PhpExcelTemplateLoader extends AbstractDocTemplateLoader
 
         $this->createFolder(DocumentService::getDownloadLink($document, true));
 
+        $documentSavePath = DocumentService::getDownloadLink($document, true);
+
         PhpExcelTemplator::saveToFile(
             $document->getTemplateFullPath(true),
-            DocumentService::getDownloadLink($document, true),
+            $documentSavePath,
             $data
         );
+
+        return $documentSavePath;
     }
 
     protected function createFolder($savePath)
@@ -40,7 +44,6 @@ class PhpExcelTemplateLoader extends AbstractDocTemplateLoader
             mkdir($folder, 0777, true);
         }
     }
-
 
     private function prepareData($data)
     {
