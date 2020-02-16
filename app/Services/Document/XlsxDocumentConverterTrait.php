@@ -3,6 +3,7 @@
 namespace App\Services\Document;
 
 use App\Models\Document\DocumentExtension;
+use App\Services\Shell\ShellCommand;
 
 trait XlsxDocumentConverterTrait
 {
@@ -11,11 +12,18 @@ trait XlsxDocumentConverterTrait
         self::checkFileExists($filePath);
 
         $outputDir = self::getDir($filePath);
-        $command = "soffice --headless --convert-to pdf {$filePath} --outdir {$outputDir}";
 
-        $shellResult = self::shell($command, $filePath, DocumentExtension::PDF);
+        $shell = ShellCommand::getInstance('soffice', false)
+            ->addOption('headless')
+            ->addOption('convert-to')
+            ->addParameter('pdf')
+            ->addParameter($filePath)
+            ->addOption('outdir')
+            ->addParameter($outputDir);
 
-        preg_match("/->(.*) using filter/i", $shellResult, $matches);
+        $shell = self::checkShell($shell->getShellResult(), $filePath, DocumentExtension::PDF);
+
+        preg_match("/->(.*) using filter/i", $shell, $matches);
 
         $newFilePath = self::createNewFilePath($filePath, DocumentExtension::PDF);
         if (!isset($matches[1]) || trim($matches[1]) != $newFilePath) {

@@ -58,7 +58,7 @@ class DocumentConverter
      * @return string|null
      * @throws DocumentConvertException
      */
-    private static function shell($command, $file, $ext)
+    private static function checkShell($command, $file, $ext)
     {
         $shellResult = shell_exec($command);
         if ($shellResult === null) {
