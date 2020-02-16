@@ -1,5 +1,9 @@
 <?php
 
+use App\Models\Document\DocumentType;
+use App\Models\Supply\ProductTransportWaybill;
+use App\Services\Document\DocumentCreator;
+
 /**
  * Class SupplySeeder
  *
@@ -7,6 +11,9 @@
  */
 class SupplySeeder extends MyDataBaseSeeder
 {
+    /**
+     * @throws Throwable
+     */
     public function run()
     {
         if (env('ENV_TYPE') == 'dev') {
@@ -18,6 +25,7 @@ class SupplySeeder extends MyDataBaseSeeder
      * Create Random Data ;)
      *
      * @param int $count
+     * @throws Throwable
      */
     private function randomData(int $count): void
     {
@@ -32,6 +40,7 @@ class SupplySeeder extends MyDataBaseSeeder
 
             $this->createRandomSupplyProducts($supply->id);
             $this->createScoreForPayment($supply->id);
+            $this->createProductTransportWaybill($supply->id);
         }
     }
 
@@ -58,8 +67,10 @@ class SupplySeeder extends MyDataBaseSeeder
      * Создать счет на оплату
      *
      * @param $supplyId
+     * @throws Exception
+     * @throws Throwable
      */
-    private function createScoreForPayment($supplyId)
+    private function createScoreForPayment($supplyId): void
     {
         $score = new \App\ScoreForPayment();
         $score->date = $this->getFaker()->date();
@@ -67,5 +78,38 @@ class SupplySeeder extends MyDataBaseSeeder
         $score->order_number = $supplyId;
 
         $score->save();
+
+        DocumentCreator::getInstance(DocumentType::SCORE_FOR_PAYMENT_ID)
+            ->addScores($score)
+            ->refreshTitle()
+            ->save();
+
+        if (rand(1, 5) == 2) {
+            DocumentCreator::getInstance(DocumentType::SCORE_FOR_PAYMENT_ID)
+                ->addScores([$score->id, $this->getRelation(\App\ScoreForPayment::class)])
+                ->refreshTitle()
+                ->save();
+        }
+    }
+
+    /**
+     * Создать товарно транспортную накладную
+     *
+     * @param $supplyId
+     * @throws Throwable
+     */
+    private function createProductTransportWaybill($supplyId): void
+    {
+        $waybill = new ProductTransportWaybill();
+        $waybill->order_number = $supplyId;
+        $waybill->date = $this->getFaker()->date();
+        $waybill->supply_id = $supplyId;
+
+        $waybill->save();
+
+        DocumentCreator::getInstance(DocumentType::TORG_12_ID)
+            ->addProductTransportWaybills($waybill)
+            ->refreshTitle()
+            ->save();
     }
 }

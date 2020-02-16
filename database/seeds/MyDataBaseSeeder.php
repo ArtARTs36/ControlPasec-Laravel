@@ -92,7 +92,7 @@ abstract class MyDataBaseSeeder extends Seeder
             $relations[] = $this->getRelation($model);
         }
 
-        return $relations;
+        return array_unique($relations);
     }
 
     /**
