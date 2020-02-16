@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
+        $this->call(VocabWordSeeder::class);
         $this->call(ContragentSeeder::class);
         $this->call(MyContragentSeeder::class);
 
