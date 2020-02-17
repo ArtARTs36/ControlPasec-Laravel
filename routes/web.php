@@ -25,6 +25,11 @@ Route::apiResource('vocab/size-of-units', 'Vocab\SizeOfUnitController');
 
 Route::apiResource('vocab/currencies', 'Vocab\VocabCurrencyController');
 
+Route::get(
+    'vocab/currency-courses',
+    'Vocab\CurrencyCourseController@chart'
+);
+
 Route::apiResource('score-for-payments', 'Supply\ScoreForPaymentController');
 Route::get(
     'score-for-payments/download-by-supply/{supplyId}',

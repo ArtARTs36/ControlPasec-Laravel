@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Vocab\VocabCurrency;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -9,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property int id
  * @property int currency_id
- * @property int currency
+ * @property VocabCurrency currency
  * @property int nominal
  * @property float value
  * @property string actual_date
@@ -19,4 +20,9 @@ class CurrencyCourse extends Model
     protected $fillable = [
         'currency_id', 'nominal', 'value', 'actual_date'
     ];
+
+    public function currency()
+    {
+        return $this->belongsTo(VocabCurrency::class);
+    }
 }
