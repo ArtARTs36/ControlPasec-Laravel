@@ -15,6 +15,8 @@ abstract class MyDataBaseSeeder extends Seeder
 
     protected $relationsCount = [];
 
+    protected $models = [];
+
     public function loadCsvFile($file, $isTypeFileCsv = true)
     {
         $path = __DIR__ .'/data/'. $file . (($isTypeFileCsv === true) ? '.csv' : '');
@@ -107,5 +109,19 @@ abstract class MyDataBaseSeeder extends Seeder
         }
 
         return $this->relations[$model];
+    }
+
+    /**
+     * @param $class
+     * @return Model[]
+     */
+    protected function getAllModels($class)
+    {
+        if (!isset($this->models[$class])) {
+            $this->models[$class] = $class::all();
+            $this->relationsCount[$class] = count($this->models[$class]) - 2;
+        }
+
+        return $this->models[$class];
     }
 }

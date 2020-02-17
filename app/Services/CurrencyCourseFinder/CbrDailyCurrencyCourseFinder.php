@@ -40,6 +40,7 @@ class CbrDailyCurrencyCourseFinder implements CurrencyCourseFinderInterface
             !isset($data['Date']) || !isset($data['Valute']) || !is_array($data['Valute'])
         );
 
+        $this->actualTime = $data['Date'];
         $this->courseData = $data['Valute'];
     }
 
@@ -58,8 +59,22 @@ class CbrDailyCurrencyCourseFinder implements CurrencyCourseFinderInterface
     }
 
     /**
+     * @param string $currency
+     * @return int
+     * @throws CurrencyCourseFinderNotDataException
+     */
+    public function getNominal(string $currency): int
+    {
+        $this->handleNotDataException(
+            !isset($this->courseData[$currency]) || !isset($this->courseData[$currency]['Nominal'])
+        );
+
+        return (int) $this->courseData[$currency]['Nominal'];
+    }
+
+    /**
      * @param bool $isDateTime
-     * @return \DateTime|null
+     * @return \DateTime|string
      * @throws \Exception
      */
     public function getActualTime($isDateTime = false)
