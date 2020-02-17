@@ -38,7 +38,7 @@ class XlsxRenderGoProgram extends GoProgram
         file_put_contents($this->dataFilePath, $this->data);
         $this->dataFilePath = realpath($this->dataFilePath);
 
-        $this->getExecutor()
+        $this->getExecutor()->getCommand()
             ->addParameter($this->templatePath)
             ->addParameter($this->savePath)
             ->addParameter($this->dataFilePath);

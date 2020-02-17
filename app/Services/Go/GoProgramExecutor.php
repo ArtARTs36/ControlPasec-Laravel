@@ -2,6 +2,8 @@
 
 namespace App\Services\Go;
 
+use App\Services\Shell\ShellCommand;
+
 /**
  * Class GoProgramExecutor
  * @package App\Services\Go
@@ -26,14 +28,11 @@ class GoProgramExecutor
     /** @var string */
     protected $pathToData;
 
-    /** @var string */
-    private $shellResult = null;
-
     /** @var bool */
     private $isExecuted = false;
 
-    /** @var array  */
-    private $options = [];
+    /** @var ShellCommand */
+    private $command = null;
 
     /**
      * GoProgramExecutor constructor.
@@ -48,6 +47,14 @@ class GoProgramExecutor
         $this->dirToProgram = self::GO_ROOT_DIR . DIRECTORY_SEPARATOR . $programName;
         $this->pathToData = $this->dirToProgram . DIRECTORY_SEPARATOR . 'data'. DIRECTORY_SEPARATOR;
         $this->pathToProgram = $this->dirToProgram . DIRECTORY_SEPARATOR . $programName . '.go';
+
+        $this->initCommand();
+    }
+
+    private function initCommand(): void
+    {
+        $this->command = new ShellCommand('go run', false);
+        $this->command->addParameter($this->pathToProgram);
     }
 
     /**
@@ -59,33 +66,7 @@ class GoProgramExecutor
     {
         $this->isExecuted = true;
 
-        return shell_exec($this->prepareShellCommand());
-    }
-
-    /**
-     * Добавить параметр в командную строку
-     *
-     * @param $value
-     * @return $this
-     */
-    public function addParameter($value): self
-    {
-        $this->parameters[] = $value;
-
-        return $this;
-    }
-
-    /**
-     * Добавить опцию в командную строку
-     *
-     * @param $value
-     * @return $this
-     */
-    public function addOption($value): self
-    {
-        $this->options[] = $value;
-
-        return $this;
+        $this->command->execute();
     }
 
     /**
@@ -99,36 +80,10 @@ class GoProgramExecutor
     }
 
     /**
-     * Получить результат выполнения программы
-     *
-     * @return string|null
+     * @return ShellCommand
      */
-    public function getShellResult()
+    public function getCommand(): ShellCommand
     {
-        if ($this->shellResult === null && $this->isExecuted === false) {
-            $this->execute();
-        }
-
-        return $this->shellResult;
-    }
-
-    /**
-     * Подготовить шелл-команду
-     *
-     * @return string
-     */
-    private function prepareShellCommand(): string
-    {
-        $parameters = array_map(function ($parameter) {
-            return '"' . $parameter . '"';
-        }, $this->parameters);
-
-        $options = array_map(function ($option) {
-            return '--' . $option;
-        }, $this->options);
-
-        return implode(' ',
-            array_merge(['go run', realpath($this->pathToProgram)], $parameters, $options)
-        );
+        return $this->command;
     }
 }
