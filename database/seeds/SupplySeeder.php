@@ -17,30 +17,33 @@ class SupplySeeder extends MyDataBaseSeeder
     public function run()
     {
         if (env('ENV_TYPE') == 'dev') {
-            $this->randomData(100);
+            $this->randomData();
         }
     }
 
     /**
      * Create Random Data ;)
      *
-     * @param int $count
      * @throws Throwable
      */
-    private function randomData(int $count): void
+    private function randomData(): void
     {
-        for ($i = 0; $i < $count; $i++) {
-            $supply = new App\Models\Supply\Supply();
-            $supply->planned_date = $this->getFaker()->date();
-            $supply->execute_date = $this->getFaker()->date();
-            $supply->supplier_id = env('ONE_SUPPLIER_ID');
-            $supply->customer_id = $this->getRelation(\App\Models\Contragent::class);
+        $contragents = $this->getAllObjectByRelation(\App\Models\Contragent::class);
 
-            $supply->save();
+        foreach ($contragents as $contragent) {
+            for ($i = 0; $i < rand(1, 5); $i++) {
+                $supply = new App\Models\Supply\Supply();
+                $supply->planned_date = $this->getFaker()->date();
+                $supply->execute_date = $this->getFaker()->date();
+                $supply->supplier_id = env('ONE_SUPPLIER_ID');
+                $supply->customer_id = $contragent;
 
-            $this->createRandomSupplyProducts($supply->id);
-            $this->createScoreForPayment($supply->id);
-            $this->createProductTransportWaybill($supply->id);
+                $supply->save();
+
+                $this->createRandomSupplyProducts($supply->id);
+                $this->createScoreForPayment($supply->id);
+                $this->createProductTransportWaybill($supply->id);
+            }
         }
     }
 
