@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Contragent;
 
 use App\ContragentManager;
 use App\Http\Requests\ContragentRequest;
+use App\Http\Requests\LiveFindContragentRequest;
 use App\Http\Responses\ActionResponse;
 use App\Models\Contragent;
 use App\Http\Controllers\Controller;
@@ -98,5 +99,18 @@ class ContragentController extends Controller
     public function syncWithExternalNetwork(Contragent $contragent)
     {
         // todo
+    }
+
+    public function liveFind(string $term)
+    {
+        $contragents = Contragent::where('title', 'LIKE', "%{$term}%")
+            ->orWhere('full_title', 'LIKE', "%{$term}%")
+            ->orWhere('full_title_with_opf', 'LIKE', "%{$term}%")
+            ->orWhere('inn', 'LIKE', "%{$term}%")
+            ->orWhere('kpp', 'LIKE', "%{$term}%")
+            ->get()
+            ->all();
+
+        return new ActionResponse(count($contragents) > 0, $contragents);
     }
 }

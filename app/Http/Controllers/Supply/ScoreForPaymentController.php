@@ -35,12 +35,16 @@ class ScoreForPaymentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
-     * @return Response
+     * @param ScoreForPaymentRequest $request
+     * @return ActionResponse
      */
     public function store(ScoreForPaymentRequest $request)
     {
+        $score = new ScoreForPayment();
+        $score->fill($request->all());
+        $score->save();
 
+        return new ActionResponse(true, $score);
     }
 
     /**
