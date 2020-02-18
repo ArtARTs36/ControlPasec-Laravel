@@ -24,7 +24,7 @@ use Illuminate\Database\Query\Builder;
 class SupplyProduct extends Model
 {
     protected $fillable = [
-        'price', 'mount', 'product_id', 'supply_id'
+        'price', 'mount', 'product_id', 'supply_id', 'quantity_unit_id'
     ];
 
     public function parent()
