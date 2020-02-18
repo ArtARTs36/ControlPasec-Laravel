@@ -181,7 +181,7 @@
                 {{ $product->parent->name_for_document }}
             </td>
             <td class="text-right">
-                {{ $product->mount }}
+                {{ $product->quantity }}
             </td>
             <td>
                 {{ $product->parent->sizeOfUnit->short_name }}
@@ -190,7 +190,7 @@
                 {{ \App\Services\Document\TemplateService::formatPriceOne($product->price) }}
             </td>
             <td class="text-right">
-                {{ \App\Services\Document\TemplateService::formatPriceOne($product->mount * $product->price) }}
+                {{ \App\Services\Document\TemplateService::formatPriceOne($product->quantity * $product->price) }}
             </td>
         </tr>
     @endforeach

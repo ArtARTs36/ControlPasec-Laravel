@@ -12,7 +12,7 @@ use Illuminate\Database\Query\Builder;
  *
  * @property integer id
  * @property double price
- * @property integer mount
+ * @property integer $quantity
  * @property integer quantityUnit
  * @property integer quantity_unit_id
  * @property integer product_id
@@ -24,7 +24,7 @@ use Illuminate\Database\Query\Builder;
 class SupplyProduct extends Model
 {
     protected $fillable = [
-        'price', 'mount', 'product_id', 'supply_id', 'quantity_unit_id'
+        'price', 'quantity', 'product_id', 'supply_id', 'quantity_unit_id'
     ];
 
     public function parent()

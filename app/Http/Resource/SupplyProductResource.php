@@ -17,7 +17,7 @@ class SupplyProductResource extends JsonResource
         return [
             'id' => $this->id,
             'price' => $this->price,
-            'mount' => $this->mount,
+            'quantity' => $this->quantity,
             'product_id' => $this->product_id,
             'supply_id' => $this->supply_id,
             'product' => $this->product ?? null

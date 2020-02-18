@@ -35,8 +35,8 @@
             'loop' => $key + 1,
             'name' => $product->parent->name,
             'price' => $product->price,
-            'mount' => $product->mount,
-            'totalPrice' => round($product->price * $product->mount, 2),
+            'quantity' => $product->quantity,
+            'totalPrice' => round($product->price * $product->quantity, 2),
             'sou' => $product->parent->sizeOfUnit->name
         ];
     }

@@ -172,7 +172,7 @@
                     {{ $product->parent->name_for_document }}
                 </td>
                 <td>
-                    {{ $product->mount }}
+                    {{ $product->quantity }}
                 </td>
                 <td>
                     {{ $product->parent->sizeOfUnit->short_name }}
@@ -181,7 +181,7 @@
                     {{ $product->price }}
                 </td>
                 <td>
-                    {{ $product->mount * $product->price }}
+                    {{ $product->quantity * $product->price }}
                 </td>
             </tr>
         @endforeach

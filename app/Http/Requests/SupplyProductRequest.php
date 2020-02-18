@@ -9,7 +9,7 @@ class SupplyProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'mount' => 'required',
+            'quantity' => 'required',
             'price' => 'required',
             'product_id' => 'required|integer',
             'quantity_unit_id' => 'required',

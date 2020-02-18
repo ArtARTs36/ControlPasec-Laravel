@@ -24,16 +24,16 @@ class GoProgramTest extends BaseTestCase
         ];
 
         for ($i = 0; $i < rand(3, 10); $i++) {
-            $mount = rand(50, 10);
+            $quantity = rand(50, 10);
             $price = rand(1500, 100000);
             $data['items'][$i] = [
                 'loop' => $i + 1,
                 'name' => $this->getFaker()->realText(35),
-                'mount' => $mount,
-                'mountInOnePackage' => $mount,
+                'quantity' => $quantity,
+                'mountInOnePackage' => $quantity,
                 'mountPlaces' => rand(1, 8),
                 'price' => $price,
-                'totalPrice' => $mount * $price
+                'totalPrice' => $quantity * $price
             ];
         }
 

@@ -20,7 +20,7 @@ class CreateSupplyProductsTable extends Migration
             $table->timestamps();
 
             $table->double('price');
-            $table->integer('mount');
+            $table->integer('quantity');
 
             $table->unsignedInteger('product_id');
             $table->unsignedInteger('supply_id');

@@ -38,7 +38,7 @@ class SupplyTest extends BaseTestCase
         $product = new SupplyProduct();
         $product->product_id = $this->getRandomModel(Product::class)->id;
         $product->price = rand(5, 1000);
-        $product->mount = rand(5, 1000);
+        $product->quantity = rand(5, 1000);
         $product->supply_id = $this->getRandomModel(Supply::class)->id;
         $product->quantity_unit_id = $this->getRandomModel(VocabQuantityUnit::class)->id;
         $product->save();

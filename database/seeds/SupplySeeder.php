@@ -1,7 +1,9 @@
 <?php
 
 use App\Models\Document\DocumentType;
+use App\Models\Product\Product;
 use App\Models\Supply\ProductTransportWaybill;
+use App\Models\Vocab\VocabQuantityUnit;
 use App\Services\Document\DocumentCreator;
 
 /**
@@ -58,10 +60,10 @@ class SupplySeeder extends MyDataBaseSeeder
         for ($i = 0; $i < $count; $i++) {
             $product = new \App\Models\Supply\SupplyProduct();
             $product->price = rand(50, 150);
-            $product->mount = rand(50, 1000);
-            $product->product_id = $this->getRelation(\App\Models\Product\Product::class);
+            $product->quantity = rand(50, 1000);
+            $product->product_id = $this->getRelation(Product::class);
             $product->supply_id = $supplyId;
-            $product->quantity_unit_id = $this->getRelation(\App\Models\Vocab\VocabQuantityUnit::class);
+            $product->quantity_unit_id = $this->getRelation(VocabQuantityUnit::class);
 
             $product->save();
         }
