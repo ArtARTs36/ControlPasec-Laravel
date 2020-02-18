@@ -53,4 +53,9 @@ class Contragent extends Model
     {
         return $this->requisites[0] ?? null;
     }
+
+    public function getTitleForDocument()
+    {
+        return $this->title_for_document ?? $this->title;
+    }
 }

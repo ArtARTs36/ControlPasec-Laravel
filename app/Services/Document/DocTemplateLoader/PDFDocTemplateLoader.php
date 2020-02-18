@@ -71,7 +71,7 @@ class PDFDocTemplateLoader extends AbstractDocTemplateLoader
             'defaultFont' => 'calibri'
         ]);
 
-        $domPdf->setPaper('A4', 'landscape');
+        $domPdf->setPaper('sra4');
 
         return $domPdf;
     }
