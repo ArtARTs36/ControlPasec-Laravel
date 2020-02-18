@@ -11,7 +11,8 @@ class SupplyProductRequest extends FormRequest
         return [
             'mount' => 'required',
             'price' => 'required',
-            'product_id' => 'required|integer'
+            'product_id' => 'required|integer',
+            'quantity_unit_id' => 'required',
         ];
     }
 }

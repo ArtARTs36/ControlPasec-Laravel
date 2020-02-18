@@ -61,6 +61,7 @@ class SupplySeeder extends MyDataBaseSeeder
             $product->mount = rand(50, 1000);
             $product->product_id = $this->getRelation(\App\Models\Product\Product::class);
             $product->supply_id = $supplyId;
+            $product->quantity_unit_id = $this->getRelation(\App\Models\Vocab\VocabQuantityUnit::class);
 
             $product->save();
         }

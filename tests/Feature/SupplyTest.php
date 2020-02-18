@@ -5,10 +5,20 @@ namespace Tests\Feature;
 use App\Models\Product\Product;
 use App\Models\Supply\Supply;
 use App\Models\Supply\SupplyProduct;
+use App\Models\Vocab\VocabQuantityUnit;
 use Tests\BaseTestCase;
 
 class SupplyTest extends BaseTestCase
 {
+    public function testGetAll()
+    {
+        $response = $this->decodeResponse(
+            $this->getJson('supplies')
+        );
+
+        self::assertIsArray($response['data']);
+    }
+
     public function testCreate()
     {
         $response = $this->postJson('supplies', [
@@ -25,23 +35,12 @@ class SupplyTest extends BaseTestCase
 
     public function testSupplyProductCreate()
     {
-        /** @var Supply $randomSupply */
-        $randomSupply = Supply::where('id', '>', 0)
-            ->inRandomOrder()
-            ->get()
-            ->first();
-
-        /** @var Product $randomProduct */
-        $randomProduct = Product::where('id', '>', 0)
-            ->inRandomOrder()
-            ->get()
-            ->first();
-
         $product = new SupplyProduct();
-        $product->product_id = $randomProduct->id;
+        $product->product_id = $this->getRandomModel(Product::class)->id;
         $product->price = rand(5, 1000);
         $product->mount = rand(5, 1000);
-        $product->supply_id = $randomSupply->id;
+        $product->supply_id = $this->getRandomModel(Supply::class)->id;
+        $product->quantity_unit_id = $this->getRandomModel(VocabQuantityUnit::class)->id;
         $product->save();
 
         self::assertTrue($product->id > 0);

@@ -3,6 +3,7 @@
 namespace App\Models\Supply;
 
 use App\Models\Product\Product;
+use App\Models\Vocab\VocabQuantityUnit;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
 
@@ -12,6 +13,8 @@ use Illuminate\Database\Query\Builder;
  * @property integer id
  * @property double price
  * @property integer mount
+ * @property integer quantityUnit
+ * @property integer quantity_unit_id
  * @property integer product_id
  * @property integer supply_id
  * @property Product parent
@@ -27,5 +30,10 @@ class SupplyProduct extends Model
     public function parent()
     {
         return $this->belongsTo(Product::class, 'product_id');
+    }
+
+    public function quantityUnit()
+    {
+        return $this->belongsTo(VocabQuantityUnit::class);
     }
 }

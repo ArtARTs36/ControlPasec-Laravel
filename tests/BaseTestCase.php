@@ -2,8 +2,10 @@
 
 namespace Tests;
 
+use App\Models\Vocab\VocabQuantityUnit;
 use Faker\Factory;
 use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\TestResponse;
 
 abstract class BaseTestCase extends TestCase
@@ -33,5 +35,17 @@ abstract class BaseTestCase extends TestCase
         }
 
         return $this->faker;
+    }
+
+    /**
+     * @param $class
+     * @return Model
+     */
+    protected function getRandomModel($class)
+    {
+        return $class::where('id', '>', 0)
+            ->inRandomOrder()
+            ->get()
+            ->first();
     }
 }

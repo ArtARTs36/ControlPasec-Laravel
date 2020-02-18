@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(VocabBankSeeder::class);
         $this->call(BankRequisitesSeeder::class);
 
+        $this->call(VocabQuantityUnitSeeder::class);
         $this->call(SizeOfUnitSeeder::class);
         $this->call(VocabCurrencySeeder::class);
         $this->call(ProductSeeder::class);

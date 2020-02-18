@@ -23,7 +23,12 @@ class SupplyController extends Controller
      */
     public function index()
     {
-        $supplies = Supply::with(['customer', 'products'])->paginate(10);
+        $supplies = Supply::with([
+            'customer',
+            'products' => function ($query) {
+                return $query->with('quantityUnit');
+            }
+        ])->paginate(10);
 
         return SupplyResource::collection($supplies);
     }
