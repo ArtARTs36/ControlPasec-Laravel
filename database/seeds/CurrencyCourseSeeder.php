@@ -1,10 +1,9 @@
 <?php
 
+use App\Collection\VocabCurrencyExternalCollection;
 use App\CurrencyCourse;
 use App\Models\Vocab\VocabCurrency;
-use App\Services\CurrencyCourseFinder\CbrDailyCurrencyCourseFinder;
 use App\Services\CurrencyCourseFinder\CurrencyCourseFinder;
-use App\Services\CurrencyCourseFinder\CurrencyCourseFinderNotDataException;
 
 class CurrencyCourseSeeder extends MyDataBaseSeeder
 {
@@ -32,43 +31,15 @@ class CurrencyCourseSeeder extends MyDataBaseSeeder
 
         try {
             $finder = CurrencyCourseFinder::actualFinder();
-            foreach ($this->getAllModels(VocabCurrency::class) as $currency) {
-                if ($currency->iso_short_name == 'RUB') {
-                    continue;
-                }
-
-                $this->saveExternalData($finder, $currency);
-            }
+            VocabCurrencyExternalCollection::init()->saveCourses($finder);
         } catch (Exception $exception) {}
 
         foreach ($dateRange as $date) {
             try {
                 $finder = CurrencyCourseFinder::previousFinder($date);
-                foreach ($this->getAllModels(VocabCurrency::class) as $currency) {
-                    if ($currency->iso_short_name == 'RUB') {
-                        continue;
-                    }
-
-                    $this->saveExternalData($finder, $currency);
-                }
+                VocabCurrencyExternalCollection::init()->saveCourses($finder);
             } catch (Exception $exception) {}
         }
-    }
-
-    /**
-     * @param CbrDailyCurrencyCourseFinder $finder
-     * @param VocabCurrency $currency
-     * @throws CurrencyCourseFinderNotDataException
-     */
-    private function saveExternalData(CbrDailyCurrencyCourseFinder $finder, VocabCurrency $currency): void
-    {
-        $course = new CurrencyCourse();
-        $course->currency_id = $currency->id;
-        $course->nominal = $finder->getNominal($currency->iso_short_name);
-        $course->value = $finder->getCourse($currency->iso_short_name);
-        $course->actual_date = $finder->getActualTime(true);
-
-        $course->save();
     }
 
     /**
