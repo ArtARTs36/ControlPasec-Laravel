@@ -31,7 +31,7 @@ class SupplyService
 
         /** @var SupplyProduct $product */
         foreach ($products as $product) {
-            $totalPrice += $product->price * $product->quantity;
+            $totalPrice += $product->getTotalPrice();
         }
 
         return $totalPrice;

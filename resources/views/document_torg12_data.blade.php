@@ -8,6 +8,7 @@
 
     $supply = $waybill->supply;
 
+    /** @var \App\Models\Supply\SupplyProduct[] $products */
     $products = $supply->products;
 
     $plannedDate = new DateTime($supply->planned_date);
@@ -36,7 +37,7 @@
             'name' => $product->parent->name,
             'price' => $product->price,
             'quantity' => $product->quantity,
-            'totalPrice' => round($product->price * $product->quantity, 2),
+            'totalPrice' => $product->getTotalPrice(),
             'sou' => $product->parent->sizeOfUnit->name
         ];
     }

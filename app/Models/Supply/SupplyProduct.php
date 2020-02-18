@@ -36,4 +36,12 @@ class SupplyProduct extends Model
     {
         return $this->belongsTo(VocabQuantityUnit::class);
     }
+
+    /**
+     * @return float
+     */
+    public function getTotalPrice()
+    {
+        return round((float) $this->price * $this->quantity);
+    }
 }

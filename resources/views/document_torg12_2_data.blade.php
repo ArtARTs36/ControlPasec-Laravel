@@ -35,7 +35,7 @@
         $data['[ТОВАР]'][] = $product->parent->name;
         $data['[ТОВАР_ЦЕНА]'][] = $product->price;
         $data['[ТОВАР_КОЛВО]'][] = $product->quantity;
-        $data['[ТОВАР_СУММ]'][] = round($product->price * $product->quantity, 2);
+        $data['[ТОВАР_СУММ]'][] = $product->getTotalPrice();
         $data['[ТОВАР_ЕД_ИЗМ]'][] = $product->parent->sizeOfUnit->name;
     }
 

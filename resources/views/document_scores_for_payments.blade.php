@@ -59,6 +59,8 @@
             return $requisite->with('bank');
         }]);
         $customer = $supply->customer;
+
+        /** @var \App\Models\Supply\SupplyProduct[] $products */
         $products = $supply->products()->with(['parent' => function($parent) {
             return $parent->with('sizeOfUnit');
         }])->get();
@@ -181,7 +183,7 @@
                     {{ $product->price }}
                 </td>
                 <td>
-                    {{ $product->quantity * $product->price }}
+                    {{ $product->getTotalPrice() }}
                 </td>
             </tr>
         @endforeach
