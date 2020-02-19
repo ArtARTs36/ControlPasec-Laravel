@@ -4,14 +4,20 @@ namespace App\Services\Document;
 
 class TemplateService
 {
-    public static function renderContragent($contragent)
+    public static function renderContragent($contragent, $withKpp = false)
     {
-        return implode(', ', [
+        $data = [
             $contragent->title,
             "ИНН {$contragent->inn}",
-            $contragent->address_postal,
-            $contragent->address
-        ]);
+        ];
+
+        if ($withKpp === true && !empty($contragent->kpp)) {
+            $data[] = "КПП {$contragent->kpp}";
+        }
+
+        $data = array_merge($data, [$contragent->address_postal, $contragent->address]);
+
+        return implode(', ', $data);
     }
 
     /**

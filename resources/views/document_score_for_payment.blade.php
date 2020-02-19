@@ -9,6 +9,9 @@
     $supplier = $supply->supplier->load(['requisites' => function($requisite) {
         return $requisite->with('bank');
     }]);
+
+    $supplierHelper = new \App\Helper\SupplierHelper($supplier);
+
     $customer = $supply->customer;
 
     /** @var \App\Models\Supply\SupplyProduct[] $products */
@@ -144,20 +147,23 @@
 <table width="100%">
     <tr>
         <td style="width: 30mm;">
-            <div style=" padding-left:2px;">Поставщик:</div>
+            <div style="padding-left:2px;">Поставщик</div>
+            <div style="padding-left:2px;">(Исполнитель):</div>
         </td>
         <td>
-            <div style="font-weight:bold;  padding-left:2px;">{{ $supplier->full_title_with_opf }}</div>
+            <div style="font-weight:bold;  padding-left:2px;">
+                {{ \App\Services\Document\TemplateService::renderContragent($supplier, true) }}
+            </div>
         </td>
     </tr>
     <tr>
         <td style="width: 30mm;">
-            <div style=" padding-left:2px;">Покупатель:</div>
+            <div style="padding-left:2px;">Покупатель:</div>
+            <div style="padding-left:2px;">(Заказчик):</div>
         </td>
         <td>
             <div style="font-weight:bold;  padding-left:2px;">
-                {{ $customer->title }}, ИНН {{ $customer->inn }}, КПП {{ $customer->kpp }},
-                {{ $customer->address_postal }}, {{ $customer->address }}
+                {{ \App\Services\Document\TemplateService::renderContragent($customer, true) }}
             </div>
         </td>
     </tr>
@@ -252,7 +258,7 @@
     Подпись
     <span style="float:right; text-align: right;">
         <i>
-            {{ $supplier->title }}
+            {{ $supplierHelper->getSignature() }}
         </i>
     </span>
     <div style="position:relative; margin-left: 65px; background-color:#000000; width:100%; font-size:1px; height:2px;">&nbsp;</div>
