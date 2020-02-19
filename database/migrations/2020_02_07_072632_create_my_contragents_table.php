@@ -21,6 +21,7 @@ class CreateMyContragentsTable extends Migration
 
             $table->string('name', '255');
             $table->unsignedInteger('contragent_id');
+            $table->string('signature', 50);
         });
 
         Schema::table(self::TABLE, function (Blueprint $table) {

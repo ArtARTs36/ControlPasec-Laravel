@@ -74,6 +74,9 @@ abstract class MyDataBaseSeeder extends Seeder
         $this->getAllObjectByRelation($model);
 
         $randId = rand(0, $this->relationsCount[$model]);
+        if ($randId < 0) {
+            $randId = 0;
+        }
 
         return $this->relations[$model][$randId];
     }
@@ -119,7 +122,7 @@ abstract class MyDataBaseSeeder extends Seeder
     {
         if (!isset($this->models[$class])) {
             $this->models[$class] = $class::all();
-            $this->relationsCount[$class] = count($this->models[$class]) - 2;
+            $this->relationsCount[$class] = count($this->models[$class]) - 1;
         }
 
         return $this->models[$class];
