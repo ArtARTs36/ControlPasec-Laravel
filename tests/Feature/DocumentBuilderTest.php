@@ -44,4 +44,16 @@ class DocumentBuilderTest extends BaseTestCase
 
         self::assertTrue($build);
     }
+
+    public function testBuildQualityCertificate()
+    {
+        $randomDocument = Document::where('type_id', DocumentType::QUALITY_CERTIFICATE_ID)
+            ->inRandomOrder()
+            ->get()
+            ->first();
+
+        $build = DocumentBuilder::build($randomDocument, true);
+
+        self::assertFileExists($build);
+    }
 }

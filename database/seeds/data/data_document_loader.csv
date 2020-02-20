@@ -3,3 +3,4 @@ XLSDocTemplateLoader;xls
 PDFDocTemplateLoader;pdf
 ExcelDocTemplateLoader;xlsx
 PhpExcelDocTemplateLoader;xlsx
+PhpWordDocTemplateLoader;docx

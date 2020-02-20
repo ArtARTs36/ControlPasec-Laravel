@@ -45,6 +45,7 @@ class SupplySeeder extends MyDataBaseSeeder
                 $this->createRandomSupplyProducts($supply->id);
                 $this->createScoreForPayment($supply->id);
                 $this->createProductTransportWaybill($supply->id);
+                $this->createQualityCertificate();
             }
         }
     }
@@ -115,6 +116,17 @@ class SupplySeeder extends MyDataBaseSeeder
 
         DocumentCreator::getInstance(DocumentType::TORG_12_ID)
             ->addProductTransportWaybills($waybill)
+            ->refreshTitle()
+            ->save();
+    }
+
+
+    /**
+     * @throws Throwable
+     */
+    private function createQualityCertificate()
+    {
+        DocumentCreator::getInstance(DocumentType::QUALITY_CERTIFICATE_ID)
             ->refreshTitle()
             ->save();
     }
