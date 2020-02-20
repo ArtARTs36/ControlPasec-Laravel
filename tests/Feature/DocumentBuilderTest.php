@@ -6,9 +6,12 @@ use App\Models\Document\Document;
 use App\Models\Document\DocumentType;
 use App\Services\Document\DocumentBuilder;
 use Tests\BaseTestCase;
+use Tests\Traits\RandomDocumentTrait;
 
 class DocumentBuilderTest extends BaseTestCase
 {
+    use RandomDocumentTrait;
+
     public function testBuild()
     {
         $randomDocument = Document::where('status', Document::STATUS_NEW)
@@ -23,36 +26,45 @@ class DocumentBuilderTest extends BaseTestCase
 
     public function testBuildMany()
     {
-        $randomDocument = Document::where('status', Document::STATUS_NEW)
-            ->inRandomOrder()
-            ->get()
-            ->first();
+        $documents = [
+            $this->getRandomDocumentByType(DocumentType::SCORE_FOR_PAYMENT_ID),
+            $this->getRandomDocumentByType(DocumentType::SCORE_FOR_PAYMENT_ID)
+        ];
 
-        $build = DocumentBuilder::buildMany([$randomDocument, $randomDocument], true);
+        $build = DocumentBuilder::buildMany(
+            $documents,
+            true
+        );
 
         self::assertTrue($build);
     }
 
     public function testBuildScoreForPayment()
     {
-        $randomDocument = Document::where('type_id', DocumentType::SCORE_FOR_PAYMENT_ID)
-            ->inRandomOrder()
-            ->get()
-            ->first();
+        $build = DocumentBuilder::build(
+            $this->getRandomDocumentByType(DocumentType::SCORE_FOR_PAYMENT_ID),
+            true
+        );
 
-        $build = DocumentBuilder::build($randomDocument, true);
-
-        self::assertTrue($build);
+        self::assertFileExists($build);
     }
 
     public function testBuildQualityCertificate()
     {
-        $randomDocument = Document::where('type_id', DocumentType::QUALITY_CERTIFICATE_ID)
-            ->inRandomOrder()
-            ->get()
-            ->first();
+        $build = DocumentBuilder::build(
+            $this->getRandomDocumentByType(DocumentType::SCORE_FOR_PAYMENT_ID),
+            true
+        );
 
-        $build = DocumentBuilder::build($randomDocument, true);
+        self::assertFileExists($build);
+    }
+
+    public function testBuildTorg12()
+    {
+        $build = DocumentBuilder::build(
+            $this->getRandomDocumentByType(DocumentType::TORG_12_ID),
+            true
+        );
 
         self::assertFileExists($build);
     }

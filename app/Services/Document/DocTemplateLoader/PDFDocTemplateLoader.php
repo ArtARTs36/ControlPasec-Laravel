@@ -29,7 +29,7 @@ class PDFDocTemplateLoader extends AbstractDocTemplateLoader
             $domPdf->stream($document->title);
         }
 
-        return true;
+        return $this->getSavePath($document);
     }
 
     /**

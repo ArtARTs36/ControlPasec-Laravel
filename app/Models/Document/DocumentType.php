@@ -2,6 +2,7 @@
 
 namespace App\Models\Document;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -14,6 +15,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string template
  * @property int loader_id
  * @property DocumentLoader loader
+ *
+ * @mixin Builder
  */
 class DocumentType extends Model
 {
