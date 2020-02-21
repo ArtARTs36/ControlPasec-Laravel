@@ -21,6 +21,19 @@ class CreateSuppliesTable extends Migration
 
             $table->date('planned_date');
             $table->date('execute_date');
+
+            $table->unsignedInteger('supplier_id');
+            $table->unsignedInteger('customer_id');
+        });
+
+        Schema::table('supplies', function (Blueprint $table) {
+            $table->foreign('supplier_id')
+                ->references('id')
+                ->on('contragents');
+
+            $table->foreign('customer_id')
+                ->references('id')
+                ->on('contragents');
         });
     }
 

@@ -23,6 +23,7 @@ class CreateScoreForPaymentsTable extends Migration
 
             $table->unsignedInteger('supply_id');
             $table->unsignedInteger('contract_id')->nullable();
+            $table->bigInteger('order_number')->nullable();
         });
 
         Schema::table(self::TABLE, function (Blueprint $table) {

@@ -27,6 +27,8 @@ class CreateDocumentsTable extends Migration
             $table->uuid('uuid');
 
             $table->integer('status');
+
+            $table->bigInteger('folder')->nullable();
         });
     }
 
