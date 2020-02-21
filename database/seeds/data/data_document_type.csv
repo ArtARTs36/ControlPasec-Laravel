@@ -1,5 +1,5 @@
-name;title;template;loader_name
-Счет на оплату;Счет на оплату {{ $doc->id }};document_score_for_payment;PDFDocTemplateLoader
-Счета на оплату;Счета на оплату;document_scores_for_payments;PDFDocTemplateLoader
-ТОРГ-12;ТОРГ-12;document_torg12;ExcelDocTemplateLoader
-Удостоверение качества;Удостоверение качества;document_quality_certificate;PhpWordDocTemplateLoader
+name;title;template;paper_size;loader_name
+Счет на оплату;Счет на оплату {{ $doc->id }};document_score_for_payment;A3;PDFDocTemplateLoader
+Счета на оплату;Счета на оплату;document_scores_for_payments;A4;PDFDocTemplateLoader
+ТОРГ-12;ТОРГ-12;document_torg12_2;A3;PhpExcelDocTemplateLoader
+Удостоверение качества;Удостоверение качества;document_quality_certificate;A4;PhpWordDocTemplateLoader

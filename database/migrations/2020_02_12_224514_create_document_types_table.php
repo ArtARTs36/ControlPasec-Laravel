@@ -20,6 +20,7 @@ class CreateDocumentTypesTable extends Migration
             $table->string('name', 100);
             $table->string('title', 100);
             $table->string('template', 100);
+            $table->string('paper_size', 10);
             $table->unsignedInteger('loader_id');
         });
 

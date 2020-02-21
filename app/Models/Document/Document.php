@@ -22,6 +22,7 @@ use Ramsey\Uuid\Uuid;
  * @property ScoreForPayment[] scoreForPayments
  * @property int folder
  * @property ProductTransportWaybill[] productTransportWaybills
+ * @property string paper_size
  *
  * @mixin Builder
  */
