@@ -3,35 +3,40 @@
 namespace App\Services\Document\DocTemplateLoader;
 
 use alhimik1986\PhpExcelTemplator\params\ExcelParam;
-use alhimik1986\PhpExcelTemplator\PhpExcelTemplator;
 use alhimik1986\PhpExcelTemplator\setters\CellSetterArrayValue;
 use alhimik1986\PhpExcelTemplator\setters\CellSetterStringValue;
 use App\Models\Document\Document;
 use App\Service\Document\DocumentService;
+use App\Services\Document\ExcelFile;
 
 class PhpExcelTemplateLoader extends AbstractDocTemplateLoader
 {
     const NAME = 'PhpExcelDocTemplateLoader';
 
+    /**
+     * @param Document $document
+     * @param bool $save
+     * @return string
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
+     * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception
+     * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
+     * @throws \Throwable
+     */
     protected function make(Document $document, $save = false)
     {
         $fileData = $document->getTemplate() . '_data';
 
         $data = view($fileData, ['document' => $document])->render();
         $data = json_decode($data, true);
-        $data = $this->prepareData($data);
 
-        $this->createFolder(DocumentService::getDownloadLink($document, true));
+        $this->createFolder($docPath = DocumentService::getDownloadLink($document, true));
 
-        $documentSavePath = DocumentService::getDownloadLink($document, true);
-
-        PhpExcelTemplator::saveToFile(
+        return (new ExcelFile(
+            $docPath,
             $document->getTemplateFullPath(true),
-            $documentSavePath,
-            $data
-        );
-
-        return $documentSavePath;
+            $this->prepareData($data),
+            $document->paper_size
+        ))->save();
     }
 
     protected function createFolder($savePath)
