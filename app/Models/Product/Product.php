@@ -4,6 +4,7 @@ namespace App\Models\Product;
 
 use App\Models\Vocab\SizeOfUnit;
 use App\Models\Vocab\VocabCurrency;
+use App\Models\Vocab\VocabGosStandard;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,6 +22,8 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property integer price
  * @property integer currency_id
+ * @property integer gos_standard_id
+ * @property VocabGosStandard gosStandard
  *
  * @mixin Builder
  */
@@ -38,5 +41,10 @@ class Product extends Model
     public function currency()
     {
         return $this->belongsTo(VocabCurrency::class);
+    }
+
+    public function gosStandard()
+    {
+        return $this->belongsTo(VocabGosStandard::class);
     }
 }

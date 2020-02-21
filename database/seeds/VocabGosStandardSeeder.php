@@ -16,7 +16,7 @@ class VocabGosStandardSeeder extends MyDataBaseSeeder
     {
         for ($i = 0; $i < $count; $i++) {
             $standard = new VocabGosStandard();
-            $standard->name = $this->getFaker()->name();
+            $standard->name = "ГОСТ ". rand(11111, 99999) . "-". rand(1111, 9999);
             $standard->description = $this->getFaker()->text(50);
             $standard->is_active = $this->getFaker()->boolean();
             $standard->date_introduction = $this->getFaker()->date();

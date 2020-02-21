@@ -16,7 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return Product::with(['currency', 'sizeOfUnit'])->paginate(10);
+        return Product::with(['currency', 'sizeOfUnit', 'gosStandard'])->paginate(10);
     }
 
     /**

@@ -20,7 +20,8 @@ class SupplyProductResource extends JsonResource
             'quantity' => $this->quantity,
             'product_id' => $this->product_id,
             'supply_id' => $this->supply_id,
-            'product' => $this->product ?? null
+            'product' => $this->parent ?? null,
+            'gos_standard' => $this->parent->gosStandard ?? null
         ];
     }
 }
