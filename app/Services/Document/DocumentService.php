@@ -45,7 +45,7 @@ class DocumentService
      */
     public static function parseFileName(Document $document)
     {
-        $tmpFile = time();
+        $tmpFile = env('DOCUMENT_TMP_NAMES_DIR') . DIRECTORY_SEPARATOR . time();
         $path = __DIR__ . '/../../../resources/views/'. $tmpFile . '.blade.php';
         file_put_contents(
             $path,

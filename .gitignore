@@ -14,3 +14,4 @@ yarn-error.log
 /public/documents/*
 /go-programs/xlsx_render/data/
 /storage/documents_ps/*
+/resources/views/tmp_files_names
