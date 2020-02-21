@@ -21,7 +21,7 @@ trait XlsxDocumentConverterTrait
             ->addOption('outdir')
             ->addParameter($outputDir);
 
-        $shell = self::checkShell($shell->getShellResult(), $filePath, DocumentExtension::PDF);
+        $shell = self::checkShell($shell, $filePath, DocumentExtension::PDF);
 
         preg_match("/->(.*) using filter/i", $shell, $matches);
 

@@ -2,6 +2,9 @@
 
 namespace App\Services\Document;
 
+use App\Models\Document\Document;
+use App\Service\Document\DocumentService;
+use App\Services\Shell\ShellCommand;
 use Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException;
 
 /**
@@ -39,11 +42,15 @@ class DocumentConverter
     /**
      * Проверить файл на существование
      *
-     * @param string $filePath
+     * @param string|Document $filePath
      * @return bool
      */
-    private static function checkFileExists(string $filePath)
+    private static function checkFileExists(&$filePath)
     {
+        if ($filePath instanceof Document) {
+            $filePath = DocumentService::getDownloadLink($filePath, true);
+        }
+
         if (!file_exists($filePath)) {
             throw new FileNotFoundException($filePath);
         }
@@ -52,15 +59,15 @@ class DocumentConverter
     }
 
     /**
-     * @param $command
+     * @param ShellCommand $command
      * @param $file
      * @param $ext
      * @return string|null
      * @throws DocumentConvertException
      */
-    private static function checkShell($command, $file, $ext)
+    private static function checkShell(ShellCommand $command, $file, $ext)
     {
-        $shellResult = shell_exec($command);
+        $shellResult = $command->getShellResult();
         if ($shellResult === null) {
             throw new DocumentConvertException($file, $ext);
         }
