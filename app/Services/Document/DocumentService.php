@@ -45,14 +45,15 @@ class DocumentService
      */
     public static function parseFileName(Document $document)
     {
-        $tmpFile = env('DOCUMENT_TMP_NAMES_DIR') . DIRECTORY_SEPARATOR . time();
-        $path = __DIR__ . '/../../../resources/views/'. $tmpFile . '.blade.php';
-        file_put_contents(
-            $path,
-            $document->type->title
-        );
+        $tmpFileName = env('DOCUMENT_TMP_NAMES_DIR') . DIRECTORY_SEPARATOR . time();
+        $pathTmpFile = __DIR__ . '/../../../resources/views/'. $tmpFileName . '.blade.php';
+        file_put_contents($pathTmpFile, $document->type->title);
 
-        return view($tmpFile, ['doc' => $document])->render() . '.' . $document->getExtensionName();
+        $fileName = view($tmpFileName, ['doc' => $document])->render() . '.' . $document->getExtensionName();
+
+        unlink($pathTmpFile);
+
+        return $fileName;
     }
 
     public static function getDownloadLink($document, $full = false)
