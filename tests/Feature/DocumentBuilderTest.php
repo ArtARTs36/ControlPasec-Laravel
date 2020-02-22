@@ -52,7 +52,7 @@ class DocumentBuilderTest extends BaseTestCase
     public function testBuildQualityCertificate()
     {
         $build = DocumentBuilder::build(
-            $this->getRandomDocumentByType(DocumentType::SCORE_FOR_PAYMENT_ID),
+            $this->getRandomDocumentByType(DocumentType::QUALITY_CERTIFICATE_ID),
             true
         );
 

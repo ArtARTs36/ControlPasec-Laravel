@@ -39,7 +39,8 @@
             'price' => TemplateService::formatNetto($product->price),
             'quantity' => TemplateService::formatNetto($product->quantity),
             'totalPrice' => TemplateService::formatNetto($product->getTotalPrice()),
-            'sou' => $product->parent->sizeOfUnit->name
+            'sou' => $product->quantityUnit->short_name,
+            'okei' => $product->quantityUnit->okei,
         ];
 
         $totalQuantity += $product->quantity;

@@ -68,7 +68,7 @@ class SupplyService
         }]);
         $customer = $supply->customer;
         $products = $supply->products()->with(['parent' => function($parent) {
-            return $parent->with('sizeOfUnit');
+            return $parent->with(['sizeOfUnit', 'gosStandard']);
         }])->get();
 
         return $supply;

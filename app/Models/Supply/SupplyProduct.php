@@ -13,7 +13,7 @@ use Illuminate\Database\Query\Builder;
  * @property integer id
  * @property double price
  * @property integer $quantity
- * @property integer quantityUnit
+ * @property VocabQuantityUnit quantityUnit
  * @property integer quantity_unit_id
  * @property integer product_id
  * @property integer supply_id
