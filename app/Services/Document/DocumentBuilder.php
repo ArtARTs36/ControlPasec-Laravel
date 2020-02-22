@@ -9,13 +9,10 @@ use App\Services\Document\DocTemplateLoader\PDFDocTemplateLoader;
 use App\Services\Document\DocTemplateLoader\PhpExcelTemplateLoader;
 use App\Services\Document\DocTemplateLoader\PhpWordDocTemplateLoader;
 
-//use App\Services\Document\DocTemplateLoader\XLSDocTemplateLoader;
-
 class DocumentBuilder
 {
     private const LOADERS = [
         PDFDocTemplateLoader::NAME => PDFDocTemplateLoader::class,
-//        XLSDocTemplateLoader::NAME => XLSDocTemplateLoader::class,
         ExcelDocTemplateLoader::NAME => ExcelDocTemplateLoader::class,
         PhpExcelTemplateLoader::NAME => PhpExcelTemplateLoader::class,
         PhpWordDocTemplateLoader::NAME => PhpWordDocTemplateLoader::class,

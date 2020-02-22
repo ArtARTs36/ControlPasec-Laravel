@@ -1,46 +1,53 @@
 @php
 
-    /** @var \App\Models\Document\Document $document */
-    $document = $document->load('productTransportWaybills');
+    /** @var Document $document */
+    use App\Models\Document\Document;use App\Models\Supply\ProductTransportWaybill;use App\Models\Supply\SupplyProduct;use App\Services\Document\TemplateService;use App\Services\Service\OrfoService;use App\Services\SupplyService;$document = $document->load('productTransportWaybills');
 
-    /** @var \App\Models\Supply\ProductTransportWaybill $waybill */
+    /** @var ProductTransportWaybill $waybill */
     $waybill = $document->getProductTransportWaybill();
 
     $supply = $waybill->supply;
 
-    /** @var \App\Models\Supply\SupplyProduct[] $products */
+    /** @var SupplyProduct[] $products */
     $products = $supply->products;
 
     $plannedDate = new DateTime($supply->planned_date);
 
-    $fullTotalPrice = \App\Services\SupplyService::bringTotalPrice($supply);
+    $fullTotalPrice = SupplyService::bringTotalPrice($supply);
 
     $data = [
-        'ГРУЗОПОЛУЧАТЕЛЬ' => \App\Services\Document\TemplateService::renderContragent($supply->customer),
-        'ГРУЗООТПРАВИТЕЛЬ' => \App\Services\Document\TemplateService::renderContragent($supply->supplier),
+        'ГРУЗОПОЛУЧАТЕЛЬ' => TemplateService::renderContragent($supply->customer),
+        'ГРУЗООТПРАВИТЕЛЬ' => TemplateService::renderContragent($supply->supplier),
         'ДЕНЬ' => $plannedDate->format('d'),
-        'МЕСЯЦ_Р' => \App\Services\Service\OrfoService::getMonth($plannedDate, 'gen', true),
+        'МЕСЯЦ_Р' => OrfoService::getMonth($plannedDate, 'gen', true),
         'ГОД' => $plannedDate->format('Y'),
         'ДАТА' => $plannedDate->format('d.m.Y'),
-        'ПОЛНАЯ_СУММА' => \App\Services\Document\TemplateService::sum2words($fullTotalPrice)
+        'ПОЛНАЯ_СУММА' => TemplateService::sum2words($fullTotalPrice),
+        'КОЛВО_ПРОД' => count($products),
+        'КОЛВО_ПРОДУКТОВ_ПРОПИСЬЮ' => TemplateService::numberToWord(count($products)),
     ];
 
     $data['ПЛАТЕЛЬЩИК'] = $data['ГРУЗОПОЛУЧАТЕЛЬ'];
     $data['ПОСТАВЩИК'] = $data['ГРУЗООТПРАВИТЕЛЬ'];
 
-    // МБОУ "КАНТЕМИРОВСКИЙ ЛИЦЕЙ", ИНН 3612005593, 396731, Воронежская обл, Кантемировский р-н, Кантемировка рп, Первомайская ул, дом No 35, тел.:
-    // Грузополучатель 8(47367) 6-10-67, р/с 40204810600000000743, в банке ОТДЕЛЕНИЕ ВОРОНЕЖ, БИК 042007001
+    $totalQuantity = 0;
 
     foreach ($products as $key => $product) {
         $data['items'][] = [
             'loop' => $key + 1,
             'name' => $product->parent->name,
-            'price' => $product->price,
-            'quantity' => $product->quantity,
-            'totalPrice' => $product->getTotalPrice(),
+            'price' => TemplateService::formatNetto($product->price),
+            'quantity' => TemplateService::formatNetto($product->quantity),
+            'totalPrice' => TemplateService::formatNetto($product->getTotalPrice()),
             'sou' => $product->parent->sizeOfUnit->name
         ];
+
+        $totalQuantity += $product->quantity;
     }
+
+    $data['ИТОГО_НЕТТО'] = TemplateService::formatNetto($totalQuantity);
+    $data['СУММА_БЕЗ_НДС'] = TemplateService::formatNetto($fullTotalPrice);
+    $data['СУММА_С_НДС'] = TemplateService::formatNetto($fullTotalPrice);
 
 @endphp
 

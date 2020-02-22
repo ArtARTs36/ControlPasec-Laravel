@@ -12,6 +12,7 @@ class GoProgramTest extends BaseTestCase
 {
     public function testCreateByDocument()
     {
+        /** @var Document $randomDocument */
         $randomDocument = Document::where('type_id', DocumentType::TORG_12_ID)
             ->inRandomOrder()
             ->get()
