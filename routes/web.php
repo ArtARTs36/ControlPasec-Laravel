@@ -70,3 +70,7 @@ Route::get('vocab/currency-courses', 'Vocab\CurrencyCourseController@chart');
 
 Route::get('external-news/chart', 'News\ExternalNewsController@chart');
 Route::apiResource('external-news', 'News\ExternalNewsController');
+
+// API для статистики
+
+Route::get('stat/general', 'Stat\StatController@general');
