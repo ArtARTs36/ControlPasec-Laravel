@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
 
 /**
- * Class VocabPriceOfUnit
+ * Class VocabCurrency
  *
  * @property string name
  * @property string short_name

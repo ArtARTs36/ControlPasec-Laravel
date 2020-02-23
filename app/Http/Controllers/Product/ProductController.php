@@ -66,7 +66,10 @@ class ProductController extends Controller
      */
     public function topChart(): array
     {
-        $supplyProducts = SupplyProduct::with('parent')->get();
+        $supplyProducts = SupplyProduct::with(['parent' => function ($product) {
+            $product->with('currency');
+        }])->get();
+
         $products = [];
 
         /** @var SupplyProduct[] $supplyProducts */
