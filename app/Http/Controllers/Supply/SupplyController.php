@@ -10,6 +10,7 @@ use App\Http\Responses\ActionResponse;
 use App\Models\Document\DocumentType;
 use App\Models\Supply\ProductTransportWaybill;
 use App\Models\Supply\Supply;
+use App\Service\Document\DocumentService;
 use App\Services\Document\DocumentCreator;
 use App\Services\SupplyService;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -115,6 +116,8 @@ class SupplyController extends Controller
                 ->build(true)
                 ->get();
         }
+
+        DocumentService::buildIfNotExists($document);
 
         return new DocumentResource($document);
     }

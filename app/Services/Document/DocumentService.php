@@ -3,6 +3,7 @@
 namespace App\Service\Document;
 
 use App\Models\Document\Document;
+use App\Services\Document\DocumentBuilder;
 use App\User;
 
 class DocumentService
@@ -135,5 +136,12 @@ class DocumentService
         }
 
         return $document;
+    }
+
+    public static function buildIfNotExists(Document $document)
+    {
+        if (!file_exists(public_path(self::getDownloadLink($document)))) {
+            DocumentBuilder::build($document);
+        }
     }
 }
