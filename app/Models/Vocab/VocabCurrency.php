@@ -3,6 +3,7 @@
 namespace App\Models\Vocab;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder;
 
 /**
  * Class VocabPriceOfUnit
@@ -13,6 +14,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string short_name_en
  * @property int iso_code
  * @property int iso_short_name
+ *
+ * @mixin Builder
  */
 class VocabCurrency extends Model
 {

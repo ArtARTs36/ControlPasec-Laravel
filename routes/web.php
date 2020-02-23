@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -23,13 +25,6 @@ Route::apiResource('my-contragents', 'Contragent\MyContragentController');
 
 Route::apiResource('vocab/size-of-units', 'Vocab\SizeOfUnitController');
 
-Route::apiResource('vocab/currencies', 'Vocab\VocabCurrencyController');
-
-Route::get(
-    'vocab/currency-courses',
-    'Vocab\CurrencyCourseController@chart'
-);
-
 Route::apiResource('score-for-payments', 'Supply\ScoreForPaymentController');
 Route::get(
     'score-for-payments/download-by-supply/{supplyId}',
@@ -45,4 +40,23 @@ Route::get('documents/{id}/download', 'Document\DocumentController@download');
 
 Route::apiResource('product-transport-waybills', 'Supply\ProductTransportWaybillController');
 
+//
+
+Route::get('vocab-quantity-units/page-{page}', 'Vocab\VocabQuantityUnitController@index');
 Route::apiResource('vocab-quantity-units', 'Vocab\VocabQuantityUnitController');
+
+//
+
+Route::get('vocab-gos-standards/page-{page}', 'Vocab\VocabGosStandardController@index');
+Route::apiResource('vocab-gos-standards', 'Vocab\VocabGosStandardController');
+
+//
+
+Route::get('vocab-banks/page-{page}', 'Vocab\VocabBankController@index');
+Route::apiResource('vocab-banks', 'Vocab\VocabBankController');
+
+// API для справочника "Курсы валют"
+
+Route::get('vocab-currencies/page-{page}', 'Vocab\VocabCurrencyController@index');
+Route::apiResource('vocab-currencies', 'Vocab\VocabCurrencyController');
+Route::get('vocab/currency-courses', 'Vocab\CurrencyCourseController@chart');

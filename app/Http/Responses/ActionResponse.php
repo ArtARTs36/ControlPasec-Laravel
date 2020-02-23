@@ -13,10 +13,6 @@ class ActionResponse extends JsonResponse
             'data' => $data
         ];
 
-        if ($status === null) {
-            $status = ($success ? 200 : 204);
-        }
-
-        parent::__construct($array, $status, [], 0);
+        parent::__construct($array, $status ?? 200, [], 0);
     }
 }

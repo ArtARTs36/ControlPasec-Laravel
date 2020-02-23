@@ -18,5 +18,7 @@ use Illuminate\Database\Query\Builder;
  */
 class VocabGosStandard extends Model
 {
-
+    protected $fillable = [
+        'name', 'description', 'is_active', 'date_introduction'
+    ];
 }

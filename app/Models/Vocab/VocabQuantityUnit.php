@@ -20,6 +20,6 @@ use Illuminate\Database\Query\Builder;
 class VocabQuantityUnit extends Model
 {
     protected $fillable = [
-        'id', 'name', 'short_name', 'name_en', 'short_name_en'
+        'name', 'short_name', 'name_en', 'short_name_en', 'okei'
     ];
 }

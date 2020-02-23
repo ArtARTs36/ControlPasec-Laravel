@@ -1,74 +1,74 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Vocab;
 
+use App\Http\Controllers\Controller;
+use App\Http\Responses\ActionResponse;
 use App\Models\Vocab\VocabGosStandard;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 
 class VocabGosStandardController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Отобразить список ГОСТов
      *
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     * @param int $page
+     * @return LengthAwarePaginator
      */
-    public function index()
+    public function index($page = 1)
     {
-        return VocabGosStandard::paginate(10);
+        return VocabGosStandard::latest('id')->paginate(10, ['*'], null, $page);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Добавить ГОСТ
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return ActionResponse
      */
-    public function create()
+    public function store(Request $request): ActionResponse
     {
-        //
+        $standard = new VocabGosStandard();
+        $standard->fill($request->all());
+
+        return new ActionResponse($standard->save(), $standard);
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
+     * Отобразить данные ГОСТа
      *
      * @param VocabGosStandard $vocabGosStandard
-     * @return void
+     * @return VocabGosStandard
      */
-    public function show(VocabGosStandard $vocabGosStandard)
+    public function show(VocabGosStandard $vocabGosStandard): VocabGosStandard
     {
-        //
+        return $vocabGosStandard;
     }
 
     /**
-     * Update the specified resource in storage.
+     * Обновления данных ГОСТа
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @param VocabGosStandard $vocabGosStandard
-     * @return void
+     * @return ActionResponse
      */
     public function update(Request $request, VocabGosStandard $vocabGosStandard)
     {
-        //
+        $vocabGosStandard->fill($request->all())
+            ->save();
+
+        return new ActionResponse(true, $vocabGosStandard);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Удалить ГОСТ
      *
      * @param VocabGosStandard $vocabGosStandard
-     * @return void
+     * @return ActionResponse
      */
     public function destroy(VocabGosStandard $vocabGosStandard)
     {
-        //
+        return new ActionResponse($vocabGosStandard->delete());
     }
 }

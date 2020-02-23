@@ -5,62 +5,69 @@ namespace App\Http\Controllers\Vocab;
 use App\Http\Controllers\Controller;
 use App\Http\Responses\ActionResponse;
 use App\Models\Vocab\VocabCurrency;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class VocabCurrencyController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Отобразить список валют
      *
-     * @return \Illuminate\Http\Response
+     * @param int $page
+     * @return LengthAwarePaginator
      */
-    public function index()
+    public function index($page = 1): LengthAwarePaginator
     {
-        return new ActionResponse(true, VocabCurrency::all());
+        return VocabCurrency::latest('id')->paginate(10, ['*'], null, $page);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Добавить валюту в справочник
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return ActionResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): ActionResponse
     {
-        //
+        $currency = new VocabCurrency();
+        $currency->fill($request->all());
+
+        return new ActionResponse($currency->save(), $currency);
     }
 
     /**
-     * Display the specified resource.
+     * Отобразить валюту
      *
-     * @param VocabCurrency $vocabPriceOfUnit
-     * @return void
+     * @param VocabCurrency $vocabCurrency
+     * @return VocabCurrency
      */
-    public function show(VocabCurrency $currency)
+    public function show(VocabCurrency $vocabCurrency): VocabCurrency
     {
-        //
+        return $vocabCurrency;
     }
 
     /**
-     * Update the specified resource in storage.
+     * Обновить данные валюты
      *
-     * @param \Illuminate\Http\Request $request
-     * @param VocabCurrency $currency
-     * @return void
+     * @param Request $request
+     * @param VocabCurrency $vocabCurrency
+     * @return ActionResponse
      */
-    public function update(Request $request, VocabCurrency $currency)
+    public function update(Request $request, VocabCurrency $vocabCurrency): ActionResponse
     {
-        //
+        return new ActionResponse($vocabCurrency->update($request->all()), $vocabCurrency);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Удалить валюту из справочника
      *
-     * @param VocabCurrency $vocabPriceOfUnit
-     * @return void
+     * @param VocabCurrency $vocabCurrency
+     * @return ActionResponse
+     * @throws \Exception
      */
-    public function destroy(VocabCurrency $vocabPriceOfUnit)
+    public function destroy(VocabCurrency $vocabCurrency): ActionResponse
     {
-        //
+        return new ActionResponse($vocabCurrency->delete());
     }
 }
