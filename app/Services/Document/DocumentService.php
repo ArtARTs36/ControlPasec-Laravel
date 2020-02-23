@@ -141,7 +141,7 @@ class DocumentService
     public static function buildIfNotExists(Document $document)
     {
         if (!file_exists(public_path(self::getDownloadLink($document)))) {
-            DocumentBuilder::build($document);
+            DocumentBuilder::build($document, true);
         }
     }
 }
