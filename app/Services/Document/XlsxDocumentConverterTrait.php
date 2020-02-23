@@ -22,14 +22,13 @@ trait XlsxDocumentConverterTrait
             ->addParameter($outputDir);
 
         $shell = self::checkShell($shell, $filePath, DocumentExtension::PDF);
-
-        preg_match("/->(.*) using filter/i", $shell, $matches);
+//        preg_match("/->(.*) using filter/i", $shell, $matches);
 
         $newFilePath = self::createNewFilePath($filePath, DocumentExtension::PDF);
-        if (!isset($matches[1]) || trim($matches[1]) != $newFilePath) {
-            throw new DocumentConvertException($filePath, DocumentExtension::PDF);
-        }
+//        if (!isset($matches[1]) || trim($matches[1]) != $newFilePath) {
+//            throw new DocumentConvertException($filePath, DocumentExtension::PDF);
+//        }
 
-        return trim($matches[1]);
+        return $newFilePath;
     }
 }
