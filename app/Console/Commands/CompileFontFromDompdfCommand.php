@@ -7,7 +7,7 @@ use Dompdf\Exception;
 use FontLib\Font;
 use Illuminate\Console\Command;
 
-class CompileFontFromDompdf extends Command
+class CompileFontFromDompdfCommand extends Command
 {
     /**
      * The name and signature of the console command.
@@ -36,7 +36,6 @@ class CompileFontFromDompdf extends Command
     /**
      * Execute the console command.
      *
-     * @return mixed
      * @throws \Exception
      */
     public function handle()
@@ -59,15 +58,15 @@ class CompileFontFromDompdf extends Command
      * files are located, ttf versions of the font are copied to the fonts
      * directory.  Changes to the font lookup table are saved to the cache.
      *
-     * @param Dompdf $dompdf dompdf main object
-     * @param string $fontname the font-family name
+     * @param Dompdf $domPdf domPdf main object
+     * @param string $fontName the font-family name
      * @param string $normal the filename of the normal face font subtype
      *
      * @throws \Exception
      */
-    private function installFontFamily($dompdf, $fontname, $normal)
+    private function installFontFamily($domPdf, $fontName, $normal)
     {
-        $fontMetrics = $dompdf->getFontMetrics();
+        $fontMetrics = $domPdf->getFontMetrics();
 
         $bold = $normal . '_bold.ttf';
         $bold_italic = $normal . '_bold_italic.ttf';
@@ -122,7 +121,7 @@ class CompileFontFromDompdf extends Command
         // Copy the files to the font directory.
         foreach ($fonts as $var => $src) {
             if ( is_null($src) ) {
-                $entry[$var] = $dompdf->getOptions()->get('fontDir') . '/' . mb_substr(basename($normal), 0, -4);
+                $entry[$var] = $domPdf->getOptions()->get('fontDir') . '/' . mb_substr(basename($normal), 0, -4);
                 continue;
             }
 
@@ -130,7 +129,7 @@ class CompileFontFromDompdf extends Command
             if ( !is_readable($src) )
                 throw new Exception("Requested font '$src' is not readable");
 
-            $dest = $dompdf->getOptions()->get('fontDir') . '/' . basename($src);
+            $dest = $domPdf->getOptions()->get('fontDir') . '/' . basename($src);
 
             if ( !is_writeable(dirname($dest)) )
                 throw new Exception("Unable to write to destination '$dest'.");
@@ -153,7 +152,7 @@ class CompileFontFromDompdf extends Command
         }
 
         // Store the fonts in the lookup table
-        $fontMetrics->setFontFamily($fontname, $entry);
+        $fontMetrics->setFontFamily($fontName, $entry);
 
         // Save the changes
         $fontMetrics->saveFontFamilies();

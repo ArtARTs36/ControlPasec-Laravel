@@ -2,8 +2,8 @@
 
 namespace App\Console;
 
-use App\Console\Commands\CompileFontFromDompdf;
-use App\Console\Commands\GetCurrencyCourse;
+use App\Console\Commands\CompileFontFromDompdfCommand;
+use App\Console\Commands\GetCurrencyCourseCommand;
 use App\Console\Commands\GetExternalNewsCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -16,7 +16,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        CompileFontFromDompdf::class
+        CompileFontFromDompdfCommand::class
     ];
 
     /**
@@ -27,7 +27,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command(GetCurrencyCourse::class)
+        $schedule->command(GetCurrencyCourseCommand::class)
             ->dailyAt('12:00')
             ->dailyAt('18:00');
 

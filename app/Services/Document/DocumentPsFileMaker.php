@@ -2,6 +2,7 @@
 
 namespace App\Services\Document;
 
+use App\Helper\FileHelper;
 use App\Models\Document\Document;
 use App\Service\Document\DocumentService;
 use App\Services\Shell\ShellCommand;
@@ -61,7 +62,7 @@ class DocumentPsFileMaker
             $this->handleException();
         }
 
-        $outputFile = FileHelper::changeExtension(
+        $outputFile = FileHelper::changeExtensionInPath(
             $outDir . DIRECTORY_SEPARATOR . $this->baseFileName,
             'ps'
         );

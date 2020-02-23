@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Document;
+namespace App\Helper;
 
 /**
  * Class FileHelper
@@ -14,7 +14,7 @@ class FileHelper
      * @param $newExt
      * @return string
      */
-    public static function changeExtension($path, $newExt)
+    public static function changeExtensionInPath($path, $newExt)
     {
         $pathInfo = pathinfo($path);
 

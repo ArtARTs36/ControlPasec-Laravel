@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Services\Document;
+namespace App\Services\Document\DocTemplateLoader\Adapter;
 
-use App\Services\Document\DocTemplateLoader\PhpExcelTemplatorAdapter;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Worksheet\PageSetup;
 

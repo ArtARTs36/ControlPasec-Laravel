@@ -4,7 +4,7 @@ namespace App\Services\OrfoService;
 
 trait NumberTrait
 {
-    static $numbersToWords = array(
+    static $numbersToWords = [
         900 => 'девятьсот',
         800 => 'восемьсот',
         700 => 'семьсот',
@@ -41,7 +41,7 @@ trait NumberTrait
         3 => 'три',
         2 => 'два',
         1 => 'один',
-    );
+    ];
 
     static $numberLevels = [
         4 => ['миллиард', 'миллиарда', 'миллиардов'],

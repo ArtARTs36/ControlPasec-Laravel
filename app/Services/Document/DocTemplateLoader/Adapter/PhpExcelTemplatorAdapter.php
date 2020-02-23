@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Document\DocTemplateLoader;
+namespace App\Services\Document\DocTemplateLoader\Adapter;
 
 use alhimik1986\PhpExcelTemplator\PhpExcelTemplator;
 

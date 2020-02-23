@@ -22,22 +22,6 @@ func main() {
 
 	doc.OpenFileTemplate(template)
 
-	//ctx := map[string]interface{}{
-	//	"name":           "Github User",
-	//	"nameHeader":     "Item name",
-	//	"quantityHeader": "Quantity",
-	//	"items": []map[string]interface{}{
-	//		{
-	//			"name":     "Pen",
-	//			"quantity": 2,
-	//		},
-	//		{
-	//			"name":     "Pencil",
-	//			"quantity": 1,
-	//		},
-	//	},
-	//}
-
 	err := doc.Render(dat)
 	if err != nil {
 		panic(err)
