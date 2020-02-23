@@ -23,6 +23,7 @@ class CreateVocabCurrenciesTable extends Migration
             $table->string('short_name_en', 15);
             $table->integer('iso_code');
             $table->string('iso_short_name', 5);
+            $table->string('symbol', 5);
         });
     }
 
