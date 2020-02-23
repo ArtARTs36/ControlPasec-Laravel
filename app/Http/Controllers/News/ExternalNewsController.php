@@ -22,7 +22,7 @@ class ExternalNewsController extends Controller
 
     public function chart($count = 6)
     {
-        return ExternalNews::paginate($count);
+        return ExternalNews::with('source')->paginate($count);
     }
 
     /**
