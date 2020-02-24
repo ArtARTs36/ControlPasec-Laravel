@@ -2,6 +2,8 @@
 
 namespace App\Models\Vocab;
 
+use App\Helper\ModelPrioritiesRefresher\ModelWithPriorityInterface;
+use App\Helper\ModelPrioritiesRefresher\WithPriority;
 use App\Scopes\PriorityScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
@@ -21,10 +23,12 @@ use Illuminate\Database\Query\Builder;
  *
  * @mixin Builder
  */
-class VocabCurrency extends Model
+class VocabCurrency extends Model implements ModelWithPriorityInterface
 {
+    use WithPriority;
+
     protected $fillable = [
-        'id', 'name', 'short_name', 'name_en', 'short_name_en', 'iso_code', 'iso_short_name', 'symbol', 'priority'
+        'id', 'name', 'short_name', 'name_en', 'short_name_en', 'iso_code', 'iso_short_name', 'symbol'
     ];
 
     protected static function boot()
