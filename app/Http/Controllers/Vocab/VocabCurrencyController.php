@@ -19,7 +19,7 @@ class VocabCurrencyController extends Controller
      */
     public function index($page = 1): LengthAwarePaginator
     {
-        return VocabCurrency::latest('id')->paginate(10, ['*'], null, $page);
+        return VocabCurrency::paginate(10, ['*'], null, $page);
     }
 
     /**
