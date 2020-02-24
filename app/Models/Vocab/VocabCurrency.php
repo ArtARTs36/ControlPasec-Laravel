@@ -9,6 +9,7 @@ use Illuminate\Database\Query\Builder;
 /**
  * Class VocabCurrency
  *
+ * @property int id
  * @property string name
  * @property string short_name
  * @property string name_en

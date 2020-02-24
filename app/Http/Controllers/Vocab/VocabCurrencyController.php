@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Vocab;
 
+use App\Helper\ModelHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Responses\ActionResponse;
 use App\Models\Vocab\VocabCurrency;
+use App\Services\VocabCurrencyService;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -56,7 +58,11 @@ class VocabCurrencyController extends Controller
      */
     public function update(Request $request, VocabCurrency $vocabCurrency): ActionResponse
     {
-        return new ActionResponse($vocabCurrency->update($request->all()), $vocabCurrency);
+        ModelHelper::refreshPriorities(VocabCurrency::class, $vocabCurrency, $request->get('priority'));
+
+        $isUpdate = $vocabCurrency->update($request->all());
+
+        return new ActionResponse($isUpdate, $vocabCurrency);
     }
 
     /**
