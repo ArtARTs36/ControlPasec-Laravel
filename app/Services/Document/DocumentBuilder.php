@@ -5,6 +5,7 @@ namespace App\Services\Document;
 use App\Models\Document\Document;
 use App\Services\Document\DocTemplateLoader\AbstractDocTemplateLoader;
 use App\Services\Document\DocTemplateLoader\ExcelDocTemplateLoader;
+use App\Services\Document\DocTemplateLoader\ManyXlxsToPdfLoader;
 use App\Services\Document\DocTemplateLoader\PDFDocTemplateLoader;
 use App\Services\Document\DocTemplateLoader\PhpExcelTemplateLoader;
 use App\Services\Document\DocTemplateLoader\PhpWordDocTemplateLoader;
@@ -16,6 +17,7 @@ class DocumentBuilder
         ExcelDocTemplateLoader::NAME => ExcelDocTemplateLoader::class,
         PhpExcelTemplateLoader::NAME => PhpExcelTemplateLoader::class,
         PhpWordDocTemplateLoader::NAME => PhpWordDocTemplateLoader::class,
+        ManyXlxsToPdfLoader::NAME => ManyXlxsToPdfLoader::class,
     ];
 
     public static function build(Document $document, $save = false)

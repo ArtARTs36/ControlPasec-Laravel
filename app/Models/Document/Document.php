@@ -23,6 +23,7 @@ use Ramsey\Uuid\Uuid;
  * @property int folder
  * @property ProductTransportWaybill[] productTransportWaybills
  * @property string paper_size
+ * @property Document[] children
  *
  * @mixin Builder
  */
@@ -52,6 +53,16 @@ class Document extends Model
     public function productTransportWaybills()
     {
         return $this->belongsToMany(ProductTransportWaybill::class);
+    }
+
+    public function children()
+    {
+        return $this->belongsToMany(
+            Document::class,
+            'document_children',
+            'document_id',
+            'children_id'
+        );
     }
 
     /**

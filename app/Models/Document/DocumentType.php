@@ -24,6 +24,7 @@ class DocumentType extends Model
     const SCORES_FOR_PAYMENTS_ID = 2;
     const TORG_12_ID = 3;
     const QUALITY_CERTIFICATE_ID = 4;
+    const MANY_TORG_12_ID = 5;
 
     /**
      * @return BelongsTo|DocumentLoader

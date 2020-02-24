@@ -3,3 +3,4 @@ name;title;template;paper_size;loader_name
 Счета на оплату;Счета на оплату;document_scores_for_payments;A4;PDFDocTemplateLoader
 ТОРГ-12;ТОРГ-12;document_torg12;A3;ExcelDocTemplateLoader
 Удостоверение качества;Удостоверение качества;document_quality_certificate;A4;PhpWordDocTemplateLoader
+Товарно-транспортные накладные;Товарно-транспортные накладные;document_torg12;A3;ManyXlxsToPdfLoader

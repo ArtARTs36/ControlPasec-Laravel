@@ -4,3 +4,4 @@ PDFDocTemplateLoader;pdf
 ExcelDocTemplateLoader;xlsx
 PhpExcelDocTemplateLoader;xlsx
 PhpWordDocTemplateLoader;docx
+ManyXlxsToPdfLoader;pdf

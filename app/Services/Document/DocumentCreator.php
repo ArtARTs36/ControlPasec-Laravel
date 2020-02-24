@@ -87,6 +87,19 @@ class DocumentCreator
     }
 
     /**
+     * @param $children
+     * @return $this
+     * @throws \Throwable
+     */
+    public function addChildren($children): self
+    {
+        $this->beforeAttached();
+        $this->document->children()->attach($this->arrIds($children));
+
+        return $this;
+    }
+
+    /**
      * @return $this
      * @throws \Throwable
      */
