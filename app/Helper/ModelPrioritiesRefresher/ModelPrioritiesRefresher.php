@@ -26,9 +26,7 @@ class ModelPrioritiesRefresher
      */
     public function refresh(int $newValue)
     {
-        $this->prepareNewValue($newValue);
-        $parts = $this->chunkByNumbersParts();
-        $this->addValue($parts, $newValue);
+        $parts = $this->createNumberParts($newValue);
 
         $i = 0;
 
@@ -46,27 +44,14 @@ class ModelPrioritiesRefresher
         }
     }
 
-    private function prepareNewValue(&$newValue)
-    {
-        if ($newValue > $this->allModels->count()) {
-            $newValue = $this->allModels->count();
-        }
-    }
-
-    private function addValue(&$parts, $newValue)
-    {
-        if (isset($parts[$newValue])) {
-            if ($this->isTypeMinus($newValue, $this->currentModel->getPriority())) {
-                array_unshift($parts[$newValue], $this->currentModel);
-            } else {
-                $parts[$newValue][] = $this->currentModel;
-            }
-        } else {
-            $parts[$newValue] = [$this->currentModel];
-        }
-    }
-
-    private function chunkByNumbersParts()
+    /**
+     * Создать двумерный массив
+     * Ключом которого будет число-приоритет
+     *
+     * @param int $newValue
+     * @return array
+     */
+    private function createNumberParts(int $newValue): array
     {
         $parts = [];
         foreach ($this->allModels as $model) {
@@ -77,15 +62,59 @@ class ModelPrioritiesRefresher
             $parts[$model->priority][] = $model;
         }
 
+        return $this->addValue($parts, $newValue);
+    }
+
+    /**
+     * Добавить значение в массив
+     *
+     * @param $parts
+     * @param int $newValue
+     * @return array
+     */
+    private function addValue($parts, int $newValue): array
+    {
+        $this->prepareNewValue($newValue);
+
+        if (isset($parts[$newValue]) && $this->isNewPriorityMinus($newValue)) {
+            array_unshift($parts[$newValue], $this->currentModel);
+        } else {
+            $parts[$newValue][] = $this->currentModel;
+        }
+
         return $parts;
     }
 
-    private function isTypeMinus($newValue, $oldValue)
+    /**
+     * Подготовить новое значение-приоритет
+     *
+     * @param int $newValue
+     */
+    private function prepareNewValue(int &$newValue): void
     {
-        return ($newValue < $oldValue);
+        if ($newValue > $this->allModels->count()) {
+            $newValue = $this->allModels->count();
+        }
     }
 
-    private function reloadArray($array)
+    /**
+     * Стал ли приоритет меньше
+     *
+     * @param int $newValue
+     * @return bool
+     */
+    private function isNewPriorityMinus(int $newValue): bool
+    {
+        return ($newValue < $this->currentModel->getPriority());
+    }
+
+    /**
+     * Перегрузить массив
+     *
+     * @param array $array
+     * @return array
+     */
+    private function reloadArray(array $array): array
     {
         $array = array_unique($array);
 
