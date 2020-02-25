@@ -68,9 +68,9 @@ class DocumentConverter
     private static function checkShell(ShellCommand $command, $file, $ext)
     {
         $shellResult = $command->getShellResult();
-//        if ($shellResult === null) {
-//            throw new DocumentConvertException($file, $ext);
-//        }
+        if ($shellResult === null) {
+            throw new DocumentConvertException($file, $ext);
+        }
 
         return $shellResult;
     }
