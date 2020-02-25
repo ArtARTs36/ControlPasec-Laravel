@@ -7,6 +7,7 @@ use App\ScoreForPayment;
 use App\Services\Service\OrfoService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Query\Builder;
 use Ramsey\Uuid\Uuid;
 
@@ -45,17 +46,17 @@ class Document extends Model
         return $this->belongsTo(DocumentType::class);
     }
 
-    public function scoreForPayments()
+    public function scoreForPayments(): BelongsToMany
     {
         return $this->belongsToMany(ScoreForPayment::class);
     }
 
-    public function productTransportWaybills()
+    public function productTransportWaybills(): BelongsToMany
     {
         return $this->belongsToMany(ProductTransportWaybill::class);
     }
 
-    public function children()
+    public function children(): BelongsToMany
     {
         return $this->belongsToMany(
             Document::class,
