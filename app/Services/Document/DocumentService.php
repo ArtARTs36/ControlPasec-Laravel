@@ -4,6 +4,7 @@ namespace App\Service\Document;
 
 use App\Models\Document\Document;
 use App\Services\Document\DocumentBuilder;
+use App\Services\Document\DocumentBuildSpeedAnalyser;
 use App\User;
 
 class DocumentService
@@ -92,35 +93,6 @@ class DocumentService
     }
 
     /**
-     * Отменить создание документа
-     *
-     * @param $id
-     * @param bool $isCheckGranted
-     * @return bool
-     */
-    public function cancelCreationDocument($id, $isCheckGranted = true)
-    {
-        $document = $this->getDocument($id);
-        if ($document->ready === true) {
-            throw new \LogicException('Документ уже создан!');
-        }
-
-        if ($isCheckGranted === true && $document->user->getId() !== $this->getUser()->getId()) {
-            throw new \LogicException('Вы не можете отменить создание чужого документа!');
-        }
-
-        /** @var Task $task */
-        $task = $this->getEntityManager()->getRepository(Task::class)->findOneByDocument($document);
-        if (null === $task) {
-            throw new \LogicException('Не найдена задача на создание документа!');
-        }
-
-        QueueService::cancelTask($task);
-
-        return true;
-    }
-
-    /**
      * @param $id
      * @return object|null|Document
      */
@@ -138,10 +110,28 @@ class DocumentService
         return $document;
     }
 
-    public static function buildIfNotExists(Document $document)
+    public static function buildWithSpeedAnalyse(Document $document, bool $force = false)
     {
-        if (!file_exists(public_path(self::getDownloadLink($document)))) {
+        if ($force === false && $document->fileExists()) {
+            return $document->getFullPath();
+        }
+
+        $analyse = DocumentBuildSpeedAnalyser::analyse($document);
+        if ($analyse === DocumentBuildSpeedAnalyser::ANSWER_BUILD_NOW) {
+            DocumentBuilder::build($document, true);
+        } else {
+            // todo push Document in Queue
+        }
+
+        return $document->getFullPath();
+    }
+
+    public static function buildIfNotExists(Document $document): string
+    {
+        if (!$document->fileExists()) {
             DocumentBuilder::build($document, true);
         }
+
+        return $document->getFullPath();
     }
 }

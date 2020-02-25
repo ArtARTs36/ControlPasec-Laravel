@@ -4,6 +4,7 @@ namespace App\Models\Document;
 
 use App\Models\Supply\ProductTransportWaybill;
 use App\ScoreForPayment;
+use App\Service\Document\DocumentService;
 use App\Services\Service\OrfoService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -37,6 +38,8 @@ class Document extends Model
         self::STATUS_NEW => 'Документ создан',
         self::STATUS_IN_QUEUE => 'Документ в очереди',
     ];
+
+    private $fullPath = null;
 
     /**
      * @return BelongsTo|DocumentType
@@ -155,5 +158,19 @@ class Document extends Model
     public function getFolder()
     {
         return $this->folder;
+    }
+
+    public function getFullPath()
+    {
+        if ($this->fullPath === null) {
+            $this->fullPath = DocumentService::getDownloadLink($this, true);
+        }
+
+        return $this->fullPath;
+    }
+
+    public function fileExists()
+    {
+        return file_exists($this->getFullPath());
     }
 }
