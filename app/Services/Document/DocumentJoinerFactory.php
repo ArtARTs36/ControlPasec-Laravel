@@ -20,9 +20,12 @@ class DocumentJoinerFactory
     public static function join(array $documents, $savePath = null)
     {
         $ext = $documents[0]->getExtensionName();
-        foreach ($documents as $document) {
-            if ($ext !== $document->getExtensionName()) {
-                return false;
+
+        if (($count = count ($documents)) && $count > 1) {
+            for ($i = 1; $i < $count; $i++) {
+                if ($ext !== $documents[$i]->getExtensionName()) {
+                    return false;
+                }
             }
         }
 
