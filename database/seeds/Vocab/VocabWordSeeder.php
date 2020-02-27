@@ -5,7 +5,7 @@
  *
  * Наполнитель для словаря
  */
-class VocabWordSeeder extends MyDataBaseSeeder
+class VocabWordSeeder extends CommonSeeder
 {
     public function run()
     {

@@ -2,7 +2,7 @@
 
 use App\Models\Contragent\MyContragent;
 
-class MyContragentSeeder extends MyDataBaseSeeder
+class MyContragentSeeder extends CommonSeeder
 {
     public function run()
     {

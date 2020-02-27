@@ -6,7 +6,7 @@ use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 
-abstract class MyDataBaseSeeder extends Seeder
+abstract class CommonSeeder extends Seeder
 {
     /** @var Faker|null */
     protected $faker = null;

@@ -5,7 +5,7 @@
  *
  * Наполнитель для документов
  */
-class DocumentSeeder extends MyDataBaseSeeder
+class DocumentSeeder extends CommonSeeder
 {
     /**
      * @throws Throwable

@@ -7,7 +7,7 @@ use App\Models\Vocab\VocabBank;
  *
  * Наполнитель для справочника банков
  */
-class VocabBankSeeder extends MyDataBaseSeeder
+class VocabBankSeeder extends CommonSeeder
 {
     /**
      * Run the database seeds.

@@ -7,7 +7,7 @@ use App\Models\Vocab\SizeOfUnit;
  *
  * Наполнитель для справочника единиц измерения
  */
-class SizeOfUnitSeeder extends MyDataBaseSeeder
+class SizeOfUnitSeeder extends CommonSeeder
 {
     public function run()
     {

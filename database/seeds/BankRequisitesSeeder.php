@@ -9,7 +9,7 @@ use App\Models\Vocab\VocabBank;
  *
  * Наполнитель для банковских реквизитов
  */
-class BankRequisitesSeeder extends MyDataBaseSeeder
+class BankRequisitesSeeder extends CommonSeeder
 {
     public function run()
     {

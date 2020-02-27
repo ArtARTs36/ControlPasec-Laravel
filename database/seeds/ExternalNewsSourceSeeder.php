@@ -2,7 +2,7 @@
 
 use App\Models\News\ExternalNewsSource;
 
-class ExternalNewsSourceSeeder extends MyDataBaseSeeder
+class ExternalNewsSourceSeeder extends CommonSeeder
 {
     public function run()
     {

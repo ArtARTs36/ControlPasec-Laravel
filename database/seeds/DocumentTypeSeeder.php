@@ -2,7 +2,7 @@
 
 use App\Models\Document\DocumentType;
 
-class DocumentTypeSeeder extends MyDataBaseSeeder
+class DocumentTypeSeeder extends CommonSeeder
 {
     public function run()
     {

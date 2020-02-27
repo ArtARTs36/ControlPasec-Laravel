@@ -7,7 +7,7 @@ use App\Models\Vocab\VocabQuantityUnit;
  *
  * Наполнитель для справочника единиц измерения
  */
-class VocabQuantityUnitSeeder extends MyDataBaseSeeder
+class VocabQuantityUnitSeeder extends CommonSeeder
 {
     public function run()
     {

@@ -11,7 +11,7 @@ use App\Models\Vocab\VocabPackageType;
  *
  * Наполнитель для товаров
  */
-class ProductSeeder extends MyDataBaseSeeder
+class ProductSeeder extends CommonSeeder
 {
     public function run()
     {

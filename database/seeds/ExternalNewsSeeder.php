@@ -4,7 +4,7 @@ use App\Models\News\ExternalNews;
 use App\Models\News\ExternalNewsSource;
 use App\Services\ExternalNewsCreator;
 
-class ExternalNewsSeeder extends MyDataBaseSeeder
+class ExternalNewsSeeder extends CommonSeeder
 {
     public function run()
     {

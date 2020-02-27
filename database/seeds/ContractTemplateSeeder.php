@@ -7,7 +7,7 @@ use App\Models\Contract\ContractTemplate;
  *
  * Наполнитель для образцов договоров
  */
-class ContractTemplateSeeder extends MyDataBaseSeeder
+class ContractTemplateSeeder extends CommonSeeder
 {
     public function run()
     {

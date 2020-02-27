@@ -3,7 +3,7 @@
 
 use App\Models\Document\DocumentExtension;
 
-class DocumentExtensionSeeder extends MyDataBaseSeeder
+class DocumentExtensionSeeder extends CommonSeeder
 {
     public function run()
     {

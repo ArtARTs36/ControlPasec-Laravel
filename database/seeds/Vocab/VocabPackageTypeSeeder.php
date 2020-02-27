@@ -2,7 +2,7 @@
 
 use App\Models\Vocab\VocabPackageType;
 
-class VocabPackageTypeSeeder extends MyDataBaseSeeder
+class VocabPackageTypeSeeder extends CommonSeeder
 {
     public function run()
     {

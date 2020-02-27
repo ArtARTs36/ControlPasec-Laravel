@@ -2,7 +2,7 @@
 
 use App\Models\Vocab\VocabGosStandard;
 
-class VocabGosStandardSeeder extends MyDataBaseSeeder
+class VocabGosStandardSeeder extends CommonSeeder
 {
     public function run()
     {

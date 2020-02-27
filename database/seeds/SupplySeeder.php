@@ -11,7 +11,7 @@ use App\Services\Document\DocumentCreator;
  *
  * Наполнитель для поставок
  */
-class SupplySeeder extends MyDataBaseSeeder
+class SupplySeeder extends CommonSeeder
 {
     /**
      * @throws Throwable

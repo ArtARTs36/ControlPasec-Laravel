@@ -3,7 +3,7 @@
 use App\Models\Contragent;
 use App\Parsers\DaDataParser\DaDataParser;
 
-class ContragentSeeder extends MyDataBaseSeeder
+class ContragentSeeder extends CommonSeeder
 {
     /**
      * Run the database seeds.

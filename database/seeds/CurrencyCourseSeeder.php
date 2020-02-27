@@ -5,7 +5,7 @@ use App\CurrencyCourse;
 use App\Models\Vocab\VocabCurrency;
 use App\Services\CurrencyCourseFinder\CurrencyCourseFinder;
 
-class CurrencyCourseSeeder extends MyDataBaseSeeder
+class CurrencyCourseSeeder extends CommonSeeder
 {
     public function run()
     {
