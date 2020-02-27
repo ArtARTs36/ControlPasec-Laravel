@@ -4,6 +4,7 @@ use App\Models\Product\Product;
 use App\Models\Vocab\SizeOfUnit;
 use App\Models\Vocab\VocabCurrency;
 use App\Models\Vocab\VocabGosStandard;
+use App\Models\Vocab\VocabPackageType;
 
 /**
  * Class ProductSeeder
@@ -34,6 +35,7 @@ class ProductSeeder extends MyDataBaseSeeder
             $product->price = rand(150, 999999);
             $product->currency_id = $this->getRelation(VocabCurrency::class);
             $product->gos_standard_id = $this->getRelation(VocabGosStandard::class);
+            $product->package_type_id = $this->getRelation(VocabPackageType::class);
 
             $product->save();
         }

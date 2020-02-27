@@ -27,6 +27,8 @@ class CreateProductsTable extends Migration
 
             $table->double('price');
             $table->unsignedInteger('currency_id');
+
+            $table->unsignedInteger('package_type_id');
         });
 
         Schema::table(self::TABLE, function (Blueprint $table) {
@@ -37,6 +39,10 @@ class CreateProductsTable extends Migration
             $table->foreign('currency_id')
                 ->references('id')
                 ->on('vocab_currencies');
+
+            $table->foreign('package_type_id')
+                ->references('id')
+                ->on('vocab_package_types');
         });
     }
 

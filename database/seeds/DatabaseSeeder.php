@@ -12,18 +12,13 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
-        $this->call(VocabWordSeeder::class);
+        $this->vocabs();
+
         $this->call(ContragentSeeder::class);
         $this->call(MyContragentSeeder::class);
 
-        $this->call(VocabBankSeeder::class);
         $this->call(BankRequisitesSeeder::class);
 
-        $this->call(VocabQuantityUnitSeeder::class);
-        $this->call(SizeOfUnitSeeder::class);
-        $this->call(VocabCurrencySeeder::class);
-
-        $this->call(VocabGosStandardSeeder::class);
         $this->call(ProductSeeder::class);
         $this->call(ContractTemplateSeeder::class);
 
@@ -38,5 +33,16 @@ class DatabaseSeeder extends Seeder
 
         $this->call(ExternalNewsSourceSeeder::class);
         $this->call(ExternalNewsSeeder::class);
+    }
+
+    private function vocabs()
+    {
+        $this->call(VocabWordSeeder::class);
+        $this->call(VocabBankSeeder::class);
+        $this->call(VocabQuantityUnitSeeder::class);
+        $this->call(SizeOfUnitSeeder::class);
+        $this->call(VocabCurrencySeeder::class);
+        $this->call(VocabPackageTypeSeeder::class);
+        $this->call(VocabGosStandardSeeder::class);
     }
 }
