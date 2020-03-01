@@ -20,4 +20,11 @@ class FileHelper
 
         return $pathInfo['dirname'] . DIRECTORY_SEPARATOR . $pathInfo['filename'] . '.'. $newExt;
     }
+
+    public static function createFileIfNotExists($path, $content)
+    {
+        if (!file_exists($path)) {
+            file_put_contents($path, $content);
+        }
+    }
 }
