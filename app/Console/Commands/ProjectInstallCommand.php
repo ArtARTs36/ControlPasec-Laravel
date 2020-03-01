@@ -18,9 +18,22 @@ class ProjectInstallCommand extends Command
         $this->checkGoPrograms();
         $this->checkExistsFileDocumentsMap();
         $this->checkEnvFile();
+        $this->checkTmpFolderFilesNames();
+
+        $this->call(CompileFontFromDompdfCommand::class);
 
         Artisan::call('migrate');
         Artisan::call('db:seed');
+    }
+
+    private function checkTmpFolderFilesNames(): void
+    {
+        $path = resource_path(env('DOCUMENT_TMP_NAMES_DIR'));
+        if (!file_exists($path)) {
+            mkdir($path);
+        }
+
+        dump('Папка для сохранения временных файлов документов проверена');
     }
 
     private function checkEnvFile(): void
@@ -42,15 +55,21 @@ class ProjectInstallCommand extends Command
     private function checkGoPrograms(): void
     {
         $dir = GoProgramExecutor::GO_ROOT_DIR;
-        $folders = array_filter(array_values(array_diff(scandir($dir), ['.', '..'])), function ($folder) use ($dir) {
+        $elementsOfDir = array_diff(scandir($dir), ['.', '..']);
+
+        $folders = array_filter(array_values($elementsOfDir), function ($folder) use ($dir) {
             return is_dir($dir. DIRECTORY_SEPARATOR. $folder);
         });
 
         foreach ($folders as $folder) {
             $pathToData = $dir . DIRECTORY_SEPARATOR . $folder. '/data';
-            if (!file_exists($pathToData) || !is_dir($pathToData)) {
+            if (!file_exists($pathToData)) {
                 mkdir($pathToData);
             }
+        }
+
+        foreach (array_diff($elementsOfDir, $folders) as $file) {
+            chmod($dir. DIRECTORY_SEPARATOR . $file, 0755);
         }
 
         dump('Go-Programs: Папки для данных проверены');
