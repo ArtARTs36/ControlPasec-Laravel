@@ -52,8 +52,6 @@ class PDFDocTemplateLoader extends AbstractDocTemplateLoader
                 (next($documents) ? false : true));
         }
 
-        file_put_contents('kuku.html', $template);
-
         $domPdf->loadHtml($template);
         $domPdf->render();
         if ($save === true) {
