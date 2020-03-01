@@ -30,6 +30,6 @@ class ScoreForPaymentServiceTest extends BaseTestCase
 
         $build = ScoreForPaymentService::getOrCreateDocumentBySupply($randomSupply, true);
 
-        self::assertTrue($build);
+        self::assertFileExists($build);
     }
 }
