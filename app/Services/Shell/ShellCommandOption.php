@@ -4,15 +4,22 @@ namespace App\Services\Shell;
 
 class ShellCommandOption implements ShellSettingInterface
 {
-    private $string;
+    private $option;
+
+    /**
+     * @var string
+     */
+    private $value;
 
     /**
      * ShellCommandParameter constructor.
-     * @param string $string
+     * @param string $option
+     * @param string|null $value
      */
-    public function __construct(string $string)
+    public function __construct(string $option, string $value = null)
     {
-        $this->string = $string;
+        $this->option = $option;
+        $this->value = $value;
     }
 
     /**
@@ -20,6 +27,6 @@ class ShellCommandOption implements ShellSettingInterface
      */
     public function getString(): string
     {
-        return '--'. $this->string;
+        return '--'. $this->option . ($this->value ?: '=' . $this->value);
     }
 }

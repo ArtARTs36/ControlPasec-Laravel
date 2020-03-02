@@ -85,12 +85,26 @@ class ShellCommand
     /**
      * Добавить опцию в командную строку
      *
-     * @param $value
+     * @param $option
      * @return $this
      */
-    public function addOption($value): self
+    public function addOption($option): self
     {
-        $this->settings[] = new ShellCommandOption($value);
+        $this->settings[] = new ShellCommandOption($option);
+
+        return $this;
+    }
+
+    /**
+     * Добавить опцию со значением
+     *
+     * @param string $option
+     * @param string $value
+     * @return $this
+     */
+    public function addOptionWithValue(string $option, string $value): self
+    {
+        $this->settings[] = new ShellCommandOption($option, $value);
 
         return $this;
     }
