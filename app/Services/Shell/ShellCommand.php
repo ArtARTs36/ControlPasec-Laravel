@@ -68,6 +68,21 @@ class ShellCommand
     }
 
     /**
+     * Добавить параметры в командную строку
+     *
+     * @param $values
+     * @return $this
+     */
+    public function addParameters($values): self
+    {
+        foreach ($values as $value) {
+            $this->settings[] = new ShellCommandParameter($value);
+        }
+
+        return $this;
+    }
+
+    /**
      * Добавить опцию в командную строку
      *
      * @param $value

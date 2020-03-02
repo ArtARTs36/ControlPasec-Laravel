@@ -2,6 +2,7 @@
 
 namespace App\Services\Go;
 
+use App\Helper\PhpOsHelper;
 use App\Services\Shell\ShellCommand;
 
 /**
@@ -38,23 +39,30 @@ class GoProgramExecutor
      * GoProgramExecutor constructor.
      * @param string $programName
      * @param array|null $parameters
+     * @param bool $isBinary
      */
-    public function __construct(string $programName, array $parameters = null)
+    public function __construct(string $programName, array $parameters = null, bool $isBinary = false)
     {
         $this->programName = $programName;
         $this->parameters = $parameters;
 
         $this->dirToProgram = self::GO_ROOT_DIR . DIRECTORY_SEPARATOR . $programName;
         $this->pathToData = $this->dirToProgram . DIRECTORY_SEPARATOR . 'data'. DIRECTORY_SEPARATOR;
-        $this->pathToProgram = $this->dirToProgram . DIRECTORY_SEPARATOR . $programName . '.go';
+        $this->pathToProgram = $this->dirToProgram . DIRECTORY_SEPARATOR . $programName . (
+            $isBinary ? '_' . PhpOsHelper::getOs('') : '.go'
+        );
 
-        $this->initCommand();
+        $this->initCommand($isBinary);
     }
 
-    private function initCommand(): void
+    private function initCommand(bool $isBinary): void
     {
-        $this->command = new ShellCommand('go run', false);
-        $this->command->addParameter($this->pathToProgram);
+        if ($isBinary) {
+            $this->command = new ShellCommand($this->pathToProgram, false);
+        } else {
+            $this->command = new ShellCommand('go run', false);
+            $this->command->addParameter($this->pathToProgram);
+        }
     }
 
     /**

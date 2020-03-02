@@ -2,10 +2,18 @@
 
 namespace App\Services\Go;
 
+/**
+ * Class GoProgram
+ *
+ * @todo уйти от execute()
+ */
 abstract class GoProgram
 {
     /** @var string  */
     const NAME = 'GoProgram';
+
+    /** @var bool */
+    const IS_BINARY = false;
 
     /** @var GoProgramExecutor  */
     private $executor;
@@ -26,7 +34,7 @@ abstract class GoProgram
     public function getExecutor()
     {
         if ($this->executor === null) {
-            $this->executor = new GoProgramExecutor(static::NAME);
+            $this->executor = new GoProgramExecutor(static::NAME, null, static::IS_BINARY);
         }
 
         return $this->executor;
