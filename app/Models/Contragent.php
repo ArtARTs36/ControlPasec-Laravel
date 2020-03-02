@@ -30,6 +30,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Contragent extends Model
 {
+    const TABLE = 'contragents';
+
     protected $fillable = [
         'title', 'full_title', 'full_title_with_opf',
         'inn', 'kpp', 'ogrn', 'okato', 'oktmo', 'okved', 'okved_type',

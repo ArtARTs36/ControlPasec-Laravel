@@ -28,6 +28,8 @@ use Illuminate\Database\Query\Builder;
  */
 class Supply extends Model
 {
+    const TABLE = 'supplies';
+
     protected $fillable = [
         'planned_date', 'execute_date', 'supplier_id', 'customer_id', 'contract_id'
     ];
