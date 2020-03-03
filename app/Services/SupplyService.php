@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Http\Requests\SupplyRequest;
+use App\Models\Contragent;
 use App\Models\Supply\Supply;
 use App\Models\Supply\SupplyProduct;
 
@@ -60,7 +60,7 @@ class SupplyService
         }
     }
 
-    public static function fullLoadSupply($id)
+    public static function fullLoadSupply($id): Supply
     {
         $supply = Supply::find($id);
         $supplier = $supply->supplier->load(['requisites' => function($requisite) {
@@ -70,6 +70,24 @@ class SupplyService
         $products = $supply->products()->with(['parent' => function($parent) {
             return $parent->with(['sizeOfUnit', 'gosStandard']);
         }])->get();
+
+        return $supply;
+    }
+
+    /**
+     * @param Contragent $customer
+     * @param Contragent $supplier
+     * @param \DateTime|null $dateTime
+     * @return Supply
+     * @throws \Exception
+     */
+    public static function create(Contragent $customer, Contragent $supplier, \DateTime $dateTime = null): Supply
+    {
+        $supply = new Supply();
+        $supply->customer_id = $customer->id;
+        $supply->supplier_id = $supplier->id;
+        $supply->planned_date = $dateTime ?? new \DateTime();
+        $supply->save();
 
         return $supply;
     }

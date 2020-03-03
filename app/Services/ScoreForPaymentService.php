@@ -4,13 +4,14 @@ namespace App\Services;
 
 use App\Models\Document\DocumentType;
 use App\Models\Supply\Supply;
+use App\Models\VariableDefinition;
 use App\ScoreForPayment;
 use App\Services\Document\DocumentBuilder;
 use App\Services\Document\DocumentCreator;
 
 class ScoreForPaymentService
 {
-    public static function getOrCreateBySupply($supplyId, $date = null, $orderNumber = null)
+    public static function getOrCreateBySupply($supplyId, $date = null, $orderNumber = null): ScoreForPayment
     {
         $scoreForPayment = ScoreForPayment::where('supply_id', self::prepareSupplyId($supplyId))
             ->get()
@@ -23,7 +24,9 @@ class ScoreForPaymentService
         $currentDateTime = new \DateTime();
 
         $scoreForPayment = new ScoreForPayment();
-        $scoreForPayment->order_number = $orderNumber ?? rand(1, 99);
+        $scoreForPayment->order_number = $orderNumber ?? VariableDefinitionService::inc(
+            VariableDefinition::SCORE_FOR_PAYMENT_ORDER_NUMBER
+        );
         $scoreForPayment->supply_id = $supplyId;
         $scoreForPayment->date = $date ?? $currentDateTime->format('Y-m-d');
 

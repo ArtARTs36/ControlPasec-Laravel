@@ -20,7 +20,7 @@ class CreateSuppliesTable extends Migration
             $table->timestamps();
 
             $table->date('planned_date');
-            $table->date('execute_date');
+            $table->date('execute_date')->nullable();
 
             $table->unsignedInteger('supplier_id');
             $table->unsignedInteger('customer_id');

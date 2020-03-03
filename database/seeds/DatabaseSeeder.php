@@ -33,6 +33,10 @@ class DatabaseSeeder extends Seeder
 
         $this->call(ExternalNewsSourceSeeder::class);
         $this->call(ExternalNewsSeeder::class);
+
+        $this->call(ModelTypeSeeder::class);
+
+        $this->textDataParser();
     }
 
     private function vocabs()
@@ -44,5 +48,11 @@ class DatabaseSeeder extends Seeder
         $this->call(VocabCurrencySeeder::class);
         $this->call(VocabPackageTypeSeeder::class);
         $this->call(VocabGosStandardSeeder::class);
+    }
+
+    private function textDataParser()
+    {
+        $this->call(TextDataParserComponentSeeder::class);
+        $this->call(VariableDefinitionSeeder::class);
     }
 }
