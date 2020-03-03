@@ -15,7 +15,7 @@ use Illuminate\Database\Query\Builder;
  * @property string value
  * @property string description
  * @property bool is_take_of_parent
- * @property ModelType model_type
+ * @property ModelType modelType
  * @property ModelType|null model_type_id
  *
  * @mixin Builder
@@ -33,7 +33,7 @@ class VariableDefinition extends Model
 
     public function getModel()
     {
-        $class = $this->model_type->class;
+        $class = $this->modelType->class;
 
         return $class::find($this->value);
     }

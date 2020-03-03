@@ -42,9 +42,10 @@ class VariableDefinitionService
 
     public static function getModel($name): Model
     {
-        return VariableDefinition::where('name', $name)
-            ->load('modelType')
+        return VariableDefinition::with('modelType')
+            ->where('name', $name)
             ->get()
-            ->first();
+            ->first()
+            ->getModel();
     }
 }
