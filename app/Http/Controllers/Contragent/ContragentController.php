@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Contragent;
 
 use App\ContragentManager;
 use App\Http\Requests\ContragentRequest;
-use App\Http\Requests\LiveFindContragentRequest;
 use App\Http\Responses\ActionResponse;
 use App\Models\Contragent;
 use App\Http\Controllers\Controller;
@@ -15,16 +14,29 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 class ContragentController extends Controller
 {
     /**
-     * Получить список контрагентов
+     * Отобразить список контрагентов
      *
+     * @OA\Get(
+     *     path="/contragents/page-{page}",
+     *     description="Contragents: index Page",
+     *     @OA\Parameter(
+     *      name="page",
+     *      in="path",
+     *      required=false,
+     *      @OA\Schema(type="int")
+     *     ),
+     *     @OA\Response(response="default", description="View Contragents")
+     * )
+     *
+     * @param int $page
      * @return LengthAwarePaginator
      */
-    public function index()
+    public function index($page = 1)
     {
         return Contragent::with([
             ContragentManager::PSEUDO,
             Contragent\BankRequisites::PSEUDO
-        ])->paginate(10);
+        ])->paginate(10, ['*'], null, $page);
     }
 
     /**
@@ -75,6 +87,17 @@ class ContragentController extends Controller
      *
      * @param Contragent $contragent
      * @return ActionResponse
+     *
+     * @OA\Delete(
+     *     path="/contragents/{id}",
+     *     description="Contragents: delete item",
+     *     @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      required=true
+     *     ),
+     *     @OA\Response(response="default", description="Contragents: delete item")
+     * )
      */
     public function destroy(Contragent $contragent)
     {
@@ -88,6 +111,17 @@ class ContragentController extends Controller
      *
      * @param $inn
      * @return ActionResponse
+     *
+     * @OA\Get(
+     *     path="/contragents/find-external-by-inn/{inn}",
+     *     description="Contragents: find Contragent in external System",
+     *     @OA\Parameter(
+     *      name="inn",
+     *      in="path",
+     *      required=true
+     *     ),
+     *     @OA\Response(response="default", description="Contragents: find Contragent in external System")
+     * )
      */
     public function findInExternalNetworkByInn($inn): ActionResponse
     {
@@ -101,6 +135,23 @@ class ContragentController extends Controller
         // todo
     }
 
+    /**
+     * Живой поиск контрагента в базе
+     *
+     * @param string $term
+     * @return ActionResponse
+     *
+     * @OA\Get(
+     *     path="/contragents/live-find/{term}",
+     *     description="Contragents: live find in Base",
+     *     @OA\Parameter(
+     *      name="inn",
+     *      in="path",
+     *      required=true
+     *     ),
+     *     @OA\Response(response="default", description="Contragents: live find in Base")
+     * )
+     */
     public function liveFind(string $term)
     {
         $contragents = Contragent::where('title', 'LIKE', "%{$term}%")

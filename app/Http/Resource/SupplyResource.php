@@ -10,10 +10,25 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * Class SupplyResource
  *
  * @mixin Supply
+ *
+ * @OA\Schema(type="object")
  */
 class SupplyResource extends JsonResource
 {
-    public function toArray($request)
+    /**
+     * @param $request
+     * @return array
+     *
+     * @OA\Property(property="id", type="integer")
+     * @OA\Property(property="customer", type="object")
+     * @OA\Property(property="totalPrice", type="float")
+     * @OA\Property(property="planned_date", type="string")
+     * @OA\Property(property="execute_date", type="string")
+     * @OA\Property(property="products", type="string")
+     * @OA\Property(property="contract", type="ContractResource")
+     * @OA\Property(property="contract_id", type="integer")
+     */
+    public function toArray($request): array
     {
         return [
             'id' => $this->id,

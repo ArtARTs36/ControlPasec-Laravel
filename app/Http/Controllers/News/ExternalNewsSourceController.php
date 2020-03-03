@@ -4,18 +4,20 @@ namespace App\Http\Controllers\News;
 
 use App\Http\Controllers\Controller;
 use App\Models\News\ExternalNewsSource;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 
 class ExternalNewsSourceController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Отобразить внешние источники новостей
      *
-     * @return \Illuminate\Http\Response
+     * @param int $page
+     * @return LengthAwarePaginator
      */
-    public function index()
+    public function index($page)
     {
-        //
+        return ExternalNewsSource::paginate(10, ['*'], null, $page);
     }
 
     /**
@@ -32,12 +34,12 @@ class ExternalNewsSourceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\ExternalNewsSource  $externalNewsSource
-     * @return \Illuminate\Http\Response
+     * @param ExternalNewsSource $externalNewsSource
+     * @return ExternalNewsSource
      */
-    public function show(ExternalNewsSource $externalNewsSource)
+    public function show(ExternalNewsSource $externalNewsSource): ExternalNewsSource
     {
-        //
+        return $externalNewsSource;
     }
 
     /**

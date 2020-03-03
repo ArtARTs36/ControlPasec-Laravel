@@ -11,7 +11,18 @@ use Illuminate\Support\Facades\DB;
 
 class StatController extends Controller
 {
-    public function general()
+    /**
+     * Отобразить общую статистику системы
+     *
+     * @OA\Get(
+     *     path="/stat/general",
+     *     description="System Statistic: general",
+     *     @OA\Response(response="default", description="View general System Statistic")
+     * )
+     *
+     * @return array
+     */
+    public function general(): array
     {
         return [
             'contragentsCount' => DB::table(Contragent::TABLE)->count(),

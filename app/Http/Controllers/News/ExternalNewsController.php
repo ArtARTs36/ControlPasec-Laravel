@@ -10,7 +10,19 @@ use Illuminate\Http\Request;
 class ExternalNewsController extends Controller
 {
     /**
-     * Отобразить новости
+     * Отобразить новости из внешних источников
+     *
+     * @OA\Get(
+     *     path="/external-news/page-{page}",
+     *     description="External News: index Page",
+     *     @OA\Response(response="default", description="View News"),
+     *     @OA\Parameter(
+     *      name="page",
+     *      in="path",
+     *      required=false,
+     *      @OA\Schema(type="int")
+     *     )
+     * )
      *
      * @param int $page
      * @return LengthAwarePaginator
@@ -20,6 +32,24 @@ class ExternalNewsController extends Controller
         return ExternalNews::paginate(10, ['*'], null, $page);
     }
 
+    /**
+     * Отобразить несколько последних новостей из внешних источников
+     *
+     * @OA\Get(
+     *     path="/external-news/chart/{count}",
+     *     description="External News: index Page",
+     *     @OA\Parameter(
+     *      name="count",
+     *      in="path",
+     *      required=false,
+     *      @OA\Schema(type="int")
+     *     ),
+     *     @OA\Response(response="default", description="View Latest News")
+     * )
+     *
+     * @param int $count
+     * @return LengthAwarePaginator
+     */
     public function chart($count = 6)
     {
         return ExternalNews::with('source')->
@@ -52,9 +82,9 @@ class ExternalNewsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ExternalNews  $externalNews
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param ExternalNews $externalNews
+     * @return void
      */
     public function update(Request $request, ExternalNews $externalNews)
     {

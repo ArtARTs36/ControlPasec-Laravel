@@ -6,9 +6,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// API для для работы с контрагентами
+
+Route::get('contragents/page-{page}', 'Contragent\ContragentController@index');
 Route::get('contragents/live-find/{term}', 'Contragent\ContragentController@liveFind');
 Route::apiResource('contragents', 'Contragent\ContragentController');
 Route::get('contragents/find-external-by-inn/{inn}', 'Contragent\ContragentController@findInExternalNetworkByInn');
+
+//
 
 Route::apiResource('contracts', 'Contract\ContractController');
 Route::get('contracts/find-by-customer/{customerId}', 'Contract\ContractController@findByCustomer');
@@ -68,7 +73,9 @@ Route::get('vocab/currency-courses', 'Vocab\CurrencyCourseController@chart');
 
 // API для ExternalNews
 
+Route::get('external-news/page-{page}', 'News\ExternalNewsController@index');
 Route::get('external-news/chart', 'News\ExternalNewsController@chart');
+Route::get('external-news/chart/{count}', 'News\ExternalNewsController@chart');
 Route::apiResource('external-news', 'News\ExternalNewsController');
 
 // API для статистики

@@ -10,3 +10,7 @@
 
 ## Запуск
 - php artisan serve
+
+## Посмотреть документацию
+- php artisan serve --port:8000
+- http://localhost:8000/api/documentation
