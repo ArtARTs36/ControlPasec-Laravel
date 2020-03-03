@@ -5,6 +5,8 @@ namespace App;
 use App\Models\Contract\Contract;
 use App\Models\Document\Document;
 use App\Models\Supply\Supply;
+use App\Models\VariableDefinition;
+use App\Services\VariableDefinitionService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
 
@@ -45,5 +47,25 @@ class ScoreForPayment extends Model
     public function getDocument()
     {
         return $this->documents[0] ?? null;
+    }
+
+    /**
+     * @param array $options
+     * @return bool
+     */
+    public function save(array $options = []): bool
+    {
+        $this->initOrderNumber();
+
+        return parent::save($options);
+    }
+
+    public function initOrderNumber()
+    {
+        if (!$this->order_number) {
+            $this->order_number = VariableDefinitionService::inc(
+                VariableDefinition::SCORE_FOR_PAYMENT_ORDER_NUMBER
+            );
+        }
     }
 }
