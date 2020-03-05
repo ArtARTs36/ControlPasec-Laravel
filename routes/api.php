@@ -1,29 +1,36 @@
 <?php
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| is assigned the "api" middleware group. Enjoy building your API!
+|
+*/
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// API для работы с контрагентами
+// API для для работы с контрагентами
 
 Route::get('contragents/page-{page}', 'Contragent\ContragentController@index');
 Route::get('contragents/live-find/{term}', 'Contragent\ContragentController@liveFind');
 Route::apiResource('contragents', 'Contragent\ContragentController');
 Route::get('contragents/find-external-by-inn/{inn}', 'Contragent\ContragentController@findInExternalNetworkByInn');
 
-// API для договоров
+//
 
 Route::apiResource('contracts', 'Contract\ContractController');
 Route::get('contracts/find-by-customer/{customerId}', 'Contract\ContractController@findByCustomer');
 
 Route::apiResource('contract-templates', 'Contract\ContractTemplateController');
 
-// API для работы с поставками
-
-Route::get('supplies/page-{page}', 'Supply\SupplyController@index');
 Route::apiResource('supplies', 'Supply\SupplyController');
 Route::get('supplies/{supplyId}/torg12', 'Supply\SupplyController@createTorg12');
 Route::get('supplies/find-by-customer/{customerId}', 'Supply\SupplyController@findByCustomer');
