@@ -1,6 +1,6 @@
 <?php
 
-namespace DocumentBundle\Helper;
+namespace App\Helper;
 
 class TextMinificator
 {

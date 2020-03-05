@@ -1,6 +1,6 @@
 <?php
 
-namespace DocumentBundle\Exception;
+namespace App\Exceptions;
 
 use App\Models\Document\Document;
 use Throwable;

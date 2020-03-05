@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Contragent;
 
 use App\ContragentManager;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class ContragentManagerController extends Controller

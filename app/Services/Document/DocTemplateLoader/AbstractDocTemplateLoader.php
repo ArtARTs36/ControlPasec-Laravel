@@ -3,8 +3,7 @@
 namespace App\Services\Document\DocTemplateLoader;
 
 use App\Models\Document\Document;
-use DocumentBundle\Exception\DocumentFailedToSaveException;
-use DocumentBundle\Helper\TextMinificator;
+use App\Exceptions\DocumentFailedToSaveException;
 
 abstract class AbstractDocTemplateLoader
 {
