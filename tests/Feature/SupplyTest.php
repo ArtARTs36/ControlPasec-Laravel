@@ -13,7 +13,7 @@ class SupplyTest extends BaseTestCase
     public function testGetAll()
     {
         $response = $this->decodeResponse(
-            $this->getJson('supplies')
+            $this->getJson('/api/supplies')
         );
 
         self::assertIsArray($response['data']);
@@ -21,7 +21,7 @@ class SupplyTest extends BaseTestCase
 
     public function testCreate()
     {
-        $response = $this->postJson('supplies', [
+        $response = $this->postJson('/api/supplies', [
             'planned_date' => '2020-02-08 18:18:32',
             'execute_date' => '2020-02-08 18:18:32',
             'supplier_id' => 1,

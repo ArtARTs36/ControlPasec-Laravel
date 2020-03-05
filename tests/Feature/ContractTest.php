@@ -12,7 +12,7 @@ class ContractTest extends BaseTestCase
      */
     public function testContractCreate()
     {
-        $response = $this->postJson('contracts', [
+        $response = $this->postJson('/api/contracts', [
             'title' => 'Договор на поставку меда',
             'customer_id' => 10,
             'supplier_id' => 1,
@@ -38,7 +38,7 @@ class ContractTest extends BaseTestCase
             ->get()
             ->first();
 
-        $response = $this->deleteJson('contracts/'. $contract->id);
+        $response = $this->deleteJson('/api/contracts/'. $contract->id);
 
         $response = $this->decodeResponse($response);
 
