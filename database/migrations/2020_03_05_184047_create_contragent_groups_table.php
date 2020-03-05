@@ -26,11 +26,13 @@ class CreateContragentGroupsTable extends Migration
 
             $table->foreign('group_id')
                 ->references('id')
-                ->on('contragent_groups');
+                ->on('contragent_groups')
+                ->onDelete('cascade');
 
             $table->foreign('contragent_id')
                 ->references('id')
-                ->on('contragents');
+                ->on('contragents')
+                ->onDelete('cascade');
         });
     }
 

@@ -1,17 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
@@ -23,6 +13,7 @@ Route::get('contragents/page-{page}', 'Contragent\ContragentController@index');
 Route::get('contragents/live-find/{term}', 'Contragent\ContragentController@liveFind');
 Route::apiResource('contragents', 'Contragent\ContragentController');
 Route::get('contragents/find-external-by-inn/{inn}', 'Contragent\ContragentController@findInExternalNetworkByInn');
+Route::apiResource('contragent-groups', 'Contragent\ContragentGroupController');
 
 //
 
