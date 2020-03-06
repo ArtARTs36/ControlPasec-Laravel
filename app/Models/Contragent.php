@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use App\ContragentManager;
+use App\Models\Contract\Contract;
 use App\Models\Contragent\BankRequisites;
 use App\Models\Contragent\ContragentGroup;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Contragent
@@ -28,6 +30,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property int status
  * @property BankRequisites requisites
  * @property ContragentGroup[] groups
+ * @property Contract[] contracts
  *
  * @mixin Builder
  */
@@ -49,6 +52,11 @@ class Contragent extends Model
     public function requisites()
     {
         return $this->hasMany(BankRequisites::class);
+    }
+
+    public function contracts(): HasMany
+    {
+        return $this->hasMany(Contract::class, 'customer_id');
     }
 
     public function groups(): BelongsToMany

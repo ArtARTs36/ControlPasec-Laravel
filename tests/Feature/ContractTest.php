@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Contract\Contract;
+use App\Models\Contragent;
 use Tests\BaseTestCase;
 
 class ContractTest extends BaseTestCase
@@ -10,7 +11,7 @@ class ContractTest extends BaseTestCase
     /**
      * Тест на создание договора
      */
-    public function testContractCreate()
+    public function testContractCreate(): void
     {
         $response = $this->postJson('/api/contracts', [
             'title' => 'Договор на поставку меда',
@@ -27,10 +28,19 @@ class ContractTest extends BaseTestCase
         );
     }
 
+    public function testFindByCustomer(): void
+    {
+        $customer = Contragent::with(['contracts'])->inRandomOrder()->get()->first();
+
+        $response = $this->getJson('/api/contracts/find-by-customer/'. $customer->id);
+
+        $response->assertStatus(200);
+    }
+
     /**
      * Тест на удаление договора
      */
-    public function testContractDelete()
+    public function testContractDelete(): void
     {
         /** @var Contract $contract */
         $contract = Contract::where('id', '>', 0)

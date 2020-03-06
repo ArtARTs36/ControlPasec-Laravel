@@ -88,10 +88,10 @@ class ContractController extends Controller
      * @param $customerId
      * @return ActionResponse
      */
-    public function findByCustomer($customerId)
+    public function findByCustomer(int $customerId): ActionResponse
     {
         $contracts = Contract::where('customer_id', $customerId)->get();
 
-        return new ActionResponse((count($contracts) > 0), $contracts);
+        return new ActionResponse($contracts->isNotEmpty(), $contracts);
     }
 }
