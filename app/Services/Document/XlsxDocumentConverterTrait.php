@@ -7,7 +7,7 @@ use App\Services\Shell\ShellCommand;
 
 trait XlsxDocumentConverterTrait
 {
-    public static function xlsxToPdf($filePath)
+    public static function xlsxToPdf($filePath): string
     {
         self::checkFileExists($filePath);
 
@@ -21,14 +21,12 @@ trait XlsxDocumentConverterTrait
             ->addOption('outdir')
             ->addParameter($outputDir);
 
-        $shell = self::checkShell($shell, $filePath, DocumentExtension::PDF);
-        preg_match("/->(.*) using filter/i", $shell, $matches);
+        self::checkShell($shell, $filePath, DocumentExtension::PDF);
 
-        $newFilePath = self::createNewFilePath($filePath, DocumentExtension::PDF);
-        if (!isset($matches[1]) || trim($matches[1]) != $newFilePath) {
+        if (!file_exists($filePath)) {
             throw new DocumentConvertException($filePath, DocumentExtension::PDF);
         }
 
-        return $newFilePath;
+        return $filePath;
     }
 }

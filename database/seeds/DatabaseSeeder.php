@@ -13,9 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
         $this->vocabs();
-
-        $this->call(ContragentSeeder::class);
-        $this->call(MyContragentSeeder::class);
+        $this->contragents();
 
         $this->call(BankRequisitesSeeder::class);
 
@@ -39,7 +37,14 @@ class DatabaseSeeder extends Seeder
         $this->textDataParser();
     }
 
-    private function vocabs()
+    private function contragents(): void
+    {
+        $this->call(ContragentSeeder::class);
+        $this->call(MyContragentSeeder::class);
+        $this->call(ContragentGroupSeeder::class);
+    }
+
+    private function vocabs(): void
     {
         $this->call(VocabWordSeeder::class);
         $this->call(VocabBankSeeder::class);
@@ -50,7 +55,7 @@ class DatabaseSeeder extends Seeder
         $this->call(VocabGosStandardSeeder::class);
     }
 
-    private function textDataParser()
+    private function textDataParser(): void
     {
         $this->call(TextDataParserComponentSeeder::class);
         $this->call(VariableDefinitionSeeder::class);

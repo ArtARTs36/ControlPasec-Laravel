@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Helper\FileHelper;
+use App\Helper\PhpOsHelper;
 use App\Services\Go\GoProgramExecutor;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
@@ -15,6 +16,16 @@ class ProjectInstallCommand extends Command
 
     public function handle()
     {
+        if ($this->isLocked()) {
+            dump('Установка заблокирована!');
+
+            return false;
+        }
+
+        file_put_contents(base_path('install.lock'), 'locked');
+
+        shell_exec('composer dump-autoload --optimize');
+
         $this->checkGoPrograms();
         $this->checkExistsFileDocumentsMap();
         $this->checkEnvFile();
@@ -24,6 +35,13 @@ class ProjectInstallCommand extends Command
 
         Artisan::call('migrate');
         Artisan::call('db:seed');
+
+        return true;
+    }
+
+    private function isLocked(): bool
+    {
+        return file_exists(base_path('install.lock'));
     }
 
     private function checkTmpFolderFilesNames(): void
@@ -61,11 +79,14 @@ class ProjectInstallCommand extends Command
             return is_dir($dir. DIRECTORY_SEPARATOR. $folder);
         });
 
-        foreach ($folders as $folder) {
-            $pathToData = $dir . DIRECTORY_SEPARATOR . $folder. '/data';
+        foreach ($folders as $goProgramName) {
+            $folder = $dir . DIRECTORY_SEPARATOR . $goProgramName;
+            $pathToData = $folder. '/data';
             if (!file_exists($pathToData)) {
                 mkdir($pathToData);
             }
+
+            $this->selectBinFileForGoProgram($goProgramName, $folder);
         }
 
         foreach (array_diff($elementsOfDir, $folders) as $file) {
@@ -73,5 +94,20 @@ class ProjectInstallCommand extends Command
         }
 
         dump('Go-Programs: Папки для данных проверены');
+    }
+
+    private function selectBinFileForGoProgram(string $name, string $path): bool
+    {
+        $os = PhpOsHelper::getOs(PhpOsHelper::UNKNOWN);
+        $pathToBuild = $path . '/builds/'. $name . '_'. $os;
+        if (!file_exists($pathToBuild)) {
+            return false;
+        }
+
+        if (($pathToBinFolder = $path . '/bin/'. $name) && !file_exists($pathToBinFolder)) {
+            copy($pathToBuild, $pathToBinFolder);
+        }
+
+        return true;
     }
 }
