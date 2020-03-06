@@ -84,7 +84,7 @@ class ProductController extends Controller
             $products[$realization->product_id]->prices += $realization->quantity *$realization->price;
         }
 
-        usort($products, function($one, $two) {
+        usort($products, function ($one, $two) {
             return ($one['quantities'] < $two['quantities']);
         });
 

@@ -19,7 +19,7 @@ class OrfoService
         'Воскресение'
     ];
 
-    static private function getLiterals($withReplaceSpace = false)
+    private static function getLiterals($withReplaceSpace = false)
     {
         $literals = [
             'а' => 'a', 'б' => 'b', 'в' => 'v',

@@ -32,13 +32,15 @@ class CurrencyCourseSeeder extends CommonSeeder
         try {
             $finder = CurrencyCourseFinder::actualFinder();
             VocabCurrencyExternalCollection::init()->saveCourses($finder);
-        } catch (Exception $exception) {}
+        } catch (Exception $exception) {
+        }
 
         foreach ($dateRange as $date) {
             try {
                 $finder = CurrencyCourseFinder::previousFinder($date);
                 VocabCurrencyExternalCollection::init()->saveCourses($finder);
-            } catch (Exception $exception) {}
+            } catch (Exception $exception) {
+            }
         }
     }
 

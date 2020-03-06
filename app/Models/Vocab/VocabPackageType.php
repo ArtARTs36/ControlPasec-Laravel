@@ -15,5 +15,4 @@ use Illuminate\Database\Eloquent\Model;
  */
 class VocabPackageType extends Model
 {
-
 }

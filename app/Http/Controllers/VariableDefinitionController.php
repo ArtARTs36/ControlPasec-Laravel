@@ -26,7 +26,6 @@ class VariableDefinitionController extends Controller
      */
     public function store(Request $request)
     {
-
     }
 
     /**

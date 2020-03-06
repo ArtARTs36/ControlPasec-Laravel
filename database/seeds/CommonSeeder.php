@@ -1,7 +1,6 @@
 <?php
 
 use App\Helper\CSVHelper;
-use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -88,7 +87,7 @@ abstract class CommonSeeder extends Seeder
         }
 
         $relations = [];
-        for($i = 0; $i < $count; $i++) {
+        for ($i = 0; $i < $count; $i++) {
             $relations[] = $this->getRelation($model);
         }
 

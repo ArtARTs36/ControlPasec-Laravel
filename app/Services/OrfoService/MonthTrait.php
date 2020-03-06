@@ -4,7 +4,7 @@ namespace App\Services\OrfoService;
 
 trait MonthTrait
 {
-    static $months = [
+    public static $months = [
         'nom' => [
             'Январь',
             'Январь',

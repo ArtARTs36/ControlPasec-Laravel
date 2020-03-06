@@ -16,5 +16,4 @@ use Illuminate\Database\Query\Builder;
  */
 class ModelType extends Model
 {
-
 }

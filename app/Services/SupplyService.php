@@ -63,11 +63,11 @@ class SupplyService
     public static function fullLoadSupply($id): Supply
     {
         $supply = Supply::find($id);
-        $supplier = $supply->supplier->load(['requisites' => function($requisite) {
+        $supplier = $supply->supplier->load(['requisites' => function ($requisite) {
             return $requisite->with('bank');
         }]);
         $customer = $supply->customer;
-        $products = $supply->products()->with(['parent' => function($parent) {
+        $products = $supply->products()->with(['parent' => function ($parent) {
             return $parent->with(['sizeOfUnit', 'gosStandard']);
         }])->get();
 

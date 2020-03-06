@@ -18,3 +18,4 @@ yarn-error.log
 /storage/documents_ps/*
 /resources/views/tmp_files_names
 install.lock
+.php_cs.cache

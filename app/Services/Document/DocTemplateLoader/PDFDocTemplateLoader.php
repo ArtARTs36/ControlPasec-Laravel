@@ -49,7 +49,8 @@ class PDFDocTemplateLoader extends AbstractDocTemplateLoader
             $template .= $this->renderTemplate(
                 $document,
                 $i == 0,
-                (next($documents) ? false : true));
+                (next($documents) ? false : true)
+            );
         }
 
         $domPdf->loadHtml($template);

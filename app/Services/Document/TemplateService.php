@@ -89,7 +89,7 @@ class TemplateService
         return $result . ',' . $kop;
     }
 
-    static public function formatNetto($weight)
+    public static function formatNetto($weight)
     {
         $intPart = (int) $weight;
         if ($weight == $intPart) {

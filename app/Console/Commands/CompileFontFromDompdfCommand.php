@@ -64,7 +64,7 @@ class CompileFontFromDompdfCommand extends Command
      *
      * @throws \Exception
      */
-    private function installFontFamily($domPdf, $fontName, $normal)
+    private function installFontFamily(Dompdf $domPdf, string $fontName, string $normal): void
     {
         $fontMetrics = $domPdf->getFontMetrics();
 
@@ -74,8 +74,9 @@ class CompileFontFromDompdfCommand extends Command
         $normal .= '.ttf';
 
         // Check if the base filename is readable
-        if ( !is_readable($normal) )
+        if (!is_readable($normal)) {
             throw new Exception("Unable to read '$normal'.");
+        }
 
         $dir = dirname($normal);
         $basename = basename($normal);
@@ -88,7 +89,7 @@ class CompileFontFromDompdfCommand extends Command
             $ext = '';
         }
 
-        if ( !in_array($ext, array(".ttf", ".otf")) ) {
+        if (!in_array($ext, array(".ttf", ".otf"))) {
             throw new Exception("Unable to process fonts of type '$ext'.");
         }
 
@@ -102,16 +103,17 @@ class CompileFontFromDompdfCommand extends Command
         );
 
         foreach ($patterns as $type => $_patterns) {
-            if ( !isset($$type) || !is_readable($$type) ) {
-                foreach($_patterns as $_pattern) {
-                    if ( is_readable("$path$_pattern$ext") ) {
+            if (!isset($$type) || !is_readable($$type)) {
+                foreach ($_patterns as $_pattern) {
+                    if (is_readable("$path$_pattern$ext")) {
                         $$type = "$path$_pattern$ext";
                         break;
                     }
                 }
 
-                if ( is_null($$type) )
-                    echo ("Unable to find $type face file.\n");
+                if (is_null($$type)) {
+                    echo("Unable to find $type face file.\n");
+                }
             }
         }
 
@@ -120,35 +122,37 @@ class CompileFontFromDompdfCommand extends Command
 
         // Copy the files to the font directory.
         foreach ($fonts as $var => $src) {
-            if ( is_null($src) ) {
+            if (is_null($src)) {
                 $entry[$var] = $domPdf->getOptions()->get('fontDir') . '/' . mb_substr(basename($normal), 0, -4);
                 continue;
             }
 
             // Verify that the fonts exist and are readable
-            if ( !is_readable($src) )
+            if (!is_readable($src)) {
                 throw new Exception("Requested font '$src' is not readable");
+            }
 
             $dest = $domPdf->getOptions()->get('fontDir') . '/' . basename($src);
 
-            if ( !is_writeable(dirname($dest)) )
+            if (!is_writeable(dirname($dest))) {
                 throw new Exception("Unable to write to destination '$dest'.");
+            }
 
             echo "Copying $src to $dest...\n";
 
-            if ( !copy($src, $dest) ) {
+            if (!copy($src, $dest)) {
                 throw new Exception("Unable to copy '$src' to '$dest'");
             }
 
-            $entry_name = mb_substr($dest, 0, -4);
+            $entryName = mb_substr($dest, 0, -4);
 
-            echo "Generating Adobe Font Metrics for $entry_name...\n";
+            echo "Generating Adobe Font Metrics for $entryName...\n";
 
             $font_obj = Font::load($dest);
-            $font_obj->saveAdobeFontMetrics("$entry_name.ufm");
+            $font_obj->saveAdobeFontMetrics("$entryName.ufm");
             $font_obj->close();
 
-            $entry[$var] = $entry_name;
+            $entry[$var] = $entryName;
         }
 
         // Store the fonts in the lookup table
