@@ -14,6 +14,6 @@ use Illuminate\Database\Query\Builder;
  *
  * @mixin Builder
  */
-class ModelType extends Model
+final class ModelType extends Model
 {
 }

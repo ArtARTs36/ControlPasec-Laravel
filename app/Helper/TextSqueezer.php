@@ -2,16 +2,16 @@
 
 namespace DocumentBundle\Helper;
 
-class TextMinificator
+class TextSqueezer
 {
     /**
      * Минифицировать текст
      *
-     * @param $source
+     * @param string $source
      * @param bool $isLoadCache
      * @return mixed
      */
-    public static function minify(&$source, $isLoadCache = true)
+    public static function minify(string &$source, bool $isLoadCache = true): string
     {
         self::parseText($source);
 
@@ -21,11 +21,11 @@ class TextMinificator
     /**
      * Минифицировать текст, получив путь до файла, который его содержит
      *
-     * @param $sourcePath
+     * @param string$sourcePath
      * @param bool $isLoadCache
      * @return mixed
      */
-    public static function minifyByPath($sourcePath, $isLoadCache = true)
+    public static function minifyByPath(string $sourcePath, bool $isLoadCache = true): string
     {
         if (!file_exists($sourcePath)) {
             throw new \LogicException('Файл не существует!');
@@ -39,9 +39,9 @@ class TextMinificator
     /**
      * Обработать текст
      *
-     * @param $source
+     * @param string $source
      */
-    public static function parseText(&$source)
+    public static function parseText(string &$source): void
     {
         $source = str_replace("\r\n", "", $source);
         $source = str_replace("\n", "", $source);

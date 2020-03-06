@@ -4,6 +4,7 @@ namespace App\Models\Contract;
 
 use App\Models\Contragent;
 use App\Models\Supply\Supply;
+use App\Models\Traits\WithSupplierAndCustomer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -19,24 +20,17 @@ use Illuminate\Database\Query\Builder;
  * @property int supplier_id
  * @property int customer_id
  * @property int template_id
+ * @property ContractTemplate template
  *
  * @mixin Builder
  */
 class Contract extends Model
 {
+    use WithSupplierAndCustomer;
+
     protected $fillable = [
         'title', 'planned_date', 'executed_date', 'supplier_id', 'customer_id', 'template_id'
     ];
-
-    public function supplier(): BelongsTo
-    {
-        return $this->belongsTo(Contragent::class);
-    }
-
-    public function customer(): BelongsTo
-    {
-        return $this->belongsTo(Contragent::class);
-    }
 
     public function template(): BelongsTo
     {

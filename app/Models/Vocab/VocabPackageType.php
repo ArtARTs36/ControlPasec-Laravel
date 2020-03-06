@@ -13,6 +13,6 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @mixin Builder
  */
-class VocabPackageType extends Model
+final class VocabPackageType extends Model
 {
 }

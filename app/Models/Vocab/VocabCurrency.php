@@ -23,7 +23,7 @@ use Illuminate\Database\Query\Builder;
  *
  * @mixin Builder
  */
-class VocabCurrency extends Model implements ModelWithPriorityInterface
+final class VocabCurrency extends Model implements ModelWithPriorityInterface
 {
     use WithPriority;
 
@@ -31,7 +31,7 @@ class VocabCurrency extends Model implements ModelWithPriorityInterface
         'id', 'name', 'short_name', 'name_en', 'short_name_en', 'iso_code', 'iso_short_name', 'symbol'
     ];
 
-    protected static function boot()
+    protected static function boot(): void
     {
         parent::boot();
 

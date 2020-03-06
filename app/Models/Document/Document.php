@@ -78,9 +78,9 @@ class Document extends Model
     }
 
     /**
-     * @return mixed|string
+     * @return string
      */
-    public function getExtensionName()
+    public function getExtensionName(): string
     {
         return $this->type->loader->extension->name;
     }
@@ -95,7 +95,7 @@ class Document extends Model
         return $this->type->template;
     }
 
-    public function getTemplateFullPath($ext = false)
+    public function getTemplateFullPath(bool $ext = false): string
     {
         return resource_path('views/'. $this->getTemplate()) .
             ($ext ? '.'. $this->getExtensionName() : '');
@@ -104,7 +104,7 @@ class Document extends Model
     /**
      * @return string
      */
-    public function getFileName()
+    public function getFileName(): string
     {
         return SpellingService::rusSymbolsToEng($this->title, true);
     }
@@ -112,7 +112,7 @@ class Document extends Model
     /**
      * @return mixed|string
      */
-    public function getLoaderName()
+    public function getLoaderName(): string
     {
         return $this->type->loader->name;
     }
@@ -121,7 +121,7 @@ class Document extends Model
      * @return $this
      * @throws \Exception
      */
-    public function beforeCreate()
+    public function beforeCreate(): self
     {
         $this->status = self::STATUS_NEW;
         $this->uuid = Uuid::getFactory()->uuid4()->toString();
@@ -136,7 +136,7 @@ class Document extends Model
      * @param bool $save
      * @return bool
      */
-    public function nextStatus($save = false)
+    public function nextStatus(bool $save = false): bool
     {
         if ($this->status + 1 <= count(self::STATUSES)) {
             $this->status++;
@@ -160,7 +160,7 @@ class Document extends Model
         return $this->folder;
     }
 
-    public function getFullPath()
+    public function getFullPath(): string
     {
         if ($this->fullPath === null) {
             $this->fullPath = DocumentService::getDownloadLink($this, true);
@@ -169,7 +169,7 @@ class Document extends Model
         return $this->fullPath;
     }
 
-    public function fileExists()
+    public function fileExists(): bool
     {
         return file_exists($this->getFullPath());
     }

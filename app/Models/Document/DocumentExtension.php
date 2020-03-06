@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int id
  * @property string name
  */
-class DocumentExtension extends Model
+final class DocumentExtension extends Model
 {
     const XLS = "xls";
     const XLSX = "xlsx";

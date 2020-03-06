@@ -44,16 +44,25 @@ class Contragent extends Model
         'address', 'address_postal'
     ];
 
-    public function managers()
+    /**
+     * @return HasMany
+     */
+    public function managers(): HasMany
     {
         return $this->hasMany(ContragentManager::class, 'contragent_id');
     }
 
-    public function requisites()
+    /**
+     * @return HasMany
+     */
+    public function requisites(): HasMany
     {
         return $this->hasMany(BankRequisites::class);
     }
 
+    /**
+     * @return HasMany
+     */
     public function contracts(): HasMany
     {
         return $this->hasMany(Contract::class, 'customer_id');
@@ -72,12 +81,16 @@ class Contragent extends Model
     /**
      * @return BankRequisites
      */
-    public function getDefaultRequisite()
+    public function getDefaultRequisite(): BankRequisites
     {
         return $this->requisites[0] ?? null;
     }
 
-    public function getTitleForDocument()
+    /**
+     * Получить название для документа
+     * @return string
+     */
+    public function getTitleForDocument(): string
     {
         return $this->title_for_document ?? $this->title;
     }

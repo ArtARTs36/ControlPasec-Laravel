@@ -4,6 +4,7 @@ namespace App\Models\Contragent;
 
 use App\Models\Contragent;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Query\Builder;
 
 /**
@@ -15,9 +16,12 @@ use Illuminate\Database\Query\Builder;
  *
  * @mixin Builder
  */
-class ContragentGroup extends Model
+final class ContragentGroup extends Model
 {
-    public function contragents()
+    /**
+     * @return BelongsToMany
+     */
+    public function contragents(): BelongsToMany
     {
         return $this->belongsToMany(
             Contragent::class,

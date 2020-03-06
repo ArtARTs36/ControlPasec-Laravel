@@ -16,7 +16,7 @@ use Illuminate\Database\Query\Builder;
  *
  * @mixin Builder
  */
-class VocabGosStandard extends Model
+final class VocabGosStandard extends Model
 {
     protected $fillable = [
         'name', 'description', 'is_active', 'date_introduction'

@@ -3,6 +3,7 @@
 namespace App\Models\News;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Query\Builder;
 
 /**
@@ -20,7 +21,10 @@ use Illuminate\Database\Query\Builder;
  */
 class ExternalNews extends Model
 {
-    public function source()
+    /**
+     * @return BelongsTo
+     */
+    public function source(): BelongsTo
     {
         return $this->belongsTo(ExternalNewsSource::class);
     }

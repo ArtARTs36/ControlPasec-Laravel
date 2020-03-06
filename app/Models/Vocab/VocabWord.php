@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null plural_instrumental
  * @property string|null plural_prepositional
  */
-class VocabWord extends Model
+final class VocabWord extends Model
 {
     const TYPE_FAMILY = 0;
     const TYPE_NAME = 1;

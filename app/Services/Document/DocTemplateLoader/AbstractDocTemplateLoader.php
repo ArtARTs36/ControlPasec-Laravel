@@ -4,7 +4,7 @@ namespace App\Services\Document\DocTemplateLoader;
 
 use App\Models\Document\Document;
 use DocumentBundle\Exception\DocumentFailedToSaveException;
-use DocumentBundle\Helper\TextMinificator;
+use DocumentBundle\Helper\TextSqueezer;
 
 abstract class AbstractDocTemplateLoader
 {

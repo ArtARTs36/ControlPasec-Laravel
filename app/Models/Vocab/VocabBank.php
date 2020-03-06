@@ -13,7 +13,7 @@ use Illuminate\Database\Query\Builder;
  *
  * @mixin Builder
  */
-class VocabBank extends Model
+final class VocabBank extends Model
 {
     protected $fillable = [
         'short_name', 'full_name', 'bik', 'score'
