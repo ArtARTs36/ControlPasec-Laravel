@@ -35,8 +35,8 @@ class SupplySeeder extends CommonSeeder
         foreach ($contragents as $contragent) {
             for ($i = 0; $i < rand(1, 5); $i++) {
                 $supply = new App\Models\Supply\Supply();
-                $supply->planned_date = $this->getFaker()->date();
-                $supply->execute_date = $this->getFaker()->date();
+                $supply->planned_date = $this->faker()->date();
+                $supply->execute_date = $this->faker()->date();
                 $supply->supplier_id = env('ONE_SUPPLIER_ID');
                 $supply->customer_id = $contragent;
 
@@ -80,7 +80,7 @@ class SupplySeeder extends CommonSeeder
     private function createScoreForPayment($supplyId): void
     {
         $score = new \App\ScoreForPayment();
-        $score->date = $this->getFaker()->date();
+        $score->date = $this->faker()->date();
         $score->supply_id = $supplyId;
         $score->order_number = $supplyId;
 
@@ -109,7 +109,7 @@ class SupplySeeder extends CommonSeeder
     {
         $waybill = new ProductTransportWaybill();
         $waybill->order_number = $supplyId;
-        $waybill->date = $this->getFaker()->date();
+        $waybill->date = $this->faker()->date();
         $waybill->supply_id = $supplyId;
 
         $waybill->save();

@@ -22,7 +22,7 @@ class ContractTemplateSeeder extends CommonSeeder
     {
         for ($i = 0; $i < $count; $i++) {
             $template = new ContractTemplate();
-            $template->name = $this->getFaker()->name;
+            $template->name = $this->faker()->name;
             $template->contract_title = $template->name;
 
             $template->save();

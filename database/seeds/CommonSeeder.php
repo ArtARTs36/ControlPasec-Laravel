@@ -1,21 +1,25 @@
 <?php
 
 use App\Helper\CSVHelper;
-use Faker\Factory;
 use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
+use Illuminate\Foundation\Testing\WithFaker;
 
 abstract class CommonSeeder extends Seeder
 {
-    /** @var Faker|null */
-    protected $faker = null;
+    use WithFaker;
 
     protected $relations = [];
 
     protected $relationsCount = [];
 
     protected $models = [];
+
+    public function __construct()
+    {
+        $this->setUpFaker();
+    }
 
     public function loadCsvFile($file, $isTypeFileCsv = true)
     {
@@ -54,15 +58,6 @@ abstract class CommonSeeder extends Seeder
 
             $model->save();
         }
-    }
-
-    protected function getFaker()
-    {
-        if ($this->faker === null) {
-            $this->faker = Factory::create();
-        }
-
-        return $this->faker;
     }
 
     /**

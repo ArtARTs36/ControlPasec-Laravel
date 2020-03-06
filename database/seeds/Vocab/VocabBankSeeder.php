@@ -29,10 +29,10 @@ class VocabBankSeeder extends CommonSeeder
     {
         for ($i = 0; $i < $count; $i++) {
             $bank = new VocabBank();
-            $bank->short_name = $this->getFaker()->firstNameMale;
-            $bank->full_name = $bank->short_name . ' ' . $this->getFaker()->lastName;
+            $bank->short_name = $this->faker()->firstNameMale;
+            $bank->full_name = $bank->short_name . ' ' . $this->faker()->lastName;
             $bank->bik = rand(11111111, 99999999);
-            $bank->score = $this->getFaker()->bankAccountNumber;
+            $bank->score = $this->faker()->bankAccountNumber;
 
             $bank->save();
         }

@@ -26,7 +26,7 @@ class ProductSeeder extends CommonSeeder
     {
         for ($i = 0; $i < $count; $i++) {
             $product = new App\Models\Product\Product();
-            $name = $this->getFaker()->name;
+            $name = $this->faker()->name;
 
             $product->name = $name;
             $product->name_for_document = $name;

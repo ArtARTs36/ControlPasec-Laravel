@@ -16,7 +16,7 @@ class VocabPackageTypeSeeder extends CommonSeeder
     {
         for ($i = 0; $i < $count; $i++) {
             $type = new VocabPackageType();
-            $type->name = $this->getFaker()->word;
+            $type->name = $this->faker()->word;
             $type->save();
         }
     }

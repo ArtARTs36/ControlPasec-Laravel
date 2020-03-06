@@ -17,9 +17,9 @@ class VocabGosStandardSeeder extends CommonSeeder
         for ($i = 0; $i < $count; $i++) {
             $standard = new VocabGosStandard();
             $standard->name = "ГОСТ ". rand(11111, 99999) . "-". rand(1111, 9999);
-            $standard->description = $this->getFaker()->text(50);
-            $standard->is_active = $this->getFaker()->boolean();
-            $standard->date_introduction = $this->getFaker()->date();
+            $standard->description = $this->faker()->text(50);
+            $standard->is_active = $this->faker()->boolean();
+            $standard->date_introduction = $this->faker()->date();
 
             $standard->save();
         }

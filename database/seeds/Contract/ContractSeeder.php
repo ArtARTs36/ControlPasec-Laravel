@@ -17,9 +17,9 @@ class ContractSeeder extends CommonSeeder
     {
         for ($i = 0; $i < $count; $i++) {
             $contract = new Contract();
-            $contract->title = $this->getFaker()->text(25);
-            $contract->planned_date = $this->getFaker()->date();
-            $contract->executed_date = $this->getFaker()->date();
+            $contract->title = $this->faker()->text(25);
+            $contract->planned_date = $this->faker()->date();
+            $contract->executed_date = $this->faker()->date();
             $contract->supplier_id = env('ONE_SUPPLIER_ID');
             $contract->customer_id = $this->getRelation(Contragent::class);
             $contract->template_id = $this->getRelation(ContractTemplate::class);
