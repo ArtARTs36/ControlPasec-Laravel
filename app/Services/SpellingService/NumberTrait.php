@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\OrfoService;
+namespace App\Services\SpellingService;
 
 trait NumberTrait
 {

@@ -5,7 +5,7 @@ namespace App\Models\Document;
 use App\Models\Supply\ProductTransportWaybill;
 use App\ScoreForPayment;
 use App\Service\Document\DocumentService;
-use App\Services\Service\OrfoService;
+use App\Services\Service\SpellingService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -106,7 +106,7 @@ class Document extends Model
      */
     public function getFileName()
     {
-        return OrfoService::transLit($this->title, true);
+        return SpellingService::rusSymbolsToEng($this->title, true);
     }
 
     /**

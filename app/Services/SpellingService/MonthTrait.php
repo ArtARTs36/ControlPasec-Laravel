@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\OrfoService;
+namespace App\Services\SpellingService;
 
 trait MonthTrait
 {
@@ -18,7 +18,7 @@ trait MonthTrait
             'Сентябрь',
             'Октябрь',
             'Ноябрь',
-            'Декабрь'
+            'Декабрь',
         ],
         'gen' => [
             'Января',
@@ -33,19 +33,19 @@ trait MonthTrait
             'Сентября',
             'Октября',
             'Ноября',
-            'Декабря'
+            'Декабря',
         ],
     ];
 
-    public static function getMonthById($id, $dec = 'nom', $lowerCase = false)
+    public static function getMonthNameById(int $id, string $dec = 'nom', bool $lowerCase = false): string
     {
         $month = self::$months[$dec][$id];
 
         return ($lowerCase === true) ? lcfirst($month) : $month;
     }
 
-    public static function getMonth(\DateTime $dateTime, $dec = 'nom', $lowerCase = false)
+    public static function getMonthName(\DateTime $dateTime, string $dec = 'nom', bool $lowerCase = false): string
     {
-        return self::getMonthById($dateTime->format('n'), $dec, $lowerCase);
+        return self::getMonthNameById($dateTime->format('n'), $dec, $lowerCase);
     }
 }

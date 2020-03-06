@@ -1,7 +1,7 @@
 @php
 
     /** @var Document $document */
-    use App\Models\Document\Document;use App\Models\Supply\ProductTransportWaybill;use App\Models\Supply\SupplyProduct;use App\Services\Document\TemplateService;use App\Services\Service\OrfoService;use App\Services\SupplyService;$document = $document->load('productTransportWaybills');
+    use App\Models\Document\Document;use App\Models\Supply\ProductTransportWaybill;use App\Models\Supply\SupplyProduct;use App\Services\Document\TemplateService;use App\Services\Service\SpellingService;use App\Services\SupplyService;$document = $document->load('productTransportWaybills');
 
     /** @var ProductTransportWaybill $waybill */
     $waybill = $document->getProductTransportWaybill();
@@ -19,7 +19,7 @@
         'ГРУЗОПОЛУЧАТЕЛЬ' => TemplateService::renderContragent($supply->customer),
         'ГРУЗООТПРАВИТЕЛЬ' => TemplateService::renderContragent($supply->supplier),
         'ДЕНЬ' => $plannedDate->format('d'),
-        'МЕСЯЦ_Р' => OrfoService::getMonth($plannedDate, 'gen', true),
+        'МЕСЯЦ_Р' => SpellingService::getMonthName($plannedDate, 'gen', true),
         'ГОД' => $plannedDate->format('Y'),
         'ДАТА' => $plannedDate->format('d.m.Y'),
         'ПОЛНАЯ_СУММА' => TemplateService::sum2words($fullTotalPrice),

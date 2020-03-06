@@ -2,7 +2,7 @@
 
 namespace App\Services\Document;
 
-use App\Services\OrfoService\NumberTrait;
+use App\Services\SpellingService\NumberTrait;
 
 class TemplateService
 {

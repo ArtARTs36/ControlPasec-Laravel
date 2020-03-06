@@ -5,6 +5,7 @@ namespace App\Models\Contract;
 use App\Models\Contragent;
 use App\Models\Supply\Supply;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Query\Builder;
 
@@ -27,17 +28,17 @@ class Contract extends Model
         'title', 'planned_date', 'executed_date', 'supplier_id', 'customer_id', 'template_id'
     ];
 
-    public function supplier()
+    public function supplier(): BelongsTo
     {
         return $this->belongsTo(Contragent::class);
     }
 
-    public function customer()
+    public function customer(): BelongsTo
     {
         return $this->belongsTo(Contragent::class);
     }
 
-    public function template()
+    public function template(): BelongsTo
     {
         return $this->belongsTo(ContractTemplate::class);
     }
@@ -45,9 +46,9 @@ class Contract extends Model
     /**
      * Поставки по договору
      *
-     * @return HasMany|Supply[]
+     * @return HasMany
      */
-    public function supplies()
+    public function supplies(): HasMany
     {
         return $this->hasMany(Supply::class);
     }
