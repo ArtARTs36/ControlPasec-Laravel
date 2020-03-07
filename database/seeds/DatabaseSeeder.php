@@ -35,6 +35,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ModelTypeSeeder::class);
 
         $this->textDataParser();
+
+        $this->call(SyncWithExternalSystemTypeSeeder::class);
     }
 
     private function vocabs(): void
