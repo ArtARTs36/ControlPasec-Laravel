@@ -1,3 +1,4 @@
 title;class
 Счет на оплату;App\Models\Supply\ScoreForPayment
 Товар;App\Models\Product\Product
+Контрагент;App\Models\Contragent

@@ -9,6 +9,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 // API для для работы с контрагентами
 
+Route::get(
+    'contragents/sync-with-external-system/{contragent}',
+    'Contragent\ContragentController@syncWithExternalSystem'
+);
 Route::get('contragents/page-{page}', 'Contragent\ContragentController@index');
 Route::get('contragents/live-find/{term}', 'Contragent\ContragentController@liveFind');
 Route::apiResource('contragents', 'Contragent\ContragentController');

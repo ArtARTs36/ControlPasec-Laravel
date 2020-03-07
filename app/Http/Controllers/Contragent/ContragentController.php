@@ -7,8 +7,11 @@ use App\Http\Requests\ContragentRequest;
 use App\Http\Responses\ActionResponse;
 use App\Models\Contragent;
 use App\Http\Controllers\Controller;
+use App\Models\Sync\SyncWithExternalSystem;
+use App\Models\Sync\SyncWithExternalSystemType;
 use App\Parsers\DaDataParser\DaDataParser;
 use App\Services\ContragentService;
+use App\Services\SyncWithExternalSystemService;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class ContragentController extends Controller
@@ -130,9 +133,22 @@ class ContragentController extends Controller
         return new ActionResponse($contragent instanceof Contragent ? true : false, $contragent);
     }
 
-    public function syncWithExternalNetwork(Contragent $contragent)
+    /**
+     * Синхронизировать контрагента с данными из внешней системы
+     * @param Contragent $contragent
+     * @return array
+     */
+    public function syncWithExternalSystem(Contragent $contragent): array
     {
-        // todo
+        $response = DaDataParser::findContragentByInnOrOGRN(
+            $contragent->inn ?? $contragent->ogrn,
+            true,
+            false
+        );
+
+        return (new SyncWithExternalSystemService($contragent, SyncWithExternalSystemType::SLUG_CONTRAGENT_DADATA))
+            ->create($response)
+            ->getComparedData();
     }
 
     /**

@@ -8,16 +8,16 @@ use App\Services\WordService;
 
 class DaDataParser extends DaDataSender
 {
-    public static function findContragentByInnOrOGRN($inn, $create = true)
+    public static function findContragentByInnOrOGRN($inn, bool $create = true, bool $save = true)
     {
         $response = self::send(self::URL_METHOD_FIND_PARTY_BY_INN, [
             'query' => $inn
         ]);
 
-        return ($create === true) ? self::createContragentByResponse($response) : $response;
+        return ($create === true) ? self::createContragentByResponse($response, $save) : $response;
     }
 
-    public static function createContragentByResponse($responses)
+    public static function createContragentByResponse($responses, bool $save = true)
     {
         if (null === $responses || !isset($responses['suggestions'])) {
             return false;
@@ -49,7 +49,9 @@ class DaDataParser extends DaDataSender
             $contragent->address_postal = $response['address']['data']['postal_code'];
             $contragent->status = 0;
 
-            $contragent->save();
+            if ($save) {
+                $contragent->save();
+            }
 
             self::parseManager($response, $contragent);
 

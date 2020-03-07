@@ -12,19 +12,40 @@ use Illuminate\Database\Eloquent\Model;
  * @property int type_id
  * @property SyncWithExternalSystemType type
  * @property int model_type_id
- * @property ModelType model_type
+ * @property ModelType modelType
  * @property int model_id
- * @property Model model
  * @property string response
  */
 class SyncWithExternalSystem extends Model
 {
     use WithModelType;
 
-    public function model(): Model
-    {
-        $class = $this->model_type->class;
+    protected $fillable = [
+        'type_id', 'model_type_id', 'model_id', 'response',
+    ];
 
-        return $class::find($this->model_id);
+    private $model;
+
+    public function getModel(): Model
+    {
+        if ($this->model !== null) {
+            return $this->model;
+        }
+
+        if (!$this->relationLoaded('modelType')) {
+            $this->load('modelType');
+        }
+
+        $class = $this->modelType->class;
+
+        return $this->model = $class::find($this->model_id);
+    }
+
+    public function getComparedData(): array
+    {
+        return [
+            'currentData' => $this->getModel(),
+            'givenData' => $this->response,
+        ];
     }
 }
