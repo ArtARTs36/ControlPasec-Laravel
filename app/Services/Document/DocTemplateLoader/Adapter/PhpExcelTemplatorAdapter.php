@@ -28,8 +28,7 @@ class PhpExcelTemplatorAdapter extends PhpExcelTemplator
         $callbacks = [],
         $events = [],
         callable $sheetCallable = null
-    )
-    {
+    ) {
         $spreadsheet = static::getSpreadsheet($templateFile);
         if ($sheetCallable !== null) {
             $sheetCallable($spreadsheet);

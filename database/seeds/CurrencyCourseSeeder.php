@@ -32,13 +32,15 @@ class CurrencyCourseSeeder extends CommonSeeder
         try {
             $finder = CurrencyCourseFinder::actualFinder();
             VocabCurrencyExternalCollection::init()->saveCourses($finder);
-        } catch (Exception $exception) {}
+        } catch (Exception $exception) {
+        }
 
         foreach ($dateRange as $date) {
             try {
                 $finder = CurrencyCourseFinder::previousFinder($date);
                 VocabCurrencyExternalCollection::init()->saveCourses($finder);
-            } catch (Exception $exception) {}
+            } catch (Exception $exception) {
+            }
         }
     }
 
@@ -56,8 +58,8 @@ class CurrencyCourseSeeder extends CommonSeeder
                 $course = new CurrencyCourse();
                 $course->currency_id = $currency->id;
                 $course->nominal = rand(1, 100);
-                $course->value = $this->getFaker()->randomFloat(500);
-                $course->actual_date = $this->getFaker()->dateTime();
+                $course->value = $this->faker()->randomFloat(500);
+                $course->actual_date = $this->faker()->dateTime();
 
                 $course->save();
             }

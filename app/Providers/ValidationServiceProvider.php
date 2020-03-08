@@ -9,8 +9,7 @@ class ValidationServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        Validator::extend('default_value', function($attribute, &$value, $parameters, $validator)
-        {
+        Validator::extend('default_value', function ($attribute, &$value, $parameters, $validator) {
             if (empty($value)) {
                 $value = $parameters[0];
             }

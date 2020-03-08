@@ -18,7 +18,7 @@
         'ГРУЗОПОЛУЧАТЕЛЬ' => \App\Services\Document\TemplateService::renderContragent($supply->customer),
         'ГРУЗООТПРАВИТЕЛЬ' => \App\Services\Document\TemplateService::renderContragent($supply->supplier),
         'ДЕНЬ' => $plannedDate->format('d'),
-        'МЕСЯЦ_Р' => \App\Services\Service\OrfoService::getMonth($plannedDate, 'gen', true),
+        'МЕСЯЦ_Р' => \App\Services\Service\SpellingService::getMonthName($plannedDate, 'gen', true),
         'ГОД' => $plannedDate->format('Y'),
         'ДАТА' => $plannedDate->format('d.m.Y'),
         'ПОЛНАЯ_СУММА' => \App\Services\Document\TemplateService::sum2words($fullTotalPrice)

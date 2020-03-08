@@ -14,14 +14,14 @@ class DocumentJoinerFactory
 
     /**
      * @param Document[] $documents
-     * @param null $savePath
+     * @param string|null $savePath
      * @return bool
      */
-    public static function join(array $documents, $savePath = null)
+    public static function join(array $documents, ?string $savePath = null)
     {
         $ext = $documents[0]->getExtensionName();
 
-        if (($count = count ($documents)) && $count > 1) {
+        if (($count = count($documents)) && $count > 1) {
             for ($i = 1; $i < $count; $i++) {
                 if ($ext !== $documents[$i]->getExtensionName()) {
                     return false;

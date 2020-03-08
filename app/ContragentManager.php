@@ -4,6 +4,7 @@ namespace App;
 
 use App\Models\Contragent;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property string name
@@ -18,9 +19,9 @@ class ContragentManager extends Model
     const PSEUDO = 'managers';
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
-    public function contragent()
+    public function contragent(): BelongsTo
     {
         return $this->belongsTo(Contragent::class);
     }

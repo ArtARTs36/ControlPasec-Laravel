@@ -30,8 +30,7 @@ class ExcelFile
         string $templateFile,
         array $params,
         string $paperSize = null
-    )
-    {
+    ) {
         $this->fileName = $fileName;
         $this->templateFile = $templateFile;
         $this->params = $params;

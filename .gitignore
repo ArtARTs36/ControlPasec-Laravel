@@ -12,6 +12,10 @@ npm-debug.log
 yarn-error.log
 /.idea
 /public/documents/*
+/go-programs/xlsx_render/bin
 /go-programs/xlsx_render/data/
+/go-programs/pdfcpu/bin
 /storage/documents_ps/*
 /resources/views/tmp_files_names
+install.lock
+.php_cs.cache

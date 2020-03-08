@@ -8,6 +8,7 @@ use App\Models\Vocab\VocabGosStandard;
 use App\Models\Vocab\VocabPackageType;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class Product
@@ -37,22 +38,22 @@ class Product extends Model
         'name', 'name_for_document', 'size', 'size_of_unit_id', 'price', 'currency_id'
     ];
 
-    public function sizeOfUnit()
+    public function sizeOfUnit(): BelongsTo
     {
         return $this->belongsTo(SizeOfUnit::class);
     }
 
-    public function currency()
+    public function currency(): BelongsTo
     {
         return $this->belongsTo(VocabCurrency::class);
     }
 
-    public function gosStandard()
+    public function gosStandard(): BelongsTo
     {
         return $this->belongsTo(VocabGosStandard::class);
     }
 
-    public function packageType()
+    public function packageType(): BelongsTo
     {
         return $this->belongsTo(VocabPackageType::class);
     }

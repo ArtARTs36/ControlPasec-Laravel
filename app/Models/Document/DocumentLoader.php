@@ -11,13 +11,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int id
  * @property string name
  * @property int extension_id
+ * @property DocumentExtension extension
  */
-class DocumentLoader extends Model
+final class DocumentLoader extends Model
 {
     /**
-     * @return BelongsTo|DocumentExtension
+     * @return BelongsTo
      */
-    public function extension()
+    public function extension(): BelongsTo
     {
         return $this->belongsTo(DocumentExtension::class);
     }

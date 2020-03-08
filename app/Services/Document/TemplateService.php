@@ -2,7 +2,7 @@
 
 namespace App\Services\Document;
 
-use App\Services\OrfoService\NumberTrait;
+use App\Services\SpellingService\NumberTrait;
 
 class TemplateService
 {
@@ -89,7 +89,7 @@ class TemplateService
         return $result . ',' . $kop;
     }
 
-    static public function formatNetto($weight)
+    public static function formatNetto($weight)
     {
         $intPart = (int) $weight;
         if ($weight == $intPart) {

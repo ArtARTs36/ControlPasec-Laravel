@@ -20,7 +20,7 @@ class DocumentBuilder
         ManyXlxsToPdfLoader::NAME => ManyXlxsToPdfLoader::class,
     ];
 
-    public static function build(Document $document, $save = false)
+    public static function build(Document $document, bool $save = false)
     {
         if (!self::LOADERS[$document->getLoaderName()]) {
             throw new \LogicException('Не найден загрузчик шаблонов!');
@@ -38,7 +38,7 @@ class DocumentBuilder
         return $result;
     }
 
-    public static function buildMany($documents, $save = false)
+    public static function buildMany(array $documents, bool $save = false)
     {
         $document = $documents[0];
         if (!self::LOADERS[$document->getLoaderName()]) {

@@ -4,6 +4,7 @@ namespace App\Models\TextDataParser;
 
 use App\Models\ModelType;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Query\Builder;
 
 /**
@@ -23,7 +24,7 @@ class TextDataParserComponent extends Model
 {
     const FIRST_COMPONENT_ID = 1;
 
-    public function models()
+    public function models(): BelongsToMany
     {
         return $this->belongsToMany(
             ModelType::class,

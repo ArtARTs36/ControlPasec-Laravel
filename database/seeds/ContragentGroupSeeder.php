@@ -16,7 +16,7 @@ class ContragentGroupSeeder extends CommonSeeder
     {
         for ($i = 0; $i < $count; $i++) {
             $group = new ContragentGroup();
-            $group->name = $this->getFaker()->name;
+            $group->name = $this->faker()->name;
             $group->save();
 
             $group->contragents()->attach(

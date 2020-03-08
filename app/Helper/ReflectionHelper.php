@@ -12,7 +12,7 @@ class ReflectionHelper
      * @return array
      * @throws \ReflectionException
      */
-    public static function createArrayForExecuteMethod($class, $method, $data)
+    public static function createArrayForExecuteMethod(string $class, string $method, array $data)
     {
         $reflection = new \ReflectionMethod($class, $method);
 
@@ -38,11 +38,11 @@ class ReflectionHelper
     }
 
     /**
-     * @param $object
+     * @param object|string $object
      * @return array
      * @throws \Exception
      */
-    public static function getTypesHintsForProperties($object)
+    public static function getTypesHintsForProperties($object): array
     {
         $reflection = new \ReflectionClass($object);
         $result = [];
@@ -64,12 +64,12 @@ class ReflectionHelper
     }
 
     /**
-     * @param $object
-     * @param $type
+     * @param object|string $object
+     * @param string $type
      * @return array
      * @throws \ReflectionException
      */
-    public static function getMethodsByReturnType($object, $type)
+    public static function getMethodsByReturnType($object, string $type): array
     {
         $reflection = new \ReflectionClass($object);
         $methods = [];
@@ -86,7 +86,7 @@ class ReflectionHelper
      * @param $setter
      * @return string
      */
-    private static function translateSetterToProperty($setter)
+    private static function translateSetterToProperty(string $setter): string
     {
         $property = str_replace('set', '', $setter);
 

@@ -14,7 +14,7 @@ use Throwable;
  */
 class DocumentFailedToSaveException extends \Exception
 {
-    public function __construct(Document $document, $code = 0, Throwable $previous = null)
+    public function __construct(Document $document, int $code = 0, Throwable $previous = null)
     {
         parent::__construct(
             sprintf("Не удалось сохранить документ: %s!", $document->title),

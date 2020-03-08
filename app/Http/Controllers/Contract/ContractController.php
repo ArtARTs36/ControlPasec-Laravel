@@ -27,7 +27,7 @@ class ContractController extends Controller
      * @param ContractRequest $request
      * @return ActionResponse
      */
-    public function store(ContractRequest $request)
+    public function store(ContractRequest $request): ActionResponse
     {
         $contract = new Contract();
         $contract->fill($request->toArray());
@@ -43,7 +43,7 @@ class ContractController extends Controller
      * @param Contract $contract
      * @return Contract
      */
-    public function show(Contract $contract)
+    public function show(Contract $contract): Contract
     {
         return $contract->load([
             'customer',
@@ -62,7 +62,7 @@ class ContractController extends Controller
      * @param Contract $contract
      * @return ActionResponse
      */
-    public function update(ContractRequest $request, Contract $contract)
+    public function update(ContractRequest $request, Contract $contract): ActionResponse
     {
         return new ActionResponse($contract->update($request->all()), $contract);
     }
@@ -88,10 +88,10 @@ class ContractController extends Controller
      * @param $customerId
      * @return ActionResponse
      */
-    public function findByCustomer($customerId)
+    public function findByCustomer(int $customerId): ActionResponse
     {
         $contracts = Contract::where('customer_id', $customerId)->get();
 
-        return new ActionResponse((count($contracts) > 0), $contracts);
+        return new ActionResponse($contracts->isNotEmpty(), $contracts);
     }
 }

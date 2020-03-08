@@ -9,18 +9,24 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 // API для для работы с контрагентами
 
+Route::get(
+    'contragents/sync-with-external-system/{contragent}',
+    'Contragent\ContragentController@syncWithExternalSystem'
+);
 Route::get('contragents/page-{page}', 'Contragent\ContragentController@index');
 Route::get('contragents/live-find/{term}', 'Contragent\ContragentController@liveFind');
 Route::apiResource('contragents', 'Contragent\ContragentController');
 Route::get('contragents/find-external-by-inn/{inn}', 'Contragent\ContragentController@findInExternalNetworkByInn');
 Route::apiResource('contragent-groups', 'Contragent\ContragentGroupController');
 
-//
+// API Для работы с договорами
 
 Route::apiResource('contracts', 'Contract\ContractController');
 Route::get('contracts/find-by-customer/{customerId}', 'Contract\ContractController@findByCustomer');
-
 Route::apiResource('contract-templates', 'Contract\ContractTemplateController');
+Route::apiResource('my-contragents', 'Contragent\MyContragentController');
+
+// API для поставок
 
 Route::apiResource('supplies', 'Supply\SupplyController');
 Route::get('supplies/{supplyId}/torg12', 'Supply\SupplyController@createTorg12');
@@ -33,9 +39,9 @@ Route::apiResource('products', 'Product\ProductController');
 
 //
 
-Route::apiResource('my-contragents', 'Contragent\MyContragentController');
-
 Route::apiResource('vocab/size-of-units', 'Vocab\SizeOfUnitController');
+
+// API Для счетов на оплату
 
 Route::apiResource('score-for-payments', 'Supply\ScoreForPaymentController');
 Route::get(
@@ -46,6 +52,8 @@ Route::post(
     'score-for-payments/check-document-of-many',
     'Supply\ScoreForPaymentController@checkOrCreateDocumentOfManyScores'
 );
+
+//
 
 Route::apiResource('documents', 'Document\DocumentController');
 Route::get('documents/{id}/download', 'Document\DocumentController@download');

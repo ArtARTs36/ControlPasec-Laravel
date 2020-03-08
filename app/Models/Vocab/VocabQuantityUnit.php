@@ -17,7 +17,7 @@ use Illuminate\Database\Query\Builder;
  *
  * @mixin Builder
  */
-class VocabQuantityUnit extends Model
+final class VocabQuantityUnit extends Model
 {
     protected $fillable = [
         'name', 'short_name', 'name_en', 'short_name_en', 'okei'

@@ -27,6 +27,6 @@ class ShellCommandOption implements ShellSettingInterface
      */
     public function getString(): string
     {
-        return '--'. $this->option . ($this->value ?: '=' . $this->value);
+        return '--'. $this->option . ($this->value ? '=' . $this->value : '');
     }
 }

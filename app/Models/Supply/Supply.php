@@ -4,8 +4,10 @@ namespace App\Models\Supply;
 
 use App\Models\Contract\Contract;
 use App\Models\Contragent;
-use App\Models\Product\Product;
+use App\Models\Traits\WithSupplierAndCustomer;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Query\Builder;
 
 /**
@@ -28,6 +30,8 @@ use Illuminate\Database\Query\Builder;
  */
 class Supply extends Model
 {
+    use WithSupplierAndCustomer;
+
     const TABLE = 'supplies';
 
     protected $fillable = [
@@ -35,25 +39,18 @@ class Supply extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function products()
+    public function products(): HasMany
     {
         return $this->hasMany(SupplyProduct::class);
     }
 
-    public function customer()
+    /**
+     * @return BelongsTo
+     */
+    public function customer(): BelongsTo
     {
         return $this->belongsTo(Contragent::class);
-    }
-
-    public function supplier()
-    {
-        return $this->belongsTo(Contragent::class);
-    }
-
-    public function contract()
-    {
-        return $this->belongsTo(Contract::class);
     }
 }

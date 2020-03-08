@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string short_name_en
  * @property int okei
  */
-class SizeOfUnit extends Model
+final class SizeOfUnit extends Model
 {
     protected $fillable = [
         'id', 'name', 'short_name', 'name_en', 'short_name_en'

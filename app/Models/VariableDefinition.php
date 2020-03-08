@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use App\Models\Product\Product;
+use App\Models\Traits\WithModelType;
 use App\Models\Vocab\VocabCurrency;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Query\Builder;
 
 /**
@@ -20,18 +22,18 @@ use Illuminate\Database\Query\Builder;
  *
  * @mixin Builder
  */
-class VariableDefinition extends Model
+final class VariableDefinition extends Model
 {
+    use WithModelType;
+
     const PRODUCT_ID = 'product_id';
     const SUPPLY_ORDER_NUMBER = 'supply_order_number';
     const SCORE_FOR_PAYMENT_ORDER_NUMBER = 'score_for_payment_order_number';
 
-    public function modelType()
-    {
-        return $this->belongsTo(ModelType::class);
-    }
-
-    public function getModel()
+    /**
+     * @return mixed
+     */
+    public function getModel(): Model
     {
         $class = $this->modelType->class;
 

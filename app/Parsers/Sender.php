@@ -10,12 +10,12 @@ abstract class Sender
     /**
      * Подготовка URL к отправке запроса GET-Запроса
      *
-     * @param $ch
-     * @param $url
-     * @param $params
+     * @param resource $ch
+     * @param string $url
+     * @param array $params
      * @return string
      */
-    protected static function prepareUrl($ch, $url, $params)
+    protected static function prepareUrl($ch, string $url, array $params): string
     {
         if ($params !== null && !empty($params)) {
             $url .= '?';
@@ -29,13 +29,13 @@ abstract class Sender
     }
 
     /**
-     * @param $url
-     * @param $params
-     * @param $headers
-     * @param null $options
+     * @param string $url
+     * @param array $params
+     * @param array $headers
+     * @param bool $options
      * @return false|resource
      */
-    public static function curlInit($url, $params, $headers, $options = null)
+    public static function curlInit(string $url, array $params, array $headers, bool $options = null)
     {
         $ch = curl_init();
 
@@ -54,7 +54,7 @@ abstract class Sender
     }
 
     /**
-     * @param $ch
+     * @param resource $ch
      * @return bool|string
      */
     public static function curlExec($ch)
@@ -70,7 +70,7 @@ abstract class Sender
     /**
      * Получить результат из запроса
      *
-     * @param $ch
+     * @param resource $ch
      * @param null $request
      * @param string $format
      * @return bool|mixed|string|null

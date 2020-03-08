@@ -19,11 +19,11 @@ class ExternalNewsSeeder extends CommonSeeder
     {
         for ($i = 0; $i < $count; $i++) {
             $post = new ExternalNews();
-            $post->title = $this->getFaker()->text(80);
-            $post->description = $this->getFaker()->text;
+            $post->title = $this->faker()->text(80);
+            $post->description = $this->faker()->text;
             $post->source_id = $this->getRelation(ExternalNewsSource::class);
-            $post->pub_date = $this->getFaker()->dateTime();
-            $post->link = $this->getFaker()->url;
+            $post->pub_date = $this->faker()->dateTime();
+            $post->link = $this->faker()->url;
             $post->save();
         }
     }

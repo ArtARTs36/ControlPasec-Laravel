@@ -4,6 +4,7 @@ namespace App;
 
 use App\Models\Vocab\VocabCurrency;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class CurrencyCourse
@@ -15,13 +16,16 @@ use Illuminate\Database\Eloquent\Model;
  * @property float value
  * @property string actual_date
  */
-class CurrencyCourse extends Model
+final class CurrencyCourse extends Model
 {
     protected $fillable = [
         'currency_id', 'nominal', 'value', 'actual_date'
     ];
 
-    public function currency()
+    /**
+     * @return BelongsTo
+     */
+    public function currency(): BelongsTo
     {
         return $this->belongsTo(VocabCurrency::class);
     }

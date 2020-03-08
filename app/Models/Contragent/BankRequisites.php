@@ -4,6 +4,7 @@ namespace App\Models\Contragent;
 
 use App\Models\Vocab\VocabBank;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Query\Builder;
 
 /**
@@ -16,7 +17,7 @@ use Illuminate\Database\Query\Builder;
  *
  * @mixin Builder
  */
-class BankRequisites extends Model
+final class BankRequisites extends Model
 {
     const PSEUDO = 'requisites';
 
@@ -24,7 +25,10 @@ class BankRequisites extends Model
         'score'
     ];
 
-    public function bank()
+    /**
+     * @return BelongsTo
+     */
+    public function bank(): BelongsTo
     {
         return $this->belongsTo(VocabBank::class);
     }

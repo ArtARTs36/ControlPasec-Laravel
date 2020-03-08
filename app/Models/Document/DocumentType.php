@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * @mixin Builder
  */
-class DocumentType extends Model
+final class DocumentType extends Model
 {
     const SCORE_FOR_PAYMENT_ID = 1;
     const SCORES_FOR_PAYMENTS_ID = 2;
@@ -27,9 +27,9 @@ class DocumentType extends Model
     const MANY_TORG_12_ID = 5;
 
     /**
-     * @return BelongsTo|DocumentLoader
+     * @return BelongsTo
      */
-    public function loader()
+    public function loader(): BelongsTo
     {
         return $this->belongsTo(DocumentLoader::class);
     }

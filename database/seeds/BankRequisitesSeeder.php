@@ -25,7 +25,7 @@ class BankRequisitesSeeder extends CommonSeeder
         foreach ($this->getAllObjectByRelation(Contragent::class) as $contragent) {
             $requisite = new BankRequisites();
             $requisite->bank_id = $this->getRelation(VocabBank::class);
-            $requisite->score = $this->getFaker()->bankAccountNumber;
+            $requisite->score = $this->faker()->bankAccountNumber;
             $requisite->contragent_id = $contragent;
 
             $requisite->save();

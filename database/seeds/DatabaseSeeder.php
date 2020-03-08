@@ -13,14 +13,12 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
         $this->vocabs();
-
-        $this->call(ContragentSeeder::class);
-        $this->call(MyContragentSeeder::class);
+        $this->contragents();
 
         $this->call(BankRequisitesSeeder::class);
 
         $this->call(ProductSeeder::class);
-        $this->call(ContractTemplateSeeder::class);
+        $this->contracts();
 
         $this->call(DocumentExtensionSeeder::class);
         $this->call(DocumentLoaderSeeder::class);
@@ -37,9 +35,11 @@ class DatabaseSeeder extends Seeder
         $this->call(ModelTypeSeeder::class);
 
         $this->textDataParser();
+
+        $this->call(SyncWithExternalSystemTypeSeeder::class);
     }
 
-    private function vocabs()
+    private function vocabs(): void
     {
         $this->call(VocabWordSeeder::class);
         $this->call(VocabBankSeeder::class);
@@ -50,7 +50,20 @@ class DatabaseSeeder extends Seeder
         $this->call(VocabGosStandardSeeder::class);
     }
 
-    private function textDataParser()
+    private function contragents(): void
+    {
+        $this->call(ContragentSeeder::class);
+        $this->call(MyContragentSeeder::class);
+        $this->call(ContragentGroupSeeder::class);
+    }
+
+    private function contracts(): void
+    {
+        $this->call(ContractTemplateSeeder::class);
+        $this->call(ContractSeeder::class);
+    }
+
+    private function textDataParser(): void
     {
         $this->call(TextDataParserComponentSeeder::class);
         $this->call(VariableDefinitionSeeder::class);

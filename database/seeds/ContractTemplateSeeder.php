@@ -18,11 +18,11 @@ class ContractTemplateSeeder extends CommonSeeder
         }
     }
 
-    private function randomData($count): void
+    private function randomData(int $count): void
     {
         for ($i = 0; $i < $count; $i++) {
             $template = new ContractTemplate();
-            $template->name = $this->getFaker()->name;
+            $template->name = $this->faker()->name;
             $template->contract_title = $template->name;
 
             $template->save();

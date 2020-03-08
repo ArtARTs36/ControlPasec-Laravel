@@ -9,9 +9,10 @@ class SupplierHelper
     /** @var Contragent */
     private $supplier;
 
+    /** @var Contragent\MyContragent */
     private $myContragent;
 
-    public function __construct($supplier)
+    public function __construct(Contragent $supplier)
     {
         $this->supplier = $supplier;
 
@@ -20,7 +21,7 @@ class SupplierHelper
             ->first();
     }
 
-    public function getSignature()
+    public function getSignature(): string
     {
         return $this->myContragent ? $this->myContragent->signature : $this->supplier->title;
     }
