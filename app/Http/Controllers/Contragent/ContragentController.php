@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Contragent;
 
-use App\ContragentManager;
+use App\Models\Contragent\ContragentManager;
 use App\Http\Requests\ContragentRequest;
 use App\Http\Responses\ActionResponse;
 use App\Models\Contragent;
 use App\Http\Controllers\Controller;
-use App\Models\Sync\SyncWithExternalSystem;
 use App\Models\Sync\SyncWithExternalSystemType;
 use App\Parsers\DaDataParser\DaDataParser;
 use App\Services\ContragentService;

@@ -23,6 +23,7 @@ class ContragentSeeder extends CommonSeeder
 
     public function randomData($count)
     {
+        $contragentIds = [];
         for ($i = 0; $i < $count; $i++) {
             $contragent = new App\Models\Contragent();
 
@@ -42,6 +43,24 @@ class ContragentSeeder extends CommonSeeder
             $contragent->address_postal = rand(111111, 999999);
             $contragent->status = 0;
             $contragent->save();
+
+            $contragentIds[] = $contragent->id;
+        }
+
+        foreach ($contragentIds as $id) {
+            $this->createManager($id);
+        }
+    }
+
+    private function createManager(int $contragentId): void
+    {
+        for ($i = 0; $i < rand(1, 5); $i++) {
+            $manager = new Contragent\ContragentManager();
+            $manager->name = $this->faker()->firstName;
+            $manager->patronymic = $this->faker()->domainWord;
+            $manager->family = $this->faker()->lastName;
+            $manager->contragent_id = $contragentId;
+            $manager->save();
         }
     }
 

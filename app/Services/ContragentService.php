@@ -2,28 +2,25 @@
 
 namespace App\Services;
 
-use App\ContragentManager;
+use App\Models\Contragent\ContragentManager;
 use App\Http\Requests\ContragentRequest;
 use App\Models\Contragent;
-use App\Parsers\DaDataParser\DaDataParser;
 
 class ContragentService
 {
-    public static function getContragent($title, $inn)
+    /**
+     * Получить полную информацию по контрагенту
+     * @param Contragent $contragent
+     * @return Contragent
+     */
+    public static function getFullInfo(Contragent $contragent): Contragent
     {
-        return Contragent::where('title', $title) ?? DaDataParser::findContragentByInnOrOGRN($inn);
-    }
-
-    public static function getFullInfo(Contragent $contragent)
-    {
-        $contragent->load([
+        return $contragent->load([
             ContragentManager::PSEUDO,
             Contragent\BankRequisites::PSEUDO => function ($query) {
                 return $query->with('bank');
             },
         ]);
-
-        return $contragent;
     }
 
     /**
@@ -32,7 +29,7 @@ class ContragentService
      * @param ContragentRequest $request
      * @return Contragent\BankRequisites|mixed
      */
-    public static function updateScoresInRequisiteByRequest(ContragentRequest $request)
+    public static function updateScoresInRequisiteByRequest(ContragentRequest $request): ?array
     {
         $data = $request->all();
         if (!isset($data['requisites']) && !is_array($data['requisites'])) {

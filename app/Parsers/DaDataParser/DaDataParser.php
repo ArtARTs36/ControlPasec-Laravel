@@ -2,7 +2,7 @@
 
 namespace App\Parsers\DaDataParser;
 
-use App\ContragentManager;
+use App\Models\Contragent\ContragentManager;
 use App\Models\Contragent;
 use App\Services\WordService;
 

@@ -2,85 +2,71 @@
 
 namespace App\Http\Controllers\Contragent;
 
-use App\ContragentManager;
+use App\Http\Requests\ContragentManagerRequest;
+use App\Http\Responses\ActionResponse;
+use App\Models\Contragent\ContragentManager;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class ContragentManagerController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param int $page
+     * @return LengthAwarePaginator
      */
-    public function index()
+    public function index(int $page = 1): LengthAwarePaginator
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return ContragentManager::with('contragent')
+            ->paginate(10, ['*'], null, $page);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param ContragentManagerRequest $request
+     * @return ActionResponse
      */
-    public function store(Request $request)
+    public function store(ContragentManagerRequest $request): ActionResponse
     {
-        //
+        $manager = new ContragentManager();
+        $manager->fill($request->toArray());
+
+        return new ActionResponse($manager->save(), $manager);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\ContragentManager  $contragentManager
-     * @return \Illuminate\Http\Response
+     * @param ContragentManager $contragentManager
+     * @return ContragentManager
      */
-    public function show(ContragentManager $contragentManager)
+    public function show(ContragentManager $contragentManager): ContragentManager
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\ContragentManager  $contragentManager
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ContragentManager $contragentManager)
-    {
-        //
+        return $contragentManager;
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ContragentManager  $contragentManager
-     * @return \Illuminate\Http\Response
+     * @param ContragentManagerRequest $request
+     * @param ContragentManager $contragentManager
+     * @return ActionResponse
      */
-    public function update(Request $request, ContragentManager $contragentManager)
+    public function update(ContragentManagerRequest $request, ContragentManager $contragentManager): ActionResponse
     {
-        //
+        return new ActionResponse($contragentManager->update($request->toArray()), $contragentManager);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ContragentManager  $contragentManager
-     * @return \Illuminate\Http\Response
+     * @param ContragentManager $contragentManager
+     * @return ActionResponse
      */
-    public function destroy(ContragentManager $contragentManager)
+    public function destroy(ContragentManager $contragentManager): ActionResponse
     {
-        //
+        return new ActionResponse($contragentManager->delete());
     }
 }

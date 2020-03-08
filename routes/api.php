@@ -18,6 +18,7 @@ Route::get('contragents/live-find/{term}', 'Contragent\ContragentController@live
 Route::apiResource('contragents', 'Contragent\ContragentController');
 Route::get('contragents/find-external-by-inn/{inn}', 'Contragent\ContragentController@findInExternalNetworkByInn');
 Route::apiResource('contragent-groups', 'Contragent\ContragentGroupController');
+Route::apiResource('contragent-managers', 'Contragent\ContragentManagerController');
 
 // API Для работы с договорами
 

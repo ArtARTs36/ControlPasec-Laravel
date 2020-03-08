@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\ContragentManager;
+use App\Models\Contragent\ContragentManager;
 use App\Models\Contract\Contract;
 use App\Models\Contragent\BankRequisites;
 use App\Models\Contragent\ContragentGroup;
