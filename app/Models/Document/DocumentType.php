@@ -25,6 +25,7 @@ final class DocumentType extends Model
     const TORG_12_ID = 3;
     const QUALITY_CERTIFICATE_ID = 4;
     const MANY_TORG_12_ID = 5;
+    const ONE_T_FORM_ID = 6;
 
     /**
      * @return BelongsTo

@@ -87,6 +87,19 @@ class DocumentCreator
     }
 
     /**
+     * @param array|object|int $forms
+     * @return $this
+     * @throws \Throwable
+     */
+    public function addOneTForms($forms): self
+    {
+        $this->beforeAttached();
+        $this->document->oneTForms()->attach($this->arrIds($this->arrIds($forms)));
+
+        return $this;
+    }
+
+    /**
      * @param $children
      * @return $this
      * @throws \Throwable

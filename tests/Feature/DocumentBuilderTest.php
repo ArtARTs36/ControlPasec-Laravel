@@ -68,4 +68,14 @@ class DocumentBuilderTest extends BaseTestCase
 
         self::assertFileExists($build);
     }
+
+    public function testBuildOneTForm(): void
+    {
+        $build = DocumentBuilder::build(
+            $this->getRandomDocumentByType(DocumentType::ONE_T_FORM_ID),
+            true
+        );
+
+        self::assertFileExists($build);
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models\Document;
 
+use App\Models\Supply\OneTForm;
 use App\Models\Supply\ProductTransportWaybill;
 use App\ScoreForPayment;
 use App\Service\Document\DocumentService;
@@ -26,6 +27,7 @@ use Ramsey\Uuid\Uuid;
  * @property ProductTransportWaybill[] productTransportWaybills
  * @property string paper_size
  * @property Document[] children
+ * @property OneTForm[] oneTForms
  *
  * @mixin Builder
  */
@@ -57,6 +59,16 @@ class Document extends Model
     public function productTransportWaybills(): BelongsToMany
     {
         return $this->belongsToMany(ProductTransportWaybill::class);
+    }
+
+    public function oneTForms(): BelongsToMany
+    {
+        return $this->belongsToMany(OneTForm::class);
+    }
+
+    public function getOneTForm(): OneTForm
+    {
+        return $this->oneTForms[0];
     }
 
     public function children(): BelongsToMany

@@ -1,9 +1,13 @@
 <?php
 
+use App\Models\Contragent;
 use App\Models\Document\DocumentType;
 use App\Models\Product\Product;
+use App\Models\Supply\OneTForm;
 use App\Models\Supply\ProductTransportWaybill;
+use App\Models\Supply\SupplyProduct;
 use App\Models\Vocab\VocabQuantityUnit;
+use App\ScoreForPayment;
 use App\Services\Document\DocumentCreator;
 
 /**
@@ -30,7 +34,7 @@ class SupplySeeder extends CommonSeeder
      */
     private function randomData(): void
     {
-        $contragents = $this->getAllObjectByRelation(\App\Models\Contragent::class);
+        $contragents = $this->getAllObjectByRelation(Contragent::class);
 
         foreach ($contragents as $contragent) {
             for ($i = 0; $i < rand(1, 5); $i++) {
@@ -46,6 +50,7 @@ class SupplySeeder extends CommonSeeder
                 $this->createScoreForPayment($supply->id);
                 $this->createProductTransportWaybill($supply->id);
                 $this->createQualityCertificate();
+                $this->createOneTForm($supply->id);
             }
         }
     }
@@ -59,7 +64,7 @@ class SupplySeeder extends CommonSeeder
     {
         $count = rand(1, 5);
         for ($i = 0; $i < $count; $i++) {
-            $product = new \App\Models\Supply\SupplyProduct();
+            $product = new SupplyProduct();
             $product->price = rand(50, 150);
             $product->quantity = rand(50, 1000);
             $product->product_id = $this->getRelation(Product::class);
@@ -79,7 +84,7 @@ class SupplySeeder extends CommonSeeder
      */
     private function createScoreForPayment($supplyId): void
     {
-        $score = new \App\ScoreForPayment();
+        $score = new ScoreForPayment();
         $score->date = $this->faker()->date();
         $score->supply_id = $supplyId;
         $score->order_number = $supplyId;
@@ -93,7 +98,7 @@ class SupplySeeder extends CommonSeeder
 
         if (rand(1, 5) == 2) {
             DocumentCreator::getInstance(DocumentType::SCORE_FOR_PAYMENT_ID)
-                ->addScores([$score->id, $this->getRelation(\App\ScoreForPayment::class)])
+                ->addScores([$score->id, $this->getRelation(ScoreForPayment::class)])
                 ->refreshTitle()
                 ->save();
         }
@@ -120,13 +125,29 @@ class SupplySeeder extends CommonSeeder
             ->save();
     }
 
-
     /**
      * @throws Throwable
      */
-    private function createQualityCertificate()
+    private function createQualityCertificate(): void
     {
         DocumentCreator::getInstance(DocumentType::QUALITY_CERTIFICATE_ID)
+            ->refreshTitle()
+            ->save();
+    }
+
+    /**
+     * @param int $supplyId
+     * @throws Throwable
+     */
+    private function createOneTForm(int $supplyId): void
+    {
+        $form = new OneTForm();
+        $form->order_number = $this->faker()->randomNumber();
+        $form->supply_id = $supplyId;
+        $form->save();
+
+        DocumentCreator::getInstance(DocumentType::ONE_T_FORM_ID)
+            ->addOneTForms($form)
             ->refreshTitle()
             ->save();
     }
