@@ -14,7 +14,7 @@ class ProjectInstallCommand extends Command
 
     protected $description = 'Project install';
 
-    public function handle()
+    public function handle(): bool
     {
         if ($this->isLocked()) {
             dump('Установка заблокирована!');
@@ -110,9 +110,12 @@ class ProjectInstallCommand extends Command
             mkdir($pathToBinFolder);
         }
 
-        if (($pathToBin = $pathToBinFolder . $name) && !file_exists($pathToBin)) {
+        $pathToBin = $pathToBinFolder . $name;
+        if (!file_exists($pathToBin)) {
             copy($pathToBuild, $pathToBin);
         }
+
+        chmod($pathToBin, 0755);
 
         return true;
     }

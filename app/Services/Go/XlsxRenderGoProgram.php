@@ -8,6 +8,7 @@ use App\Service\Document\DocumentService;
 class XlsxRenderGoProgram extends GoProgram
 {
     const NAME = 'xlsx_render';
+    const IS_BINARY = true;
 
     /** @var string */
     private $savePath;
