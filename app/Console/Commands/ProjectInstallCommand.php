@@ -104,8 +104,14 @@ class ProjectInstallCommand extends Command
             return false;
         }
 
-        if (($pathToBinFolder = $path . '/bin/'. $name) && !file_exists($pathToBinFolder)) {
-            copy($pathToBuild, $pathToBinFolder);
+        $pathToBinFolder = $path . '/bin/';
+
+        if (!file_exists($pathToBinFolder)) {
+            mkdir($pathToBinFolder);
+        }
+
+        if (($pathToBin = $pathToBinFolder . $name) && !file_exists($pathToBin)) {
+            copy($pathToBuild, $pathToBin);
         }
 
         return true;
