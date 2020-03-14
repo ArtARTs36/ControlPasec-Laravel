@@ -14,3 +14,6 @@
 ## Посмотреть документацию
 - php artisan serve --port=8000
 - http://localhost:8000/api/documentation
+
+## Вспомогательные команды
+- php artisan l5-swagger:generate
