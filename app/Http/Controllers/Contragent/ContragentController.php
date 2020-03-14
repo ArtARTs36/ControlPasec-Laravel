@@ -19,12 +19,13 @@ class ContragentController extends Controller
      * Отобразить список контрагентов
      *
      * @OA\Get(
-     *     path="/contragents/page-{page}",
+     *     path="/api/contragents/page-{page}",
      *     description="Contragents: index Page",
+     *     tags={"Contragent Actions"},
      *     @OA\Parameter(
      *      name="page",
      *      in="path",
-     *      required=false,
+     *      required=true,
      *      @OA\Schema(type="int")
      *     ),
      *     @OA\Response(response="default", description="View Contragents")
@@ -91,8 +92,9 @@ class ContragentController extends Controller
      * @return ActionResponse
      *
      * @OA\Delete(
-     *     path="/contragents/{id}",
+     *     path="/api/contragents/{id}",
      *     description="Contragents: delete item",
+     *     tags={"Contragent Actions"},
      *     @OA\Parameter(
      *      name="id",
      *      in="path",
@@ -115,8 +117,9 @@ class ContragentController extends Controller
      * @return ActionResponse
      *
      * @OA\Get(
-     *     path="/contragents/find-external-by-inn/{inn}",
+     *     path="/api/contragents/find-external-by-inn/{inn}",
      *     description="Contragents: find Contragent in external System",
+     *     tags={"Contragent Actions"},
      *     @OA\Parameter(
      *      name="inn",
      *      in="path",
@@ -157,8 +160,9 @@ class ContragentController extends Controller
      * @return ActionResponse
      *
      * @OA\Get(
-     *     path="/contragents/live-find/{term}",
+     *     path="/api/contragents/live-find/{term}",
      *     description="Contragents: live find in Base",
+     *     tags={"Contragent Actions"},
      *     @OA\Parameter(
      *      name="inn",
      *      in="path",
