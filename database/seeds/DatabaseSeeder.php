@@ -11,7 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        $this->users();
         $this->vocabs();
         $this->contragents();
 
@@ -55,6 +55,12 @@ class DatabaseSeeder extends Seeder
         $this->call(ContragentSeeder::class);
         $this->call(MyContragentSeeder::class);
         $this->call(ContragentGroupSeeder::class);
+    }
+
+    private function users(): void
+    {
+        $this->call(UserSeeder::class);
+        $this->call(RoleSeeder::class);
     }
 
     private function contracts(): void

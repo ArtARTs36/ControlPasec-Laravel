@@ -2,13 +2,24 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
+/**
+ * Class User
+ * @property string name
+ * @property string patronymic
+ * @property string family
+ * @property string email
+ * @property string password
+ * @property string remember_token
+ * @mixin Builder
+ */
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasRoles;
 
     const TABLE = 'users';
 
