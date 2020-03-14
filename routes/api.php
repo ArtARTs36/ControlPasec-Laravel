@@ -29,6 +29,7 @@ Route::apiResource('my-contragents', 'Contragent\MyContragentController');
 
 // API для поставок
 
+Route::get('supplies/page-{page}', 'Supply\SupplyController@index');
 Route::apiResource('supplies', 'Supply\SupplyController');
 Route::get('supplies/{supplyId}/torg12', 'Supply\SupplyController@createTorg12');
 Route::get('supplies/find-by-customer/{customerId}', 'Supply\SupplyController@findByCustomer');

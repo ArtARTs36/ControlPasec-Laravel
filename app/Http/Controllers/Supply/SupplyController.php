@@ -20,16 +20,17 @@ class SupplyController extends Controller
     /**
      * Получить список поставок
      *
+     * @param int $page
      * @return AnonymousResourceCollection
      */
-    public function index()
+    public function index(int $page = 1): AnonymousResourceCollection
     {
         $supplies = Supply::with([
             'customer',
             'products' => function ($query) {
                 return $query->with('quantityUnit');
             }
-        ])->paginate(10);
+        ])->paginate(10, ['*'], null, $page);
 
         return SupplyResource::collection($supplies);
     }
@@ -40,7 +41,7 @@ class SupplyController extends Controller
      * @param SupplyRequest $request
      * @return ActionResponse
      */
-    public function store(SupplyRequest $request)
+    public function store(SupplyRequest $request): ActionResponse
     {
         $supply = new Supply();
         $supply->supplier_id = env('ONE_SUPPLIER_ID');
@@ -58,7 +59,7 @@ class SupplyController extends Controller
      * @param Supply $supply
      * @return SupplyResource
      */
-    public function show(Supply $supply)
+    public function show(Supply $supply): SupplyResource
     {
         return new SupplyResource($supply->load([
             'products' => function ($query) {
@@ -74,7 +75,7 @@ class SupplyController extends Controller
      * @param Supply $supply
      * @return ActionResponse
      */
-    public function update(SupplyRequest $request, Supply $supply)
+    public function update(SupplyRequest $request, Supply $supply): ActionResponse
     {
         $requestData = $request->all();
         $supply->update($requestData);
@@ -93,11 +94,11 @@ class SupplyController extends Controller
     }
 
     /**
-     * @param $supplyId
+     * @param int $supplyId
      * @return DocumentResource
      * @throws \Throwable
      */
-    public function createTorg12($supplyId)
+    public function createTorg12(int $supplyId): DocumentResource
     {
         $waybill = ProductTransportWaybill::where('supply_id', $supplyId)->get()->first();
         if (null === $waybill) {
@@ -123,10 +124,10 @@ class SupplyController extends Controller
     }
 
     /**
-     * @param $customerId
+     * @param int $customerId
      * @return ActionResponse
      */
-    public function findByCustomer($customerId)
+    public function findByCustomer(int $customerId): ActionResponse
     {
         $supplies = Supply::where('customer_id', $customerId)->get();
 

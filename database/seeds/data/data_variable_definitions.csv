@@ -3,3 +3,6 @@ product_id;1;ID Стандартного продукта;App\Models\Product\Pro
 supply_order_number;1;Порядковый номер Поставки;null
 score_for_payment_order_number;1;Порядковый номер счета;null
 one_t_form_order_number;1;Порядковый номер формы 1-Т;null
+document_vacation_allowed;Украинский В.Н.;Отпуск груза разрешил;null
+document_accountat;Украинский В.Н;Главный (старший) бухгалтер;null
+document_cargo_dispatch;Украинский В.Н.;Отпуск груза произвел;null
