@@ -100,6 +100,19 @@ class DocumentCreator
     }
 
     /**
+     * @param array|object|int $forms
+     * @return $this
+     * @throws \Throwable
+     */
+    public function addQualityCertificates($forms): self
+    {
+        $this->beforeAttached();
+        $this->document->qualityCertificates()->attach($this->arrIds($this->arrIds($forms)));
+
+        return $this;
+    }
+
+    /**
      * @param $children
      * @return $this
      * @throws \Throwable

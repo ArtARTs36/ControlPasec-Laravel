@@ -4,6 +4,7 @@ namespace App\Models\Document;
 
 use App\Models\Supply\OneTForm;
 use App\Models\Supply\ProductTransportWaybill;
+use App\Models\Supply\QualityCertificate;
 use App\ScoreForPayment;
 use App\Service\Document\DocumentService;
 use App\Services\Service\SpellingService;
@@ -28,6 +29,7 @@ use Ramsey\Uuid\Uuid;
  * @property string paper_size
  * @property Document[] children
  * @property OneTForm[] oneTForms
+ * @property QualityCertificate[] qualityCertificates
  *
  * @mixin Builder
  */
@@ -64,6 +66,16 @@ class Document extends Model
     public function oneTForms(): BelongsToMany
     {
         return $this->belongsToMany(OneTForm::class);
+    }
+
+    public function qualityCertificates(): BelongsToMany
+    {
+        return $this->belongsToMany(QualityCertificate::class);
+    }
+
+    public function getQualityCertificate(): QualityCertificate
+    {
+        return $this->qualityCertificates[0];
     }
 
     public function getOneTForm(): OneTForm

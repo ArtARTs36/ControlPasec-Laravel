@@ -6,6 +6,8 @@ use App\Interfaces\ModelWithDocuments;
 use App\Models\Document\Document;
 use App\Models\Document\DocumentType;
 use App\Models\Supply\OneTForm;
+use App\Models\Supply\ProductTransportWaybill;
+use App\Models\Supply\QualityCertificate;
 
 abstract class AbstractSubDocumentService
 {
@@ -29,7 +31,7 @@ abstract class AbstractSubDocumentService
     {
         $class = static::TARGET_CLASS;
         $form = new $class;
-        $form->supply = $supplyId;
+        $form->supply_id = $supplyId;
         $form->save();
 
         return $form;
@@ -39,21 +41,29 @@ abstract class AbstractSubDocumentService
      * @param int $supplyId
      * @return ModelWithDocuments
      */
-    public static function getBySupply(int $supplyId): ModelWithDocuments
+    public static function getBySupply(int $supplyId): ?ModelWithDocuments
     {
         $class = static::TARGET_CLASS;
         return $class::where('supply_id', $supplyId)->first();
     }
 
     /**
-     * @param OneTForm $form
+     * @param ModelWithDocuments $form
      * @return Document
      * @throws \Throwable
      */
-    public static function createDocument(OneTForm $form): Document
+    public static function createDocument(ModelWithDocuments $form): Document
     {
+        $methods = [
+            OneTForm::class => 'addOneTForms',
+            ProductTransportWaybill::class => 'addProductTransportWaybills',
+            QualityCertificate::class => 'addQualityCertificates',
+        ];
+
+        $method = $methods[static::TARGET_CLASS];
+
         $document = DocumentCreator::getInstance(static::TARGET_TYPE)
-            ->addProductTransportWaybills($form->id)
+            ->$method($form->id)
             ->build(true)
             ->get();
 

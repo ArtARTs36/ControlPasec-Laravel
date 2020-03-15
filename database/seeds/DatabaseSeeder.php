@@ -24,9 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call(DocumentLoaderSeeder::class);
         $this->call(DocumentTypeSeeder::class);
 
-        $this->call(SupplySeeder::class);
-
-        $this->call(DocumentSeeder::class);
         $this->call(CurrencyCourseSeeder::class);
 
         $this->call(ExternalNewsSourceSeeder::class);
@@ -37,6 +34,8 @@ class DatabaseSeeder extends Seeder
         $this->textDataParser();
 
         $this->call(SyncWithExternalSystemTypeSeeder::class);
+
+        $this->call(SupplySeeder::class);
     }
 
     private function vocabs(): void

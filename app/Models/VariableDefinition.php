@@ -30,6 +30,7 @@ final class VariableDefinition extends Model
     const SUPPLY_ORDER_NUMBER = 'supply_order_number';
     const SCORE_FOR_PAYMENT_ORDER_NUMBER = 'score_for_payment_order_number';
     const ONE_T_FORM_ORDER_NUMBER = 'one_t_form_order_number';
+    const QUALITY_CERTIFICATE_ORDER_NUMBER = 'quality_certificate_order_number';
 
     /**
      * @return mixed

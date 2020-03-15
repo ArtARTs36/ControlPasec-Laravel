@@ -49,7 +49,7 @@ class SupplySeeder extends CommonSeeder
                 $this->createRandomSupplyProducts($supply->id);
                 $this->createScoreForPayment($supply->id);
                 $this->createProductTransportWaybill($supply->id);
-                $this->createQualityCertificate();
+                $this->createQualityCertificate($supply->id);
                 $this->createOneTForm($supply->id);
             }
         }
@@ -126,10 +126,15 @@ class SupplySeeder extends CommonSeeder
     }
 
     /**
+     * @param int $supplyId
      * @throws Throwable
      */
-    private function createQualityCertificate(): void
+    private function createQualityCertificate(int $supplyId): void
     {
+        $certificate = new \App\Models\Supply\QualityCertificate();
+        $certificate->supply_id = $supplyId;
+        $certificate->save();
+
         DocumentCreator::getInstance(DocumentType::QUALITY_CERTIFICATE_ID)
             ->refreshTitle()
             ->save();
@@ -142,7 +147,6 @@ class SupplySeeder extends CommonSeeder
     private function createOneTForm(int $supplyId): void
     {
         $form = new OneTForm();
-        $form->order_number = $this->faker()->randomNumber();
         $form->supply_id = $supplyId;
         $form->save();
 

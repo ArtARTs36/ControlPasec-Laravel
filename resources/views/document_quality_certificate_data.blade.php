@@ -2,7 +2,8 @@
 
 use App\Services\Document\TemplateService;
 
-$supply = \App\Services\SupplyService::fullLoadSupply(rand(1, 100));
+$document->load('qualityCertificates');
+$supply = $document->getQualityCertificate()->supply;
 
 $data['variables'] = [
     'ЗАКАЗЧИК' => $supply->customer->title,

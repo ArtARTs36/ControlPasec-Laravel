@@ -11,9 +11,12 @@ use App\Models\Document\DocumentType;
 use App\Models\Supply\ProductTransportWaybill;
 use App\Models\Supply\Supply;
 use App\Service\Document\DocumentService;
+use App\Services\Document\DocumentBuilder;
 use App\Services\Document\DocumentCreator;
 use App\Services\OneTFormService;
+use App\Services\QualityCertificateService;
 use App\Services\SupplyService;
+use App\Services\Torg12Service;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class SupplyController extends Controller
@@ -101,7 +104,7 @@ class SupplyController extends Controller
      */
     public function createTorg12(int $supplyId): DocumentResource
     {
-        $waybill = ProductTransportWaybill::where('supply_id', $supplyId)->get()->first();
+        $waybill = ProductTransportWaybill::where('supply_id', $supplyId)->first();
         if (null === $waybill) {
             $waybill = new ProductTransportWaybill();
             $waybill->supply_id = $supplyId;
@@ -109,18 +112,13 @@ class SupplyController extends Controller
             $waybill->save();
         }
 
-        $document = $waybill->getDocument();
-
         if (!$waybill->isExistsDocument()) {
-            $document = DocumentCreator::getInstance(DocumentType::TORG_12_ID)
-                ->addProductTransportWaybills($waybill->id)
-                ->build(true)
-                ->get();
+            Torg12Service::createDocument($waybill);
         }
 
-        DocumentService::buildIfNotExists($document);
+        DocumentService::buildIfNotExists($waybill->getDocument());
 
-        return new DocumentResource($document);
+        return new DocumentResource($waybill->getDocument());
     }
 
     /**
@@ -150,6 +148,35 @@ class SupplyController extends Controller
         DocumentService::buildIfNotExists($form->getDocument());
 
         return new DocumentResource($form->getDocument());
+    }
+
+    /**
+     * Получить документ "Удостоверение качества"
+     * @OA\Get(
+     *     path="/api/supplies/{supplyId}/qualityCertificate",
+     *     description="Get Quality Certificate",
+     *     tags={"Supplies Actions"},
+     *     @OA\Parameter(
+     *      name="supplyId",
+     *      in="path",
+     *      required=true,
+     *     ),
+     *     @OA\Response(response="default", description="Document Resource")
+     * )
+     * @param int $supplyId
+     * @return DocumentResource
+     * @throws \Throwable
+     */
+    public function getQualityCertificate(int $supplyId): DocumentResource
+    {
+        $certificate = QualityCertificateService::getOrCreate($supplyId);
+        if (!$certificate->isExistsDocument()) {
+            QualityCertificateService::createDocument($certificate);
+        }
+
+        DocumentBuilder::build($certificate->getDocument());
+
+        return new DocumentResource($certificate->getDocument());
     }
 
     /**
