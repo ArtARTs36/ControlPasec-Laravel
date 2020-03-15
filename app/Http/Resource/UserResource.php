@@ -28,7 +28,7 @@ class UserResource extends JsonResource
             'name' => $this->name,
             'patronymic' => $this->patronymic,
             'family' => $this->family,
-            'position' => 'Position'
+            'position' => $this->position
         ];
     }
 }

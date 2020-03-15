@@ -16,6 +16,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property string email
  * @property string password
  * @property string remember_token
+ * @property string position
  * @mixin Builder
  */
 class User extends Authenticatable implements JWTSubject
