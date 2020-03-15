@@ -2,12 +2,14 @@
 
 namespace App\Models\Supply;
 
+use App\Interfaces\ModelWithDocuments;
 use App\Models\Document\Document;
 use App\Models\Traits\WithDocuments;
 use App\Models\Traits\WithOrderNumber;
 use App\Models\Traits\WithSupply;
 use App\Models\VariableDefinition;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder;
 
 /**
  * Class OneTForm
@@ -16,8 +18,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property Document[] documents
  * @property int supply_id
  * @property Supply supply
+ *
+ * @mixin Builder
  */
-class OneTForm extends Model
+class OneTForm extends Model implements ModelWithDocuments
 {
     use WithDocuments, WithOrderNumber, WithSupply;
 

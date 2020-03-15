@@ -40,6 +40,7 @@ Route::apiResource('my-contragents', 'Contragent\MyContragentController');
 Route::get('supplies/page-{page}', 'Supply\SupplyController@index');
 Route::apiResource('supplies', 'Supply\SupplyController');
 Route::get('supplies/{supplyId}/torg12', 'Supply\SupplyController@createTorg12');
+Route::get('supplies/{supplyId}/oneTForm', 'Supply\SupplyController@getOneTForm');
 Route::get('supplies/find-by-customer/{customerId}', 'Supply\SupplyController@findByCustomer');
 
 // API для товаров

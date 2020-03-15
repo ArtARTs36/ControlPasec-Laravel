@@ -24,4 +24,9 @@ trait WithDocuments
     {
         return $this->documents[0] ?? null;
     }
+
+    public function isExistsDocument(): bool
+    {
+        return isset($this->documents[0]);
+    }
 }

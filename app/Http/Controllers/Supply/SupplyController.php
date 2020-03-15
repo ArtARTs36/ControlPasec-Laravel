@@ -12,6 +12,7 @@ use App\Models\Supply\ProductTransportWaybill;
 use App\Models\Supply\Supply;
 use App\Service\Document\DocumentService;
 use App\Services\Document\DocumentCreator;
+use App\Services\OneTFormService;
 use App\Services\SupplyService;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
@@ -103,7 +104,6 @@ class SupplyController extends Controller
         $waybill = ProductTransportWaybill::where('supply_id', $supplyId)->get()->first();
         if (null === $waybill) {
             $waybill = new ProductTransportWaybill();
-            $waybill->order_number = 1;
             $waybill->supply_id = $supplyId;
             $waybill->date = new \DateTime();
             $waybill->save();
@@ -111,7 +111,7 @@ class SupplyController extends Controller
 
         $document = $waybill->getDocument();
 
-        if (null === $document) {
+        if (!$waybill->isExistsDocument()) {
             $document = DocumentCreator::getInstance(DocumentType::TORG_12_ID)
                 ->addProductTransportWaybills($waybill->id)
                 ->build(true)
@@ -121,6 +121,35 @@ class SupplyController extends Controller
         DocumentService::buildIfNotExists($document);
 
         return new DocumentResource($document);
+    }
+
+    /**
+     * Получить документ в форме 1-Т
+     * @OA\Get(
+     *     path="/api/supplies/{supplyId}/oneTForm",
+     *     description="Get Document T-12",
+     *     tags={"Supplies Actions"},
+     *     @OA\Parameter(
+     *      name="supplyId",
+     *      in="path",
+     *      required=true,
+     *     ),
+     *     @OA\Response(response="default", description="Document Resource")
+     * )
+     * @param int $supplyId
+     * @return DocumentResource
+     * @throws \Throwable
+     */
+    public function getOneTForm(int $supplyId): DocumentResource
+    {
+        $form = OneTFormService::getOrCreate($supplyId);
+        if (!$form->isExistsDocument()) {
+            OneTFormService::createDocument($form);
+        }
+
+        DocumentService::buildIfNotExists($form->getDocument());
+
+        return new DocumentResource($form->getDocument());
     }
 
     /**
