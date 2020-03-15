@@ -13,8 +13,9 @@ class ExternalNewsController extends Controller
      * Отобразить новости из внешних источников
      *
      * @OA\Get(
-     *     path="/external-news/page-{page}",
+     *     path="/api/external-news/page-{page}",
      *     description="External News: index Page",
+     *     tags={"External News"},
      *     @OA\Response(response="default", description="View News"),
      *     @OA\Parameter(
      *      name="page",
@@ -36,8 +37,9 @@ class ExternalNewsController extends Controller
      * Отобразить несколько последних новостей из внешних источников
      *
      * @OA\Get(
-     *     path="/external-news/chart/{count}",
+     *     path="/api/external-news/chart/{count}",
      *     description="External News: index Page",
+     *     tags={"External News"},
      *     @OA\Parameter(
      *      name="count",
      *      in="path",

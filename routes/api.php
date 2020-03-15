@@ -9,8 +9,11 @@ Route::group([
     Route::post('registration', 'Auth\AuthController@registration');
     Route::post('logout', 'Auth\AuthController@logout');
     Route::post('refresh', 'Auth\AuthController@refresh');
-    Route::post('me', 'Auth\AuthController@me');
+    Route::post('token/issue', 'Auth\AuthController@issueToken');
+    Route::post('token/refresh', 'Auth\AuthController@refreshToken');
 });
+
+Route::get('me', 'User\UserController@me');
 
 // API для для работы с контрагентами
 
