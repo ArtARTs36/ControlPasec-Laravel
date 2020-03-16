@@ -1,0 +1,13 @@
+.git
+docker-compose.yml
+node_modules/*
+storage/*
+/storage/*
+./storage/*
+./storage
+.idea
+.idea/*
+docker-files
+docker-files/*
+bootstrap/cache
+.dockerignore
