@@ -7,7 +7,7 @@ Route::group([
 ], function () {
     Route::post('login', 'Auth\AuthController@login');
     Route::post('registration', 'Auth\AuthController@registration');
-    Route::post('logout', 'Auth\AuthController@logout');
+    Route::post('token/revoke', 'Auth\AuthController@revokeToken');
     Route::post('refresh', 'Auth\AuthController@refresh');
     Route::post('token/issue', 'Auth\AuthController@issueToken');
     Route::post('token/refresh', 'Auth\AuthController@refreshToken');
