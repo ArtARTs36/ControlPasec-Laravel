@@ -6,6 +6,9 @@ use App\Collection\VocabCurrencyExternalCollection;
 use App\Models\Vocab\VocabCurrency;
 use Tests\BaseTestCase;
 
+/**
+ * @group BaseTest
+ */
 class VocabCurrencyExternalCollectionTest extends BaseTestCase
 {
     public function testIterable()

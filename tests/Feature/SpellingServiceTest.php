@@ -5,6 +5,9 @@ namespace Tests\Feature;
 use App\Services\Service\SpellingService;
 use Tests\BaseTestCase;
 
+/**
+ * @group BaseTest
+ */
 class SpellingServiceTest extends BaseTestCase
 {
     public function testRusSymbolsToEng(): void

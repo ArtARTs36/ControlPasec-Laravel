@@ -4,6 +4,9 @@ namespace Tests\Feature;
 
 use Tests\BaseTestCase;
 
+/**
+ * @group BaseTest
+ */
 class ProductTest extends BaseTestCase
 {
     public function testGetAll()

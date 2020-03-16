@@ -7,6 +7,9 @@ use App\User;
 use Tests\BaseTestCase;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
+/**
+ * @group BaseTest
+ */
 class AuthTest extends BaseTestCase
 {
     /**

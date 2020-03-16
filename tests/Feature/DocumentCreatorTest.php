@@ -8,6 +8,9 @@ use App\Service\Document\DocumentService;
 use App\Services\Document\DocumentCreator;
 use Tests\BaseTestCase;
 
+/**
+ * @group BaseTest
+ */
 class DocumentCreatorTest extends BaseTestCase
 {
     public function testCreateDocument()

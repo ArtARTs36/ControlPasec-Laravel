@@ -8,6 +8,9 @@ use App\Services\Document\DocumentBuilder;
 use App\Services\Document\DocumentPsFileMaker;
 use Tests\BaseTestCase;
 
+/**
+ * @group BaseTest
+ */
 class DocumentPsFileMakerTest extends BaseTestCase
 {
     public function testJoin()

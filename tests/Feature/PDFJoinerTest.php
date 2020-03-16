@@ -8,6 +8,9 @@ use App\Service\Document\DocumentService;
 use App\Services\Document\DocumentJoiner\PDFJoiner;
 use Tests\BaseTestCase;
 
+/**
+ * @group BaseTest
+ */
 class PDFJoinerTest extends BaseTestCase
 {
     public function testJoin()

@@ -4,6 +4,9 @@ namespace Tests\Feature;
 
 use Tests\BaseTestCase;
 
+/**
+ * @group BaseTest
+ */
 class ExternalNewsTest extends BaseTestCase
 {
     public function testChart(): void

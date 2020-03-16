@@ -8,6 +8,9 @@ use App\Services\Document\DocumentBuilder;
 use App\Services\Go\XlsxRenderGoProgram;
 use Tests\BaseTestCase;
 
+/**
+ * @group BaseTest
+ */
 class GoProgramTest extends BaseTestCase
 {
     public function testCreateByDocument()

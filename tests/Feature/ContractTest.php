@@ -6,6 +6,9 @@ use App\Models\Contract\Contract;
 use App\Models\Contragent;
 use Tests\BaseTestCase;
 
+/**
+ * @group BaseTest
+ */
 class ContractTest extends BaseTestCase
 {
     /**

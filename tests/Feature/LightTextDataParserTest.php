@@ -9,6 +9,9 @@ use App\Models\TextDataParser\TextDataParserComponent;
 use App\Services\TextDataParser\LightTextDataParser;
 use Tests\BaseTestCase;
 
+/**
+ * @group BaseTest
+ */
 class LightTextDataParserTest extends BaseTestCase
 {
     public function testParseFirstComponent()

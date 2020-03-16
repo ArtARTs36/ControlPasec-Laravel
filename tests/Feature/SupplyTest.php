@@ -8,6 +8,9 @@ use App\Models\Supply\SupplyProduct;
 use App\Models\Vocab\VocabQuantityUnit;
 use Tests\BaseTestCase;
 
+/**
+ * @group BaseTest
+ */
 class SupplyTest extends BaseTestCase
 {
     public function testGetAll()

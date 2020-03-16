@@ -6,6 +6,9 @@ use App\Models\News\ExternalNews;
 use App\Services\ExternalNewsCreator;
 use Tests\BaseTestCase;
 
+/**
+ * @group BaseTest
+ */
 class ExternalNewsCreatorTest extends BaseTestCase
 {
     public function testCreate()

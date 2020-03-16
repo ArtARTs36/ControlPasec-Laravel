@@ -7,6 +7,9 @@ use App\Services\TextDataParser\TextDataParserFactory;
 use App\Services\TextDataParser\TextDataParserInterface;
 use Tests\BaseTestCase;
 
+/**
+ * @group BaseTest
+ */
 class TextDataParserTest extends BaseTestCase
 {
     public function testFactoryGet()

@@ -6,6 +6,9 @@ use App\Http\Resource\ContragentGroupResource;
 use App\Models\Contragent\ContragentGroup;
 use Tests\BaseTestCase;
 
+/**
+ * @group BaseTest
+ */
 class ContragentGroupTest extends BaseTestCase
 {
     const API_URL = '/api/contragent-groups';

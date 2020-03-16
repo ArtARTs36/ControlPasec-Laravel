@@ -5,6 +5,9 @@ namespace Tests\Feature;
 use App\Services\Document\TemplateService;
 use Tests\BaseTestCase;
 
+/**
+ * @group BaseTest
+ */
 class TemplateServiceTest extends BaseTestCase
 {
     public function testNumberToWord()

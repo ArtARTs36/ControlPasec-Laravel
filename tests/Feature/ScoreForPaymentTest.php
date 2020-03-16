@@ -7,6 +7,9 @@ use App\ScoreForPayment;
 use App\Services\ScoreForPaymentService;
 use Tests\BaseTestCase;
 
+/**
+ * @group BaseTest
+ */
 class ScoreForPaymentTest extends BaseTestCase
 {
     public function testCreate()

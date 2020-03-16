@@ -8,6 +8,9 @@ use App\Services\Document\DocumentBuilder;
 use Tests\BaseTestCase;
 use Tests\Traits\RandomDocumentTrait;
 
+/**
+ * @group BaseTest
+ */
 class DocumentBuilderTest extends BaseTestCase
 {
     use RandomDocumentTrait;

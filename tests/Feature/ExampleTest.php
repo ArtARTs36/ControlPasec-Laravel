@@ -5,6 +5,9 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * @group BaseTest
+ */
 class ExampleTest extends TestCase
 {
     /**
