@@ -28,6 +28,7 @@ services:
       - ./docker-files/nginx:/etc/nginx/conf.d
     ports:
       - "8888:8888"
+      - "8080:8080"
     networks:
       testing_net:
         ipv4_address: 172.28.1.3

@@ -19,3 +19,6 @@ yarn-error.log
 /resources/views/tmp_files_names
 install.lock
 .php_cs.cache
+/frontend
+/frontend/*
+
