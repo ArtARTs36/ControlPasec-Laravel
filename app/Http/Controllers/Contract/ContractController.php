@@ -14,11 +14,13 @@ class ContractController extends Controller
     /**
      * Отобразить договора
      *
+     * @param int $page
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function index()
+    public function index(int $page = 1)
     {
-        return Contract::with(['customer', 'supplier'])->paginate(10);
+        return Contract::with(['customer', 'supplier'])
+            ->paginate(10, ['*'], null, $page);
     }
 
     /**
