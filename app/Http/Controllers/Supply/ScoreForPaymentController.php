@@ -21,15 +21,16 @@ class ScoreForPaymentController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param int $page
      * @return LengthAwarePaginator
      */
-    public function index()
+    public function index($page = 1)
     {
         return ScoreForPayment::with([
             'supply' => function ($query) {
                 return $query->with(['products', 'supplier', 'customer']);
             }
-        ])->paginate(10);
+        ])->paginate(10, ['*'], null, $page);
     }
 
     /**
