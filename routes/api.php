@@ -55,6 +55,10 @@ Route::apiResource('vocab/size-of-units', 'Vocab\SizeOfUnitController');
 
 // API Для счетов на оплату
 
+Route::prefix('score-for-payments')->group(function () {
+    Route::get('page-{page}', 'Supply\ScoreForPaymentController@index');
+});
+
 Route::apiResource('score-for-payments', 'Supply\ScoreForPaymentController');
 Route::get(
     'score-for-payments/download-by-supply/{supplyId}',
@@ -103,3 +107,18 @@ Route::apiResource('external-news', 'News\ExternalNewsController');
 // API для статистики
 
 Route::get('stat/general', 'Stat\StatController@general');
+
+//
+
+Route::apiResource(
+    'text-data-parser-components',
+    'TextDataParser\TextDataParserComponentController'
+);
+
+//
+
+Route::prefix('variable-definitions')->group(function () {
+    Route::get('page-{page}', 'VariableDefinitionController@index');
+});
+
+Route::apiResource('variable-definitions', 'VariableDefinitionController');

@@ -32,6 +32,10 @@ final class VariableDefinition extends Model
     const ONE_T_FORM_ORDER_NUMBER = 'one_t_form_order_number';
     const QUALITY_CERTIFICATE_ORDER_NUMBER = 'quality_certificate_order_number';
 
+    protected $fillable = [
+        'value',
+    ];
+
     /**
      * @return mixed
      */

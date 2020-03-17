@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\VariableDefinitionRequest;
+use App\Http\Responses\ActionResponse;
 use App\Models\VariableDefinition;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
@@ -11,11 +13,12 @@ class VariableDefinitionController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param int $page
      * @return LengthAwarePaginator
      */
-    public function index()
+    public function index(int $page = 1)
     {
-        return VariableDefinition::paginate(10);
+        return VariableDefinition::paginate(10, ['*'], null, $page);
     }
 
     /**
@@ -42,13 +45,15 @@ class VariableDefinitionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param VariableDefinition $textDataParserDefaultVariable
-     * @return void
+     * @param VariableDefinitionRequest $request
+     * @param VariableDefinition $variableDefinition
+     * @return ActionResponse
      */
-    public function update(Request $request, VariableDefinition $textDataParserDefaultVariable)
+    public function update(VariableDefinitionRequest $request, VariableDefinition $variableDefinition): ActionResponse
     {
-        //
+        $variableDefinition->update(['value' => $request->value]);
+
+        return new ActionResponse(true, $variableDefinition);
     }
 
     /**
