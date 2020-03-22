@@ -21,4 +21,4 @@ install.lock
 .php_cs.cache
 /frontend
 /frontend/*
-
+/app-versions/installed_versions.json

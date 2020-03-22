@@ -1,5 +1,6 @@
 {
     "name": "ControlPasec",
+    "version": "1.0.0",
     "type": "project",
     "description": "ControlPasec",
     "license": "MIT",
@@ -38,7 +39,8 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "AppVersions\\": "app-versions/"
         },
         "classmap": [
             "database/seeds",
