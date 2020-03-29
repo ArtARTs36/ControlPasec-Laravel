@@ -29,6 +29,7 @@ class UserSeeder extends CommonSeeder
         $user->email = 'admin@admin.ru';
         $user->position = 'Администратор';
         $user->remember_token = Str::random(10);
+        $user->is_active = true;
         $user->save();
     }
 }

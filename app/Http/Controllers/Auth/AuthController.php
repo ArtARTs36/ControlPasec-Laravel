@@ -68,7 +68,10 @@ class AuthController extends Controller
             return $this->sendLockoutResponse($request);
         }
 
-        $credentials = $request->only('email', 'password');
+        $credentials = array_merge($request->only('email', 'password'), [
+            'is_active' => true
+        ]);
+
         $isAuthorize = $this->guard()->attempt($credentials);
 
         if ($isAuthorize) {

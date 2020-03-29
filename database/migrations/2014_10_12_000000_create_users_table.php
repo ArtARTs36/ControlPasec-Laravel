@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('patronymic');
             $table->string('family');
             $table->string('email')->unique();
+            $table->boolean('is_active');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('position')->nullable();

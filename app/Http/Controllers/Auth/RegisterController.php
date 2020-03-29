@@ -2,35 +2,16 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\UserRegistered;
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
+use App\Http\Requests\UserRegisterRequest;
+use App\Http\Responses\UserRegisteredResponse;
+use App\Models\User\Role;
 use App\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
-
-    use RegistersUsers;
-
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
-
     /**
      * Create a new controller instance.
      *
@@ -41,33 +22,39 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
+    public function store(UserRegisterRequest $request)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+        $role = Role::find($request->role_id);
+        if ($role === null || $role->isNotAllowedForSignUp()) {
+            return new UserRegisteredResponse();
+        }
+
+        $user = $this->create($request->toArray());
+
+        event(new UserRegistered($user));
+
+        return new UserRegisteredResponse(true);
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return User
      */
-    protected function create(array $data)
+    public function create(array $data): User
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
+            'patronymic' => $data['patronymic'],
+            'family' => $data['family'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'is_active' => false, // @business-logic
         ]);
+
+        $user->roles()->attach($data['role_id']);
+
+        return $user;
     }
 }

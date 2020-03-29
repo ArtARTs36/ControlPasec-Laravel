@@ -1,5 +1,5 @@
-name;guard_name
-admin;api
-manager;api
-customer;api
-group_customer;api
+name;guard_name;title;is_allowed_for_sign_up
+admin;api;Администратор;false
+manager;api;Менеджер;true
+customer;api;Заказчик;true
+group_customer;api;Представитель группы заказчиков;true

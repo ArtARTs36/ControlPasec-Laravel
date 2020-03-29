@@ -17,6 +17,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property string password
  * @property string remember_token
  * @property string position
+ * @property bool is_active
  * @mixin Builder
  */
 class User extends Authenticatable implements JWTSubject
@@ -31,7 +32,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'patronymic', 'family', 'is_active',
     ];
 
     /**
@@ -70,5 +71,14 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function getFullName()
+    {
+        return implode(' ', [
+            $this->name,
+            $this->patronymic,
+            $this->family,
+        ]);
     }
 }
