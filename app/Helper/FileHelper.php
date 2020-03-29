@@ -39,17 +39,19 @@ class FileHelper
             foreach ($cleanPath as $file) {
                 $finalPath = $path . '/' . $file;
                 $result = self::findFilesWithCallable($finalPath, $files, $checkFileFunction);
-                if (!is_null($result)) $files[] = $result;
+                if (!is_null($result)) {
+                    $files[] = $result;
+                }
             }
-        } else if (is_file($path) && is_callable($checkFileFunction) && $checkFileFunction($path)) {
+        } elseif (is_file($path) && is_callable($checkFileFunction) && $checkFileFunction($path)) {
             return $path;
         }
     }
 
-    public static function findPhpClass($path): array
+    public static function findPhpClass(string $path): array
     {
         $classPaths = [];
-        FileHelper::findFilesWithCallable($path, $classPaths, function($file) {
+        FileHelper::findFilesWithCallable($path, $classPaths, function ($file) {
             return FileHelper::fileIsPhpClasses($file);
         });
 
