@@ -2,11 +2,14 @@
 
 namespace App;
 
+use App\Interfaces\ModelWithDocuments;
 use App\Models\Contract\Contract;
 use App\Models\Document\Document;
+use App\Models\Document\DocumentType;
 use App\Models\Supply\Supply;
 use App\Models\Traits\WithDocuments;
 use App\Models\Traits\WithOrderNumber;
+use App\Models\Traits\WithSupply;
 use App\Models\VariableDefinition;
 use App\Services\VariableDefinitionService;
 use Illuminate\Database\Eloquent\Model;
@@ -27,20 +30,16 @@ use Illuminate\Database\Query\Builder;
  *
  * @mixin Builder
  */
-final class ScoreForPayment extends Model
+final class ScoreForPayment extends Model implements ModelWithDocuments
 {
-    use WithDocuments, WithOrderNumber;
+    use WithDocuments, WithOrderNumber, WithSupply;
 
     const ORDER_NUMBER_TYPE = VariableDefinition::SCORE_FOR_PAYMENT_ORDER_NUMBER;
+    const TARGET_TYPE = DocumentType::SCORE_FOR_PAYMENT_ID;
 
     protected $fillable = [
         'supply_id', 'contract_id', 'date'
     ];
-
-    public function supply(): BelongsTo
-    {
-        return $this->belongsTo(Supply::class);
-    }
 
     public function contract(): BelongsTo
     {

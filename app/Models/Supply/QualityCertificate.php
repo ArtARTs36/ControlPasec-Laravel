@@ -3,6 +3,7 @@
 namespace App\Models\Supply;
 
 use App\Interfaces\ModelWithDocuments;
+use App\Models\Document\DocumentType;
 use App\Models\Traits\WithDocuments;
 use App\Models\Traits\WithOrderNumber;
 use App\Models\Traits\WithSupply;
@@ -19,6 +20,8 @@ use Illuminate\Database\Eloquent\Model;
 class QualityCertificate extends Model implements ModelWithDocuments
 {
     use WithDocuments, WithOrderNumber, WithSupply;
+
+    const TARGET_TYPE = DocumentType::QUALITY_CERTIFICATE_ID;
 
     const ORDER_NUMBER_TYPE = VariableDefinition::QUALITY_CERTIFICATE_ORDER_NUMBER;
 }

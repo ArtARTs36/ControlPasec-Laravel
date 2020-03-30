@@ -2,13 +2,12 @@
 
 namespace App\Models\Supply;
 
-use App\Models\Document\Document;
+use App\Interfaces\ModelWithDocuments;
+use App\Models\Document\DocumentType;
 use App\Models\Traits\WithDocuments;
 use App\Models\Traits\WithOrderNumber;
 use App\Models\Traits\WithSupply;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Query\Builder;
 
 /**
@@ -26,9 +25,11 @@ use Illuminate\Database\Query\Builder;
  *
  * @mixin Builder
  */
-final class ProductTransportWaybill extends Model
+final class ProductTransportWaybill extends Model implements ModelWithDocuments
 {
     use WithDocuments, WithOrderNumber, WithSupply;
+
+    public const TARGET_TYPE = DocumentType::TORG_12_ID;
 
     protected $fillable = [
         'order_number', 'date', 'supply_id'

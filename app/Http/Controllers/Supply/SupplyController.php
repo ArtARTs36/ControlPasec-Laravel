@@ -4,19 +4,10 @@ namespace App\Http\Controllers\Supply;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SupplyRequest;
-use App\Http\Resource\DocumentResource;
 use App\Http\Resource\SupplyResource;
 use App\Http\Responses\ActionResponse;
-use App\Models\Document\DocumentType;
-use App\Models\Supply\ProductTransportWaybill;
 use App\Models\Supply\Supply;
-use App\Service\Document\DocumentService;
-use App\Services\Document\DocumentBuilder;
-use App\Services\Document\DocumentCreator;
-use App\Services\OneTFormService;
-use App\Services\QualityCertificateService;
 use App\Services\SupplyService;
-use App\Services\Torg12Service;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class SupplyController extends Controller
@@ -95,88 +86,6 @@ class SupplyController extends Controller
     public function destroy(Supply $supply)
     {
         $supply->delete();
-    }
-
-    /**
-     * @param int $supplyId
-     * @return DocumentResource
-     * @throws \Throwable
-     */
-    public function createTorg12(int $supplyId): DocumentResource
-    {
-        $waybill = ProductTransportWaybill::where('supply_id', $supplyId)->first();
-        if (null === $waybill) {
-            $waybill = new ProductTransportWaybill();
-            $waybill->supply_id = $supplyId;
-            $waybill->date = new \DateTime();
-            $waybill->save();
-        }
-
-        if (!$waybill->isExistsDocument()) {
-            Torg12Service::createDocument($waybill);
-        }
-
-        DocumentService::buildIfNotExists($waybill->getDocument());
-
-        return new DocumentResource($waybill->getDocument());
-    }
-
-    /**
-     * Получить документ в форме 1-Т
-     * @OA\Get(
-     *     path="/api/supplies/{supplyId}/oneTForm",
-     *     description="Get Document T-12",
-     *     tags={"Supplies Actions"},
-     *     @OA\Parameter(
-     *      name="supplyId",
-     *      in="path",
-     *      required=true,
-     *     ),
-     *     @OA\Response(response="default", description="Document Resource")
-     * )
-     * @param int $supplyId
-     * @return DocumentResource
-     * @throws \Throwable
-     */
-    public function getOneTForm(int $supplyId): DocumentResource
-    {
-        $form = OneTFormService::getOrCreate($supplyId);
-        if (!$form->isExistsDocument()) {
-            OneTFormService::createDocument($form);
-        }
-
-        DocumentService::buildIfNotExists($form->getDocument());
-
-        return new DocumentResource($form->getDocument());
-    }
-
-    /**
-     * Получить документ "Удостоверение качества"
-     * @OA\Get(
-     *     path="/api/supplies/{supplyId}/qualityCertificate",
-     *     description="Get Quality Certificate",
-     *     tags={"Supplies Actions"},
-     *     @OA\Parameter(
-     *      name="supplyId",
-     *      in="path",
-     *      required=true,
-     *     ),
-     *     @OA\Response(response="default", description="Document Resource")
-     * )
-     * @param int $supplyId
-     * @return DocumentResource
-     * @throws \Throwable
-     */
-    public function getQualityCertificate(int $supplyId): DocumentResource
-    {
-        $certificate = QualityCertificateService::getOrCreate($supplyId);
-        if (!$certificate->isExistsDocument()) {
-            QualityCertificateService::createDocument($certificate);
-        }
-
-        DocumentBuilder::build($certificate->getDocument());
-
-        return new DocumentResource($certificate->getDocument());
     }
 
     /**

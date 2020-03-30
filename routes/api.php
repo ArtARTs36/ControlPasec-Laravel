@@ -42,9 +42,6 @@ Route::apiResource('my-contragents', 'Contragent\MyContragentController');
 
 Route::get('supplies/page-{page}', 'Supply\SupplyController@index');
 Route::apiResource('supplies', 'Supply\SupplyController');
-Route::get('supplies/{supplyId}/torg12', 'Supply\SupplyController@createTorg12');
-Route::get('supplies/{supplyId}/oneTForm', 'Supply\SupplyController@getOneTForm');
-Route::get('supplies/{supplyId}/qualityCertificate', 'Supply\SupplyController@getQualityCertificate');
 Route::get('supplies/find-by-customer/{customerId}', 'Supply\SupplyController@findByCustomer');
 
 // API для товаров
@@ -75,6 +72,7 @@ Route::post(
 
 //
 
+Route::get('/generate-document/{supply}/{typeId}', 'Document\DocumentGenerateController@generate');
 Route::apiResource('documents', 'Document\DocumentController');
 Route::get('documents/{id}/download', 'Document\DocumentController@download');
 

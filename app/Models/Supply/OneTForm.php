@@ -4,6 +4,7 @@ namespace App\Models\Supply;
 
 use App\Interfaces\ModelWithDocuments;
 use App\Models\Document\Document;
+use App\Models\Document\DocumentType;
 use App\Models\Traits\WithDocuments;
 use App\Models\Traits\WithOrderNumber;
 use App\Models\Traits\WithSupply;
@@ -21,9 +22,10 @@ use Illuminate\Database\Query\Builder;
  *
  * @mixin Builder
  */
-class OneTForm extends Model implements ModelWithDocuments
+final class OneTForm extends Model implements ModelWithDocuments
 {
     use WithDocuments, WithOrderNumber, WithSupply;
 
     const ORDER_NUMBER_TYPE = VariableDefinition::ONE_T_FORM_ORDER_NUMBER;
+    const TARGET_TYPE = DocumentType::ONE_T_FORM_ID;
 }
