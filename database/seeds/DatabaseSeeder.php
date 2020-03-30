@@ -36,6 +36,8 @@ class DatabaseSeeder extends Seeder
         $this->call(SyncWithExternalSystemTypeSeeder::class);
 
         $this->call(SupplySeeder::class);
+
+        $this->call(UserNotificationSeeder::class);
     }
 
     private function vocabs(): void

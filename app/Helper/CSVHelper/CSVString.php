@@ -29,4 +29,9 @@ class CSVString
 
         return $array;
     }
+
+    public function getByKey($key)
+    {
+        return $this->_array[$key] ?? null;
+    }
 }

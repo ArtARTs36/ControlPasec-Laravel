@@ -4,6 +4,7 @@ namespace App;
 
 use App\Models\User\Permission;
 use App\Models\User\Role;
+use App\Models\User\UserNotification;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -82,6 +83,11 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function notifications()
+    {
+        return $this->hasMany(UserNotification::class);
     }
 
     public function getFullName()

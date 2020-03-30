@@ -51,4 +51,9 @@ class MapFind
     {
         return $this->fieldInModel;
     }
+
+    public function getFieldInRelation()
+    {
+        return $this->fieldInRelation;
+    }
 }

@@ -40,6 +40,7 @@ class UserResource extends JsonResource
             'position' => $this->position,
             'roles' => RoleResource::collection($this->roles),
             'permissions' => PermissionResource::collection($permissions),
+            'notifications' => UserNotificationResource::collection($this->notifications()->get()),
             'avatar_url' => $this->avatar_url,
         ];
     }

@@ -15,13 +15,14 @@ class MapFindManager
         return array_keys($this->maps);
     }
 
-    public function getValues($array)
+    public function getValues(\App\Helper\CSVHelper\CSVString $CSVString)
     {
         $values = [];
+
         foreach ($this->maps as $map) {
-            foreach ($array as $key => $value) {
-                $values[$map->getFieldInModel()] = $map->find($value);
-            }
+            $slug = $CSVString->getByKey($map->getField());
+
+            $values[$map->getFieldInModel()] = $map->find($slug);
         }
 
         return $values;

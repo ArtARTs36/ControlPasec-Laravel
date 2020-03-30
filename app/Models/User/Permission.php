@@ -2,6 +2,7 @@
 
 namespace App\Models\User;
 
+use App\User;
 use Illuminate\Database\Query\Builder;
 use Spatie\Permission\Models\Permission as BasePermission;
 
@@ -41,6 +42,8 @@ final class Permission extends BasePermission
 
     const VOCAB_BANKS_LIST_VIEW = 'vocab_banks_list_view';
 
+    const USER_GET_NOTIFICATION_USER_REGISTERED = 'user_get_notification_user_registered';
+
     public static function getAllNames()
     {
         return [
@@ -69,6 +72,24 @@ final class Permission extends BasePermission
             self::VOCAB_GOS_STANDARD_LIST_VIEW => 'Просмотр ГОСТов',
 
             self::VOCAB_BANKS_LIST_VIEW => 'Просмотр списка банков',
+
+            self::USER_GET_NOTIFICATION_USER_REGISTERED => 'Получать уведомления о регистрациях пользователей',
         ];
+    }
+
+    /**
+     * @return array|User[]
+     */
+    public function getUsers(): array
+    {
+        $roles = $this->roles()->get();
+
+        $users = [];
+
+        foreach ($roles as $role) {
+            $users = array_merge($users, $role->users->getDictionary());
+        }
+
+        return $users;
     }
 }
