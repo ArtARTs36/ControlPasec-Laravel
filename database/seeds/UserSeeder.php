@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User\Role;
 use App\User;
 use Illuminate\Support\Str;
 
@@ -32,6 +33,6 @@ class UserSeeder extends CommonSeeder
         $user->is_active = true;
         $user->save();
 
-        $user->roles()->attach(\App\Models\User\Role::findByName('admin')->id);
+        $user->roles()->attach(Role::findByName(Role::ADMIN)->id);
     }
 }

@@ -15,6 +15,8 @@ use Spatie\Permission\Models\Role as BaseRole;
  */
 final class Role extends BaseRole
 {
+    const ADMIN = 'admin';
+
     public function isNotAllowedForSignUp(): bool
     {
         return $this->is_allowed_for_sign_up === false;

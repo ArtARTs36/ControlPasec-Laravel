@@ -28,6 +28,10 @@ class UserResource extends JsonResource
             $permissions = $permissions->merge($role->permissions);
         }
 
+        if (!preg_match('/http/i', $this->avatar_url)) {
+            $this->avatar_url = '//'. request()->getHttpHost() . $this->avatar_url;
+        }
+
         return [
             'id' => $this->id,
             'name' => $this->name,
@@ -36,6 +40,7 @@ class UserResource extends JsonResource
             'position' => $this->position,
             'roles' => RoleResource::collection($this->roles),
             'permissions' => PermissionResource::collection($permissions),
+            'avatar_url' => $this->avatar_url,
         ];
     }
 }

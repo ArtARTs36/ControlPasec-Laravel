@@ -24,6 +24,8 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property-read Role[]|Collection roles
  * @property bool is_active
  * @property-read Permission[]|Collection permissions
+ * @property int gender
+ * @property string avatar_url
  * @mixin Builder
  */
 class User extends Authenticatable implements JWTSubject
@@ -32,13 +34,16 @@ class User extends Authenticatable implements JWTSubject
 
     const TABLE = 'users';
 
+    const GENDER_MALE = 1;
+    const GENDER_FEMALE = 2;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'patronymic', 'family', 'is_active', 'position'
+        'name', 'email', 'password', 'patronymic', 'family', 'is_active', 'position', 'gender', 'avatar_url'
     ];
 
     /**

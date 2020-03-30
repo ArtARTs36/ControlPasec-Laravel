@@ -7,6 +7,8 @@ use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
 $factory->define(User::class, function (Faker $faker) {
+    $gender = rand(1, 2);
+
     return [
         'name' => $faker->name,
         'patronymic' => $faker->domainName,
@@ -17,5 +19,7 @@ $factory->define(User::class, function (Faker $faker) {
         'remember_token' => Str::random(10),
         'position' => $faker->userName,
         'is_active' => $faker->boolean,
+        'gender' => $gender,
+        'avatar_url' => \App\Support\Avatar::byGender($gender),
     ];
 });
