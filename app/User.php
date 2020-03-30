@@ -2,7 +2,10 @@
 
 namespace App;
 
+use App\Models\User\Permission;
+use App\Models\User\Role;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
@@ -10,6 +13,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
  * Class User
+ * @property int id
  * @property string name
  * @property string patronymic
  * @property string family
@@ -17,7 +21,9 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property string password
  * @property string remember_token
  * @property string position
+ * @property-read Role[]|Collection roles
  * @property bool is_active
+ * @property-read Permission[]|Collection permissions
  * @mixin Builder
  */
 class User extends Authenticatable implements JWTSubject
@@ -32,7 +38,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'patronymic', 'family', 'is_active',
+        'name', 'email', 'password', 'patronymic', 'family', 'is_active', 'position'
     ];
 
     /**
@@ -80,5 +86,13 @@ class User extends Authenticatable implements JWTSubject
             $this->patronymic,
             $this->family,
         ]);
+    }
+
+    public function changeActive(bool $active): self
+    {
+        $this->is_active = $active;
+        $this->save();
+
+        return $this;
     }
 }

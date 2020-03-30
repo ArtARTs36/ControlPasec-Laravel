@@ -31,5 +31,7 @@ class UserSeeder extends CommonSeeder
         $user->remember_token = Str::random(10);
         $user->is_active = true;
         $user->save();
+
+        $user->roles()->attach(\App\Models\User\Role::findByName('admin')->id);
     }
 }

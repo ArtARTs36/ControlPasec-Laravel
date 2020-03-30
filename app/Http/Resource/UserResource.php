@@ -2,8 +2,8 @@
 
 namespace App\Http\Resource;
 
-use App\Models\Contract\Contract;
 use App\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
@@ -23,12 +23,19 @@ class UserResource extends JsonResource
      */
     public function toArray($request): array
     {
+        $permissions = Collection::make();
+        foreach ($this->roles as $role) {
+            $permissions = $permissions->merge($role->permissions);
+        }
+
         return [
             'id' => $this->id,
             'name' => $this->name,
             'patronymic' => $this->patronymic,
             'family' => $this->family,
-            'position' => $this->position
+            'position' => $this->position,
+            'roles' => RoleResource::collection($this->roles),
+            'permissions' => PermissionResource::collection($permissions),
         ];
     }
 }

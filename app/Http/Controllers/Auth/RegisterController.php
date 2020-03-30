@@ -29,7 +29,7 @@ class RegisterController extends Controller
             return new UserRegisteredResponse();
         }
 
-        $user = $this->create($request->toArray());
+        $user = $this->create($request->toArray(), $role);
 
         event(new UserRegistered($user));
 
@@ -39,10 +39,11 @@ class RegisterController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param array $data
+     * @param Role $role
      * @return User
      */
-    public function create(array $data): User
+    public function create(array $data, Role $role): User
     {
         $user = User::create([
             'name' => $data['name'],
@@ -51,9 +52,10 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'is_active' => false, // @business-logic
+            'position' => $role->title,
         ]);
 
-        $user->roles()->attach($data['role_id']);
+        $user->roles()->attach($role->id);
 
         return $user;
     }

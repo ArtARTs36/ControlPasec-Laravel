@@ -58,8 +58,9 @@ class DatabaseSeeder extends Seeder
 
     private function users(): void
     {
-        $this->call(UserSeeder::class);
+        $this->call(PermissionSeeder::class);
         $this->call(RoleSeeder::class);
+        $this->call(UserSeeder::class);
     }
 
     private function contracts(): void

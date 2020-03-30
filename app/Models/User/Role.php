@@ -7,10 +7,13 @@ use Spatie\Permission\Models\Role as BaseRole;
 
 /**
  * Class Role
+ * @property int $id
  * @property bool $is_allowed_for_sign_up
+ * @property string $title
+ * @property string $name
  * @mixin Builder
  */
-class Role extends BaseRole
+final class Role extends BaseRole
 {
     public function isNotAllowedForSignUp(): bool
     {

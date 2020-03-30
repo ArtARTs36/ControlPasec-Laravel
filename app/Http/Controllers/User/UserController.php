@@ -3,8 +3,13 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequest;
 use App\Http\Resource\UserResource;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Responses\ActionResponse;
+use App\Models\User\Role;
+use App\User;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -38,5 +43,69 @@ class UserController extends Controller
         }
 
         return new UserResource(auth()->user());
+    }
+
+    /**
+     * @param int $page
+     * @return LengthAwarePaginator
+     */
+    public function index(int $page = 1): LengthAwarePaginator
+    {
+        return User::latest('created_at')
+            ->paginate(10, ['*'], null, $page);
+    }
+
+    public function show(User $user): UserResource
+    {
+        return new UserResource($user);
+    }
+
+    public function update(UserRequest $request, User $user): ActionResponse
+    {
+        return new ActionResponse($user->update($request->all()), new UserResource($user));
+    }
+
+    public function store(UserRequest $request): ActionResponse
+    {
+        $user = User::create(array_merge(
+            $request->toArray(),
+            [
+                'is_active' => false,
+                'password' => Hash::make($request->password),
+            ]
+        ));
+
+        return new ActionResponse(true, $user);
+    }
+
+    /**
+     * Открепить роль у пользователя
+     * @param User $user
+     * @param Role $role
+     * @return ActionResponse
+     */
+    public function detachRole(User $user, Role $role): ActionResponse
+    {
+        return new ActionResponse($user->roles()->detach($role->id) > 0, new UserResource($user));
+    }
+
+    /**
+     * Активировать профиль пользователя
+     * @param User $user
+     * @return User
+     */
+    public function activate(User $user): User
+    {
+        return $user->changeActive(true);
+    }
+
+    /**
+     * Деактивировать профиль пользователя
+     * @param User $user
+     * @return User
+     */
+    public function deactivate(User $user): User
+    {
+        return $user->changeActive(false);
     }
 }
