@@ -5,8 +5,10 @@ namespace App;
 use App\Models\User\Permission;
 use App\Models\User\Role;
 use App\Models\User\UserNotification;
+use App\Scopes\LatestScope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
@@ -27,6 +29,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property-read Permission[]|Collection permissions
  * @property int gender
  * @property string avatar_url
+ * @property UserNotification[]|Collection notifications
  * @mixin Builder
  */
 class User extends Authenticatable implements JWTSubject
@@ -64,6 +67,17 @@ class User extends Authenticatable implements JWTSubject
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('onlyCustom', function (Builder $builder) {
+            $builder->with(['notifications' => function (HasMany $builder) {
+                $builder->latest('created_at');
+            }]);
+        });
+    }
 
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
@@ -105,5 +119,17 @@ class User extends Authenticatable implements JWTSubject
         $this->save();
 
         return $this;
+    }
+
+    public function getUnreadNotificationsCount()
+    {
+        $count = 0;
+        foreach ($this->notifications as $notification) {
+            if ($notification->isNotRead()) {
+                $count++;
+            }
+        }
+
+        return $count;
     }
 }

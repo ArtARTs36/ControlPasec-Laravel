@@ -39,4 +39,13 @@ class UserNotification extends Model
     {
         return $this->is_read === false;
     }
+
+    public function read(): self
+    {
+        $this->is_read = true;
+
+        $this->save();
+
+        return $this;
+    }
 }

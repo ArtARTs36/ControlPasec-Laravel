@@ -32,6 +32,8 @@ class UserResource extends JsonResource
             $this->avatar_url = '//'. request()->getHttpHost() . $this->avatar_url;
         }
 
+        $this->loadMissing('notifications');
+
         return [
             'id' => $this->id,
             'name' => $this->name,
@@ -40,7 +42,8 @@ class UserResource extends JsonResource
             'position' => $this->position,
             'roles' => RoleResource::collection($this->roles),
             'permissions' => PermissionResource::collection($permissions),
-            'notifications' => UserNotificationResource::collection($this->notifications()->get()),
+            'notifications' => UserNotificationResource::collection($this->notifications),
+            'notifications_unread_count' => $this->getUnreadNotificationsCount(),
             'avatar_url' => $this->avatar_url,
         ];
     }

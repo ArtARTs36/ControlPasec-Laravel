@@ -27,3 +27,7 @@ Route::prefix('permissions')->group(function () {
 });
 
 Route::apiResource('permissions', 'User\PermissionController');
+
+Route::prefix('user-notifications')->group(function () {
+    Route::put('{notification}/read', 'User\UserNotificationController@read');
+});
