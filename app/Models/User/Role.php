@@ -21,4 +21,12 @@ final class Role extends BaseRole
     {
         return $this->is_allowed_for_sign_up === false;
     }
+
+    public function changeAllowedForSignUp(bool $state = null): self
+    {
+        $this->is_allowed_for_sign_up = ($state !== null) ? $state : !$this->is_allowed_for_sign_up;
+        $this->save();
+
+        return $this;
+    }
 }

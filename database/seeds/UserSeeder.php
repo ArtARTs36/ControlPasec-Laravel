@@ -31,6 +31,8 @@ class UserSeeder extends CommonSeeder
         $user->position = 'Администратор';
         $user->remember_token = Str::random(10);
         $user->is_active = true;
+        $user->gender = User::GENDER_MALE;
+        $user->avatar_url = \App\Support\Avatar::byUser($user);
         $user->save();
 
         $user->roles()->attach(Role::findByName(Role::ADMIN)->id);

@@ -7,10 +7,11 @@ class PermissionSeeder extends CommonSeeder
     public function run()
     {
         $list = [];
-        foreach (Permission::getAllNames() as $name) {
+        foreach (Permission::getAllNames() as $name => $title) {
             $list[] = [
                 'name' => $name,
-                'guard_name' => 'api'
+                'title' => $title,
+                'guard_name' => 'api',
             ];
         }
 

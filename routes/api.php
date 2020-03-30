@@ -15,13 +15,7 @@ Route::group([
     Route::post('token/refresh', 'Auth\AuthController@refreshToken');
 });
 
-Route::get('me', 'User\UserController@me');
-
-Route::get('users/page-{page}', 'User\UserController@index');
-Route::get('users/{user}/activate', 'User\UserController@activate');
-Route::get('users/{user}/deactivate', 'User\UserController@deactivate');
-Route::get('users/{user}/detach-role/{role}', 'User\UserController@detachRole');
-Route::apiResource('users', 'User\UserController');
+require_once 'apis/api.user.php';
 
 // API для для работы с контрагентами
 
