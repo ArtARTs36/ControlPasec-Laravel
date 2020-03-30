@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRegisterRequest;
 use App\Http\Responses\UserRegisteredResponse;
 use App\Models\User\Role;
+use App\Support\Avatar;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -53,6 +54,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'is_active' => false, // @business-logic
             'position' => $role->title,
+            'avatar_url' => Avatar::random(),
         ]);
 
         $user->roles()->attach($role->id);

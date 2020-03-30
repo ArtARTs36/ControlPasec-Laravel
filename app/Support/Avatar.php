@@ -27,6 +27,13 @@ class Avatar
         );
     }
 
+    public static function random(): string
+    {
+        $genders = [User::GENDER_MALE, User::GENDER_FEMALE];
+
+        return self::byGender($genders[rand(0, count($genders) - 1)]);
+    }
+
     protected static function getAvatar(string $array, string $folder): string
     {
         if (self::$$array === null) {

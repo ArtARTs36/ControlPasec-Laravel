@@ -45,6 +45,8 @@ class UserResource extends JsonResource
             'notifications' => UserNotificationResource::collection($this->notifications),
             'notifications_unread_count' => $this->getUnreadNotificationsCount(),
             'avatar_url' => $this->avatar_url,
+            'is_active' => $this->is_active,
+            'email' => $this->email,
         ];
     }
 }

@@ -25,6 +25,7 @@ class UserRequest extends FormRequest
             'family' => 'required|string',
             'position' => 'sometimes|string',
             'password' => 'sometimes',
+            'is_active' => 'sometimes|bool',
         ];
     }
 }
