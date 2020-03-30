@@ -13,11 +13,13 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param int $page
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function index()
+    public function index(int $page = 1)
     {
-        return Product::with(['currency', 'sizeOfUnit', 'gosStandard'])->paginate(10);
+        return Product::with(['currency', 'sizeOfUnit', 'gosStandard'])
+            ->paginate(10, ['*'], null, $page);
     }
 
     /**
