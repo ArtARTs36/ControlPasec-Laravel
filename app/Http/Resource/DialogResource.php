@@ -3,6 +3,7 @@
 namespace App\Http\Resource;
 
 use App\Models\Dialog\Dialog;
+use App\Repositories\DialogMessageRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -20,6 +21,8 @@ class DialogResource extends JsonResource
 
         $messages = $this->messages()->latest('created_at')
             ->paginate(10, ['*'], 'DialogView', $page);
+
+        DialogMessageRepository::readMessages($messages->items());
 
         return [
             'id' => $this->id,

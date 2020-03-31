@@ -11,6 +11,7 @@ use App\Repositories\DialogMessageRepository;
 use App\Repositories\DialogRepository;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class DialogMessageController extends Controller
 {
@@ -47,44 +48,11 @@ class DialogMessageController extends Controller
 
         $message = DialogMessageRepository::create($dialog, $request);
 
-        return new DialogMessageResource($message);
+        return $message ? new DialogMessageResource($message) :
+            abort(Response::HTTP_CONFLICT, 'Вы уже отправляли сообщение с подобным содержанием');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\DialogMessage  $dialogMessage
-     * @return \Illuminate\Http\Response
-     */
-    public function show(DialogMessage $dialogMessage)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\DialogMessage  $dialogMessage
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, DialogMessage $dialogMessage)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\DialogMessage  $dialogMessage
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(DialogMessage $dialogMessage)
-    {
-        //
-    }
-
-    public function read(DialogMessage $message)
+    public function read(DialogMessage $message): DialogMessage
     {
         return $message->read();
     }

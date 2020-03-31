@@ -5,6 +5,7 @@ namespace App\Models\Dialog;
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class DialogMessage
@@ -20,34 +21,37 @@ use Illuminate\Database\Eloquent\Model;
  */
 class DialogMessage extends Model
 {
-    public function dialog()
+    public function dialog(): BelongsTo
     {
         return $this->belongsTo(Dialog::class);
     }
 
-    public function fromUser()
+    public function fromUser(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function toUser()
+    public function toUser(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function isRead()
+    public function isRead(): bool
     {
         return $this->is_read === true;
     }
 
-    public function isNotRead()
+    public function isNotRead(): bool
     {
         return $this->is_read === false;
     }
 
     public function read(): self
     {
-        $this->is_read = true;
+        if ($this->isNotRead()) {
+            $this->is_read = true;
+        }
+
         $this->save();
 
         return $this;

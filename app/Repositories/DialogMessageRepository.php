@@ -7,6 +7,7 @@ use App\Models\Dialog\Dialog;
 use App\Models\Dialog\DialogMessage;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Collection;
 
 class DialogMessageRepository
 {
@@ -26,8 +27,12 @@ class DialogMessageRepository
         return UserReceivedMessagesCutResource::collection($dialogs);
     }
 
-    public static function create(Dialog $dialog, Request $request): DialogMessage
+    public static function create(Dialog $dialog, Request $request): ?DialogMessage
     {
+        if (self::getLastMessageOfDialogByCurrentUser($dialog)->text === $request->text) {
+            return null;
+        }
+
         $message = new DialogMessage();
         $message->from_user_id = auth()->user()->id;
         $message->to_user_id = $dialog->getInterUser()->id;
@@ -37,5 +42,20 @@ class DialogMessageRepository
         $message->save();
 
         return $message;
+    }
+
+    public static function getLastMessageOfDialogByCurrentUser(Dialog $dialog): ?DialogMessage
+    {
+        return $dialog->messages()->where('from_user_id', auth()->user()->id)
+            ->latest('created_at')
+            ->first();
+    }
+
+    public static function readMessages(array $messages)
+    {
+        /** @var DialogMessage $message */
+        foreach ($messages as $message) {
+            $message->read();
+        }
     }
 }
