@@ -11,7 +11,9 @@ Route::get('users/{user}/detach-role/{role}', 'User\UserController@detachRole');
 Route::apiResource('users', 'User\UserController');
 
 Route::put('profiles/update-about-me', 'User\ProfileController@updateAboutMe');
-Route::get('profiles/search/{query}', 'User\ProfileController@search');
+Route::get('profiles/search/{query}', 'User\ProfileController@search')->middleware(
+    'throttle:1555,1'
+);
 Route::apiResource('profiles', 'User\ProfileController');
 
 // Roles

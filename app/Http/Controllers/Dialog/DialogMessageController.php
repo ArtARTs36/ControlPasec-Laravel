@@ -31,13 +31,18 @@ class DialogMessageController extends Controller
      * @param DialogMessageRequest $request
      * @return DialogMessage
      */
-    public function store(DialogMessageRequest $request): DialogMessage
+    public function store(DialogMessageRequest $request): ?DialogMessage
     {
         $toUser = User::find($request->to_user_id);
 
         $dialog = DialogRepository::getOrCreate($toUser);
 
-        return DialogMessageRepository::create($dialog, $request);
+        $message = DialogMessageRepository::create($dialog, $request);
+        if ($message === null) {
+            abort(Response::HTTP_CONFLICT, 'Вы уже отправляли сообщение с подобным содержанием');
+        }
+
+        return $message;
     }
 
     public function createByDialog(Dialog $dialog, Request $request)
