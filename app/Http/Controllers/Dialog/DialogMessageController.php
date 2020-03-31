@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Dialog;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DialogMessageRequest;
+use App\Http\Resource\DialogMessageResource;
+use App\Models\Dialog\Dialog;
 use App\Models\Dialog\DialogMessage;
+use App\Repositories\DialogMessageRepository;
 use App\Repositories\DialogRepository;
 use App\User;
 use Illuminate\Http\Request;
@@ -33,15 +36,18 @@ class DialogMessageController extends Controller
 
         $dialog = DialogRepository::getOrCreate($toUser);
 
-        $message = new DialogMessage();
-        $message->from_user_id = auth()->user()->id;
-        $message->to_user_id = $toUser->id;
-        $message->dialog_id = $dialog->id;
-        $message->is_read = false;
-        $message->text = $request->text;
-        $message->save();
+        return DialogMessageRepository::create($dialog, $request);
+    }
 
-        return $message;
+    public function createByDialog(Dialog $dialog, Request $request)
+    {
+        if ($dialog->isNotTookPartCurrentUser()) {
+            throw new \LogicException('Вы не являетесь участником диалога');
+        }
+
+        $message = DialogMessageRepository::create($dialog, $request);
+
+        return new DialogMessageResource($message);
     }
 
     /**

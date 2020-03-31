@@ -3,7 +3,9 @@
 namespace App\Repositories;
 
 use App\Http\Resource\UserReceivedMessagesCutResource;
+use App\Models\Dialog\Dialog;
 use App\Models\Dialog\DialogMessage;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class DialogMessageRepository
@@ -22,5 +24,18 @@ class DialogMessageRepository
             ->get();
 
         return UserReceivedMessagesCutResource::collection($dialogs);
+    }
+
+    public static function create(Dialog $dialog, Request $request): DialogMessage
+    {
+        $message = new DialogMessage();
+        $message->from_user_id = auth()->user()->id;
+        $message->to_user_id = $dialog->getInterUser()->id;
+        $message->dialog_id = $dialog->id;
+        $message->is_read = false;
+        $message->text = $request->text;
+        $message->save();
+
+        return $message;
     }
 }

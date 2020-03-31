@@ -18,7 +18,8 @@ class DialogMessageResource extends JsonResource
             'from_user_id' => $this->from_user_id,
             'to_user_id' => $this->to_user_id,
             'text' => $this->text,
-            'created_at' => $this->created_at,
+            'updated_at' => (new \DateTime($this->updated_at))->format('d.m.y H:i'),
+            'is_my_user_author' => $this->isCurrentUserAuthor(),
         ];
     }
 }

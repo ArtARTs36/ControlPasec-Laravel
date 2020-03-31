@@ -51,6 +51,21 @@ class Dialog extends Model
         return $this->oneUser;
     }
 
+    public function isTookPart(User $user)
+    {
+        return $this->one_user_id === $user->id || $this->two_user_id === $user->id;
+    }
+
+    public function isTookPartCurrentUser()
+    {
+        return $this->isTookPart(auth()->user());
+    }
+
+    public function isNotTookPartCurrentUser()
+    {
+        return ! $this->isTookPart(auth()->user());
+    }
+
     public function messages()
     {
         return $this->hasMany(DialogMessage::class);

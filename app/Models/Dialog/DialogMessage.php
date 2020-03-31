@@ -52,4 +52,9 @@ class DialogMessage extends Model
 
         return $this;
     }
+
+    public function isCurrentUserAuthor(): bool
+    {
+        return $this->from_user_id === auth()->user()->id;
+    }
 }
