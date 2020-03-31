@@ -5,7 +5,6 @@ namespace App;
 use App\Models\User\Permission;
 use App\Models\User\Role;
 use App\Models\User\UserNotification;
-use App\Scopes\LatestScope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -150,5 +149,10 @@ class User extends Authenticatable implements JWTSubject
         $days = (int) ((time() - strtotime($this->created_at)) / (60 * 60 * 24));
 
         return ($days > 0) ? $days : 1;
+    }
+
+    public function isNotActive(): bool
+    {
+        return $this->is_active === false;
     }
 }

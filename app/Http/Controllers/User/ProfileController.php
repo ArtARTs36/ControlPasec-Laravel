@@ -3,16 +3,24 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Profile\ProfileSearchRequest;
 use App\Http\Requests\Profile\UpdateAboutMeRequest;
 use App\Http\Resource\ProfileResource;
 use App\Repositories\UserRepository;
 use App\User;
+use Illuminate\Http\Response;
 
 class ProfileController extends Controller
 {
-    public function show(User $profile): ProfileResource
+    public function show(int $profileId): ProfileResource
     {
+        $profile = User::where('id', $profileId)
+            ->where('is_active', true)
+            ->first();
+
+        if (null === $profile) {
+            abort(Response::HTTP_NOT_FOUND, __('profile.not_found'));
+        }
+
         return new ProfileResource($profile);
     }
 
