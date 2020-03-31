@@ -132,4 +132,13 @@ class User extends Authenticatable implements JWTSubject
 
         return $count;
     }
+
+    public function getAvatarUrl(): ?string
+    {
+        if (!preg_match('/http/i', $this->avatar_url)) {
+            $this->avatar_url = '//'. request()->getHttpHost() . $this->avatar_url;
+        }
+
+        return $this->avatar_url;
+    }
 }

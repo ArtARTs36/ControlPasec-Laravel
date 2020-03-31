@@ -2,25 +2,27 @@
 
 namespace App\Repositories;
 
+use App\Http\Resource\DialogsListResource;
 use App\Models\Dialog\Dialog;
 use App\User;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class DialogRepository
 {
     /**
      * Искать последние 10 диалогов текущего пользователя
      * @param int $page
-     * @return LengthAwarePaginator
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public static function findByCurrentUser(int $page = 1): LengthAwarePaginator
+    public static function findByCurrentUser(int $page = 1)
     {
         $currentUserId = auth()->user()->id;
 
-        return Dialog::where('one_user_id', $currentUserId)
+        $dialogs = Dialog::where('one_user_id', $currentUserId)
             ->orWhere('two_user_id', $currentUserId)
             ->latest('updated_at')
             ->paginate(10, ['*'], null, $page);
+
+        return DialogsListResource::collection($dialogs);
     }
 
     public static function findByCurrentUserAndToUser(User $toUser): ?Dialog

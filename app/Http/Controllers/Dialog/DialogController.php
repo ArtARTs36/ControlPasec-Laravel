@@ -26,7 +26,7 @@ class DialogController extends Controller
      * @param int $page
      * @return LengthAwarePaginator
      */
-    public function user(int $page = 1): LengthAwarePaginator
+    public function user(int $page = 1)
     {
         return DialogRepository::findByCurrentUser($page);
     }

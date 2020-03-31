@@ -103,9 +103,25 @@ class DialogTest extends BaseTestCase
 
         $dialog = $dialogs[0];
 
-        self::assertArrayHasKey('one_user_id', $dialog);
-        self::assertArrayHasKey('two_user_id', $dialog);
-        self::assertArrayHasKey('messages', $dialog);
-        self::assertTrue(count($dialog['messages']) > 0);
+        self::assertArrayHasKey('id', $dialog);
+        self::assertArrayHasKey('inter_user', $dialog);
+        self::assertArrayHasKey('last_message', $dialog);
+        self::assertTrue(count($dialog['last_message']) > 0);
+    }
+
+    public function testSendToAdmin(): void
+    {
+        $text = $this->getFaker()->text;
+
+        $data = [
+            'to_user_id' => $this->admin->id,
+            'text' => $text,
+        ];
+
+        $response = $this
+            ->withHeaders(['Authorization' => 'Bearer ' . $this->tokens['simpleUser']])
+            ->postJson('/api/dialog-messages', $data);
+
+        $response->assertCreated();
     }
 }

@@ -12,6 +12,7 @@ Route::apiResource('dialog-messages', 'Dialog\DialogMessageController');
 
 Route::prefix('dialogs')->group(function () {
     Route::get('user', 'Dialog\DialogController@user');
+    Route::get('user/page-{page}', 'Dialog\DialogController@user');
 });
 
 Route::apiResource('dialogs', 'Dialog\DialogController');

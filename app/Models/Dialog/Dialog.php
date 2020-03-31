@@ -41,6 +41,16 @@ class Dialog extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function getInterUser(): User
+    {
+        $currentUserId = auth()->user()->id;
+        if ($this->one_user_id === $currentUserId) {
+            return $this->twoUser;
+        }
+
+        return $this->oneUser;
+    }
+
     public function messages()
     {
         return $this->hasMany(DialogMessage::class);
