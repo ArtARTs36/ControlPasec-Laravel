@@ -12,4 +12,5 @@ require_once 'apis/api.vocabs.php';
 require_once 'apis/api.external_news.php';
 require_once 'apis/api.variable_definitions.php';
 require_once 'apis/api.parsers.php';
-
+require_once 'apis/api.dialogs.php';
+require_once 'apis/api.stat.php';

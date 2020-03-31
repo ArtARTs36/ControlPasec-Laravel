@@ -2,6 +2,7 @@
 
 namespace App\Http\Resource;
 
+use App\Repositories\DialogMessageRepository;
 use App\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -34,6 +35,14 @@ class UserResource extends JsonResource
 
         $this->loadMissing('notifications');
 
+        $messageUnReadCount = 0;
+        $messages = DialogMessageRepository::findRecievedMessagesByCurrentUser();
+        foreach ($messages as $message) {
+            if ($message->isNotRead()) {
+                $messageUnReadCount++;
+            }
+        }
+
         return [
             'id' => $this->id,
             'name' => $this->name,
@@ -47,6 +56,8 @@ class UserResource extends JsonResource
             'avatar_url' => $this->avatar_url,
             'is_active' => $this->is_active,
             'email' => $this->email,
+            'messages' => $messages,
+            'messages_unread_count' => $messageUnReadCount,
         ];
     }
 }
