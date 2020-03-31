@@ -10,6 +10,10 @@ Route::get('users/{user}/deactivate', 'User\UserController@deactivate');
 Route::get('users/{user}/detach-role/{role}', 'User\UserController@detachRole');
 Route::apiResource('users', 'User\UserController');
 
+Route::put('profiles/update-about-me', 'User\ProfileController@updateAboutMe');
+Route::get('profiles/search/{query}', 'User\ProfileController@search');
+Route::apiResource('profiles', 'User\ProfileController');
+
 // Roles
 
 Route::prefix('roles')->group(function () {

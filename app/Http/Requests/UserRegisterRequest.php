@@ -25,6 +25,7 @@ class UserRegisterRequest extends FormRequest
             'family' => 'required|string',
             'role_id' => 'required|int',
             'password' => 'required|string',
+            'email' => 'required|not_exists:users,email',
         ];
     }
 }

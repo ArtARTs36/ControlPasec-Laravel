@@ -21,5 +21,6 @@ $factory->define(User::class, function (Faker $faker) {
         'is_active' => $faker->boolean,
         'gender' => $gender,
         'avatar_url' => \App\Support\Avatar::byGender($gender),
+        'about_me' => $faker->text(250),
     ];
 });

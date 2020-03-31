@@ -30,6 +30,9 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property int gender
  * @property string avatar_url
  * @property UserNotification[]|Collection notifications
+ * @property string about_me
+ * @property string created_at
+ * @property string update_at
  * @mixin Builder
  */
 class User extends Authenticatable implements JWTSubject
@@ -140,5 +143,12 @@ class User extends Authenticatable implements JWTSubject
         }
 
         return $this->avatar_url;
+    }
+
+    public function getDays(): int
+    {
+        $days = (int) ((time() - strtotime($this->created_at)) / (60 * 60 * 24));
+
+        return ($days > 0) ? $days : 1;
     }
 }

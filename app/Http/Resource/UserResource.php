@@ -29,10 +29,6 @@ class UserResource extends JsonResource
             $permissions = $permissions->merge($role->permissions);
         }
 
-        if (!preg_match('/http/i', $this->avatar_url)) {
-            $this->avatar_url = '//'. request()->getHttpHost() . $this->avatar_url;
-        }
-
         $this->loadMissing('notifications');
 
         $messageUnReadCount = 0;
@@ -53,7 +49,7 @@ class UserResource extends JsonResource
             'permissions' => PermissionResource::collection($permissions),
             'notifications' => UserNotificationResource::collection($this->notifications),
             'notifications_unread_count' => $this->getUnreadNotificationsCount(),
-            'avatar_url' => $this->avatar_url,
+            'avatar_url' => $this->getAvatarUrl(),
             'is_active' => $this->is_active,
             'email' => $this->email,
             'messages' => $messages,
