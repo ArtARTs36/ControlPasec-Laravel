@@ -29,7 +29,10 @@ class DialogMessageRepository
 
     public static function create(Dialog $dialog, Request $request): ?DialogMessage
     {
-        if (self::getLastMessageOfDialogByCurrentUser($dialog)->text === $request->text) {
+        if (
+            ($msg = self::getLastMessageOfDialogByCurrentUser($dialog)) &&
+             $msg->text === $request->text
+        ) {
             return null;
         }
 

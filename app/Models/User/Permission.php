@@ -42,6 +42,16 @@ final class Permission extends BasePermission
 
     const VOCAB_BANKS_LIST_VIEW = 'vocab_banks_list_view';
 
+    const VOCAB_PACKAGE_TYPES_LIST_VIEW = 'vocab_package_types_list_view';
+
+    const VOCAB_QUANTITY_UNITS_LIST_VIEW = 'vocab_package_quantity_units_list_view';
+
+    const VOCAB_CURRENCIES_LIST_VIEW = 'vocab_currencies_list_view';
+
+    const VOCAB_WORDS_LIST_VIEW = 'vocab_words_list_view';
+
+    const VOCAB_SIZE_OF_UNIT_LIST_VIEW = 'vocab_size_of_unit_list_view';
+
     const USER_GET_NOTIFICATION_USER_REGISTERED = 'user_get_notification_user_registered';
 
     const CONTRACTS_LIST_VIEW = 'contracts_list_view';
@@ -62,9 +72,15 @@ final class Permission extends BasePermission
     const EXTERNAL_NEWS_EDIT = 'external_news_edit';
     const EXTERNAL_NEWS_DELETE = 'external_news_delete';
 
+    const SCORE_FOR_PAYMENTS_LIST_VIEW = 'score_for_payments_list_view';
+    const SCORE_FOR_PAYMENTS_VIEW = 'score_for_payments_view';
+    const SCORE_FOR_PAYMENTS_CREATE = 'score_for_payments_create';
+    const SCORE_FOR_PAYMENTS_EDIT = 'score_for_payments_edit';
+    const SCORE_FOR_PAYMENTS_DELETE = 'score_for_payments_delete';
+
     public static function getAllNames()
     {
-        return [
+        return array_merge([
             self::SUPPLIES_VIEW => 'Просмотр поставок',
             self::SUPPLIES_CREATE => 'Создание поставки',
             self::SUPPLIES_EDIT => 'Редактирование поставки',
@@ -85,12 +101,6 @@ final class Permission extends BasePermission
             self::SETTINGS_VIEW => 'Просмотр настроек',
             self::VARIABLE_DEFINITIONS_LIST_VIEW => 'Просмотр определений переменных',
 
-            self::VOCABS_VIEW => 'Просмотр справочников',
-
-            self::VOCAB_GOS_STANDARD_LIST_VIEW => 'Просмотр ГОСТов',
-
-            self::VOCAB_BANKS_LIST_VIEW => 'Просмотр списка банков',
-
             self::USER_GET_NOTIFICATION_USER_REGISTERED => 'Получать уведомления о регистрациях пользователей',
 
             self::CONTRACTS_LIST_VIEW => 'Просмотр списка договоров',
@@ -106,10 +116,38 @@ final class Permission extends BasePermission
             self::PRODUCTS_DELETE => 'Удаление товара',
 
             self::EXTERNAL_NEWS_LIST_VIEW => 'Просмотр списка новостей из внешнего источников',
-            self::EXTERNAL_NEWS_VIEW => 'Просмотр новостей из внешнего источникаа',
-            self::EXTERNAL_NEWS_CREATE => 'Создание новостей из внешнего источникаа',
-            self::EXTERNAL_NEWS_EDIT => 'Редактирование новостей из внешнего источникаа',
+            self::EXTERNAL_NEWS_VIEW => 'Просмотр новостей из внешнего источника',
+            self::EXTERNAL_NEWS_CREATE => 'Создание новостей из внешнего источника',
+            self::EXTERNAL_NEWS_EDIT => 'Редактирование новостей из внешнего источника',
             self::EXTERNAL_NEWS_DELETE => 'Удаление новостей из внешнего источникаа',
+
+            self::SCORE_FOR_PAYMENTS_LIST_VIEW => 'Просмотр списка счетов для оплаты',
+            self::SCORE_FOR_PAYMENTS_VIEW => 'Просмотр счетов для оплаты',
+            self::SCORE_FOR_PAYMENTS_CREATE => 'Создание счетов для оплаты',
+            self::SCORE_FOR_PAYMENTS_EDIT => 'Редактирование счетов для оплаты',
+            self::SCORE_FOR_PAYMENTS_DELETE => 'Удаление счетов для оплаты',
+
+        ], self::getVocabTypes());
+    }
+
+    public static function getVocabTypes(): array
+    {
+        return [
+            self::VOCABS_VIEW => 'Просмотр справочников',
+
+            self::VOCAB_GOS_STANDARD_LIST_VIEW => 'Просмотр ГОСТов',
+
+            self::VOCAB_BANKS_LIST_VIEW => 'Просмотр списка банков',
+
+            self::VOCAB_PACKAGE_TYPES_LIST_VIEW => 'Просмотр справочника типов упаков',
+
+            self::VOCAB_QUANTITY_UNITS_LIST_VIEW => 'Просмотр справочника единиц измерения количества',
+
+            self::VOCAB_CURRENCIES_LIST_VIEW => 'Просмотр справочника валют',
+
+            self::VOCAB_WORDS_LIST_VIEW => 'Просмотр справочника слов',
+
+            self::VOCAB_SIZE_OF_UNIT_LIST_VIEW => 'Просмотр справочника единиц измерения массы',
         ];
     }
 
