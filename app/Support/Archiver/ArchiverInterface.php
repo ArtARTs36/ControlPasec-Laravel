@@ -6,5 +6,5 @@ interface ArchiverInterface
 {
     const EXTENSION_ZIP = 1;
 
-    public function compress(array $files, string $archiveName): Archive;
+    public function compress(array $files, string $archivePath): Archive;
 }

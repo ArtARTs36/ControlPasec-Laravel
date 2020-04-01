@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/generate-document/{supply}/{typeId}', 'Document\DocumentGenerateController@generate');
+Route::post('/generate-documents/{supply}/', 'Document\DocumentGenerateController@generateManyTypes');
 Route::apiResource('documents', 'Document\DocumentController');
 Route::get('documents/{id}/download', 'Document\DocumentController@download');
 

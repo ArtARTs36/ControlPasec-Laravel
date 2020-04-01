@@ -3,6 +3,7 @@
 namespace App\Support\Archiver;
 
 use App\Helper\FileHelper;
+use App\Services\ArchiveService;
 use App\Services\Shell\ShellCommand;
 
 class Zipper extends AbstractArchiver
@@ -15,7 +16,7 @@ class Zipper extends AbstractArchiver
      */
     public function compress(array $files, string $archiveName): Archive
     {
-        $tmpDir = FileHelper::getTmpFolder();
+        $tmpDir = FileHelper::getTmpFolder($timestamp);
 
         $files = array_map(function ($file) use ($tmpDir) {
             $fileName = FileHelper::getFileName($file);
@@ -25,15 +26,15 @@ class Zipper extends AbstractArchiver
             return $fileName;
         }, $files);
 
-        $archiveName = $this->prepareArchivePath($archiveName);
+        $archivePath = $this->prepareArchivePath($timestamp, $archiveName);
 
-        $command = $this->createCommand($tmpDir, $archiveName, $files);
+        $command = $this->createCommand($tmpDir, $archivePath, $files);
 
         $command->execute();
 
         FileHelper::removeDir($tmpDir);
 
-        return new Archive($files, $archiveName);
+        return new Archive($files, $archiveName, $archivePath, $timestamp);
     }
 
     /**
@@ -51,7 +52,7 @@ class Zipper extends AbstractArchiver
 
         $command->execute();
 
-        return new Archive($files, $archiveName);
+        return new Archive($files, $archiveName, $archiveName);
     }
 
     /**
@@ -62,36 +63,32 @@ class Zipper extends AbstractArchiver
      */
     public function compressDirectory(string $dir, string $archiveName): Archive
     {
-        $archiveName = $this->prepareArchivePath($archiveName);
+        $archivePath = $this->prepareArchivePath($archiveName);
 
         $files = FileHelper::findFilesWithoutDir($dir);
 
-        $command = $this->createCommand($dir, $archiveName, $files);
+        $command = $this->createCommand($dir, $archivePath, $files);
 
         $command->execute();
 
-        return new Archive($files, $archiveName);
+        return new Archive($files, $archiveName, $archivePath);
     }
 
-    private function createCommand(string $dir, string $archiveName, array $files): ShellCommand
+    private function createCommand(string $dir, string $archivePath, array $files): ShellCommand
     {
         return (new ShellCommand('cd', false))
             ->addParameter($dir)
             ->addAmpersands()
             ->addParameter('zip')
             ->addCutOption('r')
-            ->addParameter($archiveName)
+            ->addParameter($archivePath)
             ->addParameters($files);
     }
 
-    private function prepareArchivePath(string $archiveName): string
+    private function prepareArchivePath(int $timestamp, string $archiveName): string
     {
         $archiveName = FileHelper::changeExtensionIfNotOur($archiveName, 'zip');
 
-        $archivesPath = storage_path('archives') . DIRECTORY_SEPARATOR;
-
-        !file_exists($archivesPath) && mkdir($archivesPath, 0777, true);
-
-        return $archivesPath . $archiveName;
+        return ArchiveService::getStoragePath($timestamp, $archiveName);
     }
 }

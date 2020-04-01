@@ -159,9 +159,11 @@ class FileHelper
         ];
     }
 
-    public static function getTmpFolder(): string
+    public static function getTmpFolder(int &$timestamp = null): string
     {
-        $path = storage_path(time());
+        $timestamp = time();
+
+        $path = storage_path($timestamp);
 
         mkdir($path, 0777, true);
 

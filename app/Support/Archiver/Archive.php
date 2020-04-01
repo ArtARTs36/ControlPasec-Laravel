@@ -10,16 +10,23 @@ class Archive
     private $files;
 
     /** @var string  */
+    private $path;
+
+    /** @var string */
     private $name;
 
     /** @var bool */
     private $isCompressSuccess;
 
-    public function __construct(array $files, string $name)
+    private $timestamp;
+
+    public function __construct(array $files, string $name, string $path, int $timestamp = null)
     {
         $this->files = $files;
+        $this->path = $path;
+        $this->isCompressSuccess = file_exists($path);
         $this->name = $name;
-        $this->isCompressSuccess = file_exists($name);
+        $this->timestamp = $timestamp;
     }
 
     public function getCollection(): Collection
@@ -39,6 +46,16 @@ class Archive
 
     public function delete(): bool
     {
-        return $this->isCompressSuccess && unlink($this->name);
+        return $this->isCompressSuccess && unlink($this->path);
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getTimeStamp()
+    {
+        return $this->timestamp;
     }
 }
