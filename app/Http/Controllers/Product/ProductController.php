@@ -25,7 +25,7 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,13 +41,15 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @param Product $product
-     * @return void
+     * @return ActionResponse
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Product $product): ActionResponse
     {
-        $product->save();
+        $product->setRawAttributes($request->all());
+
+        return new ActionResponse($product->save(), $product);
     }
 
     /**
