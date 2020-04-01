@@ -6,12 +6,15 @@ use App\User;
 
 class UserRepository
 {
-    public static function liveFind(string $query)
+    public static function liveFind(string $find)
     {
-        return User::where('name', 'LIKE', "%{$query}%")
-            ->orWhere('patronymic', 'LIKE', "%{$query}%")
-            ->orWhere('family', 'LIKE', "%{$query}%")
-            ->orWhere('position', 'LIKE', "%{$query}%")
+        return User::where('is_active', true)
+            ->where(function ($query) use ($find) {
+                $query->where('name', 'LIKE', "%{$find}%")
+                    ->orWhere('patronymic', 'LIKE', "%{$find}%")
+                    ->orWhere('family', 'LIKE', "%{$find}%")
+                    ->orWhere('position', 'LIKE', "%{$find}%");
+            })
             ->get();
     }
 }
