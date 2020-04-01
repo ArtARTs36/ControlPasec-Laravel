@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Vocab;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Vocab\VocabWordRequest;
 use App\Models\Vocab\VocabWord;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 
 class VocabWordController extends Controller
@@ -11,66 +13,52 @@ class VocabWordController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param int $page
+     * @return LengthAwarePaginator
      */
-    public function index()
+    public function index(int $page = 1): LengthAwarePaginator
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return VocabWord::paginate(10, ['*'], null, $page);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  VocabWordRequest  $request
+     * @return VocabWord
      */
-    public function store(Request $request)
+    public function store(VocabWordRequest $request): VocabWord
     {
-        //
+        $word = new VocabWord();
+        $word->fill($request->toArray());
+        $word->save();
+
+        return $word;
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  VocabWord  $vocabWord
-     * @return \Illuminate\Http\Response
+     * @param VocabWord $vocabWord
+     * @return VocabWord
      */
-    public function show(VocabWord $vocabWord)
+    public function show(VocabWord $vocabWord): VocabWord
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  VocabWord  $vocabWord
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(VocabWord $vocabWord)
-    {
-        //
+        return $vocabWord;
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  VocabWord  $vocabWord
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param VocabWord $vocabWord
+     * @return VocabWord
      */
     public function update(Request $request, VocabWord $vocabWord)
     {
-        //
+        $vocabWord->setRawAttributes($request->all());
+
+        return $vocabWord;
     }
 
     /**

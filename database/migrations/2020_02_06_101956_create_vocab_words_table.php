@@ -17,7 +17,7 @@ class CreateVocabWordsTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
 
-            $table->integer('type');
+            $table->integer('type')->nullable();
 
             $table->string('nominative', 25);
             $table->string('dative', 25);
