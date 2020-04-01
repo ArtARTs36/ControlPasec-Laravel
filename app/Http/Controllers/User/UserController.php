@@ -90,6 +90,17 @@ class UserController extends Controller
     }
 
     /**
+     * Добавить роль пользователю
+     * @param User $user
+     * @param Role $role
+     * @return ActionResponse
+     */
+    public function attachRole(User $user, Role $role): ActionResponse
+    {
+        return new ActionResponse($user->roles()->attach($role->id) > 0, new UserResource($user));
+    }
+
+    /**
      * Активировать профиль пользователя
      * @param User $user
      * @return User
