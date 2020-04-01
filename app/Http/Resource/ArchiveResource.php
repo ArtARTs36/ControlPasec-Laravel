@@ -14,8 +14,14 @@ class ArchiveResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'name' => $this->getName(),
+            'title' => $this->getName(),
             'timestamp' => $this->getTimeStamp(),
+            'download_url' => $_SERVER['HTTP_HOST'] . DIRECTORY_SEPARATOR . implode(DIRECTORY_SEPARATOR, [
+                'api',
+                'archives',
+                $this->getTimeStamp(),
+                $this->getName(),
+            ]),
         ];
     }
 }
