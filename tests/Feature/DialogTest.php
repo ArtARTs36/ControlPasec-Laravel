@@ -107,10 +107,9 @@ class DialogTest extends BaseTestCase
         self::assertArrayHasKey('inter_user', $dialog);
         self::assertArrayHasKey('last_message', $dialog);
         self::assertTrue(count($dialog['last_message']) > 0);
-    }
 
-    public function testSendToAdmin(): void
-    {
+        // send to admin
+
         $text = $this->getFaker()->text;
 
         $data = [
