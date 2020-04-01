@@ -41,6 +41,18 @@ class ShellCommand
     }
 
     /**
+     * @param string $dir
+     * @param string $executor
+     * @return static
+     */
+    public static function getInstanceWithCd(string $dir, string $executor): self
+    {
+        return (new self('cd '. $dir))
+            ->addParameter($executor)
+            ->addAmpersands();
+    }
+
+    /**
      * Выполнить программу
      *
      * @return self

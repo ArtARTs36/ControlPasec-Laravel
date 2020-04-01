@@ -26,7 +26,7 @@ class Zipper extends AbstractArchiver
             return $fileName;
         }, $files);
 
-        $archivePath = $this->prepareArchivePath($timestamp, $archiveName);
+        $archivePath = $this->prepareArchivePath($archiveName, $timestamp);
 
         $command = $this->createCommand($tmpDir, $archivePath, $files);
 
@@ -85,8 +85,10 @@ class Zipper extends AbstractArchiver
             ->addParameters($files);
     }
 
-    private function prepareArchivePath(int $timestamp, string $archiveName): string
+    private function prepareArchivePath(string $archiveName, int $timestamp = null): string
     {
+        $timestamp = $timestamp ?? time();
+
         $archiveName = FileHelper::changeExtensionIfNotOur($archiveName, 'zip');
 
         return ArchiveService::getStoragePath($timestamp, $archiveName);
