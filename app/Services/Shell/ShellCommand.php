@@ -68,6 +68,17 @@ class ShellCommand
     }
 
     /**
+     * Добавить амперсанды в командную строку
+     * @return $this
+     */
+    public function addAmpersands(): self
+    {
+        $this->settings[] = new ShellCommandParameter('&&');
+
+        return $this;
+    }
+
+    /**
      * Добавить параметры в командную строку
      *
      * @param $values
@@ -91,6 +102,19 @@ class ShellCommand
     public function addOption($option): self
     {
         $this->settings[] = new ShellCommandOption($option);
+
+        return $this;
+    }
+
+    /**
+     * Добавить опцию в командную строку
+     *
+     * @param $option
+     * @return $this
+     */
+    public function addCutOption($option): self
+    {
+        $this->settings[] = new ShellCommandCutOption($option);
 
         return $this;
     }

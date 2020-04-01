@@ -48,6 +48,22 @@ class FileHelper
         }
     }
 
+    public static function findFiles($path, &$files)
+    {
+        if (is_dir($path)) {
+            $cleanPath = self::cleanBackPathsByFiles(scandir($path));
+            foreach ($cleanPath as $file) {
+                $finalPath = $path . '/' . $file;
+                $result = self::findFiles($finalPath, $files);
+                if (!is_null($result)) {
+                    $files[] = $result;
+                }
+            }
+        } elseif (is_file($path)) {
+            return $path;
+        }
+    }
+
     public static function findPhpClass(string $path): array
     {
         $classPaths = [];
@@ -107,5 +123,79 @@ class FileHelper
     public static function cleanBackPathsByFiles($files)
     {
         return array_diff($files, ['.', '..']);
+    }
+
+    public static function findFilesWithoutDir(string $dir): ?array
+    {
+        return array_values(array_diff(scandir($dir), ['.', '..']));
+    }
+
+    public static function getPrevDir(string $origDir)
+    {
+        $parse = explode(DIRECTORY_SEPARATOR, $origDir);
+
+        $dir = '';
+
+        for ($i = 0; $i < count($parse) - 2; $i++) {
+            $dir .= $parse[$i] . DIRECTORY_SEPARATOR;
+        }
+
+        return $dir;
+    }
+
+    public static function getPrevDirAndFileName(string $file)
+    {
+        $parse = explode(DIRECTORY_SEPARATOR, $file);
+
+        $dir = '';
+
+        for ($i = 0; $i < count($parse) - 2; $i++) {
+            $dir .= $parse[$i] . DIRECTORY_SEPARATOR;
+        }
+
+        return [
+            'prevDir' => $dir,
+            'fileName' => end($parse),
+        ];
+    }
+
+    public static function getTmpFolder(): string
+    {
+        $path = storage_path(time());
+
+        mkdir($path, 0777, true);
+
+        return $path;
+    }
+
+    public static function getFileName(string $fullPath): string
+    {
+        $info = pathinfo($fullPath);
+
+        return $info['filename'] . '.' . $info['extension'];
+    }
+
+    public static function removeDir(string $dir): bool
+    {
+        $files = [];
+        self::findFiles($dir, $files);
+
+        foreach ($files as $file) {
+            unlink($file);
+        }
+
+        rmdir($dir);
+
+        return true;
+    }
+
+    public static function changeExtensionIfNotOur(string $file, string $extension): string
+    {
+        $parse = explode('.', $file);
+        if (end($parse) === $extension) {
+            return $file;
+        }
+
+        return $file . '.' . $extension;
     }
 }

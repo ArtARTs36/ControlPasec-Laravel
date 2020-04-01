@@ -4,12 +4,12 @@ namespace App\Services\Shell;
 
 class ShellCommandOption implements ShellSettingInterface
 {
-    private $option;
+    protected $option;
 
     /**
      * @var string
      */
-    private $value;
+    protected $value;
 
     /**
      * ShellCommandParameter constructor.
