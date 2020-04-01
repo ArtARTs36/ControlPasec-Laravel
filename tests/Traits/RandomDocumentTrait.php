@@ -15,7 +15,6 @@ trait RandomDocumentTrait
     {
         return Document::where('type_id', $type)
             ->inRandomOrder()
-            ->get()
             ->first();
     }
 

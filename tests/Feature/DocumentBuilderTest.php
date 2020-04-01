@@ -4,7 +4,10 @@ namespace Tests\Feature;
 
 use App\Models\Document\Document;
 use App\Models\Document\DocumentType;
+use App\Models\Supply\QualityCertificate;
+use App\Models\Supply\Supply;
 use App\Services\Document\DocumentBuilder;
+use App\Services\Document\DocumentCreator;
 use Tests\BaseTestCase;
 use Tests\Traits\RandomDocumentTrait;
 
@@ -15,11 +18,10 @@ class DocumentBuilderTest extends BaseTestCase
 {
     use RandomDocumentTrait;
 
-    public function testBuild()
+    public function testBuild(): void
     {
         $randomDocument = Document::where('status', Document::STATUS_NEW)
             ->inRandomOrder()
-            ->get()
             ->first();
 
         $build = DocumentBuilder::build($randomDocument, true);
@@ -27,7 +29,7 @@ class DocumentBuilderTest extends BaseTestCase
         self::assertNotFalse($build);
     }
 
-    public function testBuildMany()
+    public function testBuildMany(): void
     {
         $documents = [
             $this->getRandomDocumentByType(DocumentType::SCORE_FOR_PAYMENT_ID),
@@ -42,7 +44,7 @@ class DocumentBuilderTest extends BaseTestCase
         self::assertTrue($build);
     }
 
-    public function testBuildScoreForPayment()
+    public function testBuildScoreForPayment(): void
     {
         $build = DocumentBuilder::build(
             $this->getRandomDocumentByType(DocumentType::SCORE_FOR_PAYMENT_ID),
@@ -52,17 +54,30 @@ class DocumentBuilderTest extends BaseTestCase
         self::assertFileExists($build);
     }
 
-    public function testBuildQualityCertificate()
+    /**
+     * @throws \Throwable
+     */
+    public function testBuildQualityCertificate(): void
     {
+        $supply = $this->getRandomModel(Supply::class);
+
+        $certificate = new QualityCertificate();
+        $certificate->supply_id = $supply->id;
+        $certificate->save();
+
+        $document = DocumentCreator::getInstance(DocumentType::QUALITY_CERTIFICATE_ID)
+            ->addQualityCertificates($certificate)
+            ->save();
+
         $build = DocumentBuilder::build(
-            $this->getRandomDocumentByType(DocumentType::QUALITY_CERTIFICATE_ID),
+            $document,
             true
         );
 
         self::assertFileExists($build);
     }
 
-    public function testBuildTorg12()
+    public function testBuildTorg12(): void
     {
         $build = DocumentBuilder::build(
             $this->getRandomDocumentByType(DocumentType::TORG_12_ID),
