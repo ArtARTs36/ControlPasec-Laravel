@@ -20,3 +20,4 @@
 
 ## Вспомогательные команды
 - php artisan l5-swagger:generate
+- ./vendor/bin/phpstan analyse --memory-limit=2G
