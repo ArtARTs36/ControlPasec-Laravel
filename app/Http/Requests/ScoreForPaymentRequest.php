@@ -10,7 +10,7 @@ class ScoreForPaymentRequest extends FormRequest
     {
         return [
             'supply_id' => 'required|integer',
-            'contract_id' => 'sometimes|integer',
+            'contract_id' => 'sometimes',
             'date' => 'required|string',
             'order_number' => 'sometimes',
         ];

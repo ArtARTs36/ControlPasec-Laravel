@@ -66,13 +66,17 @@ class ScoreForPaymentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param ScoreForPaymentRequest $request
      * @param ScoreForPayment $scoreForPayment
-     * @return Response
+     * @return ActionResponse
      */
     public function update(ScoreForPaymentRequest $request, ScoreForPayment $scoreForPayment)
     {
-        //
+        $scoreForPayment->setRawAttributes($request->only(
+            ['supply_id', 'contract_id', 'date']
+        ));
+
+        return new ActionResponse($scoreForPayment->save(), $scoreForPayment);
     }
 
     /**
