@@ -18,6 +18,7 @@ foreach ($items as $item) {
 
     $supply = SupplyService::create($customer, $supplier);
 
+    /** @var \App\Models\Product\Product $product */
     $product = VariableDefinitionService::getModel(VariableDefinition::PRODUCT_ID);
     $supplyProduct = SupplyProductService::makeSupplyProductOfParent($product);
     $supplyProduct->supply_id = $supply->id;

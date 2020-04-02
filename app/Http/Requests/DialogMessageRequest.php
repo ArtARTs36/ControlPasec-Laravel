@@ -6,8 +6,8 @@ use Illuminate\Foundation\Http\FormRequest;
 
 /**
  * Class DialogMessageRequest
- * @property int to_user_id
- * @property string text
+ * @property int $to_user_id
+ * @property string $text
  */
 class DialogMessageRequest extends FormRequest
 {

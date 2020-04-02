@@ -22,7 +22,7 @@ class DocumentBuilder
 
     public static function build(Document $document, bool $save = false)
     {
-        if (!self::LOADERS[$document->getLoaderName()]) {
+        if (empty(self::LOADERS[$document->getLoaderName()])) {
             throw new \LogicException('Не найден загрузчик шаблонов!');
         }
 
@@ -41,7 +41,7 @@ class DocumentBuilder
     public static function buildMany(array $documents, bool $save = false)
     {
         $document = $documents[0];
-        if (!self::LOADERS[$document->getLoaderName()]) {
+        if (empty(self::LOADERS[$document->getLoaderName()])) {
             throw new \LogicException('Не найден загрузчик шаблонов!');
         }
 

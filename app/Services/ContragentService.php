@@ -27,7 +27,7 @@ class ContragentService
      * Обновить счета в реквизитах
      *
      * @param ContragentRequest $request
-     * @return Contragent\BankRequisites|mixed
+     * @return Contragent\BankRequisites[]|array|null
      */
     public static function updateScoresInRequisiteByRequest(ContragentRequest $request): ?array
     {

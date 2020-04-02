@@ -14,10 +14,9 @@ class DocumentJoinerFactory
 
     /**
      * @param Document[] $documents
-     * @param string|null $savePath
      * @return bool
      */
-    public static function join(array $documents, ?string $savePath = null)
+    public static function join(array $documents)
     {
         $ext = $documents[0]->getExtensionName();
 
@@ -36,7 +35,7 @@ class DocumentJoinerFactory
         $joinerClass = self::JOINERS[$ext];
 
         /** @var AbstractDocumentJoiner $joiner */
-        $joiner = new $joinerClass($documents, $savePath);
+        $joiner = new $joinerClass($documents);
 
         return $joiner->join();
     }

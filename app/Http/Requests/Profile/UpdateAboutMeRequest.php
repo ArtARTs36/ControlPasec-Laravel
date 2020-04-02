@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 /**
  * Class UpdateAboutMeRequest
- * @property string about_me
+ * @property string $about_me
  */
 class UpdateAboutMeRequest extends FormRequest
 {

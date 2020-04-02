@@ -8,22 +8,22 @@ class CurrencyCourseFinder
     private static $parsers = null;
 
     /**
-     * @param $currency
+     * @param string$currency
      * @return float
      * @throws CurrencyCourseFinderNotDataException
      */
-    public static function actual($currency)
+    public static function actual(string $currency)
     {
         return self::actualFinder()->getCourse($currency);
     }
 
     /**
-     * @param $date
-     * @param $currency
+     * @param \DateTime|string $date
+     * @param string $currency
      * @return float
      * @throws CurrencyCourseFinderNotDataException
      */
-    public static function previous($date, $currency)
+    public static function previous($date, string $currency)
     {
         return self::previousFinder($date)->getCourse($currency);
     }
@@ -42,7 +42,7 @@ class CurrencyCourseFinder
     }
 
     /**
-     * @param $date
+     * @param \DateTime|string $date
      * @return CbrDailyCurrencyCourseFinder
      * @throws CurrencyCourseFinderNotDataException
      */

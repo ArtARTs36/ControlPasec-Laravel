@@ -77,16 +77,16 @@ class CbrDailyCurrencyCourseFinder implements CurrencyCourseFinderInterface
      * @return \DateTime|string
      * @throws \Exception
      */
-    public function getActualTime($isDateTime = false)
+    public function getActualTime(bool $isDateTime = false)
     {
         return ($isDateTime === true) ? new \DateTime($this->actualTime) : $this->actualTime;
     }
 
     /**
-     * @param $condition
+     * @param bool $condition
      * @throws CurrencyCourseFinderNotDataException
      */
-    private function handleNotDataException($condition)
+    private function handleNotDataException(bool $condition)
     {
         if ($condition === true) {
             throw new CurrencyCourseFinderNotDataException('Не получены данные от cbr-xml-daily.ru');

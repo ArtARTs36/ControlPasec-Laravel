@@ -6,6 +6,7 @@ use App\Helper\FileHelper;
 use App\Models\Document\Document;
 use App\Service\Document\DocumentService;
 use App\Services\Shell\ShellCommand;
+use Illuminate\Support\Collection;
 
 /**
  * Class DocumentPsFileMaker
@@ -29,7 +30,7 @@ class DocumentPsFileMaker
     }
 
     /**
-     * @param Document $documents
+     * @param Document[]|Collection|array $documents
      * @return static
      */
     public static function getInstanceByDocs($documents): self
@@ -93,10 +94,10 @@ class DocumentPsFileMaker
     }
 
     /**
-     * @param $inputDir
-     * @param $outputDir
+     * @param string $inputDir
+     * @param string $outputDir
      */
-    private function createTmpFolders(&$inputDir, &$outputDir)
+    private function createTmpFolders(string &$inputDir, string &$outputDir)
     {
         $root = storage_path('documents_ps');
         if (!file_exists($root)) {

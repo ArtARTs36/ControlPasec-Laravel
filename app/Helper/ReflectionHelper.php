@@ -83,7 +83,7 @@ class ReflectionHelper
     }
 
     /**
-     * @param $setter
+     * @param string$setter
      * @return string
      */
     private static function translateSetterToProperty(string $setter): string

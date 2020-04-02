@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 /**
  * Class UserRegisterRequest
- * @property int role_id
+ * @property int $role_id
  * @mixin User
  */
 class UserRegisterRequest extends FormRequest

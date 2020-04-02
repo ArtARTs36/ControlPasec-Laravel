@@ -4,8 +4,11 @@ namespace App\Services\Document;
 
 use App\Models\Document\Document;
 use App\Models\Document\DocumentType;
+use App\Models\Supply\ProductTransportWaybill;
+use App\ScoreForPayment;
 use App\Service\Document\DocumentService;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 class DocumentCreator
 {
@@ -46,7 +49,7 @@ class DocumentCreator
     }
 
     /**
-     * @param $type
+     * @param DocumentType|int $type
      * @return $this
      */
     public function setType($type)
@@ -61,7 +64,7 @@ class DocumentCreator
     }
 
     /**
-     * @param $scores
+     * @param ScoreForPayment[]|Collection|array $scores
      * @return $this
      * @throws \Throwable
      */
@@ -74,14 +77,14 @@ class DocumentCreator
     }
 
     /**
-     * @param $scores
+     * @param Collection|ProductTransportWaybill[]|array $waybills
      * @return $this
      * @throws \Throwable
      */
-    public function addProductTransportWaybills($scores): self
+    public function addProductTransportWaybills($waybills): self
     {
         $this->beforeAttached();
-        $this->document->productTransportWaybills()->attach($this->arrIds($scores));
+        $this->document->productTransportWaybills()->attach($this->arrIds($waybills));
 
         return $this;
     }
@@ -113,7 +116,7 @@ class DocumentCreator
     }
 
     /**
-     * @param $children
+     * @param Document[]|Collection|array $children
      * @return $this
      * @throws \Throwable
      */

@@ -87,7 +87,7 @@ class ContractController extends Controller
     /**
      * Поиск договоров по заказчику
      *
-     * @param $customerId
+     * @param int $customerId
      * @return ActionResponse
      */
     public function findByCustomer(int $customerId): ActionResponse

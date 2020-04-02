@@ -6,8 +6,8 @@ use Illuminate\Foundation\Http\FormRequest;
 
 /**
  * Class AuthRequest
- * @property string email
- * @property string password
+ * @property string $email
+ * @property string $password
  */
 class AuthRequest extends FormRequest
 {

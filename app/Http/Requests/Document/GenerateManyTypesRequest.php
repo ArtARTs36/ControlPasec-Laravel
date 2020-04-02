@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 /**
  * Class GenerateManyTypesRequest
- * @property array types
+ * @property array $types
  */
 class GenerateManyTypesRequest extends FormRequest
 {

@@ -21,8 +21,12 @@ class SupplierHelper
             ->first();
     }
 
+    /**
+     * Получить подпись
+     * @return string
+     */
     public function getSignature(): string
     {
-        return $this->myContragent ? $this->myContragent->signature : $this->supplier->title;
+        return $this->myContragent !== null ? $this->myContragent->signature : $this->supplier->title;
     }
 }

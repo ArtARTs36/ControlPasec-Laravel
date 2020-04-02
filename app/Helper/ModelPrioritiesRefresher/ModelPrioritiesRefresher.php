@@ -68,11 +68,11 @@ class ModelPrioritiesRefresher
     /**
      * Добавить значение в массив
      *
-     * @param $parts
+     * @param array $parts
      * @param int $newValue
      * @return array
      */
-    private function addValue($parts, int $newValue): array
+    private function addValue(array $parts, int $newValue): array
     {
         $this->prepareNewValue($newValue);
 

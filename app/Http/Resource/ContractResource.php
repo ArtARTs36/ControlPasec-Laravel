@@ -3,6 +3,7 @@
 namespace App\Http\Resource;
 
 use App\Models\Contract\Contract;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
@@ -15,7 +16,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class ContractResource extends JsonResource
 {
     /**
-     * @param $request
+     * @param Request $request
      * @return array
      *
      * @OA\Property(property="id", type="integer")

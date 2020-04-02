@@ -8,10 +8,9 @@ class TextSqueezer
      * Минифицировать текст
      *
      * @param string $source
-     * @param bool $isLoadCache
-     * @return mixed
+     * @return string
      */
-    public static function minify(string &$source, bool $isLoadCache = true): string
+    public static function minify(string &$source): string
     {
         self::parseText($source);
 
@@ -21,11 +20,10 @@ class TextSqueezer
     /**
      * Минифицировать текст, получив путь до файла, который его содержит
      *
-     * @param string$sourcePath
-     * @param bool $isLoadCache
+     * @param string $sourcePath
      * @return mixed
      */
-    public static function minifyByPath(string $sourcePath, bool $isLoadCache = true): string
+    public static function minifyByPath(string $sourcePath): string
     {
         if (!file_exists($sourcePath)) {
             throw new \LogicException('Файл не существует!');
@@ -33,7 +31,7 @@ class TextSqueezer
 
         $source = file_get_contents($sourcePath);
 
-        return self::minify($source, $isLoadCache);
+        return self::minify($source);
     }
 
     /**

@@ -60,12 +60,12 @@ class DocumentConverter
 
     /**
      * @param ShellCommand $command
-     * @param $file
-     * @param $ext
-     * @return string|null
+     * @param string $file
+     * @param string $ext
+     * @return string
      * @throws DocumentConvertException
      */
-    private static function checkShell(ShellCommand $command, $file, $ext)
+    private static function checkShell(ShellCommand $command, string $file, string $ext)
     {
         $shellResult = $command->getShellResult();
         if ($shellResult === null) {

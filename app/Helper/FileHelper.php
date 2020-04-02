@@ -77,10 +77,10 @@ class FileHelper
     /**
      * Является ли файл классом PHP
      *
-     * @param $path
+     * @param string $path
      * @return bool
      */
-    public static function fileIsPhpClasses($path)
+    public static function fileIsPhpClasses(string $path): bool
     {
         $extension = substr($path, -4, 4);
         if ($extension != '.php') {
@@ -102,10 +102,10 @@ class FileHelper
     /**
      * Поиск папок
      *
-     * @param $path
+     * @param string $path
      * @return array
      */
-    public static function findFolders($path)
+    public static function findFolders(string $path): array
     {
         $dirs = [];
 
@@ -163,7 +163,7 @@ class FileHelper
     {
         $timestamp = time();
 
-        $path = storage_path($timestamp);
+        $path = storage_path((string) $timestamp);
 
         mkdir($path, 0777, true);
 

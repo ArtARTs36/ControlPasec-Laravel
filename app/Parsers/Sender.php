@@ -7,6 +7,8 @@ namespace App\Parsers;
  */
 abstract class Sender
 {
+    const BASE_URL = '';
+
     /**
      * Подготовка URL к отправке запроса GET-Запроса
      *

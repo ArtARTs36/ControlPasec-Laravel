@@ -20,10 +20,10 @@ class MorpherSender extends Sender
 
     /**
      * @param $url
-     * @param null $params
+     * @param array|null $params
      * @return mixed
      */
-    public static function getRequest($url, $params = null)
+    public static function getRequest($url, array $params = null)
     {
         $result = self::executeSending($url, $params, ['Accept: application/json']);
         if (isset($result['code']) && $result['code'] == self::ERROR_LIMIT) {

@@ -66,12 +66,12 @@ abstract class AbstractDocTemplateLoader
      * Сохранить документ
      *
      * @param Document $document
-     * @param $output
+     * @param string $output
      * @param string $path
      * @return string
      * @throws \Exception
      */
-    protected function saveDocument(Document $document, $output, $path = null)
+    protected function saveDocument(Document $document, string $output, $path = null)
     {
         if ($path === null) {
             $path = $this->getSavePath($document);

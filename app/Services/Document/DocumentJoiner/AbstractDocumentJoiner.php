@@ -22,9 +22,8 @@ abstract class AbstractDocumentJoiner
 
     /**
      * @param array|Document[] $documents
-     * @param string|null $savePath
      */
-    public function __construct($documents, string $savePath = null)
+    public function __construct($documents)
     {
         $this->prepareFilesPaths($documents);
         $this->prepareSavePath();

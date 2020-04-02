@@ -24,13 +24,13 @@ class PushAllSender
      *  Формируем массив для отправки на PushAll
      *  Отправляем в this->send()
      *
-     * @param $title
-     * @param $message
-     * @param null $url
+     * @param string $title
+     * @param string $message
+     * @param string|null $url
      * @param integer|null $userId
      * @return bool|mixed|null
      */
-    public function push($title, $message, $url = null, $userId = null)
+    public function push(string $title, string $message, string $url = null, int $userId = null)
     {
         $array = [
             "type" => "broadcast",

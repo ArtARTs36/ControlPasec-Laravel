@@ -2,6 +2,7 @@
 
 namespace App\Services\Document\DocTemplateLoader\Adapter;
 
+use alhimik1986\PhpExcelTemplator\params\ExcelParam;
 use alhimik1986\PhpExcelTemplator\PhpExcelTemplator;
 
 /**
@@ -10,9 +11,9 @@ use alhimik1986\PhpExcelTemplator\PhpExcelTemplator;
 class PhpExcelTemplatorAdapter extends PhpExcelTemplator
 {
     /**
-     * @param $templateFile
-     * @param $fileName
-     * @param $params
+     * @param string $templateFile
+     * @param string $fileName
+     * @param array|ExcelParam $params
      * @param array $callbacks
      * @param array $events
      * @param callable|null $sheetCallable
@@ -22,8 +23,8 @@ class PhpExcelTemplatorAdapter extends PhpExcelTemplator
      * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
      */
     public static function saveFileWithSpreadCallback(
-        $templateFile,
-        $fileName,
+        string $templateFile,
+        string $fileName,
         $params,
         $callbacks = [],
         $events = [],

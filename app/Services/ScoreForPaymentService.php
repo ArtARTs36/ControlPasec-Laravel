@@ -15,7 +15,7 @@ class ScoreForPaymentService
     /**
      * Получить или создать счет по поставке
      *
-     * @param $supplyId
+     * @param Supply|int $supplyId
      * @param null $date
      * @param null $orderNumber
      * @return ScoreForPayment

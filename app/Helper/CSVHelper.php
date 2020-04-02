@@ -9,10 +9,10 @@ use Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException;
 class CSVHelper
 {
     /**
-     * @param $file
+     * @param string $file
      * @return CSVResource
      */
-    public static function loadFile($file)
+    public static function loadFile(string $file)
     {
         if (!file_exists($file)) {
             throw new FileNotFoundException($file);
@@ -34,11 +34,11 @@ class CSVHelper
     }
 
     /**
-     * @param $data
-     * @param $keys
+     * @param array $data
+     * @param array $keys
      * @return CSVString
      */
-    protected static function createCsvString($data, $keys)
+    protected static function createCsvString(array $data, array $keys)
     {
         $map = null;
 
