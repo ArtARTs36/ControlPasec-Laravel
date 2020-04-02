@@ -17,7 +17,7 @@ class DocumentCreator
 
     /**
      * DocumentCreator constructor.
-     * @param null $type
+     * @param int|null $type
      * @throws \Exception
      */
     public function __construct($type = null)
@@ -64,7 +64,7 @@ class DocumentCreator
     }
 
     /**
-     * @param ScoreForPayment[]|Collection|array $scores
+     * @param ScoreForPayment[]|Collection|array|int $scores
      * @return $this
      * @throws \Throwable
      */
@@ -169,7 +169,7 @@ class DocumentCreator
     }
 
     /**
-     * @param $array
+     * @param array|Model $array
      * @return array
      */
     private function arr($array)

@@ -18,7 +18,7 @@ class VocabWordController extends Controller
      */
     public function index(int $page = 1): LengthAwarePaginator
     {
-        return VocabWord::paginate(10, ['*'], null, $page);
+        return VocabWord::paginate(10, ['*'], 'VocabWordsList', $page);
     }
 
     /**

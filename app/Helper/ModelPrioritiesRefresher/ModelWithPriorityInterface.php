@@ -2,6 +2,12 @@
 
 namespace App\Helper\ModelPrioritiesRefresher;
 
+use Illuminate\Database\Eloquent\Builder;
+
+/**
+ * Interface ModelWithPriorityInterface
+ * @mixin Builder
+ */
 interface ModelWithPriorityInterface
 {
     /**

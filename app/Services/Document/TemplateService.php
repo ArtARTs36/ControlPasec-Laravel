@@ -29,7 +29,7 @@ class TemplateService
      * 250000.00 -> 250 000,00
      * 250000 -> 250 000,00
      *
-     * @param $price
+     * @param mixed $price
      * @return string
      */
     public static function formatPriceOne($price)

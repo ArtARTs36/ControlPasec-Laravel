@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Document;
 
 use App\Http\Controllers\Controller;
+use App\Http\Responses\ActionResponse;
 use App\Models\Document\Document;
+use App\Models\News\ExternalNewsSource;
 use App\Service\Document\DocumentService;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 
 class DocumentController extends Controller
@@ -12,73 +15,47 @@ class DocumentController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param int $page
+     * @return LengthAwarePaginator
      */
-    public function index()
+    public function index(int $page = 1): LengthAwarePaginator
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return ExternalNewsSource::paginate(10, ['*'], 'DocumentsList', $page);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Document  $document
-     * @return \Illuminate\Http\Response
+     * @param Document $document
+     * @return Document
      */
-    public function show(Document $document)
+    public function show(Document $document): Document
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Document  $document
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Document $document)
-    {
-        //
+        return $document;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Document  $document
-     * @return \Illuminate\Http\Response
+     * @param Document $document
+     * @return ActionResponse
      */
-    public function destroy(Document $document)
+    public function destroy(Document $document): ActionResponse
     {
-        //
+        $document->deleteFile();
+
+        return new ActionResponse($document->delete() > 0);
     }
 
-    public function download($documentId)
+    /**
+     * Скачать документ / Download Document
+     * @param int $documentId
+     * @return void|null
+     */
+    public function download(int $documentId)
     {
         $document = Document::find($documentId);
-        $path = public_path(DocumentService::getDownloadLink($document));
-        if (!file_exists($path)) {
+        if (!$document->fileExists()) {
             return null;
         }
 
@@ -93,9 +70,9 @@ class DocumentController extends Controller
         header('Expires: 0');
         header('Cache-Control: must-revalidate');
         header('Pragma: public');
-        header('Content-Length: ' . filesize($path));
+        header('Content-Length: ' . filesize($document->getFullPath()));
 
-        readfile($path);
+        readfile($document->getFullPath());
         exit;
     }
 }

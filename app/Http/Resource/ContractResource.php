@@ -10,6 +10,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * Class ContractResource
  *
  * @mixin Contract
+ * @extends JsonResource<Contract>
  *
  * @OA\Schema(type="object")
  */

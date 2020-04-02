@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\News;
 
 use App\Http\Controllers\Controller;
+use App\Http\Responses\ActionResponse;
 use App\Models\News\ExternalNews;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Http\Request;
 
 class ExternalNewsController extends Controller
 {
@@ -28,9 +28,9 @@ class ExternalNewsController extends Controller
      * @param int $page
      * @return LengthAwarePaginator
      */
-    public function index($page = 1)
+    public function index(int $page = 1)
     {
-        return ExternalNews::paginate(10, ['*'], null, $page);
+        return ExternalNews::paginate(10, ['*'], 'ExternalNews', $page);
     }
 
     /**
@@ -52,7 +52,7 @@ class ExternalNewsController extends Controller
      * @param int $count
      * @return LengthAwarePaginator
      */
-    public function chart($count = 6)
+    public function chart(int $count = 6): LengthAwarePaginator
     {
         return ExternalNews::with('source')->
             latest()->
@@ -60,47 +60,24 @@ class ExternalNewsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
-     * @param  \App\ExternalNews  $externalNews
-     * @return \Illuminate\Http\Response
+     * @param ExternalNews $externalNews
+     * @return ExternalNews
      */
     public function show(ExternalNews $externalNews)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param ExternalNews $externalNews
-     * @return void
-     */
-    public function update(Request $request, ExternalNews $externalNews)
-    {
-        //
+        return $externalNews;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ExternalNews  $externalNews
-     * @return \Illuminate\Http\Response
+     * @param ExternalNews $externalNews
+     * @return ActionResponse
      */
-    public function destroy(ExternalNews $externalNews)
+    public function destroy(ExternalNews $externalNews): ActionResponse
     {
-        //
+        return new ActionResponse($externalNews->delete() > 0);
     }
 }

@@ -65,7 +65,7 @@ class ProjectInstallCommand extends Command
 
     private function checkExistsFileDocumentsMap(): void
     {
-        FileHelper::createFileIfNotExists(base_path(env('DOCUMENT_SAVE_MAP')), 1);
+        FileHelper::createFileIfNotExists(base_path(env('DOCUMENT_SAVE_MAP')), "1");
 
         dump('Проверен мап-файл для сохранения документов');
     }

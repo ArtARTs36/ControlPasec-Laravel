@@ -34,10 +34,10 @@ abstract class Sender
      * @param string $url
      * @param array $params
      * @param array $headers
-     * @param bool $options
+     * @param array $options
      * @return false|resource
      */
-    public static function curlInit(string $url, array $params, array $headers, bool $options = null)
+    public static function curlInit(string $url, array $params, array $headers, array $options = null)
     {
         $ch = curl_init();
 

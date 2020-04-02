@@ -63,9 +63,9 @@ final class AppVersionUpdateCommand extends Command
 
     /**
      * Получить список актуальных версий
-     * @return array|null
+     * @return array
      */
-    private function getActualVersions(): ?array
+    private function getActualVersions(): array
     {
         $classes = $this->getVersionsClasses();
 
@@ -82,9 +82,9 @@ final class AppVersionUpdateCommand extends Command
 
     /**
      * Получить классы версий
-     * @return array|null
+     * @return array
      */
-    private function getVersionsClasses(): ?array
+    private function getVersionsClasses(): array
     {
         $files = FileHelper::findPhpClass(base_path('app-versions'));
         $classesNames = [];

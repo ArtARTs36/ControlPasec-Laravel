@@ -18,7 +18,7 @@ class DialogController extends Controller
      */
     public function index(int $page = 1): LengthAwarePaginator
     {
-        return Dialog::paginate(10, ['*'], null, $page);
+        return Dialog::paginate(10, ['*'], 'DialogsList', $page);
     }
 
     /**

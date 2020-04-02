@@ -8,6 +8,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 /**
  * Class ArchiveResource
  * @mixin Archive
+ * @extends JsonResource<Archive>
  */
 class ArchiveResource extends JsonResource
 {

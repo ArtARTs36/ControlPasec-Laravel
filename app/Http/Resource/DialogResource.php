@@ -10,6 +10,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 /**
  * Class DialogResource
  * @mixin Dialog
+ * @extends JsonResource<Dialog>
  */
 class DialogResource extends JsonResource
 {

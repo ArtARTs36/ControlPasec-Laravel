@@ -25,7 +25,7 @@ class AuthController extends Controller
      * Issue a JWT token when valid login credentials are
      * presented.
      *
-     * @param Request $request
+     * @param AuthRequest $request
      * @return UserResource|\Illuminate\Http\JsonResponse
      *
      * @OA\Post(
@@ -137,7 +137,7 @@ class AuthController extends Controller
      * Return the token and current user authenticated.
      *
      * @param Request $request
-     * @param $token
+     * @param string $token
      * @return UserResource
      */
     protected function sendLoginResponse(Request $request, $token)

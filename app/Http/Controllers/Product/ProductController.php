@@ -26,11 +26,11 @@ class ProductController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @return Product
      */
-    public function store(Request $request)
+    public function store(Request $request): Product
     {
-        //
+        return Product::create($request->all());
     }
 
     public function show(Product $product)
@@ -77,6 +77,7 @@ class ProductController extends Controller
         $products = [];
 
         /** @var SupplyProduct[] $supplyProducts */
+        /** @var SupplyProduct $realization */
         foreach ($supplyProducts as $realization) {
             if (!isset($products[$realization->product_id])) {
                 $products[$realization->product_id] = $realization->parent;

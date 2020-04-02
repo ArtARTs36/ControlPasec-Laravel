@@ -8,6 +8,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 /**
  * Class PermissionResource
  * @mixin Permission
+ * @extends JsonResource<Permission>
  */
 class PermissionResource extends JsonResource
 {

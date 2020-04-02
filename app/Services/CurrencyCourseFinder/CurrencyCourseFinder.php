@@ -8,7 +8,7 @@ class CurrencyCourseFinder
     private static $parsers = null;
 
     /**
-     * @param string$currency
+     * @param string $currency
      * @return float
      * @throws CurrencyCourseFinderNotDataException
      */

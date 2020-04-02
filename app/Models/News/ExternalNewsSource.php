@@ -17,4 +17,8 @@ use Illuminate\Database\Query\Builder;
 class ExternalNewsSource extends Model
 {
     const TABLE = 'external_news_sources';
+
+    protected $fillable = [
+        'name', 'link',
+    ];
 }

@@ -8,6 +8,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 /**
  * Class RoleResource
  * @mixin Role
+ * @extends JsonResource<Role>
  */
 class RoleResource extends JsonResource
 {

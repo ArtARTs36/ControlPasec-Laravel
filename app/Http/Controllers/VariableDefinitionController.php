@@ -18,7 +18,7 @@ class VariableDefinitionController extends Controller
      */
     public function index(int $page = 1)
     {
-        return VariableDefinition::paginate(10, ['*'], null, $page);
+        return VariableDefinition::paginate(10, ['*'], 'VariableDefinitionsList', $page);
     }
 
     /**

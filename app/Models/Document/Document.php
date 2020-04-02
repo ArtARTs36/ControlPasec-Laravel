@@ -197,4 +197,11 @@ class Document extends Model
     {
         return file_exists($this->getFullPath());
     }
+
+    public function deleteFile(): void
+    {
+        if (($path = $this->getFullPath())) {
+            unlink($path);
+        }
+    }
 }

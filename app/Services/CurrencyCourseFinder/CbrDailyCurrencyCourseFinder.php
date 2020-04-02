@@ -15,10 +15,10 @@ class CbrDailyCurrencyCourseFinder implements CurrencyCourseFinderInterface
 
     /**
      * CbrDailyCurrencyCourseFinder constructor.
-     * @param null $date
+     * @param string $date
      * @throws CurrencyCourseFinderNotDataException
      */
-    public function __construct($date = null)
+    public function __construct(?string $date = null)
     {
         $this->parse($date);
     }

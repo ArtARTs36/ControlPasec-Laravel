@@ -97,7 +97,9 @@ class UserController extends Controller
      */
     public function attachRole(User $user, Role $role): ActionResponse
     {
-        return new ActionResponse($user->roles()->attach($role->id) > 0, new UserResource($user));
+        $user->roles()->attach($role->id);
+
+        return new ActionResponse(true, new UserResource($user));
     }
 
     /**

@@ -24,7 +24,7 @@ class ScoreForPaymentController extends Controller
      * @param int $page
      * @return LengthAwarePaginator
      */
-    public function index($page = 1)
+    public function index(int $page = 1): LengthAwarePaginator
     {
         return ScoreForPayment::with([
             'supply' => function ($query) {
@@ -39,7 +39,7 @@ class ScoreForPaymentController extends Controller
      * @param ScoreForPaymentRequest $request
      * @return ActionResponse
      */
-    public function store(ScoreForPaymentRequest $request)
+    public function store(ScoreForPaymentRequest $request): ActionResponse
     {
         $score = new ScoreForPayment();
         $score->fill($request->all());
@@ -83,28 +83,11 @@ class ScoreForPaymentController extends Controller
      * Remove the specified resource from storage.
      *
      * @param ScoreForPayment $scoreForPayment
-     * @return Response
-     */
-    public function destroy(ScoreForPayment $scoreForPayment)
-    {
-        //
-    }
-
-    /**
-     * Выгрузить документ
-     *
-     * @param $supplyId
      * @return ActionResponse
-     * @throws Throwable
      */
-    public function checkOrCreateDocumentBySupply($supplyId)
+    public function destroy(ScoreForPayment $scoreForPayment): ActionResponse
     {
-        $supply = Supply::find($supplyId);
-        if (null === $supply) {
-            return new ActionResponse(false);
-        }
-
-        ScoreForPaymentService::getOrCreateDocumentBySupply($supply);
+        return new ActionResponse($scoreForPayment->delete() > 0);
     }
 
     /**

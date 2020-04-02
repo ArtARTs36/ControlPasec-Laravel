@@ -9,6 +9,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * Class ContragentGroupResource
  *
  * @mixin ContragentGroup
+ * @extends JsonResource<ContragentGroup>
  */
 class ContragentGroupResource extends JsonResource
 {

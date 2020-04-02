@@ -16,8 +16,8 @@ use Illuminate\Database\Query\Builder;
  * Модель "поставка"
  *
  * @property integer $id
- * @property string $planned_date
- * @property string $execute_date
+ * @property string|\DateTime $planned_date
+ * @property string|\DateTime $execute_date
  * @property int $supplier_id
  * @property int $customer_id
  * @property Contragent $customer

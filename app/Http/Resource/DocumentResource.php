@@ -9,7 +9,9 @@ use Illuminate\Http\Resources\Json\JsonResource;
 /**
  * Class DocumentResource
  *
+ * @property string $document_url
  * @mixin Document
+ * @extends JsonResource<Document>
  */
 class DocumentResource extends JsonResource
 {

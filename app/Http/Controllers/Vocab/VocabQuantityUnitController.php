@@ -9,12 +9,12 @@ use Illuminate\Http\Request;
 
 class VocabQuantityUnitController extends Controller
 {
-    public function index($page = 0)
+    public function index(int $page = 0)
     {
-        return VocabQuantityUnit::paginate(10, ['*'], null, $page);
+        return VocabQuantityUnit::paginate(10, ['*'], 'VocabQuantityUnitsList', $page);
     }
 
-    public function show(VocabQuantityUnit $vocabQuantityUnit)
+    public function show(VocabQuantityUnit $vocabQuantityUnit): VocabQuantityUnit
     {
         return $vocabQuantityUnit;
     }

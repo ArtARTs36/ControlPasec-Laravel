@@ -29,15 +29,12 @@ class MorpherParser extends MorpherSender
             switch ($type) {
                 case 'Ф':
                     return VocabWord::TYPE_FAMILY;
-                    break;
 
                 case 'И':
                     return VocabWord::TYPE_NAME;
-                    break;
 
                 case 'О':
                     return VocabWord::TYPE_PATRONYMIC;
-                    break;
             }
         }
 

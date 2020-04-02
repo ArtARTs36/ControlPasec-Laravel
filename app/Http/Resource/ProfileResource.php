@@ -8,6 +8,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 /**
  * Class ProfileResource
  * @mixin User
+ * @extends JsonResource<User>
  */
 class ProfileResource extends JsonResource
 {
