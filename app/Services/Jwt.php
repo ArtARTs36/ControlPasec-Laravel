@@ -12,7 +12,7 @@ class Jwt
     /**
      * Jwt constructor.
      *
-     * @param $token
+     * @param string $token
      */
     public function __construct($token)
     {
@@ -22,7 +22,6 @@ class Jwt
     /**
      * Returns time to live of the jwt token.
      *
-     * @param $token
      * @return int
      */
     public function getTokenTTL()
@@ -35,7 +34,6 @@ class Jwt
     /**
      * Returns an array with payload of the jwt token.
      *
-     * @param $token
      * @return array
      */
     private function decodeToken()

@@ -16,9 +16,10 @@ class VocabGosStandardController extends Controller
      * @param int $page
      * @return LengthAwarePaginator
      */
-    public function index($page = 1)
+    public function index(int $page = 1)
     {
-        return VocabGosStandard::latest('id')->paginate(10, ['*'], null, $page);
+        return VocabGosStandard::latest('id')
+            ->paginate(10, ['*'], 'VocabGosStandardsList', $page);
     }
 
     /**

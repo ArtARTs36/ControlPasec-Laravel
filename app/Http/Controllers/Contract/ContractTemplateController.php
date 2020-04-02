@@ -22,10 +22,10 @@ class ContractTemplateController extends Controller
     /**
      * Создать шаблон договора
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @return ContractTemplate
      */
-    public function store(Request $request)
+    public function store(Request $request): ContractTemplate
     {
         return ContractTemplate::create($request->all());
     }

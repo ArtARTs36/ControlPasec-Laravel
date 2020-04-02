@@ -20,7 +20,7 @@ class DialogRepository
         $dialogs = Dialog::where('one_user_id', $currentUserId)
             ->orWhere('two_user_id', $currentUserId)
             ->latest('updated_at')
-            ->paginate(10, ['*'], null, $page);
+            ->paginate(10, ['*'], 'DialogsList', $page);
 
         return DialogsListResource::collection($dialogs);
     }

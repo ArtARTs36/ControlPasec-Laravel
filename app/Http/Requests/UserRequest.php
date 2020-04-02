@@ -7,7 +7,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 /**
  * Class UserRequest
- * @property User
  */
 class UserRequest extends FormRequest
 {

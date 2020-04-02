@@ -19,11 +19,11 @@ class MorpherSender extends Sender
     const ERROR_LIMIT_TEXT = 'Превышен лимит на сервисе Morpher';
 
     /**
-     * @param $url
+     * @param string $url
      * @param array|null $params
      * @return mixed
      */
-    public static function getRequest($url, array $params = null)
+    public static function getRequest(string $url, array $params = null)
     {
         $result = self::executeSending($url, $params, ['Accept: application/json']);
         if (isset($result['code']) && $result['code'] == self::ERROR_LIMIT) {

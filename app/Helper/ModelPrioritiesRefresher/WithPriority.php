@@ -2,6 +2,10 @@
 
 namespace App\Helper\ModelPrioritiesRefresher;
 
+/**
+ * Trait WithPriority
+ * @property int $priority
+ */
 trait WithPriority
 {
     public function getPriority(): int

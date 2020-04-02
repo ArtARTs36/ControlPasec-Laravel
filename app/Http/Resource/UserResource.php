@@ -5,19 +5,21 @@ namespace App\Http\Resource;
 use App\Repositories\DialogMessageRepository;
 use App\User;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * Class UserResource
  *
  * @mixin User
+ * @extends JsonResource<User>
  *
  * @OA\Schema(type="object")
  */
 class UserResource extends JsonResource
 {
     /**
-     * @param $request
+     * @param Request $request
      * @return array
      *
      * @OA\Property(property="id", type="integer")

@@ -34,12 +34,12 @@ class ContragentController extends Controller
      * @param int $page
      * @return LengthAwarePaginator
      */
-    public function index($page = 1)
+    public function index(int $page = 1)
     {
         return Contragent::with([
             ContragentManager::PSEUDO,
             Contragent\BankRequisites::PSEUDO
-        ])->paginate(10, ['*'], null, $page);
+        ])->paginate(10, ['*'], 'ContragentsList', $page);
     }
 
     /**
@@ -113,7 +113,7 @@ class ContragentController extends Controller
     /**
      * Поиск контрагента во внешней системе
      *
-     * @param $inn
+     * @param int $inn
      * @return ActionResponse
      *
      * @OA\Get(

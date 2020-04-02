@@ -19,7 +19,7 @@ class ContragentGroupController extends Controller
      */
     public function index($page = 1)
     {
-        return Contragent::paginate(10, ['*'], null, $page);
+        return Contragent::paginate(10, ['*'], 'ContragentGroupsList', $page);
     }
 
     /**

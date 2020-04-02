@@ -19,7 +19,7 @@ class ProductController extends Controller
     public function index(int $page = 1)
     {
         return Product::with(['currency', 'sizeOfUnit', 'gosStandard'])
-            ->paginate(10, ['*'], null, $page);
+            ->paginate(10, ['*'], 'ProductsList', $page);
     }
 
     /**

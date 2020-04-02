@@ -20,7 +20,7 @@ class ContractController extends Controller
     public function index(int $page = 1)
     {
         return Contract::with(['customer', 'supplier'])
-            ->paginate(10, ['*'], null, $page);
+            ->paginate(10, ['*'], 'ContractsList', $page);
     }
 
     /**
@@ -73,7 +73,7 @@ class ContractController extends Controller
      * Удалить договор
      *
      * @param Contract $contract
-     * @return bool|void
+     * @return bool|string
      */
     public function destroy(Contract $contract)
     {

@@ -21,7 +21,7 @@ class TextSqueezer
      * Минифицировать текст, получив путь до файла, который его содержит
      *
      * @param string $sourcePath
-     * @return mixed
+     * @return string
      */
     public static function minifyByPath(string $sourcePath): string
     {

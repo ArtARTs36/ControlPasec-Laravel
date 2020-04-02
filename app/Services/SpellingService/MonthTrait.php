@@ -46,6 +46,6 @@ trait MonthTrait
 
     public static function getMonthName(\DateTime $dateTime, string $dec = 'nom', bool $lowerCase = false): string
     {
-        return self::getMonthNameById($dateTime->format('n'), $dec, $lowerCase);
+        return self::getMonthNameById((int) $dateTime->format('n'), $dec, $lowerCase);
     }
 }

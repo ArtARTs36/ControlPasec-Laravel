@@ -37,7 +37,7 @@ final class VariableDefinition extends Model
     ];
 
     /**
-     * @return mixed
+     * @return Model
      */
     public function getModel(): Model
     {

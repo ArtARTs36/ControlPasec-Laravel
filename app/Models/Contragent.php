@@ -31,6 +31,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property BankRequisites $requisites
  * @property ContragentGroup[] $groups
  * @property Contract[] $contracts
+ * @property string $title_for_document
  *
  * @mixin Builder
  */

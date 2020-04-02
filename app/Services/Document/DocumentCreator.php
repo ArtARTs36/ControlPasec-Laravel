@@ -28,7 +28,7 @@ class DocumentCreator
     }
 
     /**
-     * @param null $type
+     * @param int $type
      * @return DocumentCreator
      * @throws \Exception
      */

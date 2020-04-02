@@ -15,7 +15,7 @@ class DocumentRepository
 
     private $targetType;
 
-    public function __construct(string $modelClass, string $targetType)
+    public function __construct(string $modelClass, int $targetType)
     {
         $this->modelClass = $modelClass;
         $this->targetType = $targetType;

@@ -30,7 +30,7 @@ class ScoreForPaymentController extends Controller
             'supply' => function ($query) {
                 return $query->with(['products', 'supplier', 'customer']);
             }
-        ])->paginate(10, ['*'], null, $page);
+        ])->paginate(10, ['*'], 'ScoresList', $page);
     }
 
     /**

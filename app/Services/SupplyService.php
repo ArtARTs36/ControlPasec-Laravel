@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Contragent;
 use App\Models\Supply\Supply;
 use App\Models\Supply\SupplyProduct;
+use Illuminate\Support\Collection;
 
 class SupplyService
 {
@@ -22,7 +23,7 @@ class SupplyService
     }
 
     /**
-     * @param $products
+     * @param Collection|SupplyProduct[]|array $products
      * @return float|int
      */
     public static function bringTotalPriceByProducts($products)

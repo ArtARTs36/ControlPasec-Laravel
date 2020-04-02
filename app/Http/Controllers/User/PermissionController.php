@@ -11,6 +11,6 @@ class PermissionController extends Controller
     public function index($page = 1): LengthAwarePaginator
     {
         return Permission::latest('id')
-            ->paginate(10, ['*'], null, $page);
+            ->paginate(10, ['*'], 'PermissionsList', $page);
     }
 }

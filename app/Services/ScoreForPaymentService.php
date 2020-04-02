@@ -27,19 +27,20 @@ class ScoreForPaymentService
             ->get()
             ->first();
 
-        return ($scoreForPayment !== null) ? $scoreForPayment : self::create($supplyId, $date, $orderNumber);
+        return ($scoreForPayment !== null) ? $scoreForPayment :
+            self::create(self::prepareSupplyId($supplyId), $date, $orderNumber);
     }
 
     /**
      * Создать счет
      *
-     * @param $supplyId
-     * @param null $date
-     * @param null $orderNumber
+     * @param int $supplyId
+     * @param string $date
+     * @param int $orderNumber
      * @return ScoreForPayment
      * @throws \Exception
      */
-    public static function create($supplyId, $date = null, $orderNumber = null): ScoreForPayment
+    public static function create(int $supplyId, $date = null, $orderNumber = null): ScoreForPayment
     {
         $scoreForPayment = new ScoreForPayment();
         $scoreForPayment->order_number = $orderNumber;

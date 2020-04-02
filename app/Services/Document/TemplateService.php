@@ -104,11 +104,11 @@ class TemplateService
     /**
      * Склонение числительных
      *
-     * @param $n
-     * @param $words
+     * @param int|float|double $n
+     * @param array $words
      * @return mixed
      */
-    public static function num2word($n, $words)
+    public static function num2word($n, array $words)
     {
         return ($words[($n = ($n = $n % 100) > 19 ? ($n % 10) : $n) == 1 ? 0 : (($n > 1 && $n <= 4) ? 1 : 2)]);
     }

@@ -16,9 +16,10 @@ class VocabBankController extends Controller
      * @param int $page
      * @return LengthAwarePaginator
      */
-    public function index($page = 1)
+    public function index(int $page = 1): LengthAwarePaginator
     {
-        return VocabBank::latest('id')->paginate(10, ['*'], null, $page);
+        return VocabBank::latest('id')->
+            paginate(10, ['*'], 'VocabBanksList', $page);
     }
 
     /**

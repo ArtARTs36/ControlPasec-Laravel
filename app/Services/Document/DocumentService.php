@@ -23,20 +23,6 @@ class DocumentService
         return $document;
     }
 
-//    private static function createTaskToMakeDocument(Document $document)
-//    {
-//        $procedure = $this->getEntityManager()->getRepository(TaskProcedure::class)->findOneByMethod(
-//            DocumentCreateAction::NAME
-//        );
-//
-//        $task = new Task();
-//        $task->beforeCreate();
-//        $task->setProcedure($procedure);
-//        $task->document = $document;
-//
-//        $this->saveEntity($task);
-//    }
-
     /**
      * Сгенерировать название для файла
      *
@@ -74,26 +60,7 @@ class DocumentService
     }
 
     /**
-     * @param Document[] $documents
-     */
-    public function setDownloadLinks($documents)
-    {
-        foreach ($documents as $document) {
-            $document->downloadLink = $this->getDownloadLink($document);
-        }
-    }
-
-    public function getDocsWithDownloadLinksByUser(User $user)
-    {
-        $documents = Document::where('user', $user->id);
-
-        $this->setDownloadLinks([$documents]);
-
-        return $documents;
-    }
-
-    /**
-     * @param $id
+     * @param int|Document $id
      * @return object|null|Document
      */
     public static function getDocument($id)

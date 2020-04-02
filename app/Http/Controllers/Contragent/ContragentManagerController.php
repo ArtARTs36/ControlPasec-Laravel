@@ -19,7 +19,7 @@ class ContragentManagerController extends Controller
     public function index(int $page = 1): LengthAwarePaginator
     {
         return ContragentManager::with('contragent')
-            ->paginate(10, ['*'], null, $page);
+            ->paginate(10, ['*'], 'ContragentsList', $page);
     }
 
     /**

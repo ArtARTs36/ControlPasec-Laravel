@@ -52,7 +52,7 @@ class UserController extends Controller
     public function index(int $page = 1): LengthAwarePaginator
     {
         return User::latest('created_at')
-            ->paginate(10, ['*'], null, $page);
+            ->paginate(10, ['*'], 'UsersList', $page);
     }
 
     public function show(User $user): UserResource

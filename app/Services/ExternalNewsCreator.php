@@ -11,7 +11,7 @@ class ExternalNewsCreator
     private static $existsNews = null;
 
     /**
-     * @param null $sources
+     * @param ExternalNewsSource|array|null $sources
      * @return array
      */
     public static function create($sources = null): array

@@ -134,7 +134,7 @@ class Document extends Model
     }
 
     /**
-     * @return mixed|string
+     * @return string
      */
     public function getLoaderName(): string
     {

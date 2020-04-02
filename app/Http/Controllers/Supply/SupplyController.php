@@ -25,7 +25,7 @@ class SupplyController extends Controller
             'products' => function ($query) {
                 return $query->with('quantityUnit');
             }
-        ])->paginate(10, ['*'], null, $page);
+        ])->paginate(10, ['*'], 'SuppliesList', $page);
 
         return SupplyResource::collection($supplies);
     }
