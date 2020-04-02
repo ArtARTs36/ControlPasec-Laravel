@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class VocabTypeOfPackaging
  *
- * @property int id
- * @property string name
+ * @property int $id
+ * @property string $name
  *
  * @mixin Builder
  */

@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * Class DocumentLoader
  *
- * @property int id
- * @property string name
- * @property int extension_id
- * @property DocumentExtension extension
+ * @property int $id
+ * @property string $name
+ * @property int $extension_id
+ * @property DocumentExtension $extension
  */
 final class DocumentLoader extends Model
 {

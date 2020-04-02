@@ -13,14 +13,14 @@ use Illuminate\Database\Query\Builder;
 /**
  * Class Contract
  *
- * @property int id
- * @property string title
- * @property string planned_date
- * @property string executed_date
- * @property int supplier_id
- * @property int customer_id
- * @property int template_id
- * @property ContractTemplate template
+ * @property int $id
+ * @property string $title
+ * @property string $planned_date
+ * @property string $executed_date
+ * @property int $supplier_id
+ * @property int $customer_id
+ * @property int $template_id
+ * @property ContractTemplate $template
  *
  * @mixin Builder
  */

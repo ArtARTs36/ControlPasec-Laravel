@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class DocumentExtension
  *
- * @property int id
- * @property string name
+ * @property int $id
+ * @property string $name
  */
 final class DocumentExtension extends Model
 {

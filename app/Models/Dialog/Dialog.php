@@ -10,12 +10,12 @@ use Illuminate\Support\Collection;
 
 /**
  * Class Dialog
- * @property int id
- * @property int one_user_id
- * @property int two_user_id
- * @property bool is_one_user_hidden
- * @property bool is_two_user_hidden
- * @property DialogMessage[]|Collection messages
+ * @property int $id
+ * @property int $one_user_id
+ * @property int $two_user_id
+ * @property bool $is_one_user_hidden
+ * @property bool $is_two_user_hidden
+ * @property DialogMessage[]|Collection $messages
  * @mixin Builder
  */
 class Dialog extends Model

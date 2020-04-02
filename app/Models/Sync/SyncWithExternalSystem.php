@@ -8,13 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class SyncWithExternalSystem
- * @property int id
- * @property int type_id
- * @property SyncWithExternalSystemType type
- * @property int model_type_id
- * @property ModelType modelType
- * @property int model_id
- * @property string response
+ * @property int $id
+ * @property int $type_id
+ * @property SyncWithExternalSystemType $type
+ * @property int $model_type_id
+ * @property ModelType $modelType
+ * @property int $model_id
+ * @property string $response
  */
 class SyncWithExternalSystem extends Model
 {

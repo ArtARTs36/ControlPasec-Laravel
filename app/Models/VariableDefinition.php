@@ -12,13 +12,13 @@ use Illuminate\Database\Query\Builder;
 /**
  * Class VariableDefinition
  *
- * @property int id
- * @property string name
- * @property string value
- * @property string description
- * @property bool is_take_of_parent
- * @property ModelType modelType
- * @property ModelType|null model_type_id
+ * @property int $id
+ * @property string $name
+ * @property string $value
+ * @property string $description
+ * @property bool $is_take_of_parent
+ * @property ModelType $modelType
+ * @property ModelType|null $model_type_id
  *
  * @mixin Builder
  */

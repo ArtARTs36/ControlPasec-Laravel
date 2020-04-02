@@ -15,23 +15,23 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
  * Class User
- * @property int id
- * @property string name
- * @property string patronymic
- * @property string family
- * @property string email
- * @property string password
- * @property string remember_token
- * @property string position
- * @property-read Role[]|Collection roles
- * @property bool is_active
- * @property-read Permission[]|Collection permissions
- * @property int gender
- * @property string avatar_url
- * @property UserNotification[]|Collection notifications
- * @property string about_me
- * @property string created_at
- * @property string update_at
+ * @property int $id
+ * @property string $name
+ * @property string $patronymic
+ * @property string $family
+ * @property string $email
+ * @property string $password
+ * @property string $remember_token
+ * @property string $position
+ * @property-read Role[]|Collection $roles
+ * @property bool $is_active
+ * @property-read Permission[]|Collection $permissions
+ * @property int $gender
+ * @property string $avatar_url
+ * @property UserNotification[]|Collection $notifications
+ * @property string $about_me
+ * @property string $created_at
+ * @property string $update_at
  * @mixin Builder
  */
 class User extends Authenticatable implements JWTSubject

@@ -15,16 +15,16 @@ use Illuminate\Database\Query\Builder;
  *
  * Модель "поставка"
  *
- * @property integer id
- * @property string planned_date
- * @property string execute_date
- * @property int supplier_id
- * @property int customer_id
- * @property Contragent customer
- * @property Contragent supplier
- * @property SupplyProduct[] products
- * @property Contract contract
- * @property int contract_id
+ * @property integer $id
+ * @property string $planned_date
+ * @property string $execute_date
+ * @property int $supplier_id
+ * @property int $customer_id
+ * @property Contragent $customer
+ * @property Contragent $supplier
+ * @property SupplyProduct[] $products
+ * @property Contract $contract
+ * @property int $contract_id
  *
  * @mixin Builder
  */

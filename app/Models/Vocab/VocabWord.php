@@ -6,18 +6,18 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property int|null type
- * @property string nominative
- * @property string|null dative
- * @property string|null genitive
- * @property string|null instrumental
- * @property string|null prepositional
+ * @property int|null $type
+ * @property string $nominative
+ * @property string|null $dative
+ * @property string|null $genitive
+ * @property string|null $instrumental
+ * @property string|null $prepositional
  *
- * @property string|null plural_nominative
- * @property string|null plural_dative
- * @property string|null plural_genitive
- * @property string|null plural_instrumental
- * @property string|null plural_prepositional
+ * @property string|null $plural_nominative
+ * @property string|null $plural_dative
+ * @property string|null $plural_genitive
+ * @property string|null $plural_instrumental
+ * @property string|null $plural_prepositional
  *
  * @mixin Builder
  */

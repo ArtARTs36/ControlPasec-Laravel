@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class VariableDefinitionService
- *
- * @method
  */
 class VariableDefinitionService
 {

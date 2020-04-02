@@ -8,12 +8,12 @@ use Illuminate\Database\Query\Builder;
 /**
  * Class VocabQuantityUnit
  *
- * @property int id
- * @property string name
- * @property string short_name
- * @property string name_en
- * @property string short_name_en
- * @property int okei
+ * @property int $id
+ * @property string $name
+ * @property string $short_name
+ * @property string $name_en
+ * @property string $short_name_en
+ * @property int $okei
  *
  * @mixin Builder
  */

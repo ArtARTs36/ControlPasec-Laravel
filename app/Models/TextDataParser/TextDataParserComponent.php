@@ -10,12 +10,12 @@ use Illuminate\Database\Query\Builder;
 /**
  * Class TextDataParser
  *
- * @property int id
- * @property string title
- * @property string template
- * @property string preparer
- * @property string class
- * @property string image
+ * @property int $id
+ * @property string $title
+ * @property string $template
+ * @property string $preparer
+ * @property string $class
+ * @property string $image
  * @property-read ModelType[] $models
  *
  * @mixin Builder

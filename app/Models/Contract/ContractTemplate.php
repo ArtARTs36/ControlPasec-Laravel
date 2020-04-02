@@ -8,9 +8,9 @@ use Illuminate\Database\Query\Builder;
 /**
  * Class ContractTemplate
  *
- * @property int id
- * @property string name
- * @property string contract_title
+ * @property int $id
+ * @property string $name
+ * @property string $contract_title
  *
  * @mixin Builder
  */

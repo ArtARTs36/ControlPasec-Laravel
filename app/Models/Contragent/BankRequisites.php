@@ -10,10 +10,11 @@ use Illuminate\Database\Query\Builder;
 /**
  * Class BankRequisites
  *
- * @property string score
- * @property int contragent_id
- * @property int bank_id
- * @property VocabBank bank
+ * @property int $id
+ * @property string $score
+ * @property int $contragent_id
+ * @property int $bank_id
+ * @property VocabBank $bank
  *
  * @mixin Builder
  */

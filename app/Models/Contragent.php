@@ -14,23 +14,23 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 /**
  * Class Contragent
  *
- * @property int id
- * @property string title
- * @property string|null full_title
- * @property string|null full_title_with_opf
- * @property integer|null inn
- * @property integer|null kpp
- * @property integer|null ogrn
- * @property integer|null okato
- * @property integer|null oktmo
- * @property string|null okved
- * @property string|null okved_type
- * @property string|null address
- * @property string|null address_postal
- * @property int status
- * @property BankRequisites requisites
- * @property ContragentGroup[] groups
- * @property Contract[] contracts
+ * @property int $id
+ * @property string $title
+ * @property string|null $full_title
+ * @property string|null $full_title_with_opf
+ * @property integer|null $inn
+ * @property integer|null $kpp
+ * @property integer|null $ogrn
+ * @property integer|null $okato
+ * @property integer|null $oktmo
+ * @property string|null $okved
+ * @property string|null $okved_type
+ * @property string|null $address
+ * @property string|null $address_postal
+ * @property int $status
+ * @property BankRequisites $requisites
+ * @property ContragentGroup[] $groups
+ * @property Contract[] $contracts
  *
  * @mixin Builder
  */

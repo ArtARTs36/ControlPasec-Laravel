@@ -12,10 +12,10 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class QualityCertificate
- * @property int id
- * @property int order_number
- * @property int supply_id
- * @property Supply supply
+ * @property int $id
+ * @property int $order_number
+ * @property int $supply_id
+ * @property Supply $supply
  */
 class QualityCertificate extends Model implements ModelWithDocuments
 {

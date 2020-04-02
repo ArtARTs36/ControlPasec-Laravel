@@ -8,9 +8,9 @@ use Illuminate\Database\Query\Builder;
 /**
  * Class ExternalNewsSource
  *
- * @property int id
- * @property string name
- * @property string link
+ * @property int $id
+ * @property string $name
+ * @property string $link
  *
  * @mixin Builder
  */

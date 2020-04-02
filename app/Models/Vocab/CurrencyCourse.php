@@ -9,12 +9,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * Class CurrencyCourse
  *
- * @property int id
- * @property int currency_id
- * @property VocabCurrency currency
- * @property int nominal
- * @property float value
- * @property string actual_date
+ * @property int $id
+ * @property int $currency_id
+ * @property VocabCurrency $currency
+ * @property int $nominal
+ * @property float $value
+ * @property string $actual_date
  */
 final class CurrencyCourse extends Model
 {

@@ -7,9 +7,11 @@ use App\Services\Supply\SupplyProductService;
 use App\Services\SupplyService;
 use App\Services\VariableDefinitionService;
 
+/** @var array $items */
+
 $result = [];
 
-/** @var array $items */
+/** @var array $item */
 foreach ($items as $item) {
     $customer = Contragent::where('title', $item[1])->get()->first();
     $supplier = Contragent::find(env('ONE_SUPPLIER_ID'));

@@ -10,9 +10,9 @@ use Illuminate\Database\Query\Builder;
 /**
  * Class ContragentGroup
  *
- * @property int id
- * @property string name
- * @property Contragent[] contragents
+ * @property int $id
+ * @property string $name
+ * @property Contragent[] $contragents
  *
  * @mixin Builder
  */

@@ -20,13 +20,13 @@ use Illuminate\Database\Query\Builder;
 /**
  * Class ScoreForPayment
  *
- * @property int id
- * @property integer supply_id
- * @property integer contract_id
- * @property string date
- * @property Supply supply
- * @property int order_number
- * @property Document[] documents
+ * @property int $id
+ * @property integer $supply_id
+ * @property integer $contract_id
+ * @property string $date
+ * @property Supply $supply
+ * @property int $order_number
+ * @property Document[] $documents
  *
  * @mixin Builder
  */

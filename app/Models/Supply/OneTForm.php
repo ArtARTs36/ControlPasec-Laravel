@@ -14,11 +14,11 @@ use Illuminate\Database\Query\Builder;
 
 /**
  * Class OneTForm
- * @property int id
- * @property int order_number
- * @property Document[] documents
- * @property int supply_id
- * @property Supply supply
+ * @property int $id
+ * @property int $order_number
+ * @property Document[] $documents
+ * @property int $supply_id
+ * @property Supply $supply
  *
  * @mixin Builder
  */

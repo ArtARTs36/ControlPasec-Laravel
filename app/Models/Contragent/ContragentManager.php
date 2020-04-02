@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Query\Builder;
 
 /**
- * @property int id
- * @property string name
- * @property string|null patronymic
- * @property string|null family
- * @property string post
- * @property int contragent_id
+ * @property int $id
+ * @property string $name
+ * @property string|null $patronymic
+ * @property string|null $family
+ * @property string $post
+ * @property int $contragent_id
  * @mixin Builder
  */
 class ContragentManager extends Model

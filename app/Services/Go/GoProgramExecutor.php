@@ -72,9 +72,9 @@ class GoProgramExecutor
     /**
      * Выполнить программу
      *
-     * @return string|null
+     * @return void
      */
-    public function execute()
+    public function execute(): void
     {
         $this->isExecuted = true;
 

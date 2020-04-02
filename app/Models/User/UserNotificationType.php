@@ -7,10 +7,10 @@ use Illuminate\Database\Query\Builder;
 
 /**
  * Class UserNotificationType
- * @property int id
- * @property string name
- * @property string title
- * @property Permission permission
+ * @property int $id
+ * @property string $name
+ * @property string $title
+ * @property Permission $permission
  * @mixin Builder
  */
 class UserNotificationType extends Model

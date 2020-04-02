@@ -69,7 +69,7 @@ class ShellCommand
     /**
      * Добавить параметр в командную строку
      *
-     * @param $value
+     * @param mixed $value
      * @return $this
      */
     public function addParameter($value): self
@@ -93,10 +93,10 @@ class ShellCommand
     /**
      * Добавить параметры в командную строку
      *
-     * @param $values
+     * @param array $values
      * @return $this
      */
-    public function addParameters($values): self
+    public function addParameters(array $values): self
     {
         foreach ($values as $value) {
             $this->settings[] = new ShellCommandParameter($value);
@@ -108,7 +108,7 @@ class ShellCommand
     /**
      * Добавить опцию в командную строку
      *
-     * @param $option
+     * @param mixed $option
      * @return $this
      */
     public function addOption($option): self
@@ -121,7 +121,7 @@ class ShellCommand
     /**
      * Добавить опцию в командную строку
      *
-     * @param $option
+     * @param string $option
      * @return $this
      */
     public function addCutOption($option): self

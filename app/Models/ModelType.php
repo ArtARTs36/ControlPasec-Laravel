@@ -8,9 +8,9 @@ use Illuminate\Database\Query\Builder;
 /**
  * Class TextDataParserModel
  *
- * @property int id
- * @property string title
- * @property string class
+ * @property int $id
+ * @property string $title
+ * @property string $class
  *
  * @mixin Builder
  */

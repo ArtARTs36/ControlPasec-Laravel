@@ -13,22 +13,22 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * Class Product
  *
- * @property int id
+ * @property int $id
  *
- * @property string name
- * @property string name_for_document
+ * @property string $name
+ * @property string $name_for_document
  *
- * @property integer size
- * @property integer size_of_unit_id
- * @property SizeOfUnit size_of_unit
+ * @property integer $size
+ * @property integer $size_of_unit_id
+ * @property SizeOfUnit $size_of_unit
  *
- * @property integer price
- * @property integer currency_id
- * @property integer gos_standard_id
- * @property VocabGosStandard gosStandard
+ * @property integer $price
+ * @property integer $currency_id
+ * @property integer $gos_standard_id
+ * @property VocabGosStandard $gosStandard
  *
- * @property VocabPackageType package_type
- * @property int package_type_id
+ * @property VocabPackageType $package_type
+ * @property int $package_type_id
  *
  * @mixin Builder
  */

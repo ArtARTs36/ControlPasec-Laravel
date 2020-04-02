@@ -17,19 +17,19 @@ use Ramsey\Uuid\Uuid;
 /**
  * Class Document
  *
- * @property int id
- * @property int type_id
- * @property string title
- * @property int status
- * @property DocumentType type
- * @property string uuid
- * @property ScoreForPayment[] scoreForPayments
- * @property int folder
- * @property ProductTransportWaybill[] productTransportWaybills
- * @property string paper_size
- * @property Document[] children
- * @property OneTForm[] oneTForms
- * @property QualityCertificate[] qualityCertificates
+ * @property int $id
+ * @property int $type_id
+ * @property string $title
+ * @property int $status
+ * @property DocumentType $type
+ * @property string $uuid
+ * @property ScoreForPayment[] $scoreForPayments
+ * @property int $folder
+ * @property ProductTransportWaybill[] $productTransportWaybills
+ * @property string $paper_size
+ * @property Document[] $children
+ * @property OneTForm[] $oneTForms
+ * @property QualityCertificate[] $qualityCertificates
  *
  * @mixin Builder
  */

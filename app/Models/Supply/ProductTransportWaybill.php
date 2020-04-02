@@ -17,11 +17,11 @@ use Illuminate\Database\Query\Builder;
  *
  * @package App\Models\Supply
  *
- * @property int id
- * @property int order_number
- * @property string date
- * @property int supply_id
- * @property Supply supply
+ * @property int $id
+ * @property int $order_number
+ * @property string $date
+ * @property int $supply_id
+ * @property Supply $supply
  *
  * @mixin Builder
  */

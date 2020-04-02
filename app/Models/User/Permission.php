@@ -8,10 +8,10 @@ use Spatie\Permission\Models\Permission as BasePermission;
 
 /**
  * Class Permission
- * @property int id
- * @property string name
- * @property string title
- * @property string guard_name
+ * @property int $id
+ * @property string $name
+ * @property string $title
+ * @property string $guard_name
  * @mixin Builder
  */
 final class Permission extends BasePermission
