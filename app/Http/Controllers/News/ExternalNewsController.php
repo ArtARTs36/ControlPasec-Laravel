@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Responses\ActionResponse;
 use App\Models\News\ExternalNews;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Http\Request;
 
 class ExternalNewsController extends Controller
 {
@@ -30,7 +31,8 @@ class ExternalNewsController extends Controller
      */
     public function index(int $page = 1)
     {
-        return ExternalNews::paginate(10, ['*'], 'ExternalNews', $page);
+        return ExternalNews::with('source')
+            ->paginate(10, ['*'], 'ExternalNews', $page);
     }
 
     /**
@@ -68,6 +70,14 @@ class ExternalNewsController extends Controller
     public function show(ExternalNews $externalNews)
     {
         return $externalNews;
+    }
+
+    public function update(ExternalNews $externalNews, Request $request): ActionResponse
+    {
+        return new ActionResponse(
+            $externalNews->update($request->only(['title', 'description'])) > 0,
+            $externalNews
+        );
     }
 
     /**

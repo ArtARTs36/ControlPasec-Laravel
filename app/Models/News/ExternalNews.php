@@ -21,6 +21,11 @@ use Illuminate\Database\Query\Builder;
  */
 class ExternalNews extends Model
 {
+    protected $fillable = [
+        'title',
+        'description',
+    ];
+
     /**
      * @return BelongsTo
      */
