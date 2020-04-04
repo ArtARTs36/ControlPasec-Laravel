@@ -1,5 +1,6 @@
 <?php
 
+require_once 'apis/api.landing.php';
 require_once 'apis/api.auth.php';
 require_once 'apis/api.user.php';
 require_once 'apis/api.scores.php';

@@ -20,9 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ProductSeeder::class);
         $this->contracts();
 
-        $this->call(DocumentExtensionSeeder::class);
-        $this->call(DocumentLoaderSeeder::class);
-        $this->call(DocumentTypeSeeder::class);
+        $this->documents();
 
         $this->call(CurrencyCourseSeeder::class);
 
@@ -75,5 +73,12 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(TextDataParserComponentSeeder::class);
         $this->call(VariableDefinitionSeeder::class);
+    }
+
+    private function documents(): void
+    {
+        $this->call(DocumentExtensionSeeder::class);
+        $this->call(DocumentLoaderSeeder::class);
+        $this->call(DocumentTypeSeeder::class);
     }
 }

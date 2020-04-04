@@ -1,2 +1,3 @@
 name;title;permission_name;about_model_class
 user_registered;Регистрация пользователя;user_get_notification_user_registered;App\User
+landing_feed_back_created;Новое сообщение обратной связи;user_get_notification_landing_feed_back_created;App\Models\Landing\LandingFeedBack

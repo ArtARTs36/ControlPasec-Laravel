@@ -16,6 +16,7 @@ use Illuminate\Database\Query\Builder;
 class UserNotificationType extends Model
 {
     const USER_REGISTERED = 'user_registered';
+    const LANDING_FEED_BACK_CREATED = 'landing_feed_back_created';
 
     public function notifications()
     {

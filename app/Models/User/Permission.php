@@ -53,6 +53,7 @@ final class Permission extends BasePermission
     const VOCAB_SIZE_OF_UNIT_LIST_VIEW = 'vocab_size_of_unit_list_view';
 
     const USER_GET_NOTIFICATION_USER_REGISTERED = 'user_get_notification_user_registered';
+    const USER_GET_NOTIFICATION_LANDING_FEED_BACK_CREATED = 'user_get_notification_landing_feed_back_created';
 
     const CONTRACTS_LIST_VIEW = 'contracts_list_view';
     const CONTRACTS_VIEW = 'contracts_view';
@@ -102,6 +103,7 @@ final class Permission extends BasePermission
             self::VARIABLE_DEFINITIONS_LIST_VIEW => 'Просмотр определений переменных',
 
             self::USER_GET_NOTIFICATION_USER_REGISTERED => 'Получать уведомления о регистрациях пользователей',
+            self::USER_GET_NOTIFICATION_LANDING_FEED_BACK_CREATED => 'Получать уведомления об обратной связи',
 
             self::CONTRACTS_LIST_VIEW => 'Просмотр списка договоров',
             self::CONTRACTS_VIEW => 'Просмотр договора',
