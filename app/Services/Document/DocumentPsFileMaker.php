@@ -21,26 +21,9 @@ class DocumentPsFileMaker
     /** @var string */
     private $baseFileName = null;
 
-    /**
-     * @return static
-     */
-    public static function getInstance(): self
+    public function __construct(array $documents)
     {
-        return new self();
-    }
-
-    /**
-     * @param Document[]|Collection|array $documents
-     * @return static
-     */
-    public static function getInstanceByDocs($documents): self
-    {
-        $instance = new self();
-        foreach ($documents as $document) {
-            $instance->addDocument($document);
-        }
-
-        return $instance;
+        $this->documents = $documents;
     }
 
     /**

@@ -21,8 +21,8 @@ class MyContragentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param MyContragentRequest $request
+     * @return void
      */
     public function store(MyContragentRequest $request)
     {
@@ -43,7 +43,7 @@ class MyContragentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param MyContragentRequest $request
      * @param MyContragent $myContragent
      * @return void
      */

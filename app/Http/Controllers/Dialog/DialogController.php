@@ -24,7 +24,7 @@ class DialogController extends Controller
     /**
      * Получить диалоги пользователя
      * @param int $page
-     * @return LengthAwarePaginator
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function user(int $page = 1)
     {

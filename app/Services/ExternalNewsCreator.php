@@ -25,7 +25,7 @@ class ExternalNewsCreator
         $news = [];
         foreach ($sources as $source) {
             $items = (new RssParser($source->link))->getArrayItems();
-            array_merge($news, self::createNews($items, $source));
+            $news = array_merge($news, self::createNews($items, $source));
         }
 
         return $news;

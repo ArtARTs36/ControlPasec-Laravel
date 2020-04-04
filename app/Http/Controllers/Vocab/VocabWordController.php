@@ -60,15 +60,4 @@ class VocabWordController extends Controller
 
         return $vocabWord;
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  VocabWord  $vocabWord
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(VocabWord $vocabWord)
-    {
-        //
-    }
 }

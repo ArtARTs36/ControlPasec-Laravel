@@ -33,9 +33,9 @@ class ShellCommand
     /**
      * @param string $executor
      * @param bool $isCheckRealpathExecutor
-     * @return static
+     * @return ShellCommand
      */
-    public static function getInstance(string $executor, bool $isCheckRealpathExecutor = true): self
+    public static function getInstance(string $executor, bool $isCheckRealpathExecutor = true): ShellCommand
     {
         return new self($executor, $isCheckRealpathExecutor);
     }
@@ -43,9 +43,9 @@ class ShellCommand
     /**
      * @param string $dir
      * @param string $executor
-     * @return static
+     * @return ShellCommand
      */
-    public static function getInstanceWithCd(string $dir, string $executor): self
+    public static function getInstanceWithCd(string $dir, string $executor): ShellCommand
     {
         return (new self('cd '. $dir))
             ->addParameter($executor)

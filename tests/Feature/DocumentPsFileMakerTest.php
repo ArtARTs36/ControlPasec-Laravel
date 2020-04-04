@@ -24,7 +24,7 @@ class DocumentPsFileMakerTest extends BaseTestCase
             DocumentBuilder::build($document);
         }
 
-        $joiner = DocumentPsFileMaker::getInstanceByDocs($documents);
+        $joiner = new DocumentPsFileMaker($documents->toArray());
 
         $file = $joiner->join();
 
