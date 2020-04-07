@@ -10,15 +10,15 @@ class TemplateService
 {
     use NumberTrait;
 
-    public static function renderContragent(Contragent$contragent, $withKpp = false): string
+    public static function renderContragent(Contragent $contragent, $withKpp = false): string
     {
         $data = [
             $contragent->title,
-            "ИНН {$contragent->inn}",
+            "ИНН" . $contragent->inn,
         ];
 
         if ($withKpp === true && !empty($contragent->kpp)) {
-            $data[] = "КПП {$contragent->kpp}";
+            $data[] = "КПП ". $contragent->kpp;
         }
 
         $data = array_merge($data, [$contragent->address_postal, $contragent->address]);
