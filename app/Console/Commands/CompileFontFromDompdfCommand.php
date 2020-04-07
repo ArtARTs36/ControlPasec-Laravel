@@ -48,7 +48,7 @@ class CompileFontFromDompdfCommand extends Command
 
         $domPdf = new Dompdf();
 
-        $this->installFontFamily($domPdf, $fontName, env('DOCUMENT_FONTS_DIR') . '/' . $fontName);
+        $this->installFontFamily($domPdf, $fontName, base_path(env('DOCUMENT_FONTS_DIR') . '/' . $fontName));
     }
 
     /**
