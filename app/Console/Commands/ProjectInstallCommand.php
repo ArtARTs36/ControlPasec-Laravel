@@ -16,20 +16,20 @@ class ProjectInstallCommand extends Command
 
     public function handle(): bool
     {
-        $withDomPdfFonts = !$this->option('no-dompdf-fonts');
-        if (!$withDomPdfFonts) {
-            $this->warn('Without Dompdf fonts');
-        }
-
         if ($this->isLocked()) {
             dump('Установка заблокирована!');
 
             return false;
         }
 
+        $withDomPdfFonts = !$this->option('no-dompdf-fonts');
+        if (!$withDomPdfFonts) {
+            $this->warn('Without Dompdf fonts');
+        }
+
         file_put_contents(base_path('install.lock'), 'locked');
 
-        shell_exec('composer dump-autoload --optimize');
+        dump(shell_exec('composer dump-autoload --optimize'));
 
         $this->checkGoPrograms();
         $this->checkExistsFileDocumentsMap();
@@ -40,8 +40,25 @@ class ProjectInstallCommand extends Command
             $this->call(CompileFontFromDompdfCommand::class);
         }
 
-        Artisan::call('migrate');
-        Artisan::call('db:seed');
+        //
+
+        $this->comment('migration: start');
+
+        dump(shell_exec('php artisan migrate'));
+
+        $this->comment('migration: done');
+
+        //
+
+        $this->comment('');
+
+        $this->comment('seeding: start');
+
+        dump(shell_exec('php artisan db:seed'));
+
+        $this->comment('seeding: end');
+
+        //
 
         return true;
     }
