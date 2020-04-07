@@ -78,13 +78,13 @@ class TemplateService
             $kop = '00';
         }
 
-        $noKop = $parse[0];
+        $noKop = new StringPrototype($parse[0]);
         $result = '';
 
-        $noKopLength = strlen($noKop);
+        $noKopLength = $noKop->length();
 
         for ($i = 0; $i < $noKopLength; $i++) {
-            $result .= $noKop{$i};
+            $result .= $noKop->letter($i);
             if ($i == 2 && $i != $noKopLength - 1) {
                 $result .= ' ';
             }
