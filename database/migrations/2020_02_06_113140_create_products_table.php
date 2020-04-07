@@ -29,6 +29,8 @@ class CreateProductsTable extends Migration
             $table->unsignedInteger('currency_id');
 
             $table->unsignedInteger('package_type_id');
+
+            $table->unsignedInteger('gos_standard_id');
         });
 
         Schema::table(self::TABLE, function (Blueprint $table) {
@@ -43,6 +45,10 @@ class CreateProductsTable extends Migration
             $table->foreign('package_type_id')
                 ->references('id')
                 ->on('vocab_package_types');
+
+            $table->foreign('gos_standard_id')
+                ->references('id')
+                ->on('vocab_gos_standards');
         });
     }
 
