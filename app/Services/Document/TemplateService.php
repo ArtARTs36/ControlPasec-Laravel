@@ -4,6 +4,7 @@ namespace App\Services\Document;
 
 use App\Models\Contragent;
 use App\Services\SpellingService\NumberTrait;
+use App\Support\StringPrototype;
 
 class TemplateService
 {
@@ -36,20 +37,22 @@ class TemplateService
     public static function formatPriceOne($price)
     {
         $intPart = (string)(int)$price;
-        $intPartLength = strlen($intPart);
         $fracPart = str_replace("0.", "", round($price - $intPart, 2));
+
+        $intPart = new StringPrototype($intPart);
+        $intPartLength = $intPart->length();
 
         $format = '';
 
         for ($i = $intPartLength - 1; $i >= 0; $i--) {
             $mirrorNumber = $intPartLength - 1 - $i;
 
-            $format .= $intPart{$mirrorNumber};
+            $format .= $intPart->letter($mirrorNumber);
 
             if ($i != 0 && $i % 3 == 0) {
                 $format .= ' ';
             }
-        };
+        }
 
         return $format . ',' . $fracPart;
     }
