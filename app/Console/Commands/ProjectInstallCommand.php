@@ -10,12 +10,17 @@ use Illuminate\Support\Facades\Artisan;
 
 class ProjectInstallCommand extends Command
 {
-    protected $signature = 'project-install';
+    protected $signature = 'project-install {--no-dompdf-fonts}';
 
     protected $description = 'Project install';
 
     public function handle(): bool
     {
+        $withDomPdfFonts = !$this->option('no-dompdf-fonts');
+        if (!$withDomPdfFonts) {
+            $this->warn('Without Dompdf fonts');
+        }
+
         if ($this->isLocked()) {
             dump('Установка заблокирована!');
 
@@ -31,7 +36,9 @@ class ProjectInstallCommand extends Command
         $this->checkEnvFile();
         $this->checkTmpFolderFilesNames();
 
-        $this->call(CompileFontFromDompdfCommand::class);
+        if ($withDomPdfFonts) {
+            $this->call(CompileFontFromDompdfCommand::class);
+        }
 
         Artisan::call('migrate');
         Artisan::call('db:seed');
