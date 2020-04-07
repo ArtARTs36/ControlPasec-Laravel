@@ -2,13 +2,14 @@
 
 namespace App\Services\Document;
 
+use App\Models\Contragent;
 use App\Services\SpellingService\NumberTrait;
 
 class TemplateService
 {
     use NumberTrait;
 
-    public static function renderContragent($contragent, $withKpp = false)
+    public static function renderContragent(Contragent$contragent, $withKpp = false): string
     {
         $data = [
             $contragent->title,
@@ -89,16 +90,14 @@ class TemplateService
         return $result . ',' . $kop;
     }
 
-    public static function formatNetto($weight)
+    public static function formatNetto($weight): string
     {
         $intPart = (int) $weight;
         if ($weight == $intPart) {
             return $intPart. ',00';
         }
 
-        $format = str_replace(".", ",", $weight);
-
-        return $format;
+        return str_replace(".", ",", $weight);
     }
 
     /**

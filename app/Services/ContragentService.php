@@ -6,7 +6,7 @@ use App\Models\Contragent\ContragentManager;
 use App\Http\Requests\ContragentRequest;
 use App\Models\Contragent;
 
-class ContragentService
+final class ContragentService
 {
     /**
      * Получить полную информацию по контрагенту

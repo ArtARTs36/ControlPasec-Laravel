@@ -7,9 +7,12 @@ use App\Support\Archiver\ArchiverInterface;
 use App\Support\Archiver\Zipper;
 use Tests\BaseTestCase;
 
+/**
+ * @group BaseTest
+ */
 class ArchiverTest extends BaseTestCase
 {
-    public function testZipper()
+    public function testZipper(): void
     {
         $zipper = new Zipper();
 

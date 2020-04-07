@@ -4,6 +4,9 @@ namespace Tests\Feature;
 
 use Tests\BaseTestCase;
 
+/**
+ * @group BaseTest
+ */
 class ProfileTest extends BaseTestCase
 {
     public function testSearch(): void

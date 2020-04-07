@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AuthRequest;
 use App\Http\Resource\UserResource;
+use App\Repositories\UserRepository;
 use App\Services\Jwt;
-use App\Services\UserService;
 use App\User;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
@@ -72,10 +72,8 @@ class AuthController extends Controller
             'is_active' => true
         ]);
 
-        $isAuthorize = $this->guard()->attempt($credentials);
-
-        if ($isAuthorize) {
-            if ($this->guard()->check() !== true && $user = UserService::getByEmail($credentials['email'])) {
+        if ($isAuthorize = $this->guard()->attempt($credentials)) {
+            if ($this->guard()->check() !== true && $user = UserRepository::getByEmail($credentials['email'])) {
                 $this->guard()->login($user);
             }
 

@@ -8,7 +8,7 @@ use Tests\TestCase;
 
 class MorpherParserTest extends TestCase
 {
-    public function testGetDeclensions()
+    public function testGetDeclensions(): void
     {
         $word = 'Молоко';
 
@@ -19,7 +19,7 @@ class MorpherParserTest extends TestCase
         }
     }
 
-    public function testGetTypeWordByResponseForFamily()
+    public function testGetTypeWordByResponseForFamily(): void
     {
         $data = ['ФИО' => [
             'Ф' => 'Украинский',
@@ -32,7 +32,7 @@ class MorpherParserTest extends TestCase
         self::assertTrue($answer == VocabWord::TYPE_FAMILY);
     }
 
-    public function testGetTypeWordByResponseForName()
+    public function testGetTypeWordByResponseForName(): void
     {
         $data = ['ФИО' => [
             'Ф' => '',
@@ -45,7 +45,7 @@ class MorpherParserTest extends TestCase
         self::assertTrue($answer == VocabWord::TYPE_NAME);
     }
 
-    public function testGetTypeWordByResponseForPatronymic()
+    public function testGetTypeWordByResponseForPatronymic(): void
     {
         $data = ['ФИО' => [
             'Ф' => '',
@@ -58,7 +58,7 @@ class MorpherParserTest extends TestCase
         self::assertTrue($answer == VocabWord::TYPE_PATRONYMIC);
     }
 
-    public function testGetTypeWordByResponseForUnknown()
+    public function testGetTypeWordByResponseForUnknown(): void
     {
         $data = '';
 

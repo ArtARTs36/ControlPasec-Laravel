@@ -12,7 +12,7 @@ use Tests\BaseTestCase;
  */
 class ScoreForPaymentServiceTest extends BaseTestCase
 {
-    public function testGetOrCreateBySupply()
+    public function testGetOrCreateBySupply(): void
     {
         /** @var Supply $randomSupply */
         $randomSupply = $this->getRandomModel(Supply::class);
@@ -23,7 +23,7 @@ class ScoreForPaymentServiceTest extends BaseTestCase
         self::assertTrue($score->id > 0);
     }
 
-    public function testCreateDocumentBySupply()
+    public function testCreateDocumentBySupply(): void
     {
         /** @var Supply $randomSupply */
         $randomSupply = $this->getRandomModel(Supply::class);

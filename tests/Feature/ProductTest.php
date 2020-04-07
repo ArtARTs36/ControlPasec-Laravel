@@ -9,12 +9,10 @@ use Tests\BaseTestCase;
  */
 class ProductTest extends BaseTestCase
 {
-    public function testGetAll()
+    public function testGetAll(): void
     {
         $response = $this->decodeResponse($this->getJson('/api/products'));
 
-        self::assertTrue(
-            is_array($response['data']) && count($response['data']) > 0
-        );
+        self::assertTrue(is_array($response['data']) && count($response['data']) > 0);
     }
 }

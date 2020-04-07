@@ -7,7 +7,7 @@ use App\Models\Supply\Supply;
 use App\Models\Supply\SupplyProduct;
 use Illuminate\Support\Collection;
 
-class SupplyService
+final class SupplyService
 {
     /**
      * @param Supply $supply

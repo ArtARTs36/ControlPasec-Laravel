@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class ScoreForPaymentRequest extends FormRequest
 {
-    public function rules()
+    public function rules(): array
     {
         return [
             'supply_id' => 'required|integer',

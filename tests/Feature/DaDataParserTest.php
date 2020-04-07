@@ -8,14 +8,14 @@ use Tests\TestCase;
 
 class DaDataParserTest extends TestCase
 {
-    public function testFindContragentByInn()
+    public function testFindContragentByInn(): void
     {
         $response = DaDataParser::findContragentByInnOrOGRN('3612006131', false);
 
         self::assertArrayHasKey('suggestions', $response);
     }
 
-    public function testParseManager()
+    public function testParseManager(): void
     {
         $contragent = new Contragent();
         $contragent->id = 1;

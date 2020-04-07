@@ -18,7 +18,7 @@ class ProfileController extends Controller
             ->first();
 
         if (null === $profile) {
-            abort(Response::HTTP_NOT_FOUND, __('profile.not_found'));
+            abort(Response::HTTP_CONFLICT, __('profile.not_found'));
         }
 
         return new ProfileResource($profile);

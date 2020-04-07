@@ -12,21 +12,15 @@ use Tests\BaseTestCase;
  */
 class ScoreForPaymentTest extends BaseTestCase
 {
-    public function testCreate()
+    const API_URL = '/api/score-for-payments';
+
+    public function testCreate(): void
     {
-        $currentDateTime = new \DateTime();
+        $response = $this->postJson(self::API_URL, [
+            'supply_id' => $this->getRandomModel(Supply::class)->id,
+            'date' => date('d-m-Y'),
+        ]);
 
-        $randomSupply = Supply::where('id', '>', 0)
-            ->inRandomOrder()
-            ->get()
-            ->first();
-
-        $score = new ScoreForPayment();
-
-        $score->supply_id = $randomSupply->id;
-        $score->date = $currentDateTime->format('Y-m-d');
-        $score->save();
-
-        self::assertTrue($score->id > 0);
+        $response->assertOk();
     }
 }

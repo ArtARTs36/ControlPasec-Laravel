@@ -16,11 +16,7 @@ class ExternalNewsCreator
      */
     public static function create($sources = null): array
     {
-        if ($sources === null) {
-            $sources = ExternalNewsSource::all();
-        } elseif ($sources instanceof ExternalNewsSource) {
-            $sources = [$sources];
-        }
+        $sources = ($sources instanceof ExternalNewsSource) ? [$sources] : ExternalNewsSource::all();
 
         $news = [];
         foreach ($sources as $source) {

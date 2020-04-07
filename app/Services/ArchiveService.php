@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-class ArchiveService
+final class ArchiveService
 {
     public static function getStoragePath(int $timestamp, string $archiveName): string
     {

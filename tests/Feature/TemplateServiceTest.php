@@ -10,7 +10,7 @@ use Tests\BaseTestCase;
  */
 class TemplateServiceTest extends BaseTestCase
 {
-    public function testNumberToWord()
+    public function testNumberToWord(): void
     {
         self::assertTrue(TemplateService::numberToWord(3) == "Три");
         self::assertTrue(TemplateService::numberToWord(23) == "Двадцать три");

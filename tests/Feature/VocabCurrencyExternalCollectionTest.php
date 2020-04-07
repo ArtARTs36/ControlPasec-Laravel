@@ -11,7 +11,7 @@ use Tests\BaseTestCase;
  */
 class VocabCurrencyExternalCollectionTest extends BaseTestCase
 {
-    public function testIterable()
+    public function testIterable(): void
     {
         $currencies = VocabCurrency::all()->getDictionary();
         $collection = new VocabCurrencyExternalCollection($currencies);

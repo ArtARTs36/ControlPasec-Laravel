@@ -5,6 +5,9 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\BaseTestCase;
 
+/**
+ * @group BaseTest
+ */
 class LandingFeedBackTest extends BaseTestCase
 {
     use WithFaker;

@@ -14,7 +14,7 @@ use Tests\BaseTestCase;
  */
 class LightTextDataParserTest extends BaseTestCase
 {
-    public function testParseFirstComponent()
+    public function testParseFirstComponent(): void
     {
         $parser = new LightTextDataParser();
         $data = $parser->parse(

@@ -45,12 +45,4 @@ class Supply extends Model
     {
         return $this->hasMany(SupplyProduct::class);
     }
-
-    /**
-     * @return BelongsTo
-     */
-    public function customer(): BelongsTo
-    {
-        return $this->belongsTo(Contragent::class);
-    }
 }

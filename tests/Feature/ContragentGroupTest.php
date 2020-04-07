@@ -13,24 +13,23 @@ class ContragentGroupTest extends BaseTestCase
 {
     const API_URL = '/api/contragent-groups';
 
-    public function testGetAll()
+    public function testGetAll(): void
     {
         $response = $this->getJson(self::API_URL);
 
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 
-    public function testGet()
+    public function testGet(): void
     {
         $group = ContragentGroup::with('contragents')
             ->inRandomOrder()
-            ->get()
             ->first();
 
         $groupResource = new ContragentGroupResource($group);
 
         $response = $this->getJson(self::API_URL . '/'. $group->id);
-        $response->assertStatus(200);
+        $response->assertOk();
 
         self::assertTrue($groupResource->toJson() === $response->getContent());
     }

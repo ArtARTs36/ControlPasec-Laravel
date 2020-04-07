@@ -37,7 +37,7 @@ class SyncWithExternalSystemService
     private function getType(): SyncWithExternalSystemType
     {
         if ($this->type === null) {
-            $this->type = SyncWithExternalSystemType::where('slug', $this->typeSlug)->get()->first();
+            $this->type = SyncWithExternalSystemType::where('slug', $this->typeSlug)->first();
         }
 
         return $this->type;
@@ -49,7 +49,7 @@ class SyncWithExternalSystemService
     private function getModelType(): ModelType
     {
         if ($this->modelType === null) {
-            $this->modelType = ModelType::where('class', get_class($this->model))->get()->first();
+            $this->modelType = ModelType::where('class', get_class($this->model))->first();
         }
 
         return $this->modelType;

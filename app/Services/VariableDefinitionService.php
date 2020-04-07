@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class VariableDefinitionService
 {
-    public static function inc($name)
+    public static function inc(string $name)
     {
         $variable = self::get($name);
         $variable->value++;
@@ -19,7 +19,7 @@ class VariableDefinitionService
         return $variable->value;
     }
 
-    public static function dec($name)
+    public static function dec(string $name)
     {
         $variable = self::get($name);
         $variable->value--;
@@ -28,17 +28,17 @@ class VariableDefinitionService
         return $variable->value;
     }
 
-    public static function getValue($name)
+    public static function getValue(string $name)
     {
-        return VariableDefinition::where('name', $name)->get()->first()->value;
+        return self::get($name)->value;
     }
 
-    public static function get($name): VariableDefinition
+    public static function get(string $name): VariableDefinition
     {
-        return VariableDefinition::where('name', $name)->get()->first();
+        return VariableDefinition::where('name', $name)->first();
     }
 
-    public static function getModel($name): Model
+    public static function getModel(string $name): Model
     {
         return VariableDefinition::with('modelType')
             ->where('name', $name)

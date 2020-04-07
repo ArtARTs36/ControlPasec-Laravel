@@ -43,9 +43,6 @@ abstract class BaseTestCase extends TestCase
      */
     protected function getRandomModel($class)
     {
-        return $class::where('id', '>', 0)
-            ->inRandomOrder()
-            ->get()
-            ->first();
+        return $class::inRandomOrder()->first();
     }
 }

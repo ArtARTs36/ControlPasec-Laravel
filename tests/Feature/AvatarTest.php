@@ -6,9 +6,12 @@ use App\Support\Avatar;
 use App\User;
 use Tests\BaseTestCase;
 
+/**
+ * @group BaseTest
+ */
 class AvatarTest extends BaseTestCase
 {
-    public function testGetByUser()
+    public function testGetByUser(): void
     {
         $user = User::where('gender', User::GENDER_MALE)->first();
 

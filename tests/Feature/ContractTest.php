@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Contract\Contract;
 use App\Models\Contragent;
+use Illuminate\Http\Response;
 use Tests\BaseTestCase;
 
 /**
@@ -16,28 +17,33 @@ class ContractTest extends BaseTestCase
      */
     public function testContractCreate(): void
     {
+        $customerId = $this->getRandomModel(Contragent::class)->id;
+        $supplierId = env('ONE_SUPPLIER_ID');
+
         $response = $this->postJson('/api/contracts', [
             'title' => 'Договор на поставку меда',
-            'customer_id' => 10,
-            'supplier_id' => 1,
+            'customer_id' => $customerId,
+            'supplier_id' => $supplierId,
             'planned_date' => '2020-02-09',
             'executed_date' => '2020-02-09',
         ]);
 
+        $response->assertOk();
+
         $response = $this->decodeResponse($response);
 
         self::assertTrue(
-            $response['data']['customer_id'] == 10 && $response['data']['supplier_id'] == 1
+            $response['data']['customer_id'] == $customerId && $response['data']['supplier_id'] == $supplierId
         );
     }
 
     public function testFindByCustomer(): void
     {
-        $customer = Contragent::with(['contracts'])->inRandomOrder()->get()->first();
+        $customer = Contragent::with(['contracts'])->inRandomOrder()->first();
 
         $response = $this->getJson('/api/contracts/find-by-customer/'. $customer->id);
 
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 
     /**
@@ -46,12 +52,11 @@ class ContractTest extends BaseTestCase
     public function testContractDelete(): void
     {
         /** @var Contract $contract */
-        $contract = Contract::where('id', '>', 0)
-            ->inRandomOrder()
-            ->get()
-            ->first();
+        $contract = $this->getRandomModel(Contract::class);
 
         $response = $this->deleteJson('/api/contracts/'. $contract->id);
+
+        $response->assertStatus(Response::HTTP_NO_CONTENT);
 
         $response = $this->decodeResponse($response);
 

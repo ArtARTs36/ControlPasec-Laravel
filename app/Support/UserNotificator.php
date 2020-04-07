@@ -9,14 +9,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserNotificator
 {
-    public static function create(string $type, string $message, Model $aboutModel)
+    public static function notify(string $type, string $message, Model $aboutModel): void
     {
         $type = UserNotificationType::where('name', $type)
             ->first();
 
         /** @var User[] $users */
-        $users = $type->permission
-            ->getUsers();
+        $users = $type->permission->getUsers();
 
         foreach ($users as $user) {
             $notification = new UserNotification();

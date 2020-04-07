@@ -12,7 +12,7 @@ use Tests\BaseTestCase;
  */
 class TextDataParserTest extends BaseTestCase
 {
-    public function testFactoryGet()
+    public function testFactoryGet(): void
     {
         $parser = TextDataParserFactory::get(
             $this->getFaker()->text,

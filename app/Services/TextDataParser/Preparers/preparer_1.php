@@ -10,12 +10,11 @@ use App\Services\VariableDefinitionService;
 /** @var array $items */
 
 $result = [];
+$supplier = Contragent::find(env('ONE_SUPPLIER_ID'));
 
 /** @var array $item */
 foreach ($items as $item) {
-    $customer = Contragent::where('title', $item[1])->get()->first();
-    $supplier = Contragent::find(env('ONE_SUPPLIER_ID'));
-
+    $customer = Contragent::where('title', $item[1])->first();
     $supply = SupplyService::create($customer, $supplier);
 
     /** @var \App\Models\Product\Product $product */

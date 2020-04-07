@@ -7,7 +7,10 @@ use App\Models\Vocab\VocabWord;
 
 class WordService
 {
-    public static function checkVocabs($words)
+    /**
+     * @param array|string[] $words
+     */
+    public static function checkVocabs(array $words)
     {
         foreach ($words as $word) {
             if (null !== VocabWord::where('nominative', $word)->first()) {
