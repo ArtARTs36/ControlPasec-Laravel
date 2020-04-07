@@ -24,6 +24,7 @@ class CreateSupplyProductsTable extends Migration
 
             $table->unsignedInteger('product_id');
             $table->unsignedInteger('supply_id');
+            $table->unsignedInteger('quantity_unit_id');
         });
 
         Schema::table(self::TABLE, function (Blueprint $table) {
@@ -34,6 +35,10 @@ class CreateSupplyProductsTable extends Migration
             $table->foreign('supply_id')
                 ->references('id')
                 ->on('supplies');
+
+            $table->foreign('quantity_unit_id')
+                ->references('id')
+                ->on('vocab_quantity_units');
         });
     }
 
