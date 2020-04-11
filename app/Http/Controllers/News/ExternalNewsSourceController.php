@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\News;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ExternalNews\ExternalNewsRequest;
+use App\Http\Requests\ExternalNews\ExternalNewsSourceRequest;
 use App\Http\Responses\ActionResponse;
 use App\Models\News\ExternalNews;
 use App\Models\News\ExternalNewsSource;
@@ -26,12 +26,12 @@ class ExternalNewsSourceController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  ExternalNewsRequest  $request
-     * @return ExternalNews
+     * @param  ExternalNewsSourceRequest  $request
+     * @return ExternalNewsSource
      */
-    public function store(ExternalNewsRequest $request): ExternalNews
+    public function store(ExternalNewsSourceRequest $request): ExternalNewsSource
     {
-        return ExternalNews::create($request->all());
+        return $this->createModel($request, ExternalNewsSource::class);
     }
 
     /**
@@ -48,11 +48,11 @@ class ExternalNewsSourceController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  ExternalNewsRequest  $request
+     * @param  ExternalNewsSourceRequest  $request
      * @param  ExternalNewsSource  $externalNewsSource
      * @return ActionResponse
      */
-    public function update(ExternalNewsRequest $request, ExternalNewsSource $externalNewsSource)
+    public function update(ExternalNewsSourceRequest $request, ExternalNewsSource $externalNewsSource)
     {
         return new ActionResponse($externalNewsSource->update($request->all()));
     }

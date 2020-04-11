@@ -46,14 +46,11 @@ class ContragentController extends Controller
      * Store a newly created resource in storage.
      *
      * @param ContragentRequest $request
-     * @return void
+     * @return ActionResponse
      */
-    public function store(ContragentRequest $request)
+    public function store(ContragentRequest $request): ActionResponse
     {
-        $contragent = new Contragent();
-
-        $contragent->fillable($contragent->getFillable())
-        ->fill($request->only($contragent->getFillable()));
+        return $this->createModelAndResponse($request, Contragent::class);
     }
 
     /**
@@ -76,9 +73,7 @@ class ContragentController extends Controller
      */
     public function update(ContragentRequest $request, Contragent $contragent)
     {
-        $data = $request->all();
-
-        $contragent->update($data);
+        $this->updateModel($request, $contragent);
 
         ContragentService::updateScoresInRequisiteByRequest($request);
 

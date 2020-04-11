@@ -9,7 +9,7 @@ use Illuminate\Foundation\Http\FormRequest;
  * @property string $name
  * @property string $link
  */
-class ExternalNewsRequest extends FormRequest
+class ExternalNewsSourceRequest extends FormRequest
 {
     public function rules(): array
     {
