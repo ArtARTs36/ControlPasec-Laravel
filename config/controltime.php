@@ -2,7 +2,7 @@
 
 return [
     'employee' => [
-        'model_class' => '',
+        'model_class' => \App\Models\Employee\Employee::class,
         'table' => 'controltime_employee',
     ],
     'work_condition' => [
