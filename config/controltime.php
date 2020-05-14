@@ -13,4 +13,5 @@ return [
         'table' => 'controltime_times',
         'date_format' => 'Y-m-d',
     ],
+    'api_route_prefix' => 'controltime',
 ];
