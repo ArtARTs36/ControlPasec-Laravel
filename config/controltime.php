@@ -12,6 +12,9 @@ return [
         'model_class' => \Dba\ControlTime\Models\Time::class,
         'table' => 'controltime_times',
         'date_format' => 'Y-m-d',
+        'index_showing' => [
+            'page_count' => 10,
+        ],
     ],
     'api_route_prefix' => 'controltime',
 ];
