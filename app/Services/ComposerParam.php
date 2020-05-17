@@ -4,20 +4,21 @@ namespace App\Services;
 
 class ComposerParam
 {
+    /** @var null|array */
     private static $array = null;
 
     public static function getVersion(): ?string
     {
-        return self::getArray()['version'] ?? null;
+        return static::getArray()['version'] ?? null;
     }
 
     public static function getArray()
     {
-        if (self::$array === null) {
-            self::$array = json_decode(file_get_contents(self::getFilePath()), true);
+        if (static::$array === null) {
+            static::$array = json_decode(file_get_contents(static::getFilePath()), true);
         }
 
-        return self::$array;
+        return static::$array;
     }
 
     public static function save(): bool
@@ -26,7 +27,7 @@ class ComposerParam
             return false;
         }
 
-        return !file_put_contents(self::getFilePath(), json_encode(self::$array)) ? false : true;
+        return !file_put_contents(static::getFilePath(), json_encode(static::$array)) ? false : true;
     }
 
     public static function getFilePath(): string

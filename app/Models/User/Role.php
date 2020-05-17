@@ -17,6 +17,8 @@ final class Role extends BaseRole
 {
     const ADMIN = 'admin';
 
+    const FIELD_IS_ALLOWED_FOR_SIGN_UP = 'is_allowed_for_sign_up';
+
     public function isNotAllowedForSignUp(): bool
     {
         return $this->is_allowed_for_sign_up === false;

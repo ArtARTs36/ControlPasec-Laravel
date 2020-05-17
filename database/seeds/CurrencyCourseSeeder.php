@@ -7,7 +7,10 @@ use App\Services\CurrencyCourseFinder\CurrencyCourseFinder;
 
 class CurrencyCourseSeeder extends CommonSeeder
 {
-    public function run()
+    /**
+     * @throws Exception
+     */
+    public function run(): void
     {
         if (env('ENV_TYPE') == 'dev') {
             $this->randomData(100);
@@ -50,7 +53,7 @@ class CurrencyCourseSeeder extends CommonSeeder
     private function randomData($count): void
     {
         foreach ($this->getAllModels(VocabCurrency::class) as $currency) {
-            if ($currency->iso_short_name == 'RUB') {
+            if ($currency->iso_short_name == VocabCurrency::ISO_RUB) {
                 continue;
             }
 

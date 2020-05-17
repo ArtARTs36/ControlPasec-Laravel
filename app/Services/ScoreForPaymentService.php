@@ -28,7 +28,7 @@ class ScoreForPaymentService
             ->first();
 
         return ($scoreForPayment !== null) ? $scoreForPayment :
-            self::create(self::prepareSupplyId($supplyId), $date, $orderNumber);
+            static::create(self::prepareSupplyId($supplyId), $date, $orderNumber);
     }
 
     /**

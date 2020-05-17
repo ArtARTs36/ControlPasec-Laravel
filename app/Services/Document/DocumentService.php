@@ -18,7 +18,7 @@ class DocumentService
      */
     public static function refreshFileName(Document $document)
     {
-        $document->title = self::parseFileName($document);
+        $document->title = static::parseFileName($document);
         $document->save();
         return $document;
     }
