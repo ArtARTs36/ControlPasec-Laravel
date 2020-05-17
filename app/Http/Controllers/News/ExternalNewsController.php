@@ -56,9 +56,9 @@ class ExternalNewsController extends Controller
      */
     public function chart(int $count = 6): LengthAwarePaginator
     {
-        return ExternalNews::with('source')->
-            latest()->
-            paginate($count);
+        return ExternalNews::with('source')
+            ->latest()
+            ->paginate($count);
     }
 
     /**

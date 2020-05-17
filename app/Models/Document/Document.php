@@ -7,6 +7,7 @@ use App\Models\Supply\ProductTransportWaybill;
 use App\Models\Supply\QualityCertificate;
 use App\ScoreForPayment;
 use App\Service\Document\DocumentService;
+use App\Services\Document\DocumentBuilder;
 use App\Services\Service\SpellingService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -203,5 +204,10 @@ class Document extends Model
         if (($path = $this->getFullPath())) {
             unlink($path);
         }
+    }
+
+    public function build()
+    {
+        return DocumentBuilder::build($this, true);
     }
 }

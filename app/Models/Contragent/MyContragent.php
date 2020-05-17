@@ -15,7 +15,7 @@ use Illuminate\Database\Query\Builder;
  *
  * @mixin Builder
  */
-class MyContragent extends Model
+final class MyContragent extends Model
 {
     //
 }

@@ -25,10 +25,10 @@ class StatController extends Controller
     public function general(): array
     {
         return [
-            'contragentsCount' => DB::table(Contragent::TABLE)->count(),
-            'suppliesCount' => DB::table(Supply::TABLE)->count(),
-            'usersCount' => DB::table(User::TABLE)->count(),
-            'externalNewsSourcesCount' => DB::table(ExternalNewsSource::TABLE)->count(),
+            'contragentsCount' => DB::table(Contragent::TABLE)->count('id'),
+            'suppliesCount' => DB::table(Supply::TABLE)->count('id'),
+            'usersCount' => DB::table(User::TABLE)->count('id'),
+            'externalNewsSourcesCount' => DB::table(ExternalNewsSource::TABLE)->count('id'),
         ];
     }
 }

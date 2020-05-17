@@ -21,3 +21,10 @@
 ## Вспомогательные команды
 - php artisan l5-swagger:generate
 - ./vendor/bin/phpstan analyse --memory-limit=2G
+
+## Профайлер
+- установка:
+- `npm install laravel-profiler-client --save-dev`
+- запуск:
+- `php artisan profiler:server`
+- `php artisan profiler:client`

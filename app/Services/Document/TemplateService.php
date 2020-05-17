@@ -9,6 +9,9 @@ class TemplateService
 {
     use NumberTrait;
 
+    const VARIABLES_FIELD = 'variables';
+    const TABLES_FIELD = 'tables';
+
     public static function renderContragent(Contragent$contragent, $withKpp = false): string
     {
         $data = [

@@ -24,7 +24,7 @@ class DaDataParser extends DaDataSender
         }
 
         foreach ($responses['suggestions'] as $response) {
-            if (!isset($response['data'])) {
+            if (empty($response['data'])) {
                 return false;
             }
 
@@ -80,7 +80,7 @@ class DaDataParser extends DaDataSender
 
         $words = [$manager->name, $manager->patronymic, $manager->family];
 
-        if (isset($response['management']['post']) && !empty($response['management']['post'])) {
+        if (!empty($response['management']['post'])) {
             $manager->post = $response['management']['post'];
 
             $words[] = $manager->post;

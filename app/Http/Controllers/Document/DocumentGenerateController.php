@@ -15,6 +15,7 @@ use App\Models\Supply\Supply;
 use App\Repositories\DocumentRepository;
 use App\ScoreForPayment;
 use App\Services\Document\DocumentBuilder;
+use App\Services\Document\DocumentCreator;
 use App\Support\Archiver\Zipper;
 
 class DocumentGenerateController extends Controller
@@ -25,6 +26,15 @@ class DocumentGenerateController extends Controller
         DocumentType::ONE_T_FORM_ID => OneTForm::class,
         DocumentType::SCORE_FOR_PAYMENT_ID => ScoreForPayment::class,
     ];
+
+    public function create(int $type)
+    {
+        $document = DocumentCreator::getInstance($type)->save();
+
+        $document->build();
+
+        return new DocumentResource($document);
+    }
 
     public function generate(Supply $supply, int $typeId): DocumentResource
     {

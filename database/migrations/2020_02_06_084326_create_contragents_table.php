@@ -18,7 +18,7 @@ class CreateContragentsTable extends Migration
         Schema::create(self::TABLE, function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->string('title', 120)->unique();
+            $table->string('title', 500)->unique();
             $table->string('full_title', 500)->nullable();
             $table->string('full_title_with_opf', 500)->nullable();
 
