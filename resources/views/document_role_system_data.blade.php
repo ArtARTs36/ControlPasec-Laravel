@@ -11,6 +11,7 @@
         'АКТУАЛЬНОСТЬ_ДАТА' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
         'ПОЛНОМОЧИЯ_КОЛИЧЕСТВО' => $permissions->count(),
         "РОЛИ_КОЛИЧЕСТВО" => $roles->count(),
+        "ПОЛЬЗОВАТЕЛИ_КОЛИЧЕСТВО" => \App\User::count(),
     ];
 
     //
