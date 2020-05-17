@@ -34,7 +34,7 @@
         foreach ($permissionLine as $permission) {
             $currentNumber = $number++;
             $permissionsWidthData[$line] += [
-                "Ш_{$currentNumber}_ПОЛНОМОЧИЕ_НАЗВАНИЕ" => $permission->name,
+                "Ш_{$currentNumber}_ПОЛНОМОЧИЕ_НАЗВАНИЕ" => prepare($permission->name),
                 "Ш_{$currentNumber}_ПОЛНОМОЧИЕ_ОПИСАНИЕ" => $permission->title,
             ];
         }
@@ -59,6 +59,17 @@
         $permissionsWidthData,
         $rolesData,
     ];
+
+    function prepare($text)
+    {
+        $length = mb_strlen($text);
+
+        if ($length > 15) {
+            $text = str_replace("_", " _", $text);
+        }
+
+        return $text;
+    }
 
 @endphp
 
