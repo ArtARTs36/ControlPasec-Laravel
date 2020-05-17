@@ -18,7 +18,7 @@ class CreateEmployeesTable extends Migration
      */
     public function up()
     {
-        Schema::create(Proxy::getTimeTable(), function (Blueprint $table) {
+        Schema::create(Proxy::getEmployeeTable(), function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
 
@@ -35,6 +35,6 @@ class CreateEmployeesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(Proxy::getTimeTable());
+        Schema::dropIfExists(Proxy::getEmployeeTable());
     }
 }

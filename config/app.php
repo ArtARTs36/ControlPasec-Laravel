@@ -176,6 +176,11 @@ return [
         App\Providers\RouteServiceProvider::class,
         \App\Providers\ValidationServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+
+        /*
+         * ControlTime Provider
+         */
+        Dba\ControlTime\Providers\ControlTimeProvider::class,
     ],
 
     /*
