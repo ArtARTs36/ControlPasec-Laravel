@@ -3,6 +3,7 @@
 namespace App\Models\Employee;
 
 use Dba\ControlTime\Contracts\EmployeeContract;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Class Employee
@@ -22,4 +23,13 @@ class Employee extends EmployeeContract
         self::FIELD_NAME,
         self::FIELD_PATRONYMIC,
     ];
+
+    protected static function boot(): void
+    {
+        parent::boot();
+
+//        static::addGlobalScope('WorkConditions', function (Builder $builder) {
+//            $builder->with(static::RELATION_WORK_CONDITIONS);
+//        });
+    }
 }
