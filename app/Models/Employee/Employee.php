@@ -11,12 +11,14 @@ use Illuminate\Database\Eloquent\Builder;
  * @property string $family
  * @property string $name
  * @property string $patronymic
+ * @property string $hired_date
  */
 class Employee extends EmployeeContract
 {
     const FIELD_FAMILY = 'family';
     const FIELD_NAME = 'name';
     const FIELD_PATRONYMIC = 'patronymic';
+    const FIELD_HIRED_DATE = 'hired_date';
 
     protected $fillable = [
         self::FIELD_FAMILY,
@@ -31,5 +33,14 @@ class Employee extends EmployeeContract
 //        static::addGlobalScope('WorkConditions', function (Builder $builder) {
 //            $builder->with(static::RELATION_WORK_CONDITIONS);
 //        });
+    }
+
+    public function getFullName(): string
+    {
+        return implode(' ', [
+            $this->family,
+            $this->name,
+            $this->patronymic,
+        ]);
     }
 }

@@ -25,6 +25,7 @@ class CreateEmployeesTable extends Migration
             $table->string(Employee::FIELD_FAMILY, 20);
             $table->string(Employee::FIELD_NAME, 20);
             $table->string(Employee::FIELD_PATRONYMIC, 20);
+            $table->date(Employee::FIELD_HIRED_DATE);
         });
     }
 

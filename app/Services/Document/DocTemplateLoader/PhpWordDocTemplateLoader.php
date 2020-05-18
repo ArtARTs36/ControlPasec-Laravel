@@ -44,7 +44,7 @@ class PhpWordDocTemplateLoader extends AbstractDocTemplateLoader
     private function prepareData(TemplateProcessor $processor, string $data)
     {
         $data = json_decode($data, true);
-        if (($variables = $data['variables']) && is_array($variables)) {
+        if (!empty($data['variables']) && ($variables = $data['variables']) && is_array($variables)) {
             foreach ($variables as $key => $value) {
                 $processor->setValue($key, $value);
             }
