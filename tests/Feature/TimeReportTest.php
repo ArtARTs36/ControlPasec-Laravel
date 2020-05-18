@@ -9,7 +9,7 @@ use Tests\BaseTestCase;
 
 class TimeReportTest extends BaseTestCase
 {
-    public function testByPeriod()
+    public function testByPeriod(): void
     {
         $employee = Employee::query()->inRandomOrder()->first();
 
@@ -18,6 +18,15 @@ class TimeReportTest extends BaseTestCase
             Carbon::parse('15 years ago')->format('Y-m-d'),
             Carbon::now()->format('Y-m-d')
         );
+
+        self::assertFalse(empty($response));
+    }
+
+    public function testByLastMonth(): void
+    {
+        $employee = Employee::query()->inRandomOrder()->first();
+
+        $response = app(TimeReportController::class)->byLastMonth($employee);
 
         self::assertFalse(empty($response));
     }

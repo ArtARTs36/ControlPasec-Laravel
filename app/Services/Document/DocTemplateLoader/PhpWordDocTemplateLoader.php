@@ -22,8 +22,10 @@ class PhpWordDocTemplateLoader extends AbstractDocTemplateLoader
         $fileData = $document->getTemplate() . '_data';
 
         $processor = new TemplateProcessor($document->getTemplateFullPath(true));
-
-        $this->prepareData($processor, view($fileData, ['document' => $document])->render());
+        $this->prepareData($processor, view($fileData, [
+            'document' => $document,
+            'templateProcessor' => $processor,
+        ])->render());
 
         $savePath = $this->getSavePath($document);
 
@@ -50,7 +52,7 @@ class PhpWordDocTemplateLoader extends AbstractDocTemplateLoader
             }
         }
 
-        if (($tables = $data['tables']) && is_array($tables)) {
+        if (!empty($data['tables']) && ($tables = $data['tables']) && is_array($tables)) {
             foreach ($tables as $triggerMapKey => $values) {
                 if (!is_array($values)) {
                     continue;

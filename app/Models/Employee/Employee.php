@@ -30,9 +30,9 @@ class Employee extends EmployeeContract
     {
         parent::boot();
 
-//        static::addGlobalScope('WorkConditions', function (Builder $builder) {
-//            $builder->with(static::RELATION_WORK_CONDITIONS);
-//        });
+        static::addGlobalScope('WorkConditions', function (Builder $builder) {
+            $builder->with(static::RELATION_WORK_CONDITIONS);
+        });
     }
 
     public function getFullName(): string

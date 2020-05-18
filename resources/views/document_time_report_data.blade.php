@@ -14,6 +14,10 @@
         Carbon::parse($timeReport->end_date)
     );
 
+    $workConditions = $timeReport->employee->getCurrentWorkConditions();
+
+     //
+
     $hours = 0;
 
     $timesData = [];
@@ -39,11 +43,31 @@
         'СОТРУДНИК_ПРЕДСТАВЛЕНИЕ' => $timeReport->employee->getFullName(),
         'ПЕРИОД_НАЧАЛО' => $timeReport->start_date,
         'ПЕРИОД_КОНЕЦ' => $timeReport->end_date,
-    ];
+        'ИТОГО_ОПЛАТА' => $hours * $workConditions->amount_hour,
+    ] + getEmployeeData($timeReport->employee, $workConditions);
+
+    if ($times->isEmpty()) {
+        $timesData[] = [
+            'СПИСАНИЕ_ДАТА' => "Нет данных",
+            'СПИСАНИЕ_ЧАСЫ' => "Нет данных",
+            'СПИСАНИЕ_КОММЕНТ' => "Нет данных",
+        ];
+    }
 
     $data['tables'] = [
          $timesData
     ];
+
+    function getEmployeeData(App\Models\Employee\Employee $employee, \Dba\ControlTime\Models\WorkCondition $conditions)
+    {
+        return [
+            'СОТРУДНИК_ДАТА_ПРИНЯТИЯ' => $employee->hired_date,
+            'СОТРУДНИК_ДОЛЖНОСТЬ' => $conditions->position ?? "не указана",
+            "СОТРУДНИК_СТАВКА" => $conditions->rate ?? "не указана",
+            "СОТРУДНИК_ОПЛАТА_ЧАС" => $conditions->amount_hour ?? "не указана",
+            "СОТРУДНИК_ОПЛАТА_МЕСЯЦ" => $conditions->amount_month ?? "не указана",
+        ];
+    }
 
 @endphp
 
