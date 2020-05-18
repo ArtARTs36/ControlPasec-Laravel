@@ -2,6 +2,9 @@
 
 use Illuminate\Database\Seeder;
 
+require_once 'packages/dba/controltime/database/seeds/WorkConditionSeeder.php';
+require_once 'packages/dba/controltime/database/seeds/TimeSeeder.php';
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -36,6 +39,10 @@ class DatabaseSeeder extends Seeder
         $this->call(SupplySeeder::class);
 
         $this->call(UserNotificationSeeder::class);
+
+        $this->call(EmployeeSeeder::class);
+        $this->call(WorkConditionSeeder::class);
+        $this->call(TimeSeeder::class);
     }
 
     private function vocabs(): void
