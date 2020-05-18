@@ -16,7 +16,7 @@ use Illuminate\Database\Query\Builder;
  * @property int $contragent_id
  * @mixin Builder
  */
-class ContragentManager extends Model
+final class ContragentManager extends Model
 {
     const PSEUDO = 'managers';
 

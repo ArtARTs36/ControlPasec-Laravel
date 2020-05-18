@@ -19,7 +19,7 @@ abstract class Sender
      */
     protected static function prepareUrl($ch, string $url, array $params): string
     {
-        if ($params !== null && !empty($params)) {
+        if (!empty($params)) {
             $url .= '?';
             foreach ($params as $key => $value) {
                 $url .= $key . '=' . curl_escape($ch, $value) . '&';
@@ -43,10 +43,9 @@ abstract class Sender
 
         curl_setopt($ch, CURLOPT_URL, static::BASE_URL . self::prepareUrl($ch, $url, $params));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-        if ($options !== null && is_array($options)) {
+        if (is_array($options)) {
             foreach ($options as $option => $value) {
                 curl_setopt($ch, $option, $value);
             }

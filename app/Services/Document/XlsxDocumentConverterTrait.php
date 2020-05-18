@@ -11,7 +11,7 @@ trait XlsxDocumentConverterTrait
     {
         self::checkFileExists($filePath);
 
-        $outputDir = self::getDir($filePath);
+        $outputDir = static::getDir($filePath);
 
         $shell = ShellCommand::getInstance('soffice', false)
             ->addOption('headless')
@@ -21,7 +21,7 @@ trait XlsxDocumentConverterTrait
             ->addOption('outdir')
             ->addParameter($outputDir);
 
-        self::checkShell($shell, $filePath, DocumentExtension::PDF);
+        static::checkShell($shell, $filePath, DocumentExtension::PDF);
 
         if (!file_exists($filePath)) {
             throw new DocumentConvertException($filePath, DocumentExtension::PDF);

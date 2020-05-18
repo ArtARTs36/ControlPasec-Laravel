@@ -10,7 +10,11 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 
 class LandingFeedBackCreatedListener implements ShouldQueue
 {
-    public function handle(LandingFeedBackCreated $event)
+    /**
+     * @param LandingFeedBackCreated $event
+     * @throws \Throwable
+     */
+    public function handle(LandingFeedBackCreated $event): void
     {
         $sender = new PushAllSender();
 

@@ -9,7 +9,7 @@ class MorpherParser extends MorpherSender
     public static function findDeclensions($word, $create = true)
     {
         $response = self::getRequest(self::URL_METHOD_DECLENSION, [
-            's' => $word
+            's' => $word,
         ]);
 
         return ($create === true) ? self::createVocabWordByResponse($word, $response) : $response;
@@ -46,14 +46,13 @@ class MorpherParser extends MorpherSender
         $vocabWord = new VocabWord();
 
         $vocabWord->type = MorpherParser::getTypeWordByResponse($response) ?? null;
-
         $vocabWord->nominative = $word;
         $vocabWord->dative = $response['Д'] ?? null;
         $vocabWord->genitive = $response['Р'] ?? null;
         $vocabWord->instrumental = $response['Т'] ?? null;
         $vocabWord->prepositional = $response['П'] ?? null;
 
-        if (isset($response['множественное']) && is_array($response['множественное'])) {
+        if (!empty($response['множественное']) && is_array($response['множественное'])) {
             $response = $response['множественное'];
 
             $vocabWord->plural_nominative = $response['И'] ?? null;

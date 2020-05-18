@@ -57,9 +57,9 @@ class DialogRepository
      */
     public static function getOrCreate(User $toUser): Dialog
     {
-        $dialog = self::findByCurrentUserAndToUser($toUser);
+        $dialog = static::findByCurrentUserAndToUser($toUser);
         if ($dialog === null) {
-            $dialog = self::createByCurrentUserAndToUser($toUser);
+            $dialog = static::createByCurrentUserAndToUser($toUser);
         }
 
         return $dialog;

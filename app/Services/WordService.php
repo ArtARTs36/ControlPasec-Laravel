@@ -13,11 +13,22 @@ class WordService
     public static function checkVocabs(array $words)
     {
         foreach ($words as $word) {
-            if (null !== VocabWord::where('nominative', $word)->first()) {
+            if (null !== static::getDeclensions($word)) {
                 continue;
             }
 
             MorpherParser::findDeclensions($word);
         }
+    }
+
+    /**
+     * Получить склонения
+     *
+     * @param string $word
+     * @return VocabWord
+     */
+    public static function getDeclensions(string $word): VocabWord
+    {
+        return VocabWord::where('nominative', $word)->first();
     }
 }

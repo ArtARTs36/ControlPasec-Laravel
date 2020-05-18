@@ -5,4 +5,5 @@ name;title;template;paper_size;loader_name
 Удостоверение качества;Удостоверение качества;document_quality_certificate;A4;PhpWordDocTemplateLoader
 Товарно-транспортные накладные;Товарно-транспортные накладные;document_torg12;A3;ManyXlxsToPdfLoader
 Транспортная накладная 1-Т;Транспортная накладная 1-Т;document_1_t_form;A4;ExcelDocTemplateLoader
+Ролевая система приложения;Ролевая система приложения;document_role_system;A4;PhpWordDocTemplateLoader
 Отчет по времени;Отчет по времени;document_time_report;A4;PhpWordDocTemplateLoader

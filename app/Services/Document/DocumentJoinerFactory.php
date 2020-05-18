@@ -8,6 +8,7 @@ use App\Services\Document\DocumentJoiner\PDFJoiner;
 
 class DocumentJoinerFactory
 {
+    /** @var array<string> */
     const JOINERS = [
         PDFJoiner::OUTPUT_FILE_EXTENSION => PDFJoiner::class,
     ];
@@ -28,11 +29,11 @@ class DocumentJoinerFactory
             }
         }
 
-        if (!isset(self::JOINERS[$ext])) {
+        if (!isset(static::JOINERS[$ext])) {
             return false;
         }
 
-        $joinerClass = self::JOINERS[$ext];
+        $joinerClass = static::JOINERS[$ext];
 
         /** @var AbstractDocumentJoiner $joiner */
         $joiner = new $joinerClass($documents);

@@ -38,13 +38,13 @@ class ExternalNewsCreator
             $links[] = $item['link'];
         }
 
-        self::$existsNews = ExternalNews::whereIn('link', $links)
+        static::$existsNews = ExternalNews::whereIn('link', $links)
             ->get()
             ->pluck('id', 'link');
 
         $news = [];
         foreach ($items as $item) {
-            $news[] = self::prepareNews($item, $source);
+            $news[] = static::prepareNews($item, $source);
         }
 
         return $news;
