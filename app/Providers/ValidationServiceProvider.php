@@ -27,5 +27,9 @@ class ValidationServiceProvider extends ServiceProvider
 
             return false;
         });
+
+        Validator::extend('double', function ($attribute, $value) {
+            return (double) $value == $value;
+        });
     }
 }

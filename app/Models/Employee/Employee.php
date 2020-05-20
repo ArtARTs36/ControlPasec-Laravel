@@ -3,7 +3,8 @@
 namespace App\Models\Employee;
 
 use Dba\ControlTime\Contracts\EmployeeContract;
-use Illuminate\Database\Eloquent\Builder;
+use Dba\ControlTime\Models\WorkCondition;
+use Illuminate\Database\Eloquent\Collection;
 
 /**
  * Class Employee
@@ -12,6 +13,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property string $name
  * @property string $patronymic
  * @property string $hired_date
+ * @property Collection|WorkCondition[] $workConditions
  */
 class Employee extends EmployeeContract
 {
@@ -25,15 +27,6 @@ class Employee extends EmployeeContract
         self::FIELD_NAME,
         self::FIELD_PATRONYMIC,
     ];
-
-    protected static function boot(): void
-    {
-        parent::boot();
-
-        static::addGlobalScope('WorkConditions', function (Builder $builder) {
-            $builder->with(static::RELATION_WORK_CONDITIONS);
-        });
-    }
 
     public function getFullName(): string
     {

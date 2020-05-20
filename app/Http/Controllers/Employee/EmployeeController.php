@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Employee\EmployeeStoreRequest;
 use App\Models\Employee\Employee;
 use App\Repositories\EmployeeRepository;
+use App\Services\EmployeeService;
+use Dba\ControlTime\Scopes\CurrentWorkConditionScope;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
@@ -21,12 +23,14 @@ class EmployeeController extends Controller
     }
 
     /**
-     * @param Employee $employee
+     * @param int $employeeId
      * @return Employee
      */
-    public function show(Employee $employee): Employee
+    public function show(int $employeeId): Employee
     {
-        return $employee;
+        return Employee::query()
+            ->withGlobalScope(CurrentWorkConditionScope::NAME, new CurrentWorkConditionScope())
+            ->find($employeeId);
     }
 
     /**
@@ -36,6 +40,8 @@ class EmployeeController extends Controller
      */
     public function update(EmployeeStoreRequest $request, Employee $employee)
     {
+        EmployeeService::updateWorkConditions($employee, $request->getWorkCondition());
+
         return $this->updateModelAndResponse($request, $employee);
     }
 

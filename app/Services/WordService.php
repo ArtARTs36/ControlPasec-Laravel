@@ -25,9 +25,9 @@ class WordService
      * Получить склонения
      *
      * @param string $word
-     * @return VocabWord
+     * @return VocabWord|null
      */
-    public static function getDeclensions(string $word): VocabWord
+    public static function getDeclensions(string $word): ?VocabWord
     {
         return VocabWord::where('nominative', $word)->first();
     }
