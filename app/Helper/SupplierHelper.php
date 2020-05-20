@@ -12,13 +12,13 @@ class SupplierHelper
     /** @var Contragent\MyContragent */
     private $myContragent;
 
-    public function __construct(Contragent $supplier)
+    /** @var static[] */
+    private static $instances;
+
+    public function __construct(Contragent $supplier, Contragent\MyContragent $myContragent)
     {
         $this->supplier = $supplier;
-
-        $this->myContragent = Contragent\MyContragent::where('contragent_id', $supplier->id)
-            ->get()
-            ->first();
+        $this->myContragent = $myContragent;
     }
 
     /**
@@ -28,5 +28,18 @@ class SupplierHelper
     public function getSignature(): string
     {
         return $this->myContragent !== null ? $this->myContragent->signature : $this->supplier->title;
+    }
+
+    public static function getInstance(Contragent $supplier)
+    {
+        if (empty(static::$instances[$supplier->id])) {
+            static::$instances[$supplier->id] = new static($supplier,
+                Contragent\MyContragent::where('contragent_id', $supplier->id)
+                    ->get()
+                    ->first()
+            );
+        }
+
+        return static::$instances[$supplier->id];
     }
 }

@@ -37,6 +37,8 @@ final class ScoreForPayment extends Model implements ModelWithDocuments
     const ORDER_NUMBER_TYPE = VariableDefinition::SCORE_FOR_PAYMENT_ORDER_NUMBER;
     const TARGET_TYPE = DocumentType::SCORE_FOR_PAYMENT_ID;
 
+    const FIELD_SUPPLY_ID = 'supply_id';
+
     protected $fillable = [
         'supply_id', 'contract_id', 'date'
     ];

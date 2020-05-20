@@ -1,6 +1,9 @@
 @php
     $document->load([
-        'scoreForPayments'
+        'scoreForPayments.supply.products.parent.currency',
+        'scoreForPayments.supply.products.parent.sizeOfUnit',
+        'scoreForPayments.supply.supplier.requisites.bank',
+        'scoreForPayments.supply.customer',
     ]);
 
     $scores = $document->scoreForPayments;
@@ -65,23 +68,15 @@
 
 @foreach($scores as $scoreIndex => $score)
     @php
-        $document->load([
-            'scoreForPayments'
-        ]);
-
         $supply = $score->supply;
-        $supplier = $supply->supplier->load(['requisites' => function($requisite) {
-            return $requisite->with('bank');
-        }]);
+        $supplier = $supply->supplier;
 
-        $supplierHelper = new \App\Helper\SupplierHelper($supplier);
+        $supplierHelper = \App\Helper\SupplierHelper::getInstance($supplier);
 
         $customer = $supply->customer;
 
         /** @var \App\Models\Supply\SupplyProduct[] $products */
-        $products = $supply->products()->with(['parent' => function($parent) {
-            return $parent->with('sizeOfUnit');
-        }])->get();
+        $products = $supply->products;
 
         $totalPrice = \App\Services\SupplyService::bringTotalPrice($supply);
     @endphp

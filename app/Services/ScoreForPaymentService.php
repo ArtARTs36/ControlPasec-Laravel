@@ -55,18 +55,26 @@ class ScoreForPaymentService
     /**
      * Получить или создать счета по поставкам
      *
-     * @param array $supplies
+     * @param array|int[] $supplies
      * @return array
      * @throws \Exception
      */
     public static function getOrCreateBySupplies(array $supplies): array
     {
-        $res = [];
-        foreach ($supplies as $supply) {
-            $res[] = self::getOrCreateBySupply($supply);
+        $scores = ScoreForPayment::query()
+            ->distinct()
+            ->latest('id')
+            ->whereIn(ScoreForPayment::FIELD_SUPPLY_ID, $supplies)
+            ->get(['id', ScoreForPayment::FIELD_SUPPLY_ID]);
+
+        $suppliesWithoutScore = array_diff($supplies, $scores->pluck('id')->all());
+        if (!empty($suppliesWithoutScore)) {
+            foreach ($suppliesWithoutScore as $supply) {
+                $scores->push(static::create($supply));
+            }
         }
 
-        return $res;
+        return $scores->all();
     }
 
     /**
