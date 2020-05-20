@@ -1,23 +1,21 @@
 @php
     $document->load([
-        'scoreForPayments'
+        'scoreForPayments.supply.supplier.requisites.bank',
+        'scoreForPayments.supply.products.parent.sizeOfUnit',
+        'scoreForPayments.supply.customer',
     ]);
 
     $score = $document->getScoreForPayment();
 
     $supply = $score->supply;
-    $supplier = $supply->supplier->load(['requisites' => function($requisite) {
-        return $requisite->with('bank');
-    }]);
+    $supplier = $supply->supplier;
 
-    $supplierHelper = new \App\Helper\SupplierHelper($supplier);
+    $supplierHelper = \App\Helper\SupplierHelper::getInstance($supplier);
 
     $customer = $supply->customer;
 
     /** @var \App\Models\Supply\SupplyProduct[] $products */
-    $products = $supply->products()->with(['parent' => function($parent) {
-        return $parent->with('sizeOfUnit');
-    }])->get();
+    $products = $supply->products;
 
     $totalPrice = \App\Services\SupplyService::bringTotalPrice($supply);
 @endphp
