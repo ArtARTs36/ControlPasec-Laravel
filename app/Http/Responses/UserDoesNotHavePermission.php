@@ -19,6 +19,7 @@ class UserDoesNotHavePermission extends JsonResponse
         }
 
         parent::__construct([
+            'message' => 'У Вас нет доступа',
             'permission' => $permission->title,
         ], Response::HTTP_FORBIDDEN, [], 0);
     }
