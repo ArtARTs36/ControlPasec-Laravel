@@ -13,11 +13,11 @@ use Tests\BaseTestCase;
  */
 class DocumentCreatorTest extends BaseTestCase
 {
-    public function testCreateDocument()
+    public function testCreateDocument(): void
     {
         $document = DocumentCreator::getInstance(DocumentType::SCORE_FOR_PAYMENT_ID)
             ->save();
 
-        self::assertTrue($document->id > 0);
+        self::assertGreaterThan(1, $document->id);
     }
 }

@@ -27,8 +27,8 @@ class DocumentGenerateControllerTest extends BaseTestCase
 
         self::assertIsArray($decode);
         self::assertArrayHasKey('data', $decode);
-        self::assertArrayHasKey('name', $decode['data']);
-        self::assertNotEmpty($decode['data']['name']);
+        self::assertArrayHasKey('title', $decode['data']);
+        self::assertNotEmpty($decode['data']['title']);
         self::assertArrayHasKey('timestamp', $decode['data']);
         self::assertNotEmpty($decode['data']['timestamp']);
     }

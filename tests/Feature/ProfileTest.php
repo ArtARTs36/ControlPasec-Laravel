@@ -9,11 +9,13 @@ use Tests\BaseTestCase;
  */
 class ProfileTest extends BaseTestCase
 {
+    private const SEARCH_URL = '/api/profiles/search/admin';
+
     public function testSearch(): void
     {
-        $apiUrl = '/api/profiles/search/admin';
+        $this->actingAsRandomUser();
 
-        $response = $this->getJson($apiUrl);
+        $response = $this->getJson(static::SEARCH_URL);
         $data = $this->decodeResponse($response);
 
         $response->assertOk();
