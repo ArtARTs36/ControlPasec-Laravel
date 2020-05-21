@@ -2,11 +2,14 @@
 
 namespace Tests;
 
+use App\Models\User\Permission;
 use App\Models\Vocab\VocabQuantityUnit;
+use App\User;
 use Faker\Factory;
 use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\TestResponse;
+use Illuminate\Support\Facades\DB;
 
 abstract class BaseTestCase extends TestCase
 {
@@ -44,5 +47,25 @@ abstract class BaseTestCase extends TestCase
     protected function getRandomModel($class)
     {
         return $class::inRandomOrder()->first();
+    }
+
+    protected function actingAsUserWithPermission(string $permission): void
+    {
+        /** @var Permission $permission */
+        $permission = Permission::findByName($permission);
+        $user = \factory(User::class)->create();
+
+        DB::table('model_has_permissions')->insert([
+            'permission_id' => $permission->id,
+            'model_type' => 'App/User',
+            'model_id' => $user->id,
+        ]);
+
+        $this->actingAs($user);
+    }
+
+    protected function actingAsRandomUser(): void
+    {
+        $this->actingAs(\factory(User::class)->create());
     }
 }

@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Contragent;
+use App\Models\User\Permission;
 use Tests\BaseTestCase;
 
 /**
@@ -14,7 +15,12 @@ class SupplyTest extends BaseTestCase
 
     public function testGetAll(): void
     {
-        $response = $this->decodeResponse($this->getJson(self::API_URL));
+        $this->actingAsUserWithPermission(Permission::SUPPLIES_VIEW);
+
+        $response = $this->getJson(self::API_URL);
+        $decode = $response->decodeResponseJson();
+
+        $response->assertOk();
 
         self::assertIsArray($response['data']);
     }

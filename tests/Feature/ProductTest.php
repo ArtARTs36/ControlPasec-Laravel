@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\User\Permission;
 use Tests\BaseTestCase;
 
 /**
@@ -11,8 +12,16 @@ class ProductTest extends BaseTestCase
 {
     public function testGetAll(): void
     {
-        $response = $this->decodeResponse($this->getJson('/api/products'));
+        $this->actingAsUserWithPermission(Permission::PRODUCTS_LIST_VIEW);
 
-        self::assertTrue(is_array($response['data']) && count($response['data']) > 0);
+        $response = $this->getJson('/api/products');
+        $decode = $response->decodeResponseJson();
+
+        $response->assertOk();
+
+        self::assertNotEmpty($decode);
+        self::assertIsArray($decode);
+        self::assertArrayHasKey('data', $decode);
+        self::assertGreaterThan(0, $decode['data']);
     }
 }

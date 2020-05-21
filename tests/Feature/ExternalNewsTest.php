@@ -11,6 +11,8 @@ class ExternalNewsTest extends BaseTestCase
 {
     public function testChart(): void
     {
+        $this->actingAsRandomUser();
+
         $count = rand(5, 15);
         $response = $this->getJson("/api/external-news/chart/{$count}");
 

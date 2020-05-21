@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
@@ -42,6 +43,8 @@ class User extends Authenticatable implements JWTSubject
 
     const GENDER_MALE = 1;
     const GENDER_FEMALE = 2;
+
+    protected $guard_name = 'api';
 
     /**
      * The attributes that are mass assignable.
@@ -176,8 +179,24 @@ class User extends Authenticatable implements JWTSubject
      */
     protected function hasPermission(string $permissionName, string $guardName)
     {
-        return (bool)$this->getPermissionsViaRoles()
+        $permission = $this->getPermissionsViaRoles()
             ->where('name', $permissionName)
             ->firstWhere('guard_name', $guardName);
+
+        if ($permission !== null) {
+            return true;
+        }
+
+        $permissionObject = Permission::findByName($permissionName);
+
+        return DB::table($this->permissions()->getTable())
+            ->where('model_id', $this->id)
+            ->where('permission_id', $permissionObject->id)
+            ->exists();
+    }
+
+    public function getDefaultGuardName(): string
+    {
+        return $this->guard_name;
     }
 }
