@@ -43,6 +43,13 @@
         $line++;
     }
 
+    if ($permissions->count() % 2 !== 0) {
+        $permissionsWidthData[$line - 1] += [
+            "Ш_2_ПОЛНОМОЧИЕ_НАЗВАНИЕ" => '',
+            "Ш_2_ПОЛНОМОЧИЕ_ОПИСАНИЕ" => '',
+        ];
+    }
+
     //
 
     $rolesData = [];
