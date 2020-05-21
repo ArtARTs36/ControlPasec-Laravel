@@ -4,12 +4,21 @@ namespace App\Http\Controllers\Vocab;
 
 use App\Http\Controllers\Controller;
 use App\Http\Responses\ActionResponse;
+use App\Models\User\Permission;
 use App\Models\Vocab\VocabBank;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 
 class VocabBankController extends Controller
 {
+    public const PERMISSIONS = [
+        'index' => Permission::VOCAB_BANKS_LIST_VIEW,
+        'store' => Permission::VOCAB_BANKS_LIST_VIEW,
+        'show' => Permission::VOCAB_BANKS_VIEW,
+        'update' => Permission::VOCAB_BANKS_EDIT,
+        'destroy' => Permission::VOCAB_BANKS_DELETE,
+    ];
+
     /**
      * Display a listing of the resource.
      *

@@ -3,12 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Http\Responses\ActionResponse;
+use App\Models\User\Permission;
 use App\Models\Vocab\VocabPackageType;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 
 class VocabPackageTypeController extends Controller
 {
+    public const PERMISSIONS = [
+        'index' => Permission::VOCAB_PACKAGE_TYPES_LIST_VIEW,
+        'store' => Permission::VOCAB_PACKAGE_TYPES_CREATE,
+        'show' => Permission::VOCAB_PACKAGE_TYPES_VIEW,
+        'update' => Permission::VOCAB_PACKAGE_TYPES_EDIT,
+        'destroy' => Permission::VOCAB_PACKAGE_TYPES_DELETE,
+    ];
+
     /**
      * Display a listing of the resource.
      *

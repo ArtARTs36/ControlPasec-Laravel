@@ -8,6 +8,7 @@ use App\Http\Responses\ActionResponse;
 use App\Models\Contragent;
 use App\Http\Controllers\Controller;
 use App\Models\Sync\SyncWithExternalSystemType;
+use App\Models\User\Permission;
 use App\Parsers\DaDataParser\DaDataParser;
 use App\Services\ContragentService;
 use App\Services\SyncWithExternalSystemService;
@@ -15,6 +16,15 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class ContragentController extends Controller
 {
+    public const PERMISSIONS = [
+        'index' => Permission::CONTRAGENTS_LIST_VIEW,
+        'store' => Permission::CONTRAGENTS_CREATE,
+        'show' => Permission::CONTRAGENTS_VIEW,
+        'update' => Permission::CONTRAGENTS_EDIT,
+        'destroy' => Permission::CONTRAGENTS_DELETE,
+        'findInExternalNetworkByInn' => Permission::CONTRAGENTS_FIND_EXTERNAL_SYSTEM,
+    ];
+
     /**
      * Отобразить список контрагентов
      *

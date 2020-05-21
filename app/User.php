@@ -155,4 +155,29 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->is_active === false;
     }
+
+    /**
+     * Determine has user the permission via role through api guard
+     *
+     * @param string $permissionName
+     * @return bool
+     */
+    public function hasApiPermission(string $permissionName): bool
+    {
+        return $this->hasPermission($permissionName, 'api');
+    }
+
+    /**
+     * Determine has user the permission via role
+     *
+     * @param string $permissionName
+     * @param string $guardName
+     * @return bool
+     */
+    protected function hasPermission(string $permissionName, string $guardName)
+    {
+        return (bool)$this->getPermissionsViaRoles()
+            ->where('name', $permissionName)
+            ->firstWhere('guard_name', $guardName);
+    }
 }

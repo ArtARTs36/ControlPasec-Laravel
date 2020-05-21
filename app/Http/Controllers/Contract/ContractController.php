@@ -6,11 +6,20 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ContractRequest;
 use App\Http\Responses\ActionResponse;
 use App\Models\Contract\Contract;
+use App\Models\User\Permission;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class ContractController extends Controller
 {
+    public const PERMISSIONS = [
+        'index' => Permission::CONTRACTS_LIST_VIEW,
+        'store' => Permission::CONTRACTS_CREATE,
+        'show' => Permission::CONTRACTS_VIEW,
+        'update' => Permission::CONTRACTS_EDIT,
+        'destroy' => Permission::CONTRACTS_DELETE,
+    ];
+
     /**
      * Отобразить договора
      *

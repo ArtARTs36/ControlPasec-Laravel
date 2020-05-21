@@ -5,12 +5,21 @@ namespace App\Http\Controllers\Vocab;
 use App\Helper\ModelPrioritiesRefresher\ModelPrioritiesRefresher;
 use App\Http\Controllers\Controller;
 use App\Http\Responses\ActionResponse;
+use App\Models\User\Permission;
 use App\Models\Vocab\VocabCurrency;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 
 class VocabCurrencyController extends Controller
 {
+    public const PERMISSIONS = [
+        'index' => Permission::VOCAB_BANKS_LIST_VIEW,
+        'store' => Permission::VOCAB_CURRENCIES_CREATE,
+        'show' => Permission::VOCAB_CURRENCIES_VIEW,
+        'update' => Permission::VOCAB_CURRENCIES_EDIT,
+        'destroy' => Permission::VOCAB_CURRENCIES_DELETE,
+    ];
+
     /**
      * Отобразить список валют
      *

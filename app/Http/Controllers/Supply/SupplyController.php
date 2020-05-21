@@ -7,11 +7,20 @@ use App\Http\Requests\SupplyRequest;
 use App\Http\Resource\SupplyResource;
 use App\Http\Responses\ActionResponse;
 use App\Models\Supply\Supply;
+use App\Models\User\Permission;
 use App\Services\SupplyService;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class SupplyController extends Controller
 {
+    public const PERMISSIONS = [
+        'index' => Permission::SUPPLIES_VIEW,
+        'show' => Permission::SUPPLIES_VIEW,
+        'store' => Permission::SUPPLIES_CREATE,
+        'update' => Permission::SUPPLIES_EDIT,
+        'destroy' => Permission::SUPPLIES_DELETE,
+    ];
+
     /**
      * Получить список поставок
      *
@@ -94,7 +103,7 @@ class SupplyController extends Controller
      */
     public function findByCustomer(int $customerId): ActionResponse
     {
-        $supplies = Supply::where('customer_id', $customerId)->get();
+        $supplies = Supply::where(Supply::FIELD_CUSTOMER_ID, $customerId)->get();
 
         return new ActionResponse((count($supplies) > 0), $supplies);
     }

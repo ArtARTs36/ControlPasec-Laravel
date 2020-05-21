@@ -6,10 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Http\Responses\ActionResponse;
 use App\Models\Product\Product;
 use App\Models\Supply\SupplyProduct;
+use App\Models\User\Permission;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    const PERMISSIONS = [
+        'index' => Permission::PRODUCTS_LIST_VIEW,
+        'show' => Permission::PRODUCTS_VIEW,
+        'store' => Permission::PRODUCTS_CREATE,
+        'update' => Permission::PRODUCTS_UPDATE,
+        'destroy' => Permission::PRODUCTS_DELETE,
+    ];
+
     /**
      * Display a listing of the resource.
      *

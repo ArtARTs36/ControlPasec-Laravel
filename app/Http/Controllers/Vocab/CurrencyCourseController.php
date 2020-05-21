@@ -10,7 +10,7 @@ class CurrencyCourseController extends Controller
     public function chart()
     {
         $courses = CurrencyCourse::with('currency')
-            ->orderBy('actual_date', 'desc')
+            ->orderBy(CurrencyCourse::FIELD_ACTUAL_DATE, 'desc')
             ->take(100)
             ->get();
 

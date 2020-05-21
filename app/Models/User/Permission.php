@@ -19,6 +19,7 @@ final class Permission extends BasePermission
     const SUPPLIES_VIEW = 'supplies_view';
     const SUPPLIES_CREATE = 'supplies_create';
     const SUPPLIES_EDIT = 'supplies_edit';
+    const SUPPLIES_DELETE = 'supplies_delete';
 
     const USERS_VIEW = 'users_view';
     const USERS_LIST_VIEW = 'users_list_view';
@@ -31,6 +32,10 @@ final class Permission extends BasePermission
     const PERMISSIONS_LIST_VIEW = 'permissions_list_view';
 
     const CONTRAGENTS_LIST_VIEW = 'contragents_list_view';
+    const CONTRAGENTS_CREATE = 'contragents_create';
+    const CONTRAGENTS_EDIT = 'contragents_edit';
+    const CONTRAGENTS_DELETE = 'contragents_delete';
+    const CONTRAGENTS_VIEW = 'contragents_view';
     const CONTRAGENTS_FIND_EXTERNAL_SYSTEM = 'contragents_find_external_system';
 
     const SETTINGS_VIEW = 'settings_view';
@@ -39,16 +44,39 @@ final class Permission extends BasePermission
     const VOCABS_VIEW = 'vocabs_view';
 
     const VOCAB_GOS_STANDARD_LIST_VIEW = 'vocab_gos_standard_list_view';
+    const VOCAB_GOS_STANDARD_VIEW = 'vocab_gos_standard_view';
+    const VOCAB_GOS_STANDARD_CREATE = 'vocab_gos_standard_create';
+    const VOCAB_GOS_STANDARD_EDIT = 'vocab_gos_standard_edit';
+    const VOCAB_GOS_STANDARD_DELETE = 'vocab_gos_standard_delete';
 
     const VOCAB_BANKS_LIST_VIEW = 'vocab_banks_list_view';
+    const VOCAB_BANKS_VIEW = 'vocab_banks_view';
+    const VOCAB_BANKS_EDIT = 'vocab_banks_edit';
+    const VOCAB_BANKS_CREATE = 'vocab_banks_create';
+    const VOCAB_BANKS_DELETE = 'vocab_banks_delete';
 
     const VOCAB_PACKAGE_TYPES_LIST_VIEW = 'vocab_package_types_list_view';
+    const VOCAB_PACKAGE_TYPES_VIEW = 'vocab_package_types_view';
+    const VOCAB_PACKAGE_TYPES_CREATE = 'vocab_package_types_create';
+    const VOCAB_PACKAGE_TYPES_EDIT = 'vocab_package_types_edit';
+    const VOCAB_PACKAGE_TYPES_DELETE = 'vocab_package_types_delete';
 
     const VOCAB_QUANTITY_UNITS_LIST_VIEW = 'vocab_package_quantity_units_list_view';
+    const VOCAB_QUANTITY_UNITS_VIEW = 'vocab_package_quantity_units_view';
+    const VOCAB_QUANTITY_UNITS_CREATE = 'vocab_package_quantity_units_create';
+    const VOCAB_QUANTITY_UNITS_EDIT = 'vocab_package_quantity_units_edit';
+    const VOCAB_QUANTITY_UNITS_DELETE = 'vocab_package_quantity_units_delete';
 
     const VOCAB_CURRENCIES_LIST_VIEW = 'vocab_currencies_list_view';
+    const VOCAB_CURRENCIES_VIEW = 'vocab_currencies_view';
+    const VOCAB_CURRENCIES_CREATE = 'vocab_currencies_create';
+    const VOCAB_CURRENCIES_EDIT = 'vocab_currencies_edit';
+    const VOCAB_CURRENCIES_DELETE = 'vocab_currencies_delete';
 
     const VOCAB_WORDS_LIST_VIEW = 'vocab_words_list_view';
+    const VOCAB_WORDS_CREATE = 'vocab_words_create';
+    const VOCAB_WORD_VIEW = 'vocab_words_view';
+    const VOCAB_WORD_UPDATE = 'vocab_words_update';
 
     const VOCAB_SIZE_OF_UNIT_LIST_VIEW = 'vocab_size_of_unit_list_view';
 
@@ -66,6 +94,7 @@ final class Permission extends BasePermission
     const PRODUCTS_CREATE = 'products_create';
     const PRODUCTS_EDIT = 'products_edit';
     const PRODUCTS_DELETE = 'products_delete';
+    const PRODUCTS_UPDATE = 'products_update';
 
     const EXTERNAL_NEWS_LIST_VIEW = 'external_news_list_view';
     const EXTERNAL_NEWS_VIEW = 'external_news_view';
@@ -82,74 +111,103 @@ final class Permission extends BasePermission
     public static function getAllNames()
     {
         return array_merge([
-            self::SUPPLIES_VIEW => 'Просмотр поставок',
-            self::SUPPLIES_CREATE => 'Создание поставки',
-            self::SUPPLIES_EDIT => 'Редактирование поставки',
+            static::SUPPLIES_VIEW => 'Просмотр поставок',
+            static::SUPPLIES_CREATE => 'Создание поставки',
+            static::SUPPLIES_EDIT => 'Редактирование поставки',
+            static::SUPPLIES_DELETE => 'Удаление поставки',
 
-            self::USERS_VIEW => 'Просмотр пользователя',
-            self::USERS_LIST_VIEW => 'Просмотр списка пользователей',
-            self::USERS_ACTIVATE => 'Активация профиля пользователя',
-            self::USERS_DEACTIVATE => 'Деактивация профиля пользователя',
-            self::USERS_CREATE => 'Создание пользователя',
+            static::USERS_VIEW => 'Просмотр пользователя',
+            static::USERS_LIST_VIEW => 'Просмотр списка пользователей',
+            static::USERS_ACTIVATE => 'Активация профиля пользователя',
+            static::USERS_DEACTIVATE => 'Деактивация профиля пользователя',
+            static::USERS_CREATE => 'Создание пользователя',
 
-            self::ROLE_LIST_VIEW => 'Просмотр списка ролей',
+            static::ROLE_LIST_VIEW => 'Просмотр списка ролей',
 
-            self::PERMISSIONS_LIST_VIEW => 'Просмотр списка прав',
+            static::PERMISSIONS_LIST_VIEW => 'Просмотр списка прав',
 
-            self::CONTRAGENTS_LIST_VIEW => 'Просмотр списка контрагентов',
-            self::CONTRAGENTS_FIND_EXTERNAL_SYSTEM => 'Поиск контрагента во внешней системе',
+            static::CONTRAGENTS_LIST_VIEW => 'Просмотр списка контрагентов',
+            static::CONTRAGENTS_CREATE => 'Создание контрагента',
+            static::CONTRAGENTS_EDIT => 'Редактирование контрагента',
+            static::CONTRAGENTS_DELETE => 'Удаление контрагента',
+            static::CONTRAGENTS_VIEW => 'Просмотр контрагента',
+            static::CONTRAGENTS_FIND_EXTERNAL_SYSTEM => 'Поиск контрагента во внешней системе',
 
-            self::SETTINGS_VIEW => 'Просмотр настроек',
-            self::VARIABLE_DEFINITIONS_LIST_VIEW => 'Просмотр определений переменных',
+            static::SETTINGS_VIEW => 'Просмотр настроек',
+            static::VARIABLE_DEFINITIONS_LIST_VIEW => 'Просмотр определений переменных',
 
-            self::USER_GET_NOTIFICATION_USER_REGISTERED => 'Получать уведомления о регистрациях пользователей',
-            self::USER_GET_NOTIFICATION_LANDING_FEED_BACK_CREATED => 'Получать уведомления об обратной связи',
+            static::USER_GET_NOTIFICATION_USER_REGISTERED => 'Получать уведомления о регистрациях пользователей',
+            static::USER_GET_NOTIFICATION_LANDING_FEED_BACK_CREATED => 'Получать уведомления об обратной связи',
 
-            self::CONTRACTS_LIST_VIEW => 'Просмотр списка договоров',
-            self::CONTRACTS_VIEW => 'Просмотр договора',
-            self::CONTRACTS_CREATE => 'Создание договора',
-            self::CONTRACTS_EDIT => 'Редактирование договора',
-            self::CONTRACTS_DELETE => 'Удаление договора',
+            static::CONTRACTS_LIST_VIEW => 'Просмотр списка договоров',
+            static::CONTRACTS_VIEW => 'Просмотр договора',
+            static::CONTRACTS_CREATE => 'Создание договора',
+            static::CONTRACTS_EDIT => 'Редактирование договора',
+            static::CONTRACTS_DELETE => 'Удаление договора',
 
-            self::PRODUCTS_LIST_VIEW => 'Просмотр списка товаров',
-            self::PRODUCTS_VIEW => 'Просмотр товара',
-            self::PRODUCTS_CREATE => 'Создание товара',
-            self::PRODUCTS_EDIT => 'Редактирование товара',
-            self::PRODUCTS_DELETE => 'Удаление товара',
+            static::PRODUCTS_LIST_VIEW => 'Просмотр списка товаров',
+            static::PRODUCTS_VIEW => 'Просмотр товара',
+            static::PRODUCTS_CREATE => 'Создание товара',
+            static::PRODUCTS_EDIT => 'Редактирование товара',
+            static::PRODUCTS_DELETE => 'Удаление товара',
+            static::PRODUCTS_UPDATE => 'Обновление товара',
 
-            self::EXTERNAL_NEWS_LIST_VIEW => 'Просмотр списка новостей из внешнего источников',
-            self::EXTERNAL_NEWS_VIEW => 'Просмотр новостей из внешнего источника',
-            self::EXTERNAL_NEWS_CREATE => 'Создание новостей из внешнего источника',
-            self::EXTERNAL_NEWS_EDIT => 'Редактирование новостей из внешнего источника',
-            self::EXTERNAL_NEWS_DELETE => 'Удаление новостей из внешнего источникаа',
+            static::EXTERNAL_NEWS_LIST_VIEW => 'Просмотр списка новостей из внешнего источников',
+            static::EXTERNAL_NEWS_VIEW => 'Просмотр новостей из внешнего источника',
+            static::EXTERNAL_NEWS_CREATE => 'Создание новостей из внешнего источника',
+            static::EXTERNAL_NEWS_EDIT => 'Редактирование новостей из внешнего источника',
+            static::EXTERNAL_NEWS_DELETE => 'Удаление новостей из внешнего источникаа',
 
-            self::SCORE_FOR_PAYMENTS_LIST_VIEW => 'Просмотр списка счетов для оплаты',
-            self::SCORE_FOR_PAYMENTS_VIEW => 'Просмотр счетов для оплаты',
-            self::SCORE_FOR_PAYMENTS_CREATE => 'Создание счетов для оплаты',
-            self::SCORE_FOR_PAYMENTS_EDIT => 'Редактирование счетов для оплаты',
-            self::SCORE_FOR_PAYMENTS_DELETE => 'Удаление счетов для оплаты',
+            static::SCORE_FOR_PAYMENTS_LIST_VIEW => 'Просмотр списка счетов для оплаты',
+            static::SCORE_FOR_PAYMENTS_VIEW => 'Просмотр счетов для оплаты',
+            static::SCORE_FOR_PAYMENTS_CREATE => 'Создание счетов для оплаты',
+            static::SCORE_FOR_PAYMENTS_EDIT => 'Редактирование счетов для оплаты',
+            static::SCORE_FOR_PAYMENTS_DELETE => 'Удаление счетов для оплаты',
 
-        ], self::getVocabTypes());
+        ], static::getVocabTypes());
     }
 
     public static function getVocabTypes(): array
     {
         return [
-            self::VOCABS_VIEW => 'Просмотр справочников',
+            static::VOCABS_VIEW => 'Просмотр справочников',
 
-            self::VOCAB_GOS_STANDARD_LIST_VIEW => 'Просмотр ГОСТов',
+            static::VOCAB_GOS_STANDARD_LIST_VIEW => 'Просмотр ГОСТов',
+            static::VOCAB_GOS_STANDARD_VIEW => 'Просмотр ГОСТа',
+            static::VOCAB_GOS_STANDARD_EDIT => 'Редактирование госта',
+            static::VOCAB_GOS_STANDARD_CREATE => 'Создание ГОСТА',
+            static::VOCAB_GOS_STANDARD_DELETE => 'Удаление ГОСТА',
 
-            self::VOCAB_BANKS_LIST_VIEW => 'Просмотр списка банков',
+            static::VOCAB_BANKS_LIST_VIEW => 'Просмотр списка банков',
+            static::VOCAB_BANKS_VIEW => 'Просмотр банка',
+            static::VOCAB_BANKS_EDIT => 'Редактирование банка',
+            static::VOCAB_BANKS_CREATE => 'Добавление банка',
+            static::VOCAB_BANKS_DELETE => 'Удаление банка',
 
-            self::VOCAB_PACKAGE_TYPES_LIST_VIEW => 'Просмотр справочника типов упаков',
+            static::VOCAB_PACKAGE_TYPES_LIST_VIEW => 'Просмотр справочника типов упаковок',
+            static::VOCAB_PACKAGE_TYPES_VIEW => 'Просмотр типа упаковки',
+            static::VOCAB_PACKAGE_TYPES_CREATE => 'Добавление типа упаковки',
+            static::VOCAB_PACKAGE_TYPES_EDIT => 'Редактирование типа упаковки',
+            static::VOCAB_PACKAGE_TYPES_DELETE => 'Удаление типа упаковки',
 
-            self::VOCAB_QUANTITY_UNITS_LIST_VIEW => 'Просмотр справочника единиц измерения количества',
+            static::VOCAB_QUANTITY_UNITS_LIST_VIEW => 'Просмотр справочника единиц измерения количества',
+            static::VOCAB_QUANTITY_UNITS_VIEW => 'Просмотр единицы измерения количества',
+            static::VOCAB_QUANTITY_UNITS_EDIT => 'Редактирование единицы измерения количества',
+            static::VOCAB_QUANTITY_UNITS_CREATE => 'Создание единицы измерения количества',
+            static::VOCAB_QUANTITY_UNITS_DELETE => 'Удаление единицы измерения количества',
 
-            self::VOCAB_CURRENCIES_LIST_VIEW => 'Просмотр справочника валют',
+            static::VOCAB_CURRENCIES_LIST_VIEW => 'Просмотр справочника валют',
+            static::VOCAB_CURRENCIES_VIEW => 'Просмотр валюты',
+            static::VOCAB_CURRENCIES_CREATE => 'Создание валюты',
+            static::VOCAB_CURRENCIES_DELETE => 'Удаление валюты',
+            static::VOCAB_CURRENCIES_EDIT => 'Редактирование валюты',
 
-            self::VOCAB_WORDS_LIST_VIEW => 'Просмотр справочника слов',
+            static::VOCAB_WORDS_LIST_VIEW => 'Просмотр справочника слов',
+            static::VOCAB_WORDS_CREATE => 'Создание слов в словаре',
+            static::VOCAB_WORD_VIEW => 'Просмотр слова в словаре',
+            static::VOCAB_WORD_UPDATE => 'Обновления слова в словаре',
 
-            self::VOCAB_SIZE_OF_UNIT_LIST_VIEW => 'Просмотр справочника единиц измерения массы',
+            static::VOCAB_SIZE_OF_UNIT_LIST_VIEW => 'Просмотр справочника единиц измерения массы',
         ];
     }
 
@@ -161,7 +219,6 @@ final class Permission extends BasePermission
         $roles = $this->roles()->get();
 
         $users = [];
-
         foreach ($roles as $role) {
             $users = array_merge($users, $role->users->getDictionary());
         }

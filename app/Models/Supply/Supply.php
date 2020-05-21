@@ -32,7 +32,9 @@ class Supply extends Model
 {
     use WithSupplierAndCustomer;
 
-    const TABLE = 'supplies';
+    public const TABLE = 'supplies';
+
+    public const FIELD_CUSTOMER_ID = 'customer_id';
 
     protected $fillable = [
         'planned_date', 'execute_date', 'supplier_id', 'customer_id', 'contract_id'

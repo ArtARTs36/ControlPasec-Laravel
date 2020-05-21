@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Http\Resource\UserResource;
 use App\Http\Responses\ActionResponse;
+use App\Models\User\Permission;
 use App\Models\User\Role;
 use App\User;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -13,6 +14,14 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public const PERMISSIONS = [
+        'index' => Permission::USERS_LIST_VIEW,
+        'show' => Permission::USERS_VIEW,
+        'store' => Permission::USERS_CREATE,
+        'activate' => Permission::USERS_ACTIVATE,
+        'deactivate' => Permission::USERS_DEACTIVATE,
+    ];
+
     /**
      *
      * @return UserResource

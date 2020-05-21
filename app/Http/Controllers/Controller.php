@@ -17,6 +17,8 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    const PERMISSIONS = [];
+
     protected function updateModel(FormRequest $request, Model $model): Model
     {
         $allowInsertFields = $model->getFillable();

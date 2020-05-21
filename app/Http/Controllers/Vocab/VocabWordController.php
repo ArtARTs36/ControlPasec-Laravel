@@ -4,12 +4,20 @@ namespace App\Http\Controllers\Vocab;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Vocab\VocabWordRequest;
+use App\Models\User\Permission;
 use App\Models\Vocab\VocabWord;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 
 class VocabWordController extends Controller
 {
+    public const PERMISSIONS = [
+        'index' => Permission::VOCAB_WORDS_LIST_VIEW,
+        'store' => Permission::VOCAB_WORDS_CREATE,
+        'show' => Permission::VOCAB_WORD_VIEW,
+        'update' => Permission::VOCAB_WORD_UPDATE,
+    ];
+
     /**
      * Display a listing of the resource.
      *

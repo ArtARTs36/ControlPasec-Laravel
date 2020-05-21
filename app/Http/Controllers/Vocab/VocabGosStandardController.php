@@ -4,12 +4,21 @@ namespace App\Http\Controllers\Vocab;
 
 use App\Http\Controllers\Controller;
 use App\Http\Responses\ActionResponse;
+use App\Models\User\Permission;
 use App\Models\Vocab\VocabGosStandard;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 
 class VocabGosStandardController extends Controller
 {
+    public const PERMISSIONS = [
+        'index' => Permission::VOCAB_GOS_STANDARD_LIST_VIEW,
+        'store' => Permission::VOCAB_GOS_STANDARD_CREATE,
+        'show' => Permission::VOCAB_GOS_STANDARD_VIEW,
+        'update' => Permission::VOCAB_GOS_STANDARD_EDIT,
+        'destroy' => Permission::VOCAB_GOS_STANDARD_DELETE,
+    ];
+
     /**
      * Отобразить список ГОСТов
      *

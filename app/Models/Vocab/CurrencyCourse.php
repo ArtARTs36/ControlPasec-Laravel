@@ -18,8 +18,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 final class CurrencyCourse extends Model
 {
+    public const FIELD_ACTUAL_DATE = 'actual_date';
+
     protected $fillable = [
-        'currency_id', 'nominal', 'value', 'actual_date'
+        'currency_id', 'nominal', 'value',
+        self::FIELD_ACTUAL_DATE,
     ];
 
     /**

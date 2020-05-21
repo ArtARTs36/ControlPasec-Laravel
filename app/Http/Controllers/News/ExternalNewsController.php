@@ -5,11 +5,20 @@ namespace App\Http\Controllers\News;
 use App\Http\Controllers\Controller;
 use App\Http\Responses\ActionResponse;
 use App\Models\News\ExternalNews;
+use App\Models\User\Permission;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 
 class ExternalNewsController extends Controller
 {
+    public const PERMISSIONS = [
+        'index' => Permission::EXTERNAL_NEWS_LIST_VIEW,
+        'show' => Permission::EXTERNAL_NEWS_VIEW,
+        'update' => Permission::EXTERNAL_NEWS_EDIT,
+        'store' => Permission::EXTERNAL_NEWS_CREATE,
+        'destroy' => Permission::EXTERNAL_NEWS_DELETE,
+    ];
+
     /**
      * Отобразить новости из внешних источников
      *
