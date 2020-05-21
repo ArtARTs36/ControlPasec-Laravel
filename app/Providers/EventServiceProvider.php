@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\Events\LandingFeedBackCreated;
+use App\Events\TechSupportReportCreated;
 use App\Events\UserRegistered;
 use App\Listeners\LandingFeedBackCreatedListener;
+use App\Listeners\TechSupportReportCreatedListener;
 use App\Listeners\UserRegisteredListener;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -23,6 +25,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         LandingFeedBackCreated::class => [
             LandingFeedBackCreatedListener::class,
+        ],
+        TechSupportReportCreated::class => [
+            TechSupportReportCreatedListener::class,
         ],
     ];
 

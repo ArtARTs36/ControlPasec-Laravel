@@ -2,6 +2,7 @@
 
 namespace App\Models\Dialog;
 
+use App\Models\Traits\WithFieldIsRead;
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -21,6 +22,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class DialogMessage extends Model
 {
+    use WithFieldIsRead;
+
     public function dialog(): BelongsTo
     {
         return $this->belongsTo(Dialog::class);
@@ -34,27 +37,6 @@ class DialogMessage extends Model
     public function toUser(): BelongsTo
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function isRead(): bool
-    {
-        return $this->is_read === true;
-    }
-
-    public function isNotRead(): bool
-    {
-        return $this->is_read === false;
-    }
-
-    public function read(): self
-    {
-        if ($this->isNotRead()) {
-            $this->is_read = true;
-        }
-
-        $this->save();
-
-        return $this;
     }
 
     public function isCurrentUserAuthor(): bool

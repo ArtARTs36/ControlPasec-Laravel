@@ -3,3 +3,5 @@ title;class
 Товар;App\Models\Product\Product
 Контрагент;App\Models\Contragent
 Пользователь;App\User
+Обратная связь с лэндинга;App\Models\Landing\LandingFeedBack
+Обращение в тех поддержку;App\Models\TechSupport\TechSupportReport

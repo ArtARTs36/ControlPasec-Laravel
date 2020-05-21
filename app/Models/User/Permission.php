@@ -108,6 +108,10 @@ final class Permission extends BasePermission
     const SCORE_FOR_PAYMENTS_EDIT = 'score_for_payments_edit';
     const SCORE_FOR_PAYMENTS_DELETE = 'score_for_payments_delete';
 
+    const TECH_SUPPORT_REPORT_SHOW_LIST = 'tech_support_report_show_list';
+    const TECH_SUPPORT_REPORT_SET_READ = 'tech_support_report_set_read';
+    const USER_GET_NOTIFICATION_TECH_SUPPORT_REPORT_CREATED = 'user_get_notification_tech_support_report_created';
+
     public static function getAllNames()
     {
         return array_merge([
@@ -163,6 +167,11 @@ final class Permission extends BasePermission
             static::SCORE_FOR_PAYMENTS_CREATE => 'Создание счетов для оплаты',
             static::SCORE_FOR_PAYMENTS_EDIT => 'Редактирование счетов для оплаты',
             static::SCORE_FOR_PAYMENTS_DELETE => 'Удаление счетов для оплаты',
+
+            static::TECH_SUPPORT_REPORT_SHOW_LIST => 'Просмотр списка обращений в тех.поддержку',
+            static::TECH_SUPPORT_REPORT_SET_READ => 'Перевод обращения в тех.поддержку на статус "прочитанное"',
+            static::USER_GET_NOTIFICATION_TECH_SUPPORT_REPORT_CREATED => 'Получение уведомления' .
+                ' при создании обращения в тех.поддержку',
 
         ], static::getVocabTypes());
     }

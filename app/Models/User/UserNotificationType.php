@@ -17,6 +17,7 @@ class UserNotificationType extends Model
 {
     const USER_REGISTERED = 'user_registered';
     const LANDING_FEED_BACK_CREATED = 'landing_feed_back_created';
+    const TECH_SUPPORT_REPORT_CREATED = 'tech_support_report_created';
 
     public function notifications()
     {

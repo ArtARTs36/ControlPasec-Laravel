@@ -24,3 +24,6 @@ Route::group([
     require_once 'apis/api.employees.php';
     require_once 'apis/api.controltime.php';
 });
+
+require_once 'apis/api.tech_support.php';
+

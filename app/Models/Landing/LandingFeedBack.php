@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
 
 /**
- * Class LandingOrder
+ * Class LandingFeedBack
  * @property int $id
  * @property string $people_title
  * @property string $people_email
