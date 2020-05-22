@@ -21,7 +21,7 @@ class DocumentResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             //'download_url' => $_SERVER['HTTP_HOST'] . DocumentService::getDownloadLink($this->id)
-            'download_url' => $_SERVER['HTTP_HOST'] . '/api/documents/' . $this->id . '/download'
+            'download_url' => $request->getSchemeAndHttpHost() . '/api/documents/' . $this->id . '/download'
         ];
     }
 }
