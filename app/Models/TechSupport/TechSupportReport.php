@@ -18,6 +18,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $message
  * @property string $ip
  * @property bool $is_read
+ * @property string $created_at
+ * @property string $updated_at
  */
 class TechSupportReport extends Model
 {
@@ -62,5 +64,10 @@ class TechSupportReport extends Model
     public function isWroteByGuest(): bool
     {
         return $this->user === null;
+    }
+
+    public function getAuthorFullName(): string
+    {
+        return $this->isWroteByGuest() ? $this->author_title : $this->user->getFullName();
     }
 }

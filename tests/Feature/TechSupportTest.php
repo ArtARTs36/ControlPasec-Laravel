@@ -44,4 +44,13 @@ class TechSupportTest extends BaseTestCase
 
         $response->assertCreated();
     }
+
+    public function testShow(): void
+    {
+        $report = factory(TechSupportReport::class)->create();
+
+        $response = $this->getJson(static::ROUTE_INDEX . DIRECTORY_SEPARATOR . $report->id);
+
+        $response->assertOk();
+    }
 }

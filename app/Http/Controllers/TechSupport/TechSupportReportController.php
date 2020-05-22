@@ -5,9 +5,9 @@ namespace App\Http\Controllers\TechSupport;
 use App\Events\TechSupportReportCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TechSupport\TechSupportStoreRequest;
+use App\Http\Resource\TechSupportReportResource;
 use App\Models\TechSupport\TechSupportReport;
 use App\Models\User\Permission;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 /**
  * Class TechSupportReportController
@@ -22,18 +22,20 @@ class TechSupportReportController extends Controller
 
     /**
      * @param int $page
-     * @return LengthAwarePaginator
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function index(int $page = 1): LengthAwarePaginator
+    public function index(int $page = 1)
     {
-        return TechSupportReport::query()->paginate(10, ['*'], 'TechSupportReportList', $page);
+        return TechSupportReportResource::collection(
+            TechSupportReport::query()->paginate(10, ['*'], 'TechSupportReportList', $page)
+        );
     }
 
     /**
      * @param TechSupportStoreRequest $request
      * @return TechSupportReport
      */
-    public function store(TechSupportStoreRequest $request): TechSupportReport
+    public function store(TechSupportStoreRequest $request): TechSupportReportResource
     {
         /** @var TechSupportReport $report */
         $report = TechSupportReport::query()->create([
@@ -46,16 +48,16 @@ class TechSupportReportController extends Controller
 
         event(new TechSupportReportCreated($report));
 
-        return $report;
+        return new TechSupportReportResource($report);
     }
 
     /**
-     * @param TechSupportReport $report
-     * @return TechSupportReport
+     * @param TechSupportReport $techSupportReport
+     * @return TechSupportReportResource
      */
-    public function show(TechSupportReport $report): TechSupportReport
+    public function show(TechSupportReport $techSupportReport): TechSupportReportResource
     {
-        return $report;
+        return new TechSupportReportResource($techSupportReport);
     }
 
     /**
