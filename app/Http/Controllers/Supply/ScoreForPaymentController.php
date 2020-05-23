@@ -9,6 +9,7 @@ use App\Http\Responses\ActionResponse;
 use App\Models\Document\DocumentType;
 use App\Models\Supply\Supply;
 use App\ScoreForPayment;
+use App\Service\Document\DocumentService;
 use App\Services\Document\DocumentCreator;
 use App\Services\ScoreForPaymentService;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -103,8 +104,9 @@ class ScoreForPaymentController extends Controller
 
         $document = DocumentCreator::getInstance(DocumentType::SCORES_FOR_PAYMENTS_ID)
             ->addScores(ScoreForPaymentService::getOrCreateBySupplies($supplies))
-            ->build(true)
             ->get();
+
+        DocumentService::buildWithSpeedAnalyse($document);
 
         return new DocumentResource($document);
     }

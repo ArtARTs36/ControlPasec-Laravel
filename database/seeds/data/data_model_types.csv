@@ -5,3 +5,4 @@ title;class
 Пользователь;App\User
 Обратная связь с лэндинга;App\Models\Landing\LandingFeedBack
 Обращение в тех поддержку;App\Models\TechSupport\TechSupportReport
+Документ;App\Models\Document\Document

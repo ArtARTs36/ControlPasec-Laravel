@@ -28,3 +28,9 @@
 - запуск:
 - `php artisan profiler:server`
 - `php artisan profiler:client`
+
+## Запуск очередей
+- `php artisan queue:work database --queue=document`
+
+## Обновить БД
+- `php artisan db:wipe && php artisan migrate && php artisan db:seed`

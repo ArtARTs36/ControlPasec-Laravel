@@ -8,6 +8,7 @@ use App\Http\Resource\UserResource;
 use App\Http\Responses\ActionResponse;
 use App\Models\User\Permission;
 use App\Models\User\Role;
+use App\Models\User\UserNotification;
 use App\User;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Hash;
@@ -47,11 +48,14 @@ class UserController extends Controller
      */
     public function me()
     {
-        if (auth()->user() === null) {
+        /** @var User $user */
+        if ($user = auth()->user() === null) {
             abort(403);
         }
 
-        return new UserResource(auth()->user());
+        $user->notifications->load(UserNotification::RELATION_TYPE);
+
+        return new UserResource($user);
     }
 
     /**

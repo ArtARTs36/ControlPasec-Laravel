@@ -44,6 +44,8 @@ class User extends Authenticatable implements JWTSubject
     const GENDER_MALE = 1;
     const GENDER_FEMALE = 2;
 
+    public const RELATION_NOTIFICATIONS = 'notifications';
+
     protected $guard_name = 'api';
 
     /**
@@ -78,8 +80,10 @@ class User extends Authenticatable implements JWTSubject
         parent::boot();
 
         static::addGlobalScope('onlyCustom', function (Builder $builder) {
-            $builder->with(['notifications' => function (HasMany $builder) {
-                $builder->latest('created_at');
+            $builder->with([static::RELATION_NOTIFICATIONS => function (HasMany $query) {
+                $query
+                    ->latest(UserNotification::FIELD_CREATED_AT)
+                    ->where(UserNotification::FIELD_IS_READ, false);
             }]);
         });
     }

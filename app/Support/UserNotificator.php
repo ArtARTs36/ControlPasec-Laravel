@@ -11,7 +11,9 @@ class UserNotificator
 {
     public static function notify(string $type, string $message, Model $aboutModel): void
     {
-        $type = UserNotificationType::where('name', $type)
+        $type = UserNotificationType::query()
+            ->with(UserNotificationType::RELATION_PERMISSION)
+            ->where(UserNotificationType::FIELD_NAME, $type)
             ->first();
 
         /** @var User[] $users */

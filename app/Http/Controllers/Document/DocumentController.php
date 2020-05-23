@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Document;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resource\DocumentShowResource;
 use App\Http\Responses\ActionResponse;
 use App\Models\Document\Document;
 use App\Models\News\ExternalNewsSource;
@@ -27,11 +28,11 @@ class DocumentController extends Controller
      * Display the specified resource.
      *
      * @param Document $document
-     * @return Document
+     * @return DocumentShowResource
      */
-    public function show(Document $document): Document
+    public function show(Document $document): DocumentShowResource
     {
-        return $document;
+        return new DocumentShowResource($document);
     }
 
     /**

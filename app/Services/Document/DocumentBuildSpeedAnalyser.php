@@ -24,10 +24,10 @@ class DocumentBuildSpeedAnalyser
         foreach ($relations as $relation) {
             $pagesCount = $document->$relation()->count();
             if ($pagesCount > env('DOCUMENT_NUMBER_PAGES_TO_QUEUE')) {
-                return self::ANSWER_BUILD_IN_QUEUE;
+                return static::ANSWER_BUILD_IN_QUEUE;
             }
         }
 
-        return self::ANSWER_BUILD_NOW;
+        return static::ANSWER_BUILD_NOW;
     }
 }

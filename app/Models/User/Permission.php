@@ -111,6 +111,7 @@ final class Permission extends BasePermission
     const TECH_SUPPORT_REPORT_SHOW_LIST = 'tech_support_report_show_list';
     const TECH_SUPPORT_REPORT_SET_READ = 'tech_support_report_set_read';
     const USER_GET_NOTIFICATION_TECH_SUPPORT_REPORT_CREATED = 'user_get_notification_tech_support_report_created';
+    const USER_GET_DOCUMENT_OF_QUEUE_GENERATED = 'user_get_document_of_queue_generated';
 
     public static function getAllNames()
     {
@@ -142,6 +143,7 @@ final class Permission extends BasePermission
 
             static::USER_GET_NOTIFICATION_USER_REGISTERED => 'Получать уведомления о регистрациях пользователей',
             static::USER_GET_NOTIFICATION_LANDING_FEED_BACK_CREATED => 'Получать уведомления об обратной связи',
+            static::USER_GET_DOCUMENT_OF_QUEUE_GENERATED => 'Получать уведомления при генерации документа из очереди',
 
             static::CONTRACTS_LIST_VIEW => 'Просмотр списка договоров',
             static::CONTRACTS_VIEW => 'Просмотр договора',

@@ -38,10 +38,12 @@ class Document extends Model
 {
     const STATUS_NEW = 0;
     const STATUS_IN_QUEUE = 1;
+    const STATUS_GENERATED = 2;
 
     const STATUSES = [
         self::STATUS_NEW => 'Документ создан',
-        self::STATUS_IN_QUEUE => 'Документ в очереди',
+        self::STATUS_IN_QUEUE => 'Документ помещен в очередь',
+        self::STATUS_GENERATED => 'Документ сгенерирован',
     ];
 
     private $fullPath = null;
@@ -49,7 +51,7 @@ class Document extends Model
     /**
      * @return BelongsTo|DocumentType
      */
-    public function type()
+    public function type(): BelongsTo
     {
         return $this->belongsTo(DocumentType::class);
     }
@@ -155,24 +157,27 @@ class Document extends Model
         return $this;
     }
 
-    /**
-     * Переключить на следующий статус
-     *
-     * @param bool $save
-     * @return bool
-     */
-    public function nextStatus(bool $save = false): bool
+    public function setStatusGenerated(): self
     {
-        if ($this->status + 1 <= count(self::STATUSES)) {
-            $this->status++;
-            if ($save === true) {
-                $this->save();
-            }
+        return $this->setStatus(static::STATUS_GENERATED);
+    }
 
-            return true;
-        }
+    public function setStatusInQueue(): self
+    {
+        return $this->setStatus(static::STATUS_IN_QUEUE);
+    }
 
-        return false;
+    public function getStatusText(): string
+    {
+        return static::STATUSES[$this->status];
+    }
+
+    public function setStatus(int $status): self
+    {
+        $this->status = $status;
+        $this->save();
+
+        return $this;
     }
 
     public function getScoreForPayment()
@@ -204,6 +209,11 @@ class Document extends Model
         if (($path = $this->getFullPath())) {
             unlink($path);
         }
+    }
+
+    public function getDownloadLink(): string
+    {
+        return request()->getSchemeAndHttpHost() . '/api/documents/' . $this->id . '/download';
     }
 
     public function build()

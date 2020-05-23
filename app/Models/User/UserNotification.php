@@ -4,6 +4,7 @@ namespace App\Models\User;
 
 use App\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Query\Builder;
 
 /**
@@ -20,12 +21,17 @@ use Illuminate\Database\Query\Builder;
  */
 class UserNotification extends Model
 {
-    public function user()
+    public const RELATION_TYPE = 'type';
+
+    public const FIELD_IS_READ = 'is_read';
+    public const FIELD_CREATED_AT = 'created_at';
+
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function type()
+    public function type(): BelongsTo
     {
         return $this->belongsTo(UserNotificationType::class);
     }

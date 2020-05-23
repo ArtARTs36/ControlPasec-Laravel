@@ -2,6 +2,7 @@
 
 namespace App\Service\Document;
 
+use App\Jobs\DocumentBuildJob;
 use App\Models\Document\Document;
 use App\Services\Document\DocumentBuilder;
 use App\Services\Document\DocumentBuildSpeedAnalyser;
@@ -77,17 +78,26 @@ class DocumentService
         return $document;
     }
 
+    /**
+     * @param Document $document
+     * @param bool $force
+     * @return string
+     * @throws \ReflectionException
+     */
     public static function buildWithSpeedAnalyse(Document $document, bool $force = false)
     {
         if ($force === false && $document->fileExists()) {
             return $document->getFullPath();
         }
 
-        $analyse = DocumentBuildSpeedAnalyser::analyse($document);
-        if ($analyse === DocumentBuildSpeedAnalyser::ANSWER_BUILD_NOW) {
+        if (DocumentBuildSpeedAnalyser::analyse($document) === DocumentBuildSpeedAnalyser::ANSWER_BUILD_NOW) {
             DocumentBuilder::build($document, true);
         } else {
-            // todo push Document in Queue
+            $document->setStatusInQueue();
+
+            DocumentBuildJob::dispatch($document)
+                ->onConnection('database')
+                ->onQueue('document');
         }
 
         return $document->getFullPath();

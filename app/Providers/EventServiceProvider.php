@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Events\DocumentOfQueueGenerated;
 use App\Events\LandingFeedBackCreated;
 use App\Events\TechSupportReportCreated;
 use App\Events\UserRegistered;
+use App\Listeners\DocumentOfQueueGenerateListener;
 use App\Listeners\LandingFeedBackCreatedListener;
 use App\Listeners\TechSupportReportCreatedListener;
 use App\Listeners\UserRegisteredListener;
@@ -28,6 +30,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         TechSupportReportCreated::class => [
             TechSupportReportCreatedListener::class,
+        ],
+        DocumentOfQueueGenerated::class => [
+            DocumentOfQueueGenerateListener::class,
         ],
     ];
 

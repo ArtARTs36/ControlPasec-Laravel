@@ -20,8 +20,28 @@ class DocumentResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            //'download_url' => $_SERVER['HTTP_HOST'] . DocumentService::getDownloadLink($this->id)
-            'download_url' => $request->getSchemeAndHttpHost() . '/api/documents/' . $this->id . '/download'
+            'download_url' => $this->getDownloadLink(),
+            'status_id' => $this->status,
+            'action_title' => $this->getActionTitle(),
+            'action_message' => $this->getActionMessage(),
         ];
+    }
+
+    private function getActionTitle(): string
+    {
+        return $this->status === Document::STATUS_GENERATED ?
+            "Документ {$this->title} готов" :
+            $this->getStatusText();
+    }
+
+    private function getActionMessage(): string
+    {
+        $messages = [
+            Document::STATUS_NEW => 'Документ создан',
+            Document::STATUS_IN_QUEUE => 'При готовности, Вам поступит уведомление',
+            Document::STATUS_GENERATED => 'Чтобы скачать нажмите на это сообщение',
+        ];
+
+        return $messages[$this->status];
     }
 }

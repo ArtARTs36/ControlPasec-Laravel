@@ -33,7 +33,7 @@ class DocumentBuilder
 
         $result = $loader->load($document, $save);
 
-        $document->nextStatus(true);
+        $document->setStatusGenerated();
 
         return $result;
     }
