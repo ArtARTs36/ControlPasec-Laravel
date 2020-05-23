@@ -19,14 +19,14 @@ class CreateContragentManagersTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
 
-            $table->string('name', 20);
-            $table->string('patronymic', 20);
-            $table->string('family', 20);
+            $table->string('name', 40);
+            $table->string('patronymic', 40);
+            $table->string('family', 40);
 
-            $table->string('phone', 20)->nullable();
+            $table->string('phone', 25)->nullable();
             $table->string('email', 40)->nullable();
 
-            $table->string('post', 20)->nullable();
+            $table->string('post', 50)->nullable();
 
             $table->unsignedInteger('contragent_id');
         });

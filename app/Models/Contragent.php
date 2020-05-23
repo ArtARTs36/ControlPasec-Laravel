@@ -45,6 +45,9 @@ class Contragent extends Model
         'address', 'address_postal'
     ];
 
+    public const FIELD_INN = 'inn';
+    public const FIELD_OGRN = 'ogrn';
+
     /**
      * @return HasMany
      */

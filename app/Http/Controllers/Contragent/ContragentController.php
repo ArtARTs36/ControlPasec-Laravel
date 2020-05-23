@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Sync\SyncWithExternalSystemType;
 use App\Models\User\Permission;
 use App\Parsers\DaDataParser\DaDataParser;
+use App\Repositories\ContragentRepository;
 use App\Services\ContragentService;
 use App\Services\SyncWithExternalSystemService;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -135,9 +136,19 @@ class ContragentController extends Controller
      */
     public function findInExternalNetworkByInn($inn): ActionResponse
     {
+        if ($contragent = ContragentRepository::findByInnOrOgrn($inn)) {
+            return new ActionResponse(true, [
+                'message' => 'Контрагент '. $contragent->title . ' уже существует в базе',
+                'contragent' => $contragent,
+            ]);
+        }
+
         $contragent = DaDataParser::findContragentByInnOrOGRN($inn);
 
-        return new ActionResponse($contragent instanceof Contragent ? true : false, $contragent);
+        return new ActionResponse(true, [
+            'message' => 'Контрагент '. $contragent->title . ' найден!',
+            'contragent' => $contragent,
+        ]);
     }
 
     /**

@@ -19,17 +19,17 @@ class CreateVocabWordsTable extends Migration
 
             $table->integer('type')->nullable();
 
-            $table->string('nominative', 25);
-            $table->string('dative', 25);
-            $table->string('genitive', 25);
-            $table->string('instrumental', 25);
-            $table->string('prepositional', 25);
+            $table->string('nominative', 45);
+            $table->string('dative', 45);
+            $table->string('genitive', 45);
+            $table->string('instrumental', 45);
+            $table->string('prepositional', 45);
 
-            $table->string('plural_nominative', 25)->nullable();
-            $table->string('plural_dative', 25)->nullable();
-            $table->string('plural_genitive', 25)->nullable();
-            $table->string('plural_instrumental', 25)->nullable();
-            $table->string('plural_prepositional', 25)->nullable();
+            $table->string('plural_nominative', 45)->nullable();
+            $table->string('plural_dative', 45)->nullable();
+            $table->string('plural_genitive', 45)->nullable();
+            $table->string('plural_instrumental', 45)->nullable();
+            $table->string('plural_prepositional', 45)->nullable();
         });
     }
 
