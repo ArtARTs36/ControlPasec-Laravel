@@ -19,7 +19,7 @@ class CreateUserNotificationsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('type_id')->nullable();
             $table->unsignedInteger('about_model_id')->nullable();
-            $table->boolean('is_read');
+            $table->boolean('is_read')->default(false);
             $table->timestamps();
 
             $table->foreign('user_id')

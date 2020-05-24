@@ -3,7 +3,7 @@
 namespace App\Support;
 
 use App\Models\User\UserNotification;
-use App\Models\User\UserNotificationType;
+use App\Repositories\UserNotificationTypeRepository;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,17 +11,11 @@ class UserNotificator
 {
     public static function notify(string $type, string $message, Model $aboutModel): void
     {
-        $type = UserNotificationType::query()
-            ->with(UserNotificationType::RELATION_PERMISSION)
-            ->where(UserNotificationType::FIELD_NAME, $type)
-            ->first();
+        $type = UserNotificationTypeRepository::findByName($type);
 
-        /** @var User[] $users */
-        $users = $type->permission->getUsers();
-
-        foreach ($users as $user) {
+        /** @var User $user */
+        foreach ($type->permission->getUsers() as $user) {
             $notification = new UserNotification();
-            $notification->is_read = false;
             $notification->user_id = $user->id;
             $notification->message = $message;
             $notification->type_id = $type->id;
