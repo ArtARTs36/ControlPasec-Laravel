@@ -6,8 +6,8 @@ use App\Http\Responses\ActionResponse;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 
 /**
@@ -19,7 +19,7 @@ class Controller extends BaseController
 
     const PERMISSIONS = [];
 
-    protected function updateModel(FormRequest $request, Model $model): Model
+    protected function updateModel(Request $request, Model $model): Model
     {
         $allowInsertFields = $model->getFillable();
         $fields = $request->only($allowInsertFields);
@@ -30,12 +30,12 @@ class Controller extends BaseController
     }
 
     /**
-     * @param FormRequest $request
+     * @param Request $request
      * @param string $modelClass
      * @param bool $save
      * @return Model
      */
-    protected function createModel(FormRequest $request, string $modelClass, bool $save = true): Model
+    protected function createModel(Request $request, string $modelClass, bool $save = true): Model
     {
         /** @var Model $model */
         $model = new $modelClass();
@@ -48,13 +48,43 @@ class Controller extends BaseController
         return $model;
     }
 
-    protected function createModelAndResponse(FormRequest $request, string $modelClass): ActionResponse
+    /**
+     * @param Request $request
+     * @param string $modelClass
+     * @return Model
+     */
+    protected function makeModel(Request $request, string $modelClass): Model
+    {
+        return $this->createModel($request, $modelClass, false);
+    }
+
+    /**
+     * @param Request $request
+     * @param string $modelClass
+     * @return ActionResponse
+     */
+    protected function createModelAndResponse(Request $request, string $modelClass): ActionResponse
     {
         return new ActionResponse(true, $this->createModel($request, $modelClass));
     }
 
-    protected function updateModelAndResponse(FormRequest $request, Model $model): ActionResponse
+    /**
+     * @param Request $request
+     * @param Model $model
+     * @return ActionResponse
+     */
+    protected function updateModelAndResponse(Request $request, Model $model): ActionResponse
     {
         return new ActionResponse(true, $this->updateModel($request, $model));
+    }
+
+    /**
+     * @param Model $model
+     * @return ActionResponse
+     * @throws \Exception
+     */
+    protected function deleteModelAndResponse(Model $model): ActionResponse
+    {
+        return new ActionResponse($model->delete());
     }
 }

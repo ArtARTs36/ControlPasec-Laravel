@@ -7,8 +7,8 @@ use App\Http\Requests\ContractRequest;
 use App\Http\Responses\ActionResponse;
 use App\Models\Contract\Contract;
 use App\Models\User\Permission;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use App\Repositories\ContractRepository;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class ContractController extends Controller
 {
@@ -24,12 +24,11 @@ class ContractController extends Controller
      * Отобразить договора
      *
      * @param int $page
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     * @return LengthAwarePaginator
      */
-    public function index(int $page = 1)
+    public function index(int $page = 1): LengthAwarePaginator
     {
-        return Contract::with(['customer', 'supplier'])
-            ->paginate(10, ['*'], 'ContractsList', $page);
+        return ContractRepository::paginate($page);
     }
 
     /**
@@ -40,8 +39,7 @@ class ContractController extends Controller
      */
     public function store(ContractRequest $request): ActionResponse
     {
-        $contract = new Contract();
-        $contract->fill($request->toArray());
+        $contract = $this->makeModel($request, Contract::class);
         $contract->supplier_id = env('ONE_SUPPLIER_ID');
         $contract->save();
 
@@ -56,14 +54,7 @@ class ContractController extends Controller
      */
     public function show(Contract $contract): Contract
     {
-        return $contract->load([
-            'customer',
-            'supplier',
-            'template',
-            'supplies' => function ($query) {
-                return $query->with('customer');
-            },
-        ]);
+        return ContractRepository::loadFull($contract);
     }
 
     /**
@@ -75,7 +66,7 @@ class ContractController extends Controller
      */
     public function update(ContractRequest $request, Contract $contract): ActionResponse
     {
-        return new ActionResponse($contract->update($request->all()), $contract);
+        return $this->updateModelAndResponse($request, $contract);
     }
 
     /**
@@ -83,14 +74,11 @@ class ContractController extends Controller
      *
      * @param Contract $contract
      * @return bool|string
+     * @throws \Exception
      */
     public function destroy(Contract $contract)
     {
-        if ($contract->delete()) {
-            return response(null, 204);
-        }
-
-        return '';
+        return $this->deleteModelAndResponse($contract);
     }
 
     /**
@@ -101,7 +89,7 @@ class ContractController extends Controller
      */
     public function findByCustomer(int $customerId): ActionResponse
     {
-        $contracts = Contract::where('customer_id', $customerId)->get();
+        $contracts = ContractRepository::findByCustomer($customerId);
 
         return new ActionResponse($contracts->isNotEmpty(), $contracts);
     }

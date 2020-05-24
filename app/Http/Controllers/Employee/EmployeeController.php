@@ -19,7 +19,7 @@ class EmployeeController extends Controller
      */
     public function index(int $page = 1): LengthAwarePaginator
     {
-        return Employee::query()->latest()->paginate(10, ['*'], 'EmployeeList', $page);
+        return EmployeeRepository::paginate($page);
     }
 
     /**
@@ -28,9 +28,7 @@ class EmployeeController extends Controller
      */
     public function show(int $employeeId): Employee
     {
-        return Employee::query()
-            ->withGlobalScope(CurrentWorkConditionScope::NAME, new CurrentWorkConditionScope())
-            ->find($employeeId);
+        return EmployeeRepository::fullLoad($employeeId);
     }
 
     /**

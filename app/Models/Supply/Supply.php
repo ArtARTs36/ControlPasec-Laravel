@@ -36,8 +36,12 @@ class Supply extends Model
 
     public const FIELD_CUSTOMER_ID = 'customer_id';
 
+    public const RELATION_CUSTOMER = 'customer';
+    public const RELATION_PRODUCTS = 'products';
+
     protected $fillable = [
-        'planned_date', 'execute_date', 'supplier_id', 'customer_id', 'contract_id'
+        'planned_date', 'execute_date', 'supplier_id', 'contract_id',
+        self::FIELD_CUSTOMER_ID,
     ];
 
     /**

@@ -8,6 +8,7 @@ use App\Http\Resource\SupplyResource;
 use App\Http\Responses\ActionResponse;
 use App\Models\Supply\Supply;
 use App\Models\User\Permission;
+use App\Repositories\SupplyRepository;
 use App\Services\SupplyService;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
@@ -29,14 +30,7 @@ class SupplyController extends Controller
      */
     public function index(int $page = 1): AnonymousResourceCollection
     {
-        $supplies = Supply::with([
-            'customer',
-            'products' => function ($query) {
-                return $query->with('quantityUnit');
-            }
-        ])->paginate(10, ['*'], 'SuppliesList', $page);
-
-        return SupplyResource::collection($supplies);
+        return SupplyResource::collection(SupplyRepository::paginate($page));
     }
 
     /**
@@ -47,9 +41,8 @@ class SupplyController extends Controller
      */
     public function store(SupplyRequest $request): ActionResponse
     {
-        $supply = new Supply();
+        $supply = $this->makeModel($request, Supply::class);
         $supply->supplier_id = env('ONE_SUPPLIER_ID');
-        $supply->fill($request->all());
         $supply->save();
 
         SupplyService::checkProductsInSupply($request, $supply->id);
@@ -65,11 +58,7 @@ class SupplyController extends Controller
      */
     public function show(Supply $supply): SupplyResource
     {
-        return new SupplyResource($supply->load([
-            'products' => function ($query) {
-                return $query->with('parent');
-            }
-        ]));
+        return new SupplyResource(SupplyRepository::fullLoad($supply));
     }
 
     /**
@@ -81,20 +70,21 @@ class SupplyController extends Controller
      */
     public function update(SupplyRequest $request, Supply $supply): ActionResponse
     {
-        $requestData = $request->all();
-        $supply->update($requestData);
+        $this->updateModel($request, $supply);
 
-        SupplyService::checkProductsInSupply($requestData);
+        SupplyService::checkProductsInSupply($request->all());
 
         return new ActionResponse(true, $supply);
     }
 
     /**
      * @param Supply $supply
+     * @return ActionResponse
+     * @throws \Exception
      */
     public function destroy(Supply $supply)
     {
-        $supply->delete();
+        return $this->deleteModelAndResponse($supply);
     }
 
     /**
@@ -103,8 +93,8 @@ class SupplyController extends Controller
      */
     public function findByCustomer(int $customerId): ActionResponse
     {
-        $supplies = Supply::where(Supply::FIELD_CUSTOMER_ID, $customerId)->get();
+        $supplies = SupplyRepository::findByCustomer($customerId);
 
-        return new ActionResponse((count($supplies) > 0), $supplies);
+        return new ActionResponse($supplies->isNotEmpty(), $supplies);
     }
 }

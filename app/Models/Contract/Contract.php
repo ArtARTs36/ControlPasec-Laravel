@@ -28,8 +28,16 @@ class Contract extends Model
 {
     use WithSupplierAndCustomer;
 
+    public const FIELD_CUSTOMER_ID = 'customer_id';
+
+    public const RELATION_CUSTOMER = 'customer';
+    public const RELATION_SUPPLIER = 'supplier';
+    public const RELATION_TEMPLATE = 'template';
+    public const RELATION_SUPPLIES = 'supplies';
+
     protected $fillable = [
-        'title', 'planned_date', 'executed_date', 'supplier_id', 'customer_id', 'template_id'
+        'title', 'planned_date', 'executed_date', 'supplier_id', 'template_id',
+        self::FIELD_CUSTOMER_ID,
     ];
 
     public function template(): BelongsTo

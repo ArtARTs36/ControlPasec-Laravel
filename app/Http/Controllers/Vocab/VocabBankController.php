@@ -27,26 +27,25 @@ class VocabBankController extends Controller
      */
     public function index(int $page = 1): LengthAwarePaginator
     {
-        return VocabBank::latest('id')->
-            paginate(10, ['*'], 'VocabBanksList', $page);
+        return VocabBank::latest('id')
+            ->paginate(10, ['*'], 'VocabBanksList', $page);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Добавления нового банка в справочник
      *
      * @param Request $request
      * @return ActionResponse
      */
     public function store(Request $request)
     {
-        $bank = new VocabBank();
-        $bank->fill($request->all());
+        $bank = $this->createModel($request, VocabBank::class);
 
-        return new ActionResponse($bank->save(), $bank);
+        return new ActionResponse($bank->exists, $bank);
     }
 
     /**
-     * Display the specified resource.
+     * Отображение данных о банке
      *
      * @param VocabBank $vocabBank
      * @return VocabBank
@@ -57,7 +56,7 @@ class VocabBankController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Обновление данных о банке
      *
      * @param Request $request
      * @param VocabBank $vocabBank
@@ -65,7 +64,7 @@ class VocabBankController extends Controller
      */
     public function update(Request $request, VocabBank $vocabBank)
     {
-        return new ActionResponse($vocabBank->update($request->all()), $vocabBank);
+        return $this->updateModelAndResponse($request, $vocabBank);
     }
 
     /**
@@ -73,9 +72,10 @@ class VocabBankController extends Controller
      *
      * @param VocabBank $vocabBank
      * @return ActionResponse
+     * @throws \Exception
      */
     public function destroy(VocabBank $vocabBank): ActionResponse
     {
-        return new ActionResponse($vocabBank->delete());
+        return $this->deleteModelAndResponse($vocabBank);
     }
 }

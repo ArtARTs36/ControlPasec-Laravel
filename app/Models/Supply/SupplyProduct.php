@@ -24,6 +24,9 @@ use Illuminate\Database\Query\Builder;
  */
 class SupplyProduct extends Model
 {
+    public const RELATION_QUANTITY_UNIT = 'quantityUnit';
+    public const RELATION_PARENT = 'parent';
+
     protected $fillable = [
         'price', 'quantity', 'product_id', 'supply_id', 'quantity_unit_id'
     ];
