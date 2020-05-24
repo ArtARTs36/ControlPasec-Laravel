@@ -16,13 +16,11 @@ class TechSupportReportCreatedListener implements ShouldQueue
      */
     public function handle(TechSupportReportCreated $event): void
     {
-        $sender = new PushAllSender();
-
         $message = view('messages/tech_support_report_created', [
             'report' => $event->report
         ])->render();
 
-        $sender->push('Тех. поддержка: '. $event->report->id, $message);
+        (new PushAllSender())->push('Тех. поддержка: '. $event->report->id, $message);
 
         UserNotificator::notify(UserNotificationType::TECH_SUPPORT_REPORT_CREATED, $message, $event->report);
     }

@@ -17,13 +17,11 @@ class DocumentOfQueueGenerateListener implements ShouldQueue
      */
     public function handle(DocumentOfQueueGenerated $event): void
     {
-        $sender = new PushAllSender();
-
         $message = view('messages/document_of_queue_generated', [
             'document' => $event->document,
         ])->render();
 
-        $sender->push('Документ '. $event->document->title . ' готов', $message);
+        (new PushAllSender())->push('Документ '. $event->document->title . ' готов', $message);
 
         UserNotificator::notify(UserNotificationType::DOCUMENT_OF_QUEUE_GENERATED, $message, $event->document);
     }

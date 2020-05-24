@@ -22,13 +22,11 @@ class UserRegisteredListener implements ShouldQueue
      */
     public function handle(UserRegistered $event): void
     {
-        $sender = new PushAllSender();
-
         $message = view('messages/user_registered', [
             'user' => $event->user
         ])->render();
 
-        $sender->push('Заявка на регистрацию', $message);
+        (new PushAllSender())->push('Заявка на регистрацию', $message);
 
         UserNotificator::notify(UserNotificationType::USER_REGISTERED, $message, $event->user);
     }

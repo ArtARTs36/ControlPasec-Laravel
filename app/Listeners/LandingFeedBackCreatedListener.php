@@ -16,13 +16,11 @@ class LandingFeedBackCreatedListener implements ShouldQueue
      */
     public function handle(LandingFeedBackCreated $event): void
     {
-        $sender = new PushAllSender();
-
         $message = view('messages/landing_feed_back_created', [
             'feedback' => $event->feedback
         ])->render();
 
-        $sender->push('Обратная связь: '. $event->feedback->id, $message);
+        (new PushAllSender())->push('Обратная связь: '. $event->feedback->id, $message);
 
         UserNotificator::notify(UserNotificationType::LANDING_FEED_BACK_CREATED, $message, $event->feedback);
     }
