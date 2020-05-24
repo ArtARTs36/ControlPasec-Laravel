@@ -49,11 +49,13 @@ class UserController extends Controller
     public function me()
     {
         /** @var User $user */
-        if ($user = auth()->user() === null) {
+        if (($user = auth()->user()) === null) {
             abort(403);
         }
 
-        $user->notifications->load(UserNotification::RELATION_TYPE);
+        if ($user->notifications !== null) {
+            $user->notifications->load(UserNotification::RELATION_TYPE);
+        }
 
         return new UserResource($user);
     }
