@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Product;
 use App\Http\Controllers\Controller;
 use App\Http\Responses\ActionResponse;
 use App\Models\Product\Product;
-use App\Models\Supply\SupplyProduct;
 use App\Models\User\Permission;
+use App\Services\ProductService;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -66,10 +66,11 @@ class ProductController extends Controller
      *
      * @param Product $product
      * @return void
+     * @throws \Exception
      */
     public function destroy(Product $product)
     {
-        //
+        return $this->deleteModelAndResponse($product);
     }
 
     /**
@@ -79,29 +80,16 @@ class ProductController extends Controller
      */
     public function topChart(): array
     {
-        $supplyProducts = SupplyProduct::with(['parent' => function ($product) {
-            $product->with('currency');
-        }])->get();
+        return ProductService::getStat(5);
+    }
 
-        $products = [];
+    /**
+     * @return array
+     */
+    public function refreshTopChart(): array
+    {
+        ProductService::cleanStatCache();
 
-        /** @var SupplyProduct[] $supplyProducts */
-        /** @var SupplyProduct $realization */
-        foreach ($supplyProducts as $realization) {
-            if (!isset($products[$realization->product_id])) {
-                $products[$realization->product_id] = $realization->parent;
-                $products[$realization->product_id]->quantities = 0;
-                $products[$realization->product_id]->prices = 0;
-            }
-
-            $products[$realization->product_id]->quantities += $realization->quantity;
-            $products[$realization->product_id]->prices += $realization->quantity *$realization->price;
-        }
-
-        usort($products, function ($one, $two) {
-            return ($one['quantities'] < $two['quantities']);
-        });
-
-        return array_chunk($products, 5)[0];
+        return ProductService::getStat(5);
     }
 }
