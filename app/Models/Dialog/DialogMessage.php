@@ -27,6 +27,9 @@ class DialogMessage extends Model
     public const FIELD_TO_USER_ID = 'to_user_id';
     public const FIELD_FROM_USER_ID = 'from_user_id';
 
+    public const RELATION_FROM_USER = 'fromUser';
+    public const RELATION_TO_USER = 'toUser';
+
     public function dialog(): BelongsTo
     {
         return $this->belongsTo(Dialog::class);

@@ -8,6 +8,7 @@ use App\Http\Resource\DocumentResource;
 use App\Http\Responses\ActionResponse;
 use App\Models\Document\DocumentType;
 use App\Models\Supply\Supply;
+use App\Repositories\ScoreForPaymentRepository;
 use App\ScoreForPayment;
 use App\Service\Document\DocumentService;
 use App\Services\Document\DocumentCreator;
@@ -27,11 +28,7 @@ class ScoreForPaymentController extends Controller
      */
     public function index(int $page = 1): LengthAwarePaginator
     {
-        return ScoreForPayment::with([
-            'supply' => function ($query) {
-                return $query->with(['products', 'supplier', 'customer']);
-            }
-        ])->paginate(10, ['*'], 'ScoresList', $page);
+        return ScoreForPaymentRepository::paginate($page);
     }
 
     /**

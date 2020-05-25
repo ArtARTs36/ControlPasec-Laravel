@@ -39,6 +39,8 @@ final class ScoreForPayment extends Model implements ModelWithDocuments
 
     const FIELD_SUPPLY_ID = 'supply_id';
 
+    const RELATION_SUPPLY = 'supply';
+
     protected $fillable = [
         'supply_id', 'contract_id', 'date'
     ];

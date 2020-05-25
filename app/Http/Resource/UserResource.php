@@ -26,11 +26,6 @@ class UserResource extends JsonResource
      */
     public function toArray($request): array
     {
-        $permissions = Collection::make();
-        foreach ($this->roles as $role) {
-            $permissions = $permissions->merge($role->permissions);
-        }
-
         $messages = DialogMessageService::findRecievedMessagesByCurrentUser();
 
         return [
@@ -39,9 +34,9 @@ class UserResource extends JsonResource
             'patronymic' => $this->patronymic,
             'family' => $this->family,
             'position' => $this->position,
-            'roles' => RoleResource::collection($this->roles),
-            'permissions' => PermissionResource::collection($permissions),
-            'notifications' => UserNotificationResource::collection($this->notifications),
+            'roles' => RoleResource::collection($this->whenLoaded('roles')),
+            'permissions' => PermissionResource::collection($this->getPermissionsViaRoles()),
+            'notifications' => UserNotificationResource::collection($this->whenLoaded('notifications')),
             'notifications_unread_count' => $this->getUnreadNotificationsCount(),
             'avatar_url' => $this->getAvatarUrl(),
             'is_active' => $this->is_active,

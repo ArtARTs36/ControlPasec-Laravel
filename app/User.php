@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Dialog\DialogMessage;
 use App\Models\User\Permission;
 use App\Models\User\Role;
 use App\Models\User\UserNotification;
@@ -75,18 +76,18 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
     ];
 
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::addGlobalScope('onlyCustom', function (Builder $builder) {
-            $builder->with([static::RELATION_NOTIFICATIONS => function (HasMany $query) {
-                $query
-                    ->latest(UserNotification::FIELD_CREATED_AT)
-                    ->where(UserNotification::FIELD_IS_READ, false);
-            }]);
-        });
-    }
+//    protected static function boot()
+//    {
+//        parent::boot();
+//
+//        static::addGlobalScope('onlyCustom', function (Builder $builder) {
+//            $builder->with([static::RELATION_NOTIFICATIONS => function (HasMany $query) {
+//                $query
+//                    ->latest(UserNotification::FIELD_CREATED_AT)
+//                    ->where(UserNotification::FIELD_IS_READ, false);
+//            }]);
+//        });
+//    }
 
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
@@ -202,5 +203,15 @@ class User extends Authenticatable implements JWTSubject
     public function getDefaultGuardName(): string
     {
         return $this->guard_name;
+    }
+
+    public function recievedDialogMessages(): HasMany
+    {
+        return $this->hasMany(DialogMessage::class, DialogMessage::FIELD_TO_USER_ID);
+    }
+
+    public function sentDialogMessages(): HasMany
+    {
+        return $this->hasMany(DialogMessage::class, DialogMessage::FIELD_FROM_USER_ID);
     }
 }

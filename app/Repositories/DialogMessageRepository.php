@@ -17,8 +17,8 @@ class DialogMessageRepository
      */
     public static function findRecievedMessagesByUser(User $user, int $count = 10)
     {
-        return DialogMessage::query()
-            ->where(DialogMessage::FIELD_TO_USER_ID, $user->id)
+        return $user->recievedDialogMessages()
+            ->with([DialogMessage::RELATION_FROM_USER])
             ->take($count)
             ->latest(DialogMessage::CREATED_AT)
             ->get();
