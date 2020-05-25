@@ -9,6 +9,7 @@ use App\Models\Dialog\Dialog;
 use App\Models\Dialog\DialogMessage;
 use App\Repositories\DialogMessageRepository;
 use App\Repositories\DialogRepository;
+use App\Services\Dialog\DialogMessageService;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -16,47 +17,38 @@ use Illuminate\Http\Response;
 class DialogMessageController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return void
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
      * @param DialogMessageRequest $request
      * @return DialogMessage
      */
-    public function store(DialogMessageRequest $request): ?DialogMessage
+    public function store(DialogMessageRequest $request): DialogMessage
     {
-        $toUser = User::find($request->to_user_id);
+        $toUser = User::query()->find($request->to_user_id);
 
         $dialog = DialogRepository::getOrCreate($toUser);
 
-        $message = DialogMessageRepository::create($dialog, $request);
-        if ($message === null) {
-            abort(Response::HTTP_CONFLICT, 'Вы уже отправляли сообщение с подобным содержанием');
-        }
-
-        return $message;
+        return DialogMessageService::create($dialog, auth()->user(), $request->text);
     }
 
-    public function createByDialog(Dialog $dialog, Request $request)
+    /**
+     * @param Dialog $dialog
+     * @param DialogMessageRequest $request
+     * @return DialogMessageResource
+     */
+    public function createByDialog(Dialog $dialog, DialogMessageRequest $request): DialogMessageResource
     {
         if ($dialog->isNotTookPartCurrentUser()) {
             throw new \LogicException('Вы не являетесь участником диалога');
         }
 
-        $message = DialogMessageRepository::create($dialog, $request);
+        $message = DialogMessageService::create($dialog, auth()->user(), $request->text);
 
-        return $message ? new DialogMessageResource($message) :
-            abort(Response::HTTP_CONFLICT, 'Вы уже отправляли сообщение с подобным содержанием');
+        return new DialogMessageResource($message);
     }
 
+    /**
+     * @param DialogMessage $message
+     * @return DialogMessage
+     */
     public function read(DialogMessage $message): DialogMessage
     {
         return $message->read();

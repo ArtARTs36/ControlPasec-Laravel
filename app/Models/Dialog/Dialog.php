@@ -12,6 +12,8 @@ use Illuminate\Support\Collection;
  * Class Dialog
  * @property int $id
  * @property int $one_user_id
+ * @property-read User $oneUser
+ * @property-read User $twoUser
  * @property int $two_user_id
  * @property bool $is_one_user_hidden
  * @property bool $is_two_user_hidden
@@ -20,6 +22,10 @@ use Illuminate\Support\Collection;
  */
 class Dialog extends Model
 {
+    public const FIELD_ONE_USER_ID = 'one_user_id';
+    public const FIELD_TWO_USER_ID = 'two_user_id';
+    public const FIELD_UPDATED_AT = 'updated_at';
+
     protected static function boot()
     {
         parent::boot();

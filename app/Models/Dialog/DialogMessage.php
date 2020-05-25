@@ -24,6 +24,9 @@ class DialogMessage extends Model
 {
     use WithFieldIsRead;
 
+    public const FIELD_TO_USER_ID = 'to_user_id';
+    public const FIELD_FROM_USER_ID = 'from_user_id';
+
     public function dialog(): BelongsTo
     {
         return $this->belongsTo(Dialog::class);

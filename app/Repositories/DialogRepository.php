@@ -5,21 +5,23 @@ namespace App\Repositories;
 use App\Http\Resource\DialogsListResource;
 use App\Models\Dialog\Dialog;
 use App\User;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class DialogRepository
 {
     /**
-     * Искать последние 10 диалогов текущего пользователя
+     * Искать последние 10 диалогов пользователя
+     * @param User $user
      * @param int $page
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      */
-    public static function findByCurrentUser(int $page = 1)
+    public static function findByUser(User $user, int $page = 1): AnonymousResourceCollection
     {
-        $currentUserId = auth()->user()->id;
-
-        $dialogs = Dialog::where('one_user_id', $currentUserId)
-            ->orWhere('two_user_id', $currentUserId)
-            ->latest('updated_at')
+        $dialogs = Dialog::query()
+            ->where(Dialog::FIELD_ONE_USER_ID, $user->id)
+            ->orWhere(Dialog::FIELD_TWO_USER_ID, $user->id)
+            ->latest(Dialog::FIELD_UPDATED_AT)
             ->paginate(10, ['*'], 'DialogsList', $page);
 
         return DialogsListResource::collection($dialogs);
@@ -29,10 +31,11 @@ class DialogRepository
     {
         $currentUserId = auth()->user()->id;
 
-        return Dialog::where('one_user_id', $currentUserId)
-            ->where('two_user_id', $toUser->id)
-            ->orWhere('one_user_id', $toUser->id)
-            ->where('two_user_id', $currentUserId)
+        return Dialog::query()
+            ->where(Dialog::FIELD_ONE_USER_ID, $currentUserId)
+            ->where(Dialog::FIELD_TWO_USER_ID, $toUser->id)
+            ->orWhere(Dialog::FIELD_ONE_USER_ID, $toUser->id)
+            ->where(Dialog::FIELD_TWO_USER_ID, $currentUserId)
             ->first();
     }
 
@@ -42,8 +45,6 @@ class DialogRepository
 
         $dialog->one_user_id = auth()->user()->id;
         $dialog->two_user_id = $toUser->id;
-        $dialog->is_one_user_hidden = false;
-        $dialog->is_two_user_hidden = false;
 
         $dialog->save();
 
@@ -63,5 +64,16 @@ class DialogRepository
         }
 
         return $dialog;
+    }
+
+    /**
+     * @param int $page
+     * @return LengthAwarePaginator
+     */
+    public static function paginate(int $page): LengthAwarePaginator
+    {
+        return Dialog::query()
+            ->latest()
+            ->paginate(10, ['*'], 'DialogsList', $page);
     }
 }

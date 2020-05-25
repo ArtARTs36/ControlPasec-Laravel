@@ -7,6 +7,7 @@ use App\Models\Dialog\Dialog;
 use App\Http\Controllers\Controller;
 use App\Repositories\DialogRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class DialogController extends Controller
 {
@@ -18,17 +19,17 @@ class DialogController extends Controller
      */
     public function index(int $page = 1): LengthAwarePaginator
     {
-        return Dialog::paginate(10, ['*'], 'DialogsList', $page);
+        return DialogRepository::paginate($page);
     }
 
     /**
      * Получить диалоги пользователя
      * @param int $page
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      */
-    public function user(int $page = 1)
+    public function user(int $page = 1): AnonymousResourceCollection
     {
-        return DialogRepository::findByCurrentUser($page);
+        return DialogRepository::findByUser(auth()->user(), $page);
     }
 
     /**

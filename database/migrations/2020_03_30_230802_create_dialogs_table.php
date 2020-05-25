@@ -20,8 +20,8 @@ class CreateDialogsTable extends Migration
             $table->unsignedInteger('one_user_id');
             $table->unsignedInteger('two_user_id');
 
-            $table->boolean('is_one_user_hidden');
-            $table->boolean('is_two_user_hidden');
+            $table->boolean('is_one_user_hidden')->default(false);
+            $table->boolean('is_two_user_hidden')->default(false);
 
             $table->foreign('one_user_id')
                 ->references('id')

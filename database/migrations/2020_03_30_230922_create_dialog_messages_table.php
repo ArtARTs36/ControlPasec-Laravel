@@ -23,7 +23,7 @@ class CreateDialogMessagesTable extends Migration
 
             $table->string('text');
 
-            $table->boolean('is_read');
+            $table->boolean('is_read')->default(false);
 
             $table->foreign('from_user_id')
                 ->references('id')

@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\User\UserNotification;
 use App\User;
 
 class UserRepository
@@ -21,5 +22,12 @@ class UserRepository
     public static function getByEmail(string $email): ?User
     {
         return User::where('email', $email)->first();
+    }
+
+    public static function fullLoad(User $user)
+    {
+        if ($user->notifications !== null) {
+            $user->notifications->load(UserNotification::RELATION_TYPE);
+        }
     }
 }

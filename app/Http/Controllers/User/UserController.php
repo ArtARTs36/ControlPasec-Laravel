@@ -9,6 +9,7 @@ use App\Http\Responses\ActionResponse;
 use App\Models\User\Permission;
 use App\Models\User\Role;
 use App\Models\User\UserNotification;
+use App\Repositories\UserRepository;
 use App\User;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Hash;
@@ -53,9 +54,7 @@ class UserController extends Controller
             abort(403);
         }
 
-        if ($user->notifications !== null) {
-            $user->notifications->load(UserNotification::RELATION_TYPE);
-        }
+        UserRepository::fullLoad($user);
 
         return new UserResource($user);
     }

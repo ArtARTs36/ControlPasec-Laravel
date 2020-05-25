@@ -2,7 +2,7 @@
 
 namespace App\Http\Resource;
 
-use App\Repositories\DialogMessageRepository;
+use App\Services\Dialog\DialogMessageService;
 use App\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
@@ -31,15 +31,7 @@ class UserResource extends JsonResource
             $permissions = $permissions->merge($role->permissions);
         }
 
-        $this->loadMissing('notifications');
-
-        $messageUnReadCount = 0;
-        $messages = DialogMessageRepository::findRecievedMessagesByCurrentUser();
-        foreach ($messages as $message) {
-            if ($message->isNotRead()) {
-                $messageUnReadCount++;
-            }
-        }
+        $messages = DialogMessageService::findRecievedMessagesByCurrentUser();
 
         return [
             'id' => $this->id,
@@ -54,8 +46,8 @@ class UserResource extends JsonResource
             'avatar_url' => $this->getAvatarUrl(),
             'is_active' => $this->is_active,
             'email' => $this->email,
-            'messages' => $messages,
-            'messages_unread_count' => $messageUnReadCount,
+            'messages' => UserReceivedMessagesCutResource::collection($messages),
+            'messages_unread_count' => DialogMessageService::bringUnReadCount($messages),
         ];
     }
 }
