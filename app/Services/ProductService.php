@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Product\Product;
 use App\Models\Supply\SupplyProduct;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -26,18 +27,18 @@ class ProductService
     public static function bringStat(): array
     {
         $supplyProducts = SupplyProduct::query()
-            ->with(['parent' => function (BelongsTo $product) {
+            ->with([SupplyProduct::RELATION_PARENT => function (BelongsTo $product) {
                 $product
                     ->distinct()
                     ->with([
-                        'currency' => function (BelongsTo $query) {
+                        Product::RELATION_CURRENCY => function (BelongsTo $query) {
                             $query->distinct();
                         },
                     ]);
             }])->get([
-                'product_id',
-                'quantity',
-                'price',
+                SupplyProduct::FIELD_PARENT_ID,
+                SupplyProduct::FIELD_QUANTITY,
+                SupplyProduct::FIELD_PRICE,
             ]);
 
         $products = [];

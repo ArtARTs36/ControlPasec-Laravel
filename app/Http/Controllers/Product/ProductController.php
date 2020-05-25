@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Responses\ActionResponse;
 use App\Models\Product\Product;
 use App\Models\User\Permission;
+use App\Repositories\ProductRepository;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
 
@@ -27,8 +28,7 @@ class ProductController extends Controller
      */
     public function index(int $page = 1)
     {
-        return Product::with(['currency', 'sizeOfUnit', 'gosStandard'])
-            ->paginate(10, ['*'], 'ProductsList', $page);
+        return ProductRepository::paginate($page);
     }
 
     /**
@@ -65,7 +65,7 @@ class ProductController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Product $product
-     * @return void
+     * @return ActionResponse
      * @throws \Exception
      */
     public function destroy(Product $product)
@@ -90,6 +90,6 @@ class ProductController extends Controller
     {
         ProductService::cleanStatCache();
 
-        return ProductService::getStat(5);
+        return $this->topChart();
     }
 }

@@ -27,8 +27,18 @@ class SupplyProduct extends Model
     public const RELATION_QUANTITY_UNIT = 'quantityUnit';
     public const RELATION_PARENT = 'parent';
 
+    public const FIELD_PRICE = 'price';
+    public const FIELD_QUANTITY = 'quantity';
+    public const FIELD_PARENT_ID = 'product_id';
+    public const FIELD_SUPPLY_ID = 'supply_id';
+    public const QUANTITY_UNIT_ID = 'quantity_unit_id';
+
     protected $fillable = [
-        'price', 'quantity', 'product_id', 'supply_id', 'quantity_unit_id'
+        self::FIELD_PRICE,
+        self::FIELD_QUANTITY,
+        self::FIELD_PARENT_ID,
+        self::FIELD_SUPPLY_ID,
+        self::QUANTITY_UNIT_ID,
     ];
 
     public function parent(): BelongsTo

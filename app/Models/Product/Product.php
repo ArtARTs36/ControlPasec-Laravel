@@ -34,6 +34,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Product extends Model
 {
+    public const RELATION_CURRENCY = 'currency';
+    public const RELATION_SIZE_OF_UNIT = 'sizeOfUnit';
+    public const RELATION_GOS_STANDARD = 'gosStandard';
+
     protected $fillable = [
         'name', 'name_for_document', 'size', 'size_of_unit_id', 'price', 'currency_id'
     ];

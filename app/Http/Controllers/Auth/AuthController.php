@@ -219,7 +219,7 @@ class AuthController extends Controller
         return response()->json(compact('token', 'token_ttl'));
     }
 
-    public function username()
+    public function username(): string
     {
         return 'email';
     }
@@ -227,41 +227,5 @@ class AuthController extends Controller
     protected function guard()
     {
         return Auth::guard('api');
-    }
-
-    /**
-     * @param AuthRequest $request
-     * @return View
-     */
-    public function oauthToken(AuthRequest $request): View
-    {
-        if (!$request->has('email') ||
-            ($symbol = strpos($request->email, '@')) === false ||
-            ($symbol < 1)) {
-            throw new BadRequestHttpException('Wrong email!');
-        }
-
-        $login = substr($request->email, 0, $symbol);
-        $employee = Auth::guard('api')->user();
-        if ($employee && (
-            strtolower($employee->email) !== strtolower($employee) ||
-                strtolower($employee->login) !== strtolower($login)
-        )) {
-            Auth::guard('api')->logout();
-        }
-
-        if (Auth::guard('api')
-                ->check() !== true && ($employee = User::query()
-                ->where('email', 'ilike', $request->email)
-                ->orWhere('login', 'ilike', $login)
-                ->first())) {
-            Auth::guard('api')->login($employee);
-        }
-
-        $token_ttl = (new Jwt($token = JWTAuth::fromUser(Auth::guard('api')
-            ->user())))
-            ->getTokenTTL();
-
-        return view('redirect', compact('token', 'token_ttl'));
     }
 }
