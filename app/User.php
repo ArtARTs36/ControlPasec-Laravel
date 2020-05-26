@@ -230,4 +230,10 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany(DialogMessage::class, DialogMessage::FIELD_FROM_USER_ID);
     }
+
+    public function recievedUnReadDialogMessages(): HasMany
+    {
+        return $this->recievedDialogMessages()
+            ->where(DialogMessage::FIELD_IS_READ, false);
+    }
 }

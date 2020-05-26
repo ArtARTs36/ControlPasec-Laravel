@@ -55,11 +55,12 @@ class ContragentSeeder extends CommonSeeder
     private function createManager(int $contragentId): void
     {
         for ($i = 0; $i < rand(1, 5); $i++) {
+            $gender = \App\Support\RuFaker::gender();
+
             $manager = new Contragent\ContragentManager();
-            $names = \App\Support\RuFaker::fio();
-            $manager->name = $names[1];
-            $manager->patronymic = $names[2];
-            $manager->family = $names[0];
+            $manager->name = \App\Support\RuFaker::name($gender);
+            $manager->patronymic = \App\Support\RuFaker::patronymic($gender);
+            $manager->family = \App\Support\RuFaker::family($gender);
             $manager->contragent_id = $contragentId;
             $manager->save();
         }

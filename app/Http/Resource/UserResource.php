@@ -26,7 +26,7 @@ class UserResource extends JsonResource
      */
     public function toArray($request): array
     {
-        $messages = DialogMessageService::findRecievedMessagesByCurrentUser();
+        $messages = $this->recievedUnReadDialogMessages;
 
         return [
             'id' => $this->id,

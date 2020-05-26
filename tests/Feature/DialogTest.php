@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\Support\RuFaker;
 use App\User;
 use Tests\BaseTestCase;
-use Tymon\JWTAuth\Facades\JWTAuth;
 
 /**
  * @group BaseTest
@@ -25,14 +25,14 @@ class DialogTest extends BaseTestCase
         parent::setUp();
 
         $this->admin = User::where('name', 'admin')->first();
-        $this->simpleUser = User::where('email', '<>', $this->admin->email)->first();
+        $this->simpleUser = User::query()->inRandomOrder()->where('email', '<>', $this->admin->email)->first();
     }
 
     public function testSendAndGetMessage(): void
     {
         // send
 
-        $text = $this->getFaker()->text;
+        $text = RuFaker::getGenerator()->text(50);
 
         $data = [
             'to_user_id' => $this->simpleUser->id,
@@ -106,7 +106,7 @@ class DialogTest extends BaseTestCase
 
         // send to admin
 
-        $text = $this->getFaker()->text;
+        $text = RuFaker::getGenerator()->text(50);
 
         $data = [
             'to_user_id' => $this->admin->id,
