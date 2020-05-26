@@ -27,11 +27,11 @@ class ContragentSeeder extends CommonSeeder
         for ($i = 0; $i < $count; $i++) {
             $contragent = new App\Models\Contragent();
 
-            $name = $this->faker()->name;
+            $name = \App\Support\RuFaker::getGenerator()->name;
 
             $contragent->title = $name;
-            $contragent->full_title = $name . ' '. $name;
-            $contragent->full_title_with_opf = $name . ' '. $name . $this->faker()->lastName;
+            $contragent->full_title = $name;
+            $contragent->full_title_with_opf = $name;
             $contragent->inn = rand(11111111, 99999999999);
             $contragent->kpp = rand(11111111, 99999999999);
             $contragent->ogrn = rand(11111111, 99999999999);
@@ -39,7 +39,7 @@ class ContragentSeeder extends CommonSeeder
             $contragent->oktmo = rand(11111111, 99999999999);
             $contragent->okved = rand(11111111, 99999999999);
             $contragent->okved_type = rand(1, 99);
-            $contragent->address = $this->faker()->address;
+            $contragent->address = \App\Support\RuFaker::getGenerator()->address;
             $contragent->address_postal = rand(111111, 999999);
             $contragent->status = 0;
             $contragent->save();
@@ -56,9 +56,10 @@ class ContragentSeeder extends CommonSeeder
     {
         for ($i = 0; $i < rand(1, 5); $i++) {
             $manager = new Contragent\ContragentManager();
-            $manager->name = $this->faker()->firstName;
-            $manager->patronymic = $this->faker()->domainWord;
-            $manager->family = $this->faker()->lastName;
+            $names = \App\Support\RuFaker::fio();
+            $manager->name = $names[1];
+            $manager->patronymic = $names[2];
+            $manager->family = $names[0];
             $manager->contragent_id = $contragentId;
             $manager->save();
         }
