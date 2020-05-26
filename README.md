@@ -11,6 +11,13 @@
 ## Запуск
 - php artisan serve
 
+## Получить курсы валют
+- За сегодня: `php artisan get-currency-course:now`
+- За неделю: `php artisan get-currency-course:week`
+
+## Получить новости из внешних источников
+- `php artisan get-external-news`
+
 ## Запуск стабильных тестов
 - vendor/phpunit/phpunit/phpunit --group=BaseTest
 

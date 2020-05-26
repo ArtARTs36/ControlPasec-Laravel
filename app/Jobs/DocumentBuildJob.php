@@ -4,7 +4,6 @@ namespace App\Jobs;
 
 use App\Events\DocumentOfQueueGenerated;
 use App\Models\Document\Document;
-use App\Services\Document\DocumentBuilder;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
