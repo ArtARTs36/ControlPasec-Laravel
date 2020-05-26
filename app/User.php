@@ -46,6 +46,7 @@ class User extends Authenticatable implements JWTSubject
     const GENDER_FEMALE = 2;
 
     public const RELATION_NOTIFICATIONS = 'notifications';
+    public const RELATION_UNREAD_NOTIFICATIONS = 'unreadNotifications';
 
     protected $guard_name = 'api';
 
@@ -114,6 +115,17 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(UserNotification::class);
     }
 
+    /**
+     * @return HasMany
+     */
+    public function unreadNotifications(): HasMany
+    {
+        return $this->notifications()
+            ->latest()
+            ->with(UserNotification::RELATION_TYPE)
+            ->where(UserNotification::FIELD_IS_READ, false);
+    }
+
     public function getFullName()
     {
         return implode(' ', [
@@ -133,6 +145,10 @@ class User extends Authenticatable implements JWTSubject
 
     public function getUnreadNotificationsCount()
     {
+        if ($this->getAttributeValue(static::RELATION_UNREAD_NOTIFICATIONS)) {
+            return $this->{static::RELATION_UNREAD_NOTIFICATIONS}->count();
+        }
+
         $count = 0;
         foreach ($this->notifications as $notification) {
             if ($notification->isNotRead()) {

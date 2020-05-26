@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Http\Actions\UserMeAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Http\Resource\UserResource;
@@ -49,14 +50,7 @@ class UserController extends Controller
      */
     public function me()
     {
-        /** @var User $user */
-        if (($user = auth()->user()) === null) {
-            abort(403);
-        }
-
-        UserRepository::fullLoad($user);
-
-        return new UserResource($user);
+        return UserMeAction::get();
     }
 
     /**

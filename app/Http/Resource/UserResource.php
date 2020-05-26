@@ -36,7 +36,7 @@ class UserResource extends JsonResource
             'position' => $this->position,
             'roles' => RoleResource::collection($this->whenLoaded('roles')),
             'permissions' => PermissionResource::collection($this->getPermissionsViaRoles()),
-            'notifications' => UserNotificationResource::collection($this->whenLoaded('notifications')),
+            'notifications' => UserNotificationResource::collection($this->whenLoaded('unreadNotifications')),
             'notifications_unread_count' => $this->getUnreadNotificationsCount(),
             'avatar_url' => $this->getAvatarUrl(),
             'is_active' => $this->is_active,

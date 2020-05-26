@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Actions\UserMeAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AuthRequest;
 use App\Http\Resource\UserResource;
@@ -140,15 +141,11 @@ class AuthController extends Controller
      */
     protected function sendLoginResponse(Request $request, $token)
     {
-        // Clear the login locks for the given user credentials.
         $this->clearLoginAttempts($request);
 
-        // get time to live of token form JWT service.
         $token_ttl = (new Jwt($token))->getTokenTTL();
 
-        // Get current user authenticated.
-        return (new UserResource(Auth::guard('api')->user()))
-            ->additional(compact('token', 'token_ttl'));
+        return UserMeAction::get()->additional(compact('token', 'token_ttl'));
     }
 
     /**
