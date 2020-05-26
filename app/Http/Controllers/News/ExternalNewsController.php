@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Responses\ActionResponse;
 use App\Models\News\ExternalNews;
 use App\Models\User\Permission;
+use App\Repositories\ExternalNews\ExternalNewsRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 
@@ -40,8 +41,7 @@ class ExternalNewsController extends Controller
      */
     public function index(int $page = 1)
     {
-        return ExternalNews::with('source')
-            ->paginate(10, ['*'], 'ExternalNews', $page);
+        return ExternalNewsRepository::paginate($page);
     }
 
     /**
@@ -98,5 +98,15 @@ class ExternalNewsController extends Controller
     public function destroy(ExternalNews $externalNews): ActionResponse
     {
         return new ActionResponse($externalNews->delete() > 0);
+    }
+
+    /**
+     * @return ActionResponse
+     */
+    public function truncate(): ActionResponse
+    {
+        ExternalNews::query()->truncate();
+
+        return new ActionResponse(true);
     }
 }

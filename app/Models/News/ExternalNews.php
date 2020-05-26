@@ -21,6 +21,8 @@ use Illuminate\Database\Query\Builder;
  */
 class ExternalNews extends Model
 {
+    public const RELATION_SOURCE = 'source';
+
     protected $fillable = [
         'title',
         'description',
