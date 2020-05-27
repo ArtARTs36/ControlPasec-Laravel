@@ -48,6 +48,16 @@ class User extends Authenticatable implements JWTSubject
     public const RELATION_NOTIFICATIONS = 'notifications';
     public const RELATION_UNREAD_NOTIFICATIONS = 'unreadNotifications';
 
+    public const FIELD_IS_ACTIVE = 'is_active';
+    public const FIELD_NAME = 'name';
+    public const FIELD_PATRONYMIC = 'patronymic';
+    public const FIELD_FAMILY = 'family';
+    public const FIELD_POSITION = 'position';
+    public const FIELD_EMAIL = 'email';
+    public const FIELD_PASSWORD = 'password';
+    public const FIELD_GENDER = 'gender';
+    public const FIELD_AVATAR_URL = 'avatar_url';
+
     protected $guard_name = 'api';
 
     /**
@@ -56,7 +66,14 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'patronymic', 'family', 'is_active', 'position', 'gender', 'avatar_url'
+        self::FIELD_NAME,
+        self::FIELD_EMAIL,
+        self::FIELD_PATRONYMIC,
+        self::FIELD_PASSWORD,
+        self::FIELD_FAMILY,
+        self::FIELD_IS_ACTIVE,
+        self::FIELD_GENDER,
+        self::FIELD_AVATAR_URL,
     ];
 
     /**
