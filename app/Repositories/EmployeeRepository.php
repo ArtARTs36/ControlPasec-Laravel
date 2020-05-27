@@ -13,7 +13,7 @@ class EmployeeRepository
     public static function paginate(int $page = 1): LengthAwarePaginator
     {
         return Employee::query()
-            ->latest()
+            ->latest('id')
             ->paginate(10, ['*'], 'EmployeeList', $page);
     }
 
