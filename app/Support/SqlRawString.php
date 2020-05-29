@@ -8,10 +8,10 @@ use Illuminate\Support\Facades\DB;
 class SqlRawString
 {
     /**
-     * @param $field
+     * @param string $field
      * @return Expression
      */
-    public static function lower($field): Expression
+    public static function lower(string $field): Expression
     {
         return DB::raw("LOWER({$field})");
     }

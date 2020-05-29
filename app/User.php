@@ -6,6 +6,7 @@ use App\Models\Dialog\DialogMessage;
 use App\Models\User\Permission;
 use App\Models\User\Role;
 use App\Models\User\UserNotification;
+use App\Repositories\PermissionRepository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -225,7 +226,7 @@ class User extends Authenticatable implements JWTSubject
             return true;
         }
 
-        $permissionObject = Permission::findByName($permissionName);
+        $permissionObject = PermissionRepository::findByName($permissionName);
 
         return DB::table($this->permissions()->getTable())
             ->where('model_id', $this->id)

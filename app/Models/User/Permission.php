@@ -16,6 +16,8 @@ use Spatie\Permission\Models\Permission as BasePermission;
  */
 final class Permission extends BasePermission
 {
+    const FIELD_NAME = 'name';
+
     const SUPPLIES_VIEW = 'supplies_view';
     const SUPPLIES_CREATE = 'supplies_create';
     const SUPPLIES_EDIT = 'supplies_edit';
