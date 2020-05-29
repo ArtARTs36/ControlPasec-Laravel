@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "48d5670590e86828ac65cd559a862ab9",
+    "content-hash": "214e4c0f669a790256c358532c5d3c42",
     "packages": [
         {
             "name": "alhimik1986/php-excel-templator",
@@ -218,6 +218,52 @@
                 "swagger"
             ],
             "time": "2019-11-08T17:08:43+00:00"
+        },
+        {
+            "name": "dba/controltime",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ArtARTs36/ControlTime-Package.git",
+                "reference": "462a17959f40ddb19d874f584741d89858a6f59e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ArtARTs36/ControlTime-Package/zipball/462a17959f40ddb19d874f584741d89858a6f59e",
+                "reference": "462a17959f40ddb19d874f584741d89858a6f59e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "laravel/framework": "^6.2",
+                "php": "^7.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Dba\\ControlTime\\Tests\\": "tests/",
+                    "Dba\\ControlTime\\": "src/"
+                },
+                "classmap": [
+                    "database/factories",
+                    "database/seeds"
+                ]
+            },
+            "license": [
+                "Enterprise"
+            ],
+            "authors": [
+                {
+                    "name": "ArtARTs36",
+                    "email": "temicska99@mail.ru"
+                }
+            ],
+            "description": "Control Time Laravel Package",
+            "support": {
+                "source": "https://github.com/ArtARTs36/ControlTime-Package/tree/master",
+                "issues": "https://github.com/ArtARTs36/ControlTime-Package/issues"
+            },
+            "time": "2020-05-29T21:03:55+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -8040,6 +8086,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "dba/controltime": 20,
         "tymon/jwt-auth": 20
     },
     "prefer-stable": true,

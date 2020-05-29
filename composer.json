@@ -4,6 +4,12 @@
     "type": "project",
     "description": "ControlPasec",
     "license": "MIT",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/ArtARTs36/ControlTime-Package"
+        }
+    ],
     "require": {
         "php": "^7.2",
         "ext-curl": "*",
@@ -11,6 +17,7 @@
         "ext-simplexml": "*",
         "alhimik1986/php-excel-templator": "^1.0",
         "darkaonline/l5-swagger": "^6.0",
+        "dba/controltime": "dev-master",
         "dompdf/dompdf": "^0.8.4",
         "fideloper/proxy": "^4.0",
         "friendsofphp/php-cs-fixer": "^2.16",
@@ -42,8 +49,7 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
-            "AppVersions\\": "app-versions/",
-            "Dba\\ControlTime\\": "packages/dba/controltime/src"
+            "AppVersions\\": "app-versions/"
         },
         "classmap": [
             "database/seeds",
