@@ -20,7 +20,7 @@ Route::group([
     require_once 'apis/api.parsers.php';
     require_once 'apis/api.dialogs.php';
     require_once 'apis/api.stat.php';
-    require_once(__DIR__ . '/../packages/dba/controltime/routes/api.php');
+    require_once(__DIR__ . '/../vendor/dba/controltime/routes/api.php');
     require_once 'apis/api.employees.php';
     require_once 'apis/api.controltime.php';
 });
