@@ -12,7 +12,7 @@ class CurrencyCourseSeeder extends CommonSeeder
      */
     public function run(): void
     {
-        if (env('ENV_TYPE') == 'dev') {
+        if (env('APP_ENV') == 'local') {
             $this->randomData(100);
         } else {
             $this->saveDataByExternalSystems(10);

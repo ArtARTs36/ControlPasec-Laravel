@@ -19,14 +19,21 @@ final class Role extends BaseRole
 
     const FIELD_IS_ALLOWED_FOR_SIGN_UP = 'is_allowed_for_sign_up';
 
+    /**
+     * @return bool
+     */
     public function isNotAllowedForSignUp(): bool
     {
         return $this->is_allowed_for_sign_up === false;
     }
 
+    /**
+     * @param bool|null $state
+     * @return $this
+     */
     public function changeAllowedForSignUp(bool $state = null): self
     {
-        $this->is_allowed_for_sign_up = ($state !== null) ? $state : !$this->is_allowed_for_sign_up;
+        $this->is_allowed_for_sign_up = ($state === null) ? !$this->is_allowed_for_sign_up : $state;
         $this->save();
 
         return $this;

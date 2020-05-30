@@ -17,7 +17,7 @@ class ProductSeeder extends CommonSeeder
     {
         $this->fillModel(Product::class, 'data_products');
 
-        if (env('ENV_TYPE') == 'dev') {
+        if (env('APP_ENV') == 'local') {
             $this->randomData(100);
         }
     }

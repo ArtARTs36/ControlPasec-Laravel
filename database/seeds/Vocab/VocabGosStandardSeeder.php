@@ -7,7 +7,7 @@ class VocabGosStandardSeeder extends CommonSeeder
     public function run()
     {
         $this->fillModel(VocabGosStandard::class, 'data_vocab_gos_standards');
-        if (env('ENV_TYPE') == 'dev') {
+        if (env('APP_ENV') == 'local') {
             $this->randomData(100);
         }
     }

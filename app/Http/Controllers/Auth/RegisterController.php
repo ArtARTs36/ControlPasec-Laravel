@@ -7,9 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRegisterRequest;
 use App\Http\Responses\UserRegisteredResponse;
 use App\Models\User\Role;
-use App\Support\Avatar;
+use App\Repositories\UserRepository;
 use App\User;
-use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
@@ -23,16 +22,18 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    public function store(UserRegisterRequest $request)
+    /**
+     * @param UserRegisterRequest $request
+     * @return UserRegisteredResponse
+     */
+    public function store(UserRegisterRequest $request): UserRegisteredResponse
     {
-        $role = Role::find($request->role_id);
+        $role = Role::query()->find($request->role_id);
         if ($role === null || $role->isNotAllowedForSignUp()) {
-            return new UserRegisteredResponse();
+            return new UserRegisteredResponse(false, 'Роль недоступна для регистрации');
         }
 
-        $user = $this->create($request->toArray(), $role);
-
-        event(new UserRegistered($user));
+        event(new UserRegistered($this->create($request->toArray(), $role)));
 
         return new UserRegisteredResponse(true);
     }
@@ -44,21 +45,8 @@ class RegisterController extends Controller
      * @param Role $role
      * @return User
      */
-    public function create(array $data, Role $role): User
+    private function create(array $data, Role $role): User
     {
-        $user = User::create([
-            'name' => $data['name'],
-            'patronymic' => $data['patronymic'],
-            'family' => $data['family'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'is_active' => false, // @business-logic
-            'position' => $role->title,
-            'avatar_url' => Avatar::random(),
-        ]);
-
-        $user->roles()->attach($role->id);
-
-        return $user;
+        return UserRepository::create($data)->attachRole($role);
     }
 }

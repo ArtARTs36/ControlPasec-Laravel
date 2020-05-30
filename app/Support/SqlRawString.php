@@ -16,12 +16,21 @@ class SqlRawString
         return DB::raw("LOWER({$field})");
     }
 
+    /**
+     * @param $value
+     * @return Expression
+     */
     public static function lowerValue($value): Expression
     {
         return DB::raw("LOWER('{$value}')");
     }
 
-    public static function byLowerAndLike(string $field, $value)
+    /**
+     * @param string $field
+     * @param $value
+     * @return array
+     */
+    public static function byLowerAndLike(string $field, $value): array
     {
         return [
             static::lower($field),
@@ -30,7 +39,11 @@ class SqlRawString
         ];
     }
 
-    public static function prepareValueToLike($value)
+    /**
+     * @param $value
+     * @return string
+     */
+    public static function prepareValueToLike($value): string
     {
         return '%'. mb_strtolower($value) . '%';
     }

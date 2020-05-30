@@ -17,7 +17,7 @@ class VocabBankSeeder extends CommonSeeder
     public function run()
     {
         $this->fillModel(VocabBank::class, 'data_vocab_bank');
-        if (env('ENV_TYPE') == 'dev') {
+        if (env('APP_ENV') == 'local') {
             $this->randomData(100);
         }
     }

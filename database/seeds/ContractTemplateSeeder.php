@@ -13,7 +13,7 @@ class ContractTemplateSeeder extends CommonSeeder
     {
         $this->fillModel(ContractTemplate::class, 'data_contract_template');
 
-        if (env('ENV_TYPE') == 'dev') {
+        if (env('APP_ENV') == 'local') {
             $this->randomData(35);
         }
     }

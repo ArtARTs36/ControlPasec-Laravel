@@ -7,7 +7,7 @@ class ContragentGroupSeeder extends CommonSeeder
 {
     public function run()
     {
-        if (env('ENV_TYPE') == 'dev') {
+        if (env('APP_ENV') == 'local') {
             $this->randomData(20);
         }
     }

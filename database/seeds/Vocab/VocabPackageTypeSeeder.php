@@ -7,7 +7,7 @@ class VocabPackageTypeSeeder extends CommonSeeder
     public function run()
     {
         $this->fillModel(VocabPackageType::class, 'data_vocab_package_types');
-        if (env('ENV_TYPE') == 'dev') {
+        if (env('APP_ENV') == 'local') {
             $this->randomData(100);
         }
     }

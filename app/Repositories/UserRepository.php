@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Support\Avatar;
 use App\Support\SqlRawString;
 use App\User;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -66,6 +67,7 @@ class UserRepository
             [
                 'is_active' => false,
                 'password' => Hash::make($data['password']),
+                'avatar_url' => Avatar::random(),
             ]
         ));
     }

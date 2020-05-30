@@ -12,7 +12,7 @@ class DialogSeeder extends CommonSeeder
     {
         $this->users = User::all();
 
-        if (env('ENV_TYPE') === 'dev') {
+        if (env('APP_ENV') === 'local') {
             $this->randomData(100);
         }
     }
