@@ -14,7 +14,7 @@ class ContragentSeeder extends CommonSeeder
     {
         $this->fillModel(Contragent::class, 'data_contragent');
 
-        if (env('ENV_TYPE') == 'prod') {
+        if (env('ENV_TYPE') == 'production') {
             $this->seedExternalAgents();
         } else {
             $this->randomData(100);
