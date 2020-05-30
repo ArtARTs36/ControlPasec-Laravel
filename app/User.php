@@ -75,6 +75,7 @@ class User extends Authenticatable implements JWTSubject
         self::FIELD_IS_ACTIVE,
         self::FIELD_GENDER,
         self::FIELD_AVATAR_URL,
+        self::FIELD_POSITION,
     ];
 
     /**

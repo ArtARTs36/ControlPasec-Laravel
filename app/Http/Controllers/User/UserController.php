@@ -70,7 +70,7 @@ class UserController extends Controller
 
     public function update(UserRequest $request, User $user): ActionResponse
     {
-        return new ActionResponse($user->update($request->all()), new UserResource($user));
+        return new ActionResponse($this->updateModel($request, $user), new UserResource($user));
     }
 
     public function store(UserRequest $request): ActionResponse
