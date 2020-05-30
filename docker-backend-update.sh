@@ -4,6 +4,6 @@
 
 git pull
 echo "
-composer dump-autoload
+composer dump-autoload --optimize
 php artisan migrate
 " | docker exec -i Laravel-php-fpm bash
