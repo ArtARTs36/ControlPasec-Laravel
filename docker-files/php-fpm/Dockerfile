@@ -4,6 +4,8 @@ WORKDIR "/"
 # Fix debconf warnings upon build
 ARG DEBIAN_FRONTEND=noninteractive
 
+RUN timedatectl set-timezone Europe/Moscow
+
 # Install selected extensions and other stuff
 RUN apt-get update \
     && apt-get -y --no-install-recommends install  php7.3-pgsql php7.3-gd php-redis \
