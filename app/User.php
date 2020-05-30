@@ -179,7 +179,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function getAvatarUrl(): ?string
     {
-        return request()->getHttpHost() . $this->avatar_url;
+        return request()->getSchemeAndHttpHost() . $this->avatar_url;
     }
 
     public function getDays(): int
