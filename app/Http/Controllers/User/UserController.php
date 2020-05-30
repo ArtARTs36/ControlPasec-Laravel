@@ -59,31 +59,35 @@ class UserController extends Controller
      */
     public function index(int $page = 1): LengthAwarePaginator
     {
-        return User::latest('created_at')
-            ->paginate(10, ['*'], 'UsersList', $page);
+        return UserRepository::paginate($page);
     }
 
+    /**
+     * @param User $user
+     * @return UserResource
+     */
     public function show(User $user): UserResource
     {
         return new UserResource($user);
     }
 
+    /**
+     * @param UserRequest $request
+     * @param User $user
+     * @return ActionResponse
+     */
     public function update(UserRequest $request, User $user): ActionResponse
     {
         return new ActionResponse($this->updateModel($request, $user), new UserResource($user));
     }
 
+    /**
+     * @param UserRequest $request
+     * @return ActionResponse
+     */
     public function store(UserRequest $request): ActionResponse
     {
-        $user = User::create(array_merge(
-            $request->toArray(),
-            [
-                'is_active' => false,
-                'password' => Hash::make($request->password),
-            ]
-        ));
-
-        return new ActionResponse(true, $user);
+        return new ActionResponse(true, UserRepository::create($request->toArray()));
     }
 
     /**
@@ -105,9 +109,7 @@ class UserController extends Controller
      */
     public function attachRole(User $user, Role $role): ActionResponse
     {
-        $user->roles()->attach($role->id);
-
-        return new ActionResponse(true, new UserResource($user));
+        return new ActionResponse(true, new UserResource($user->attachRole($role)));
     }
 
     /**

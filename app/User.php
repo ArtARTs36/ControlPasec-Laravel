@@ -251,4 +251,11 @@ class User extends Authenticatable implements JWTSubject
         return $this->recievedDialogMessages()
             ->where(DialogMessage::FIELD_IS_READ, false);
     }
+
+    public function attachRole(Role $role): self
+    {
+        $this->roles()->attach($role->id);
+
+        return $this;
+    }
 }
