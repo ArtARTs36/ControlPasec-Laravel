@@ -17,6 +17,10 @@ docker-compose up -d
 echo "
 cd ControlPasec-Laravel
 composer install
+chmod -R 777 public/documents
+chmod -R 777 storage
+mkdir resources/views/tmp_files_names
+chmod -R 777 resources/views/tmp_files_names
 php artisan key:generate
 php artisan project-install
 git clone https://github.com/ArtARTs36/control-pasec-vue/ frontend

@@ -33,8 +33,10 @@ class ProjectInstallCommand extends Command
 
         $this->call(CompileFontFromDompdfCommand::class);
 
+        Artisan::call('jwt:secret');
         Artisan::call('migrate');
         Artisan::call('db:seed');
+        Artisan::call('cache:clear');
 
         return true;
     }
