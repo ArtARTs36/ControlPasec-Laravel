@@ -9,6 +9,7 @@ use App\Http\Responses\UserRegisteredResponse;
 use App\Models\User\Role;
 use App\Repositories\UserRepository;
 use App\User;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -33,7 +34,7 @@ class RegisterController extends Controller
             return new UserRegisteredResponse(false, 'Роль недоступна для регистрации');
         }
 
-        event(new UserRegistered($this->create($request->toArray(), $role)));
+        event(new UserRegistered($this->create($request, $role)));
 
         return new UserRegisteredResponse(true);
     }
@@ -41,12 +42,12 @@ class RegisterController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param array $data
+     * @param Request $request
      * @param Role $role
      * @return User
      */
-    private function create(array $data, Role $role): User
+    private function create(Request $request, Role $role): User
     {
-        return UserRepository::create($data)->attachRole($role);
+        return UserRepository::create($request->toArray())->attachRole($role);
     }
 }
