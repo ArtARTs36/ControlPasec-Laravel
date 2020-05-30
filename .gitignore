@@ -23,5 +23,6 @@ install.lock
 /frontend/*
 /app-versions/installed_versions.json
 /packages
+/docker-files/postgres
 /docker-files/postgres/
 /docker-files/postgres/*

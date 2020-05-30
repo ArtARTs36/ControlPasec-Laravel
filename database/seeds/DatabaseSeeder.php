@@ -2,8 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
-require_once 'packages/dba/controltime/database/seeds/WorkConditionSeeder.php';
-require_once 'packages/dba/controltime/database/seeds/TimeSeeder.php';
+require_once 'vendor/dba/controltime/database/seeds/WorkConditionSeeder.php';
+require_once 'vendor/dba/controltime/database/seeds/TimeSeeder.php';
 
 class DatabaseSeeder extends Seeder
 {
