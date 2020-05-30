@@ -21,7 +21,8 @@ class ArchiveResource extends JsonResource
         return [
             'title' => $this->getName(),
             'timestamp' => $this->getTimeStamp(),
-            'download_url' => $request->getSchemeAndHttpHost() . DIRECTORY_SEPARATOR . implode(DIRECTORY_SEPARATOR, [
+            'download_url' => implode(DIRECTORY_SEPARATOR, [
+                $request->getSchemeAndHttpHost(),
                 'api',
                 'archives',
                 $this->getTimeStamp(),

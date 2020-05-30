@@ -17,6 +17,8 @@ RUN apt-get update \
 # Install npm
 RUN apt-get update && apt-get install -y npm
 
+RUN apt-get install zip
+
 RUN apt-get update \
     && apt-get -y install curl dirmngr apt-transport-https lsb-release ca-certificates \
     && curl -sL https://deb.nodesource.com/setup_12.x | bash -
