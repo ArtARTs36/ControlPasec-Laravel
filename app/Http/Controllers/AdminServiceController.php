@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\AdminService\AdminServiceAccess;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class AdminServiceController extends Controller
 {
@@ -19,8 +19,7 @@ class AdminServiceController extends Controller
             abort(403);
         }
 
-        /** @todo костыль */
-        session()->push('user_id', $user->id);
+        AdminServiceAccess::give($request->getClientIp());
 
         return $this->answer(
             $request->getSchemeAndHttpHost() . '/horizon',

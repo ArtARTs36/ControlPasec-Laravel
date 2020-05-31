@@ -2,10 +2,9 @@
 
 namespace App\Providers;
 
-use App\Models\User\Role;
+use App\Services\AdminService\AdminServiceAccess;
 use App\User;
 use Illuminate\Support\Facades\Gate;
-use Laravel\Horizon\Horizon;
 use Laravel\Horizon\HorizonApplicationServiceProvider;
 
 class HorizonServiceProvider extends HorizonApplicationServiceProvider
@@ -36,25 +35,7 @@ class HorizonServiceProvider extends HorizonApplicationServiceProvider
     protected function gate()
     {
         Gate::define('viewHorizon', function (User $user = null) {
-            $user = $this->getUser();
-            if ($user === null) {
-                return null;
-            }
-
-            return $user->hasRole(Role::ADMIN);
+            return AdminServiceAccess::is(request()->getClientIp());
         });
-    }
-
-    /**
-     * @todo костыль, перейти на session driver
-     */
-    private function getUser(): ?User
-    {
-        $userId = session('user_id');
-        if (!$userId) {
-            return null;
-        }
-
-        return User::query()->find($userId[0]);
     }
 }
