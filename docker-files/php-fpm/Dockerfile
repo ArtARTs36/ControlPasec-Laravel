@@ -4,7 +4,13 @@ WORKDIR "/"
 # Fix debconf warnings upon build
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN timedatectl set-timezone Europe/Moscow
+# Install Supervisor
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends \
+    supervisor
+
+COPY ./supervisord.conf /etc/supervisor
+COPY ./supervisor-apps/* /etc/supervisor/conf.d
 
 # Install selected extensions and other stuff
 RUN apt-get update \
@@ -40,3 +46,5 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php composer-setup.php \
     && rm composer-setup.php \
     && mv composer.phar /usr/local/bin/composer
+
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]

@@ -7,7 +7,6 @@ use App\Http\Requests\Document\GenerateManyTypesRequest;
 use App\Http\Resource\ArchiveResource;
 use App\Http\Resource\DocumentResource;
 use App\Interfaces\ModelWithDocuments;
-use App\Jobs\DocumentBuildJob;
 use App\Models\Document\DocumentType;
 use App\Models\Supply\OneTForm;
 use App\Models\Supply\ProductTransportWaybill;
@@ -16,7 +15,6 @@ use App\Models\Supply\Supply;
 use App\Repositories\DocumentRepository;
 use App\ScoreForPayment;
 use App\Service\Document\DocumentService;
-use App\Services\Document\DocumentBuilder;
 use App\Services\Document\DocumentCreator;
 use App\Support\Archiver\Zipper;
 

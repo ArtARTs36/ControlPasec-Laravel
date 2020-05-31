@@ -4,6 +4,10 @@
 
 git pull
 echo "
+cd ControlPasec-Laravel
+composer install --no-progress
 composer dump-autoload --optimize
 php artisan migrate --force
+php artisan config:clear
+php artisan cache:clear
 " | docker exec -i Laravel-php-fpm bash

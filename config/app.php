@@ -181,6 +181,11 @@ return [
          * ControlTime Provider
          */
         Dba\ControlTime\Providers\ControlTimeProvider::class,
+
+        /*
+         * Horizon Queue Provider
+         */
+        App\Providers\HorizonServiceProvider::class,
     ],
 
     /*

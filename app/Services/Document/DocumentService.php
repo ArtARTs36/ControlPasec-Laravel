@@ -96,8 +96,7 @@ class DocumentService
             $document->setStatusInQueue();
 
             DocumentBuildJob::dispatch($document)
-                ->onConnection('database')
-                ->onQueue('document');
+                ->onConnection('redis');
         }
 
         return $document->getFullPath();

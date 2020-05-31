@@ -37,7 +37,8 @@
 - `php artisan profiler:client`
 
 ## Запуск очередей
-- `php artisan queue:work database --queue=document`
+- `php artisan queue:work redis --queue=document`
+- `php artisan horizon`
 
 ## Обновить БД
 - `php artisan db:wipe && php artisan migrate && php artisan db:seed`
@@ -65,3 +66,5 @@
 - `docker stop $(docker ps -a -q)`
 - `docker rm $(docker ps -a -q) --force`
 
+## Заплатка для composer
+- `COMPOSER_MEMORY_LIMIT=-1 {command}`
