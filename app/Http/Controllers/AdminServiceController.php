@@ -2,36 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\AdminService\AdminServiceAccess;
+use App\Http\Resource\AdminService\AdminServiceRedirectResource;
+use App\Models\AdminService;
+use App\Models\User\Role;
 use Illuminate\Http\Request;
 
 class AdminServiceController extends Controller
 {
     /**
-     * @todo сделать модель AdminService
+     * @param string $name
      * @param Request $request
-     * @return array
+     * @return AdminServiceRedirectResource
      */
-    public function toHorizon(Request $request)
+    public function redirect(string $name, Request $request): AdminServiceRedirectResource
     {
-        $user = auth()->user();
-        if ($user === null) {
+        if (!($user = auth()->user()) || !$user->hasRole(Role::ADMIN)) {
             abort(403);
         }
 
-        AdminServiceAccess::give($request->getClientIp());
+        /** @var AdminService $service */
+        $service = AdminService::query()->where(AdminService::FIELD_NAME, $name)->first();
+        $service->access()->give($request->getClientIp());
 
-        return $this->answer(
-            $request->getSchemeAndHttpHost() . '/horizon',
-            'horizon'
-        );
-    }
-
-    public function answer(string $url, string $name): array
-    {
-        return [
-            'service_url' => $url,
-            'service_name' => $name,
-        ];
+        return new AdminServiceRedirectResource($service);
     }
 }

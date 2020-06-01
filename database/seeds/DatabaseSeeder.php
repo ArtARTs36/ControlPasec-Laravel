@@ -43,6 +43,8 @@ class DatabaseSeeder extends Seeder
         $this->call(EmployeeSeeder::class);
         $this->call(WorkConditionSeeder::class);
         $this->call(TimeSeeder::class);
+
+        $this->call(AdminServiceSeeder::class);
     }
 
     private function vocabs(): void

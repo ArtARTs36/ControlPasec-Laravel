@@ -15,7 +15,7 @@ class BankRequisitesSeeder extends CommonSeeder
     {
         // todo
 
-        if (env('APP_ENV')) {
+        if (env('APP_ENV') === 'local') {
             $this->randomData();
         }
     }
