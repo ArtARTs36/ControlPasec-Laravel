@@ -16,6 +16,7 @@
         "ext-json": "*",
         "ext-simplexml": "*",
         "alhimik1986/php-excel-templator": "^1.0",
+        "creatortsv/eloquent-pipelines-modifier": "^1.0",
         "darkaonline/l5-swagger": "^6.0",
         "dba/controltime": "dev-master",
         "dompdf/dompdf": "^0.8.4",
