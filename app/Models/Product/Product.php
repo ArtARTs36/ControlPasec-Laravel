@@ -6,6 +6,7 @@ use App\Models\Vocab\SizeOfUnit;
 use App\Models\Vocab\VocabCurrency;
 use App\Models\Vocab\VocabGosStandard;
 use App\Models\Vocab\VocabPackageType;
+use Creatortsv\EloquentPipelinesModifier\WithModifier;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -34,6 +35,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Product extends Model
 {
+    use WithModifier;
+
     public const RELATION_CURRENCY = 'currency';
     public const RELATION_SIZE_OF_UNIT = 'sizeOfUnit';
     public const RELATION_GOS_STANDARD = 'gosStandard';

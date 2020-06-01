@@ -5,9 +5,11 @@ use Creatortsv\EloquentPipelinesModifier\Modifiers\Filter;
 use Creatortsv\EloquentPipelinesModifier\Modifiers\Select;
 use Creatortsv\EloquentPipelinesModifier\Modifiers\Sort;
 use Creatortsv\EloquentPipelinesModifier\Modifiers\With;
+use App\Support\Modifiers\Paginate;
 
 return [
     'modifiers' => [
+        Paginate::class,
         Count::class,
         Select::class,
         Filter::class,
