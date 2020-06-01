@@ -14,15 +14,16 @@ class SupplyRepository
      * @param int $page
      * @return LengthAwarePaginator
      */
-    public static function paginate(int $page = 1): LengthAwarePaginator
+    public static function paginate(int $page = null): LengthAwarePaginator
     {
-        return Supply::query()
+        return Supply::modify()
             ->with([
                 Supply::RELATION_CUSTOMER,
                 Supply::RELATION_PRODUCTS => function (HasMany $query) {
                     return $query->with(SupplyProduct::RELATION_QUANTITY_UNIT);
                 }
-            ])->paginate(10, ['*'], 'SuppliesList', $page);
+            ])
+            ->paginate(null, ['*'], null, $page);
     }
 
     /**

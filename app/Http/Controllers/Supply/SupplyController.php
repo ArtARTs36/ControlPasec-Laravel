@@ -25,12 +25,11 @@ class SupplyController extends Controller
     /**
      * Получить список поставок
      *
-     * @param int $page
      * @return AnonymousResourceCollection
      */
-    public function index(int $page = 1): AnonymousResourceCollection
+    public function index(): AnonymousResourceCollection
     {
-        return SupplyResource::collection(SupplyRepository::paginate($page));
+        return SupplyResource::collection(SupplyRepository::paginate());
     }
 
     /**
