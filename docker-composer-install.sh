@@ -3,6 +3,6 @@
 # sh docker-composer-install.sh
 
 echo "
-cd ControPasec-Laravel
+cd ControlPasec-Laravel
 composer install
 " | docker exec -i Laravel-php-fpm bash
