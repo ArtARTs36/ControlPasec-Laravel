@@ -37,11 +37,17 @@ class TimeReport extends Model
         });
     }
 
+    /**
+     * @return BelongsTo
+     */
     public function employee(): BelongsTo
     {
         return $this->belongsTo(Employee::class);
     }
 
+    /**
+     * @return BelongsTo
+     */
     public function document(): BelongsTo
     {
         return $this->belongsTo(Document::class);

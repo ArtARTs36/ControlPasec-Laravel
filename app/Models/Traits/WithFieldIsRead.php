@@ -11,16 +11,16 @@ trait WithFieldIsRead
 
     public function isNotRead(): bool
     {
-        return $this->is_read === false;
+        return ! $this->isRead();
     }
 
-    public function read(): self
+    public function read(bool $save = true): self
     {
         if ($this->isNotRead()) {
             $this->is_read = true;
         }
 
-        $this->save();
+        $save && $this->save();
 
         return $this;
     }

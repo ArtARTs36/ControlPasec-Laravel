@@ -2,6 +2,7 @@
 
 namespace App\Models\News;
 
+use Creatortsv\EloquentPipelinesModifier\WithModifier;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Query\Builder;
@@ -21,6 +22,8 @@ use Illuminate\Database\Query\Builder;
  */
 class ExternalNews extends Model
 {
+    use WithModifier;
+
     public const RELATION_SOURCE = 'source';
 
     protected $fillable = [

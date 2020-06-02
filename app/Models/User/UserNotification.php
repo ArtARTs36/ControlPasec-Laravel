@@ -2,6 +2,7 @@
 
 namespace App\Models\User;
 
+use App\Models\Traits\WithFieldIsRead;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -21,6 +22,8 @@ use Illuminate\Database\Query\Builder;
  */
 class UserNotification extends Model
 {
+    use WithFieldIsRead;
+
     public const RELATION_TYPE = 'type';
 
     public const FIELD_IS_READ = 'is_read';
@@ -34,24 +37,5 @@ class UserNotification extends Model
     public function type(): BelongsTo
     {
         return $this->belongsTo(UserNotificationType::class);
-    }
-
-    public function isRead(): bool
-    {
-        return $this->is_read === true;
-    }
-
-    public function isNotRead(): bool
-    {
-        return $this->is_read === false;
-    }
-
-    public function read(): self
-    {
-        $this->is_read = true;
-
-        $this->save();
-
-        return $this;
     }
 }

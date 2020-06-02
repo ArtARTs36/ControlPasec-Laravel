@@ -13,9 +13,7 @@ use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
-use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\Response as HttpResponse;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Tymon\JWTAuth\JWTAuth;
 
 class AuthController extends Controller
@@ -209,7 +207,7 @@ class AuthController extends Controller
      */
     public function refreshToken(Request $request)
     {
-        $token = Auth::guard('api')->refresh();
+        $token = $this->guard()->refresh();
 
         $token_ttl = (new Jwt($token))->getTokenTTL();
 

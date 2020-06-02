@@ -13,7 +13,8 @@ class ExternalNewsRepository
      */
     public static function paginate(int $page = 1): LengthAwarePaginator
     {
-        return ExternalNews::with(ExternalNews::RELATION_SOURCE)
+        return ExternalNews::modify()
+            ->with(ExternalNews::RELATION_SOURCE)
             ->latest('id')
             ->paginate(10, ['*'], 'ExternalNewsList', $page);
     }

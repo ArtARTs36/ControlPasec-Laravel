@@ -5,6 +5,7 @@ namespace App\Models\Dialog;
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
 
@@ -37,16 +38,25 @@ class Dialog extends Model
         });
     }
 
-    public function oneUser()
+    /**
+     * @return BelongsTo
+     */
+    public function oneUser(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function twoUser()
+    /**
+     * @return BelongsTo
+     */
+    public function twoUser(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * @return User
+     */
     public function getInterUser(): User
     {
         $currentUserId = auth()->user()->id;
@@ -57,26 +67,48 @@ class Dialog extends Model
         return $this->oneUser;
     }
 
-    public function isTookPart(User $user)
+    /**
+     * Учавствует ли $user в диалоге
+     *
+     * @param User $user
+     * @return bool
+     */
+    public function isTookPart(User $user): bool
     {
         return $this->one_user_id === $user->id || $this->two_user_id === $user->id;
     }
 
+    /**
+     * Учавствует ли авторизованный пользователь в диалоге
+     *
+     * @return bool
+     */
     public function isTookPartCurrentUser()
     {
         return $this->isTookPart(auth()->user());
     }
 
+    /**
+     * Не учавствует ли авторизованный пользователь в диалоге
+     *
+     * @return bool
+     */
     public function isNotTookPartCurrentUser()
     {
         return ! $this->isTookPart(auth()->user());
     }
 
-    public function messages()
+    /**
+     * @return HasMany
+     */
+    public function messages(): HasMany
     {
         return $this->hasMany(DialogMessage::class);
     }
 
+    /**
+     * @return DialogMessage
+     */
     public function getLastMessage(): DialogMessage
     {
         $this->loadMissing('messages');
@@ -84,13 +116,38 @@ class Dialog extends Model
         return $this->messages->last();
     }
 
+    /**
+     * Скрыть диалог для текущего пользователя
+     *
+     * @return $this
+     */
     public function hideForCurrentUser(): self
     {
-        $currentUserId = auth()->user()->id;
+        return $this->hide(auth()->user());
+    }
 
-        if ($this->one_user_id === $currentUserId) {
+    /**
+     * Скрыть диалог для пользователя
+     *
+     * @param User $user
+     * @return Dialog
+     */
+    public function hide(User $user): self
+    {
+        return $this->hideByUserId($user->id);
+    }
+
+    /**
+     * Скрыть диалог для пользователя с $id
+     *
+     * @param int $id
+     * @return $this
+     */
+    public function hideByUserId(int $id): self
+    {
+        if ($this->one_user_id === $id) {
             $this->is_one_user_hidden = true;
-        } elseif ($this->two_user_id === $currentUserId) {
+        } elseif ($this->two_user_id === $id) {
             $this->is_two_user_hidden = true;
         }
 
