@@ -39,12 +39,14 @@ return [
             'driver' => 'stack',
             'channels' => ['single'],
             'ignore_exceptions' => false,
+            'formatter' => \Monolog\Formatter\JsonFormatter::class,
         ],
 
         'single' => [
             'driver' => 'single',
             'path' => storage_path('logs/laravel.log'),
             'level' => 'debug',
+            'formatter' => \Monolog\Formatter\JsonFormatter::class,
         ],
 
         'daily' => [
@@ -52,6 +54,7 @@ return [
             'path' => storage_path('logs/laravel.log'),
             'level' => 'debug',
             'days' => 14,
+            'formatter' => \Monolog\Formatter\JsonFormatter::class,
         ],
 
         'slack' => [
@@ -60,6 +63,7 @@ return [
             'username' => 'Laravel Log',
             'emoji' => ':boom:',
             'level' => 'critical',
+            'formatter' => \Monolog\Formatter\JsonFormatter::class,
         ],
 
         'papertrail' => [
@@ -69,6 +73,7 @@ return [
             'handler_with' => [
                 'host' => env('PAPERTRAIL_URL'),
                 'port' => env('PAPERTRAIL_PORT'),
+                'formatter' => \Monolog\Formatter\JsonFormatter::class,
             ],
         ],
 
@@ -84,11 +89,13 @@ return [
         'syslog' => [
             'driver' => 'syslog',
             'level' => 'debug',
+            'formatter' => \Monolog\Formatter\JsonFormatter::class,
         ],
 
         'errorlog' => [
             'driver' => 'errorlog',
             'level' => 'debug',
+            'formatter' => \Monolog\Formatter\JsonFormatter::class,
         ],
 
         'null' => [
@@ -98,6 +105,7 @@ return [
 
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
+            'formatter' => \Monolog\Formatter\JsonFormatter::class,
         ],
     ],
 
