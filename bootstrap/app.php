@@ -41,6 +41,21 @@ $app->singleton(
     App\Exceptions\Handler::class
 );
 
+$app->singleton(
+    \App\Support\Log\LogRepositoryInterface::class,
+    \App\Support\Log\LogRepository::class
+);
+
+$app->singleton(
+    \App\Support\Log\LogReaderInterface::class,
+    \App\Support\Log\LogReader::class
+);
+
+$app->singleton(
+    \App\Support\Log\LogService::class,
+    \App\Support\Log\LogService::class
+);
+
 /*
 |--------------------------------------------------------------------------
 | Return The Application
