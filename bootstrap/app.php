@@ -52,8 +52,11 @@ $app->singleton(
 );
 
 $app->singleton(
-    \App\Support\Log\LogService::class,
     \App\Support\Log\LogService::class
+);
+$app->singleton(
+    \App\Senders\Push\PusherInterface::class,
+    \App\Senders\Push\PushAllSender::class
 );
 
 /*

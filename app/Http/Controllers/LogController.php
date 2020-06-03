@@ -51,7 +51,7 @@ class LogController extends Controller
 
     /**
      * @param LogRepositoryInterface $repository
-     * @param Request $request
+     * @param LogSearchRequest $request
      * @return AnonymousResourceCollection
      */
     public function find(LogRepositoryInterface $repository, LogSearchRequest $request): AnonymousResourceCollection

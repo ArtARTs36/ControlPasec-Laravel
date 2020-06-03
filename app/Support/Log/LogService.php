@@ -54,4 +54,9 @@ class LogService
             'last_page' => (int) ($this->count() / static::DEFAULT_COUNT),
         ];
     }
+
+    public function notify(): void
+    {
+
+    }
 }

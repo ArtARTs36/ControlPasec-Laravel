@@ -4,7 +4,7 @@ namespace App\Listeners;
 
 use App\Events\TechSupportReportCreated;
 use App\Models\User\UserNotificationType;
-use App\Senders\PushAllSender;
+use App\Senders\Push\Push;
 use App\Support\UserNotificator;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -20,7 +20,7 @@ class TechSupportReportCreatedListener implements ShouldQueue
             'report' => $event->report
         ])->render();
 
-        (new PushAllSender())->push('Тех. поддержка: '. $event->report->id, $message);
+        (new Push('Тех. поддержка: '. $event->report->id, $message))->send();
 
         UserNotificator::notify(UserNotificationType::TECH_SUPPORT_REPORT_CREATED, $message, $event->report);
     }

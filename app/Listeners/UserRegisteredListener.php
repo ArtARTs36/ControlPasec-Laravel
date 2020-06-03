@@ -3,13 +3,10 @@
 namespace App\Listeners;
 
 use App\Events\UserRegistered;
-use App\Models\User\UserNotification;
 use App\Models\User\UserNotificationType;
-use App\Senders\PushAllSender;
+use App\Senders\Push\Push;
 use App\Support\UserNotificator;
-use App\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Database\Eloquent\Collection;
 
 class UserRegisteredListener implements ShouldQueue
 {
@@ -26,7 +23,7 @@ class UserRegisteredListener implements ShouldQueue
             'user' => $event->user
         ])->render();
 
-        (new PushAllSender())->push('Заявка на регистрацию', $message);
+        (new Push('Заявка на регистрацию', $message))->send();
 
         UserNotificator::notify(UserNotificationType::USER_REGISTERED, $message, $event->user);
     }

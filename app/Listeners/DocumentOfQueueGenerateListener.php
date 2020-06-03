@@ -3,9 +3,8 @@
 namespace App\Listeners;
 
 use App\Events\DocumentOfQueueGenerated;
-use App\Events\LandingFeedBackCreated;
 use App\Models\User\UserNotificationType;
-use App\Senders\PushAllSender;
+use App\Senders\Push\Push;
 use App\Support\UserNotificator;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -21,7 +20,7 @@ class DocumentOfQueueGenerateListener implements ShouldQueue
             'document' => $event->document,
         ])->render();
 
-        (new PushAllSender())->push('Документ '. $event->document->title . ' готов', $message);
+        (new Push('Документ '. $event->document->title . ' готов', $message))->send();
 
         UserNotificator::notify(UserNotificationType::DOCUMENT_OF_QUEUE_GENERATED, $message, $event->document);
     }
