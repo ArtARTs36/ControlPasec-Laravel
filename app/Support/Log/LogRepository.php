@@ -126,7 +126,7 @@ class LogRepository implements LogRepositoryInterface
      */
     public function findByWord(string $query): Collection
     {
-        return $this->find(function ($value) use ($query) {
+        return $this->findByOneCoincidence(function ($value) use ($query) {
             return is_string($value) && preg_match("/{$query}/i", $value);
         });
     }
@@ -141,15 +141,35 @@ class LogRepository implements LogRepositoryInterface
     {
         $logs = collect();
 
-        foreach ($this->reader->getFiles() as $file) {
-            foreach ($this->reader->read($file) as $log) {
-                array_walk_recursive($log, function ($value) use ($logs, $log, $callback) {
-                    if ($callback($value) === true) {
-                        $logs->push($log);
-                    }
-                });
+        $this->mapByAll(function ($value, $log) use ($callback, $logs) {
+            if ($callback($value) === true) {
+                $logs->push($log);
             }
-        }
+        });
+
+        return $logs;
+    }
+
+    /**
+     * Поиск по одному совпадению в логе
+     *
+     * @param \Closure $callback
+     * @return Collection
+     */
+    public function findByOneCoincidence(\Closure $callback): Collection
+    {
+        $logs = collect();
+        $logsIds = [];
+
+        $this->mapByAll(function ($value, $log) use ($callback, $logs, &$logsIds) {
+            $logId = spl_object_id($log);
+
+            if (!isset($logsIds[$logId]) && $callback($value, $log) === true) {
+                $logs->push($log);
+
+                $logsIds[$logId] = true;
+            }
+        });
 
         return $logs;
     }
@@ -165,5 +185,19 @@ class LogRepository implements LogRepositoryInterface
         }
 
         return $count;
+    }
+
+    /**
+     * @param \Closure $callback
+     */
+    private function mapByAll(\Closure $callback): void
+    {
+        foreach ($this->reader->getFiles() as $file) {
+            foreach ($this->reader->read($file) as $log) {
+                array_walk_recursive($log, function ($value) use ($log, $callback) {
+                    $callback($value, $log);
+                });
+            }
+        }
     }
 }

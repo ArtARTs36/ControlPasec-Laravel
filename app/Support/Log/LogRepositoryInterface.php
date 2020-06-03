@@ -59,6 +59,12 @@ interface LogRepositoryInterface
     public function find(\Closure $callback): Collection;
 
     /**
+     * @param \Closure $callback
+     * @return Collection
+     */
+    public function findByOneCoincidence(\Closure $callback): Collection;
+
+    /**
      * @return int
      */
     public function count(): int;
