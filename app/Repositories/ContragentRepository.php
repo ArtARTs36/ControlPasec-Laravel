@@ -4,14 +4,26 @@ namespace App\Repositories;
 
 use App\Models\Contragent;
 
+/**
+ * Class ContragentRepository
+ * @package App\Repositories
+ */
 class ContragentRepository
 {
-    public static function findByInn($inn)
+    /**
+     * @param $inn
+     * @return Contragent|null
+     */
+    public static function findByInn($inn): ?Contragent
     {
-        return Contragent::query()->where('inn', $inn)->first();
+        return Contragent::query()->where(Contragent::FIELD_INN, $inn)->first();
     }
 
-    public static function findByInnOrOgrn($innOrOrgn)
+    /**
+     * @param $innOrOrgn
+     * @return Contragent|null
+     */
+    public static function findByInnOrOgrn($innOrOrgn): ?Contragent
     {
         return Contragent::query()
             ->where(Contragent::FIELD_INN, $innOrOrgn)
