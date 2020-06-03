@@ -4,8 +4,16 @@ namespace App\Support\Log;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * Class LogResource
+ * @package App\Support\Log
+ */
 class LogResource extends JsonResource
 {
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @return array
+     */
     public function toArray($request): array
     {
         return [
@@ -15,8 +23,11 @@ class LogResource extends JsonResource
         ];
     }
 
-    private function prepareMessage()
+    /**
+     * @return array
+     */
+    private function prepareMessage(): array
     {
-        return $this->resource->message = explode("\n", $this->resource->message);
+        return explode("\n", $this->resource->message);
     }
 }

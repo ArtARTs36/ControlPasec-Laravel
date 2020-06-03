@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Support\Log\LogRepositoryInterface;
+use App\Support\Log\LogResource;
+use App\Support\Log\LogSearchRequest;
 use App\Support\Log\LogService;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Collection;
 
 /**
@@ -32,7 +35,7 @@ class LogController extends Controller
      * @param int $page
      * @return array
      */
-    public function index(LogRepositoryInterface $repository, $page = 1)
+    public function index(LogRepositoryInterface $repository, int $page = 1)
     {
         return $this->service->paginate($repository->page(LogService::DEFAULT_COUNT, $page), $page);
     }
@@ -49,10 +52,10 @@ class LogController extends Controller
     /**
      * @param LogRepositoryInterface $repository
      * @param Request $request
-     * @return Collection
+     * @return AnonymousResourceCollection
      */
-    public function find(LogRepositoryInterface $repository, Request $request): Collection
+    public function find(LogRepositoryInterface $repository, LogSearchRequest $request): AnonymousResourceCollection
     {
-        return $repository->find($request->get('query'));
+        return LogResource::collection($repository->findByWord($request->get('query')));
     }
 }
