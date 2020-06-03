@@ -89,15 +89,16 @@ class LogRepository implements LogRepositoryInterface
      */
     public function page(int $count, int $page, int $sort = self::SORT_DESC): Collection
     {
+        $sortParams = [SORT_REGULAR, ($sort === static::SORT_DESC ? true : false)];
         $offset = $count * ($page - 1);
         $counter = 0;
         $logs = collect();
-        $files = $this->reader->getFiles()->sortKeys(SORT_REGULAR, $sort === static::SORT_DESC ? true : false);
+        $files = $this->reader->getFiles()->sortKeys(...$sortParams);
 
         $i = 0;
 
         foreach ($files as $file) {
-            foreach ($this->reader->read($file)->sortKeysDesc() as $log) {
+            foreach ($this->reader->read($file)->sortKeys(...$sortParams) as $log) {
                 if ($offset > $i++) {
                     continue;
                 }
