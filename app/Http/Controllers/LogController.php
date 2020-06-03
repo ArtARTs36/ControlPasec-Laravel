@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Support\Log\LogRepositoryInterface;
 use App\Support\Log\LogResource;
+use App\Support\Log\LogSearchRequest;
 use App\Support\Log\LogService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -53,7 +54,7 @@ class LogController extends Controller
      * @param Request $request
      * @return AnonymousResourceCollection
      */
-    public function find(LogRepositoryInterface $repository, Request $request): AnonymousResourceCollection
+    public function find(LogRepositoryInterface $repository, LogSearchRequest $request): AnonymousResourceCollection
     {
         return LogResource::collection($repository->findByWord($request->get('query')));
     }
