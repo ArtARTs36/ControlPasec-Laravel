@@ -5,8 +5,13 @@ namespace App\Support\Log;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 
+/**
+ * Class LogRepository
+ * @package App\Support\Log
+ */
 class LogRepository implements LogRepositoryInterface
 {
+    /** @var LogReaderInterface  */
     private $reader;
 
     /**
@@ -21,31 +26,73 @@ class LogRepository implements LogRepositoryInterface
     /**
      * @return Collection
      */
+    public function all(): Collection
+    {
+        $logs = collect();
+
+        foreach ($this->reader->getFiles() as $file) {
+            foreach ($this->reader->read($file) as $log) {
+                $logs->push($log);
+            }
+        }
+
+        return $logs;
+    }
+
+    /**
+     * @return Collection
+     */
     public function today(): Collection
     {
         return $this->reader->readByDate(Carbon::today());
     }
 
     /**
+     * @return \stdClass
+     */
+    public function last(): \stdClass
+    {
+        return $this->lasts(1)->first();
+    }
+
+    /**
      * @param int $count
      * @return Collection
      */
-    public function last(int $count): Collection
+    public function lasts(int $count): Collection
     {
         return $this->page($count, 1);
     }
 
     /**
+     * @return \stdClass
+     */
+    public function first(): \stdClass
+    {
+        return $this->firsts(1)->first();
+    }
+
+    /**
      * @param int $count
-     * @param int $page
      * @return Collection
      */
-    public function page(int $count, int $page): Collection
+    public function firsts(int $count): Collection
+    {
+        return $this->page($count, 1, static::SORT_ASC);
+    }
+
+    /**
+     * @param int $count
+     * @param int $page
+     * @param int $sort
+     * @return Collection
+     */
+    public function page(int $count, int $page, int $sort = self::SORT_DESC): Collection
     {
         $offset = $count * ($page - 1);
         $counter = 0;
         $logs = collect();
-        $files = $this->reader->getFiles()->sortKeysDesc();
+        $files = $this->reader->getFiles()->sortKeys(SORT_REGULAR, $sort === static::SORT_DESC ? true : false);
 
         $i = 0;
 
@@ -72,17 +119,32 @@ class LogRepository implements LogRepositoryInterface
     }
 
     /**
+     * Полнотекстовый поиск
+     *
      * @param string $query
      * @return Collection
      */
-    public function find(string $query): Collection
+    public function findByWord(string $query): Collection
+    {
+        return $this->find(function ($value) use ($query) {
+            return is_string($value) && preg_match("/{$query}/i", $value);
+        });
+    }
+
+    /**
+     * Поиск по всем полям из лога
+     *
+     * @param \Closure $callback
+     * @return Collection
+     */
+    public function find(\Closure $callback): Collection
     {
         $logs = collect();
 
         foreach ($this->reader->getFiles() as $file) {
             foreach ($this->reader->read($file) as $log) {
-                array_walk_recursive($log, function ($value) use ($query, $logs, $log) {
-                    if (is_string($value) && preg_match("/{$query}/i", $value)) {
+                array_walk_recursive($log, function ($value) use ($logs, $log, $callback) {
+                    if ($callback($value) === true) {
                         $logs->push($log);
                     }
                 });
@@ -92,13 +154,14 @@ class LogRepository implements LogRepositoryInterface
         return $logs;
     }
 
+    /**
+     * @return int
+     */
     public function count(): int
     {
         $count = 0;
         foreach ($this->reader->getFiles() as $file) {
-            foreach ($this->reader->read($file) as $log) {
-                $count++;
-            }
+            $count += $this->reader->read($file)->count();
         }
 
         return $count;

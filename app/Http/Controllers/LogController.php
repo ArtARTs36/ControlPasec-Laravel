@@ -32,7 +32,7 @@ class LogController extends Controller
      * @param int $page
      * @return array
      */
-    public function index(LogRepositoryInterface $repository, $page = 1)
+    public function index(LogRepositoryInterface $repository, int $page = 1)
     {
         return $this->service->paginate($repository->page(LogService::DEFAULT_COUNT, $page), $page);
     }
@@ -53,6 +53,6 @@ class LogController extends Controller
      */
     public function find(LogRepositoryInterface $repository, Request $request): Collection
     {
-        return $repository->find($request->get('query'));
+        return $repository->findByWord($request->get('query'));
     }
 }
