@@ -24,6 +24,23 @@ class LogRepository implements LogRepositoryInterface
     }
 
     /**
+     * @param $name
+     * @param $arguments
+     * @return Collection
+     * @throws \Exception
+     */
+    public function __call($name, $arguments)
+    {
+        if (is_int(strpos($name, 'findBy'))) {
+            $field = str_replace('findBy', '', $name);
+
+            return $this->findByField(mb_strtolower($field), ...$arguments);
+        }
+
+        throw new \Exception("Method {$name} does not exists!");
+    }
+
+    /**
      * @return Collection
      */
     public function all(): Collection
@@ -120,6 +137,27 @@ class LogRepository implements LogRepositoryInterface
     }
 
     /**
+     * @param string $name
+     * @return Collection
+     */
+    public function findByChannel(string $name): Collection
+    {
+        return $this->findByField('channel', $name);
+    }
+
+    /**
+     * @param string $field
+     * @param mixed $value
+     * @return Collection
+     */
+    public function findByField(string $field, $value): Collection
+    {
+        return $this->simpleMap(function ($log) use ($field, $value) {
+            return property_exists($log, $field) && $log->$field == $value;
+        });
+    }
+
+    /**
      * Полнотекстовый поиск
      *
      * @param string $query
@@ -191,7 +229,7 @@ class LogRepository implements LogRepositoryInterface
     /**
      * @param \Closure $callback
      */
-    private function mapByAll(\Closure $callback): void
+    protected function mapByAll(\Closure $callback): void
     {
         foreach ($this->reader->getFiles() as $file) {
             foreach ($this->reader->read($file) as $log) {
@@ -200,5 +238,24 @@ class LogRepository implements LogRepositoryInterface
                 });
             }
         }
+    }
+
+    /**
+     * @param \Closure $callback
+     * @return Collection
+     */
+    protected function simpleMap(\Closure $callback): Collection
+    {
+        $logs = collect();
+
+        foreach ($this->reader->getFiles() as $file) {
+            foreach ($this->reader->read($file) as $log) {
+                if ($callback($log) === true) {
+                    $logs->push($log);
+                }
+            }
+        }
+
+        return $logs;
     }
 }

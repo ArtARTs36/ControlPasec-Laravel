@@ -58,4 +58,14 @@ class LogController extends Controller
     {
         return LogResource::collection($repository->findByWord($request->get('query')));
     }
+
+    /**
+     * @param LogRepositoryInterface $repository
+     * @param Request $request
+     * @return AnonymousResourceCollection
+     */
+    public function findByChannel(LogRepositoryInterface $repository, Request $request)
+    {
+        return LogResource::collection($repository->findByChannel($request->get('channel')));
+    }
 }

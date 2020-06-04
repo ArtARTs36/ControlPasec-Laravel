@@ -65,6 +65,19 @@ interface LogRepositoryInterface
     public function findByOneCoincidence(\Closure $callback): Collection;
 
     /**
+     * @param string $name
+     * @return Collection
+     */
+    public function findByChannel(string $name): Collection;
+
+    /**
+     * @param string $field
+     * @param string $value
+     * @return Collection
+     */
+    public function findByField(string $field, string $value): Collection;
+
+    /**
      * @return int
      */
     public function count(): int;
