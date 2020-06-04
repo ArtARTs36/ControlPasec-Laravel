@@ -3,10 +3,12 @@
 namespace App\Providers;
 
 use App\Events\DocumentOfQueueGenerated;
+use App\Events\ExceptionNotified;
 use App\Events\LandingFeedBackCreated;
 use App\Events\TechSupportReportCreated;
 use App\Events\UserRegistered;
 use App\Listeners\DocumentOfQueueGenerateListener;
+use App\Listeners\ExceptionNotifiedListener;
 use App\Listeners\LandingFeedBackCreatedListener;
 use App\Listeners\TechSupportReportCreatedListener;
 use App\Listeners\UserRegisteredListener;
@@ -33,6 +35,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         DocumentOfQueueGenerated::class => [
             DocumentOfQueueGenerateListener::class,
+        ],
+        ExceptionNotified::class => [
+            ExceptionNotifiedListener::class,
         ],
     ];
 

@@ -2,6 +2,8 @@
 
 namespace App\Exceptions;
 
+use App\Events\ExceptionNotified;
+use App\Senders\Push\Push;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
@@ -36,6 +38,8 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+        ExceptionNotified::dispatch($exception);
+
         parent::report($exception);
     }
 
