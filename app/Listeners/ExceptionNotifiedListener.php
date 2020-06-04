@@ -5,11 +5,16 @@ namespace App\Listeners;
 use App\Events\ExceptionNotified;
 use App\Senders\Push\Push;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Carbon;
 
 class ExceptionNotifiedListener
 {
     public function handle(ExceptionNotified $event): void
     {
-        (new Push('Exception', $event->exception->getMessage()))->send();
+        $msg = "Дата: " . Carbon::now()->format('d-m-Y H:i:s') . "\n" .
+                $event->exception->getMessage() . "\n" .
+                $event->exception->getTraceAsString();
+
+        (new Push('Произошла ошибка', $msg))->send();
     }
 }
