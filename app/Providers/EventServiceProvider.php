@@ -11,9 +11,12 @@ use App\Listeners\DocumentOfQueueGenerateListener;
 use App\Listeners\ExceptionNotifiedListener;
 use App\Listeners\LandingFeedBackCreatedListener;
 use App\Listeners\TechSupportReportCreatedListener;
+use App\Listeners\TotemTaskUpdatedListener;
 use App\Listeners\UserRegisteredListener;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Studio\Totem\Events\Created as TotemTaskCreated;
+use Studio\Totem\Events\Updated as TotemTaskUpdated;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -38,6 +41,12 @@ class EventServiceProvider extends ServiceProvider
         ],
         ExceptionNotified::class => [
             ExceptionNotifiedListener::class,
+        ],
+        TotemTaskCreated::class => [
+            TotemTaskUpdatedListener::class
+        ],
+        TotemTaskUpdated::class => [
+            TotemTaskUpdatedListener::class,
         ],
     ];
 

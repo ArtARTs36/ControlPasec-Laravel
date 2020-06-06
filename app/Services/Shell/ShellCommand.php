@@ -43,11 +43,15 @@ class ShellCommand
     /**
      * @param string $dir
      * @param string $executor
+     * @param bool $isCheckRealpathExecutor
      * @return ShellCommand
      */
-    public static function getInstanceWithCd(string $dir, string $executor): ShellCommand
-    {
-        return (new self('cd '. $dir))
+    public static function getInstanceWithCd(
+        string $dir,
+        string $executor,
+        bool $isCheckRealpathExecutor = true
+    ): ShellCommand {
+        return (new self('cd '. $dir, $isCheckRealpathExecutor))
             ->addParameter($executor)
             ->addAmpersands();
     }
