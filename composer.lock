@@ -3305,12 +3305,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ArtARTs36/laravel-totem.git",
-                "reference": "263efa061ca1186bdfa9ada39e0fc4f43bdcdf4e"
+                "reference": "6ec68575763caac862d84ef666607281cc855068"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ArtARTs36/laravel-totem/zipball/263efa061ca1186bdfa9ada39e0fc4f43bdcdf4e",
-                "reference": "263efa061ca1186bdfa9ada39e0fc4f43bdcdf4e",
+                "url": "https://api.github.com/repos/ArtARTs36/laravel-totem/zipball/6ec68575763caac862d84ef666607281cc855068",
+                "reference": "6ec68575763caac862d84ef666607281cc855068",
                 "shasum": ""
             },
             "require": {
