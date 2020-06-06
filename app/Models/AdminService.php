@@ -20,6 +20,7 @@ class AdminService extends Model
     private $access = null;
 
     public const NAME_HORIZON = 'horizon';
+    public const NAME_TOTEM = 'totem';
 
     /** @var string */
     public const FIELD_NAME = 'name';

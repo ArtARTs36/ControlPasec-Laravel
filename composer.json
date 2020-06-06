@@ -8,6 +8,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/ArtARTs36/ControlTime-Package"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/ArtARTs36/laravel-totem"
         }
     ],
     "require": {
@@ -27,7 +31,8 @@
         "laravel/tinker": "^2.0",
         "phpoffice/phpword": "^0.17.0",
         "spatie/laravel-permission": "^3.11",
-        "tymon/jwt-auth": "dev-develop"
+        "tymon/jwt-auth": "dev-develop",
+        "studio/laravel-totem": "6.0.2"
     },
     "require-dev": {
         "facade/ignition": "^1.4",
