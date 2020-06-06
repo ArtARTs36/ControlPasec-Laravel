@@ -11,3 +11,5 @@ php artisan migrate --force
 php artisan config:clear
 php artisan cache:clear
 " | docker exec -i Laravel-php-fpm bash
+
+sh docker-supervisor-update.sh
