@@ -27,7 +27,8 @@ class VocabGosStandardController extends Controller
      */
     public function index(int $page = 1)
     {
-        return VocabGosStandard::latest('id')
+        return VocabGosStandard::modify()
+            ->latest('id')
             ->paginate(10, ['*'], 'VocabGosStandardsList', $page);
     }
 
@@ -39,10 +40,7 @@ class VocabGosStandardController extends Controller
      */
     public function store(Request $request): ActionResponse
     {
-        $standard = new VocabGosStandard();
-        $standard->fill($request->all());
-
-        return new ActionResponse($standard->save(), $standard);
+        return $this->createModelAndResponse($request, VocabGosStandard::class);
     }
 
     /**
@@ -65,10 +63,7 @@ class VocabGosStandardController extends Controller
      */
     public function update(Request $request, VocabGosStandard $vocabGosStandard)
     {
-        $vocabGosStandard->fill($request->all())
-            ->save();
-
-        return new ActionResponse(true, $vocabGosStandard);
+        return $this->updateModelAndResponse($request, $vocabGosStandard);
     }
 
     /**
@@ -76,9 +71,10 @@ class VocabGosStandardController extends Controller
      *
      * @param VocabGosStandard $vocabGosStandard
      * @return ActionResponse
+     * @throws \Exception
      */
     public function destroy(VocabGosStandard $vocabGosStandard)
     {
-        return new ActionResponse($vocabGosStandard->delete());
+        return $this->deleteModelAndResponse($vocabGosStandard);
     }
 }

@@ -10,8 +10,6 @@ use Illuminate\Http\Request;
 class SizeOfUnitController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
      * @return ActionResponse
      */
     public function index()
@@ -20,47 +18,40 @@ class SizeOfUnitController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
      * @param \Illuminate\Http\Request $request
-     * @return void
+     * @return ActionResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): ActionResponse
     {
-        //
+        return $this->createModelAndResponse($request, SizeOfUnit::class);
     }
 
     /**
-     * Display the specified resource.
-     *
      * @param SizeOfUnit $sizeOfUnit
-     * @return void
+     * @return SizeOfUnit
      */
-    public function show(SizeOfUnit $sizeOfUnit)
+    public function show(SizeOfUnit $sizeOfUnit): SizeOfUnit
     {
-        //
+        return $sizeOfUnit;
     }
 
     /**
-     * Update the specified resource in storage.
-     *
      * @param \Illuminate\Http\Request $request
      * @param SizeOfUnit $sizeOfUnit
-     * @return void
+     * @return ActionResponse
      */
     public function update(Request $request, SizeOfUnit $sizeOfUnit)
     {
-        //
+        return $this->updateModelAndResponse($request, $sizeOfUnit);
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
      * @param SizeOfUnit $sizeOfUnit
-     * @return void
+     * @return ActionResponse
+     * @throws \Exception
      */
     public function destroy(SizeOfUnit $sizeOfUnit)
     {
-        //
+        return $this->deleteModelAndResponse($sizeOfUnit);
     }
 }
