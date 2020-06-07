@@ -37,3 +37,10 @@ if (! function_exists('const_value')) {
         return const_exists($class, $const) ? $class::$const : null;
     }
 }
+
+if (! function_exists('views_path')) {
+    function views_path($path = null)
+    {
+        return resource_path('views/'. $path);
+    }
+}

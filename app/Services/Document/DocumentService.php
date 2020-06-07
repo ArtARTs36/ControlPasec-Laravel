@@ -35,7 +35,9 @@ class DocumentService
     public static function parseFileName(Document $document)
     {
         $tmpFileName = env('DOCUMENT_TMP_NAMES_DIR') . DIRECTORY_SEPARATOR . time();
-        $pathTmpFile = __DIR__ . '/../../../resources/views/'. $tmpFileName . '.blade.php';
+
+        $pathTmpFile = views_path() . $tmpFileName . '.blade.php';
+
         file_put_contents($pathTmpFile, $document->type->title);
 
         $fileName = view($tmpFileName, ['doc' => $document])->render() . '.' . $document->getExtensionName();
