@@ -5,7 +5,7 @@
 git pull
 echo "
 cd ControlPasec-Laravel
-composer install --no-progress
+composer install --no-dev --no-progress
 composer dump-autoload --optimize
 php artisan migrate --force
 php artisan config:clear
