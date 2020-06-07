@@ -38,7 +38,7 @@ class AuthTest extends BaseTestCase
         $this->tokens['simpleUser'] = JWTAuth::fromUser($this->simpleUser);
     }
 
-    public function testMeByAdmin()
+    public function testMeByAdmin(): void
     {
         $response = $this
             ->withHeaders(['Authorization' => 'Bearer ' . $this->tokens['admin']])

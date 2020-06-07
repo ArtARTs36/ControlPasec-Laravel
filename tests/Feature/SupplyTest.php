@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Contragent;
 use App\Models\User\Permission;
+use Illuminate\Support\Facades\Route;
 use Tests\BaseTestCase;
 
 /**
@@ -11,14 +12,13 @@ use Tests\BaseTestCase;
  */
 class SupplyTest extends BaseTestCase
 {
-    const API_URL = '/api/supplies';
+    private const API_URL = '/api/supplies';
 
     public function testGetAll(): void
     {
         $this->actingAsUserWithPermission(Permission::SUPPLIES_VIEW);
 
         $response = $this->getJson(self::API_URL);
-        $decode = $response->decodeResponseJson();
 
         $response->assertOk();
 
@@ -45,8 +45,8 @@ class SupplyTest extends BaseTestCase
         self::assertTrue($response['success']);
         self::assertArrayHasKey('data', $response);
         self::assertArrayHasKey('id', $response['data']);
-        self::assertTrue($response['data']['id'] > 0);
-        self::assertTrue($response['data']['supplier_id'] === $supplierId);
-        self::assertTrue($response['data']['customer_id'] === $customerId);
+        self::assertGreaterThan(1, $response['data']['id']);
+        self::assertEquals($response['data']['supplier_id'], $supplierId);
+        self::assertEquals($response['data']['customer_id'], $customerId);
     }
 }

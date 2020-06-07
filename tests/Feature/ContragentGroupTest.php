@@ -22,15 +22,16 @@ class ContragentGroupTest extends BaseTestCase
 
     public function testGet(): void
     {
-        $group = ContragentGroup::with('contragents')
+        $group = ContragentGroup::query()
+            ->with(ContragentGroup::RELATION_CONTRAGENTS)
             ->inRandomOrder()
             ->first();
 
         $groupResource = new ContragentGroupResource($group);
 
-        $response = $this->getJson(self::API_URL . '/'. $group->id);
-        $response->assertOk();
+        $response = $this->getJson(static::API_URL . DIRECTORY_SEPARATOR . $group->id)
+            ->assertOk();
 
-        self::assertTrue($groupResource->toJson() === $response->getContent());
+        self::assertEquals($groupResource->toJson(), $response->getContent());
     }
 }

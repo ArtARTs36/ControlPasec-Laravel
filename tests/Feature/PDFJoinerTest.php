@@ -15,7 +15,8 @@ class PDFJoinerTest extends BaseTestCase
 {
     public function testJoin()
     {
-        $docs = Document::where('type_id', DocumentType::SCORE_FOR_PAYMENT_ID)
+        $docs = Document::query()
+            ->where('type_id', DocumentType::SCORE_FOR_PAYMENT_ID)
             ->take(rand(2, 10))
             ->get();
 

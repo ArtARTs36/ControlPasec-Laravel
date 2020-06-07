@@ -13,7 +13,7 @@ class AvatarTest extends BaseTestCase
 {
     public function testGetByUser(): void
     {
-        $user = User::where('gender', User::GENDER_MALE)->first();
+        $user = User::query()->where('gender', User::GENDER_MALE)->first();
 
         $avatar = Avatar::byUser($user);
         $condition = preg_match('/males/i', $avatar) > 0;

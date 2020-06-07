@@ -8,14 +8,12 @@ use App\Services\Document\DocumentBuilder;
 use App\Services\Document\DocumentPsFileMaker;
 use Tests\BaseTestCase;
 
-/**
- * @group BaseTest
- */
 class DocumentPsFileMakerTest extends BaseTestCase
 {
-    public function testJoin()
+    public function testJoin(): void
     {
-        $documents = Document::where('type_id', DocumentType::TORG_12_ID)
+        $documents = Document::query()
+            ->where('type_id', DocumentType::TORG_12_ID)
             ->inRandomOrder()
             ->get()
             ->take(rand(2, 5));

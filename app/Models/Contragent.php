@@ -37,12 +37,16 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Contragent extends Model
 {
-    const TABLE = 'contragents';
+    public const TABLE = 'contragents';
+
+    public const RELATION_CONTRACTS = 'contracts';
 
     protected $fillable = [
         'title', 'full_title', 'full_title_with_opf',
-        'inn', 'kpp', 'ogrn', 'okato', 'oktmo', 'okved', 'okved_type',
-        'address', 'address_postal'
+        'ogrn', 'okato', 'oktmo', 'okved', 'okved_type',
+        'address', 'address_postal',
+        self::FIELD_INN,
+        self::FIELD_OGRN,
     ];
 
     public const FIELD_INN = 'inn';

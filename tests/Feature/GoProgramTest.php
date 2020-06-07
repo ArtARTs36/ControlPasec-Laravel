@@ -13,10 +13,11 @@ use Tests\BaseTestCase;
  */
 class GoProgramTest extends BaseTestCase
 {
-    public function testCreateByDocument()
+    public function testCreateByDocument(): void
     {
         /** @var Document $randomDocument */
-        $randomDocument = Document::where('type_id', DocumentType::TORG_12_ID)
+        $randomDocument = Document::query()
+            ->where('type_id', DocumentType::TORG_12_ID)
             ->inRandomOrder()
             ->get()
             ->first();
@@ -51,9 +52,10 @@ class GoProgramTest extends BaseTestCase
         self::assertNotFalse($executed);
     }
 
-    public function testByBuilder()
+    public function testByBuilder(): void
     {
-        $randomDocument = Document::where('type_id', DocumentType::TORG_12_ID)
+        $randomDocument = Document::query()
+            ->where('type_id', DocumentType::TORG_12_ID)
             ->inRandomOrder()
             ->get()
             ->first();

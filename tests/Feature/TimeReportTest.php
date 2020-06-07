@@ -7,11 +7,17 @@ use App\Models\Employee\Employee;
 use Carbon\Carbon;
 use Tests\BaseTestCase;
 
+/**
+ * @group BaseTest
+ */
 class TimeReportTest extends BaseTestCase
 {
+    /**
+     * @throws \Exception
+     */
     public function testByPeriod(): void
     {
-        $employee = Employee::query()->inRandomOrder()->first();
+        $employee = $this->getRandomModel(Employee::class);
 
         $response = app(TimeReportController::class)->byPeriod(
             $employee,
@@ -19,15 +25,15 @@ class TimeReportTest extends BaseTestCase
             Carbon::now()->format('Y-m-d')
         );
 
-        self::assertFalse(empty($response));
+        self::assertNotEmpty($response);
     }
 
     public function testByLastMonth(): void
     {
-        $employee = Employee::query()->inRandomOrder()->first();
+        $employee = $this->getRandomModel(Employee::class);
 
         $response = app(TimeReportController::class)->byLastMonth($employee);
 
-        self::assertFalse(empty($response));
+        self::assertNotEmpty($response);
     }
 }

@@ -18,6 +18,8 @@ use Illuminate\Database\Query\Builder;
  */
 final class ContragentGroup extends Model
 {
+    public const RELATION_CONTRAGENTS = 'contragents';
+
     /**
      * @return BelongsToMany
      */

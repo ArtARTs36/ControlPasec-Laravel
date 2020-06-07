@@ -70,6 +70,10 @@ class DocumentService
             return $id;
         }
 
+        if (is_array($id)) {
+            $id = $id['id'];
+        }
+
         $document = Document::find($id);
         if (null === $document) {
             throw new \LogicException('Документ не найден');

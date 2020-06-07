@@ -3,6 +3,23 @@
     use App\Models\ControlTime\TimeReport;
     use Carbon\Carbon;use Dba\ControlTime\Services\TimeService;
 
+    //
+
+    if (! function_exists('getEmployeeData')) {
+        function getEmployeeData(App\Models\Employee\Employee $employee,
+        \Dba\ControlTime\Models\WorkCondition $conditions) {
+            return [
+                'СОТРУДНИК_ДАТА_ПРИНЯТИЯ' => $employee->hired_date,
+                'СОТРУДНИК_ДОЛЖНОСТЬ' => $conditions->position ?? "не указана",
+                "СОТРУДНИК_СТАВКА" => $conditions->rate ?? "не указана",
+                "СОТРУДНИК_ОПЛАТА_ЧАС" => $conditions->amount_hour ?? "не указана",
+                "СОТРУДНИК_ОПЛАТА_МЕСЯЦ" => $conditions->amount_month ?? "не указана",
+            ];
+        }
+    }
+
+   //
+
     $timeReport = TimeReport::query()
         ->with(TimeReport::RELATION_EMPLOYEE)
         ->where(TimeReport::FIELD_DOCUMENT_ID, $document->id)
@@ -57,17 +74,6 @@
     $data['tables'] = [
          $timesData
     ];
-
-    function getEmployeeData(App\Models\Employee\Employee $employee, \Dba\ControlTime\Models\WorkCondition $conditions)
-    {
-        return [
-            'СОТРУДНИК_ДАТА_ПРИНЯТИЯ' => $employee->hired_date,
-            'СОТРУДНИК_ДОЛЖНОСТЬ' => $conditions->position ?? "не указана",
-            "СОТРУДНИК_СТАВКА" => $conditions->rate ?? "не указана",
-            "СОТРУДНИК_ОПЛАТА_ЧАС" => $conditions->amount_hour ?? "не указана",
-            "СОТРУДНИК_ОПЛАТА_МЕСЯЦ" => $conditions->amount_month ?? "не указана",
-        ];
-    }
 
 @endphp
 

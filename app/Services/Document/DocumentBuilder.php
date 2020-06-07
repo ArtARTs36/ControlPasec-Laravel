@@ -50,12 +50,6 @@ class DocumentBuilder
         /** @var AbstractDocTemplateLoader $loader */
         $loader = new $loaderClass();
 
-        $result = $loader->loadMany($documents, $save);
-
-        foreach ($documents as $doc) {
-            $doc->nextStatus(true);
-        }
-
-        return $result;
+        return $loader->loadMany($documents, $save);
     }
 }

@@ -4,9 +4,16 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Class SupplyRequest
+ * @package App\Http\Requests
+ */
 class SupplyRequest extends FormRequest
 {
-    public function rules()
+    /**
+     * @return array
+     */
+    public function rules(): array
     {
         return [
             'planned_date' => 'required',

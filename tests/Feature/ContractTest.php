@@ -39,9 +39,12 @@ class ContractTest extends BaseTestCase
 
     public function testFindByCustomer(): void
     {
-        $customer = Contragent::with(['contracts'])->inRandomOrder()->first();
+        $customer = Contragent::query()
+            ->whereHas(Contragent::RELATION_CONTRACTS)
+            ->inRandomOrder()
+            ->first();
 
-        $response = $this->getJson('/api/contracts/find-by-customer/'. $customer->id);
+        $response = $this->getJson("/api/contracts/find-by-customer/{$customer->id}");
 
         $response->assertOk();
     }
@@ -54,12 +57,12 @@ class ContractTest extends BaseTestCase
         /** @var Contract $contract */
         $contract = $this->getRandomModel(Contract::class);
 
-        $response = $this->deleteJson('/api/contracts/'. $contract->id);
-
-        $response->assertStatus(Response::HTTP_NO_CONTENT);
+        $response = $this->deleteJson('/api/contracts/'. $contract->id)
+            ->assertStatus(Response::HTTP_OK);
 
         $response = $this->decodeResponse($response);
 
-        self::assertTrue($response === null);
+        self::assertArrayHasKey('success', $response);
+        self::assertTrue($response['success']);
     }
 }

@@ -31,6 +31,8 @@ class DocumentPsFileMaker
      */
     public function join(): string
     {
+        $inputDir = $outDir = '';
+
         $this->createTmpFolders($inputDir, $outDir);
         $this->copyFilesToInputDir($inputDir);
 

@@ -5,27 +5,27 @@ Route::group([
         \App\Http\Middleware\CheckPermissions::class,
     ],
 ], function () {
-    require_once 'apis/api.landing.php';
-    require_once 'apis/api.auth.php';
-    require_once 'apis/api.user.php';
-    require_once 'apis/api.scores.php';
-    require_once 'apis/api.contragents.php';
-    require_once 'apis/api.contracts.php';
-    require_once 'apis/api.supplies.php';
-    require_once 'apis/api.products.php';
-    require_once 'apis/api.documents.php';
-    require_once 'apis/api.vocabs.php';
-    require_once 'apis/api.external_news.php';
-    require_once 'apis/api.variable_definitions.php';
-    require_once 'apis/api.parsers.php';
-    require_once 'apis/api.dialogs.php';
-    require_once 'apis/api.stat.php';
-    require_once(__DIR__ . '/../vendor/dba/controltime/routes/api.php');
-    require_once 'apis/api.employees.php';
-    require_once 'apis/api.controltime.php';
-    require_once 'apis/api.admin_services.php';
-    require_once 'apis/api.logs.php';
+    require 'apis/api.landing.php';
+    require 'apis/api.auth.php';
+    require 'apis/api.user.php';
+    require 'apis/api.scores.php';
+    require 'apis/api.contragents.php';
+    require 'apis/api.contracts.php';
+    require 'apis/api.supplies.php';
+    require 'apis/api.products.php';
+    require 'apis/api.documents.php';
+    require 'apis/api.vocabs.php';
+    require 'apis/api.external_news.php';
+    require 'apis/api.variable_definitions.php';
+    require 'apis/api.parsers.php';
+    require 'apis/api.dialogs.php';
+    require 'apis/api.stat.php';
+    require(__DIR__ . '/../vendor/dba/controltime/routes/api.php');
+    require 'apis/api.employees.php';
+    require 'apis/api.controltime.php';
+    require 'apis/api.admin_services.php';
+    require 'apis/api.logs.php';
 });
 
-require_once 'apis/api.tech_support.php';
+require 'apis/api.tech_support.php';
 

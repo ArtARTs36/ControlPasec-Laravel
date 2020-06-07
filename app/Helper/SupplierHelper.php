@@ -42,4 +42,9 @@ class SupplierHelper
 
         return static::$instances[$supplier->id];
     }
+
+    public static function getDefaultId(): int
+    {
+        return (int) env('ONE_SUPPLIER_ID');
+    }
 }

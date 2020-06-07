@@ -18,7 +18,9 @@ abstract class BaseTestCase extends TestCase
 
     protected function url(string $path): string
     {
-        return $path . '?' . http_build_query(request()->all());
+        $query = http_build_query(request()->all());
+
+        return $path . ($query ? "?{$query}" : '');
     }
 
     public function json($method, $uri, array $data = [], array $headers = []): TestResponse

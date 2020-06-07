@@ -24,6 +24,8 @@ class ExternalNewsCreator
             $news = array_merge($news, self::createNews($items, $source));
         }
 
+        dump($news);
+
         return $news;
     }
 

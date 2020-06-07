@@ -8,9 +8,6 @@ use App\Services\Document\DocumentConverter;
 use Tests\BaseTestCase;
 use Tests\Traits\RandomDocumentTrait;
 
-/**
- * @group BaseTest
- */
 class DocumentConverterTest extends BaseTestCase
 {
     use RandomDocumentTrait;
