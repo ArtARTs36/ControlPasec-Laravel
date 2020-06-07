@@ -2,33 +2,31 @@
 
 namespace App\Http\Controllers\Vocab;
 
-use App\CurrencyCourse;
 use App\Http\Controllers\Controller;
-
+use App\Repositories\CurrencyCourseRepository;
+/**
+ * Class CurrencyCourseController
+ * @package App\Http\Controllers\Vocab
+ */
 class CurrencyCourseController extends Controller
 {
-    public function chart()
+    /**
+     * @return array
+     * @throws \Exception
+     */
+    public function chart(): array
     {
-        $courses = CurrencyCourse::with('currency')
-            ->orderBy(CurrencyCourse::FIELD_ACTUAL_DATE, 'desc')
-            ->take(100)
-            ->get();
-
         $data = [
             'datasets' => [],
             'labels' => []
         ];
 
-        /** @var CurrencyCourse $course */
-        foreach ($courses as $course) {
-            $dateTime = new \DateTime($course->actual_date);
-            $date = $dateTime->format('d.m.Y');
-
-            if (!in_array($date, $data['labels'])) {
+        foreach (CurrencyCourseRepository::last() as $course) {
+            if (($date = $course->getActualDate()) && !in_array($date, $data['labels'])) {
                 $data['labels'][] = $date;
             }
 
-            $data['datasets'][$course->currency->name]['data'][] = $course->value / $course->nominal;
+            $data['datasets'][$course->currency->name]['data'][] = $course->getRatio();
             $data['datasets'][$course->currency->name]['label'] = $course->currency->name;
         }
 
