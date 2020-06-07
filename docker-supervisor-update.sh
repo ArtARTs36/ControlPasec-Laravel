@@ -3,7 +3,7 @@
 # sh docker-supervisor-update.sh
 
 echo "
-\cp -R -f /ControlPasec-Laravel/docker-files/php-fpm/supervisor-apps/* /etc/supervisor/conf.d
+yes|/bin/cp -R -f  /ControlPasec-Laravel/docker-files/php-fpm/supervisor-apps/* /etc/supervisor/conf.d
 supervisorctl update
 supervisorctl restart horizon:*
 supervisorctl restart cron_listen:*

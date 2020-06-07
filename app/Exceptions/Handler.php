@@ -38,7 +38,9 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
-        ExceptionNotified::dispatch($exception);
+        if ((bool)env('EXCEPTION_REPORT_TO_MOBILE')) {
+            ExceptionNotified::dispatch($exception);
+        }
 
         parent::report($exception);
     }
