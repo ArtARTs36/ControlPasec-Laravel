@@ -52,7 +52,7 @@ class ProjectInstallCommand extends Command
 
     private function checkTmpFolderFilesNames(): void
     {
-        $path = resource_path(env('DOCUMENT_TMP_NAMES_DIR'));
+        $path = views_path(env('DOCUMENT_TMP_NAMES_DIR'));
         if (!file_exists($path)) {
             mkdir($path);
         }
