@@ -10,7 +10,7 @@ jobs:
   laravel-tests:
 
     runs-on: ubuntu-latest
-    
+
     steps:
     - uses: actions/checkout@v2
     - name: Copy .env
@@ -20,7 +20,7 @@ jobs:
     - name: Generate key
       run: php artisan key:generate
     - name: Install Project
-      run: php artisan project-install
+      run: php artisan project-install --no-dompdf-fonts
     - name: Directory Permissions
       run: chmod -R 777 storage bootstrap/cache
     - name: Create Database

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Artisan;
 
 class ProjectInstallCommand extends Command
 {
-    protected $signature = 'project-install';
+    protected $signature = 'project-install {--no-dompdf-fonts}';
 
     protected $description = 'Project install';
 
@@ -31,7 +31,11 @@ class ProjectInstallCommand extends Command
         $this->checkEnvFile();
         $this->checkTmpFolderFilesNames();
 
-        $this->call(CompileFontFromDompdfCommand::class);
+        if ($this->option('no-dompdf-fonts')) {
+            $this->warn('Without Dompdf fonts');
+        } else {
+            $this->call(CompileFontFromDompdfCommand::class);
+        }
 
         Artisan::call('jwt:secret');
         Artisan::call('migrate');
