@@ -36,3 +36,11 @@ jobs:
       run: chmod -R 777 storage bootstrap/cache
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       run: vendor/phpunit/phpunit/phpunit --group=BaseTest
+    - name: Deploy
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        script: sh /var/web/ControlPasec-Laravel/docker-backend-update.sh
+
