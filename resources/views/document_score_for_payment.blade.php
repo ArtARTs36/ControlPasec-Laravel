@@ -1,5 +1,6 @@
 @php
     $document->load([
+        'scoreForPayments',
         'scoreForPayments.supply.supplier.requisites.bank',
         'scoreForPayments.supply.products.parent.sizeOfUnit',
         'scoreForPayments.supply.customer',

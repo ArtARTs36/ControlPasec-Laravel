@@ -16,11 +16,11 @@ class TemplateService
     {
         $data = [
             $contragent->title,
-            "ИНН {$contragent->inn}",
+            'ИНН '. $contragent->inn,
         ];
 
         if ($withKpp === true && !empty($contragent->kpp)) {
-            $data[] = "КПП {$contragent->kpp}";
+            $data[] = 'КПП '. $contragent->kpp;
         }
 
         $data = array_merge($data, [$contragent->address_postal, $contragent->address]);
@@ -47,7 +47,7 @@ class TemplateService
         for ($i = $intPartLength - 1; $i >= 0; $i--) {
             $mirrorNumber = $intPartLength - 1 - $i;
 
-            $format .= $intPart{$mirrorNumber};
+            $format .= $intPart[$mirrorNumber];
 
             if ($i != 0 && $i % 3 == 0) {
                 $format .= ' ';
@@ -84,7 +84,7 @@ class TemplateService
         $noKopLength = strlen($noKop);
 
         for ($i = 0; $i < $noKopLength; $i++) {
-            $result .= $noKop{$i};
+            $result .= $noKop[$i];
             if ($i == 2 && $i != $noKopLength - 1) {
                 $result .= ' ';
             }
