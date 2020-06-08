@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Collection;
 use Ramsey\Uuid\Uuid;
 
 /**
@@ -24,13 +25,13 @@ use Ramsey\Uuid\Uuid;
  * @property int $status
  * @property DocumentType $type
  * @property string $uuid
- * @property ScoreForPayment[] $scoreForPayments
+ * @property Collection|ScoreForPayment[] $scoreForPayments
  * @property int $folder
- * @property ProductTransportWaybill[] $productTransportWaybills
+ * @property Collection|ProductTransportWaybill[] $productTransportWaybills
  * @property string $paper_size
  * @property Document[] $children
- * @property OneTForm[] $oneTForms
- * @property QualityCertificate[] $qualityCertificates
+ * @property Collection|OneTForm[] $oneTForms
+ * @property Collection|QualityCertificate[] $qualityCertificates
  *
  * @mixin Builder
  */
@@ -78,12 +79,12 @@ class Document extends Model
 
     public function getQualityCertificate(): QualityCertificate
     {
-        return $this->qualityCertificates[0];
+        return $this->qualityCertificates->first();
     }
 
     public function getOneTForm(): OneTForm
     {
-        return $this->oneTForms[0];
+        return $this->oneTForms->first();
     }
 
     public function children(): BelongsToMany
@@ -101,7 +102,7 @@ class Document extends Model
      */
     public function getProductTransportWaybill()
     {
-        return $this->productTransportWaybills[0];
+        return $this->productTransportWaybills->first();
     }
 
     /**
@@ -182,7 +183,7 @@ class Document extends Model
 
     public function getScoreForPayment()
     {
-        return $this->scoreForPayments[0];
+        return $this->scoreForPayments->first();
     }
 
     public function getFolder()
