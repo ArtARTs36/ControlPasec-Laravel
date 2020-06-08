@@ -33,7 +33,7 @@ class GetCurrencyCourseOfWeekCommand extends Command
                     CurrencyCourseFinder::previousFinder($date)
                 );
             } catch (\Exception $exception) {
-
+                $this->warn($exception->getMessage());
             }
         }
     }

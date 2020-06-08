@@ -31,8 +31,9 @@
         "laravel/tinker": "^2.0",
         "phpoffice/phpword": "^0.17.0",
         "spatie/laravel-permission": "^3.11",
-        "tymon/jwt-auth": "dev-develop",
-        "studio/laravel-totem": "6.0.2"
+        "squizlabs/php_codesniffer": "^3.5",
+        "studio/laravel-totem": "6.0.2",
+        "tymon/jwt-auth": "dev-develop"
     },
     "require-dev": {
         "facade/ignition": "^1.4",

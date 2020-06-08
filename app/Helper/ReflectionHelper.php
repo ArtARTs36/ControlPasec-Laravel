@@ -47,11 +47,9 @@ class ReflectionHelper
         $reflection = new \ReflectionClass($object);
         $result = [];
         foreach ($reflection->getMethods() as $method) {
-            if (
-                substr($method->getName(), 0, 3) !== 'set' ||
+            if (substr($method->getName(), 0, 3) !== 'set' ||
                 !isset($method->getParameters()[0]) ||
-                !$method->getParameters()[0]->getType()
-            ) {
+                !$method->getParameters()[0]->getType()) {
                 continue;
             }
 

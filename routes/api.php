@@ -28,4 +28,3 @@ Route::group([
 });
 
 require 'apis/api.tech_support.php';
-

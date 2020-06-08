@@ -24,8 +24,6 @@ class ExternalNewsCreator
             $news = array_merge($news, self::createNews($items, $source));
         }
 
-        dump($news);
-
         return $news;
     }
 
@@ -54,12 +52,10 @@ class ExternalNewsCreator
 
     private static function prepareNews(array $item, ExternalNewsSource $source)
     {
-        if (
-            !isset($item['title']) ||
+        if (!isset($item['title']) ||
             !isset($item['pubDate']) ||
             !isset($item['link']) ||
-            self::isExistsNews($item['link'])
-        ) {
+            self::isExistsNews($item['link'])) {
             return false;
         }
 

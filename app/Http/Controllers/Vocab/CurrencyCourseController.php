@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Vocab;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\CurrencyCourseRepository;
+
 /**
  * Class CurrencyCourseController
  * @package App\Http\Controllers\Vocab

@@ -18,4 +18,3 @@ Route::prefix('dialogs')->group(function () {
 });
 
 Route::apiResource('dialogs', 'Dialog\DialogController');
-
