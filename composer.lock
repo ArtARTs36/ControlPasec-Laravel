@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7ad4e2370ed8306cf6bde9f254405943",
+    "content-hash": "c3f2955203d30ed321bf559a9cb0e928",
     "packages": [
         {
             "name": "alhimik1986/php-excel-templator",
@@ -321,12 +321,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ArtARTs36/ControlTime-Package.git",
-                "reference": "462a17959f40ddb19d874f584741d89858a6f59e"
+                "reference": "7c84c8e094f9ed0149e367f24648f6445dece361"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ArtARTs36/ControlTime-Package/zipball/462a17959f40ddb19d874f584741d89858a6f59e",
-                "reference": "462a17959f40ddb19d874f584741d89858a6f59e",
+                "url": "https://api.github.com/repos/ArtARTs36/ControlTime-Package/zipball/7c84c8e094f9ed0149e367f24648f6445dece361",
+                "reference": "7c84c8e094f9ed0149e367f24648f6445dece361",
                 "shasum": ""
             },
             "require": {
@@ -359,7 +359,7 @@
                 "source": "https://github.com/ArtARTs36/ControlTime-Package/tree/master",
                 "issues": "https://github.com/ArtARTs36/ControlTime-Package/issues"
             },
-            "time": "2020-05-29T21:03:55+00:00"
+            "time": "2020-06-08T00:25:09+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
