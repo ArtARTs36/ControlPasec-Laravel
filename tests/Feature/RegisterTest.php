@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\BaseTestCase;
 
-class RegisterController extends BaseTestCase
+class RegisterTest extends BaseTestCase
 {
     use RefreshDatabase;
     use WithFaker;

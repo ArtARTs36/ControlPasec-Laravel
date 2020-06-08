@@ -1,7 +1,7 @@
 <?php
 
 use App\Collection\VocabCurrencyExternalCollection;
-use App\CurrencyCourse;
+use App\Models\Vocab\CurrencyCourse;
 use App\Models\Vocab\VocabCurrency;
 use App\Services\CurrencyCourseFinder\CurrencyCourseFinder;
 

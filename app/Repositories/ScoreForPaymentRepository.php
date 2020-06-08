@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\ScoreForPayment;
+use App\Models\Supply\ScoreForPayment;
 
 class ScoreForPaymentRepository
 {

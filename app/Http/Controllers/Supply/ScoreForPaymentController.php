@@ -7,15 +7,13 @@ use App\Http\Requests\ScoreForPaymentRequest;
 use App\Http\Resource\DocumentResource;
 use App\Http\Responses\ActionResponse;
 use App\Models\Document\DocumentType;
-use App\Models\Supply\Supply;
 use App\Repositories\ScoreForPaymentRepository;
-use App\ScoreForPayment;
-use App\Service\Document\DocumentService;
+use App\Models\Supply\ScoreForPayment;
+use App\Services\Document\DocumentService;
 use App\Services\Document\DocumentCreator;
 use App\Services\ScoreForPaymentService;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Throwable;
 
 class ScoreForPaymentController extends Controller

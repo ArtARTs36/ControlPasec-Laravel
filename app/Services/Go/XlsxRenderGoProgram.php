@@ -3,7 +3,7 @@
 namespace App\Services\Go;
 
 use App\Models\Document\Document;
-use App\Service\Document\DocumentService;
+use App\Services\Document\DocumentService;
 
 class XlsxRenderGoProgram extends GoProgram
 {

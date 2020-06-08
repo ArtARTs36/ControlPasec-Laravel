@@ -45,9 +45,6 @@ class GoProgramTest extends BaseTestCase
         $program = XlsxRenderGoProgram::createByDocument($randomDocument, $data);
 
         $executed = $program->execute();
-        if ($executed !== false) {
-            dump('Документ: ' . $executed);
-        }
 
         self::assertNotFalse($executed);
     }
@@ -61,9 +58,6 @@ class GoProgramTest extends BaseTestCase
             ->first();
 
         $build = DocumentBuilder::build($randomDocument);
-        if ($build !== false) {
-            dump('Документ: ' . $build);
-        }
 
         self::assertNotFalse($build);
     }

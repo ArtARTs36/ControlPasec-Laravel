@@ -13,8 +13,8 @@ use App\Models\Supply\ProductTransportWaybill;
 use App\Models\Supply\QualityCertificate;
 use App\Models\Supply\Supply;
 use App\Repositories\DocumentRepository;
-use App\ScoreForPayment;
-use App\Service\Document\DocumentService;
+use App\Models\Supply\ScoreForPayment;
+use App\Services\Document\DocumentService;
 use App\Services\Document\DocumentCreator;
 use App\Support\Archiver\Zipper;
 

@@ -3,7 +3,7 @@
 namespace App\Http\Resource;
 
 use App\Models\Document\Document;
-use App\Service\Document\DocumentService;
+use App\Services\Document\DocumentService;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**

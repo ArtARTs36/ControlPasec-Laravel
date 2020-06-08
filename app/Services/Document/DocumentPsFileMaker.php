@@ -4,7 +4,7 @@ namespace App\Services\Document;
 
 use App\Helper\FileHelper;
 use App\Models\Document\Document;
-use App\Service\Document\DocumentService;
+use App\Services\Document\DocumentService;
 use App\Services\Shell\ShellCommand;
 use Illuminate\Support\Collection;
 

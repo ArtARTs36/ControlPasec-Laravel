@@ -1,7 +1,7 @@
 @php
 
     /** @var Document $document */
-    use App\Models\Document\Document;use App\Models\Supply\ProductTransportWaybill;use App\Models\Supply\SupplyProduct;use App\Services\Document\TemplateService;use App\Services\Service\SpellingService;use App\Services\SupplyService;$document = $document->load('productTransportWaybills');
+    use App\Models\Document\Document;use App\Models\Supply\ProductTransportWaybill;use App\Models\Supply\SupplyProduct;use App\Services\Document\TemplateService;use App\Services\SpellingService;use App\Services\SupplyService;$document = $document->load('productTransportWaybills');
 
     /** @var \App\Models\Supply\OneTForm $waybill */
     $waybill = $document->getOneTForm();

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models\Supply;
 
 use App\Interfaces\ModelWithDocuments;
 use App\Models\Contract\Contract;

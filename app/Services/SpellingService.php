@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Service;
+namespace App\Services;
 
 use App\Services\SpellingService\DayTrait;
 use App\Services\SpellingService\LiteralTrait;

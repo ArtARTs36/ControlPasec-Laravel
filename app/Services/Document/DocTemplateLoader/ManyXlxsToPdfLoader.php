@@ -3,7 +3,7 @@
 namespace App\Services\Document\DocTemplateLoader;
 
 use App\Models\Document\Document;
-use App\Service\Document\DocumentService;
+use App\Services\Document\DocumentService;
 use App\Services\Document\DocumentConverter;
 use App\Services\Document\DocumentJoiner\PDFJoiner;
 

@@ -7,9 +7,7 @@ use App\Http\Resource\DocumentShowResource;
 use App\Http\Responses\ActionResponse;
 use App\Models\Document\Document;
 use App\Models\News\ExternalNewsSource;
-use App\Service\Document\DocumentService;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Http\Request;
 
 class DocumentController extends Controller
 {

@@ -5,8 +5,8 @@ namespace App\Services\Document;
 use App\Models\Document\Document;
 use App\Models\Document\DocumentType;
 use App\Models\Supply\ProductTransportWaybill;
-use App\ScoreForPayment;
-use App\Service\Document\DocumentService;
+use App\Models\Supply\ScoreForPayment;
+use App\Services\Document\DocumentService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 

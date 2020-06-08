@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Vocab;
 
 use App\Http\Responses\ActionResponse;
 use App\Models\User\Permission;
 use App\Models\Vocab\VocabPackageType;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class VocabPackageTypeController extends Controller
 {

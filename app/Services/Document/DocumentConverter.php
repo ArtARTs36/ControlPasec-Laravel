@@ -3,7 +3,7 @@
 namespace App\Services\Document;
 
 use App\Models\Document\Document;
-use App\Service\Document\DocumentService;
+use App\Services\Document\DocumentService;
 use App\Services\Shell\ShellCommand;
 use Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException;
 

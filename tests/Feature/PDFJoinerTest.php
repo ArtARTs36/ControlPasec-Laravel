@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Document\Document;
 use App\Models\Document\DocumentType;
-use App\Service\Document\DocumentService;
+use App\Services\Document\DocumentService;
 use App\Services\Document\DocumentJoiner\PDFJoiner;
 use Tests\BaseTestCase;
 

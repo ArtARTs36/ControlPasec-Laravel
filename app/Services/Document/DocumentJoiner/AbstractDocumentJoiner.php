@@ -3,7 +3,7 @@
 namespace App\Services\Document\DocumentJoiner;
 
 use App\Models\Document\Document;
-use App\Service\Document\DocumentService;
+use App\Services\Document\DocumentService;
 
 abstract class AbstractDocumentJoiner
 {

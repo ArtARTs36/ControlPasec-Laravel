@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models\Vocab;
 
 use App\Models\Vocab\VocabCurrency;
 use Illuminate\Database\Eloquent\Model;

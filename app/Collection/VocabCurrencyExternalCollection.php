@@ -2,7 +2,7 @@
 
 namespace App\Collection;
 
-use App\CurrencyCourse;
+use App\Models\Vocab\CurrencyCourse;
 use App\Models\Vocab\VocabCurrency;
 use App\Services\CurrencyCourseFinder\CurrencyCourseFinderInterface;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service\Document;
+namespace App\Services\Document;
 
 use App\Jobs\DocumentBuildJob;
 use App\Models\Document\Document;

@@ -3,7 +3,7 @@
 namespace App\Console\Commands\CurrencyCourse;
 
 use App\Collection\VocabCurrencyExternalCollection;
-use App\CurrencyCourse;
+use App\Models\Vocab\CurrencyCourse;
 use App\Services\CurrencyCourseFinder\CurrencyCourseFinder;
 use Illuminate\Console\Command;
 

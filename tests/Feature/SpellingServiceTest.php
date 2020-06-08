@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Services\Service\SpellingService;
+use App\Services\SpellingService;
 use Tests\BaseTestCase;
 
 /**

@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Supply\Supply;
-use App\ScoreForPayment;
+use App\Models\Supply\ScoreForPayment;
 use App\Services\ScoreForPaymentService;
 use Tests\BaseTestCase;
 

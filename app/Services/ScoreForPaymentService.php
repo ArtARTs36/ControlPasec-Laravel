@@ -6,7 +6,7 @@ use App\Models\Document\Document;
 use App\Models\Document\DocumentType;
 use App\Models\Supply\Supply;
 use App\Models\VariableDefinition;
-use App\ScoreForPayment;
+use App\Models\Supply\ScoreForPayment;
 use App\Services\Document\DocumentBuilder;
 use App\Services\Document\DocumentCreator;
 

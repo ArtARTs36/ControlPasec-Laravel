@@ -6,7 +6,7 @@ use alhimik1986\PhpExcelTemplator\params\ExcelParam;
 use alhimik1986\PhpExcelTemplator\setters\CellSetterArrayValue;
 use alhimik1986\PhpExcelTemplator\setters\CellSetterStringValue;
 use App\Models\Document\Document;
-use App\Service\Document\DocumentService;
+use App\Services\Document\DocumentService;
 use App\Services\Document\DocTemplateLoader\Adapter\ExcelFile;
 
 class PhpExcelTemplateLoader extends AbstractDocTemplateLoader
