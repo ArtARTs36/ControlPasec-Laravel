@@ -129,7 +129,10 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    public function notifications()
+    /**
+     * @return HasMany
+     */
+    public function notifications(): HasMany
     {
         return $this->hasMany(UserNotification::class);
     }
@@ -145,7 +148,10 @@ class User extends Authenticatable implements JWTSubject
             ->where(UserNotification::FIELD_IS_READ, false);
     }
 
-    public function getFullName()
+    /**
+     * @return string
+     */
+    public function getFullName(): string
     {
         return implode(' ', [
             $this->name,
@@ -154,6 +160,10 @@ class User extends Authenticatable implements JWTSubject
         ]);
     }
 
+    /**
+     * @param bool $active
+     * @return $this
+     */
     public function changeActive(bool $active): self
     {
         $this->is_active = $active;
@@ -183,6 +193,9 @@ class User extends Authenticatable implements JWTSubject
         return request()->getSchemeAndHttpHost() . $this->avatar_url;
     }
 
+    /**
+     * @return int
+     */
     public function getDays(): int
     {
         $days = (int) ((time() - strtotime($this->created_at)) / (60 * 60 * 24));
@@ -190,6 +203,9 @@ class User extends Authenticatable implements JWTSubject
         return ($days > 0) ? $days : 1;
     }
 
+    /**
+     * @return bool
+     */
     public function isNotActive(): bool
     {
         return $this->is_active === false;
@@ -231,27 +247,43 @@ class User extends Authenticatable implements JWTSubject
             ->exists();
     }
 
+    /**
+     * @return string
+     */
     public function getDefaultGuardName(): string
     {
         return $this->guard_name;
     }
 
+    /**
+     * @return HasMany
+     */
     public function recievedDialogMessages(): HasMany
     {
         return $this->hasMany(DialogMessage::class, DialogMessage::FIELD_TO_USER_ID);
     }
 
+    /**
+     * @return HasMany
+     */
     public function sentDialogMessages(): HasMany
     {
         return $this->hasMany(DialogMessage::class, DialogMessage::FIELD_FROM_USER_ID);
     }
 
+    /**
+     * @return HasMany
+     */
     public function recievedUnReadDialogMessages(): HasMany
     {
         return $this->recievedDialogMessages()
             ->where(DialogMessage::FIELD_IS_READ, false);
     }
 
+    /**
+     * @param Role $role
+     * @return $this
+     */
     public function attachRole(Role $role): self
     {
         $this->roles()->attach($role->id);

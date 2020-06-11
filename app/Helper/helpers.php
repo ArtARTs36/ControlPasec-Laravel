@@ -16,25 +16,7 @@ if (! function_exists('const_exists')) {
             return false;
         }
 
-        try {
-            $state = !empty($class::$const);
-        } catch (Exception $e) {
-            $state = false;
-        }
-
-        return $state;
-    }
-}
-
-if (! function_exists('const_value')) {
-    /**
-     * @param string|object $class
-     * @param string $const
-     * @return mixed|null
-     */
-    function const_value($class, string $const)
-    {
-        return const_exists($class, $const) ? $class::$const : null;
+        return defined("{$class}::{$const}");
     }
 }
 

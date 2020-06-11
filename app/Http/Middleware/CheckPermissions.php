@@ -7,6 +7,10 @@ use App\User;
 use Closure;
 use Illuminate\Support\Facades\Route;
 
+/**
+ * Class CheckPermissions
+ * @package App\Http\Middleware
+ */
 class CheckPermissions
 {
     /**
@@ -16,7 +20,10 @@ class CheckPermissions
      */
     public function handle($request, Closure $next)
     {
-        if (($perms = const_value(Route::current()->controller, 'PERMISSIONS')) &&
+        $controller = Route::current()->controller;
+
+        if (const_exists($controller, 'PERMISSIONS') &&
+            ($perms = $controller::PERMISSIONS) &&
             ($response = $this->check(Route::current()->getActionMethod(), $perms))) {
             return $response;
         }
@@ -38,7 +45,6 @@ class CheckPermissions
         /** @var User $user */
         if (($user = auth()->user()) || !$user->hasApiPermission($permission)) {
             return new UserDoesNotHavePermission($permission);
-            //throw new UnauthorizedException();
         }
 
         return null;
