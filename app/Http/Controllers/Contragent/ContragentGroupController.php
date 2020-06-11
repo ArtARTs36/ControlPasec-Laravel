@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Contragent;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Contragent\ContragentGroupUpdateRequest;
 use App\Http\Responses\ActionResponse;
 use App\Models\Contragent;
 use App\Models\Contragent\ContragentGroup;
@@ -28,19 +29,20 @@ class ContragentGroupController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return void
+     * @param ContragentGroupUpdateRequest $request
+     * @return ActionResponse
      */
-    public function store(Request $request)
+    public function store(ContragentGroupUpdateRequest $request)
     {
-        //
+        $group = $this->createModel($request, ContragentGroup::class);
+        $group->contragents()->sync(
+            $request->get(ContragentGroupUpdateRequest::FIELD_CONTRAGENTS, [])
+        );
+
+        return new ActionResponse($group->exists, $group);
     }
 
     /**
-     * Display the specified resource.
-     *
      * @param ContragentGroup $contragentGroup
      * @return ContragentGroup
      */
@@ -50,20 +52,20 @@ class ContragentGroupController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
+     * @param ContragentGroupUpdateRequest $request
      * @param ContragentGroup $contragentGroup
-     * @return void
+     * @return ActionResponse
      */
-    public function update(Request $request, ContragentGroup $contragentGroup)
+    public function update(ContragentGroupUpdateRequest $request, ContragentGroup $contragentGroup)
     {
-        //
+        $contragentGroup->contragents()->sync(
+            $request->get(ContragentGroupUpdateRequest::FIELD_CONTRAGENTS, [])
+        );
+
+        return $this->updateModelAndResponse($request, $contragentGroup);
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
      * @param ContragentGroup $contragentGroup
      * @return ActionResponse
      */
@@ -80,5 +82,14 @@ class ContragentGroupController extends Controller
     public function detach(ContragentGroup $group, Contragent $contragent): ActionResponse
     {
         return new ActionResponse((bool) $group->contragents()->detach($contragent->id));
+    }
+
+    /**
+     * @param ContragentGroup $group
+     * @return ActionResponse
+     */
+    public function detachAll(ContragentGroup $group): ActionResponse
+    {
+        return new ActionResponse((bool) $group->contragents()->detach());
     }
 }
