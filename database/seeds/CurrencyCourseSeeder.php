@@ -1,9 +1,9 @@
 <?php
 
-use App\Collection\VocabCurrencyExternalCollection;
 use App\Models\Vocab\CurrencyCourse;
 use App\Models\Vocab\VocabCurrency;
 use App\Services\CurrencyCourseFinder\CurrencyCourseFinder;
+use App\Services\CurrencyService;
 
 class CurrencyCourseSeeder extends CommonSeeder
 {
@@ -34,14 +34,14 @@ class CurrencyCourseSeeder extends CommonSeeder
 
         try {
             $finder = CurrencyCourseFinder::actualFinder();
-            VocabCurrencyExternalCollection::init()->saveCourses($finder);
+            CurrencyService::saveCourses($finder);
         } catch (Exception $exception) {
         }
 
         foreach ($dateRange as $date) {
             try {
                 $finder = CurrencyCourseFinder::previousFinder($date);
-                VocabCurrencyExternalCollection::init()->saveCourses($finder);
+                CurrencyService::saveCourses($finder);
             } catch (Exception $exception) {
             }
         }

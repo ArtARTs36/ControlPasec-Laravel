@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Collection\VocabCurrencyExternalCollection;
 use App\Services\CurrencyCourseFinder\CurrencyCourseFinder;
+use App\Services\CurrencyService;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 
@@ -29,7 +29,7 @@ class GetCurrencyCourseOfWeekCommand extends Command
             $date = Carbon::parse("-{$i} days");
 
             try {
-                VocabCurrencyExternalCollection::init()->saveCourses(
+                CurrencyService::saveCourses(
                     CurrencyCourseFinder::previousFinder($date)
                 );
             } catch (\Exception $exception) {

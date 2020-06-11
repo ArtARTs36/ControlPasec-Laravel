@@ -28,7 +28,7 @@ class ArchiverTest extends BaseTestCase
         //
 
         $archive = $zipper->compress(
-            [app_path('Collection/VocabCurrencyExternalCollection.php')],
+            [app_path('Console/Kernel.php')],
             'test2.zip'
         );
 

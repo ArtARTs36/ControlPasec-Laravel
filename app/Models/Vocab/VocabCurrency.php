@@ -27,10 +27,13 @@ final class VocabCurrency extends Model implements ModelWithPriorityInterface
 {
     use WithPriority;
 
-    const ISO_RUB = 'RUB';
+    public const ISO_RUB = 'RUB';
+
+    public const FIELD_ISO_SHORT_NAME = 'iso_short_name';
 
     protected $fillable = [
-        'id', 'name', 'short_name', 'name_en', 'short_name_en', 'iso_code', 'iso_short_name', 'symbol'
+        'id', 'name', 'short_name', 'name_en', 'short_name_en', 'iso_code', 'symbol',
+        self::FIELD_ISO_SHORT_NAME,
     ];
 
     protected static function boot(): void

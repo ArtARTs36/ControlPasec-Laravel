@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Collection\VocabCurrencyExternalCollection;
 use App\Services\CurrencyCourseFinder\CurrencyCourseFinder;
+use App\Services\CurrencyService;
 use Illuminate\Console\Command;
 
 class GetCurrencyCourseCommand extends Command
@@ -24,7 +24,7 @@ class GetCurrencyCourseCommand extends Command
 
     public function handle()
     {
-        VocabCurrencyExternalCollection::init()->saveCourses(
+        CurrencyService::saveCourses(
             CurrencyCourseFinder::actualFinder()
         );
     }
