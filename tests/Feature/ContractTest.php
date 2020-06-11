@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Contract\Contract;
 use App\Models\Contragent;
-use Illuminate\Http\Response;
+use App\Models\User\Permission;
 use Tests\BaseTestCase;
 
 /**
@@ -12,6 +12,8 @@ use Tests\BaseTestCase;
  */
 class ContractTest extends BaseTestCase
 {
+    private const API_URL = '/api/contracts/';
+
     /**
      * Тест на создание договора
      */
@@ -20,7 +22,9 @@ class ContractTest extends BaseTestCase
         $customerId = $this->getRandomModel(Contragent::class)->id;
         $supplierId = env('ONE_SUPPLIER_ID');
 
-        $response = $this->postJson('/api/contracts', [
+        $this->actingAsUserWithPermission(Permission::CONTRACTS_CREATE);
+
+        $response = $this->postJson(static::API_URL, [
             'title' => 'Договор на поставку меда',
             'customer_id' => $customerId,
             'supplier_id' => $supplierId,
@@ -28,13 +32,13 @@ class ContractTest extends BaseTestCase
             'executed_date' => '2020-02-09',
         ]);
 
-        $response->assertOk();
+        $response = $response->assertOk()
+            ->decodeResponseJson();
 
-        $response = $this->decodeResponse($response);
-
-        self::assertTrue(
-            $response['data']['customer_id'] == $customerId && $response['data']['supplier_id'] == $supplierId
-        );
+        self::assertArrayHasKey('data', $response);
+        self::assertIsArray($response['data']);
+        self::assertEquals($customerId, $response['data']['customer_id']);
+        self::assertEquals($supplierId, $response['data']['supplier_id']);
     }
 
     public function testFindByCustomer(): void
@@ -57,10 +61,11 @@ class ContractTest extends BaseTestCase
         /** @var Contract $contract */
         $contract = $this->getRandomModel(Contract::class);
 
-        $response = $this->deleteJson('/api/contracts/'. $contract->id)
-            ->assertStatus(Response::HTTP_OK);
+        $this->actingAsUserWithPermission(Permission::CONTRACTS_DELETE);
 
-        $response = $this->decodeResponse($response);
+        $response = $this->deleteJson(static::API_URL. $contract->id)
+            ->assertOk()
+            ->decodeResponseJson();
 
         self::assertArrayHasKey('success', $response);
         self::assertTrue($response['success']);
