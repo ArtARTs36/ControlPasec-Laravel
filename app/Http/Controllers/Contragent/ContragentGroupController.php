@@ -9,17 +9,22 @@ use App\Models\Contragent\ContragentGroup;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 
+/**
+ * Class ContragentGroupController
+ * @package App\Http\Controllers\Contragent
+ */
 class ContragentGroupController extends Controller
 {
     /**
      * Получить список групп контрагентов
      *
-     * @param int $page
      * @return LengthAwarePaginator
      */
-    public function index($page = 1)
+    public function index(): LengthAwarePaginator
     {
-        return Contragent::paginate(10, ['*'], 'ContragentGroupsList', $page);
+        return ContragentGroup::modify()
+            ->with(ContragentGroup::RELATION_CONTRAGENTS)
+            ->paginate();
     }
 
     /**
@@ -65,5 +70,15 @@ class ContragentGroupController extends Controller
     public function destroy(ContragentGroup $contragentGroup): ActionResponse
     {
         return new ActionResponse($contragentGroup->delete());
+    }
+
+    /**
+     * @param ContragentGroup $group
+     * @param Contragent $contragent
+     * @return ActionResponse
+     */
+    public function detach(ContragentGroup $group, Contragent $contragent): ActionResponse
+    {
+        return new ActionResponse((bool) $group->contragents()->detach($contragent->id));
     }
 }

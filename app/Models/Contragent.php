@@ -6,6 +6,7 @@ use App\Models\Contragent\ContragentManager;
 use App\Models\Contract\Contract;
 use App\Models\Contragent\BankRequisites;
 use App\Models\Contragent\ContragentGroup;
+use Creatortsv\EloquentPipelinesModifier\WithModifier;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -37,6 +38,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Contragent extends Model
 {
+    use WithModifier;
+
     public const TABLE = 'contragents';
 
     public const RELATION_CONTRACTS = 'contracts';

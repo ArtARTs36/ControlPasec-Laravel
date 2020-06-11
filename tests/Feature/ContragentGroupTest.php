@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Http\Resource\ContragentGroupResource;
+use App\Models\Contragent;
 use App\Models\Contragent\ContragentGroup;
 use Tests\BaseTestCase;
 
@@ -11,11 +12,11 @@ use Tests\BaseTestCase;
  */
 class ContragentGroupTest extends BaseTestCase
 {
-    const API_URL = '/api/contragent-groups';
+    private const API_URL = '/api/contragent-groups';
 
     public function testGetAll(): void
     {
-        $response = $this->getJson(self::API_URL);
+        $response = $this->getJson(static::API_URL);
 
         $response->assertOk();
     }
@@ -33,5 +34,26 @@ class ContragentGroupTest extends BaseTestCase
             ->assertOk();
 
         self::assertEquals($groupResource->toJson(), $response->getContent());
+    }
+
+    public function testDetach(): void
+    {
+        $group = ContragentGroup::createByName($this->getFaker()->name);
+
+        /** @var Contragent $contragent */
+        $contragent = $this->getRandomModel(Contragent::class);
+
+        $group->contragents()->attach($contragent->id);
+
+        $url = static::API_URL . '/' . $group->id . '/detach/' . $contragent->id;
+
+        //
+
+        $response = $this->getJson($url)
+            ->assertOk()
+            ->decodeResponseJson();
+
+        self::assertArrayHasKey('success', $response);
+        self::assertTrue($response['success']);
     }
 }
