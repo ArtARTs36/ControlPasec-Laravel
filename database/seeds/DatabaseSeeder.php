@@ -18,6 +18,13 @@ class DatabaseSeeder extends Seeder
         $this->vocabs();
         $this->contragents();
 
+        //
+
+        $this->call(ModelTypeSeeder::class);
+        $this->call(VariableDefinitionSeeder::class);
+
+        //
+
         $this->call(BankRequisitesSeeder::class);
 
         $this->call(ProductSeeder::class);
@@ -29,8 +36,6 @@ class DatabaseSeeder extends Seeder
 
         $this->call(ExternalNewsSourceSeeder::class);
         $this->call(ExternalNewsSeeder::class);
-
-        $this->call(ModelTypeSeeder::class);
 
         $this->textDataParser();
 
@@ -81,7 +86,6 @@ class DatabaseSeeder extends Seeder
     private function textDataParser(): void
     {
         $this->call(TextDataParserComponentSeeder::class);
-        $this->call(VariableDefinitionSeeder::class);
     }
 
     private function documents(): void

@@ -4,10 +4,11 @@ namespace App\Models\Supply;
 
 use App\Models\Contract\Contract;
 use App\Models\Contragent;
+use App\Models\Traits\WithOrderNumber;
 use App\Models\Traits\WithSupplierAndCustomer;
+use App\Models\VariableDefinition;
 use Creatortsv\EloquentPipelinesModifier\WithModifier;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Query\Builder;
 
@@ -33,6 +34,9 @@ class Supply extends Model
 {
     use WithModifier;
     use WithSupplierAndCustomer;
+    use WithOrderNumber;
+
+    public const ORDER_NUMBER_TYPE = VariableDefinition::SUPPLY_ORDER_NUMBER;
 
     public const TABLE = 'supplies';
 

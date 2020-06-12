@@ -2,6 +2,8 @@
 
 namespace App\Models\Product;
 
+use App\Models\Traits\WithOrderNumber;
+use App\Models\VariableDefinition;
 use App\Models\Vocab\SizeOfUnit;
 use App\Models\Vocab\VocabCurrency;
 use App\Models\Vocab\VocabGosStandard;
@@ -39,7 +41,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Product extends Model
 {
-    use WithModifier;
+    use WithModifier, WithOrderNumber;
+
+    public const ORDER_NUMBER_TYPE = VariableDefinition::PRODUCT_ORDER_NUMBER;
 
     public const FIELD_NAME = 'name';
     public const FIELD_NAME_FOR_DOCUMENT = 'name_for_document';

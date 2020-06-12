@@ -69,7 +69,7 @@ abstract class CommonSeeder extends Seeder
 
         $randId = rand(0, $this->relationsCount[$model]);
         if ($randId < 0) {
-            $randId = 0;
+            $randId = 1;
         }
 
         return $this->relations[$model][$randId];
@@ -102,7 +102,7 @@ abstract class CommonSeeder extends Seeder
     {
         if (!isset($this->relations[$model])) {
             $this->relations[$model] = $model::all()->pluck('id');
-            $this->relationsCount[$model] = count($this->relations[$model]) - 2;
+            $this->relationsCount[$model] = count($this->relations[$model]) - 1;
         }
 
         return $this->relations[$model];

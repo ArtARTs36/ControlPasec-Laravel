@@ -1,2 +1,2 @@
-name;name_for_document;size;size_of_unit_id;price;currency_id;gos_standard_id;package_type_id
-натуральный мед;натуральный мед;10;1;2.40;1;1;1
+name;name_for_document;size;size_of_unit_id;price;currency_id;gos_standard_id;package_type_id;quantity_unit_id
+натуральный мед;натуральный мед;10;1;2.40;1;1;1;1

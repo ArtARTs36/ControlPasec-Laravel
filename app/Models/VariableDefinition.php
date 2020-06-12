@@ -26,15 +26,18 @@ final class VariableDefinition extends Model
 {
     use WithModelType;
 
-    const PRODUCT_ID = 'product_id';
-    const SUPPLY_ORDER_NUMBER = 'supply_order_number';
-    const SCORE_FOR_PAYMENT_ORDER_NUMBER = 'score_for_payment_order_number';
-    const ONE_T_FORM_ORDER_NUMBER = 'one_t_form_order_number';
-    const QUALITY_CERTIFICATE_ORDER_NUMBER = 'quality_certificate_order_number';
-    const TORG_12_ORDER_NUMBER = 'torg_12_order_number';
+    public const PRODUCT_ORDER_NUMBER = 'product_order_number';
+    public const PRODUCT_ID = 'product_id';
+    public const SUPPLY_ORDER_NUMBER = 'supply_order_number';
+    public const SCORE_FOR_PAYMENT_ORDER_NUMBER = 'score_for_payment_order_number';
+    public const ONE_T_FORM_ORDER_NUMBER = 'one_t_form_order_number';
+    public const QUALITY_CERTIFICATE_ORDER_NUMBER = 'quality_certificate_order_number';
+    public const TORG_12_ORDER_NUMBER = 'torg_12_order_number';
+
+    public const FIELD_VALUE = 'value';
 
     protected $fillable = [
-        'value',
+        self::FIELD_VALUE,
     ];
 
     /**
