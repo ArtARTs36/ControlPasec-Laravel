@@ -17,7 +17,7 @@ class SqlRawString
     }
 
     /**
-     * @param $value
+     * @param string $value
      * @return Expression
      */
     public static function lowerValue($value): Expression
@@ -27,7 +27,7 @@ class SqlRawString
 
     /**
      * @param string $field
-     * @param $value
+     * @param mixed $value
      * @return array
      */
     public static function byLowerAndLike(string $field, $value): array
@@ -40,7 +40,7 @@ class SqlRawString
     }
 
     /**
-     * @param $value
+     * @param mixed $value
      * @return string
      */
     public static function prepareValueToLike($value): string

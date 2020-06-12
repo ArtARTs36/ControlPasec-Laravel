@@ -86,10 +86,10 @@ class LogReader implements LogReaderInterface
     }
 
     /**
-     * @param null $file
+     * @param string|null $file
      * @return string
      */
-    private function path($file = null): string
+    private function path(?string $file = null): string
     {
         return storage_path('logs/'. $file);
     }

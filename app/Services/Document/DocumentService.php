@@ -63,7 +63,7 @@ class DocumentService
     }
 
     /**
-     * @param int|Document $id
+     * @param int|array|Document $id
      * @return object|null|Document
      */
     public static function getDocument($id)

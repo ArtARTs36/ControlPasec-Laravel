@@ -24,8 +24,8 @@ class LogRepository implements LogRepositoryInterface
     }
 
     /**
-     * @param $name
-     * @param $arguments
+     * @param string $name
+     * @param array $arguments
      * @return Collection
      * @throws \Exception
      */

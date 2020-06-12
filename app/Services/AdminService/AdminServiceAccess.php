@@ -55,7 +55,7 @@ class AdminServiceAccess
         if ($this->isNotAllowed($ip)) {
             $ips = static::getIps()->push($ip);
 
-            return Cache::put($this->cacheKey, $ips, Carbon::now()->addHour(1));
+            return Cache::put($this->cacheKey, $ips, Carbon::now()->addHour());
         }
 
         return true;

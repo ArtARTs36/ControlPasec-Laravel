@@ -35,7 +35,7 @@ class LogService
      */
     public function count(): int
     {
-        return Cache::remember(static::CACHE_COUNT_KEY, Carbon::now()->addHour(1), function () {
+        return Cache::remember(static::CACHE_COUNT_KEY, Carbon::now()->addHour(), function () {
             return $this->repository->count();
         });
     }

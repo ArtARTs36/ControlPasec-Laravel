@@ -33,7 +33,7 @@ class TechSupportReportController extends Controller
 
     /**
      * @param TechSupportStoreRequest $request
-     * @return TechSupportReport
+     * @return TechSupportReportResource
      */
     public function store(TechSupportStoreRequest $request): TechSupportReportResource
     {
