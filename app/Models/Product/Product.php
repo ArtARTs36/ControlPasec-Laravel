@@ -6,6 +6,7 @@ use App\Models\Vocab\SizeOfUnit;
 use App\Models\Vocab\VocabCurrency;
 use App\Models\Vocab\VocabGosStandard;
 use App\Models\Vocab\VocabPackageType;
+use App\Models\Vocab\VocabQuantityUnit;
 use Creatortsv\EloquentPipelinesModifier\WithModifier;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -31,6 +32,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property VocabPackageType $package_type
  * @property int $package_type_id
  *
+ * @property VocabQuantityUnit $quantity_unit
+ * @property int $quantity_unit_id
+ *
  * @mixin Builder
  */
 class Product extends Model
@@ -42,7 +46,8 @@ class Product extends Model
     public const RELATION_GOS_STANDARD = 'gosStandard';
 
     protected $fillable = [
-        'name', 'name_for_document', 'size', 'size_of_unit_id', 'price', 'currency_id'
+        'name', 'name_for_document', 'size', 'size_of_unit_id', 'price', 'currency_id',
+        'quantity_unit_id',
     ];
 
     public function sizeOfUnit(): BelongsTo
@@ -63,5 +68,10 @@ class Product extends Model
     public function packageType(): BelongsTo
     {
         return $this->belongsTo(VocabPackageType::class);
+    }
+
+    public function quantityUnit(): BelongsTo
+    {
+        return $this->belongsTo(VocabQuantityUnit::class);
     }
 }

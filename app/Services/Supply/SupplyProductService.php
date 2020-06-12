@@ -16,7 +16,7 @@ class SupplyProductService
         $product = new SupplyProduct();
         $product->product_id = $parent->id;
         $product->price = $parent->price;
-        $product->quantity_unit_id = 1;
+        $product->quantity_unit_id = $parent->quantity_unit_id;
 
         return $product;
     }
