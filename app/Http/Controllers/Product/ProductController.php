@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Product\ProductUpdateRequest;
 use App\Http\Responses\ActionResponse;
 use App\Models\Product\Product;
 use App\Models\User\Permission;
@@ -34,15 +35,19 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param ProductUpdateRequest $request
      * @return Product
      */
-    public function store(Request $request): Product
+    public function store(ProductUpdateRequest $request): Product
     {
-        return Product::create($request->all());
+        return $this->createModel($request, Product::class);
     }
 
-    public function show(Product $product)
+    /**
+     * @param Product $product
+     * @return ActionResponse
+     */
+    public function show(Product $product): ActionResponse
     {
         return new ActionResponse(true, $product);
     }
@@ -50,15 +55,13 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param ProductUpdateRequest $request
      * @param Product $product
      * @return ActionResponse
      */
-    public function update(Request $request, Product $product): ActionResponse
+    public function update(ProductUpdateRequest $request, Product $product): ActionResponse
     {
-        $product->setRawAttributes($request->all());
-
-        return new ActionResponse($product->save(), $product);
+        return $this->updateModelAndResponse($request, $product);
     }
 
     /**
@@ -68,7 +71,7 @@ class ProductController extends Controller
      * @return ActionResponse
      * @throws \Exception
      */
-    public function destroy(Product $product)
+    public function destroy(Product $product): ActionResponse
     {
         return $this->deleteModelAndResponse($product);
     }

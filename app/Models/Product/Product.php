@@ -41,13 +41,30 @@ class Product extends Model
 {
     use WithModifier;
 
+    public const FIELD_NAME = 'name';
+    public const FIELD_NAME_FOR_DOCUMENT = 'name_for_document';
+    public const FIELD_SIZE = 'size';
+    public const FIELD_PRICE = 'price';
+    public const FIELD_SIZE_OF_UNIT_ID = 'size_of_unit_id';
+    public const FIELD_CURRENCY_ID = 'currency_id';
+    public const FIELD_QUANTITY_UNIT_ID = 'quantity_unit_id';
+    public const FIELD_PACKAGE_TYPE_ID = 'package_type_id';
+    public const FIELD_GOS_STANDARD_ID = 'gos_standard_id';
+
     public const RELATION_CURRENCY = 'currency';
     public const RELATION_SIZE_OF_UNIT = 'sizeOfUnit';
     public const RELATION_GOS_STANDARD = 'gosStandard';
 
     protected $fillable = [
-        'name', 'name_for_document', 'size', 'size_of_unit_id', 'price', 'currency_id',
-        'quantity_unit_id',
+        self::FIELD_NAME,
+        self::FIELD_NAME_FOR_DOCUMENT,
+        self::FIELD_SIZE,
+        self::FIELD_SIZE_OF_UNIT_ID,
+        self::FIELD_PRICE,
+        self::FIELD_CURRENCY_ID,
+        self::FIELD_QUANTITY_UNIT_ID,
+        self::FIELD_PACKAGE_TYPE_ID,
+        self::FIELD_GOS_STANDARD_ID,
     ];
 
     public function sizeOfUnit(): BelongsTo
