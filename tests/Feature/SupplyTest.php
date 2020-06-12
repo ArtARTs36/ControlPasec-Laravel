@@ -3,8 +3,13 @@
 namespace Tests\Feature;
 
 use App\Models\Contragent;
+use App\Models\Product\Product;
+use App\Models\Supply\Supply;
+use App\Models\Supply\SupplyProduct;
 use App\Models\User\Permission;
-use Illuminate\Support\Facades\Route;
+use App\Models\Vocab\VocabQuantityUnit;
+use App\Services\Supply\SupplyCreator;
+use Illuminate\Http\Response;
 use Tests\BaseTestCase;
 
 /**
@@ -48,5 +53,73 @@ class SupplyTest extends BaseTestCase
         self::assertGreaterThan(1, $response['data']['id']);
         self::assertEquals($response['data']['supplier_id'], $supplierId);
         self::assertEquals($response['data']['customer_id'], $customerId);
+    }
+
+    public function testStoreMany(): void
+    {
+        $data = [
+            'options' => [
+                SupplyCreator::OPTION_SCORE_FOR_PAYMENT,
+            ]
+        ];
+
+        for ($i = 0; $i < 20; $i++) {
+            $data['items'][] = [
+                Supply::FIELD_PLANNED_DATE => $this->getFaker()->dateTime()->format('Y-m-d H:i:s'),
+                Supply::FIELD_SUPPLIER_ID => $this->getRandomModel(Contragent::class)->id,
+                Supply::FIELD_CUSTOMER_ID => $this->getRandomModel(Contragent::class)->id,
+                Supply::RELATION_PRODUCTS => array_map(function () {
+                    return [
+                            SupplyProduct::FIELD_PRICE => rand(1000, 100000),
+                            SupplyProduct::FIELD_QUANTITY => rand(1000, 100000),
+                            SupplyProduct::FIELD_PARENT_ID => $this->getRandomModel(Product::class)->id,
+                            SupplyProduct::QUANTITY_UNIT_ID => $this->getRandomModel(VocabQuantityUnit::class)->id,
+                        ];
+                }, range(0, 10)),
+            ];
+        }
+
+        $response = $this->postJson(static::API_URL . '/store-many', $data)
+            ->assertOk()
+            ->decodeResponseJson();
+
+        //
+
+        self::assertArrayHasKey('success', $response);
+        self::assertTrue($response['success']);
+
+        foreach ($data['items'] as $supplyData) {
+            /** @var Supply $supply */
+            $supply = Supply::query()
+                ->where(Supply::FIELD_PLANNED_DATE, $supplyData[Supply::FIELD_PLANNED_DATE])
+                ->where(Supply::FIELD_SUPPLIER_ID, $supplyData[Supply::FIELD_SUPPLIER_ID])
+                ->where(Supply::FIELD_CUSTOMER_ID, $supplyData[Supply::FIELD_CUSTOMER_ID])
+                ->first();
+
+            self::assertTrue($supply->exists);
+
+            self::assertEquals(1, $supply->scoreForPayments()->count());
+
+            $productsData = collect($supplyData[Supply::RELATION_PRODUCTS])->sort();
+
+            foreach ($supply->products->sort() as $key => $product) {
+                self::assertEquals($productsData[$key][SupplyProduct::FIELD_PRICE], $product->price);
+                self::assertEquals($productsData[$key][SupplyProduct::FIELD_QUANTITY], $product->quantity);
+                self::assertEquals($productsData[$key][SupplyProduct::FIELD_PARENT_ID], $product->product_id);
+                self::assertEquals($productsData[$key][SupplyProduct::QUANTITY_UNIT_ID], $product->quantity_unit_id);
+            }
+        }
+    }
+
+    public function testStoreManyBad(): void
+    {
+        $data = [
+            'items' => [
+
+            ],
+        ];
+
+        $this->postJson(static::API_URL . '/store-many', $data)
+            ->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
     }
 }

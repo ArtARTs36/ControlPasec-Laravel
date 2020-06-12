@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Supply;
 
 use App\Helper\SupplierHelper;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Supply\SupplyStoreManyRequest;
 use App\Http\Requests\SupplyRequest;
 use App\Http\Resource\SupplyResource;
 use App\Http\Responses\ActionResponse;
 use App\Models\Supply\Supply;
 use App\Models\User\Permission;
 use App\Repositories\SupplyRepository;
+use App\Services\Supply\SupplyCreator;
 use App\Services\SupplyService;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
@@ -96,5 +98,14 @@ class SupplyController extends Controller
         $supplies = SupplyRepository::findByCustomer($customerId);
 
         return new ActionResponse($supplies->isNotEmpty(), $supplies);
+    }
+
+    /**
+     * @param SupplyStoreManyRequest $request
+     * @return ActionResponse
+     */
+    public function storeMany(SupplyStoreManyRequest $request): ActionResponse
+    {
+        return SupplyCreator::many($request->getItems(), $request->getOptions());
     }
 }

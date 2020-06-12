@@ -7,6 +7,10 @@ use App\Models\Supply\Supply;
 use App\Models\Supply\SupplyProduct;
 use Illuminate\Support\Collection;
 
+/**
+ * Class SupplyService
+ * @package App\Services
+ */
 final class SupplyService
 {
     /**
@@ -56,19 +60,23 @@ final class SupplyService
                 continue;
             }
 
-            $product = SupplyProduct::find($productData['id']);
-            $product->update($productData);
+            SupplyProduct::query()
+                ->find($productData['id'])
+                ->update($productData);
         }
     }
 
     public static function fullLoadSupply($id): Supply
     {
         $supply = Supply::find($id);
-        $supplier = $supply->supplier->load(['requisites' => function ($requisite) {
-            return $requisite->with('bank');
-        }]);
-        $customer = $supply->customer;
-        $products = $supply->products()->with(['parent' => function ($parent) {
+        $supply->supplier->load([
+            'requisites' => function ($requisite) {
+                return $requisite->with('bank');
+            },
+            'customer',
+        ]);
+
+        $supply->products()->with(['parent' => function ($parent) {
             return $parent->with(['sizeOfUnit', 'gosStandard']);
         }])->get();
 

@@ -11,6 +11,7 @@ use Creatortsv\EloquentPipelinesModifier\WithModifier;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Collection;
 
 /**
  * Class Supply
@@ -24,7 +25,7 @@ use Illuminate\Database\Query\Builder;
  * @property int $customer_id
  * @property Contragent $customer
  * @property Contragent $supplier
- * @property SupplyProduct[] $products
+ * @property Collection|SupplyProduct[] $products
  * @property Contract $contract
  * @property int $contract_id
  *
@@ -41,12 +42,20 @@ class Supply extends Model
     public const TABLE = 'supplies';
 
     public const FIELD_CUSTOMER_ID = 'customer_id';
+    public const FIELD_EXECUTE_DATE = 'execute_date';
+    public const FIELD_PLANNED_DATE = 'planned_date';
+    public const FIELD_SUPPLIER_ID = 'supplier_id';
+    public const FIELD_CONTRACT_ID = 'contract_id';
 
     public const RELATION_CUSTOMER = 'customer';
     public const RELATION_PRODUCTS = 'products';
 
     protected $fillable = [
-        'planned_date', 'execute_date', 'supplier_id', 'contract_id',
+        self::FIELD_EXECUTE_DATE,
+        self::FIELD_PLANNED_DATE,
+        self::FIELD_EXECUTE_DATE,
+        self::FIELD_SUPPLIER_ID,
+        self::FIELD_CONTRACT_ID,
         self::FIELD_CUSTOMER_ID,
     ];
 
@@ -56,5 +65,13 @@ class Supply extends Model
     public function products(): HasMany
     {
         return $this->hasMany(SupplyProduct::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function scoreForPayments(): HasMany
+    {
+        return $this->hasMany(ScoreForPayment::class);
     }
 }

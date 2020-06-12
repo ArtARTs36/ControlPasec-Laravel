@@ -34,15 +34,21 @@ final class ScoreForPayment extends Model implements ModelWithDocuments
 {
     use WithDocuments, WithOrderNumber, WithSupply;
 
-    const ORDER_NUMBER_TYPE = VariableDefinition::SCORE_FOR_PAYMENT_ORDER_NUMBER;
-    const TARGET_TYPE = DocumentType::SCORE_FOR_PAYMENT_ID;
+    public const ORDER_NUMBER_TYPE = VariableDefinition::SCORE_FOR_PAYMENT_ORDER_NUMBER;
+    public const TARGET_TYPE = DocumentType::SCORE_FOR_PAYMENT_ID;
 
-    const FIELD_SUPPLY_ID = 'supply_id';
+    public const FIELD_SUPPLY_ID = 'supply_id';
+    public const FIELD_CONTRACT_ID = 'contract_id';
+    public const FIELD_DATE = 'date';
+    public const FIELD_ORDER_NUMBER = 'order_number';
 
-    const RELATION_SUPPLY = 'supply';
+    public const RELATION_SUPPLY = 'supply';
 
     protected $fillable = [
-        'supply_id', 'contract_id', 'date'
+        self::FIELD_SUPPLY_ID,
+        self::FIELD_CONTRACT_ID,
+        self::FIELD_DATE,
+        self::FIELD_ORDER_NUMBER,
     ];
 
     public function contract(): BelongsTo
@@ -50,14 +56,11 @@ final class ScoreForPayment extends Model implements ModelWithDocuments
         return $this->belongsTo(Contract::class);
     }
 
-    /**
-     * @param array $options
-     * @return bool
-     */
-    public function save(array $options = []): bool
+    public static function createBySupply(Supply $supply): ScoreForPayment
     {
-        $this->initOrderNumber();
-
-        return parent::save($options);
+        return static::query()->create([
+            static::FIELD_SUPPLY_ID => $supply->id,
+            static::FIELD_DATE => $supply->planned_date,
+        ]);
     }
 }
