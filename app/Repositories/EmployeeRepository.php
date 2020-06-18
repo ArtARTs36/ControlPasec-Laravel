@@ -10,6 +10,10 @@ use Illuminate\Support\Collection;
 
 class EmployeeRepository
 {
+    /**
+     * @param int $page
+     * @return LengthAwarePaginator
+     */
     public static function paginate(int $page = 1): LengthAwarePaginator
     {
         return Employee::query()
@@ -17,6 +21,10 @@ class EmployeeRepository
             ->paginate(10, ['*'], 'EmployeeList', $page);
     }
 
+    /**
+     * @param string $query
+     * @return Collection
+     */
     public static function liveFind(string $query): Collection
     {
         return Employee::query()
@@ -29,11 +37,14 @@ class EmployeeRepository
             ->get();
     }
 
-    public static function fullLoad(int $id): Employee
+    /**
+     * @param int $id
+     * @return Employee|null
+     */
+    public static function fullLoad(int $id): ?Employee
     {
         return Employee::query()
             ->withGlobalScope(CurrentWorkConditionScope::NAME, new CurrentWorkConditionScope())
-            ->find($id)
-            ->first();
+            ->find($id);
     }
 }
