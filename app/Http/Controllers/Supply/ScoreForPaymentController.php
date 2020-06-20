@@ -53,7 +53,7 @@ class ScoreForPaymentController extends Controller
     public function show(ScoreForPayment $scoreForPayment)
     {
         return $scoreForPayment->load([
-            'supply' => function ($query) {
+            ScoreForPayment::RELATION_SUPPLY => function ($query) {
                 return $query->with(['products', 'supplier', 'customer']);
             }
         ]);

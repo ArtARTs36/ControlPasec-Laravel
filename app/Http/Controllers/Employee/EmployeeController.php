@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Employee;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Employee\EmployeeStoreRequest;
+use App\Http\Responses\ActionResponse;
 use App\Models\Employee\Employee;
 use App\Repositories\EmployeeRepository;
 use App\Services\EmployeeService;
-use Dba\ControlTime\Scopes\CurrentWorkConditionScope;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
@@ -49,7 +49,13 @@ class EmployeeController extends Controller
      */
     public function store(EmployeeStoreRequest $request)
     {
-        return $this->createModelAndResponse($request, Employee::class);
+        $employee = $this->createModel($request, Employee::class);
+
+        if (($wc = $request->getWorkCondition())) {
+            $employee->workConditions()->create($wc);
+        }
+
+        return new ActionResponse(true, $employee);
     }
 
     /**

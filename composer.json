@@ -12,6 +12,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/ArtARTs36/laravel-totem"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/ArtARTs36/employee-interfaces"
         }
     ],
     "require": {

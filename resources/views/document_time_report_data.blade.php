@@ -31,7 +31,7 @@
         Carbon::parse($timeReport->end_date)
     );
 
-    $workConditions = $timeReport->employee->getCurrentWorkConditions();
+    $workConditions = $timeReport->employee->getCurrentWorkCondition();
 
      //
 

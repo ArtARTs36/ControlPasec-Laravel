@@ -2,9 +2,13 @@
 
 namespace App\Models\Employee;
 
-use Dba\ControlTime\Contracts\EmployeeContract;
+use ArtARTs36\EmployeeInterfaces\Employee\EmployeeInterface;
+use ArtARTs36\EmployeeInterfaces\Employee\EmployeeSettersAndGettersTrait;
 use Dba\ControlTime\Models\WorkCondition;
+use Dba\ControlTime\Support\Proxy;
+use Dba\ControlTime\Traits\HasWorkConditions;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Employee
@@ -17,8 +21,11 @@ use Illuminate\Database\Eloquent\Collection;
  * @property string $insurance_number
  * @property Collection|WorkCondition[] $workConditions
  */
-class Employee extends EmployeeContract
+class Employee extends Model implements EmployeeInterface
 {
+    use EmployeeSettersAndGettersTrait;
+    use HasWorkConditions;
+
     public const FIELD_FAMILY = 'family';
     public const FIELD_NAME = 'name';
     public const FIELD_PATRONYMIC = 'patronymic';
@@ -33,7 +40,19 @@ class Employee extends EmployeeContract
         self::FIELD_HIRED_DATE,
         self::FIELD_HOLIDAY,
         self::FIELD_INSURANCE_NUMBER,
+        self::FIELD_HIRED_DATE,
     ];
+
+    /**
+     * Time constructor.
+     * @param array $attributes
+     */
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        $this->table = Proxy::getEmployeeTable();
+    }
 
     public function getFullName(): string
     {

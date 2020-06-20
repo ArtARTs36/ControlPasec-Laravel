@@ -20,7 +20,7 @@ class EmployeeService
         $newConditions = Arr::only($newConditions, static::FIELDS);
 
         if (!static::isRequireNewCondition($employee, $newConditions)) {
-            return $employee->getCurrentWorkConditions();
+            return $employee->getCurrentWorkCondition();
         }
 
         return $employee->workConditions()->create($newConditions);
@@ -28,7 +28,7 @@ class EmployeeService
 
     public static function isRequireNewCondition(Employee $employee, array $newConditions)
     {
-        $currentConditions = $employee->getCurrentWorkConditions()->only(static::FIELDS);
+        $currentConditions = $employee->getCurrentWorkCondition()->only(static::FIELDS);
 
         foreach ($currentConditions as $key => $currentCondition) {
             if ($newConditions[$key] != $currentCondition) {
