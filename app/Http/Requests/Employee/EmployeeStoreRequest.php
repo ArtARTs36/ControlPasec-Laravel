@@ -8,22 +8,32 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class EmployeeStoreRequest extends FormRequest
 {
+    public const PREFIX_WORK_CONDITION = 'work_condition';
+
     public function rules(): array
     {
         return [
             Employee::FIELD_FAMILY => 'required|string',
             Employee::FIELD_NAME => 'required|string',
             Employee::FIELD_PATRONYMIC => 'required|string',
+            Employee::FIELD_HIRED_DATE => 'required|string',
 
-            'work_condition.'. WorkCondition::FIELD_RATE => 'sometimes|double',
-            'work_condition.'. WorkCondition::FIELD_AMOUNT_MONTH => 'sometimes|integer',
-            'work_condition.'. WorkCondition::FIELD_AMOUNT_HOUR => 'sometimes|integer',
-            'work_condition.'. WorkCondition::FIELD_POSITION => 'sometimes|string',
+            static::prefixWc(WorkCondition::FIELD_RATE) => 'sometimes|double',
+            static::prefixWc(WorkCondition::FIELD_AMOUNT_MONTH) => 'sometimes|integer',
+            static::prefixWc(WorkCondition::FIELD_AMOUNT_HOUR) => 'sometimes|integer',
+            static::prefixWc(WorkCondition::FIELD_POSITION) => 'sometimes|string',
         ];
     }
 
-    public function getWorkCondition(): array
+    public static function prefixWc($suffix): string
     {
-        return $this->only(['work_condition'])['work_condition'];
+        return static::PREFIX_WORK_CONDITION . '.' . $suffix;
+    }
+
+    public function getWorkCondition(): ?array
+    {
+        return $this->get('work_condition') ?
+            $this->only(['work_condition'])['work_condition'] :
+            null;
     }
 }
