@@ -16,7 +16,16 @@ trait WithDocuments
      */
     public function documents(): BelongsToMany
     {
-        return $this->belongsToMany(Document::class);
+        return $this->morphToMany(
+            Document::class,
+            'entity',
+            'document_entity',
+            'document_id',
+            'entity_id',
+            null,
+            null,
+            false
+        );
     }
 
     /**
