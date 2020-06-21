@@ -13,7 +13,6 @@ use App\Services\SpellingService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
 use Ramsey\Uuid\Uuid;
@@ -59,54 +58,6 @@ class Document extends Model
     public function type(): BelongsTo
     {
         return $this->belongsTo(DocumentType::class);
-    }
-
-    public function scoreForPayments(): BelongsToMany
-    {
-        return $this->belongsToMany(ScoreForPayment::class);
-    }
-
-    public function productTransportWaybills(): BelongsToMany
-    {
-        return $this->belongsToMany(ProductTransportWaybill::class);
-    }
-
-    public function oneTForms(): BelongsToMany
-    {
-        return $this->belongsToMany(OneTForm::class);
-    }
-
-    public function qualityCertificates(): BelongsToMany
-    {
-        return $this->belongsToMany(QualityCertificate::class);
-    }
-
-    public function getQualityCertificate(): QualityCertificate
-    {
-        return $this->qualityCertificates->first();
-    }
-
-    public function getOneTForm(): OneTForm
-    {
-        return $this->oneTForms->first();
-    }
-
-    public function children(): BelongsToMany
-    {
-        return $this->belongsToMany(
-            Document::class,
-            'document_children',
-            'document_id',
-            'children_id'
-        );
-    }
-
-    /**
-     * @return ProductTransportWaybill
-     */
-    public function getProductTransportWaybill()
-    {
-        return $this->productTransportWaybills->first();
     }
 
     /**
@@ -183,11 +134,6 @@ class Document extends Model
         $this->save();
 
         return $this;
-    }
-
-    public function getScoreForPayment()
-    {
-        return $this->scoreForPayments->first();
     }
 
     public function getFolder()
