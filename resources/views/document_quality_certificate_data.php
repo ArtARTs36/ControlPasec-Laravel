@@ -1,7 +1,8 @@
-@php
+<?php
 
 use App\Services\Document\TemplateService;
 
+/** @var \App\Models\Document\Document $document */
 $document->load('qualityCertificates');
 $supply = $document->getQualityCertificate()->supply;
 
@@ -36,6 +37,4 @@ $data['tables'] = [
      $productData
 ];
 
-@endphp
-
-{!! json_encode($data) !!}
+return $data;

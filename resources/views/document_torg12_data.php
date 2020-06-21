@@ -1,17 +1,24 @@
-@php
+<?php
 
     /** @var Document $document */
-    use App\Models\Document\Document;use App\Models\Supply\ProductTransportWaybill;use App\Models\Supply\SupplyProduct;use App\Services\Document\TemplateService;use App\Services\SpellingService;use App\Services\SupplyService;$document = $document->load('productTransportWaybills');
+    use App\Models\Document\Document;
+    use App\Models\Supply\ProductTransportWaybill;
+    use App\Models\Supply\SupplyProduct;
+    use App\Services\Document\TemplateService;
+    use App\Services\SpellingService;
+    use App\Services\SupplyService;
 
-    /** @var \App\Models\Supply\OneTForm $waybill */
-    $waybill = $document->getOneTForm();
+    $document = $document->load('productTransportWaybills');
+
+    /** @var ProductTransportWaybill $waybill */
+    $waybill = $document->getProductTransportWaybill();
 
     $supply = $waybill->supply;
 
     /** @var SupplyProduct[] $products */
     $products = $supply->products;
 
-    $plannedDate = new DateTime($supply->planned_date);
+    $plannedDate = new \DateTime($supply->planned_date);
 
     $fullTotalPrice = SupplyService::bringTotalPrice($supply);
 
@@ -50,6 +57,4 @@
     $data['СУММА_БЕЗ_НДС'] = TemplateService::formatNetto($fullTotalPrice);
     $data['СУММА_С_НДС'] = TemplateService::formatNetto($fullTotalPrice);
 
-@endphp
-
-{!! json_encode($data) !!}
+return $data;

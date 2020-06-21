@@ -4,12 +4,11 @@ namespace App\Services\Document\DocTemplateLoader;
 
 use App\Models\Document\Document;
 use App\Exceptions\DocumentFailedToSaveException;
+use PhpOffice\PhpWord\TemplateProcessor;
 
 abstract class AbstractDocTemplateLoader
 {
     const NAME = '';
-
-    const TEMPLATE_DIR = '@Document/DocumentTemplates/';
 
     const TEMPLATE_DIR_FULL_PATH = __DIR__ . '/../../Resources/views/DocumentTemplates/';
 
@@ -82,5 +81,13 @@ abstract class AbstractDocTemplateLoader
         }
 
         return $path;
+    }
+
+    protected function includeData(Document $document): array
+    {
+        $path = __DIR__ . '/../../../../resources/views/' .
+            $document->getTemplate() . '_data.php';
+
+        return include $path;
     }
 }

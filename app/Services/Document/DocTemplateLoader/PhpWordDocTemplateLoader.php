@@ -19,19 +19,22 @@ class PhpWordDocTemplateLoader extends AbstractDocTemplateLoader
      */
     protected function make(Document $document, $save = false)
     {
-        $fileData = $document->getTemplate() . '_data';
-
         $processor = new TemplateProcessor($document->getTemplateFullPath(true));
-        $this->prepareData($processor, view($fileData, [
-            'document' => $document,
-            'templateProcessor' => $processor,
-        ])->render());
+        $this->prepareData($processor, $this->includeData($document, $processor));
 
         $savePath = $this->getSavePath($document);
 
         $processor->saveAs($savePath);
 
         return file_exists($savePath) ? $savePath : false;
+    }
+
+    protected function includeData(Document $document, TemplateProcessor $processor = null): array
+    {
+        $path = __DIR__ . '/../../../../resources/views/' .
+            $document->getTemplate() . '_data.php';
+
+        return include $path;
     }
 
     protected function makeMany($documents, $save = false)
@@ -41,11 +44,10 @@ class PhpWordDocTemplateLoader extends AbstractDocTemplateLoader
 
     /**
      * @param TemplateProcessor $processor
-     * @param string $data
+     * @param array $data
      */
-    private function prepareData(TemplateProcessor $processor, string $data)
+    private function prepareData(TemplateProcessor $processor, array $data)
     {
-        $data = json_decode($data, true);
         if (!empty($data['variables']) && ($variables = $data['variables']) && is_array($variables)) {
             foreach ($variables as $key => $value) {
                 $processor->setValue($key, $value);
