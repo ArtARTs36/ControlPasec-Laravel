@@ -18,17 +18,6 @@ class DocumentBuilderTest extends BaseTestCase
 {
     use RandomDocumentTrait;
 
-    public function testBuild(): void
-    {
-        $randomDocument = Document::where('status', Document::STATUS_NEW)
-            ->inRandomOrder()
-            ->first();
-
-        $build = DocumentBuilder::build($randomDocument, true);
-
-        self::assertNotFalse($build);
-    }
-
     public function testBuildMany(): void
     {
         $documents = [
