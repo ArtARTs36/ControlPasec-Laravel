@@ -3,6 +3,8 @@
 namespace Tests\Feature;
 
 use App\Http\Requests\Employee\EmployeeStoreRequest;
+use App\Models\Document\Document;
+use App\Models\Document\DocumentType;
 use App\Models\Employee\Employee;
 use Dba\ControlTime\Models\WorkCondition;
 use Illuminate\Http\Response;
@@ -114,6 +116,21 @@ class EmployeeTest extends BaseTestCase
             $this->postJson(static::API_PATH, $data)
                  ->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
         }
+    }
+
+    public function testCreateDocumentSZVTD(): void
+    {
+        $employee = factory(Employee::class)->create();
+
+        $response = $this->getJson('/api/employees/'. $employee->id . '/document/'. DocumentType::SZV_TD_ID)
+            ->assertCreated()
+            ->decodeResponseJson();
+
+        /** @var Document $document */
+        $document = Document::query()->find($response['data']['id']);
+
+        self::assertTrue($document->exists);
+        self::assertFileExists($document->getFullPath());
     }
 
     private function makeEmployeeData(): array

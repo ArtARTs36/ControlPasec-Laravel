@@ -2,6 +2,7 @@
 
 namespace App\Models\Document;
 
+use App\Models\Employee\Employee;
 use App\Models\Supply\OneTForm;
 use App\Models\Supply\ProductTransportWaybill;
 use App\Models\Supply\QualityCertificate;
@@ -215,6 +216,11 @@ class Document extends Model
     public function getDownloadLink(): string
     {
         return request()->getSchemeAndHttpHost() . '/api/documents/' . $this->id . '/download';
+    }
+
+    public function employees()
+    {
+        return $this->belongsToMany(Employee::class);
     }
 
     public function build()
