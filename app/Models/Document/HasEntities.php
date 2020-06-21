@@ -15,6 +15,8 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
  */
 trait HasEntities
 {
+    use \App\Models\Traits\HasEntities;
+
     /**
      * @return MorphToMany
      */
@@ -61,24 +63,6 @@ trait HasEntities
     public function children(): MorphToMany
     {
         return $this->morphEntities(Document::class);
-    }
-
-    /**
-     * @param string $entityClass
-     * @return MorphToMany
-     */
-    public function morphEntities(string $entityClass): MorphToMany
-    {
-        return $this->morphToMany(
-            $entityClass,
-            'entity',
-            'document_entity',
-            'document_id',
-            'entity_id',
-            null,
-            null,
-            true
-        );
     }
 
     /**

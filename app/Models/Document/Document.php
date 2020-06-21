@@ -171,6 +171,8 @@ class Document extends Model
 
     public function build(): string
     {
+        (!$this->exists) && $this->save();
+
         return DocumentBuilder::build($this);
     }
 }

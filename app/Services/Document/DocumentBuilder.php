@@ -48,7 +48,7 @@ class DocumentBuilder
     }
 
     /**
-     * @param array $documents
+     * @param Document[] $documents
      * @return string
      */
     public static function buildMany(array $documents): string
