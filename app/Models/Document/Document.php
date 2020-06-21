@@ -13,6 +13,7 @@ use App\Services\SpellingService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
 use Ramsey\Uuid\Uuid;
@@ -38,6 +39,8 @@ use Ramsey\Uuid\Uuid;
  */
 class Document extends Model
 {
+    use HasEntities;
+
     const STATUS_NEW = 0;
     const STATUS_IN_QUEUE = 1;
     const STATUS_GENERATED = 2;
@@ -216,11 +219,6 @@ class Document extends Model
     public function getDownloadLink(): string
     {
         return request()->getSchemeAndHttpHost() . '/api/documents/' . $this->id . '/download';
-    }
-
-    public function employees()
-    {
-        return $this->belongsToMany(Employee::class);
     }
 
     public function build()
