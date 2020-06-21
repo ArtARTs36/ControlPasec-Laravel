@@ -28,7 +28,7 @@ class PhpExcelTemplateLoader extends AbstractDocTemplateLoader
 
         return (new ExcelFile(
             $docPath,
-            $document->getTemplateFullPath(true),
+            $document->getTemplateFullPath(),
             $this->prepareData($this->includeData($document)),
             $document->paper_size
         ))->save();

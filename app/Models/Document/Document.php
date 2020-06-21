@@ -2,7 +2,6 @@
 
 namespace App\Models\Document;
 
-use App\Models\Employee\Employee;
 use App\Models\Supply\OneTForm;
 use App\Models\Supply\ProductTransportWaybill;
 use App\Models\Supply\QualityCertificate;
@@ -12,7 +11,6 @@ use App\Services\Document\DocumentBuilder;
 use App\Services\SpellingService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
 use Ramsey\Uuid\Uuid;
@@ -40,11 +38,11 @@ class Document extends Model
 {
     use HasEntities;
 
-    const STATUS_NEW = 0;
-    const STATUS_IN_QUEUE = 1;
-    const STATUS_GENERATED = 2;
+    public const STATUS_NEW = 0;
+    public const STATUS_IN_QUEUE = 1;
+    public const STATUS_GENERATED = 2;
 
-    const STATUSES = [
+    public const STATUSES = [
         self::STATUS_NEW => 'Документ создан',
         self::STATUS_IN_QUEUE => 'Документ помещен в очередь',
         self::STATUS_GENERATED => 'Документ сгенерирован',
@@ -78,10 +76,14 @@ class Document extends Model
         return $this->type->template;
     }
 
-    public function getTemplateFullPath(bool $ext = false): string
+    /**
+     * Получить полный путь к шаблону
+     *
+     * @return string
+     */
+    public function getTemplateFullPath(): string
     {
-        return resource_path('views/'. $this->getTemplate()) .
-            ($ext ? '.'. $this->getExtensionName() : '');
+        return views_path($this->getTemplate()) . '.' . $this->getExtensionName();
     }
 
     /**

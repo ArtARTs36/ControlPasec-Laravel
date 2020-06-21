@@ -17,7 +17,7 @@ class PhpWordDocTemplateLoader extends AbstractDocTemplateLoader
      */
     protected function make(Document $document): string
     {
-        $processor = new TemplateProcessor($document->getTemplateFullPath(true));
+        $processor = new TemplateProcessor($document->getTemplateFullPath());
         $this->prepareData($processor, $this->includeData($document, $processor));
 
         $savePath = $this->getSavePath($document);
