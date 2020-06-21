@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Models\Document\Document;
 use App\Models\Document\DocumentType;
 use App\Models\Supply\Supply;
-use App\Models\VariableDefinition;
 use App\Models\Supply\ScoreForPayment;
 use App\Services\Document\DocumentBuilder;
 use App\Services\Document\DocumentCreator;
@@ -23,7 +22,8 @@ class ScoreForPaymentService
      */
     public static function getOrCreateBySupply($supplyId, $date = null, $orderNumber = null): ScoreForPayment
     {
-        $scoreForPayment = ScoreForPayment::where('supply_id', self::prepareSupplyId($supplyId))
+        $scoreForPayment = ScoreForPayment::query()
+            ->where('supply_id', self::prepareSupplyId($supplyId))
             ->get()
             ->first();
 
@@ -88,7 +88,6 @@ class ScoreForPaymentService
 
     /**
      * @param Supply $supply
-     * @param bool $save
      * @return mixed
      * @throws \Throwable
      */
@@ -97,7 +96,7 @@ class ScoreForPaymentService
         $score = self::getOrCreateBySupply($supply, null, null);
         $document = $score->getDocument() ?? self::createDocumentByScore($score);
 
-        return DocumentBuilder::build($document, $save);
+        return DocumentBuilder::build($document);
     }
 
     /**

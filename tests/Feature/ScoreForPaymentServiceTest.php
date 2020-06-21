@@ -12,6 +12,10 @@ use Tests\BaseTestCase;
  */
 class ScoreForPaymentServiceTest extends BaseTestCase
 {
+    /**
+     * @covers \App\Services\ScoreForPaymentService::getOrCreateBySupply
+     * @throws \Exception
+     */
     public function testGetOrCreateBySupply(): void
     {
         /** @var Supply $randomSupply */
@@ -23,6 +27,10 @@ class ScoreForPaymentServiceTest extends BaseTestCase
         self::assertTrue($score->id > 0);
     }
 
+    /**
+     * @covers \App\Services\ScoreForPaymentService::getOrCreateDocumentBySupply
+     * @throws \Throwable
+     */
     public function testCreateDocumentBySupply(): void
     {
         /** @var Supply $randomSupply */
