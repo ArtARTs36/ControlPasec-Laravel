@@ -92,7 +92,7 @@ class ScoreForPaymentService
      * @return mixed
      * @throws \Throwable
      */
-    public static function getOrCreateDocumentBySupply(Supply $supply, $save = false)
+    public static function getOrCreateDocumentBySupply(Supply $supply)
     {
         $score = self::getOrCreateBySupply($supply, null, null);
         $document = $score->getDocument() ?? self::createDocumentByScore($score);

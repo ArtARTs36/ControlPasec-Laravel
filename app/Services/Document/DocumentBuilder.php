@@ -10,8 +10,13 @@ use App\Services\Document\DocTemplateLoader\PDFDocTemplateLoader;
 use App\Services\Document\DocTemplateLoader\PhpExcelTemplateLoader;
 use App\Services\Document\DocTemplateLoader\PhpWordDocTemplateLoader;
 
+/**
+ * Class DocumentBuilder
+ * @package App\Services\Document
+ */
 class DocumentBuilder
 {
+    /** @var string[] */
     private const LOADERS = [
         PDFDocTemplateLoader::NAME => PDFDocTemplateLoader::class,
         ExcelDocTemplateLoader::NAME => ExcelDocTemplateLoader::class,
@@ -20,7 +25,11 @@ class DocumentBuilder
         ManyXlxsToPdfLoader::NAME => ManyXlxsToPdfLoader::class,
     ];
 
-    public static function build(Document $document, bool $save = false)
+    /**
+     * @param Document $document
+     * @return string
+     */
+    public static function build(Document $document): string
     {
         if (empty(self::LOADERS[$document->getLoaderName()])) {
             throw new \LogicException('Не найден загрузчик шаблонов!');
@@ -31,14 +40,18 @@ class DocumentBuilder
         /** @var AbstractDocTemplateLoader $loader */
         $loader = new $loaderClass();
 
-        $result = $loader->load($document, $save);
+        $result = $loader->load($document);
 
         $document->setStatusGenerated();
 
         return $result;
     }
 
-    public static function buildMany(array $documents, bool $save = false)
+    /**
+     * @param array $documents
+     * @return string
+     */
+    public static function buildMany(array $documents): string
     {
         $document = $documents[0];
         if (empty(self::LOADERS[$document->getLoaderName()])) {
@@ -50,6 +63,6 @@ class DocumentBuilder
         /** @var AbstractDocTemplateLoader $loader */
         $loader = new $loaderClass();
 
-        return $loader->loadMany($documents, $save);
+        return $loader->loadMany($documents);
     }
 }

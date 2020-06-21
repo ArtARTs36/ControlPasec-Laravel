@@ -167,8 +167,8 @@ class Document extends Model
         return request()->getSchemeAndHttpHost() . '/api/documents/' . $this->id . '/download';
     }
 
-    public function build()
+    public function build(): string
     {
-        return DocumentBuilder::build($this, true);
+        return DocumentBuilder::build($this);
     }
 }

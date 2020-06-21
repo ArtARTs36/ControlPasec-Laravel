@@ -76,7 +76,7 @@ class DocumentService
             $id = $id['id'];
         }
 
-        $document = Document::find($id);
+        $document = Document::query()->find($id);
         if (null === $document) {
             throw new \LogicException('Документ не найден');
         }
@@ -97,7 +97,7 @@ class DocumentService
         }
 
         if (DocumentBuildSpeedAnalyser::analyse($document) === DocumentBuildSpeedAnalyser::ANSWER_BUILD_NOW) {
-            DocumentBuilder::build($document, true);
+            DocumentBuilder::build($document);
         } else {
             $document->setStatusInQueue();
 
@@ -111,7 +111,7 @@ class DocumentService
     public static function buildIfNotExists(Document $document): string
     {
         if (!$document->fileExists()) {
-            DocumentBuilder::build($document, true);
+            DocumentBuilder::build($document);
         }
 
         return $document->getFullPath();

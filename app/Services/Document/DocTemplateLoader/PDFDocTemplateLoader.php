@@ -11,11 +11,11 @@ class PDFDocTemplateLoader extends AbstractDocTemplateLoader
 
     /**
      * @param Document $document
-     * @param bool $save
-     * @return bool
+     * @return string
      * @throws \Exception
+     * @throws \Throwable
      */
-    protected function make(Document $document, $save = false)
+    protected function make(Document $document): string
     {
         $domPdf = $this->createDomPdf();
 
@@ -23,22 +23,18 @@ class PDFDocTemplateLoader extends AbstractDocTemplateLoader
 
         $domPdf->render();
 
-        if ($save === true) {
-            $this->saveDocument($document, $domPdf->output());
-        } else {
-            $domPdf->stream($document->title);
-        }
+        $this->saveDocument($document, $domPdf->output());
 
         return $this->getSavePath($document);
     }
 
     /**
      * @param Document[] $documents
-     * @param bool $save
-     * @return bool
+     * @return string
+     * @throws \Exception
      * @throws \Throwable
      */
-    protected function makeMany($documents, $save = false)
+    protected function makeMany($documents): string
     {
         $baseDocument = $documents[0];
 
@@ -55,16 +51,16 @@ class PDFDocTemplateLoader extends AbstractDocTemplateLoader
 
         $domPdf->loadHtml($template);
         $domPdf->render();
-        if ($save === true) {
-            $this->saveDocument($baseDocument, $domPdf->output());
-        } else {
-            $domPdf->stream($baseDocument->title);
-        }
 
-        return true;
+        $this->saveDocument($baseDocument, $domPdf->output());
+
+        return $this->getSavePath($baseDocument);
     }
 
-    protected function createDomPdf()
+    /**
+     * @return Dompdf
+     */
+    protected function createDomPdf(): Dompdf
     {
         $domPdf = new Dompdf([
             'defaultFont' => 'calibri'
@@ -75,13 +71,25 @@ class PDFDocTemplateLoader extends AbstractDocTemplateLoader
         return $domPdf;
     }
 
-    protected function loadDocumentInDom(Dompdf $domPdf, Document $document)
+    /**
+     * @param Dompdf $domPdf
+     * @param Document $document
+     * @throws \Throwable
+     */
+    protected function loadDocumentInDom(Dompdf $domPdf, Document $document): void
     {
         $domPdf->loadHtml(
             $this->renderTemplate($document, true)
         );
     }
 
+    /**
+     * @param Document $document
+     * @param bool $isFirstDocument
+     * @param bool $isEndDocument
+     * @return array|string
+     * @throws \Throwable
+     */
     protected function renderTemplate(Document $document, $isFirstDocument = false, $isEndDocument = true)
     {
         return view($document->getTemplate(), [

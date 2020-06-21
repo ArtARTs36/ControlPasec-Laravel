@@ -156,9 +156,9 @@ class DocumentCreator
         return $this->document;
     }
 
-    public function build($saveFile)
+    public function build($saveFile = true)
     {
-        DocumentBuilder::build($this->document, $saveFile);
+        DocumentBuilder::build($this->document);
 
         return $this;
     }

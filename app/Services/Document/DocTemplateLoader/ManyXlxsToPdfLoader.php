@@ -7,11 +7,20 @@ use App\Services\Document\DocumentService;
 use App\Services\Document\DocumentConverter;
 use App\Services\Document\DocumentJoiner\PDFJoiner;
 
+/**
+ * Class ManyXlxsToPdfLoader
+ * @package App\Services\Document\DocTemplateLoader
+ */
 class ManyXlxsToPdfLoader extends AbstractDocTemplateLoader
 {
     const NAME = 'ManyXlxsToPdfLoader';
 
-    protected function make(Document $document, $save = false)
+    /**
+     * @param Document $document
+     * @return string
+     * @throws \App\Services\Document\DocumentConvertException
+     */
+    protected function make(Document $document): string
     {
         $document->load('children');
         if (!$document->children()->exists()) {
@@ -23,10 +32,10 @@ class ManyXlxsToPdfLoader extends AbstractDocTemplateLoader
 
     /**
      * @param Document[] $documents
-     * @param bool $save
      * @return bool|false|string
+     * @throws \App\Services\Document\DocumentConvertException
      */
-    protected function makeMany($documents, $save = false)
+    protected function makeMany($documents): string
     {
         $paths = [];
         foreach ($documents as $document) {
@@ -34,8 +43,6 @@ class ManyXlxsToPdfLoader extends AbstractDocTemplateLoader
             $paths[] = DocumentConverter::xlsxToPdf($document);
         }
 
-        $pdf = (new PDFJoiner($paths))->join();
-
-        return $pdf;
+        return (new PDFJoiner($paths))->join();
     }
 }

@@ -10,33 +10,34 @@ abstract class AbstractDocTemplateLoader
 {
     const NAME = '';
 
-    const TEMPLATE_DIR_FULL_PATH = __DIR__ . '/../../Resources/views/DocumentTemplates/';
+    /**
+     * @param Document $document
+     * @return string
+     */
+    abstract protected function make(Document $document): string;
 
-    abstract protected function make(Document $document, $save = false);
+    /**
+     * @param array $documents
+     * @return string
+     */
+    abstract protected function makeMany($documents): string;
 
-    abstract protected function makeMany($documents, $save = false);
-
-    public function load(Document $document, $save = false)
+    /**
+     * @param Document $document
+     * @return string
+     */
+    public function load(Document $document): string
     {
-        return $this->make($document, $save);
-    }
-
-    public function loadMany($documents, $save = false)
-    {
-        return $this->makeMany($documents, $save);
+        return $this->make($document);
     }
 
     /**
-     * Получил файл шаблона
-     *
-     * @param Document $document
-     * @return false|string
+     * @param array $documents
+     * @return string
      */
-    protected function getTemplateFileByDocument(Document $document)
+    public function loadMany($documents): string
     {
-        $path = self::TEMPLATE_DIR_FULL_PATH. $document->type->template;
-
-        return file_get_contents($path);
+        return $this->makeMany($documents);
     }
 
     /**
@@ -83,6 +84,10 @@ abstract class AbstractDocTemplateLoader
         return $path;
     }
 
+    /**
+     * @param Document $document
+     * @return array
+     */
     protected function includeData(Document $document): array
     {
         $path = __DIR__ . '/../../../../resources/views/' .

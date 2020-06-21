@@ -22,19 +22,14 @@ class PhpExcelTemplateLoader extends AbstractDocTemplateLoader
      * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
      * @throws \Throwable
      */
-    protected function make(Document $document, $save = false)
+    protected function make(Document $document, $save = false): string
     {
-        $fileData = $document->getTemplate() . '_data';
-
-        $data = view($fileData, ['document' => $document])->render();
-        $data = json_decode($data, true);
-
         $this->createFolder($docPath = DocumentService::getDownloadLink($document, true));
 
         return (new ExcelFile(
             $docPath,
             $document->getTemplateFullPath(true),
-            $this->prepareData($data),
+            $this->prepareData($this->includeData($document)),
             $document->paper_size
         ))->save();
     }
@@ -68,7 +63,11 @@ class PhpExcelTemplateLoader extends AbstractDocTemplateLoader
         return $newData;
     }
 
-    protected function makeMany($documents, $save = false)
+    /**
+     * @param $documents
+     * @return string
+     */
+    protected function makeMany($documents): string
     {
         // TODO: Implement makeMany() method.
     }

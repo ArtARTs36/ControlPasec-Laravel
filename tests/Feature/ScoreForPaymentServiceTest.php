@@ -28,7 +28,7 @@ class ScoreForPaymentServiceTest extends BaseTestCase
         /** @var Supply $randomSupply */
         $randomSupply = $this->getRandomModel(Supply::class);
 
-        $build = ScoreForPaymentService::getOrCreateDocumentBySupply($randomSupply, true);
+        $build = ScoreForPaymentService::getOrCreateDocumentBySupply($randomSupply);
 
         self::assertFileExists($build);
     }

@@ -11,13 +11,11 @@ class PhpWordDocTemplateLoader extends AbstractDocTemplateLoader
 
     /**
      * @param Document $document
-     * @param bool $save
-     * @return bool|string
+     * @return string
      * @throws \PhpOffice\PhpWord\Exception\CopyFileException
      * @throws \PhpOffice\PhpWord\Exception\CreateTemporaryFileException
-     * @throws \Throwable
      */
-    protected function make(Document $document, $save = false)
+    protected function make(Document $document): string
     {
         $processor = new TemplateProcessor($document->getTemplateFullPath(true));
         $this->prepareData($processor, $this->includeData($document, $processor));
@@ -37,7 +35,11 @@ class PhpWordDocTemplateLoader extends AbstractDocTemplateLoader
         return include $path;
     }
 
-    protected function makeMany($documents, $save = false)
+    /**
+     * @param $documents
+     * @return string
+     */
+    protected function makeMany($documents): string
     {
         // TODO: Implement makeMany() method.
     }
