@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resource\DocumentShowResource;
 use App\Http\Responses\ActionResponse;
 use App\Models\Document\Document;
-use App\Models\News\ExternalNewsSource;
+use App\Bundles\ExternalNews\Models\ExternalNewsSource;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class DocumentController extends Controller

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Stat;
 
 use App\Http\Controllers\Controller;
 use App\Models\Contragent;
-use App\Models\News\ExternalNewsSource;
+use App\Bundles\ExternalNews\Models\ExternalNewsSource;
 use App\Models\Supply\Supply;
 use App\User;
 use Illuminate\Support\Facades\DB;

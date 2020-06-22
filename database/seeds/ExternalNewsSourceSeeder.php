@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\News\ExternalNewsSource;
+use App\Bundles\ExternalNews\Models\ExternalNewsSource;
 
 class ExternalNewsSourceSeeder extends CommonSeeder
 {
