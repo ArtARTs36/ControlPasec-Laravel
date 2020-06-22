@@ -1,8 +1,8 @@
 <?php
 
 use App\Models\Contragent;
+use App\Models\Supply\ScoreForPayment;
 use App\Models\VariableDefinition;
-use App\Services\ScoreForPaymentService;
 use App\Services\Supply\SupplyProductService;
 use App\Services\SupplyService;
 use App\Services\VariableDefinitionService;
@@ -24,7 +24,7 @@ foreach ($items as $item) {
     $supplyProduct->quantity = $item[5];
     $supplyProduct->save();
 
-    $score = ScoreForPaymentService::create($supply->id);
+    $score = ScoreForPayment::createBySupply($supply);
 
     $result[] = [
         'customer' => $customer,
