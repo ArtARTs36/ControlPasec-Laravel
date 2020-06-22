@@ -56,7 +56,9 @@ $app->singleton(
 );
 $app->singleton(
     \App\Senders\Push\PusherInterface::class,
-    \App\Senders\Push\PushAllSender::class
+    function () {
+        return new \App\Senders\Push\PushAllSender(env('PUSHALL_CHANNEL_ID'), env('PUSHALL_API_KEY'));
+    }
 );
 
 /*

@@ -25,11 +25,13 @@ class PushAllSender implements PusherInterface
 
     /**
      * PushAllSender constructor.
+     * @param $channelId
+     * @param $apiKey
      */
-    public function __construct()
+    public function __construct($channelId, $apiKey)
     {
-        $this->channelId = env('PUSHALL_CHANNEL_ID');
-        $this->apiKey = env('PUSHALL_API_KEY');
+        $this->channelId = $channelId;
+        $this->apiKey = $apiKey;
     }
 
     /**
