@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\News\ExternalNews;
-use App\Models\News\ExternalNewsSource;
-use App\Services\ExternalNewsCreator;
+use App\Bundles\ExternalNews\Models\ExternalNews;
+use App\Bundles\ExternalNews\Models\ExternalNewsSource;
+use App\Bundles\ExternalNews\Services\ExternalNewsCreator;
 
 class ExternalNewsSeeder extends CommonSeeder
 {
@@ -18,13 +18,9 @@ class ExternalNewsSeeder extends CommonSeeder
     private function randomData(int $count): void
     {
         for ($i = 0; $i < $count; $i++) {
-            $post = new ExternalNews();
-            $post->title = $this->faker()->text(80);
-            $post->description = $this->faker()->text;
-            $post->source_id = $this->getRelation(ExternalNewsSource::class);
-            $post->pub_date = $this->faker()->dateTime();
-            $post->link = $this->faker()->url;
-            $post->save();
+            factory(App\Bundles\ExternalNews\Models\ExternalNews::class)->create([
+               ExternalNews::FIELD_SOURCE_ID => $this->getRelation(ExternalNewsSource::class),
+            ]);
         }
     }
 }

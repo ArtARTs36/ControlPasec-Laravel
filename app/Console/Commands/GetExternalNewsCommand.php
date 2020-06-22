@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Services\ExternalNewsCreator;
+use App\Bundles\ExternalNews\Services\ExternalNewsCreator;
 use Illuminate\Console\Command;
 
 class GetExternalNewsCommand extends Command

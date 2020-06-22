@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Services;
+namespace App\Bundles\ExternalNews\Services;
 
-use App\Models\News\ExternalNews;
-use App\Models\News\ExternalNewsSource;
+use App\Bundles\ExternalNews\Models\ExternalNews;
+use App\Bundles\ExternalNews\Models\ExternalNewsSource;
 use App\Parsers\RssParser;
 
 class ExternalNewsCreator

@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\News;
+namespace App\Bundles\ExternalNews\Http\Controllers;
 
+use App\Bundles\ExternalNews\Http\Requests\ExternalNewsSourceRequest;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ExternalNews\ExternalNewsSourceRequest;
 use App\Http\Responses\ActionResponse;
-use App\Models\News\ExternalNews;
-use App\Models\News\ExternalNewsSource;
+use App\Bundles\ExternalNews\Models\ExternalNewsSource;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Http\Request;
 
 class ExternalNewsSourceController extends Controller
 {
@@ -20,7 +18,8 @@ class ExternalNewsSourceController extends Controller
      */
     public function index(int $page = 1)
     {
-        return ExternalNewsSource::paginate(10, ['*'], 'ExternalNewsSourcesList', $page);
+        return ExternalNewsSource::query()
+            ->paginate(10, ['*'], 'ExternalNewsSourcesList', $page);
     }
 
     /**

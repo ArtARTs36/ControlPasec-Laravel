@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\ExternalNews;
 
-use App\Models\News\ExternalNews;
-use App\Services\ExternalNewsCreator;
+use App\Bundles\ExternalNews\Models\ExternalNews;
+use App\Bundles\ExternalNews\Services\ExternalNewsCreator;
 use Tests\BaseTestCase;
 
 class ExternalNewsCreatorTest extends BaseTestCase

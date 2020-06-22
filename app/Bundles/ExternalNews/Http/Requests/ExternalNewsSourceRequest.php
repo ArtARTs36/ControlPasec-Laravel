@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\ExternalNews;
+namespace App\Bundles\ExternalNews\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

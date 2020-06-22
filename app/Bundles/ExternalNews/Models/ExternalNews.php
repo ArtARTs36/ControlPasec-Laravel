@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\News;
+namespace App\Bundles\ExternalNews\Models;
 
 use Creatortsv\EloquentPipelinesModifier\WithModifier;
 use Illuminate\Database\Eloquent\Model;
@@ -26,9 +26,15 @@ class ExternalNews extends Model
 
     public const RELATION_SOURCE = 'source';
 
+    public const FIELD_TITLE = 'title';
+    public const FIELD_DESCRIPTION = 'description';
+    public const FIELD_SOURCE_ID = 'source_id';
+    public const FIELD_PUB_DATE = 'pub_date';
+    public const FIELD_LINK = 'link';
+
     protected $fillable = [
-        'title',
-        'description',
+        self::FIELD_TITLE,
+        self::FIELD_DESCRIPTION,
     ];
 
     /**

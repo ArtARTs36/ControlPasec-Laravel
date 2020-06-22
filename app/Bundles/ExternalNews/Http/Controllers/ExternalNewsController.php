@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\News;
+namespace App\Bundles\ExternalNews\Http\Controllers;
 
+use App\Bundles\ExternalNews\Http\Requests\UpdateRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Responses\ActionResponse;
-use App\Models\News\ExternalNews;
+use App\Bundles\ExternalNews\Models\ExternalNews;
 use App\Models\User\Permission;
 use App\Repositories\ExternalNews\ExternalNewsRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Http\Request;
 
 class ExternalNewsController extends Controller
 {
@@ -81,12 +81,14 @@ class ExternalNewsController extends Controller
         return $externalNews;
     }
 
-    public function update(ExternalNews $externalNews, Request $request): ActionResponse
+    /**
+     * @param ExternalNews $externalNews
+     * @param UpdateRequest $request
+     * @return ActionResponse
+     */
+    public function update(ExternalNews $externalNews, UpdateRequest $request): ActionResponse
     {
-        return new ActionResponse(
-            $externalNews->update($request->only(['title', 'description'])) > 0,
-            $externalNews
-        );
+        return $this->updateModelAndResponse($request, $externalNews);
     }
 
     /**
