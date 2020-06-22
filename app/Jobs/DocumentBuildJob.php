@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Based\Interfaces\JobInterface;
 use App\Events\DocumentOfQueueGenerated;
 use App\Models\Document\Document;
 use Illuminate\Bus\Queueable;
@@ -14,10 +15,13 @@ use Illuminate\Queue\SerializesModels;
  * Class DocumentBuildJob
  * @package App\Jobs
  */
-class DocumentBuildJob implements ShouldQueue
+class DocumentBuildJob implements ShouldQueue, JobInterface
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    /**
+     * @var Document
+     */
     public $document;
 
     /**

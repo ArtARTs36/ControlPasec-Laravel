@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Interfaces;
+namespace App\Based\Interfaces;
 
 use App\Models\Document\Document;
 use App\Repositories\DocumentRepository;
@@ -15,15 +15,34 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  */
 interface ModelWithDocuments
 {
+    /**
+     * @return Document|null
+     */
     public function getDocument(): ?Document;
 
+    /**
+     * @return BelongsToMany
+     */
     public function documents(): BelongsToMany;
 
+    /**
+     * @return bool
+     */
     public function isExistsDocument(): bool;
 
+    /**
+     * @return bool
+     */
     public function isNotExistsDocument(): bool;
 
+    /**
+     * @return DocumentRepository
+     */
     public static function getDocRepo(): DocumentRepository;
 
+    /**
+     * @param array $options
+     * @return mixed
+     */
     public function save(array $options = []);
 }

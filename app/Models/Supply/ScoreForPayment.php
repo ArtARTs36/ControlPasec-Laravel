@@ -2,7 +2,7 @@
 
 namespace App\Models\Supply;
 
-use App\Interfaces\ModelWithDocuments;
+use App\Based\Interfaces\ModelWithDocuments;
 use App\Models\Contract\Contract;
 use App\Models\Document\Document;
 use App\Models\Document\DocumentType;
