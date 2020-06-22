@@ -19,7 +19,8 @@ class DocumentController extends Controller
      */
     public function index(int $page = 1): LengthAwarePaginator
     {
-        return ExternalNewsSource::paginate(10, ['*'], 'DocumentsList', $page);
+        return Document::query()
+            ->paginate(10, ['*'], 'DocumentsList', $page);
     }
 
     /**
