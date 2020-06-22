@@ -142,4 +142,23 @@ class RuFaker
     {
         return static::opf() . ' ' . $text;
     }
+
+    /**
+     * @return string
+     */
+    public static function insuranceNumber(): string
+    {
+        $threeNumbers = function () {
+            return rand(100, 999);
+        }; // PHP 7.4 => fn() => rand(100, 999);
+
+        $parts = [
+            $threeNumbers(),
+            $threeNumbers(),
+            $threeNumbers(),
+            rand(10, 99),
+        ];
+
+        return implode('-', $parts);
+    }
 }
