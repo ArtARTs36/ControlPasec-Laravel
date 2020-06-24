@@ -3,7 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\ExceptionNotified;
-use App\Senders\Push\Push;
+use ArtARTs36\PushAllSender\Senders\PushAllSender;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Carbon;
 

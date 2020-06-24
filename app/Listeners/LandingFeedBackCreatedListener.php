@@ -4,7 +4,7 @@ namespace App\Listeners;
 
 use App\Events\LandingFeedBackCreated;
 use App\Models\User\UserNotificationType;
-use App\Senders\Push\Push;
+use ArtARTs36\PushAllSender\Push;
 use App\Support\UserNotificator;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
