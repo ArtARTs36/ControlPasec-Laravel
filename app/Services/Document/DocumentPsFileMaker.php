@@ -4,9 +4,7 @@ namespace App\Services\Document;
 
 use App\Helper\FileHelper;
 use App\Models\Document\Document;
-use App\Services\Document\DocumentService;
-use App\Services\Shell\ShellCommand;
-use Illuminate\Support\Collection;
+use ArtARTs36\ShellCommand\ShellCommand;
 
 /**
  * Class DocumentPsFileMaker
@@ -36,7 +34,7 @@ class DocumentPsFileMaker
         $this->createTmpFolders($inputDir, $outDir);
         $this->copyFilesToInputDir($inputDir);
 
-        $command = ShellCommand::getInstance('soffice', false)
+        $command = (new ShellCommand('soffice', false))
             ->addOption('headless')
             ->addOption('print-to-file')
             ->addOption('outdir')

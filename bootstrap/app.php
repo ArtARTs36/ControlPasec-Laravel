@@ -61,6 +61,11 @@ $app->singleton(
     }
 );
 
+$app->bind(
+    \ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface::class,
+    \ArtARTs36\ShellCommand\ShellCommand::class
+);
+
 /*
 |--------------------------------------------------------------------------
 | Return The Application

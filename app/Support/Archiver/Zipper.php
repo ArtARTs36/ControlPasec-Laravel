@@ -4,7 +4,7 @@ namespace App\Support\Archiver;
 
 use App\Helper\FileHelper;
 use App\Services\ArchiveService;
-use App\Services\Shell\ShellCommand;
+use ArtARTs36\ShellCommand\ShellCommand;
 
 class Zipper extends AbstractArchiver
 {

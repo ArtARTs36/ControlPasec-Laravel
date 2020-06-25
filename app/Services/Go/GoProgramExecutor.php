@@ -2,8 +2,7 @@
 
 namespace App\Services\Go;
 
-use App\Helper\PhpOsHelper;
-use App\Services\Shell\ShellCommand;
+use ArtARTs36\ShellCommand\ShellCommand;
 
 /**
  * Class GoProgramExecutor
@@ -64,8 +63,8 @@ class GoProgramExecutor
         if ($isBinary) {
             $this->command = new ShellCommand($this->pathToProgram, false);
         } else {
-            $this->command = new ShellCommand('go run', false);
-            $this->command->addParameter($this->pathToProgram);
+            $this->command = (new ShellCommand('go run', false))
+                ->addParameter($this->pathToProgram);
         }
     }
 
