@@ -32,18 +32,13 @@ class Controller extends BaseController
     /**
      * @param Request $request
      * @param string $modelClass
-     * @param bool $save
      * @return Model
      */
-    protected function createModel(Request $request, string $modelClass, bool $save = true): Model
+    protected function createModel(Request $request, string $modelClass): Model
     {
-        /** @var Model $model */
-        $model = new $modelClass();
+        $model = $this->makeModel($request, $modelClass);
 
-        $model->fillable($model->getFillable())
-            ->fill($request->only($model->getFillable()));
-
-        ($save === true) && $model->save();
+        $model->save();
 
         return $model;
     }
@@ -55,7 +50,13 @@ class Controller extends BaseController
      */
     protected function makeModel(Request $request, string $modelClass): Model
     {
-        return $this->createModel($request, $modelClass, false);
+        /** @var Model $model */
+        $model = new $modelClass();
+
+        $model->fillable($model->getFillable())
+            ->fill($request->only($model->getFillable()));
+
+        return $model;
     }
 
     /**
