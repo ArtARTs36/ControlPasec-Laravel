@@ -11,7 +11,6 @@ use App\Services\Document\DocumentBuilder;
 use App\Services\SpellingService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
 use Ramsey\Uuid\Uuid;
@@ -37,11 +36,13 @@ use Ramsey\Uuid\Uuid;
  */
 class Document extends Model
 {
-    const STATUS_NEW = 0;
-    const STATUS_IN_QUEUE = 1;
-    const STATUS_GENERATED = 2;
+    use HasEntities;
 
-    const STATUSES = [
+    public const STATUS_NEW = 0;
+    public const STATUS_IN_QUEUE = 1;
+    public const STATUS_GENERATED = 2;
+
+    public const STATUSES = [
         self::STATUS_NEW => 'Документ создан',
         self::STATUS_IN_QUEUE => 'Документ помещен в очередь',
         self::STATUS_GENERATED => 'Документ сгенерирован',
@@ -55,54 +56,6 @@ class Document extends Model
     public function type(): BelongsTo
     {
         return $this->belongsTo(DocumentType::class);
-    }
-
-    public function scoreForPayments(): BelongsToMany
-    {
-        return $this->belongsToMany(ScoreForPayment::class);
-    }
-
-    public function productTransportWaybills(): BelongsToMany
-    {
-        return $this->belongsToMany(ProductTransportWaybill::class);
-    }
-
-    public function oneTForms(): BelongsToMany
-    {
-        return $this->belongsToMany(OneTForm::class);
-    }
-
-    public function qualityCertificates(): BelongsToMany
-    {
-        return $this->belongsToMany(QualityCertificate::class);
-    }
-
-    public function getQualityCertificate(): QualityCertificate
-    {
-        return $this->qualityCertificates->first();
-    }
-
-    public function getOneTForm(): OneTForm
-    {
-        return $this->oneTForms->first();
-    }
-
-    public function children(): BelongsToMany
-    {
-        return $this->belongsToMany(
-            Document::class,
-            'document_children',
-            'document_id',
-            'children_id'
-        );
-    }
-
-    /**
-     * @return ProductTransportWaybill
-     */
-    public function getProductTransportWaybill()
-    {
-        return $this->productTransportWaybills->first();
     }
 
     /**
@@ -123,10 +76,14 @@ class Document extends Model
         return $this->type->template;
     }
 
-    public function getTemplateFullPath(bool $ext = false): string
+    /**
+     * Получить полный путь к шаблону
+     *
+     * @return string
+     */
+    public function getTemplateFullPath(): string
     {
-        return resource_path('views/'. $this->getTemplate()) .
-            ($ext ? '.'. $this->getExtensionName() : '');
+        return views_path($this->getTemplate()) . '.' . $this->getExtensionName();
     }
 
     /**
@@ -181,11 +138,6 @@ class Document extends Model
         return $this;
     }
 
-    public function getScoreForPayment()
-    {
-        return $this->scoreForPayments->first();
-    }
-
     public function getFolder()
     {
         return $this->folder;
@@ -217,8 +169,10 @@ class Document extends Model
         return request()->getSchemeAndHttpHost() . '/api/documents/' . $this->id . '/download';
     }
 
-    public function build()
+    public function build(): string
     {
-        return DocumentBuilder::build($this, true);
+        (!$this->exists) && $this->save();
+
+        return DocumentBuilder::build($this);
     }
 }

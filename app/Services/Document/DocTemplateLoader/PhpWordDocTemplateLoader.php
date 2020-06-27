@@ -11,21 +11,14 @@ class PhpWordDocTemplateLoader extends AbstractDocTemplateLoader
 
     /**
      * @param Document $document
-     * @param bool $save
-     * @return bool|string
+     * @return string
      * @throws \PhpOffice\PhpWord\Exception\CopyFileException
      * @throws \PhpOffice\PhpWord\Exception\CreateTemporaryFileException
-     * @throws \Throwable
      */
-    protected function make(Document $document, $save = false)
+    protected function make(Document $document): string
     {
-        $fileData = $document->getTemplate() . '_data';
-
-        $processor = new TemplateProcessor($document->getTemplateFullPath(true));
-        $this->prepareData($processor, view($fileData, [
-            'document' => $document,
-            'templateProcessor' => $processor,
-        ])->render());
+        $processor = new TemplateProcessor($document->getTemplateFullPath());
+        $this->prepareData($processor, $this->includeData($document, $processor));
 
         $savePath = $this->getSavePath($document);
 
@@ -34,18 +27,29 @@ class PhpWordDocTemplateLoader extends AbstractDocTemplateLoader
         return file_exists($savePath) ? $savePath : false;
     }
 
-    protected function makeMany($documents, $save = false)
+    protected function includeData(Document $document, TemplateProcessor $processor = null): array
+    {
+        $path = __DIR__ . '/../../../../resources/views/' .
+            $document->getTemplate() . '_data.php';
+
+        return include $path;
+    }
+
+    /**
+     * @param $documents
+     * @return string
+     */
+    protected function makeMany($documents): string
     {
         // TODO: Implement makeMany() method.
     }
 
     /**
      * @param TemplateProcessor $processor
-     * @param string $data
+     * @param array $data
      */
-    private function prepareData(TemplateProcessor $processor, string $data)
+    private function prepareData(TemplateProcessor $processor, array $data)
     {
-        $data = json_decode($data, true);
         if (!empty($data['variables']) && ($variables = $data['variables']) && is_array($variables)) {
             foreach ($variables as $key => $value) {
                 $processor->setValue($key, $value);

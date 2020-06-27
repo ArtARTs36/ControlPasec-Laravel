@@ -24,19 +24,6 @@ class CreateOneTFormsTable extends Migration
                 ->references('id')
                 ->on('supplies');
         });
-
-        Schema::create('document_one_t_form', function (Blueprint $table) {
-            $table->unsignedInteger('document_id');
-            $table->unsignedInteger('one_t_form_id');
-
-            $table->foreign('document_id')
-                ->references('id')
-                ->on('documents');
-
-            $table->foreign('one_t_form_id')
-                ->references('id')
-                ->on('one_t_forms');
-        });
     }
 
     /**

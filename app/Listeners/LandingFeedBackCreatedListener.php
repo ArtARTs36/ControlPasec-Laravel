@@ -4,7 +4,8 @@ namespace App\Listeners;
 
 use App\Events\LandingFeedBackCreated;
 use App\Models\User\UserNotificationType;
-use App\Senders\Push\Push;
+use ArtARTs36\PushAllSender\Interfaces\PusherInterface;
+use ArtARTs36\PushAllSender\Push;
 use App\Support\UserNotificator;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -20,7 +21,9 @@ class LandingFeedBackCreatedListener implements ShouldQueue
             'feedback' => $event->feedback
         ])->render();
 
-        (new Push('Обратная связь: '. $event->feedback->id, $message))->send();
+        \app(PusherInterface::class)->push(
+            new Push('Обратная связь: '. $event->feedback->id, $message)
+        );
 
         UserNotificator::notify(UserNotificationType::LANDING_FEED_BACK_CREATED, $message, $event->feedback);
     }

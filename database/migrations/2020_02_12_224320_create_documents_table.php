@@ -30,21 +30,6 @@ class CreateDocumentsTable extends Migration
 
             $table->bigInteger('folder')->nullable();
         });
-
-        Schema::create('document_children', function (Blueprint $table) {
-            $table->unsignedInteger('document_id');
-            $table->unsignedInteger('children_id');
-        });
-
-        Schema::table('document_children', function (Blueprint $table) {
-            $table->foreign('document_id')
-                ->references('id')
-                ->on('documents');
-
-            $table->foreign('children_id')
-                ->references('id')
-                ->on('documents');
-        });
     }
 
     /**

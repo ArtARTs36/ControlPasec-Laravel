@@ -18,17 +18,6 @@ class DocumentBuilderTest extends BaseTestCase
 {
     use RandomDocumentTrait;
 
-    public function testBuild(): void
-    {
-        $randomDocument = Document::where('status', Document::STATUS_NEW)
-            ->inRandomOrder()
-            ->first();
-
-        $build = DocumentBuilder::build($randomDocument, true);
-
-        self::assertNotFalse($build);
-    }
-
     public function testBuildMany(): void
     {
         $documents = [
@@ -36,19 +25,15 @@ class DocumentBuilderTest extends BaseTestCase
             $this->getRandomDocumentByType(DocumentType::SCORE_FOR_PAYMENT_ID)
         ];
 
-        $build = DocumentBuilder::buildMany(
-            $documents,
-            true
-        );
+        $build = DocumentBuilder::buildMany($documents);
 
-        self::assertTrue($build);
+        self::assertFileExists($build);
     }
 
     public function testBuildScoreForPayment(): void
     {
         $build = DocumentBuilder::build(
-            $this->getRandomDocumentByType(DocumentType::SCORE_FOR_PAYMENT_ID),
-            true
+            $this->getRandomDocumentByType(DocumentType::SCORE_FOR_PAYMENT_ID)
         );
 
         self::assertFileExists($build);
@@ -79,10 +64,7 @@ class DocumentBuilderTest extends BaseTestCase
 
     public function testBuildTorg12(): void
     {
-        $build = DocumentBuilder::build(
-            $this->getRandomDocumentByType(DocumentType::TORG_12_ID),
-            true
-        );
+        $build = DocumentBuilder::build($this->getRandomDocumentByType(DocumentType::TORG_12_ID));
 
         self::assertFileExists($build);
     }
@@ -90,8 +72,7 @@ class DocumentBuilderTest extends BaseTestCase
     public function testBuildOneTForm(): void
     {
         $build = DocumentBuilder::build(
-            $this->getRandomDocumentByType(DocumentType::ONE_T_FORM_ID),
-            true
+            $this->getRandomDocumentByType(DocumentType::ONE_T_FORM_ID)
         );
 
         self::assertFileExists($build);

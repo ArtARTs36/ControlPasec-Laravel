@@ -15,7 +15,7 @@ Route::group([
     require 'apis/api.products.php';
     require 'apis/api.documents.php';
     require 'apis/api.vocabs.php';
-    require 'apis/api.external_news.php';
+    require __DIR__ . '/../app/Bundles/ExternalNews/Http/Routes/api.php';
     require 'apis/api.variable_definitions.php';
     require 'apis/api.parsers.php';
     require 'apis/api.dialogs.php';

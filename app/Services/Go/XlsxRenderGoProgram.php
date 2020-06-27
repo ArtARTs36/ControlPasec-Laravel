@@ -49,7 +49,7 @@ class XlsxRenderGoProgram extends GoProgram
     {
         return new self(
             DocumentService::getDownloadLink($document),
-            $document->getTemplateFullPath(true),
+            $document->getTemplateFullPath(),
             $data
         );
     }

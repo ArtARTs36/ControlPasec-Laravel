@@ -22,7 +22,7 @@ class TimeReportController extends Controller
     {
         $report = TimeReportService::create($employee, Carbon::parse($start), Carbon::parse($end));
 
-        DocumentBuilder::build($report->document, true);
+        DocumentBuilder::build($report->document);
 
         return new DocumentResource($report->document);
     }
@@ -36,7 +36,7 @@ class TimeReportController extends Controller
     {
         $report = TimeReportService::create($employee, Carbon::parse('1 month ago'), Carbon::now());
 
-        DocumentBuilder::build($report->document, true);
+        DocumentBuilder::build($report->document);
 
         return new DocumentResource($report->document);
     }

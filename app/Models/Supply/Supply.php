@@ -48,6 +48,7 @@ class Supply extends Model
     public const FIELD_CONTRACT_ID = 'contract_id';
 
     public const RELATION_CUSTOMER = 'customer';
+    public const RELATION_SUPPLIER = 'customer';
     public const RELATION_PRODUCTS = 'products';
 
     protected $fillable = [

@@ -3,7 +3,7 @@
 namespace App\Repositories\ExternalNews;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use App\Models\News\ExternalNews;
+use App\Bundles\ExternalNews\Models\ExternalNews;
 
 class ExternalNewsRepository
 {

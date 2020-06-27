@@ -17,6 +17,8 @@ class EmployeeStoreRequest extends FormRequest
             Employee::FIELD_NAME => 'required|string',
             Employee::FIELD_PATRONYMIC => 'required|string',
             Employee::FIELD_HIRED_DATE => 'required|string',
+            Employee::FIELD_HOLIDAY => 'required|string',
+            Employee::FIELD_INSURANCE_NUMBER => 'required|string',
 
             static::prefixWc(WorkCondition::FIELD_RATE) => 'sometimes|double',
             static::prefixWc(WorkCondition::FIELD_AMOUNT_MONTH) => 'sometimes|integer',

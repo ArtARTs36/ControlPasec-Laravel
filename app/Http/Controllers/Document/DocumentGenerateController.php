@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Document\GenerateManyTypesRequest;
 use App\Http\Resource\ArchiveResource;
 use App\Http\Resource\DocumentResource;
-use App\Interfaces\ModelWithDocuments;
+use App\Based\Interfaces\ModelWithDocuments;
 use App\Models\Document\DocumentType;
 use App\Models\Supply\OneTForm;
 use App\Models\Supply\ProductTransportWaybill;

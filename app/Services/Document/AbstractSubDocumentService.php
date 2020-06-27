@@ -2,7 +2,7 @@
 
 namespace App\Services\Document;
 
-use App\Interfaces\ModelWithDocuments;
+use App\Based\Interfaces\ModelWithDocuments;
 use App\Models\Document\Document;
 use App\Models\Document\DocumentType;
 use App\Models\Supply\OneTForm;

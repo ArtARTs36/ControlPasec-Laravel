@@ -55,8 +55,15 @@ $app->singleton(
     \App\Support\Log\LogService::class
 );
 $app->singleton(
-    \App\Senders\Push\PusherInterface::class,
-    \App\Senders\Push\PushAllSender::class
+    \ArtARTs36\PushAllSender\Interfaces\PusherInterface::class,
+    function () {
+        return new \ArtARTs36\PushAllSender\Senders\PushAllSender(env('PUSHALL_CHANNEL_ID'), env('PUSHALL_API_KEY'));
+    }
+);
+
+$app->bind(
+    \ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface::class,
+    \ArtARTs36\ShellCommand\ShellCommand::class
 );
 
 /*

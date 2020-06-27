@@ -5,7 +5,13 @@ namespace App\Models\Traits;
 use App\Models\Document\Document;
 use App\Repositories\DocumentRepository;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Collection;
 
+/**
+ * Trait WithDocuments
+ * @property Collection|Document[] $documents
+ * @package App\Models\Traits
+ */
 trait WithDocuments
 {
     private static $docRepo = null;
@@ -16,7 +22,16 @@ trait WithDocuments
      */
     public function documents(): BelongsToMany
     {
-        return $this->belongsToMany(Document::class);
+        return $this->morphToMany(
+            Document::class,
+            'entity',
+            'document_entity',
+            'document_id',
+            'entity_id',
+            null,
+            null,
+            false
+        );
     }
 
     /**
@@ -25,19 +40,28 @@ trait WithDocuments
      */
     public function getDocument(): ?Document
     {
-        return $this->documents[0] ?? null;
+        return $this->documents->first();
     }
 
+    /**
+     * @return bool
+     */
     public function isExistsDocument(): bool
     {
-        return isset($this->documents[0]);
+        return ! $this->isNotExistsDocument();
     }
 
+    /**
+     * @return bool
+     */
     public function isNotExistsDocument(): bool
     {
-        return !isset($this->documents[0]);
+        return empty($this->getDocument());
     }
 
+    /**
+     * @return DocumentRepository
+     */
     public static function getDocRepo(): DocumentRepository
     {
         if (self::$docRepo === null) {

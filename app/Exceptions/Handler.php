@@ -3,7 +3,6 @@
 namespace App\Exceptions;
 
 use App\Events\ExceptionNotified;
-use App\Senders\Push\Push;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 

@@ -3,7 +3,7 @@
 namespace App\Services\Document;
 
 use App\Models\Document\DocumentExtension;
-use App\Services\Shell\ShellCommand;
+use ArtARTs36\ShellCommand\ShellCommand;
 
 trait XlsxDocumentConverterTrait
 {
@@ -13,7 +13,7 @@ trait XlsxDocumentConverterTrait
 
         $outputDir = static::getDir($filePath);
 
-        $shell = ShellCommand::getInstance('soffice', false)
+        $shell = (new ShellCommand('soffice', false))
             ->addOption('headless')
             ->addOption('convert-to')
             ->addParameter('pdf')

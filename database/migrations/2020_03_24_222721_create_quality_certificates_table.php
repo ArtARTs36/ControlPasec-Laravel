@@ -24,19 +24,6 @@ class CreateQualityCertificatesTable extends Migration
                 ->references('id')
                 ->on('supplies');
         });
-
-        Schema::create('document_quality_certificate', function (Blueprint $table) {
-            $table->unsignedInteger('document_id');
-            $table->unsignedInteger('quality_certificate_id');
-
-            $table->foreign('document_id')
-                ->references('id')
-                ->on('documents');
-
-            $table->foreign('quality_certificate_id')
-                ->references('id')
-                ->on('quality_certificates');
-        });
     }
 
     /**

@@ -17,6 +17,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name
  * @property string $patronymic
  * @property string $hired_date
+ * @property string $holiday
+ * @property string $insurance_number
  * @property Collection|WorkCondition[] $workConditions
  */
 class Employee extends Model implements EmployeeInterface
@@ -24,15 +26,20 @@ class Employee extends Model implements EmployeeInterface
     use EmployeeSettersAndGettersTrait;
     use HasWorkConditions;
 
-    const FIELD_FAMILY = 'family';
-    const FIELD_NAME = 'name';
-    const FIELD_PATRONYMIC = 'patronymic';
-    const FIELD_HIRED_DATE = 'hired_date';
+    public const FIELD_FAMILY = 'family';
+    public const FIELD_NAME = 'name';
+    public const FIELD_PATRONYMIC = 'patronymic';
+    public const FIELD_HIRED_DATE = 'hired_date';
+    public const FIELD_HOLIDAY = 'holiday';
+    public const FIELD_INSURANCE_NUMBER = 'insurance_number';
 
     protected $fillable = [
         self::FIELD_FAMILY,
         self::FIELD_NAME,
         self::FIELD_PATRONYMIC,
+        self::FIELD_HIRED_DATE,
+        self::FIELD_HOLIDAY,
+        self::FIELD_INSURANCE_NUMBER,
         self::FIELD_HIRED_DATE,
     ];
 

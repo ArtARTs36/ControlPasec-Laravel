@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Supply;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ManySuppliesRequest;
 use App\Http\Requests\ScoreForPaymentRequest;
 use App\Http\Resource\DocumentResource;
 use App\Http\Responses\ActionResponse;
@@ -93,9 +94,9 @@ class ScoreForPaymentController extends Controller
      * @return DocumentResource
      * @throws Throwable
      */
-    public function checkOrCreateDocumentOfManyScores(Request $request)
+    public function checkOrCreateDocumentOfManyScores(ManySuppliesRequest $request)
     {
-        $supplies = $request->get('supplies');
+        $supplies = $request->get(ManySuppliesRequest::FIELD_SUPPLIES);
 
         $document = DocumentCreator::getInstance(DocumentType::SCORES_FOR_PAYMENTS_ID)
             ->addScores(ScoreForPaymentService::getOrCreateBySupplies($supplies))

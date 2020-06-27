@@ -28,6 +28,7 @@ final class DocumentType extends Model
     const ONE_T_FORM_ID = 6;
     const ROLE_SYSTEM_ID = 7;
     const TIME_REPORT_ID = 8;
+    const SZV_TD_ID = 9;
 
     /**
      * @return BelongsTo

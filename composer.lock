@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eb1e29bb0118a3ed74781ca1ea86f80a",
+    "content-hash": "c8ef795cb69c4a46d9d18fc6c4ae5071",
     "packages": [
         {
             "name": "alhimik1986/php-excel-templator",
@@ -103,6 +103,94 @@
                 "issues": "https://github.com/ArtARTs36/employee-interfaces/issues"
             },
             "time": "2020-06-20T11:59:54+00:00"
+        },
+        {
+            "name": "artarts36/pushall-sender",
+            "version": "0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ArtARTs36/PushAllSender.git",
+                "reference": "2d93c239d1443e28f66cd4cfe32f3ccd87af02f9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ArtARTs36/PushAllSender/zipball/2d93c239d1443e28f66cd4cfe32f3ccd87af02f9",
+                "reference": "2d93c239d1443e28f66cd4cfe32f3ccd87af02f9",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0",
+                "squizlabs/php_codesniffer": "3.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ArtARTs36\\PushAllSender\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ArtARTs36",
+                    "email": "temicska99@mail.ru"
+                }
+            ],
+            "description": "Push Sender",
+            "keywords": [
+                "api",
+                "laravel",
+                "mobile",
+                "notification",
+                "php",
+                "push",
+                "pushall.ru",
+                "symfony",
+                "yii"
+            ],
+            "time": "2020-06-23T23:35:23+00:00"
+        },
+        {
+            "name": "artarts36/shell-command",
+            "version": "1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ArtARTs36/ShellCommand.git",
+                "reference": "f2193cb7c6a55509a98efa14fd689f9b53bf25b4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ArtARTs36/ShellCommand/zipball/f2193cb7c6a55509a98efa14fd689f9b53bf25b4",
+                "reference": "f2193cb7c6a55509a98efa14fd689f9b53bf25b4",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0",
+                "squizlabs/php_codesniffer": "3.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ArtARTs36\\ShellCommand\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ArtARTs36",
+                    "email": "temicska99@mail.ru"
+                }
+            ],
+            "description": "OOP ShellCommand",
+            "time": "2020-06-25T22:46:35+00:00"
         },
         {
             "name": "cakephp/chronos",

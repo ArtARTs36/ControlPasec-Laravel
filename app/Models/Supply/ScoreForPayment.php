@@ -2,7 +2,7 @@
 
 namespace App\Models\Supply;
 
-use App\Interfaces\ModelWithDocuments;
+use App\Based\Interfaces\ModelWithDocuments;
 use App\Models\Contract\Contract;
 use App\Models\Document\Document;
 use App\Models\Document\DocumentType;
@@ -12,6 +12,7 @@ use App\Models\Traits\WithOrderNumber;
 use App\Models\Traits\WithSupply;
 use App\Models\VariableDefinition;
 use App\Services\VariableDefinitionService;
+use Creatortsv\EloquentPipelinesModifier\WithModifier;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -32,7 +33,7 @@ use Illuminate\Database\Query\Builder;
  */
 final class ScoreForPayment extends Model implements ModelWithDocuments
 {
-    use WithDocuments, WithOrderNumber, WithSupply;
+    use WithDocuments, WithOrderNumber, WithSupply, WithModifier;
 
     public const ORDER_NUMBER_TYPE = VariableDefinition::SCORE_FOR_PAYMENT_ORDER_NUMBER;
     public const TARGET_TYPE = DocumentType::SCORE_FOR_PAYMENT_ID;

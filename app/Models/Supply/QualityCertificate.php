@@ -2,7 +2,7 @@
 
 namespace App\Models\Supply;
 
-use App\Interfaces\ModelWithDocuments;
+use App\Based\Interfaces\ModelWithDocuments;
 use App\Models\Document\DocumentType;
 use App\Models\Traits\WithDocuments;
 use App\Models\Traits\WithOrderNumber;

@@ -3,9 +3,11 @@
 namespace Tests\Feature;
 
 use App\Http\Requests\Employee\EmployeeStoreRequest;
+use App\Models\Document\Document;
+use App\Models\Document\DocumentType;
 use App\Models\Employee\Employee;
-use App\Support\RuFaker;
 use Dba\ControlTime\Models\WorkCondition;
+use Illuminate\Http\Response;
 use Tests\BaseTestCase;
 
 /**
@@ -83,17 +85,56 @@ class EmployeeTest extends BaseTestCase
     }
 
     /**
-     * @return array
+     * TEST POST /api/employees/
      */
+    public function testStoreByValidData(): void
+    {
+        $data = $this->makeEmployeeData();
+
+        $response = $this->postJson(static::API_PATH, $data)
+            ->assertOk()
+            ->decodeResponseJson();
+
+        self::assertArrayHasKey('data', $response);
+        self::assertArrayHasKey('id', $response['data']);
+
+        $employee = Employee::query()->find($response['data']['id']);
+        self::assertTrue($employee->exists());
+    }
+
+    /**
+     * TEST POST /api/employees/
+     */
+    public function testStoreByInValidData(): void
+    {
+        $model = new Employee();
+
+        foreach ($model->getFillable() as $field) {
+            $data = $this->makeEmployeeData();
+            $data[$field] = null;
+
+            $this->postJson(static::API_PATH, $data)
+                 ->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+    }
+
+    public function testCreateDocumentSZVTD(): void
+    {
+        $employee = factory(Employee::class)->create();
+
+        $response = $this->getJson('/api/employees/'. $employee->id . '/document/'. DocumentType::SZV_TD_ID)
+            ->assertCreated()
+            ->decodeResponseJson();
+
+        /** @var Document $document */
+        $document = Document::query()->find($response['data']['id']);
+
+        self::assertTrue($document->exists);
+        self::assertFileExists($document->getFullPath());
+    }
+
     private function makeEmployeeData(): array
     {
-        $gender = RuFaker::gender();
-
-        return [
-            Employee::FIELD_NAME => RuFaker::name($gender),
-            Employee::FIELD_PATRONYMIC => RuFaker::patronymic($gender),
-            Employee::FIELD_FAMILY => RuFaker::family($gender),
-            Employee::FIELD_HIRED_DATE => $this->getFaker()->date()
-        ];
+        return factory(Employee::class)->make()->toArray();
     }
 }

@@ -3,8 +3,7 @@
 namespace App\Services\Document;
 
 use App\Models\Document\Document;
-use App\Services\Document\DocumentService;
-use App\Services\Shell\ShellCommand;
+use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException;
 
 /**
@@ -59,13 +58,13 @@ class DocumentConverter
     }
 
     /**
-     * @param ShellCommand $command
+     * @param ShellCommandInterface $command
      * @param string $file
      * @param string $ext
      * @return string
      * @throws DocumentConvertException
      */
-    private static function checkShell(ShellCommand $command, string $file, string $ext)
+    private static function checkShell(ShellCommandInterface $command, string $file, string $ext)
     {
         $shellResult = $command->getShellResult();
         if ($shellResult === null) {
