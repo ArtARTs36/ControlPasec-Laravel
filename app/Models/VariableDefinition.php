@@ -17,8 +17,8 @@ use Illuminate\Database\Query\Builder;
  * @property string $value
  * @property string $description
  * @property bool $is_take_of_parent
- * @property ModelType $modelType
- * @property ModelType|null $model_type_id
+ * @property ModelType|null $modelType
+ * @property int|null $model_type_id
  *
  * @mixin Builder
  */

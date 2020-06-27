@@ -17,6 +17,8 @@ class ExternalNewsTest extends BaseTestCase
      */
     public function testChart(): void
     {
+        $defaultCount = 6;
+
         $this->seed(\ExternalNewsSeeder::class);
 
         $this->actingAsRandomUser();
@@ -24,8 +26,15 @@ class ExternalNewsTest extends BaseTestCase
         $count = rand(5, 15);
         $response = $this->getJson(static::API_INDEX . "/chart/{$count}");
 
-        $response->assertStatus(200);
+        $response->assertOk();
         $response->assertJsonCount($count, 'data');
+
+        //
+
+        $response = $this->getJson(static::API_INDEX . "/chart");
+
+        $response->assertOk();
+        $response->assertJsonCount($defaultCount, 'data');
     }
 
     /**
