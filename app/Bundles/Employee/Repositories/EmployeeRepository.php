@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Bundles\Employee\Repositories;
 
-use App\Models\Employee\Employee;
+use App\Bundles\Employee\Models\Employee;
 use Dba\ControlTime\Scopes\CurrentWorkConditionScope;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;

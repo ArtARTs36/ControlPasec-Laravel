@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use App\Http\Controllers\ControlTime\TimeReportController;
 use App\Http\Resource\DocumentResource;
 use App\Models\Document\Document;
-use App\Models\Employee\Employee;
+use App\Bundles\Employee\Models\Employee;
 use Carbon\Carbon;
 use Dba\ControlTime\Models\WorkCondition;
 use Tests\BaseTestCase;

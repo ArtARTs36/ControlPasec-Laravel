@@ -3,7 +3,7 @@
 namespace App\Models\ControlTime;
 
 use App\Models\Document\Document;
-use App\Models\Employee\Employee;
+use App\Bundles\Employee\Models\Employee;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

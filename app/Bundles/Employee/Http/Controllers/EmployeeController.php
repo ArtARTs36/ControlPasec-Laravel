@@ -1,16 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Employee;
+namespace App\Bundles\Employee\Http\Controllers;
 
+use App\Bundles\Employee\Http\Requests\EmployeeStoreRequest;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Employee\EmployeeStoreRequest;
 use App\Http\Responses\ActionResponse;
-use App\Models\Employee\Employee;
-use App\Repositories\EmployeeRepository;
+use App\Bundles\Employee\Models\Employee;
+use App\Bundles\Employee\Repositories\EmployeeRepository;
 use App\Services\EmployeeService;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
+/**
+ * Class EmployeeController
+ * @package App\Bundles\Employee\Http\Controllers
+ */
 class EmployeeController extends Controller
 {
     /**

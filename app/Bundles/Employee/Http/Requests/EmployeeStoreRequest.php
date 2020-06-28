@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Requests\Employee;
+namespace App\Bundles\Employee\Http\Requests;
 
-use App\Models\Employee\Employee;
+use App\Bundles\Employee\Models\Employee;
 use Dba\ControlTime\Models\WorkCondition;
 use Illuminate\Foundation\Http\FormRequest;
 

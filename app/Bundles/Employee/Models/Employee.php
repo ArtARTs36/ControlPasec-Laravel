@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Employee;
+namespace App\Bundles\Employee\Models;
 
 use ArtARTs36\EmployeeInterfaces\Employee\EmployeeInterface;
 use ArtARTs36\EmployeeInterfaces\Employee\EmployeeSettersAndGettersTrait;

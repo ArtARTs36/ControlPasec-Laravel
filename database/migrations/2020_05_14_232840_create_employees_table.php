@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Employee\Employee;
+use App\Bundles\Employee\Models\Employee;
 use Dba\ControlTime\Support\Proxy;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;

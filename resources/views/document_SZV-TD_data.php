@@ -1,6 +1,6 @@
 <?php
 
-/** @var App\Models\Employee\Employee $employee */
+/** @var App\Bundles\Employee\Models\Employee $employee */
 $employee = $document->employees()->first();
 
 $hiredDate = \Carbon\Carbon::parse($employee->hired_date);

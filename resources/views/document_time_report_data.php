@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\ControlTime\TimeReport;
-use App\Models\Employee\Employee;
+use App\Bundles\Employee\Models\Employee;
 use Carbon\Carbon;
 use Dba\ControlTime\Models\WorkCondition;
 use Dba\ControlTime\Services\TimeService;

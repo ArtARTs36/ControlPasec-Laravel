@@ -4,12 +4,23 @@ namespace App\Services\ControlTime;
 
 use App\Models\ControlTime\TimeReport;
 use App\Models\Document\DocumentType;
-use App\Models\Employee\Employee;
+use App\Bundles\Employee\Models\Employee;
 use App\Services\Document\DocumentCreator;
 
+/**
+ * Class TimeReportService
+ * @package App\Services\ControlTime
+ */
 class TimeReportService
 {
-    public static function create(Employee $employee, \DateTime $start, \DateTime $end)
+    /**
+     * @param Employee $employee
+     * @param \DateTime $start
+     * @param \DateTime $end
+     * @return TimeReport
+     * @throws \Throwable
+     */
+    public function create(Employee $employee, \DateTime $start, \DateTime $end): TimeReport
     {
         $document = DocumentCreator::getInstance(DocumentType::TIME_REPORT_ID)->save();
 

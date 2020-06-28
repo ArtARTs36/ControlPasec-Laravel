@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\Employee\Employee;
+use App\Bundles\Employee\Models\Employee;
 use Dba\ControlTime\Models\WorkCondition;
 use Illuminate\Support\Arr;
 

@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Employee\Employee;
+use App\Bundles\Employee\Models\Employee;
 
 /**
  * Class EmployeeSeeder

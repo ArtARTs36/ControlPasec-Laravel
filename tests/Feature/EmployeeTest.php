@@ -2,10 +2,10 @@
 
 namespace Tests\Feature;
 
-use App\Http\Requests\Employee\EmployeeStoreRequest;
+use App\Bundles\Employee\Http\Requests\EmployeeStoreRequest;
 use App\Models\Document\Document;
 use App\Models\Document\DocumentType;
-use App\Models\Employee\Employee;
+use App\Bundles\Employee\Models\Employee;
 use Dba\ControlTime\Models\WorkCondition;
 use Illuminate\Http\Response;
 use Tests\BaseTestCase;
@@ -19,6 +19,7 @@ class EmployeeTest extends BaseTestCase
 
     /**
      * TEST GET /api/employees/{user-id}
+     * @covers \App\Bundles\Employee\Http\Controllers\EmployeeController::show
      */
     public function testShow(): void
     {
@@ -31,6 +32,7 @@ class EmployeeTest extends BaseTestCase
 
     /**
      * TEST POST /api/employees/
+     * @covers \App\Bundles\Employee\Http\Controllers\EmployeeController::store
      */
     public function testStoreWithoutWorkConditions(): void
     {
@@ -45,6 +47,7 @@ class EmployeeTest extends BaseTestCase
 
     /**
      * TEST POST /api/employees/
+     * @covers \App\Bundles\Employee\Http\Controllers\EmployeeController::store
      */
     public function testStoreWithWorkConditions(): void
     {
@@ -86,6 +89,7 @@ class EmployeeTest extends BaseTestCase
 
     /**
      * TEST POST /api/employees/
+     * @covers \App\Bundles\Employee\Http\Controllers\EmployeeController::store
      */
     public function testStoreByValidData(): void
     {
@@ -104,6 +108,7 @@ class EmployeeTest extends BaseTestCase
 
     /**
      * TEST POST /api/employees/
+     * @covers \App\Bundles\Employee\Http\Controllers\EmployeeController::store
      */
     public function testStoreByInValidData(): void
     {
@@ -118,6 +123,9 @@ class EmployeeTest extends BaseTestCase
         }
     }
 
+    /**
+     * @covers \App\Bundles\Employee\Http\Controllers\EmployeeDocumentController::byType
+     */
     public function testCreateDocumentSZVTD(): void
     {
         $employee = factory(Employee::class)->create();
@@ -133,6 +141,9 @@ class EmployeeTest extends BaseTestCase
         self::assertFileExists($document->getFullPath());
     }
 
+    /**
+     * @return array
+     */
     private function makeEmployeeData(): array
     {
         return factory(Employee::class)->make()->toArray();

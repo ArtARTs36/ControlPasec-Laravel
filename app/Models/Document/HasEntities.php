@@ -2,7 +2,7 @@
 
 namespace App\Models\Document;
 
-use App\Models\Employee\Employee;
+use App\Bundles\Employee\Models\Employee;
 use App\Models\Supply\OneTForm;
 use App\Models\Supply\ProductTransportWaybill;
 use App\Models\Supply\QualityCertificate;

@@ -21,10 +21,10 @@ Route::group([
     require 'apis/api.dialogs.php';
     require 'apis/api.stat.php';
     require(__DIR__ . '/../vendor/dba/controltime/routes/api.php');
-    require 'apis/api.employees.php';
     require 'apis/api.controltime.php';
     require 'apis/api.admin_services.php';
     require 'apis/api.logs.php';
+    require __DIR__ . '/../app/Bundles/Employee/Http/routes/api.php';
 });
 
 require 'apis/api.tech_support.php';
