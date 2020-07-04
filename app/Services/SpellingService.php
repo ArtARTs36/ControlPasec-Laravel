@@ -2,9 +2,9 @@
 
 namespace App\Services;
 
-use App\Services\SpellingService\DayTrait;
-use App\Services\SpellingService\LiteralTrait;
-use App\Services\SpellingService\MonthTrait;
+use App\Services\SpellingService\SpellingDays;
+use App\Services\SpellingService\SpellingLiterals;
+use App\Services\SpellingService\SpellingMonths;
 
 /**
  * Class SpellingService
@@ -12,7 +12,7 @@ use App\Services\SpellingService\MonthTrait;
  */
 class SpellingService
 {
-    use DayTrait, MonthTrait, LiteralTrait;
+    use SpellingDays, SpellingMonths, SpellingLiterals;
 
     /**
      * Транслит русских символов к английским

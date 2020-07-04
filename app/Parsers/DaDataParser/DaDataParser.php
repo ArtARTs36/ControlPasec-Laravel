@@ -67,7 +67,7 @@ class DaDataParser extends DaDataSender
             return false;
         }
 
-        $manageString = explode(" ", $response['management']['name']);
+        $manageString = explode('', $response['management']['name']);
         if (!(isset($manageString[2]) && !empty($manageString[2]))) {
             return false;
         }

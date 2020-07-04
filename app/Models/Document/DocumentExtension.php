@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 final class DocumentExtension extends Model
 {
-    const XLS = "xls";
-    const XLSX = "xlsx";
-    const PDF = "pdf";
+    public const XLS = 'xls';
+    public const XLSX = 'xlsx';
+    public const PDF = 'pdf';
 }

@@ -20,7 +20,7 @@ use Illuminate\Database\Query\Builder;
  *
  * @mixin Builder
  */
-class ExternalNews extends Model
+final class ExternalNews extends Model
 {
     use WithModifier;
 

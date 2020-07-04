@@ -3,16 +3,16 @@
 namespace App\Services\Document;
 
 use App\Models\Contragent;
-use App\Services\SpellingService\NumberTrait;
+use App\Services\SpellingService\SpellingNumbers;
 
-class TemplateService
+final class TemplateService
 {
-    use NumberTrait;
+    use SpellingNumbers;
 
     const VARIABLES_FIELD = 'variables';
     const TABLES_FIELD = 'tables';
 
-    public static function renderContragent(Contragent$contragent, $withKpp = false): string
+    public static function renderContragent(Contragent $contragent, $withKpp = false): string
     {
         $data = [
             $contragent->title,
@@ -38,9 +38,9 @@ class TemplateService
      */
     public static function formatPriceOne($price)
     {
-        $intPart = (string)(int)$price;
+        $intPart = (string) (int) $price;
         $intPartLength = strlen($intPart);
-        $fracPart = str_replace("0.", "", round($price - $intPart, 2));
+        $fracPart = str_replace('0.', '', round($price - $intPart, 2));
 
         $format = '';
 
@@ -52,7 +52,7 @@ class TemplateService
             if ($i != 0 && $i % 3 == 0) {
                 $format .= ' ';
             }
-        };
+        }
 
         return $format . ',' . $fracPart;
     }
@@ -100,13 +100,13 @@ class TemplateService
             return $intPart. ',00';
         }
 
-        return str_replace(".", ",", $weight);
+        return str_replace('.', ',', $weight);
     }
 
     /**
      * Склонение числительных
      *
-     * @param int|float|double $n
+     * @param int|float $n
      * @param array $words
      * @return mixed
      */

@@ -4,9 +4,10 @@ namespace App\Bundles\ExternalNews\Services;
 
 use App\Bundles\ExternalNews\Models\ExternalNews;
 use App\Bundles\ExternalNews\Models\ExternalNewsSource;
+use App\Bundles\ExternalNews\Repositories\ExternalNewsRepository;
 use App\Parsers\RssParser;
 
-class ExternalNewsCreator
+final class ExternalNewsCreator
 {
     private static $existsNews = null;
 
@@ -38,9 +39,8 @@ class ExternalNewsCreator
             $links[] = $item['link'];
         }
 
-        static::$existsNews = ExternalNews::whereIn('link', $links)
-            ->get()
-            ->pluck('id', 'link');
+        static::$existsNews = ExternalNewsRepository::findByLinks($links)
+            ->pluck('id', ExternalNews::FIELD_LINK);
 
         $news = [];
         foreach ($items as $item) {
@@ -70,7 +70,11 @@ class ExternalNewsCreator
         return $news;
     }
 
-    private static function isExistsNews($link)
+    /**
+     * @param $link
+     * @return bool
+     */
+    private static function isExistsNews($link): bool
     {
         return isset(self::$existsNews[$link]);
     }

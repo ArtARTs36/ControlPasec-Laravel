@@ -9,7 +9,7 @@ use Illuminate\Foundation\Http\FormRequest;
  * Class UpdateRequest
  * @package App\Bundles\ExternalNews\Http\Requests
  */
-class UpdateRequest extends FormRequest
+final class UpdateRequest extends FormRequest
 {
     /**
      * @return array

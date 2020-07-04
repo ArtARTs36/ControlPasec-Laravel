@@ -18,8 +18,8 @@ Route::apiResource('vocab-gos-standards', 'Vocab\VocabGosStandardController');
 
 // API для справочника "Банки"
 
-Route::get('vocab-banks/page-{page}', 'Vocab\VocabBankController@index');
-Route::apiResource('vocab-banks', 'Vocab\VocabBankController');
+Route::get('vocab-banks/page-{page}', '\App\Bundles\Vocab\Http\Controllers\VocabBankController@index');
+Route::apiResource('vocab-banks', '\App\Bundles\Vocab\Http\Controllers\VocabBankController');
 
 // API для справочника "Курсы валют"
 

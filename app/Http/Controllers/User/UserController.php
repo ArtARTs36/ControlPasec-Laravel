@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Actions\UserMeAction;
+use App\Bundles\User\Http\Actions\UserMeAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Http\Resource\UserResource;
 use App\Http\Responses\ActionResponse;
 use App\Models\User\Permission;
 use App\Models\User\Role;
-use App\Models\User\UserNotification;
 use App\Repositories\UserRepository;
 use App\User;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -48,7 +46,7 @@ class UserController extends Controller
      *      @OA\Response(response=404, description="Resource Not found"),
      * )
      */
-    public function me()
+    public function me(): UserResource
     {
         return UserMeAction::get();
     }

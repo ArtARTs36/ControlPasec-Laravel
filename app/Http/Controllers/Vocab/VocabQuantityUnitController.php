@@ -20,7 +20,8 @@ class VocabQuantityUnitController extends Controller
 
     public function index(int $page = 0)
     {
-        return VocabQuantityUnit::paginate(10, ['*'], 'VocabQuantityUnitsList', $page);
+        return VocabQuantityUnit::query()
+            ->paginate(10, ['*'], 'VocabQuantityUnitsList', $page);
     }
 
     public function show(VocabQuantityUnit $vocabQuantityUnit): VocabQuantityUnit

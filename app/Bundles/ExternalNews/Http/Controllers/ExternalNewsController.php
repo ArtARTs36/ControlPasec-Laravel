@@ -10,7 +10,11 @@ use App\Models\User\Permission;
 use App\Repositories\ExternalNews\ExternalNewsRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
-class ExternalNewsController extends Controller
+/**
+ * Class ExternalNewsController
+ * @package App\Bundles\ExternalNews\Http\Controllers
+ */
+final class ExternalNewsController extends Controller
 {
     public const PERMISSIONS = [
         'index' => Permission::EXTERNAL_NEWS_LIST_VIEW,

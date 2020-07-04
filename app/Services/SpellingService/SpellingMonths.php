@@ -2,7 +2,7 @@
 
 namespace App\Services\SpellingService;
 
-trait MonthTrait
+trait SpellingMonths
 {
     public static $months = [
         'nom' => [

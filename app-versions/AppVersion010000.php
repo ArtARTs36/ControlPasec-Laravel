@@ -11,4 +11,3 @@ class AppVersion010000 extends AbstractAppVersion
         //$this->migrateDataBase();
     }
 }
-

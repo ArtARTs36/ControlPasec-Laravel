@@ -17,7 +17,7 @@ class ProjectInstallCommand extends Command
     public function handle(): bool
     {
         if ($this->isLocked()) {
-            dump('Установка заблокирована!');
+            $this->warn('Установка заблокирована!');
 
             return false;
         }
@@ -57,7 +57,7 @@ class ProjectInstallCommand extends Command
             mkdir($path);
         }
 
-        dump('Папка для сохранения временных файлов документов проверена');
+        $this->comment('Папка для сохранения временных файлов документов проверена');
     }
 
     private function checkEnvFile(): void
@@ -66,14 +66,14 @@ class ProjectInstallCommand extends Command
             copy('.env.example', '.env');
         }
 
-        dump('Файл .env проверен');
+        $this->comment('Файл .env проверен');
     }
 
     private function checkExistsFileDocumentsMap(): void
     {
         FileHelper::createFileIfNotExists(base_path(env('DOCUMENT_SAVE_MAP')), "1");
 
-        dump('Проверен мап-файл для сохранения документов');
+        $this->comment('Проверен мап-файл для сохранения документов');
     }
 
     private function checkGoPrograms(): void
@@ -99,7 +99,7 @@ class ProjectInstallCommand extends Command
             chmod($dir. DIRECTORY_SEPARATOR . $file, 0755);
         }
 
-        dump('Go-Programs: Папки для данных проверены');
+        $this->comment('Go-Programs: Папки для данных проверены');
     }
 
     private function selectBinFileForGoProgram(string $name, string $path): bool

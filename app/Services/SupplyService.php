@@ -68,7 +68,7 @@ final class SupplyService
 
     public static function fullLoadSupply($id): Supply
     {
-        $supply = Supply::find($id);
+        $supply = Supply::query()->find($id);
         $supply->supplier->load([
             'requisites' => function ($requisite) {
                 return $requisite->with('bank');

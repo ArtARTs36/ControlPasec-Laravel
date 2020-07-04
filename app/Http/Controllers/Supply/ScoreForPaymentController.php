@@ -14,7 +14,6 @@ use App\Services\Document\DocumentService;
 use App\Services\Document\DocumentCreator;
 use App\Services\ScoreForPaymentService;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Http\Request;
 use Throwable;
 
 class ScoreForPaymentController extends Controller
@@ -90,9 +89,10 @@ class ScoreForPaymentController extends Controller
     /**
      * Создать документ из нескольких счетов
      *
-     * @param Request $request
+     * @param ManySuppliesRequest $request
      * @return DocumentResource
      * @throws Throwable
+     * @throws \ReflectionException
      */
     public function checkOrCreateDocumentOfManyScores(ManySuppliesRequest $request)
     {

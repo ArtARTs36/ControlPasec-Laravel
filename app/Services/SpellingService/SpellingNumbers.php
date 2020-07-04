@@ -2,7 +2,7 @@
 
 namespace App\Services\SpellingService;
 
-trait NumberTrait
+trait SpellingNumbers
 {
     public static $numbersToWords = [
         900 => 'девятьсот',

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Actions;
+namespace App\Bundles\User\Http\Actions;
 
 use App\Http\Resource\UserResource;
 use App\User;
@@ -21,7 +21,7 @@ class UserMeAction
 
     private static function fullLoad(User $user): void
     {
-        if ($user->getAttributeValue('notifications') === null) {
+        if (!$user->getAttributeValue(User::RELATION_NOTIFICATIONS)) {
             $user->load(User::RELATION_UNREAD_NOTIFICATIONS);
         }
     }

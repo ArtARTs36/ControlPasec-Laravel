@@ -2,7 +2,7 @@
 
 namespace App\Services\SpellingService;
 
-trait LiteralTrait
+trait SpellingLiterals
 {
     private static function getLiterals(bool $withReplaceSpace = false): array
     {

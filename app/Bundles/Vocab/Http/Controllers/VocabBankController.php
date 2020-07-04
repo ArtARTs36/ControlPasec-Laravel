@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Vocab;
+namespace App\Bundles\Vocab\Http\Controllers;
 
+use App\Bundles\Vocab\Http\Requests\VocabBankStoreRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Responses\ActionResponse;
 use App\Models\User\Permission;
-use App\Models\Vocab\VocabBank;
+use App\Bundles\Vocab\Models\VocabBank;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 
@@ -27,17 +28,18 @@ class VocabBankController extends Controller
      */
     public function index(int $page = 1): LengthAwarePaginator
     {
-        return VocabBank::latest('id')
+        return VocabBank::query()
+            ->latest('id')
             ->paginate(10, ['*'], 'VocabBanksList', $page);
     }
 
     /**
      * Добавления нового банка в справочник
      *
-     * @param Request $request
+     * @param VocabBankStoreRequest $request
      * @return ActionResponse
      */
-    public function store(Request $request)
+    public function store(VocabBankStoreRequest $request)
     {
         $bank = $this->createModel($request, VocabBank::class);
 
@@ -62,7 +64,7 @@ class VocabBankController extends Controller
      * @param VocabBank $vocabBank
      * @return ActionResponse
      */
-    public function update(Request $request, VocabBank $vocabBank)
+    public function update(VocabBankStoreRequest $request, VocabBank $vocabBank)
     {
         return $this->updateModelAndResponse($request, $vocabBank);
     }

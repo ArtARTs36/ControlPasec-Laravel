@@ -11,13 +11,13 @@ use Illuminate\Database\Query\Builder;
 /**
  * Class SupplyProduct
  *
- * @property integer $id
+ * @property int $id
  * @property double $price
- * @property integer $quantity
+ * @property int $quantity
  * @property VocabQuantityUnit $quantityUnit
- * @property integer $quantity_unit_id
- * @property integer $product_id
- * @property integer $supply_id
+ * @property int $quantity_unit_id
+ * @property int $product_id
+ * @property int $supply_id
  * @property Product $parent
  *
  * @mixin Builder

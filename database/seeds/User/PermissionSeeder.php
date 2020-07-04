@@ -15,6 +15,6 @@ class PermissionSeeder extends CommonSeeder
             ];
         }
 
-        Permission::insert($list);
+        Permission::query()->insert($list);
     }
 }

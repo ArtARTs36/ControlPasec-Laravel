@@ -14,7 +14,7 @@ use Illuminate\Database\Query\Builder;
  *
  * @mixin Builder
  */
-class ExternalNewsSource extends Model
+final class ExternalNewsSource extends Model
 {
     const TABLE = 'external_news_sources';
 

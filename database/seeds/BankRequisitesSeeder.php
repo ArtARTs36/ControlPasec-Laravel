@@ -2,7 +2,7 @@
 
 use App\Models\Contragent;
 use App\Models\Contragent\BankRequisites;
-use App\Models\Vocab\VocabBank;
+use App\Bundles\Vocab\Models\VocabBank;
 
 /**
  * Class BankRequisitesSeeder

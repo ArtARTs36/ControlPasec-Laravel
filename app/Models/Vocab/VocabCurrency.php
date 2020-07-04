@@ -29,10 +29,23 @@ final class VocabCurrency extends Model implements ModelWithPriorityInterface
 
     public const ISO_RUB = 'RUB';
 
+    public const FIELD_NAME = 'name';
+    public const FIELD_SHORT_NAME = 'short_name';
+    public const FIELD_NAME_EN = 'name_en';
+    public const FIELD_SHORT_NAME_EN = 'short_name_en';
+    public const FIELD_ISO_CODE = 'iso_code';
+    public const FIELD_SYMBOL = 'symbol';
     public const FIELD_ISO_SHORT_NAME = 'iso_short_name';
 
     protected $fillable = [
-        'id', 'name', 'short_name', 'name_en', 'short_name_en', 'iso_code', 'symbol',
+        'id',
+        self::FIELD_NAME,
+        self::FIELD_SHORT_NAME,
+        self::FIELD_NAME_EN,
+        self::FIELD_SHORT_NAME,
+        self::FIELD_SHORT_NAME_EN,
+        self::FIELD_ISO_CODE,
+        self::FIELD_SYMBOL,
         self::FIELD_ISO_SHORT_NAME,
     ];
 

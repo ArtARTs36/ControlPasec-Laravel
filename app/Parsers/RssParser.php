@@ -39,7 +39,7 @@ class RssParser
         foreach ($this->xml->children() as $key => $child) {
             foreach ($child->children() as $field => $value) {
                 if ($field == 'item') {
-                    $this->arrayItems[] = (array)$value;
+                    $this->arrayItems[] = (array) $value;
                 }
             }
         }

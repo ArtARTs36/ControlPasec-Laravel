@@ -6,7 +6,6 @@ use App\Models\Document\Document;
 use App\Models\Document\DocumentType;
 use App\Models\Supply\ProductTransportWaybill;
 use App\Models\Supply\ScoreForPayment;
-use App\Services\Document\DocumentService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
@@ -156,14 +155,7 @@ class DocumentCreator
         return $this->document;
     }
 
-    public function build($saveFile = true)
-    {
-        DocumentBuilder::build($this->document);
-
-        return $this;
-    }
-
-    public function get()
+    public function get(): Document
     {
         return $this->document;
     }

@@ -15,7 +15,7 @@ class LightTextDataParser extends AbstractTextDataParser
 
         $items = [];
         foreach ($data as $rowId => $string) {
-            $row = explode("|", $string);
+            $row = explode('|', $string);
 
             foreach ($row as $columnId => $value) {
                 if ($value == self::SLUG_NULL) {

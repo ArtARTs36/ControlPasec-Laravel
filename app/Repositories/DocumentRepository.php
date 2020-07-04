@@ -37,7 +37,7 @@ class DocumentRepository
     public function createBySupply(int $supplyId): ModelWithDocuments
     {
         /** @var ModelWithDocuments $form */
-        $form = new $this->modelClass;
+        $form = new $this->modelClass();
         $form->supply_id = $supplyId;
         $form->save();
 

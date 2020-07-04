@@ -18,8 +18,8 @@ class DaDataSender extends Sender
     public static function send($url, $params = null)
     {
         return self::executeSending($url, $params, [
-            "Accept: application/json",
-            "Authorization: Token ". self::ACCESS_KEY
+            'Accept: application/json',
+            'Authorization: Token '. self::ACCESS_KEY
         ]);
     }
 }

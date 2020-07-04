@@ -28,7 +28,7 @@ class Jwt
     {
         $payload = $this->decodeToken();
 
-        return isset($payload['exp']) ? $payload['exp'] : 0;
+        return $payload['exp'] ?? 0;
     }
 
     /**

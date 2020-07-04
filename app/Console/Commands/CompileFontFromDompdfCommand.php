@@ -40,15 +40,19 @@ class CompileFontFromDompdfCommand extends Command
      */
     public function handle()
     {
-        //$fontName = $this->input->getArguments();
-        $fontName = 'calibri';
-        if (empty($fontName)) {
-            throw new \LogicException('Не получено название шрифта!');
+        try {
+            //$fontName = $this->input->getArguments();
+            $fontName = 'calibri';
+            if (empty($fontName)) {
+                throw new \LogicException('Не получено название шрифта!');
+            }
+
+            $domPdf = new Dompdf();
+
+            $this->installFontFamily($domPdf, $fontName, env('DOCUMENT_FONTS_DIR') . '/' . $fontName);
+        } catch (\Exception $exception) {
+            $this->error($exception->getMessage());
         }
-
-        $domPdf = new Dompdf();
-
-        $this->installFontFamily($domPdf, $fontName, env('DOCUMENT_FONTS_DIR') . '/' . $fontName);
     }
 
     /**
@@ -90,17 +94,17 @@ class CompileFontFromDompdfCommand extends Command
         }
 
         if (!in_array($ext, array(".ttf", ".otf"))) {
-            throw new Exception("Unable to process fonts of type '$ext'.");
+            throw new Exception("Unable to process fonts of type {$ext}.");
         }
 
         // Try $file_Bold.$ext etc.
-        $path = "$dir/$file";
+        $path = "{$dir}/{$file}";
 
-        $patterns = array(
-            "bold"        => array("_Bold", "b", "B", "bd", "BD"),
-            "italic"      => array("_Italic", "i", "I"),
-            "bold_italic" => array("_Bold_Italic", "bi", "BI", "ib", "IB"),
-        );
+        $patterns = [
+            'bold' => ['_Bold', 'b', 'B', 'bd', 'BD'],
+            'italic'=> ['_Italic', 'i', 'I'],
+            'bold_italic' => ['_Bold_Italic', 'bi', 'BI', 'ib', 'IB'],
+        ];
 
         foreach ($patterns as $type => $_patterns) {
             if (!isset($$type) || !is_readable($$type)) {
@@ -129,27 +133,26 @@ class CompileFontFromDompdfCommand extends Command
 
             // Verify that the fonts exist and are readable
             if (!is_readable($src)) {
-                throw new Exception("Requested font '$src' is not readable");
+                throw new Exception("Requested font {$src} is not readable");
             }
 
             $dest = $domPdf->getOptions()->get('fontDir') . '/' . basename($src);
 
             if (!is_writeable(dirname($dest))) {
-                throw new Exception("Unable to write to destination '$dest'.");
+                throw new Exception("Unable to write to destination {$dest}.");
             }
 
-            echo "Copying $src to $dest...\n";
+            $this->comment("Copying {$src} to {$dest}...\n");
 
             if (!copy($src, $dest)) {
-                throw new Exception("Unable to copy '$src' to '$dest'");
+                throw new Exception("Unable to copy {$src} to {$dest}");
             }
 
             $entryName = mb_substr($dest, 0, -4);
-
-            echo "Generating Adobe Font Metrics for $entryName...\n";
+            $this->comment("Generating Adobe Font Metrics for {$entryName}...\n");
 
             $font_obj = Font::load($dest);
-            $font_obj->saveAdobeFontMetrics("$entryName.ufm");
+            $font_obj->saveAdobeFontMetrics("{$entryName}.ufm");
             $font_obj->close();
 
             $entry[$var] = $entryName;

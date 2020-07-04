@@ -4,9 +4,6 @@ namespace App\Services\Document;
 
 use App\Jobs\DocumentBuildJob;
 use App\Models\Document\Document;
-use App\Services\Document\DocumentBuilder;
-use App\Services\Document\DocumentBuildSpeedAnalyser;
-use App\User;
 
 class DocumentService
 {

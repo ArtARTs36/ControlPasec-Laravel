@@ -8,7 +8,11 @@ use App\Http\Responses\ActionResponse;
 use App\Bundles\ExternalNews\Models\ExternalNewsSource;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
-class ExternalNewsSourceController extends Controller
+/**
+ * Class ExternalNewsSourceController
+ * @package App\Bundles\ExternalNews\Http\Controllers
+ */
+final class ExternalNewsSourceController extends Controller
 {
     /**
      * Отобразить внешние источники новостей

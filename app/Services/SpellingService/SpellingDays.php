@@ -2,7 +2,7 @@
 
 namespace App\Services\SpellingService;
 
-trait DayTrait
+trait SpellingDays
 {
     private static $dayOfWeek = [
         '',

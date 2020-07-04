@@ -17,14 +17,14 @@ class ProductTransportWaybillController extends Controller
      */
     public function index()
     {
-        return ProductTransportWaybill::paginate(10);
+        return ProductTransportWaybill::query()->paginate(10);
     }
 
     public function store(ProductTransportWaybillRequest $request)
     {
         $waybill = new ProductTransportWaybill();
         $waybill->fill($request->toArray())
-                ->save();
+            ->save();
 
         return new ActionResponse(true, $waybill);
     }

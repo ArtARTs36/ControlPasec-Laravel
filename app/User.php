@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Bundles\User\Models\UserExtend\WithJWT;
 use App\Models\Dialog\DialogMessage;
 use App\Models\User\Permission;
 use App\Models\User\Role;
@@ -39,7 +40,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  */
 class User extends Authenticatable implements JWTSubject
 {
-    use Notifiable, HasRoles;
+    use Notifiable, HasRoles, WithJWT;
 
     const TABLE = 'users';
 
@@ -108,26 +109,6 @@ class User extends Authenticatable implements JWTSubject
 //            }]);
 //        });
 //    }
-
-    /**
-     * Get the identifier that will be stored in the subject claim of the JWT.
-     *
-     * @return mixed
-     */
-    public function getJWTIdentifier()
-    {
-        return $this->getKey();
-    }
-
-    /**
-     * Return a key value array, containing any custom claims to be added to the JWT.
-     *
-     * @return array
-     */
-    public function getJWTCustomClaims()
-    {
-        return [];
-    }
 
     /**
      * @return HasMany
