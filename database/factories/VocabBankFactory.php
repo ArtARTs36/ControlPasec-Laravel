@@ -8,11 +8,7 @@ use Illuminate\Support\Str;
 $factory->define(App\Bundles\Vocab\Models\VocabBank::class, function (Faker $faker) {
     $fullName = $faker->name;
 
-    $shortName = \App\Support\RuFaker::withOpf(
-        implode('', array_map(function (string $item) {
-            return $item[0];
-        }, explode(' ', $fullName)))
-    );
+    $shortName = \App\Support\RuFaker::abbreviationWithOpf($fullName);
 
     return [
         \App\Bundles\Vocab\Models\VocabBank::FIELD_FULL_NAME => $fullName,

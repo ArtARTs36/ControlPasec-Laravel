@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands\CurrencyCourse;
 
-use App\Models\Vocab\CurrencyCourse;
+use App\Bundles\Vocab\Models\CurrencyCourse;
 use Illuminate\Console\Command;
 
 class ClearCurrencyCoursesCommand extends Command

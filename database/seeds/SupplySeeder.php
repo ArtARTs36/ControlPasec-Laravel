@@ -6,7 +6,7 @@ use App\Models\Product\Product;
 use App\Models\Supply\OneTForm;
 use App\Models\Supply\ProductTransportWaybill;
 use App\Models\Supply\SupplyProduct;
-use App\Models\Vocab\VocabQuantityUnit;
+use App\Bundles\Vocab\Models\VocabQuantityUnit;
 use App\Models\Supply\ScoreForPayment;
 use App\Services\Document\DocumentCreator;
 

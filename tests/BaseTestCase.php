@@ -3,7 +3,6 @@
 namespace Tests;
 
 use App\Models\User\Permission;
-use App\Models\Vocab\VocabQuantityUnit;
 use App\User;
 use Faker\Factory;
 use Faker\Generator as Faker;

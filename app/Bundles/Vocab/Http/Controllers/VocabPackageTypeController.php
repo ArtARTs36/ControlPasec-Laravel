@@ -1,15 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Vocab;
+namespace App\Bundles\Vocab\Http\Controllers;
 
+use App\Bundles\Vocab\Http\Requests\VocabPackageTypeStore;
 use App\Http\Responses\ActionResponse;
 use App\Models\User\Permission;
-use App\Models\Vocab\VocabPackageType;
+use App\Bundles\Vocab\Models\VocabPackageType;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class VocabPackageTypeController extends Controller
+/**
+ * Class VocabPackageTypeController
+ * @package App\Http\Controllers\Vocab
+ */
+final class VocabPackageTypeController extends Controller
 {
     public const PERMISSIONS = [
         'index' => Permission::VOCAB_PACKAGE_TYPES_LIST_VIEW,
@@ -20,32 +24,23 @@ class VocabPackageTypeController extends Controller
     ];
 
     /**
-     * Display a listing of the resource.
-     *
      * @return LengthAwarePaginator
      */
     public function index()
     {
-        return VocabPackageType::paginate(10);
+        return VocabPackageType::modify()->paginate();
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param VocabPackageType $request
+     * @param VocabPackageTypeStore $request
      * @return ActionResponse
      */
-    public function store(VocabPackageType $request): ActionResponse
+    public function store(VocabPackageTypeStore $request): ActionResponse
     {
-        $type = new VocabPackageType();
-        $type->name = $request->name;
-
-        return new ActionResponse($type->save(), $type);
+        return $this->createModelAndResponse($request, VocabPackageType::class);
     }
 
     /**
-     * Display the specified resource.
-     *
      * @param VocabPackageType $vocabPackageType
      * @return VocabPackageType
      */
@@ -55,25 +50,22 @@ class VocabPackageTypeController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
+     * @param VocabPackageTypeStore $request
      * @param VocabPackageType $vocabPackageType
      * @return ActionResponse
      */
-    public function update(Request $request, VocabPackageType $vocabPackageType): ActionResponse
+    public function update(VocabPackageTypeStore $request, VocabPackageType $vocabPackageType): ActionResponse
     {
-        return new ActionResponse($vocabPackageType->update($request->all()));
+        return $this->updateModelAndResponse($request, $vocabPackageType);
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
      * @param VocabPackageType $vocabPackageType
      * @return ActionResponse
+     * @throws \Exception
      */
     public function destroy(VocabPackageType $vocabPackageType): ActionResponse
     {
-        return new ActionResponse($vocabPackageType->delete());
+        return $this->deleteModelAndResponse($vocabPackageType);
     }
 }

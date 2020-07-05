@@ -1,27 +1,31 @@
 <?php
 
-namespace App\Http\Controllers\Vocab;
+namespace App\Bundles\Vocab\Http\Controllers;
 
+use App\Bundles\Vocab\Http\Requests\SizeOfUnitStore;
 use App\Http\Controllers\Controller;
 use App\Http\Responses\ActionResponse;
-use App\Models\Vocab\SizeOfUnit;
-use Illuminate\Http\Request;
+use App\Bundles\Vocab\Models\SizeOfUnit;
 
-class SizeOfUnitController extends Controller
+/**
+ * Class SizeOfUnitController
+ * @package App\Bundles\Vocab\Http\Controllers
+ */
+final class SizeOfUnitController extends Controller
 {
     /**
      * @return ActionResponse
      */
-    public function index()
+    public function index(): ActionResponse
     {
         return new ActionResponse(true, SizeOfUnit::all());
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
+     * @param SizeOfUnitStore $request
      * @return ActionResponse
      */
-    public function store(Request $request): ActionResponse
+    public function store(SizeOfUnitStore $request): ActionResponse
     {
         return $this->createModelAndResponse($request, SizeOfUnit::class);
     }
@@ -36,11 +40,11 @@ class SizeOfUnitController extends Controller
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
+     * @param SizeOfUnitStore $request
      * @param SizeOfUnit $sizeOfUnit
      * @return ActionResponse
      */
-    public function update(Request $request, SizeOfUnit $sizeOfUnit)
+    public function update(SizeOfUnitStore $request, SizeOfUnit $sizeOfUnit)
     {
         return $this->updateModelAndResponse($request, $sizeOfUnit);
     }

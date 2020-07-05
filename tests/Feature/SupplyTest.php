@@ -7,7 +7,7 @@ use App\Models\Product\Product;
 use App\Models\Supply\Supply;
 use App\Models\Supply\SupplyProduct;
 use App\Models\User\Permission;
-use App\Models\Vocab\VocabQuantityUnit;
+use App\Bundles\Vocab\Models\VocabQuantityUnit;
 use App\Services\Supply\SupplyCreator;
 use Illuminate\Http\Response;
 use Tests\BaseTestCase;
@@ -34,6 +34,8 @@ class SupplyTest extends BaseTestCase
     {
         $supplierId = $this->getRandomModel(Contragent::class)->id;
         $customerId = $this->getRandomModel(Contragent::class)->id;
+
+        $this->actingAsUserWithPermission(Permission::SUPPLIES_CREATE);
 
         $response = $this->postJson(self::API_URL, [
             'planned_date' => '2020-02-08 18:18:32',

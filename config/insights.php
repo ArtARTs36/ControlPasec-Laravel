@@ -106,7 +106,7 @@ return [
 //        'min-quality' => 0,
 //        'min-complexity' => 0,
 //        'min-architecture' => 0,
-//        'min-style' => 0,
+        'min-style' => 80,
 //        'disable-security-check' => false,
     ],
 

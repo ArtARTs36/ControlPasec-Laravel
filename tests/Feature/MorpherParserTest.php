@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Models\Vocab\VocabWord;
+use App\Bundles\Vocab\Models\VocabWord;
 use App\Parsers\MorpherParser\MorpherParser;
 use Tests\TestCase;
 

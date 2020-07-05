@@ -43,7 +43,7 @@ class DialogResource extends JsonResource
 
     private function getPage(Request $request): int
     {
-        $parse = explode("/", $request->getRequestUri());
+        $parse = explode('/', $request->getRequestUri());
         $pageParse = explode('page-', end($parse));
 
         return (int) end($pageParse);

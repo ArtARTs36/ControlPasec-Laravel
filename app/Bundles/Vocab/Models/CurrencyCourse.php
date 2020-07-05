@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Models\Vocab;
+namespace App\Bundles\Vocab\Models;
 
-use App\Models\Vocab\VocabCurrency;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -19,11 +18,16 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 final class CurrencyCourse extends Model
 {
     public const FIELD_ACTUAL_DATE = 'actual_date';
+    public const FIELD_CURRENCY_ID = 'currency_id';
+    public const FIELD_NOMINAL = 'nominal';
+    public const FIELD_VALUE = 'value';
 
     public const RELATION_CURRENCY = 'currency';
 
     protected $fillable = [
-        'currency_id', 'nominal', 'value',
+        self::FIELD_CURRENCY_ID,
+        self::FIELD_NOMINAL,
+        self::FIELD_VALUE,
         self::FIELD_ACTUAL_DATE,
     ];
 

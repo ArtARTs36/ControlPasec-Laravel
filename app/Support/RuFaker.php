@@ -161,4 +161,16 @@ class RuFaker
 
         return implode('-', $parts);
     }
+
+    public static function abbreviation(string $text): string
+    {
+        return implode('', array_map(function (string $item) {
+            return $item[0];
+        }, explode(' ', $text)));
+    }
+
+    public static function abbreviationWithOpf(string $text): string
+    {
+        return static::withOpf(static::abbreviation($text));
+    }
 }

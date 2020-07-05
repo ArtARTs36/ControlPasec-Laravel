@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Vocab;
+namespace App\Bundles\Vocab\Http\Controllers;
 
+use App\Bundles\Vocab\Models\VocabCurrency;
 use App\Helper\ModelPrioritiesRefresher\ModelPrioritiesRefresher;
 use App\Http\Controllers\Controller;
 use App\Http\Responses\ActionResponse;
 use App\Models\User\Permission;
-use App\Models\Vocab\VocabCurrency;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 
-class VocabCurrencyController extends Controller
+final class VocabCurrencyController extends Controller
 {
     public const PERMISSIONS = [
         'index' => Permission::VOCAB_BANKS_LIST_VIEW,
@@ -28,7 +28,8 @@ class VocabCurrencyController extends Controller
      */
     public function index($page = 1): LengthAwarePaginator
     {
-        return VocabCurrency::paginate(10, ['*'], 'VocabCurrenciesList', $page);
+        return VocabCurrency::query()
+            ->paginate(10, ['*'], 'VocabCurrenciesList', $page);
     }
 
     /**
@@ -39,8 +40,9 @@ class VocabCurrencyController extends Controller
      */
     public function store(Request $request): ActionResponse
     {
-        $currency = new VocabCurrency();
-        $currency->fill($request->all());
+        $currency = $this->createModel($request, VocabCurrency::class);
+
+        (new ModelPrioritiesRefresher($currency))->refresh($request->get('priority'));
 
         return new ActionResponse($currency->save(), $currency);
     }
@@ -82,6 +84,6 @@ class VocabCurrencyController extends Controller
      */
     public function destroy(VocabCurrency $vocabCurrency): ActionResponse
     {
-        return new ActionResponse($vocabCurrency->delete());
+        return $this->deleteModelAndResponse($vocabCurrency);
     }
 }

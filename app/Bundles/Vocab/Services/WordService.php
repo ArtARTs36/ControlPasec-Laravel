@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Services;
+namespace App\Bundles\Vocab\Services;
 
 use App\Parsers\MorpherParser\MorpherParser;
-use App\Models\Vocab\VocabWord;
+use App\Bundles\Vocab\Models\VocabWord;
 
-class WordService
+final class WordService
 {
     /**
      * @param array|string[] $words
@@ -29,6 +29,8 @@ class WordService
      */
     public static function getDeclensions(string $word): ?VocabWord
     {
-        return VocabWord::where('nominative', $word)->first();
+        return VocabWord::query()
+            ->where(VocabWord::FIELD_NOMINATIVE, $word)
+            ->first();
     }
 }

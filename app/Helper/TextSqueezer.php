@@ -2,6 +2,10 @@
 
 namespace App\Helper;
 
+/**
+ * Class TextSqueezer
+ * @package App\Helper
+ */
 class TextSqueezer
 {
     /**
@@ -41,8 +45,8 @@ class TextSqueezer
      */
     public static function parseText(string &$source): void
     {
-        $source = str_replace("\r\n", "", $source);
-        $source = str_replace("\n", "", $source);
+        $source = str_replace("\r\n", '', $source);
+        $source = str_replace("\n", '', $source);
         $source = preg_replace('/ {2,}/', '', $source);
     }
 }

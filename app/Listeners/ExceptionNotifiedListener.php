@@ -16,7 +16,7 @@ class ExceptionNotifiedListener
      */
     public function handle(ExceptionNotified $event): void
     {
-        $msg = "Дата: " . Carbon::now()->format('d-m-Y H:i:s') . "\n" .
+        $msg = 'Дата: ' . Carbon::now()->format('d-m-Y H:i:s') . "\n" .
                 $event->exception->getMessage() . "\n" .
                 $event->exception->getTraceAsString();
 

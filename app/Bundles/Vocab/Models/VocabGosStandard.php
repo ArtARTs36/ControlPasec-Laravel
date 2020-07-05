@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Vocab;
+namespace App\Bundles\Vocab\Models;
 
 use Creatortsv\EloquentPipelinesModifier\WithModifier;
 use Illuminate\Database\Eloquent\Model;

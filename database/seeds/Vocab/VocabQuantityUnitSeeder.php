@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Vocab\VocabQuantityUnit;
+use App\Bundles\Vocab\Models\VocabQuantityUnit;
 
 /**
  * Class VocabQuantitySeeder

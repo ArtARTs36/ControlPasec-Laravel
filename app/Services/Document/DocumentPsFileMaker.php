@@ -110,8 +110,7 @@ class DocumentPsFileMaker
         return $this;
     }
 
-
-    private function handleException()
+    private function handleException(): void
     {
         throw new \LogicException("Не удалось объединить файлы: \n" . implode(
             "\n",

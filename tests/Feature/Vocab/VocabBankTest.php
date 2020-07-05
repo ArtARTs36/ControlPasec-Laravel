@@ -3,6 +3,7 @@
 namespace Tests\Feature\Vocab;
 
 use App\Bundles\Vocab\Models\VocabBank;
+use App\Models\User\Permission;
 use Tests\BaseTestCase;
 
 /**
@@ -18,6 +19,8 @@ class VocabBankTest extends BaseTestCase
     public function testStore(): void
     {
         $data = factory(VocabBank::class)->make()->toArray();
+
+        $this->actingAsUserWithPermission(Permission::VOCAB_BANKS_CREATE);
 
         $response = $this->postJson(self::API_INDEX, $data)
             ->assertOk()
@@ -35,6 +38,8 @@ class VocabBankTest extends BaseTestCase
     {
         $bank = factory(VocabBank::class)->create();
 
+        $this->actingAsUserWithPermission(Permission::VOCAB_BANKS_VIEW);
+
         $this->getJson(static::API_INDEX . DIRECTORY_SEPARATOR . $bank->id)
             ->assertOk();
     }
@@ -47,6 +52,8 @@ class VocabBankTest extends BaseTestCase
         $bank = factory(VocabBank::class)->create();
         $newData = factory(VocabBank::class)->make()->toArray();
 
+        $this->actingAsUserWithPermission(Permission::VOCAB_BANKS_EDIT);
+
         $this->putJson(static::API_INDEX . DIRECTORY_SEPARATOR . $bank->id, $newData)
             ->assertOk();
     }
@@ -58,7 +65,7 @@ class VocabBankTest extends BaseTestCase
     {
         $bank = factory(VocabBank::class)->create();
 
-        //$this->actingAsUserWithPermission(Permission::VOCAB_BANKS_DELETE);
+        $this->actingAsUserWithPermission(Permission::VOCAB_BANKS_DELETE);
 
         $this->deleteJson(static::API_INDEX . DIRECTORY_SEPARATOR . $bank->id)
             ->assertOk();

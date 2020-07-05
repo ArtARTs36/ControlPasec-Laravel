@@ -3,6 +3,7 @@
 namespace Tests\Feature\ExternalNews;
 
 use App\Bundles\ExternalNews\Models\ExternalNews;
+use App\Models\User\Permission;
 use Tests\BaseTestCase;
 
 /**
@@ -49,6 +50,8 @@ class ExternalNewsTest extends BaseTestCase
             ExternalNews::FIELD_DESCRIPTION => $this->getFaker()->text(80),
         ];
 
+        $this->actingAsUserWithPermission(Permission::EXTERNAL_NEWS_EDIT);
+
         $response = $this->putJson(static::API_INDEX . DIRECTORY_SEPARATOR . $post->id, $request)
             ->assertOk()
             ->decodeResponseJson();
@@ -72,6 +75,8 @@ class ExternalNewsTest extends BaseTestCase
     public function testDestroy(): void
     {
         $post = factory(ExternalNews::class)->create();
+
+        $this->actingAsUserWithPermission(Permission::EXTERNAL_NEWS_DELETE);
 
         $this->deleteJson(static::API_INDEX . DIRECTORY_SEPARATOR . $post->id)
             ->assertOk();

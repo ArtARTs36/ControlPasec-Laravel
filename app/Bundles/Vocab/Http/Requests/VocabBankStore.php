@@ -4,13 +4,12 @@ namespace App\Bundles\Vocab\Http\Requests;
 
 use App\Bundles\Vocab\Models\VocabBank;
 use Dba\ControlTime\Http\Requests\AuthorizedRequest;
-use Illuminate\Foundation\Http\FormRequest;
 
 /**
  * Class VocabBankStoreRequest
  * @package App\Bundles\Vocab\Http\Requests
  */
-class VocabBankStoreRequest extends AuthorizedRequest
+final class VocabBankStore extends AuthorizedRequest
 {
     /**
      * @return array

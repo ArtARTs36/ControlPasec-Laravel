@@ -4,11 +4,11 @@ namespace App\Models\Product;
 
 use App\Models\Traits\WithOrderNumber;
 use App\Models\VariableDefinition;
-use App\Models\Vocab\SizeOfUnit;
-use App\Models\Vocab\VocabCurrency;
-use App\Models\Vocab\VocabGosStandard;
-use App\Models\Vocab\VocabPackageType;
-use App\Models\Vocab\VocabQuantityUnit;
+use App\Bundles\Vocab\Models\SizeOfUnit;
+use App\Bundles\Vocab\Models\VocabCurrency;
+use App\Bundles\Vocab\Models\VocabGosStandard;
+use App\Bundles\Vocab\Models\VocabPackageType;
+use App\Bundles\Vocab\Models\VocabQuantityUnit;
 use Creatortsv\EloquentPipelinesModifier\WithModifier;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -39,7 +39,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * @mixin Builder
  */
-class Product extends Model
+final class Product extends Model
 {
     use WithModifier, WithOrderNumber;
 

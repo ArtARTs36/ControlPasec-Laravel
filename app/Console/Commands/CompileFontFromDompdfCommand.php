@@ -102,7 +102,7 @@ class CompileFontFromDompdfCommand extends Command
 
         $patterns = [
             'bold' => ['_Bold', 'b', 'B', 'bd', 'BD'],
-            'italic'=> ['_Italic', 'i', 'I'],
+            'italic' => ['_Italic', 'i', 'I'],
             'bold_italic' => ['_Bold_Italic', 'bi', 'BI', 'ib', 'IB'],
         ];
 

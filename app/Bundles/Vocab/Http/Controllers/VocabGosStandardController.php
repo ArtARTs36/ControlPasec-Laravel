@@ -1,15 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Vocab;
+namespace App\Bundles\Vocab\Http\Controllers;
 
+use App\Bundles\Vocab\Http\Requests\VocabGosStandardStore;
 use App\Http\Controllers\Controller;
 use App\Http\Responses\ActionResponse;
 use App\Models\User\Permission;
-use App\Models\Vocab\VocabGosStandard;
+use App\Bundles\Vocab\Models\VocabGosStandard;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Http\Request;
 
-class VocabGosStandardController extends Controller
+/**
+ * Class VocabGosStandardController
+ * @package App\Bundles\Vocab\Http\Controllers
+ */
+final class VocabGosStandardController extends Controller
 {
     public const PERMISSIONS = [
         'index' => Permission::VOCAB_GOS_STANDARD_LIST_VIEW,
@@ -35,10 +39,10 @@ class VocabGosStandardController extends Controller
     /**
      * Добавить ГОСТ
      *
-     * @param Request $request
+     * @param VocabGosStandardStore $request
      * @return ActionResponse
      */
-    public function store(Request $request): ActionResponse
+    public function store(VocabGosStandardStore $request): ActionResponse
     {
         return $this->createModelAndResponse($request, VocabGosStandard::class);
     }
@@ -57,11 +61,11 @@ class VocabGosStandardController extends Controller
     /**
      * Обновления данных ГОСТа
      *
-     * @param Request $request
+     * @param VocabGosStandardStore $request
      * @param VocabGosStandard $vocabGosStandard
      * @return ActionResponse
      */
-    public function update(Request $request, VocabGosStandard $vocabGosStandard)
+    public function update(VocabGosStandardStore $request, VocabGosStandard $vocabGosStandard)
     {
         return $this->updateModelAndResponse($request, $vocabGosStandard);
     }

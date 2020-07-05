@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Vocab;
+namespace App\Bundles\Vocab\Models;
 
 use App\Helper\ModelPrioritiesRefresher\ModelWithPriorityInterface;
 use App\Helper\ModelPrioritiesRefresher\WithPriority;
@@ -17,7 +17,7 @@ use Illuminate\Database\Query\Builder;
  * @property string $name_en
  * @property string $short_name_en
  * @property int $iso_code
- * @property int $iso_short_name
+ * @property string $iso_short_name
  * @property string $symbol
  * @property int $priority
  *
@@ -36,6 +36,7 @@ final class VocabCurrency extends Model implements ModelWithPriorityInterface
     public const FIELD_ISO_CODE = 'iso_code';
     public const FIELD_SYMBOL = 'symbol';
     public const FIELD_ISO_SHORT_NAME = 'iso_short_name';
+    public const FIELD_PRIORITY = 'priority';
 
     protected $fillable = [
         'id',
@@ -47,6 +48,7 @@ final class VocabCurrency extends Model implements ModelWithPriorityInterface
         self::FIELD_ISO_CODE,
         self::FIELD_SYMBOL,
         self::FIELD_ISO_SHORT_NAME,
+        self::FIELD_PRIORITY,
     ];
 
     protected static function boot(): void

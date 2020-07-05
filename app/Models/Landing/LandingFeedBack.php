@@ -15,7 +15,7 @@ use Illuminate\Database\Query\Builder;
  * @property string $ip
  * @mixin Builder
  */
-class LandingFeedBack extends Model
+final class LandingFeedBack extends Model
 {
-
+    public const FIELD_MESSAGE = 'message';
 }

@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Vocab;
+namespace App\Bundles\Vocab\Http\Controllers;
 
+use App\Bundles\Vocab\Repositories\CurrencyCourseRepository;
 use App\Http\Controllers\Controller;
-use App\Repositories\CurrencyCourseRepository;
 
 /**
  * Class CurrencyCourseController
  * @package App\Http\Controllers\Vocab
  */
-class CurrencyCourseController extends Controller
+final class CurrencyCourseController extends Controller
 {
     /**
      * @return array

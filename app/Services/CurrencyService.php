@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\Models\Vocab\CurrencyCourse;
-use App\Models\Vocab\VocabCurrency;
+use App\Bundles\Vocab\Models\CurrencyCourse;
+use App\Bundles\Vocab\Models\VocabCurrency;
 use App\Services\CurrencyCourseFinder\CurrencyCourseFinderInterface;
 use Illuminate\Support\Collection;
 

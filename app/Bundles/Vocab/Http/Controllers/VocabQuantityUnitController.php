@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Vocab;
+namespace App\Bundles\Vocab\Http\Controllers;
 
+use App\Bundles\Vocab\Http\Requests\VocabQuantityUnitStore;
 use App\Http\Controllers\Controller;
 use App\Http\Responses\ActionResponse;
 use App\Models\User\Permission;
-use App\Models\Vocab\VocabQuantityUnit;
-use Illuminate\Http\Request;
+use App\Bundles\Vocab\Models\VocabQuantityUnit;
 
-class VocabQuantityUnitController extends Controller
+final class VocabQuantityUnitController extends Controller
 {
     public const PERMISSIONS = [
         'index' => Permission::VOCAB_QUANTITY_UNITS_LIST_VIEW,
@@ -29,15 +29,12 @@ class VocabQuantityUnitController extends Controller
         return $vocabQuantityUnit;
     }
 
-    public function store(Request $request)
+    public function store(VocabQuantityUnitStore $request)
     {
-        $unit = new VocabQuantityUnit();
-        $unit->fill($request->all());
-
-        return new ActionResponse($unit->save(), $unit);
+        return $this->createModelAndResponse($request, VocabQuantityUnit::class);
     }
 
-    public function update(Request $request, VocabQuantityUnit $vocabQuantityUnit)
+    public function update(VocabQuantityUnitStore $request, VocabQuantityUnit $vocabQuantityUnit)
     {
         $vocabQuantityUnit->update($request->all());
 
@@ -46,6 +43,6 @@ class VocabQuantityUnitController extends Controller
 
     public function destroy(VocabQuantityUnit $vocabQuantityUnit)
     {
-        return new ActionResponse($vocabQuantityUnit->delete());
+        return $this->deleteModelAndResponse($vocabQuantityUnit);
     }
 }

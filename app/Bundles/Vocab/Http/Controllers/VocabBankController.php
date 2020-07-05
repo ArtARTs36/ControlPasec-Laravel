@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Vocab\Http\Controllers;
 
-use App\Bundles\Vocab\Http\Requests\VocabBankStoreRequest;
+use App\Bundles\Vocab\Http\Requests\VocabBankStore;
 use App\Http\Controllers\Controller;
 use App\Http\Responses\ActionResponse;
 use App\Models\User\Permission;
@@ -10,11 +10,15 @@ use App\Bundles\Vocab\Models\VocabBank;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 
-class VocabBankController extends Controller
+/**
+ * Class VocabBankController
+ * @package App\Bundles\Vocab\Http\Controllers
+ */
+final class VocabBankController extends Controller
 {
     public const PERMISSIONS = [
         'index' => Permission::VOCAB_BANKS_LIST_VIEW,
-        'store' => Permission::VOCAB_BANKS_LIST_VIEW,
+        'store' => Permission::VOCAB_BANKS_CREATE,
         'show' => Permission::VOCAB_BANKS_VIEW,
         'update' => Permission::VOCAB_BANKS_EDIT,
         'destroy' => Permission::VOCAB_BANKS_DELETE,
@@ -36,10 +40,10 @@ class VocabBankController extends Controller
     /**
      * Добавления нового банка в справочник
      *
-     * @param VocabBankStoreRequest $request
+     * @param VocabBankStore $request
      * @return ActionResponse
      */
-    public function store(VocabBankStoreRequest $request)
+    public function store(VocabBankStore $request)
     {
         $bank = $this->createModel($request, VocabBank::class);
 
@@ -64,7 +68,7 @@ class VocabBankController extends Controller
      * @param VocabBank $vocabBank
      * @return ActionResponse
      */
-    public function update(VocabBankStoreRequest $request, VocabBank $vocabBank)
+    public function update(VocabBankStore $request, VocabBank $vocabBank)
     {
         return $this->updateModelAndResponse($request, $vocabBank);
     }

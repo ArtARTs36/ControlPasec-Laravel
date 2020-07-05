@@ -20,8 +20,8 @@ class CheckPermissions
      */
     public function handle($request, Closure $next)
     {
-        $controller = Route::current()->controller;
-
+        $controller = get_class(Route::current()->controller);
+        
         if (const_exists($controller, 'PERMISSIONS') &&
             ($perms = $controller::PERMISSIONS) &&
             ($response = $this->check(Route::current()->getActionMethod(), $perms))) {
@@ -42,8 +42,9 @@ class CheckPermissions
             return null;
         }
 
-        /** @var User $user */
-        if (($user = auth()->user()) && !$user->hasApiPermission($permission)) {
+        $user = auth()->user();
+
+        if (!$user || !$user->hasApiPermission($permission)) {
             return new UserDoesNotHavePermission($permission);
         }
 

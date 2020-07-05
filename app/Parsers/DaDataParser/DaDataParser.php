@@ -2,9 +2,9 @@
 
 namespace App\Parsers\DaDataParser;
 
+use App\Bundles\Vocab\Services\WordService;
 use App\Models\Contragent\ContragentManager;
 use App\Models\Contragent;
-use App\Services\WordService;
 
 class DaDataParser extends DaDataSender
 {

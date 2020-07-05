@@ -2,7 +2,7 @@
 
 namespace App\Parsers\MorpherParser;
 
-use App\Models\Vocab\VocabWord;
+use App\Bundles\Vocab\Models\VocabWord;
 
 class MorpherParser extends MorpherSender
 {
