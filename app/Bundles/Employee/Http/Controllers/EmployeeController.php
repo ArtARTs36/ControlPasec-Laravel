@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Responses\ActionResponse;
 use App\Bundles\Employee\Models\Employee;
 use App\Bundles\Employee\Repositories\EmployeeRepository;
-use App\Services\EmployeeService;
+use App\Bundles\Employee\Services\EmployeeService;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 

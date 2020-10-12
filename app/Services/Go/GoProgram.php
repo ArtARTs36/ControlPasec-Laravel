@@ -47,7 +47,7 @@ abstract class GoProgram
     {
         $this->process();
 
-        $this->executor->execute();
+        $this->getExecutor()->execute();
 
         return $this->response();
     }

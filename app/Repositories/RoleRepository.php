@@ -12,6 +12,8 @@ class RoleRepository
      */
     public static function getAllowedForSignUp(): Collection
     {
-        return Role::where('is_allowed_for_sign_up', true)->get();
+        return Role::query()
+            ->where(Role::FIELD_IS_ALLOWED_FOR_SIGN_UP, true)
+            ->get();
     }
 }

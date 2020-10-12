@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Bundles\Employee\Services;
 
 use App\Bundles\Employee\Models\Employee;
 use Dba\ControlTime\Models\WorkCondition;

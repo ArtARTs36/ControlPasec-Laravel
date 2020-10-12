@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Based\Interfaces;
+namespace App\Based\Contracts;
 
 /**
  * Interface JobInterface
  * @package App\Based\Interfaces
  */
-interface JobInterface
+interface Job
 {
     public function handle(): void;
 }
