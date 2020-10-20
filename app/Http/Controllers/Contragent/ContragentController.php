@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Contragent;
 
+use App\Bundles\Contragent\Support\Finder;
 use App\Models\Contragent\ContragentManager;
 use App\Http\Requests\ContragentRequest;
 use App\Http\Responses\ActionResponse;
@@ -134,7 +135,7 @@ class ContragentController extends Controller
      *     @OA\Response(response="default", description="Contragents: find Contragent in external System")
      * )
      */
-    public function findInExternalNetworkByInn($inn): ActionResponse
+    public function findInExternalNetworkByInn($inn, Finder $finder): ActionResponse
     {
         if ($contragent = ContragentRepository::findByInnOrOgrn($inn)) {
             return new ActionResponse(true, [
@@ -143,7 +144,7 @@ class ContragentController extends Controller
             ]);
         }
 
-        $contragent = DaDataParser::findContragentByInnOrOGRN($inn);
+        $contragent = $finder->findByInnOrOgrn($inn);
 
         return new ActionResponse(true, [
             'message' => 'Контрагент '. $contragent->title . ' найден!',

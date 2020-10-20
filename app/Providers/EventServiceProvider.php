@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Bundles\Contragent\Events\ExternalManagerCreated;
+use App\Bundles\Contragent\Listeners\ExternalManagerCreatedListener;
 use App\Events\DocumentOfQueueGenerated;
 use App\Events\ExceptionNotified;
 use App\Events\LandingFeedBackCreated;
@@ -47,6 +49,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         TotemTaskUpdated::class => [
             TotemTaskUpdatedListener::class,
+        ],
+        ExternalManagerCreated::class => [
+            ExternalManagerCreatedListener::class,
         ],
     ];
 
