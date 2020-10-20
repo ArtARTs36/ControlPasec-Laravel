@@ -8,4 +8,3 @@ Route::get('contracts/find-by-customer/{customerId}', 'ContractController@findBy
 Route::get('contracts/page-{page}', 'ContractController@index');
 Route::apiResource('contracts', 'ContractController');
 Route::apiResource('contract-templates', 'ContractTemplateController');
-
