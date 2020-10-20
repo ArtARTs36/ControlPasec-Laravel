@@ -4013,7 +4013,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ArtARTs36/laravel-totem.git",
-                "reference": "f97cdc3d141db3dbddf1599c82aba2f8085422f8"
+                "reference": "6e5f85d983e8dc0ea90668bbae3586b942d5213d"
             },
             "dist": {
                 "type": "zip",
