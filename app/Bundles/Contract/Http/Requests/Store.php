@@ -1,13 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Bundles\Contract\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-/**
- * Class ContractRequest
- */
-class ContractRequest extends FormRequest
+class Store extends FormRequest
 {
     /**
      * @return array

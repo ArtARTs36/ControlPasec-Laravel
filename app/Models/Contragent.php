@@ -2,18 +2,17 @@
 
 namespace App\Models;
 
+use App\Bundles\Contract\Models\Contract;
 use App\Models\Contragent\ContragentManager;
-use App\Models\Contract\Contract;
 use App\Models\Contragent\BankRequisites;
 use App\Models\Contragent\ContragentGroup;
 use Creatortsv\EloquentPipelinesModifier\WithModifier;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * Class Contragent
+ * Модель "Контрагент"
  *
  * @property int $id
  * @property string $title
@@ -33,27 +32,45 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property ContragentGroup[] $groups
  * @property Contract[] $contracts
  * @property string $title_for_document
- *
- * @mixin Builder
  */
 class Contragent extends Model
 {
     use WithModifier;
+
+    public const FIELD_TITLE = 'title';
+    public const FIELD_FULL_TITLE = 'full_title';
+    public const FIELD_FULL_TITLE_WITH_OPF = 'full_title_with_opf';
+    public const FIELD_KPP = 'kpp';
+    public const FIELD_INN = 'inn';
+    public const FIELD_OGRN = 'ogrn';
+    public const FIELD_OKATO = 'okato';
+    public const FIELD_OKTMO = 'oktmo';
+    public const FIELD_OKVED = 'okved';
+    public const FIELD_OKVED_TYPE = 'okved_type';
+    public const FIELD_ADDRESS = 'address';
+    public const FIELD_ADDRESS_POSTAL = 'address_postal';
+    public const FIELD_STATUS = 'status';
 
     public const TABLE = 'contragents';
 
     public const RELATION_CONTRACTS = 'contracts';
 
     protected $fillable = [
-        'title', 'full_title', 'full_title_with_opf',
-        'ogrn', 'okato', 'oktmo', 'okved', 'okved_type',
-        'address', 'address_postal',
+        self::FIELD_TITLE,
+        self::FIELD_FULL_TITLE,
+        self::FIELD_FULL_TITLE_WITH_OPF,
+        self::FIELD_OGRN,
+        self::FIELD_OKATO,
+        self::FIELD_OKTMO,
+        self::FIELD_OKVED,
+        self::FIELD_OKVED_TYPE,
+        self::FIELD_ADDRESS,
+        self::FIELD_ADDRESS_POSTAL,
+        self::FIELD_STATUS,
         self::FIELD_INN,
         self::FIELD_OGRN,
+        self::FIELD_KPP,
     ];
-
-    public const FIELD_INN = 'inn';
-    public const FIELD_OGRN = 'ogrn';
 
     /**
      * @return HasMany

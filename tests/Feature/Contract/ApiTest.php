@@ -1,16 +1,16 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Contract;
 
-use App\Models\Contract\Contract;
+use App\Bundles\Contract\Models\Contract;
 use App\Models\Contragent;
 use App\Models\User\Permission;
 use Tests\BaseTestCase;
 
 /**
- * @group BaseTest
+ * @group  NewTest
  */
-class ContractTest extends BaseTestCase
+class ApiTest extends BaseTestCase
 {
     private const API_URL = '/api/contracts/';
 
@@ -43,10 +43,7 @@ class ContractTest extends BaseTestCase
 
     public function testFindByCustomer(): void
     {
-        $customer = Contragent::query()
-            ->whereHas(Contragent::RELATION_CONTRACTS)
-            ->inRandomOrder()
-            ->first();
+        $customer = factory(Contragent::class)->create();
 
         $response = $this->getJson("/api/contracts/find-by-customer/{$customer->id}");
 

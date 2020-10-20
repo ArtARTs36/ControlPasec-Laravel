@@ -25,24 +25,7 @@ class ContragentSeeder extends CommonSeeder
     {
         $contragentIds = [];
         for ($i = 0; $i < $count; $i++) {
-            $contragent = new App\Models\Contragent();
-
-            $name = \App\Support\RuFaker::fio();
-
-            $contragent->title = $name;
-            $contragent->full_title = $name;
-            $contragent->full_title_with_opf = \App\Support\RuFaker::withOpf($name);
-            $contragent->inn = rand(11111111, 99999999999);
-            $contragent->kpp = rand(11111111, 99999999999);
-            $contragent->ogrn = rand(11111111, 99999999999);
-            $contragent->okato = rand(11111111, 99999999999);
-            $contragent->oktmo = rand(11111111, 99999999999);
-            $contragent->okved = rand(11111111, 99999999999);
-            $contragent->okved_type = rand(1, 99);
-            $contragent->address = \App\Support\RuFaker::getGenerator()->address;
-            $contragent->address_postal = rand(111111, 999999);
-            $contragent->status = 0;
-            $contragent->save();
+            $contragent = factory(Contragent::class)->create();
 
             $contragentIds[] = $contragent->id;
         }

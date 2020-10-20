@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Contract;
+namespace App\Bundles\Contract\Models;
 
 use App\Models\Contragent;
 use App\Models\Supply\Supply;
@@ -11,8 +11,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Query\Builder;
 
 /**
- * Class Contract
- *
  * @property int $id
  * @property string $title
  * @property string $planned_date
@@ -21,8 +19,6 @@ use Illuminate\Database\Query\Builder;
  * @property int $customer_id
  * @property int $template_id
  * @property ContractTemplate $template
- *
- * @mixin Builder
  */
 class Contract extends Model
 {
@@ -49,9 +45,6 @@ class Contract extends Model
         self::FIELD_CUSTOMER_ID,
     ];
 
-    /**
-     * @return BelongsTo
-     */
     public function template(): BelongsTo
     {
         return $this->belongsTo(ContractTemplate::class);
@@ -59,8 +52,6 @@ class Contract extends Model
 
     /**
      * Поставки по договору
-     *
-     * @return HasMany
      */
     public function supplies(): HasMany
     {

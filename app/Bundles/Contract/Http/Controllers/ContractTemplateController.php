@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Contract;
+namespace App\Bundles\Contract\Http\Controllers;
 
+use App\Bundles\Contract\Http\Requests\StoreTemplate;
+use App\Bundles\Contract\Models\ContractTemplate;
 use App\Http\Controllers\Controller;
 use App\Http\Responses\ActionResponse;
-use App\Models\Contract\ContractTemplate;
 use Illuminate\Http\Request;
 
 class ContractTemplateController extends Controller
@@ -25,9 +26,9 @@ class ContractTemplateController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return ContractTemplate
      */
-    public function store(Request $request): ContractTemplate
+    public function store(StoreTemplate $request): ContractTemplate
     {
-        return ContractTemplate::create($request->all());
+        return ContractTemplate::query()->create($request->all());
     }
 
     /**

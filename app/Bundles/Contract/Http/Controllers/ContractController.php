@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Contract;
+namespace App\Bundles\Contract\Http\Controllers;
 
+use App\Bundles\Contract\Contracts\ContractRepository;
+use App\Bundles\Contract\Http\Requests\Store;
+use App\Bundles\Contract\Models\Contract;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ContractRequest;
 use App\Http\Responses\ActionResponse;
-use App\Models\Contract\Contract;
 use App\Models\User\Permission;
-use App\Repositories\ContractRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
-class ContractController extends Controller
+final class ContractController extends Controller
 {
     public const PERMISSIONS = [
         'index' => Permission::CONTRACTS_LIST_VIEW,
@@ -20,24 +20,25 @@ class ContractController extends Controller
         'destroy' => Permission::CONTRACTS_DELETE,
     ];
 
+    private $repository;
+
+    public function __construct(ContractRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     /**
      * Отобразить договора
-     *
-     * @param int $page
-     * @return LengthAwarePaginator
      */
     public function index(int $page = 1): LengthAwarePaginator
     {
-        return ContractRepository::paginate($page);
+        return $this->repository->paginate($page);
     }
 
     /**
      * Создать договор
-     *
-     * @param ContractRequest $request
-     * @return ActionResponse
      */
-    public function store(ContractRequest $request): ActionResponse
+    public function store(Store $request): ActionResponse
     {
         $contract = $this->makeModel($request, Contract::class);
         $contract->supplier_id = env('ONE_SUPPLIER_ID');
@@ -48,23 +49,16 @@ class ContractController extends Controller
 
     /**
      * Отобразить договор
-     *
-     * @param Contract $contract
-     * @return Contract
      */
     public function show(Contract $contract): Contract
     {
-        return ContractRepository::loadFull($contract);
+        return $this->repository->loadFull($contract);
     }
 
     /**
      * Обновить договор
-     *
-     * @param ContractRequest $request
-     * @param Contract $contract
-     * @return ActionResponse
      */
-    public function update(ContractRequest $request, Contract $contract): ActionResponse
+    public function update(Store $request, Contract $contract): ActionResponse
     {
         return $this->updateModelAndResponse($request, $contract);
     }
@@ -83,13 +77,10 @@ class ContractController extends Controller
 
     /**
      * Поиск договоров по заказчику
-     *
-     * @param int $customerId
-     * @return ActionResponse
      */
     public function findByCustomer(int $customerId): ActionResponse
     {
-        $contracts = ContractRepository::findByCustomer($customerId);
+        $contracts = $this->repository->findByCustomer($customerId);
 
         return new ActionResponse($contracts->isNotEmpty(), $contracts);
     }

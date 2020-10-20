@@ -10,7 +10,7 @@ Route::group([
     require 'apis/api.user.php';
     require 'apis/api.scores.php';
     require 'apis/api.contragents.php';
-    require 'apis/api.contracts.php';
+    require __DIR__ . '/../app/Bundles/Contract/Http/routes/api.php';
     require 'apis/api.supplies.php';
     require 'apis/api.products.php';
     require 'apis/api.documents.php';

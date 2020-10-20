@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Bundles\Contract\Providers\ContractProvider;
 use App\Bundles\Vocab\Providers\VocabProvider;
 use App\Models\AdminService;
 use Illuminate\Http\Request;
@@ -22,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
         }
 
         $this->app->register(VocabProvider::class);
+        $this->app->register(ContractProvider::class);
 
         Totem::auth(function (Request $request) {
             return AdminService::isAllowed(AdminService::NAME_TOTEM, $request->getClientIp());

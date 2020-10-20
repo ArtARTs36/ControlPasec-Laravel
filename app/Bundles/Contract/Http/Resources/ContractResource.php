@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Resource;
+namespace App\Bundles\Contract\Http\Resources;
 
-use App\Models\Contract\Contract;
+use App\Bundles\Contract\Models\Contract;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -18,8 +18,6 @@ class ContractResource extends JsonResource
 {
     /**
      * @param Request $request
-     * @return array
-     *
      * @OA\Property(property="id", type="integer")
      * @OA\Property(property="customer", type="object")
      */

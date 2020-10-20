@@ -1,44 +1,34 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Bundles\Contract\Repositories;
 
-use App\Models\Contract\Contract;
+use App\Bundles\Contract\Models\Contract;
 use App\Models\Supply\Supply;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use App\Bundles\Contract\Contracts\ContractRepository as MainContract;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
 
-class ContractRepository
+class ContractRepository implements MainContract
 {
-    /**
-     * @param int $page
-     * @return LengthAwarePaginator
-     */
-    public static function paginate(int $page = 1): LengthAwarePaginator
+    public function paginate(int $page = 1, int $count = 10): LengthAwarePaginator
     {
         return Contract::query()
             ->with([Contract::RELATION_CUSTOMER, Contract::RELATION_SUPPLIER])
-            ->paginate(10, ['*'], 'ContractsList', $page);
+            ->paginate($count, ['*'], 'ContractsList', $page);
     }
 
     /**
      * Поиск договоров по заказчику
-     *
-     * @param int $customerId
-     * @return Collection
      */
-    public static function findByCustomer(int $customerId): Collection
+    public function findByCustomer(int $customerId): Collection
     {
         return Contract::query()
             ->where(Contract::FIELD_CUSTOMER_ID, $customerId)
             ->get();
     }
 
-    /**
-     * @param Contract $contract
-     * @return Contract
-     */
-    public static function loadFull(Contract $contract): Contract
+    public function loadFull(Contract $contract): Contract
     {
         return $contract->load([
             Contract::RELATION_CUSTOMER,

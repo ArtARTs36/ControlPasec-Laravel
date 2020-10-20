@@ -22,3 +22,5 @@ Route::get('contragent-groups/{group}/detach-all/', 'Contragent\ContragentGroupC
 //
 
 Route::apiResource('contragent-managers', 'Contragent\ContragentManagerController');
+
+Route::apiResource('my-contragents', 'Contragent\MyContragentController');
