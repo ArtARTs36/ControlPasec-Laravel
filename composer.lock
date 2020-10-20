@@ -4017,8 +4017,8 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ArtARTs36/laravel-totem/zipball/f97cdc3d141db3dbddf1599c82aba2f8085422f8",
-                "reference": "f97cdc3d141db3dbddf1599c82aba2f8085422f8",
+                "url": "https://api.github.com/repos/ArtARTs36/laravel-totem/zipball/6e5f85d983e8dc0ea90668bbae3586b942d5213d",
+                "reference": "6e5f85d983e8dc0ea90668bbae3586b942d5213d",
                 "shasum": ""
             },
             "require": {
