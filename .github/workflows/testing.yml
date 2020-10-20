@@ -38,3 +38,5 @@ jobs:
         run: chmod -R 777 storage bootstrap/cache
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         run: vendor/phpunit/phpunit/phpunit --group=BaseTest
+      - name: Execute tests (Unit and Feature tests) via PHPUnit
+        run: vendor/phpunit/phpunit/phpunit --group=NewTest

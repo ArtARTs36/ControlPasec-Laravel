@@ -2,7 +2,7 @@
 
 namespace App\Parsers\DaDataParser;
 
-use App\Bundles\Vocab\Services\WordService;
+use App\Bundles\Vocab\Contracts\WordService;
 use App\Models\Contragent\ContragentManager;
 use App\Models\Contragent;
 
@@ -91,7 +91,7 @@ class DaDataParser extends DaDataSender
         if ($save === true) {
             $manager->save();
 
-            WordService::checkVocabs($words);
+            app(WordService::class)->getOrCreateByNominatives($words);
         }
 
         return $manager;

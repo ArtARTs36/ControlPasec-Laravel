@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Bundles\Vocab\Providers\VocabProvider;
 use App\Models\AdminService;
 use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
@@ -19,6 +20,8 @@ class AppServiceProvider extends ServiceProvider
         if (! $this->app->environment('production')) {
             $this->app->register(\JKocik\Laravel\Profiler\ServiceProvider::class);
         }
+
+        $this->app->register(VocabProvider::class);
 
         Totem::auth(function (Request $request) {
             return AdminService::isAllowed(AdminService::NAME_TOTEM, $request->getClientIp());

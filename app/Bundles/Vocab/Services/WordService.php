@@ -2,35 +2,40 @@
 
 namespace App\Bundles\Vocab\Services;
 
-use App\Parsers\MorpherParser\MorpherParser;
+use App\Bundles\Vocab\Contracts\NameInclinator;
 use App\Bundles\Vocab\Models\VocabWord;
+use Illuminate\Support\Collection;
+use App\Bundles\Vocab\Contracts\WordService as MainContract;
 
-final class WordService
+final class WordService implements MainContract
 {
-    /**
-     * @param array|string[] $words
-     */
-    public static function checkVocabs(array $words)
+    private $inclinator;
+
+    public function __construct(NameInclinator $inclinator)
     {
+        $this->inclinator = $inclinator;
+    }
+
+    public function getOrCreateByNominatives(array $words): Collection
+    {
+        $declensions = $this->getByNominatives(...$words);
+
         foreach ($words as $word) {
-            if (null !== static::getDeclensions($word)) {
+            if ($declensions->offsetExists($word)) {
                 continue;
             }
 
-            MorpherParser::findDeclensions($word);
+            $declensions->put($word, $this->inclinator->decline($word));
         }
+
+        return $declensions;
     }
 
-    /**
-     * Получить склонения
-     *
-     * @param string $word
-     * @return VocabWord|null
-     */
-    public static function getDeclensions(string $word): ?VocabWord
+    public function getByNominatives(string ...$words): Collection
     {
         return VocabWord::query()
-            ->where(VocabWord::FIELD_NOMINATIVE, $word)
-            ->first();
+            ->whereIn(VocabWord::FIELD_NOMINATIVE, $words)
+            ->get()
+            ->pluck(null, VocabWord::FIELD_NOMINATIVE);
     }
 }
