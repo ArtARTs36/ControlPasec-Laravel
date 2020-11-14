@@ -5,7 +5,7 @@ namespace App\Bundles\ExternalNews\Services;
 use App\Bundles\ExternalNews\Models\ExternalNews;
 use App\Bundles\ExternalNews\Models\ExternalNewsSource;
 use App\Bundles\ExternalNews\Repositories\ExternalNewsRepository;
-use App\Parsers\RssParser;
+use App\Bundles\ExternalNews\Support\Rss;
 
 final class ExternalNewsCreator
 {
@@ -21,7 +21,7 @@ final class ExternalNewsCreator
 
         $news = [];
         foreach ($sources as $source) {
-            $items = (new RssParser($source->link))->getArrayItems();
+            $items = (new Rss())->parse($source->link);
             $news = array_merge($news, self::createNews($items, $source));
         }
 

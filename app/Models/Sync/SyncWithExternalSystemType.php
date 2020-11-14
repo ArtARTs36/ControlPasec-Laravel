@@ -14,5 +14,5 @@ use Illuminate\Database\Query\Builder;
  */
 class SyncWithExternalSystemType extends Model
 {
-    const SLUG_CONTRAGENT_DADATA = 'contragent_dadata';
+    public const SLUG_CONTRAGENT_DADATA = 'contragent_dadata';
 }

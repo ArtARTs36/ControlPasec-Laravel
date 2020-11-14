@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Contract\Providers;
 
-use App\Providers\RouteServiceProvider;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Route;
 
 class ContractRouteProvider extends RouteServiceProvider

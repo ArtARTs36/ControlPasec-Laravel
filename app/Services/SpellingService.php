@@ -2,9 +2,7 @@
 
 namespace App\Services;
 
-use App\Services\SpellingService\SpellingDays;
-use App\Services\SpellingService\SpellingLiterals;
-use App\Services\SpellingService\SpellingMonths;
+use ArtARTs36\RuSpelling\Letter;
 
 /**
  * Class SpellingService
@@ -12,19 +10,6 @@ use App\Services\SpellingService\SpellingMonths;
  */
 class SpellingService
 {
-    use SpellingDays, SpellingMonths, SpellingLiterals;
-
-    /**
-     * Транслит русских символов к английским
-     * @param string $string
-     * @param bool $withReplaceSpace
-     * @return string
-     */
-    public static function rusSymbolsToEng(string $string, bool $withReplaceSpace = false): string
-    {
-        return strtr($string, self::getLiterals($withReplaceSpace));
-    }
-
     /**
      * Транслит английских символов к русским
      * @param string $string
@@ -32,7 +17,7 @@ class SpellingService
      */
     public static function engSymbolsToRus(string $string): string
     {
-        $literals = array_flip(self::getLiterals());
+        $literals = array_flip(Letter::MAP_ENG);
 
         $correctLiterals = [
             'Yo' => 'Ё',
@@ -43,19 +28,5 @@ class SpellingService
         ];
 
         return strtr($string, array_merge($literals, $correctLiterals));
-    }
-
-    /**
-     * Заполнить массив днями по номеру
-     * @param array $array
-     * @return array
-     */
-    public static function fillArrayDayOfWeekByNumber(array $array): array
-    {
-        foreach ($array as $key => &$value) {
-            $value = self::getDayOfWeek($value);
-        }
-
-        return $array;
     }
 }

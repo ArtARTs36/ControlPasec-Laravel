@@ -4,7 +4,7 @@ namespace App\Console;
 
 use App\Console\Commands\CompileFontFromDompdfCommand;
 use App\Console\Commands\GetCurrencyCourseCommand;
-use App\Console\Commands\GetExternalNewsCommand;
+use App\Console\Commands\GetUpdates;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -31,7 +31,7 @@ class Kernel extends ConsoleKernel
             ->dailyAt('12:00')
             ->dailyAt('18:00');
 
-        $schedule->command(GetExternalNewsCommand::class)
+        $schedule->command(GetUpdates::class)
             ->dailyAt('12:00')
             ->dailyAt('20:00');
     }

@@ -6,13 +6,13 @@ use App\Bundles\Contragent\Events\ExternalManagerCreated;
 use App\Bundles\Contragent\Listeners\ExternalManagerCreatedListener;
 use App\Events\DocumentOfQueueGenerated;
 use App\Events\ExceptionNotified;
-use App\Events\LandingFeedBackCreated;
+use App\Events\FeedBackCreated;
 use App\Events\TechSupportReportCreated;
 use App\Events\UserRegistered;
 use App\Listeners\DocumentOfQueueGenerateListener;
 use App\Listeners\ExceptionNotifiedListener;
-use App\Listeners\LandingFeedBackCreatedListener;
-use App\Listeners\TechSupportReportCreatedListener;
+use App\Listeners\FeedBackCreatedListener;
+use App\Listeners\ReportCreatedListener;
 use App\Listeners\TotemTaskUpdatedListener;
 use App\Listeners\UserRegisteredListener;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -32,11 +32,11 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
             UserRegisteredListener::class,
         ],
-        LandingFeedBackCreated::class => [
-            LandingFeedBackCreatedListener::class,
+        FeedBackCreated::class => [
+            FeedBackCreatedListener::class,
         ],
         TechSupportReportCreated::class => [
-            TechSupportReportCreatedListener::class,
+            ReportCreatedListener::class,
         ],
         DocumentOfQueueGenerated::class => [
             DocumentOfQueueGenerateListener::class,

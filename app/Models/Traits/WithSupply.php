@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 trait WithSupply
 {
     /**
-     * @return BelongsTo
+     * @codeCoverageIgnore
      */
     public function supply(): BelongsTo
     {

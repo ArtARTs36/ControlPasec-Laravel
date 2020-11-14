@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 trait WithModelType
 {
     /**
-     * @return BelongsTo
+     * @codeCoverageIgnore
      */
     public function modelType(): BelongsTo
     {

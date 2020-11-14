@@ -27,7 +27,7 @@ trait HasEntities
         return $this->morphToMany(
             $entityClass,
             'entity',
-            static::getEntityTable(),
+            $this->getEntityTable(),
             $this->getForeignKey(),
             'entity_id',
             null,

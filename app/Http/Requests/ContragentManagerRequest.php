@@ -6,12 +6,11 @@ use App\Models\Contragent\ContragentManager;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class ContragentManagerRequest
  * @mixin ContragentManager
  */
 class ContragentManagerRequest extends FormRequest
 {
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => 'required',

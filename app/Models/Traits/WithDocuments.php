@@ -17,8 +17,7 @@ trait WithDocuments
     private static $docRepo = null;
 
     /**
-     * Получить список документов
-     * @return BelongsToMany
+     * @codeCoverageIgnore
      */
     public function documents(): BelongsToMany
     {

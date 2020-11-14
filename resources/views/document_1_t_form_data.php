@@ -6,6 +6,8 @@ use App\Models\Supply\SupplyProduct;
 use App\Services\Document\TemplateService;
 use App\Services\SpellingService;
 use App\Services\SupplyService;
+use ArtARTs36\RuSpelling\Formatter\NumbersFormats\Netto;
+use ArtARTs36\RuSpelling\Month;
 
 $document = $document->load('productTransportWaybills');
 
@@ -17,6 +19,8 @@ $supply = $waybill->supply;
 /** @var SupplyProduct[] $products */
 $products = $supply->products;
 
+$carbon = \Carbon\Carbon::parse();
+
 $plannedDate = new \DateTime($supply->planned_date);
 
 $fullTotalPrice = SupplyService::bringTotalPrice($supply);
@@ -25,7 +29,7 @@ $data = [
     'ГРУЗОПОЛУЧАТЕЛЬ' => TemplateService::renderContragent($supply->customer),
     'ГРУЗООТПРАВИТЕЛЬ' => TemplateService::renderContragent($supply->supplier),
     'ДЕНЬ' => $plannedDate->format('d'),
-    'МЕСЯЦ_Р' => SpellingService::getMonthName($plannedDate, 'gen', true),
+    'МЕСЯЦ_Р' => mb_strtolower(Month::getGenitiveName($plannedDate)),
     'ГОД' => $plannedDate->format('Y'),
     'ДАТА' => $plannedDate->format('d.m.Y'),
     'ПОЛНАЯ_СУММА' => TemplateService::sum2words($fullTotalPrice),
@@ -38,13 +42,15 @@ $data['ПОСТАВЩИК'] = $data['ГРУЗООТПРАВИТЕЛЬ'];
 
 $totalQuantity = 0;
 
+$netto = new Netto();
+
 foreach ($products as $key => $product) {
     $data['items'][] = [
         'loop' => $key + 1,
         'name' => $product->parent->name,
-        'price' => TemplateService::formatNetto($product->price),
-        'quantity' => TemplateService::formatNetto($product->quantity),
-        'totalPrice' => TemplateService::formatNetto($product->getTotalPrice()),
+        'price' => $netto->to($product->price),
+        'quantity' => $netto->to($product->quantity),
+        'totalPrice' => $netto->to($product->getTotalPrice()),
         'sou' => $product->quantityUnit->short_name,
         'okei' => $product->quantityUnit->okei,
     ];
@@ -52,8 +58,8 @@ foreach ($products as $key => $product) {
     $totalQuantity += $product->quantity;
 }
 
-$data['ИТОГО_НЕТТО'] = TemplateService::formatNetto($totalQuantity);
-$data['СУММА_БЕЗ_НДС'] = TemplateService::formatNetto($fullTotalPrice);
-$data['СУММА_С_НДС'] = TemplateService::formatNetto($fullTotalPrice);
+$data['ИТОГО_НЕТТО'] = $netto->to($totalQuantity);
+$data['СУММА_БЕЗ_НДС'] = $sum = $netto->to($fullTotalPrice);
+$data['СУММА_С_НДС'] = $sum;
 
 return $data;

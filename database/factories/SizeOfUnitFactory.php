@@ -6,6 +6,7 @@ use App\Bundles\Vocab\Models\SizeOfUnit;
 use App\Bundles\Vocab\Models\VocabQuantityUnit;
 use App\Services\SpellingService;
 use App\Support\RuFaker;
+use ArtARTs36\RuSpelling\Text;
 use Faker\Generator as Faker;
 
 foreach ([SizeOfUnit::class, VocabQuantityUnit::class] as $modelClass) {
@@ -18,7 +19,7 @@ foreach ([SizeOfUnit::class, VocabQuantityUnit::class] as $modelClass) {
             SizeOfUnit::FIELD_NAME => $fullName,
             SizeOfUnit::FIELD_SHORT_NAME => $shortName,
             SizeOfUnit::FIELD_NAME_EN => $fullName,
-            SizeOfUnit::FIELD_SHORT_NAME_EN => SpellingService::rusSymbolsToEng($shortName),
+            SizeOfUnit::FIELD_SHORT_NAME_EN => Text::translitToEng($shortName),
             SizeOfUnit::FIELD_OKEI => rand(1000, 9999),
         ];
     });
