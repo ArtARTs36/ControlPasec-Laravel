@@ -4,25 +4,27 @@ namespace App\Helper\CSVHelper;
 
 class CSVResource
 {
-    /**
-     * @var CSVString[]
-     */
-    public $strings;
+    protected $strings;
 
-    /**
-     * @var string|int[]
-     */
-    public $keys;
+    protected $keys;
 
-    public function __construct($strings, $keys)
+    public function __construct(array $strings, array $keys)
     {
         $this->strings = $strings;
 
         $this->keys = $keys;
     }
 
-    public function getValue($key, $defaultValue = '')
+    /**
+     * @return CSVString[]
+     */
+    public function getStrings(): array
     {
-        return $this->$key ?? $defaultValue;
+        return $this->strings;
+    }
+
+    public function getKeys(): array
+    {
+        return $this->keys;
     }
 }

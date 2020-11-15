@@ -20,16 +20,16 @@ abstract class CommonSeeder extends Seeder
         $this->setUpFaker();
     }
 
-    public function loadCsvFile($file, $isTypeFileCsv = true)
+    public function loadCsvFile($file, $isTypeFileCsv = true): CSVHelper\CSVResource
     {
         $path = __DIR__ .'/data/'. $file . (($isTypeFileCsv === true) ? '.csv' : '');
 
         return CSVHelper::loadFile($path);
     }
 
-    public function getStringsOfResource($file, $isTypeFileCsv = true)
+    public function getStringsOfResource($file, $isTypeFileCsv = true): array
     {
-        return $this->loadCsvFile($file, $isTypeFileCsv)->strings;
+        return $this->loadCsvFile($file, $isTypeFileCsv)->getStrings();
     }
 
     public function fillModel($class, $file)
@@ -37,7 +37,7 @@ abstract class CommonSeeder extends Seeder
         foreach ($this->getStringsOfResource($file) as $string) {
             /** @var Model $model */
             $model = new $class();
-            $model->fill($string->getArray());
+            $model->fill($string->getValues());
 
             $model->save();
         }
@@ -47,7 +47,7 @@ abstract class CommonSeeder extends Seeder
     {
         foreach ($this->getStringsOfResource($file) as $string) {
             $data = array_merge(
-                $string->getArrayWithoutKeys($mapManager->getFields()),
+                $string->getValuesWithoutKeys($mapManager->getFields()),
                 $mapManager->getValues($string)
             );
 

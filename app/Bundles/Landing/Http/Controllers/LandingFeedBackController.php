@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Landing;
 
 use App\Events\FeedBackCreated;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Landing\LandingFeedBackRequest;
+use App\Http\Requests\Landing\StoreFeedBack;
 use App\Http\Responses\ActionResponse;
 use App\Models\Landing\LandingFeedBack;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -20,7 +20,7 @@ class LandingFeedBackController extends Controller
         return LandingFeedBack::paginate(10, ['*'], 'LandingFeedBacksList', $page);
     }
 
-    public function store(LandingFeedBackRequest $request): ActionResponse
+    public function store(StoreFeedBack $request): ActionResponse
     {
         $feedback = new LandingFeedBack();
 

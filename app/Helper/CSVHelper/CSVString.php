@@ -4,25 +4,22 @@ namespace App\Helper\CSVHelper;
 
 class CSVString
 {
-    private $_array = null;
+    private $values = null;
 
     public function __construct($values)
     {
-        $this->_array = $values;
-
-        foreach ($values as $key => $value) {
-            $this->$key = $value;
-        }
+        $this->values = $values;
     }
 
-    public function getArray()
+    public function getValues(): array
     {
-        return $this->_array;
+        return $this->values;
     }
 
-    public function getArrayWithoutKeys($excludeKeys)
+    public function getValuesWithoutKeys(array $excludeKeys): array
     {
-        $array = $this->_array;
+        $array = $this->values;
+
         foreach ($excludeKeys as $key) {
             unset($array[$key]);
         }
@@ -30,8 +27,11 @@ class CSVString
         return $array;
     }
 
+    /**
+     * @return mixed|null
+     */
     public function getByKey($key)
     {
-        return $this->_array[$key] ?? null;
+        return $this->values[$key] ?? null;
     }
 }

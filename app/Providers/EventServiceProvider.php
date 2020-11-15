@@ -5,7 +5,7 @@ namespace App\Providers;
 use App\Bundles\Contragent\Events\ExternalManagerCreated;
 use App\Bundles\Contragent\Listeners\ExternalManagerCreatedListener;
 use App\Events\DocumentOfQueueGenerated;
-use App\Events\ExceptionNotified;
+use App\Based\Events\ExceptionNotified;
 use App\Events\FeedBackCreated;
 use App\Events\TechSupportReportCreated;
 use App\Events\UserRegistered;

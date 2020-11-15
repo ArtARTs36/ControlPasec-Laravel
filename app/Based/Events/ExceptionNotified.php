@@ -1,21 +1,14 @@
 <?php
 
-namespace App\Events;
+namespace App\Based\Events;
 
-/**
- * Class ExceptionNotified
- * @package App\Events
- */
+use App\Events\Event;
+
 class ExceptionNotified extends Event
 {
-    /** @var \Exception  */
     public $exception;
 
-    /**
-     * ExceptionNotified constructor.
-     * @param \Exception $exception
-     */
-    public function __construct(\Exception $exception)
+    public function __construct(\Throwable $exception)
     {
         $this->exception = $exception;
     }

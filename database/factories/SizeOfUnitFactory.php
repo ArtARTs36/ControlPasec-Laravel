@@ -4,7 +4,6 @@
 
 use App\Bundles\Vocab\Models\SizeOfUnit;
 use App\Bundles\Vocab\Models\VocabQuantityUnit;
-use App\Services\SpellingService;
 use App\Support\RuFaker;
 use ArtARTs36\RuSpelling\Text;
 use Faker\Generator as Faker;

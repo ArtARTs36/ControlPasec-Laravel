@@ -66,23 +66,6 @@ final class SupplyService
         }
     }
 
-    public static function fullLoadSupply($id): Supply
-    {
-        $supply = Supply::query()->find($id);
-        $supply->supplier->load([
-            'requisites' => function ($requisite) {
-                return $requisite->with('bank');
-            },
-            'customer',
-        ]);
-
-        $supply->products()->with(['parent' => function ($parent) {
-            return $parent->with(['sizeOfUnit', 'gosStandard']);
-        }])->get();
-
-        return $supply;
-    }
-
     /**
      * @param Contragent $customer
      * @param Contragent $supplier
