@@ -10,7 +10,6 @@ use App\Models\Contragent;
 use App\Http\Controllers\Controller;
 use App\Models\Sync\SyncWithExternalSystemType;
 use App\Models\User\Permission;
-use App\Parsers\DaDataParser\DaDataParser;
 use App\Repositories\ContragentRepository;
 use App\Services\ContragentService;
 use App\Services\SyncWithExternalSystemService;
@@ -157,13 +156,9 @@ class ContragentController extends Controller
      * @param Contragent $contragent
      * @return array
      */
-    public function syncWithExternalSystem(Contragent $contragent): array
+    public function syncWithExternalSystem(Contragent $contragent, Finder $finder): array
     {
-        $response = DaDataParser::findContragentByInnOrOGRN(
-            $contragent->inn ?? $contragent->ogrn,
-            true,
-            false
-        );
+        $response = $finder->findByInnOrOgrn($contragent->inn ?? $contragent->ogrn, false);
 
         return (new SyncWithExternalSystemService($contragent, SyncWithExternalSystemType::SLUG_CONTRAGENT_DADATA))
             ->create($response)

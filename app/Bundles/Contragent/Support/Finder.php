@@ -5,7 +5,6 @@ namespace App\Bundles\Contragent\Support;
 use App\Bundles\Contragent\Events\ExternalManagerCreated;
 use App\Models\Contragent;
 use App\Models\Contragent\ContragentManager;
-use App\Parsers\DaDataParser\DaDataSender;
 use Illuminate\Support\Collection;
 
 class Finder
