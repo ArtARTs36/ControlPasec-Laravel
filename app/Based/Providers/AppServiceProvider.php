@@ -3,12 +3,10 @@
 namespace App\Providers;
 
 use App\Bundles\Contract\Providers\ContractProvider;
+use App\Bundles\Cron\Providers\CronProvider;
 use App\Bundles\ExternalNews\Providers\ExternalNewsProvider;
 use App\Bundles\Vocab\Providers\VocabProvider;
-use App\Models\AdminService;
-use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
-use Studio\Totem\Totem;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,10 +24,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->register(VocabProvider::class);
         $this->app->register(ContractProvider::class);
         $this->app->register(ExternalNewsProvider::class);
-
-        Totem::auth(function (Request $request) {
-            return AdminService::isAllowed(AdminService::NAME_TOTEM, $request->getClientIp());
-        });
+        $this->app->register(CronProvider::class);
     }
 
     /**

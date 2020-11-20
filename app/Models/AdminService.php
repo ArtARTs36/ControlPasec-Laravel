@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Services\AdminService\AdminServiceAccess;
+use App\Services\AdminService\Accessor;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class AdminService extends Model
 {
-    /** @var AdminServiceAccess|null */
+    /** @var Accessor|null */
     private $access = null;
 
     public const NAME_HORIZON = 'horizon';
@@ -26,12 +26,12 @@ class AdminService extends Model
     public const FIELD_NAME = 'name';
 
     /**
-     * @return AdminServiceAccess|null
+     * @return Accessor|null
      */
-    public function access(): ?AdminServiceAccess
+    public function access(): ?Accessor
     {
         if ($this->isSelf() && $this->access === null) {
-            $this->access = new AdminServiceAccess($this);
+            $this->access = new Accessor($this);
         }
 
         return $this->access;

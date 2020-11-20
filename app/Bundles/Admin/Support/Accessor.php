@@ -7,21 +7,14 @@ use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 
-class AdminServiceAccess
+class Accessor
 {
-    /** @var string */
     private const CACHE_KEY_PREFIX = 'admin_service_access_ips_';
 
-    /** @var AdminService */
     private $service;
 
-    /** @var string */
     private $cacheKey;
 
-    /**
-     * AdminServiceAccess constructor.
-     * @param AdminService $service
-     */
     public function __construct(AdminService $service)
     {
         $this->service = $service;
@@ -37,19 +30,11 @@ class AdminServiceAccess
         return is_int(static::getIps()->search($ip));
     }
 
-    /**
-     * @param string $ip
-     * @return bool
-     */
     public function isNotAllowed(string $ip): bool
     {
         return ! $this->isAllowed($ip);
     }
 
-    /**
-     * @param string $ip
-     * @return bool
-     */
     public function give(string $ip)
     {
         if ($this->isNotAllowed($ip)) {
@@ -61,9 +46,6 @@ class AdminServiceAccess
         return true;
     }
 
-    /**
-     * @return Collection
-     */
     public function getIps(): Collection
     {
         return Cache::get($this->cacheKey, collect());

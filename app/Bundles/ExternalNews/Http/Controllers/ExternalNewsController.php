@@ -7,13 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Responses\ActionResponse;
 use App\Bundles\ExternalNews\Models\ExternalNews;
 use App\Models\User\Permission;
-use App\Repositories\ExternalNews\ExternalNewsRepository;
+use App\Bundles\ExternalNews\Repositories\ExternalNewsRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
-/**
- * Class ExternalNewsController
- * @package App\Bundles\ExternalNews\Http\Controllers
- */
 final class ExternalNewsController extends Controller
 {
     public const PERMISSIONS = [
@@ -23,6 +19,13 @@ final class ExternalNewsController extends Controller
         'store' => Permission::EXTERNAL_NEWS_CREATE,
         'destroy' => Permission::EXTERNAL_NEWS_DELETE,
     ];
+
+    private $repository;
+
+    public function __construct(ExternalNewsRepository $repository)
+    {
+        $this->repository = $repository;
+    }
 
     /**
      * Отобразить новости из внешних источников
@@ -45,7 +48,7 @@ final class ExternalNewsController extends Controller
      */
     public function index(int $page = 1)
     {
-        return ExternalNewsRepository::paginate($page);
+        return $this->repository->paginate($page);
     }
 
     /**

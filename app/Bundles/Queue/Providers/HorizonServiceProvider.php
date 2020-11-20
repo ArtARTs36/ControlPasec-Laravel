@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Models\AdminService;
-use App\Services\AdminService\AdminServiceAccess;
+use App\Services\AdminService\Accessor;
 use App\User;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Horizon\HorizonApplicationServiceProvider;
