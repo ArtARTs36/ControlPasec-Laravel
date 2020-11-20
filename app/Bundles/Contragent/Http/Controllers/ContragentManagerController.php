@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Contragent;
 
-use App\Http\Requests\ContragentManagerRequest;
+use App\Http\Requests\StoreContragentManager;
 use App\Http\Responses\ActionResponse;
 use App\Models\Contragent\ContragentManager;
 use App\Http\Controllers\Controller;
@@ -25,7 +25,7 @@ class ContragentManagerController extends Controller
     /**
      * Создать менеджера
      */
-    public function store(ContragentManagerRequest $request): ActionResponse
+    public function store(StoreContragentManager $request): ActionResponse
     {
         $manager = new ContragentManager();
         $manager->fillOfRequest($request);
@@ -47,11 +47,11 @@ class ContragentManagerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param ContragentManagerRequest $request
+     * @param StoreContragentManager $request
      * @param ContragentManager $contragentManager
      * @return ActionResponse
      */
-    public function update(ContragentManagerRequest $request, ContragentManager $contragentManager): ActionResponse
+    public function update(StoreContragentManager $request, ContragentManager $contragentManager): ActionResponse
     {
         return new ActionResponse($contragentManager->update($request->toArray()), $contragentManager);
     }

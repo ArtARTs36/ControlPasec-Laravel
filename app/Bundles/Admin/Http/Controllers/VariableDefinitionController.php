@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\VariableDefinitionRequest;
+use App\Http\Requests\StoreVariableDefinition;
 use App\Http\Responses\ActionResponse;
 use App\Models\VariableDefinition;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -45,11 +45,11 @@ class VariableDefinitionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param VariableDefinitionRequest $request
+     * @param StoreVariableDefinition $request
      * @param VariableDefinition $variableDefinition
      * @return ActionResponse
      */
-    public function update(VariableDefinitionRequest $request, VariableDefinition $variableDefinition): ActionResponse
+    public function update(StoreVariableDefinition $request, VariableDefinition $variableDefinition): ActionResponse
     {
         $variableDefinition->update(['value' => $request->value]);
 

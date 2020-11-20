@@ -6,15 +6,13 @@ use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class UserRegisterRequest
  * @property int $role_id
- * @mixin User
  */
 class UserRegisterRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return !auth()->check();
+        return ! auth()->check();
     }
 
     public function rules(): array

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\TechSupport;
 
 use App\Events\TechSupportReportCreated;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\TechSupport\TechSupportStoreRequest;
+use App\Http\Requests\TechSupport\StoreReport;
 use App\Http\Resource\TechSupportReportResource;
 use App\Models\TechSupport\TechSupportReport;
 use App\Models\User\Permission;
@@ -32,10 +32,10 @@ class TechSupportReportController extends Controller
     }
 
     /**
-     * @param TechSupportStoreRequest $request
+     * @param StoreReport $request
      * @return TechSupportReportResource
      */
-    public function store(TechSupportStoreRequest $request): TechSupportReportResource
+    public function store(StoreReport $request): TechSupportReportResource
     {
         /** @var TechSupportReport $report */
         $report = TechSupportReport::query()->create([

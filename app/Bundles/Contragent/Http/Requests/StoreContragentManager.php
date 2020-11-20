@@ -2,13 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Contragent\ContragentManager;
 use Illuminate\Foundation\Http\FormRequest;
 
-/**
- * @mixin ContragentManager
- */
-class ContragentManagerRequest extends FormRequest
+class StoreContragentManager extends FormRequest
 {
     public function rules(): array
     {

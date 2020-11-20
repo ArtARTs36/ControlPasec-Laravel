@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Contragent;
 
 use App\Bundles\Contragent\Support\Finder;
 use App\Models\Contragent\ContragentManager;
-use App\Http\Requests\ContragentRequest;
+use App\Http\Requests\StoreContragent;
 use App\Http\Responses\ActionResponse;
 use App\Models\Contragent;
 use App\Http\Controllers\Controller;
@@ -56,10 +56,10 @@ class ContragentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param ContragentRequest $request
+     * @param StoreContragent $request
      * @return ActionResponse
      */
-    public function store(ContragentRequest $request): ActionResponse
+    public function store(StoreContragent $request): ActionResponse
     {
         return $this->createModelAndResponse($request, Contragent::class);
     }
@@ -78,11 +78,11 @@ class ContragentController extends Controller
     /**
      * Обновить данные о контрагенте
      *
-     * @param ContragentRequest $request
+     * @param StoreContragent $request
      * @param Contragent $contragent
      * @return ActionResponse
      */
-    public function update(ContragentRequest $request, Contragent $contragent)
+    public function update(StoreContragent $request, Contragent $contragent)
     {
         $this->updateModel($request, $contragent);
 

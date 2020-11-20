@@ -6,10 +6,10 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class LiveFindContragentRequest extends FormRequest
 {
-    public function rules()
+    public function rules(): array
     {
         return [
-            'term' => 'required|string',
+            'term' => 'required|string|max:255',
         ];
     }
 }

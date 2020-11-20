@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\Contragent\ContragentManager;
-use App\Http\Requests\ContragentRequest;
+use App\Http\Requests\StoreContragent;
 use App\Models\Contragent;
 
 final class ContragentService
@@ -26,10 +26,10 @@ final class ContragentService
     /**
      * Обновить счета в реквизитах
      *
-     * @param ContragentRequest $request
+     * @param StoreContragent $request
      * @return Contragent\BankRequisites[]|array|null
      */
-    public static function updateScoresInRequisiteByRequest(ContragentRequest $request): ?array
+    public static function updateScoresInRequisiteByRequest(StoreContragent $request): ?array
     {
         $data = $request->all();
         if (!isset($data['requisites']) && !is_array($data['requisites'])) {
