@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Bundles\Contract\Providers\ContractProvider;
+use App\Bundles\Contragent\Providers\ContragentProvider;
 use App\Bundles\Cron\Providers\CronProvider;
 use App\Bundles\ExternalNews\Providers\ExternalNewsProvider;
 use App\Bundles\Vocab\Providers\VocabProvider;
@@ -25,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->register(ContractProvider::class);
         $this->app->register(ExternalNewsProvider::class);
         $this->app->register(CronProvider::class);
+        $this->app->register(ContragentProvider::class);
     }
 
     /**

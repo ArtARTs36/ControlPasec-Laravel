@@ -12,18 +12,19 @@ class Finder
 {
     protected $managers;
 
-    public function __construct()
+    protected $client;
+
+    public function __construct(DaDataClient $client)
     {
         $this->managers = collect();
+        $this->client = $client;
     }
 
     public function findByInnOrOgrn($slug, bool $save = true): Collection
     {
         $contragents = collect();
 
-        $responses = DaDataSender::send(DaDataSender::URL_METHOD_FIND_PARTY_BY_INN, [
-            'query' => $slug,
-        ]);
+        $responses = $this->client->findByInn($slug);
 
         foreach ($responses['suggestions'] as $response) {
             if (empty($response['data'])) {
