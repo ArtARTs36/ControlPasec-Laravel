@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c6be38b50b227214641f147e7d9b4394",
+    "content-hash": "7f4af71b911c165f4add62d13494913a",
     "packages": [
         {
             "name": "alhimik1986/php-excel-templator",
@@ -142,6 +142,34 @@
             ],
             "description": "Morpher",
             "time": "2020-10-13T21:00:04+00:00"
+        },
+        {
+            "name": "artarts36/namespace-doctor",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "../namespace-doctor",
+                "reference": "2a4b1ff410815115a359fbbb3052db588106711d"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ArtARTs36\\NamespaceDoctor\\": "src"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ArtARTs36",
+                    "email": "temicska99@mail.ru"
+                }
+            ],
+            "description": "Namespace Doctor",
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "artarts36/pushall-sender",

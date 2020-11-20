@@ -18,12 +18,13 @@ use Throwable;
 
 class ScoreForPaymentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @param int $page
-     * @return LengthAwarePaginator
-     */
+    protected $service;
+
+    public function __construct(ScoreForPaymentService $service)
+    {
+        $this->service = $service;
+    }
+
     public function index(int $page = 1): LengthAwarePaginator
     {
         return ScoreForPaymentRepository::paginate($page);
@@ -99,7 +100,7 @@ class ScoreForPaymentController extends Controller
         $supplies = $request->get(ManySuppliesRequest::FIELD_SUPPLIES);
 
         $document = DocumentCreator::getInstance(DocumentType::SCORES_FOR_PAYMENTS_ID)
-            ->addScores(ScoreForPaymentService::getOrCreateBySupplies($supplies))
+            ->addScores($this->service->getOrCreateBySupplies($supplies))
             ->get();
 
         DocumentService::buildWithSpeedAnalyse($document);

@@ -18,7 +18,7 @@ class ScoreForPaymentService
      * @return array
      * @throws \Exception
      */
-    public static function getOrCreateBySupplies(array $supplies): array
+    public function getOrCreateBySupplies(array $supplies): array
     {
         $scores = ScoreForPaymentRepository::findBySupplies($supplies);
 

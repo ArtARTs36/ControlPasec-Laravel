@@ -9,14 +9,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 
-class ProductService
+final class ProductService
 {
     private const CACHE_TOP_CHART_KEY = 'product_top-chart';
 
-    public static function getStat(int $count): array
+    public function getStat(int $count): array
     {
         if (!($products = Cache::get(static::CACHE_TOP_CHART_KEY))) {
-            $products = array_slice(static::bringStat(), 0, $count, true);
+            $products = array_slice($this->bringStat(), 0, $count, true);
 
             Cache::put(static::CACHE_TOP_CHART_KEY, $products, Carbon::now()->addHour(1));
         }
@@ -24,7 +24,7 @@ class ProductService
         return $products;
     }
 
-    public static function bringStat(): array
+    public function bringStat(): array
     {
         $supplyProducts = SupplyProduct::query()
             ->with([SupplyProduct::RELATION_PARENT => function (BelongsTo $product) {
@@ -62,7 +62,7 @@ class ProductService
         return $products;
     }
 
-    public static function cleanStatCache(): void
+    public function cleanStatCache(): void
     {
         Cache::forget(static::CACHE_TOP_CHART_KEY);
     }

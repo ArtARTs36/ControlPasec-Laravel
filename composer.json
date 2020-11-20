@@ -16,6 +16,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/ArtARTs36/employee-interfaces"
+        },
+        {
+            "type": "path",
+            "url": "../namespace-doctor/"
         }
     ],
     "require": {
@@ -41,7 +45,8 @@
         "spatie/laravel-permission": "^3.11",
         "squizlabs/php_codesniffer": "^3.5",
         "studio/laravel-totem": "6.0.2",
-        "tymon/jwt-auth": "dev-develop"
+        "tymon/jwt-auth": "dev-develop",
+        "artarts36/namespace-doctor": "*"
     },
     "require-dev": {
         "facade/ignition": "^1.4",

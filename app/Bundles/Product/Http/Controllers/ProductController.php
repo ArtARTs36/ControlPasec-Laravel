@@ -9,7 +9,7 @@ use App\Models\Product\Product;
 use App\Models\User\Permission;
 use App\Repositories\ProductRepository;
 use App\Services\ProductService;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class ProductController extends Controller
 {
@@ -21,13 +21,14 @@ class ProductController extends Controller
         'destroy' => Permission::PRODUCTS_DELETE,
     ];
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @param int $page
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
-     */
-    public function index(int $page = 1)
+    protected $service;
+
+    public function __construct(ProductService $service)
+    {
+        $this->service = $service;
+    }
+
+    public function index(int $page = 1): LengthAwarePaginator
     {
         return ProductRepository::paginate($page);
     }
@@ -65,10 +66,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param Product $product
-     * @return ActionResponse
+     * Удалить продукт
      * @throws \Exception
      */
     public function destroy(Product $product): ActionResponse
@@ -77,13 +75,11 @@ class ProductController extends Controller
     }
 
     /**
-     * Самые продаваемые продукты
-     *
-     * @return array
+     * Получить самые продаваемые продукты
      */
     public function topChart(): array
     {
-        return ProductService::getStat(5);
+        return $this->service->getStat(5);
     }
 
     /**
@@ -91,7 +87,7 @@ class ProductController extends Controller
      */
     public function refreshTopChart(): array
     {
-        ProductService::cleanStatCache();
+        $this->service->cleanStatCache();
 
         return $this->topChart();
     }
