@@ -2,7 +2,7 @@
 
 namespace App\Helper;
 
-class ReflectionHelper
+class Reflector
 {
     /**
      * Создать массив: аргумент => значение

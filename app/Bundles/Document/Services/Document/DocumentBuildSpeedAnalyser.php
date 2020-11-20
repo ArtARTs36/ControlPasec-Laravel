@@ -2,7 +2,7 @@
 
 namespace App\Services\Document;
 
-use App\Helper\ReflectionHelper;
+use App\Helper\Reflector;
 use App\Models\Document\Document;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -18,7 +18,7 @@ class DocumentBuildSpeedAnalyser
      */
     public static function analyse(Document $document)
     {
-        $relations = ReflectionHelper::getMethodsByReturnType(Document::class, BelongsToMany::class);
+        $relations = Reflector::getMethodsByReturnType(Document::class, BelongsToMany::class);
         $document->load($relations);
 
         foreach ($relations as $relation) {
