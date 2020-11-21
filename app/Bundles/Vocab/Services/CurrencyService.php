@@ -4,7 +4,8 @@ namespace App\Services;
 
 use App\Bundles\Vocab\Models\CurrencyCourse;
 use App\Bundles\Vocab\Models\VocabCurrency;
-use App\Services\CurrencyCourseFinder\CurrencyCourseFinderInterface;
+use ArtARTs36\CbrCourseFinder\Contracts\CourseCollection;
+use ArtARTs36\CbrCourseFinder\Course;
 use Illuminate\Support\Collection;
 
 /**
@@ -13,36 +14,41 @@ use Illuminate\Support\Collection;
  */
 class CurrencyService
 {
-    /**
-     * @return Collection
-     */
-    public static function getComparedCurrencies(): Collection
+    public function getComparedCurrencies(): Collection
     {
         return VocabCurrency::query()
             ->where('iso_short_name', '!=', VocabCurrency::ISO_RUB)
             ->get();
     }
 
-    /**
-     * @param CurrencyCourseFinderInterface $finder
-     * @param Collection|null $currencies
-     * @return Collection
-     */
-    public static function saveCourses(CurrencyCourseFinderInterface $finder, Collection $currencies = null): Collection
+    public function createOfExternals(CourseCollection $courses): Collection
     {
-        $courses = collect();
-        foreach ($currencies ?? static::getComparedCurrencies() as $currency) {
-            $course = new CurrencyCourse();
-            $course->currency_id = $currency->id;
-            $course->nominal = $finder->getNominal($currency->iso_short_name);
-            $course->value = $finder->getCourse($currency->iso_short_name);
-            $course->actual_date = $finder->getActualTime(true);
+        $created = collect();
 
-            $course->save();
+        /** @var VocabCurrency $currency */
+        foreach (static::getComparedCurrencies() as $currency) {
+            $external = $courses->getByIsoCode($currency->iso_short_name);
 
-            $courses->push($course);
+            if ($external === null) {
+                continue;
+            }
+
+            $created->push($this->createOfExternal($external, $currency, $courses->getActualDate()));
         }
 
-        return $courses;
+        return $created;
+    }
+
+    protected function createOfExternal(Course $external, VocabCurrency $currency, \DateTimeInterface $date)
+    {
+        $course = new CurrencyCourse();
+        $course->currency_id = $currency->id;
+        $course->nominal = $external->getNominal();
+        $course->value = $external->getValue();
+        $course->actual_date = $date;
+
+        $course->save();
+
+        return $course;
     }
 }

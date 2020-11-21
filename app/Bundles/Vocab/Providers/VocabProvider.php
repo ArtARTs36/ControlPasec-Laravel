@@ -4,6 +4,7 @@ namespace App\Bundles\Vocab\Providers;
 
 use App\Bundles\Vocab\Contracts\WordService;
 use App\Bundles\Vocab\Services\NameInclinator;
+use ArtARTs36\CbrCourseFinder\Contracts\Finder;
 use ArtARTs36\Morpher\Client;
 use ArtARTs36\Morpher\Contracts\Morpher as MorpherContract;
 use App\Bundles\Vocab\Contracts\NameInclinator as NameInclinatorContract;
@@ -14,6 +15,10 @@ class VocabProvider extends ServiceProvider
 {
     public function register()
     {
+        $this->app->singleton(Finder::class, function () {
+            return new \ArtARTs36\CbrCourseFinder\Finder(new \GuzzleHttp\Client());
+        });
+
         $this->registerMorpher();
         $this->app->singleton(WordService::class, \App\Bundles\Vocab\Services\WordService::class);
         $this->app->singleton(NameInclinatorContract::class, NameInclinator::class);

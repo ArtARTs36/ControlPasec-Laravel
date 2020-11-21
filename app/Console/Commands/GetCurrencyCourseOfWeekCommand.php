@@ -2,26 +2,28 @@
 
 namespace App\Console\Commands;
 
-use App\Services\CurrencyCourseFinder\CurrencyCourseFinder;
 use App\Services\CurrencyService;
+use ArtARTs36\CbrCourseFinder\Contracts\Finder;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 
 class GetCurrencyCourseOfWeekCommand extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
     protected $signature = 'get-currency-course:week';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
     protected $description = 'Command description';
+
+    protected $finder;
+
+    protected $service;
+
+    public function __construct(Finder $finder, CurrencyService $service)
+    {
+        parent::__construct();
+
+        $this->finder = $finder;
+        $this->service = $service;
+    }
 
     public function handle()
     {
@@ -29,10 +31,8 @@ class GetCurrencyCourseOfWeekCommand extends Command
             $date = Carbon::parse("-{$i} days");
 
             try {
-                CurrencyService::saveCourses(
-                    CurrencyCourseFinder::previousFinder($date)
-                );
-            } catch (\Exception $exception) {
+                $this->service->createOfExternals($this->finder->getOnDate($date));
+            } catch (\Throwable $exception) {
                 $this->warn($exception->getMessage());
             }
         }

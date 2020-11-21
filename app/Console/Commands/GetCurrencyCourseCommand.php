@@ -2,30 +2,30 @@
 
 namespace App\Console\Commands;
 
-use App\Services\CurrencyCourseFinder\CurrencyCourseFinder;
 use App\Services\CurrencyService;
+use ArtARTs36\CbrCourseFinder\Contracts\Finder;
 use Illuminate\Console\Command;
 
 class GetCurrencyCourseCommand extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
     protected $signature = 'get-currency-course:now';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
     protected $description = 'Command description';
+
+    protected $finder;
+
+    protected $service;
+
+    public function __construct(Finder $finder, CurrencyService $service)
+    {
+        parent::__construct();
+
+        $this->finder = $finder;
+        $this->service = $service;
+    }
 
     public function handle()
     {
-        CurrencyService::saveCourses(
-            CurrencyCourseFinder::actualFinder()
-        );
+        $this->service->createOfExternals($this->finder->getOnDate(new \DateTime()));
     }
 }

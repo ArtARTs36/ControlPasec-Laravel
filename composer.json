@@ -28,7 +28,9 @@
         "ext-json": "*",
         "ext-simplexml": "*",
         "alhimik1986/php-excel-templator": "^1.0",
+        "artarts36/cbr-course-finder": "dev-master",
         "artarts36/morpher": "^1.0",
+        "artarts36/namespace-doctor": "*",
         "artarts36/pushall-sender": "^0.1.1",
         "artarts36/ru-spelling": "^1.0",
         "artarts36/shell-command": "^1.1",
@@ -45,8 +47,7 @@
         "spatie/laravel-permission": "^3.11",
         "squizlabs/php_codesniffer": "^3.5",
         "studio/laravel-totem": "6.0.2",
-        "tymon/jwt-auth": "dev-develop",
-        "artarts36/namespace-doctor": "*"
+        "tymon/jwt-auth": "dev-develop"
     },
     "require-dev": {
         "facade/ignition": "^1.4",

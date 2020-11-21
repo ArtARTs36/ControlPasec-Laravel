@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7f4af71b911c165f4add62d13494913a",
+    "content-hash": "5f4418e9f8310f7a9ef2ba21f52486b9",
     "packages": [
         {
             "name": "alhimik1986/php-excel-templator",
@@ -52,6 +52,44 @@
                 "templator"
             ],
             "time": "2020-06-12T17:39:30+00:00"
+        },
+        {
+            "name": "artarts36/cbr-course-finder",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ArtARTs36/cbr-course-finder.git",
+                "reference": "d2bf9228478930b57736e51f85349ab5187861dc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ArtARTs36/cbr-course-finder/zipball/d2bf9228478930b57736e51f85349ab5187861dc",
+                "reference": "d2bf9228478930b57736e51f85349ab5187861dc",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "guzzlehttp/guzzle": ">= 6.0",
+                "php": ">= 7.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ArtARTs36\\CbrCourseFinder\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "aukrainskiy",
+                    "email": "aukrainskiy@phoenixit.ru"
+                }
+            ],
+            "description": "CBR Course Finder",
+            "time": "2020-11-21T00:14:00+00:00"
         },
         {
             "name": "artarts36/employee-interfaces",
@@ -7439,6 +7477,7 @@
                 "faker",
                 "fixtures"
             ],
+            "abandoned": true,
             "time": "2019-12-12T13:22:17+00:00"
         },
         {
@@ -10310,6 +10349,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "artarts36/cbr-course-finder": 20,
         "dba/controltime": 20,
         "tymon/jwt-auth": 20
     },
