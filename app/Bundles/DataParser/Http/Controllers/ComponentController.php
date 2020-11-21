@@ -5,7 +5,7 @@ namespace App\Http\Controllers\TextDataParser;
 use App\Http\Controllers\Controller;
 use App\Models\TextDataParser\TextDataParserComponent;
 
-class TextDataParserComponentController extends Controller
+class ComponentController extends Controller
 {
     public function index()
     {

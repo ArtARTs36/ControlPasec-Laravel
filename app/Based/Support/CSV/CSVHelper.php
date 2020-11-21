@@ -2,8 +2,8 @@
 
 namespace App\Helper;
 
-use App\Helper\CSVHelper\CSVResource;
-use App\Helper\CSVHelper\CSVString;
+use App\Helper\CSV\CSVResource;
+use App\Helper\CSV\CSVString;
 use Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException;
 
 class CSVHelper

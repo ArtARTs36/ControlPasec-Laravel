@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Contragent;
 
 use App\Bundles\Contragent\Support\Finder;
-use App\Models\Contragent\ContragentManager;
 use App\Http\Requests\StoreContragent;
 use App\Http\Responses\ActionResponse;
 use App\Models\Contragent;

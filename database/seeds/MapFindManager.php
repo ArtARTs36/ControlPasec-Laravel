@@ -15,7 +15,7 @@ class MapFindManager
         return array_keys($this->maps);
     }
 
-    public function getValues(\App\Helper\CSVHelper\CSVString $CSVString)
+    public function getValues(\App\Helper\CSV\CSVString $CSVString)
     {
         $values = [];
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helper\CSVHelper;
+namespace App\Helper\CSV;
 
 class CSVString
 {

@@ -1,6 +1,6 @@
 <?php
 
-use App\Helper\CSVHelper;
+use App\Helper\CSV;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -20,7 +20,7 @@ abstract class CommonSeeder extends Seeder
         $this->setUpFaker();
     }
 
-    public function loadCsvFile($file, $isTypeFileCsv = true): CSVHelper\CSVResource
+    public function loadCsvFile($file, $isTypeFileCsv = true): CSV\CSVResource
     {
         $path = __DIR__ .'/data/'. $file . (($isTypeFileCsv === true) ? '.csv' : '');
 

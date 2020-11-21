@@ -2,16 +2,10 @@
 
 namespace App\Helper;
 
-/**
- * Class FileHelper
- */
 class FileHelper
 {
     /**
      * Сменить расширение у файла
-     * @param string $path
-     * @param string $newExt
-     * @return string
      */
     public static function changeExtensionInPath(string $path, string $newExt): string
     {
@@ -22,12 +16,10 @@ class FileHelper
 
     /**
      * Создать файл, если он не существует
-     * @param string $path
-     * @param string $content
      */
     public static function createFileIfNotExists(string $path, string $content): void
     {
-        if (!file_exists($path)) {
+        if (! file_exists($path)) {
             file_put_contents($path, $content);
         }
     }
@@ -51,8 +43,7 @@ class FileHelper
     public static function findFiles($path, &$files)
     {
         if (is_dir($path)) {
-            $cleanPath = self::cleanBackPathsByFiles(scandir($path));
-            foreach ($cleanPath as $file) {
+            foreach (self::cleanBackPathsByFiles(scandir($path)) as $file) {
                 $finalPath = $path . '/' . $file;
                 $result = self::findFiles($finalPath, $files);
                 if (!is_null($result)) {
@@ -67,6 +58,7 @@ class FileHelper
     public static function findPhpClass(string $path): array
     {
         $classPaths = [];
+
         FileHelper::findFilesWithCallable($path, $classPaths, function ($file) {
             return FileHelper::fileIsPhpClasses($file);
         });
@@ -76,9 +68,6 @@ class FileHelper
 
     /**
      * Является ли файл классом PHP
-     *
-     * @param string $path
-     * @return bool
      */
     public static function fileIsPhpClasses(string $path): bool
     {
@@ -101,15 +90,12 @@ class FileHelper
 
     /**
      * Поиск папок
-     *
-     * @param string $path
-     * @return array
      */
     public static function findFolders(string $path): array
     {
         $dirs = [];
-
         $files = self::cleanBackPathsByFiles(scandir($path));
+
         foreach ($files as $file) {
             $fullPath = $path . DIRECTORY_SEPARATOR . $file;
             if (is_dir($fullPath)) {
@@ -130,33 +116,9 @@ class FileHelper
         return array_values(array_diff(scandir($dir), ['.', '..']));
     }
 
-    public static function getPrevDir(string $origDir)
+    public static function getPrevDir(string $origDir): string
     {
-        $parse = explode(DIRECTORY_SEPARATOR, $origDir);
-
-        $dir = '';
-
-        for ($i = 0; $i < count($parse) - 2; $i++) {
-            $dir .= $parse[$i] . DIRECTORY_SEPARATOR;
-        }
-
-        return $dir;
-    }
-
-    public static function getPrevDirAndFileName(string $file)
-    {
-        $parse = explode(DIRECTORY_SEPARATOR, $file);
-
-        $dir = '';
-
-        for ($i = 0; $i < count($parse) - 2; $i++) {
-            $dir .= $parse[$i] . DIRECTORY_SEPARATOR;
-        }
-
-        return [
-            'prevDir' => $dir,
-            'fileName' => end($parse),
-        ];
+        return pathinfo($origDir, PATHINFO_DIRNAME);
     }
 
     public static function getTmpFolder(int &$timestamp = null): string
