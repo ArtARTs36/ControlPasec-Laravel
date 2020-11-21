@@ -26,7 +26,7 @@ class LightTextDataParser extends AbstractTextDataParser
             }
         }
 
-        $preparerPath = 'Preparers/preparer_'. $this->component->preparer . '.php';
+        $preparerPath = 'Parsers/preparer_'. $this->component->preparer . '.php';
 
         return include($preparerPath);
     }
