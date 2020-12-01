@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Resource;
+namespace App\Bundles\TechSupport\Http\Resources;
 
-use App\Models\TechSupport\TechSupportReport;
+use App\Bundles\TechSupport\Models\TechSupportReport;
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -11,7 +11,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * @mixin TechSupportReport
  * @extends JsonResource<TechSupportReport>
  */
-class TechSupportReportResource extends JsonResource
+class ReportResource extends JsonResource
 {
     public function toArray($request): array
     {

@@ -188,6 +188,8 @@ return [
         App\Providers\HorizonServiceProvider::class,
 
         \App\Bundles\ExternalNews\Providers\ExternalNewsProvider::class,
+
+        \App\Bundles\TechSupport\Providers\TechSupportProvider::class,
     ],
 
     /*

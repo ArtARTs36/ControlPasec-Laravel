@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Bundles\TechSupport\Feature;
 
-use App\Models\TechSupport\TechSupportReport;
+use App\Bundles\TechSupport\Models\TechSupportReport;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\BaseTestCase;
 
@@ -19,6 +19,9 @@ class TechSupportTest extends BaseTestCase
         $this->setUpFaker();
     }
 
+    /**
+     * @covers \App\Bundles\TechSupport\Http\Controllers\TechSupportReportController::store
+     */
     public function testStoreByGuest(): void
     {
         $report = [

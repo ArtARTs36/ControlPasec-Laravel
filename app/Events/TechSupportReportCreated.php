@@ -2,7 +2,7 @@
 
 namespace App\Events;
 
-use App\Models\TechSupport\TechSupportReport;
+use App\Bundles\TechSupport\Models\TechSupportReport;
 
 class TechSupportReportCreated extends BaseEvent
 {

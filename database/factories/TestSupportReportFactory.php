@@ -2,7 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\TechSupport\TechSupportReport;
+use App\Bundles\TechSupport\Models\TechSupportReport;
 use Faker\Generator as Faker;
 
 $factory->define(TechSupportReport::class, function (Faker $faker) {

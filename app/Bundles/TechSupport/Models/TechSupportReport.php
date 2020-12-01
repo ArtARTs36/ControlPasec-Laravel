@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\TechSupport;
+namespace App\Bundles\TechSupport\Models;
 
 use App\Models\Traits\WithFieldIsRead;
 use App\User;
@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * Class TechSupportReport
  * @property int $id
  * @property User|null $user
  * @property int $user_id

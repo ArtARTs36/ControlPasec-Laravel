@@ -1,18 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\TechSupport;
+namespace App\Bundles\TechSupport\Http\Controllers;
 
 use App\Events\TechSupportReportCreated;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\TechSupport\TechSupportStoreRequest;
-use App\Http\Resource\TechSupportReportResource;
-use App\Models\TechSupport\TechSupportReport;
+use App\Bundles\TechSupport\Http\Requests\StoreReport;
+use App\Bundles\TechSupport\Http\Resources\ReportResource;
+use App\Bundles\TechSupport\Models\TechSupportReport;
 use App\Models\User\Permission;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-/**
- * Class TechSupportReportController
- * @package App\Http\Controllers\TechSupport
- */
 class TechSupportReportController extends Controller
 {
     public const PERMISSIONS = [
@@ -20,22 +17,14 @@ class TechSupportReportController extends Controller
         'read' => Permission::TECH_SUPPORT_REPORT_SET_READ,
     ];
 
-    /**
-     * @param int $page
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
-     */
-    public function index(int $page = 1)
+    public function index(int $page = 1): AnonymousResourceCollection
     {
-        return TechSupportReportResource::collection(
+        return ReportResource::collection(
             TechSupportReport::query()->paginate(10, ['*'], 'TechSupportReportList', $page)
         );
     }
 
-    /**
-     * @param TechSupportStoreRequest $request
-     * @return TechSupportReportResource
-     */
-    public function store(TechSupportStoreRequest $request): TechSupportReportResource
+    public function store(StoreReport $request): ReportResource
     {
         /** @var TechSupportReport $report */
         $report = TechSupportReport::query()->create([
@@ -48,22 +37,14 @@ class TechSupportReportController extends Controller
 
         event(new TechSupportReportCreated($report));
 
-        return new TechSupportReportResource($report);
+        return new ReportResource($report);
     }
 
-    /**
-     * @param TechSupportReport $techSupportReport
-     * @return TechSupportReportResource
-     */
-    public function show(TechSupportReport $techSupportReport): TechSupportReportResource
+    public function show(TechSupportReport $techSupportReport): ReportResource
     {
-        return new TechSupportReportResource($techSupportReport);
+        return new ReportResource($techSupportReport);
     }
 
-    /**
-     * @param TechSupportReport $report
-     * @return TechSupportReport
-     */
     public function read(TechSupportReport $report): TechSupportReport
     {
         return $report->read();

@@ -1,19 +1,12 @@
 <?php
 
-namespace App\Http\Requests\TechSupport;
+namespace App\Bundles\TechSupport\Http\Requests;
 
-use App\Models\TechSupport\TechSupportReport;
+use App\Bundles\TechSupport\Models\TechSupportReport;
 use Illuminate\Foundation\Http\FormRequest;
 
-/**
- * Class TechSupportStoreRequest
- * @package App\Http\Requests\TechSupport
- */
-class TechSupportStoreRequest extends FormRequest
+class StoreReport extends FormRequest
 {
-    /**
-     * @return array
-     */
     public function rules(): array
     {
         $rules = [

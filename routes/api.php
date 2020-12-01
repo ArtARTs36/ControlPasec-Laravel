@@ -25,5 +25,3 @@ Route::group([
     require 'apis/api.logs.php';
     require __DIR__ . '/../app/Bundles/Employee/Http/routes/api.php';
 });
-
-require 'apis/api.tech_support.php';
