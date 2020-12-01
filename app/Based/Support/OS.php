@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Helper;
+namespace App\Based\Support;
 
-class PhpOsHelper
+class OS
 {
-    const UNKNOWN = 'unknown';
-    const MAC = 'mac';
-    const WINDOWS = 'windows';
-    const LINUX = 'linux';
+    public const UNKNOWN = 'unknown';
+    public const MAC = 'mac';
+    public const WINDOWS = 'windows';
+    public const LINUX = 'linux';
 
-    public static function getOs(string $unknown = self::UNKNOWN): string
+    public static function get(string $unknown = self::UNKNOWN): string
     {
         switch (PHP_OS) {
             case "Darwin":

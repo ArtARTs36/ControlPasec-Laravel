@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Based\Support\OS;
 use App\Helper\FileHelper;
-use App\Helper\PhpOsHelper;
 use App\Services\Go\GoProgramExecutor;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
@@ -104,7 +104,7 @@ class ProjectInstallCommand extends Command
 
     private function selectBinFileForGoProgram(string $name, string $path): bool
     {
-        $os = PhpOsHelper::getOs(PhpOsHelper::UNKNOWN);
+        $os = OS::get();
         $pathToBuild = $path . '/builds/'. $name . '_'. $os;
         if (!file_exists($pathToBuild)) {
             return false;
