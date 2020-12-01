@@ -186,6 +186,12 @@ return [
          * Horizon Queue Provider
          */
         App\Providers\HorizonServiceProvider::class,
+
+        \App\Bundles\Admin\Providers\AdminProvider::class,
+
+        \App\Bundles\User\Providers\UserProvider::class,
+
+        \App\Bundles\Product\Providers\ProductProvider::class,
     ],
 
     /*

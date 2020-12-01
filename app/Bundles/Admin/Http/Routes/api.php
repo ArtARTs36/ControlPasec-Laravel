@@ -7,3 +7,7 @@ Route::prefix('variable-definitions')->group(function () {
 });
 
 Route::apiResource('variable-definitions', 'VariableDefinitionController');
+
+Route::prefix('admin-services')->group(function () {
+    Route::get('{name}', 'AdminServiceController@redirect');
+});

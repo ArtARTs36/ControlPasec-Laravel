@@ -22,6 +22,8 @@ class VocabProvider extends ServiceProvider
         $this->registerMorpher();
         $this->app->singleton(WordService::class, \App\Bundles\Vocab\Services\WordService::class);
         $this->app->singleton(NameInclinatorContract::class, NameInclinator::class);
+
+        $this->app->register(VocabRouteProvider::class);
     }
 
     protected function registerMorpher(): void

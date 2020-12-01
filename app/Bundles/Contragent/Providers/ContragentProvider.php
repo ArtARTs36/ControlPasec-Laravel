@@ -15,5 +15,7 @@ class ContragentProvider extends ServiceProvider
                 'base_uri' => 'https://suggestions.dadata.ru/suggestions/api/4_1/',
             ]), 'bd0f0bb6afa265cda47baacbdb7bdd4c077ffc64');
         });
+
+        $this->app->register(ContragentRouteProvider::class);
     }
 }
