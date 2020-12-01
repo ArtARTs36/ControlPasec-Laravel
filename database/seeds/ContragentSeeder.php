@@ -27,11 +27,11 @@ class ContragentSeeder extends CommonSeeder
         for ($i = 0; $i < $count; $i++) {
             $contragent = new App\Models\Contragent();
 
-            $name = \App\Support\RuFaker::fio();
+            $name = \App\Based\Support\RuFaker::fio();
 
             $contragent->title = $name;
             $contragent->full_title = $name;
-            $contragent->full_title_with_opf = \App\Support\RuFaker::withOpf($name);
+            $contragent->full_title_with_opf = \App\Based\Support\RuFaker::withOpf($name);
             $contragent->inn = rand(11111111, 99999999999);
             $contragent->kpp = rand(11111111, 99999999999);
             $contragent->ogrn = rand(11111111, 99999999999);
@@ -39,7 +39,7 @@ class ContragentSeeder extends CommonSeeder
             $contragent->oktmo = rand(11111111, 99999999999);
             $contragent->okved = rand(11111111, 99999999999);
             $contragent->okved_type = rand(1, 99);
-            $contragent->address = \App\Support\RuFaker::getGenerator()->address;
+            $contragent->address = \App\Based\Support\RuFaker::getGenerator()->address;
             $contragent->address_postal = rand(111111, 999999);
             $contragent->status = 0;
             $contragent->save();
@@ -55,12 +55,12 @@ class ContragentSeeder extends CommonSeeder
     private function createManager(int $contragentId): void
     {
         for ($i = 0; $i < rand(1, 5); $i++) {
-            $gender = \App\Support\RuFaker::gender();
+            $gender = \App\Based\Support\RuFaker::gender();
 
             $manager = new Contragent\ContragentManager();
-            $manager->name = \App\Support\RuFaker::name($gender);
-            $manager->patronymic = \App\Support\RuFaker::patronymic($gender);
-            $manager->family = \App\Support\RuFaker::family($gender);
+            $manager->name = \App\Based\Support\RuFaker::name($gender);
+            $manager->patronymic = \App\Based\Support\RuFaker::patronymic($gender);
+            $manager->family = \App\Based\Support\RuFaker::family($gender);
             $manager->contragent_id = $contragentId;
             $manager->save();
         }

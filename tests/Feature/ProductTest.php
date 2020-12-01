@@ -9,7 +9,7 @@ use App\Models\Vocab\VocabCurrency;
 use App\Models\Vocab\VocabGosStandard;
 use App\Models\Vocab\VocabPackageType;
 use App\Models\Vocab\VocabQuantityUnit;
-use App\Support\RuFaker;
+use App\Based\Support\RuFaker;
 use Illuminate\Http\Response;
 use Tests\BaseTestCase;
 

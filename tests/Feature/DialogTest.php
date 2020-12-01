@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Support\RuFaker;
+use App\Based\Support\RuFaker;
 use App\User;
 use Tests\BaseTestCase;
 
