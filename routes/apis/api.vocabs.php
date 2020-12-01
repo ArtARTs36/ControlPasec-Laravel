@@ -26,8 +26,3 @@ Route::apiResource('vocab-banks', 'Vocab\VocabBankController');
 Route::get('vocab-currencies/page-{page}', 'Vocab\VocabCurrencyController@index');
 Route::apiResource('vocab-currencies', 'Vocab\VocabCurrencyController');
 Route::get('vocab/currency-courses', 'Vocab\CurrencyCourseController@chart');
-
-// API для словаря
-
-Route::get('vocab-words/page-{page}', 'Vocab\VocabWordController@index');
-Route::apiResource('vocab-words', 'Vocab\VocabWordController');

@@ -15,10 +15,4 @@ Route::get('contragents/find-external-by-inn/{inn}', 'Contragent\ContragentContr
 
 //
 
-Route::apiResource('contragent-groups', 'Contragent\ContragentGroupController');
-Route::get('contragent-groups/{group}/detach/{contragent}', 'Contragent\ContragentGroupController@detach');
-Route::get('contragent-groups/{group}/detach-all/', 'Contragent\ContragentGroupController@detachAll');
-
-//
-
 Route::apiResource('contragent-managers', 'Contragent\ContragentManagerController');

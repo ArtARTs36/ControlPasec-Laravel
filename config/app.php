@@ -190,6 +190,10 @@ return [
         \App\Bundles\ExternalNews\Providers\ExternalNewsProvider::class,
 
         \App\Bundles\TechSupport\Providers\TechSupportProvider::class,
+
+        \App\Bundles\Contragent\Providers\ContragentProvider::class,
+
+        \App\Bundles\Vocab\Providers\VocabProvider::class,
     ],
 
     /*

@@ -1,7 +1,7 @@
 <?php
 
+use App\Bundles\Contragent\Support\Finder;
 use App\Models\Contragent;
-use App\Parsers\DaDataParser\DaDataParser;
 
 class ContragentSeeder extends CommonSeeder
 {
@@ -74,7 +74,7 @@ class ContragentSeeder extends CommonSeeder
         $data = $this->getStringsOfResource('external_contragents_inn');
 
         foreach ($data as $datum) {
-            DaDataParser::findContragentByInnOrOGRN($datum->inn);
+            app(Finder::class)->findByInnOrOgrn($datum->inn);
         }
     }
 }

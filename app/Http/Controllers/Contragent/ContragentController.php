@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Contragent;
 
+use App\Bundles\Contragent\Support\Finder;
 use App\Models\Contragent\ContragentManager;
 use App\Http\Requests\ContragentRequest;
 use App\Http\Responses\ActionResponse;
@@ -9,8 +10,7 @@ use App\Models\Contragent;
 use App\Http\Controllers\Controller;
 use App\Models\Sync\SyncWithExternalSystemType;
 use App\Models\User\Permission;
-use App\Parsers\DaDataParser\DaDataParser;
-use App\Repositories\ContragentRepository;
+use App\Bundles\Contragent\Repositories\ContragentRepository;
 use App\Services\ContragentService;
 use App\Services\SyncWithExternalSystemService;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -134,16 +134,16 @@ class ContragentController extends Controller
      *     @OA\Response(response="default", description="Contragents: find Contragent in external System")
      * )
      */
-    public function findInExternalNetworkByInn($inn): ActionResponse
+    public function findInExternalNetworkByInn($inn, Finder $finder, ContragentRepository $repository): ActionResponse
     {
-        if ($contragent = ContragentRepository::findByInnOrOgrn($inn)) {
+        if ($contragent = $repository->findByInnOrOgrn($inn)) {
             return new ActionResponse(true, [
                 'message' => 'Контрагент '. $contragent->title . ' уже существует в базе',
                 'contragent' => $contragent,
             ]);
         }
 
-        $contragent = DaDataParser::findContragentByInnOrOGRN($inn);
+        $contragent = $finder->findByInnOrOgrn($inn)->first();
 
         return new ActionResponse(true, [
             'message' => 'Контрагент '. $contragent->title . ' найден!',
@@ -153,16 +153,10 @@ class ContragentController extends Controller
 
     /**
      * Синхронизировать контрагента с данными из внешней системы
-     * @param Contragent $contragent
-     * @return array
      */
-    public function syncWithExternalSystem(Contragent $contragent): array
+    public function syncWithExternalSystem(Contragent $contragent, Finder $finder): array
     {
-        $response = DaDataParser::findContragentByInnOrOGRN(
-            $contragent->inn ?? $contragent->ogrn,
-            true,
-            false
-        );
+        $response = $finder->findByInnOrOgrn($contragent->inn ?? $contragent->ogrn, false);
 
         return (new SyncWithExternalSystemService($contragent, SyncWithExternalSystemType::SLUG_CONTRAGENT_DADATA))
             ->create($response)

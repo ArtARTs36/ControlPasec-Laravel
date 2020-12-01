@@ -43,7 +43,13 @@ class CheckPermissions
         }
 
         /** @var User $user */
-        if (($user = auth()->user()) && !$user->hasApiPermission($permission)) {
+        $user = auth()->user();
+
+        if (! $user) {
+            return new UserDoesNotHavePermission($permission);
+        }
+
+        if (! $user->hasApiPermission($permission)) {
             return new UserDoesNotHavePermission($permission);
         }
 
