@@ -3,11 +3,11 @@
 namespace App\Bundles\ExternalNews\Http\Controllers;
 
 use App\Bundles\ExternalNews\Http\Requests\UpdateRequest;
+use App\Bundles\ExternalNews\Contracts\ExternalNewsRepository;
 use App\Http\Controllers\Controller;
 use App\Http\Responses\ActionResponse;
 use App\Bundles\ExternalNews\Models\ExternalNews;
 use App\Models\User\Permission;
-use App\Repositories\ExternalNews\ExternalNewsRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class ExternalNewsController extends Controller
@@ -19,6 +19,13 @@ class ExternalNewsController extends Controller
         'store' => Permission::EXTERNAL_NEWS_CREATE,
         'destroy' => Permission::EXTERNAL_NEWS_DELETE,
     ];
+
+    private $repository;
+
+    public function __construct(ExternalNewsRepository $repository)
+    {
+        $this->repository = $repository;
+    }
 
     /**
      * Отобразить новости из внешних источников
@@ -41,7 +48,7 @@ class ExternalNewsController extends Controller
      */
     public function index(int $page = 1)
     {
-        return ExternalNewsRepository::paginate($page);
+        return $this->repository->paginate($page);
     }
 
     /**

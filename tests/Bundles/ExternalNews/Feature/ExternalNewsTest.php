@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\ExternalNews;
+namespace Tests\Bundles\ExternalNews\Feature;
 
 use App\Bundles\ExternalNews\Models\ExternalNews;
 use Tests\BaseTestCase;
@@ -86,9 +86,13 @@ class ExternalNewsTest extends BaseTestCase
     {
         $this->seed(\ExternalNewsSeeder::class);
 
-        $response = $this->getJson(static::API_INDEX . "/truncate/");
+        $request = function () {
+            return $this->getJson(static::API_INDEX . "/truncate/");
+        };
 
-        $response->assertOk();
+        //
+
+        $request()->assertOk();
 
         $count = ExternalNews::query()->count('id');
 

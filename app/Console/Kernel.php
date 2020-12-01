@@ -4,7 +4,7 @@ namespace App\Console;
 
 use App\Console\Commands\CompileFontFromDompdfCommand;
 use App\Console\Commands\GetCurrencyCourseCommand;
-use App\Console\Commands\GetExternalNewsCommand;
+use App\Bundles\ExternalNews\Console\GetExternalNewsCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 

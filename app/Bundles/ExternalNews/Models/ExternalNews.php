@@ -26,6 +26,7 @@ class ExternalNews extends Model
 
     public const RELATION_SOURCE = 'source';
 
+    public const FIELD_ID = 'id';
     public const FIELD_TITLE = 'title';
     public const FIELD_DESCRIPTION = 'description';
     public const FIELD_SOURCE_ID = 'source_id';
