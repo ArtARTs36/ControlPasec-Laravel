@@ -8,7 +8,7 @@ use App\Models\Supply\QualityCertificate;
 use App\Models\Supply\ScoreForPayment;
 use App\Services\Document\DocumentService;
 use App\Services\Document\DocumentBuilder;
-use App\Services\SpellingService;
+use ArtARTs36\RuSpelling\Text;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Query\Builder;
@@ -91,7 +91,7 @@ class Document extends Model
      */
     public function getFileName(): string
     {
-        return SpellingService::rusSymbolsToEng($this->title, true);
+        return Text::translitToEng($this->title);
     }
 
     /**

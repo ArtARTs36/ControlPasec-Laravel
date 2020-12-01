@@ -4,8 +4,8 @@
 use App\Models\Document\Document;
 use App\Models\Supply\SupplyProduct;
 use App\Services\Document\TemplateService;
-use App\Services\SpellingService;
 use App\Services\SupplyService;
+use ArtARTs36\RuSpelling\Month;
 
 $document = $document->load('productTransportWaybills');
 
@@ -25,7 +25,7 @@ $data = [
     'ГРУЗОПОЛУЧАТЕЛЬ' => TemplateService::renderContragent($supply->customer),
     'ГРУЗООТПРАВИТЕЛЬ' => TemplateService::renderContragent($supply->supplier),
     'ДЕНЬ' => $plannedDate->format('d'),
-    'МЕСЯЦ_Р' => SpellingService::getMonthName($plannedDate, 'gen', true),
+    'МЕСЯЦ_Р' => mb_strtolower(Month::getGenitiveName($plannedDate)),
     'ГОД' => $plannedDate->format('Y'),
     'ДАТА' => $plannedDate->format('d.m.Y'),
     'ПОЛНАЯ_СУММА' => TemplateService::sum2words($fullTotalPrice),

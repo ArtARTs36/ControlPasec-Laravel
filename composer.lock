@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "55de1a49b8deb363e49c2e6331a19edb",
+    "content-hash": "5834502412c311b618516610a7ae5532",
     "packages": [
         {
             "name": "alhimik1986/php-excel-templator",
@@ -228,6 +228,45 @@
                 "yii"
             ],
             "time": "2020-06-23T23:35:23+00:00"
+        },
+        {
+            "name": "artarts36/ru-spelling",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ArtARTs36/ru-spelling.git",
+                "reference": "fa144979a1e499d7ff3879eb502b8652188a1919"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ArtARTs36/ru-spelling/zipball/fa144979a1e499d7ff3879eb502b8652188a1919",
+                "reference": "fa144979a1e499d7ff3879eb502b8652188a1919",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">= 7.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ArtARTs36\\RuSpelling\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ArtARTs36",
+                    "email": "temicska99@mail.ru"
+                }
+            ],
+            "description": "Russian Spelling",
+            "time": "2020-11-14T09:47:15+00:00"
         },
         {
             "name": "artarts36/shell-command",
