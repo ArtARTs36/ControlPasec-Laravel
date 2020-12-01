@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Helper;
+namespace App\Based\Support;
 
-class ReflectionHelper
+class Reflector
 {
     /**
      * Создать массив: аргумент => значение
