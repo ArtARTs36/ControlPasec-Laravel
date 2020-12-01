@@ -5,7 +5,7 @@ namespace App\Models\Product;
 use App\Models\Traits\WithOrderNumber;
 use App\Models\VariableDefinition;
 use App\Models\Vocab\SizeOfUnit;
-use App\Models\Vocab\VocabCurrency;
+use App\Bundles\Vocab\Models\VocabCurrency;
 use App\Models\Vocab\VocabGosStandard;
 use App\Models\Vocab\VocabPackageType;
 use App\Models\Vocab\VocabQuantityUnit;

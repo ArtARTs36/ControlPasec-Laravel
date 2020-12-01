@@ -2,6 +2,7 @@
 
 namespace App\Bundles\Vocab\Providers;
 
+use App\Bundles\Vocab\Console\GetCurrencyCourseOfWeekCommand;
 use App\Bundles\Vocab\Services\NameInclinator;
 use ArtARTs36\CbrCourseFinder\Contracts\Finder;
 use ArtARTs36\Morpher\Client;
@@ -22,6 +23,8 @@ class VocabProvider extends ServiceProvider
         $this->app->singleton(NameInclinatorContract::class, NameInclinator::class);
 
         $this->app->register(VocabRouteProvider::class);
+
+        $this->commands(GetCurrencyCourseOfWeekCommand::class);
     }
 
     protected function registerMorpher(): void

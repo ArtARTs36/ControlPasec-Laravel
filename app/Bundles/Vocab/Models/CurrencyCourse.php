@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Models\Vocab;
+namespace App\Bundles\Vocab\Models;
 
-use App\Models\Vocab\VocabCurrency;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * Class CurrencyCourse
+ * Модель "Курс Валюты"
  *
  * @property int $id
  * @property int $currency_id

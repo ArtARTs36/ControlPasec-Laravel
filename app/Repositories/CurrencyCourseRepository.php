@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\Vocab\CurrencyCourse;
+use App\Bundles\Vocab\Models\CurrencyCourse;
 use Illuminate\Database\Eloquent\Collection;
 
 /**

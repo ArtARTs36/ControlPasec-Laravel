@@ -6,7 +6,7 @@ use App\Helper\ModelPrioritiesRefresher\ModelPrioritiesRefresher;
 use App\Http\Controllers\Controller;
 use App\Http\Responses\ActionResponse;
 use App\Models\User\Permission;
-use App\Models\Vocab\VocabCurrency;
+use App\Bundles\Vocab\Models\VocabCurrency;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 
