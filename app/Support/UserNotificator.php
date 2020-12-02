@@ -13,7 +13,10 @@ class UserNotificator
     {
         $type = UserNotificationTypeRepository::findByName($type);
 
-        /** @var User $user */
+        if ($type === null) {
+            throw new \LogicException('Не верно задан тип уведомления!');
+        }
+
         foreach ($type->permission->getUsers() as $user) {
             $notification = new UserNotification();
             $notification->user_id = $user->id;

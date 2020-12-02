@@ -17,6 +17,8 @@ final class Role extends BaseRole
 {
     public const ADMIN = 'admin';
 
+    public const FIELD_TITLE = 'title';
+    public const FIELD_NAME = 'name';
     public const FIELD_IS_ALLOWED_FOR_SIGN_UP = 'is_allowed_for_sign_up';
 
     /**

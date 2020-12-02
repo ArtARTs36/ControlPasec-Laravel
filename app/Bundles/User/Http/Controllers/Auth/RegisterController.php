@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Bundles\User\Http\Controllers\Auth;
 
 use App\Bundles\User\Events\UserRegistered;
 use App\Http\Controllers\Controller;
@@ -13,14 +13,17 @@ use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
+    private $repository;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(UserRepository $repository)
     {
         $this->middleware('guest');
+        $this->repository = $repository;
     }
 
     /**
@@ -48,6 +51,6 @@ class RegisterController extends Controller
      */
     private function create(Request $request, Role $role): User
     {
-        return UserRepository::create($request->toArray())->attachRole($role);
+        return $this->repository->create($request->toArray())->attachRole($role);
     }
 }

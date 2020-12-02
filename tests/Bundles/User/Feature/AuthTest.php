@@ -1,16 +1,13 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Bundles\USerFeature;
 
 use App\Http\Resource\UserResource;
 use App\User;
 use Tests\BaseTestCase;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
-/**
- * @group BaseTest
- */
-class AuthTest extends BaseTestCase
+final class AuthTest extends BaseTestCase
 {
     /**
      * @var array
