@@ -68,7 +68,7 @@ class AuthController extends Controller
         }
 
         $credentials = array_merge($request->only('email', 'password'), [
-            'is_active' => true
+            User::FIELD_IS_ACTIVE => true
         ]);
 
         if ($isAuthorize = $this->guard()->attempt($credentials)) {

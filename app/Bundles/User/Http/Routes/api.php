@@ -20,3 +20,27 @@ Route::get('users/{user}/deactivate', 'UserController@deactivate');
 Route::get('users/{user}/detach-role/{role}', 'UserController@detachRole');
 Route::get('users/{user}/attach-role/{role}', 'UserController@attachRole');
 Route::apiResource('users', 'UserController');
+
+//
+
+// Roles
+
+Route::prefix('roles')->group(function () {
+    Route::get('page-{page}', 'RoleController@index');
+    Route::get('{role}/attach-allowed-for-sign', 'RoleController@attachAllowedForSignUp');
+    Route::get('{role}/detach-allowed-for-sign', 'RoleController@detachAllowedForSignUp');
+});
+
+Route::apiResource('roles', 'RoleController');
+
+// Permissions
+
+Route::prefix('permissions')->group(function () {
+    Route::get('page-{page}', 'PermissionController@index');
+});
+
+Route::apiResource('permissions', 'PermissionController');
+
+Route::prefix('user-notifications')->group(function () {
+    Route::put('{notification}/read', 'UserNotificationController@read');
+});

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Bundles\User\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User\Permission;
@@ -15,13 +15,20 @@ final class RoleController extends Controller
         'index' => Permission::ROLE_LIST_VIEW,
     ];
 
+    private $repository;
+
+    public function __construct(RoleRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     /**
      * Получить роли, доступные для регистрации
      * @return Collection
      */
     public function getRolesForSignUp(): Collection
     {
-        return RoleRepository::getAllowedForSignUp();
+        return $this->repository->getAllowedForSignUp();
     }
 
     /**
