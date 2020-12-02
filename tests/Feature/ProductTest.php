@@ -69,6 +69,8 @@ class ProductTest extends BaseTestCase
 
     public function testDestroy(): void
     {
+        $this->actingAsUserWithPermission(Permission::PRODUCTS_DELETE);
+
         $product = Product::query()->create($this->makeData());
 
         $response = $this->deleteJson(static::API_INDEX . '/' . $product->id)

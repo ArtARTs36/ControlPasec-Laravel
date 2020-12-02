@@ -30,10 +30,15 @@ class SupplyTest extends BaseTestCase
         self::assertIsArray($response['data']);
     }
 
+    /**
+     * @covers \App\Http\Controllers\Supply\SupplyController::store
+     */
     public function testCreate(): void
     {
         $supplierId = $this->getRandomModel(Contragent::class)->id;
         $customerId = $this->getRandomModel(Contragent::class)->id;
+
+        $this->actingAsUserWithPermission(Permission::SUPPLIES_CREATE);
 
         $response = $this->postJson(self::API_URL, [
             'planned_date' => '2020-02-08 18:18:32',
