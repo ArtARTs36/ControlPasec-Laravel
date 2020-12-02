@@ -1,21 +1,27 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Bundles\User\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Profile\UpdateAboutMe;
+use App\Bundles\Profile\Http\Requests\UpdateAboutMe;
 use App\Http\Resource\ProfileResource;
 use App\Repositories\UserRepository;
 use App\User;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
 
-class ProfileController extends Controller
+final class ProfileController extends Controller
 {
+    private $repository;
+
+    public function __construct(UserRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     public function show(int $profileId): ProfileResource
     {
-        $profile = User::where('id', $profileId)
-            ->where('is_active', true)
-            ->first();
+        $profile = $this->repository->findActive($profileId);
 
         if (null === $profile) {
             abort(Response::HTTP_CONFLICT, __('profile.not_found'));
@@ -35,10 +41,8 @@ class ProfileController extends Controller
         return new ProfileResource($user);
     }
 
-    public function search(string $query)
+    public function search(string $query): AnonymousResourceCollection
     {
-        $users = UserRepository::liveFind($query);
-
-        return ProfileResource::collection($users);
+        return ProfileResource::collection($this->repository->liveFind($query));
     }
 }

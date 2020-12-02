@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Based\Contracts\Repository;
 use App\Based\Support\Avatar;
 use App\Support\SqlRawString;
 use App\User;
@@ -10,28 +11,25 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Hash;
 
-class UserRepository
+class UserRepository extends Repository
 {
-    /**
-     * @param int $page
-     * @return LengthAwarePaginator
-     */
-    public static function paginate(int $page): LengthAwarePaginator
+    protected function getModelClass(): string
     {
-        return User::query()
+        return User::class;
+    }
+
+    public function paginate(int $page): LengthAwarePaginator
+    {
+        return $this->newQuery()
             ->latest('id')
             ->paginate(10, ['*'], 'UsersList', $page);
     }
 
-    /**
-     * @param string $find
-     * @return Collection
-     */
-    public static function liveFind(string $find): Collection
+    public function liveFind(string $find): Collection
     {
         $findWithoutFirstSymbol = mb_substr($find, 1);
 
-        return User::query()
+        return $this->newQuery()
             ->where(User::FIELD_IS_ACTIVE, true)
             ->where(function (Builder $query) use ($find, $findWithoutFirstSymbol) {
                 $query
@@ -47,20 +45,12 @@ class UserRepository
             ->get();
     }
 
-    /**
-     * @param string $email
-     * @return User|null
-     */
-    public static function getByEmail(string $email): ?User
+    public function findByEmail(string $email): ?User
     {
         return User::query()->where(User::FIELD_EMAIL, $email)->first();
     }
 
-    /**
-     * @param array $data
-     * @return User
-     */
-    public static function create(array $data): User
+    public function create(array $data): User
     {
         return User::query()->create(array_merge(
             $data,
@@ -70,5 +60,13 @@ class UserRepository
                 'avatar_url' => Avatar::random(),
             ]
         ));
+    }
+
+    public function findActive(int $id): ?User
+    {
+        return $this->newQuery()
+            ->where(User::FIELD_ID, $id)
+            ->where(User::FIELD_IS_ACTIVE, true)
+            ->first();
     }
 }

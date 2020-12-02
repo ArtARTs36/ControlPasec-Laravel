@@ -1,16 +1,16 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Bundles\User\Feature;
 
 use Tests\BaseTestCase;
 
-/**
- * @group BaseTest
- */
-class ProfileTest extends BaseTestCase
+final class ProfileTest extends BaseTestCase
 {
     private const SEARCH_URL = '/api/profiles/search/admin';
 
+    /**
+     * @covers \App\Bundles\User\Http\Controllers\ProfileController::search
+     */
     public function testSearch(): void
     {
         $this->actingAsRandomUser();

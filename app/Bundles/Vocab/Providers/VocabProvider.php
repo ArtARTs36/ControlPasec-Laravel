@@ -31,6 +31,7 @@ final class VocabProvider extends BundleProvider
         $this->app->singleton(NameInclinatorContract::class, NameInclinator::class);
 
         $this->app->register(VocabRouteProvider::class);
+        $this->registerCommands();
     }
 
     protected function registerMorpher(): void

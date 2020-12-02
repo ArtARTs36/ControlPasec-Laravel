@@ -49,6 +49,7 @@ class User extends Authenticatable implements JWTSubject
     public const RELATION_NOTIFICATIONS = 'notifications';
     public const RELATION_UNREAD_NOTIFICATIONS = 'unreadNotifications';
 
+    public const FIELD_ID = 'id';
     public const FIELD_IS_ACTIVE = 'is_active';
     public const FIELD_NAME = 'name';
     public const FIELD_PATRONYMIC = 'patronymic';

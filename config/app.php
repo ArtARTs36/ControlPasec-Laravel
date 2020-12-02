@@ -198,6 +198,8 @@ return [
         \App\Bundles\Landing\Http\Providers\LandingProvider::class,
 
         \App\Bundles\Product\Providers\ProductProvider::class,
+
+        \App\Bundles\User\Providers\UserProvider::class,
     ],
 
     /*

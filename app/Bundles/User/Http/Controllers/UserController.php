@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Bundles\User\Http\Controllers;
 
 use App\Http\Actions\UserMeAction;
 use App\Http\Controllers\Controller;
@@ -9,13 +9,11 @@ use App\Http\Resource\UserResource;
 use App\Http\Responses\ActionResponse;
 use App\Models\User\Permission;
 use App\Models\User\Role;
-use App\Models\User\UserNotification;
 use App\Repositories\UserRepository;
 use App\User;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+final class UserController extends Controller
 {
     public const PERMISSIONS = [
         'index' => Permission::USERS_LIST_VIEW,
@@ -24,6 +22,13 @@ class UserController extends Controller
         'activate' => Permission::USERS_ACTIVATE,
         'deactivate' => Permission::USERS_DEACTIVATE,
     ];
+
+    private $repository;
+
+    public function __construct(UserRepository $repository)
+    {
+        $this->repository = $repository;
+    }
 
     /**
      *
@@ -59,7 +64,7 @@ class UserController extends Controller
      */
     public function index(int $page = 1): LengthAwarePaginator
     {
-        return UserRepository::paginate($page);
+        return $this->repository->paginate($page);
     }
 
     /**
@@ -87,7 +92,7 @@ class UserController extends Controller
      */
     public function store(UserRequest $request): ActionResponse
     {
-        return new ActionResponse(true, UserRepository::create($request->toArray()));
+        return new ActionResponse(true, $this->repository->create($request->toArray()));
     }
 
     /**

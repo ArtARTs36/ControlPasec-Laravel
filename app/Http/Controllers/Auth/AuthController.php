@@ -57,7 +57,7 @@ class AuthController extends Controller
      *      @OA\Response(response=404, description="Resource Not found"),
      * )
      */
-    public function issueToken(AuthRequest $request)
+    public function issueToken(AuthRequest $request, UserRepository $repository)
     {
         /** Determine if the user has too many failed login attempts. */
         if ($this->hasTooManyLoginAttempts($request)) {
@@ -72,7 +72,7 @@ class AuthController extends Controller
         ]);
 
         if ($isAuthorize = $this->guard()->attempt($credentials)) {
-            if ($this->guard()->check() !== true && $user = UserRepository::getByEmail($credentials['email'])) {
+            if ($this->guard()->check() !== true && $user = $repository->findByEmail($credentials['email'])) {
                 $this->guard()->login($user);
             }
 

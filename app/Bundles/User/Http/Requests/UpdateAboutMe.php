@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Requests\Profile;
+namespace App\Bundles\Profile\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class UpdateAboutMeRequest
@@ -10,6 +11,11 @@ use Illuminate\Foundation\Http\FormRequest;
  */
 class UpdateAboutMe extends FormRequest
 {
+    public function authorize(): bool
+    {
+        return Auth::check();
+    }
+
     public function rules(): array
     {
         return [
