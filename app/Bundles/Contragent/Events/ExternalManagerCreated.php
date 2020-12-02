@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Contragent\Events;
 
-use App\Models\Contragent\ContragentManager;
+use App\Bundles\Contragent\Models\ContragentManager;
 
 final class ExternalManagerCreated
 {

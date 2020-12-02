@@ -4,7 +4,7 @@ namespace App\Bundles\Contragent\Repositories;
 
 use App\Based\Contracts\Repository;
 use App\Bundles\Contragent\Models\Contragent;
-use App\Models\Contragent\ContragentManager;
+use App\Bundles\Contragent\Models\ContragentManager;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
@@ -13,7 +13,7 @@ class ContragentRepository extends Repository
     public function paginate(int $page): LengthAwarePaginator
     {
         return $this->newQuery()->with([
-            ContragentManager::PSEUDO,
+            Contragent::RELATION_MANAGERS,
             Contragent::RELATION_REQUISITES,
         ])->paginate(10, ['*'], 'ContragentsList', $page);
     }

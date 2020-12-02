@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Bundles\Contragent\Http\Requests\UpdateContragentGroup;
 use App\Http\Responses\ActionResponse;
 use App\Bundles\Contragent\Models\Contragent;
-use App\Models\Contragent\ContragentGroup;
+use App\Bundles\Contragent\Models\ContragentGroup;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class ContragentGroupController extends Controller
@@ -61,8 +61,7 @@ class ContragentGroupController extends Controller
     }
 
     /**
-     * @param ContragentGroup $contragentGroup
-     * @return ActionResponse
+     * @throws \Exception
      */
     public function destroy(ContragentGroup $contragentGroup): ActionResponse
     {

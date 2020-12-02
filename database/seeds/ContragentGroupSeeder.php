@@ -1,7 +1,7 @@
 <?php
 
 use App\Bundles\Contragent\Models\Contragent;
-use App\Models\Contragent\ContragentGroup;
+use App\Bundles\Contragent\Models\ContragentGroup;
 
 class ContragentGroupSeeder extends CommonSeeder
 {

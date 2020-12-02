@@ -57,7 +57,7 @@ class ContragentSeeder extends CommonSeeder
         for ($i = 0; $i < rand(1, 5); $i++) {
             $gender = \App\Based\Support\RuFaker::gender();
 
-            $manager = new \App\Models\Contragent\ContragentManager();
+            $manager = new \App\Bundles\Contragent\Models\ContragentManager();
             $manager->name = \App\Based\Support\RuFaker::name($gender);
             $manager->patronymic = \App\Based\Support\RuFaker::patronymic($gender);
             $manager->family = \App\Based\Support\RuFaker::family($gender);

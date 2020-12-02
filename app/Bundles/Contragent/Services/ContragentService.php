@@ -2,9 +2,8 @@
 
 namespace App\Bundles\Contragent\Services;
 
+use App\Bundles\Contragent\Models\BankRequisites;
 use App\Bundles\Contragent\Repositories\ContragentRepository;
-use App\Models\Contragent\BankRequisites;
-use App\Models\Contragent\ContragentManager;
 use App\Bundles\Contragent\Http\Requests\StoreContragent;
 use App\Bundles\Contragent\Models\Contragent;
 use Illuminate\Support\Arr;
@@ -32,10 +31,10 @@ final class ContragentService
      * @param Contragent $contragent
      * @return Contragent
      */
-    public function getFullInfo(Contragent $contragent): Contragent
+    public function loadFullInfo(Contragent $contragent): Contragent
     {
         return $contragent->load([
-            ContragentManager::PSEUDO,
+            Contragent::RELATION_MANAGERS,
             Contragent::RELATION_REQUISITES => function ($query) {
                 return $query->with(BankRequisites::RELATION_BANK);
             },

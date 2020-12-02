@@ -4,7 +4,7 @@ namespace App\Bundles\Contragent\Support;
 
 use App\Bundles\Contragent\Events\ExternalManagerCreated;
 use App\Bundles\Contragent\Models\Contragent;
-use App\Models\Contragent\ContragentManager;
+use App\Bundles\Contragent\Models\ContragentManager;
 use Illuminate\Support\Collection;
 
 class Finder

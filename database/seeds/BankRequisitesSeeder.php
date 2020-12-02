@@ -1,7 +1,7 @@
 <?php
 
+use App\Bundles\Contragent\Models\BankRequisites;
 use App\Bundles\Contragent\Models\Contragent;
-use App\Models\Contragent\BankRequisites;
 use App\Models\Vocab\VocabBank;
 
 /**

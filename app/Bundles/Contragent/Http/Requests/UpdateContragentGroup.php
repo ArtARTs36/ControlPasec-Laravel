@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Contragent\Http\Requests;
 
-use App\Models\Contragent\ContragentGroup;
+use App\Bundles\Contragent\Models\ContragentGroup;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateContragentGroup extends FormRequest

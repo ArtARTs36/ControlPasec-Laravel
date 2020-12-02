@@ -3,7 +3,7 @@
 namespace App\Helper;
 
 use App\Bundles\Contragent\Models\Contragent;
-use App\Models\Contragent\MyContragent;
+use App\Bundles\Contragent\Models\MyContragent;
 
 class SupplierHelper
 {
@@ -35,7 +35,7 @@ class SupplierHelper
         if (empty(static::$instances[$supplier->id])) {
             static::$instances[$supplier->id] = new static(
                 $supplier,
-                Contragent\MyContragent::where('contragent_id', $supplier->id)
+                MyContragent::where('contragent_id', $supplier->id)
                     ->get()
                     ->first()
             );

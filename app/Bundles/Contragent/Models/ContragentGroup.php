@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Models\Contragent;
+namespace App\Bundles\Contragent\Models;
 
-use App\Bundles\Contragent\Models\Contragent;
 use Creatortsv\EloquentPipelinesModifier\WithModifier;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Query\Builder;
 
 /**
  * Class ContragentGroup
@@ -14,8 +12,6 @@ use Illuminate\Database\Query\Builder;
  * @property int $id
  * @property string $name
  * @property Contragent[] $contragents
- *
- * @mixin Builder
  */
 final class ContragentGroup extends Model
 {
@@ -40,16 +36,5 @@ final class ContragentGroup extends Model
             'group_id',
             'contragent_id'
         );
-    }
-
-    /**
-     * @param string $name
-     * @return ContragentGroup
-     */
-    public static function createByName(string $name): ContragentGroup
-    {
-        return static::query()->create([
-            self::FIELD_NAME => $name,
-        ]);
     }
 }

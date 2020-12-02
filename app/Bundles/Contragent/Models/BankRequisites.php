@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Models\Contragent;
+namespace App\Bundles\Contragent\Models;
 
-use App\Bundles\Contragent\Models\Contragent;
 use App\Models\Vocab\VocabBank;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

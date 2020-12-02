@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Contragent;
+namespace App\Bundles\Contragent\Models;
 
 use App\Bundles\Contragent\Models\Contragent;
 use Illuminate\Database\Eloquent\Model;
@@ -18,10 +18,8 @@ use Illuminate\Database\Query\Builder;
  */
 final class ContragentManager extends Model
 {
-    const PSEUDO = 'managers';
-
     /**
-     * @return BelongsTo
+     * @codeCoverageIgnore
      */
     public function contragent(): BelongsTo
     {

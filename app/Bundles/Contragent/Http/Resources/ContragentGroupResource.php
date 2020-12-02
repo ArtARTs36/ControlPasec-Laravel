@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Contragent\Http\Resources;
 
-use App\Models\Contragent\ContragentGroup;
+use App\Bundles\Contragent\Models\ContragentGroup;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**

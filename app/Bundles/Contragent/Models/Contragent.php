@@ -2,10 +2,9 @@
 
 namespace App\Bundles\Contragent\Models;
 
-use App\Models\Contragent\ContragentManager;
+use App\Bundles\Contragent\Models\ContragentManager;
 use App\Models\Contract\Contract;
-use App\Models\Contragent\BankRequisites;
-use App\Models\Contragent\ContragentGroup;
+use App\Bundles\Contragent\Models\ContragentGroup;
 use Creatortsv\EloquentPipelinesModifier\WithModifier;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;

@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Contragent\ContragentManager;
+use App\Bundles\Contragent\Models\ContragentManager;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**

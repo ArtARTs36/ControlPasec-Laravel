@@ -64,7 +64,7 @@ final class ContragentController extends Controller
 
     public function show(Contragent $contragent): ActionResponse
     {
-        return new ActionResponse(true, $this->service->getFullInfo($contragent));
+        return new ActionResponse(true, $this->service->loadFullInfo($contragent));
     }
 
     /**

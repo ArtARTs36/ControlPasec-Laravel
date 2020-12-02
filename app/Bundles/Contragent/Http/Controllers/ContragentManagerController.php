@@ -4,7 +4,7 @@ namespace App\Bundles\Contragent\Http\Controllers;
 
 use App\Http\Requests\ContragentManagerRequest;
 use App\Http\Responses\ActionResponse;
-use App\Models\Contragent\ContragentManager;
+use App\Bundles\Contragent\Models\ContragentManager;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
