@@ -1,15 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Product;
+namespace App\Bundles\Product\Http\Requests;
 
-use App\Models\Product\Product;
+use App\Bundles\Product\Models\Product;
 use Illuminate\Foundation\Http\FormRequest;
 
-/**
- * Class ProductUpdateRequest
- * @package App\Http\Requests\Product
- */
-class ProductUpdateRequest extends FormRequest
+class StoreProduct extends FormRequest
 {
     /**
      * @return bool

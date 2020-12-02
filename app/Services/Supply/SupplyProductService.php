@@ -2,7 +2,7 @@
 
 namespace App\Services\Supply;
 
-use App\Models\Product\Product;
+use App\Bundles\Product\Models\Product;
 use App\Models\Supply\SupplyProduct;
 
 class SupplyProductService

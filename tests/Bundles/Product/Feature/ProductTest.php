@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Bundles\Product\Feature;
 
-use App\Models\Product\Product;
+use App\Bundles\Product\Models\Product;
 use App\Models\User\Permission;
 use App\Models\Vocab\SizeOfUnit;
 use App\Bundles\Vocab\Models\VocabCurrency;
@@ -13,13 +13,13 @@ use App\Based\Support\RuFaker;
 use Illuminate\Http\Response;
 use Tests\BaseTestCase;
 
-/**
- * @group BaseTest
- */
 class ProductTest extends BaseTestCase
 {
-    private const API_INDEX = '/api/products';
+    private const API_INDEX = '/api/products' . DIRECTORY_SEPARATOR;
 
+    /**
+     * @covers \App\Bundles\Product\Http\Controllers\ProductController::index
+     */
     public function testGetAll(): void
     {
         $this->actingAsUserWithPermission(Permission::PRODUCTS_LIST_VIEW);
@@ -63,7 +63,7 @@ class ProductTest extends BaseTestCase
         $product = Product::query()->create($this->makeData());
         $data = $this->makeData();
 
-        $response = $this->putJson(static::API_INDEX . '/' . $product->id, $data);
+        $response = $this->putJson(static::API_INDEX . $product->id, $data);
         $response->assertOk();
     }
 
@@ -73,7 +73,7 @@ class ProductTest extends BaseTestCase
 
         $product = Product::query()->create($this->makeData());
 
-        $response = $this->deleteJson(static::API_INDEX . '/' . $product->id)
+        $response = $this->deleteJson(static::API_INDEX . $product->id)
             ->assertOk()
             ->decodeResponseJson();
 
@@ -94,5 +94,29 @@ class ProductTest extends BaseTestCase
             Product::FIELD_PACKAGE_TYPE_ID => $this->getRandomModel(VocabPackageType::class)->id,
             Product::FIELD_GOS_STANDARD_ID => $this->getRandomModel(VocabGosStandard::class)->id,
         ];
+    }
+
+    /**
+     * @covers ProductController::topChart
+     */
+    public function testTopChart(): void
+    {
+        $request = function () {
+            return $this->getJson(static::API_INDEX . 'top-chart');
+        };
+
+        $request()->assertOk();
+    }
+
+    /**
+     * @covers \App\Bundles\Product\Http\Controllers\ProductController::refreshTopChart
+     */
+    public function testRefreshTopChart(): void
+    {
+        $request = function () {
+            return $this->getJson(static::API_INDEX . 'refresh-top-chart');
+        };
+
+        $request()->assertOk();
     }
 }

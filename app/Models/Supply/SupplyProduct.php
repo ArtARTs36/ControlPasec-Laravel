@@ -2,7 +2,7 @@
 
 namespace App\Models\Supply;
 
-use App\Models\Product\Product;
+use App\Bundles\Product\Models\Product;
 use App\Models\Vocab\VocabQuantityUnit;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

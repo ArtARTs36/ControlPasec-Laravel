@@ -196,6 +196,8 @@ return [
         \App\Bundles\Vocab\Providers\VocabProvider::class,
 
         \App\Bundles\Landing\Http\Providers\LandingProvider::class,
+
+        \App\Bundles\Product\Providers\ProductProvider::class,
     ],
 
     /*

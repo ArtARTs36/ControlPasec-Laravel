@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Product\Product;
+use App\Bundles\Product\Models\Product;
 use App\Models\Vocab\SizeOfUnit;
 use App\Bundles\Vocab\Models\VocabCurrency;
 use App\Models\Vocab\VocabGosStandard;
@@ -26,7 +26,7 @@ class ProductSeeder extends CommonSeeder
     private function randomData($count)
     {
         for ($i = 0; $i < $count; $i++) {
-            $product = new App\Models\Product\Product();
+            $product = new App\Bundles\Product\Models\Product();
             $name = \App\Based\Support\RuFaker::product();
 
             $product->name = $name;

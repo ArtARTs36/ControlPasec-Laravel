@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services;
+namespace App\Bundles\Product\Services;
 
-use App\Models\Product\Product;
+use App\Bundles\Product\Models\Product;
 use App\Models\Supply\SupplyProduct;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -13,7 +13,7 @@ class ProductService
 {
     private const CACHE_TOP_CHART_KEY = 'product_top-chart';
 
-    public static function getStat(int $count): array
+    public function getStat(int $count): array
     {
         if (!($products = Cache::get(static::CACHE_TOP_CHART_KEY))) {
             $products = array_slice(static::bringStat(), 0, $count, true);
@@ -24,7 +24,7 @@ class ProductService
         return $products;
     }
 
-    public static function bringStat(): array
+    public function bringStat(): array
     {
         $supplyProducts = SupplyProduct::query()
             ->with([SupplyProduct::RELATION_PARENT => function (BelongsTo $product) {

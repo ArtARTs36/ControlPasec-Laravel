@@ -17,7 +17,7 @@ foreach ($items as $item) {
     $customer = Contragent::where('title', $item[1])->first();
     $supply = SupplyService::create($customer, $supplier);
 
-    /** @var \App\Models\Product\Product $product */
+    /** @var \App\Bundles\Product\Models\Product $product */
     $product = VariableDefinitionService::getModel(VariableDefinition::PRODUCT_ID);
     $supplyProduct = SupplyProductService::makeSupplyProductOfParent($product);
     $supplyProduct->supply_id = $supply->id;

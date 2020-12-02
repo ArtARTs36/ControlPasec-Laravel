@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Contragent;
-use App\Models\Product\Product;
+use App\Bundles\Product\Models\Product;
 use App\Models\Supply\Supply;
 use App\Models\Supply\SupplyProduct;
 use App\Models\User\Permission;

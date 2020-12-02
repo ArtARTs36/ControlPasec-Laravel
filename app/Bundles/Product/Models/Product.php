@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Product;
+namespace App\Bundles\Product\Models;
 
 use App\Models\Traits\WithOrderNumber;
 use App\Models\VariableDefinition;
@@ -71,26 +71,41 @@ class Product extends Model
         self::FIELD_GOS_STANDARD_ID,
     ];
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function sizeOfUnit(): BelongsTo
     {
         return $this->belongsTo(SizeOfUnit::class);
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function currency(): BelongsTo
     {
         return $this->belongsTo(VocabCurrency::class);
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function gosStandard(): BelongsTo
     {
         return $this->belongsTo(VocabGosStandard::class);
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function packageType(): BelongsTo
     {
         return $this->belongsTo(VocabPackageType::class);
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function quantityUnit(): BelongsTo
     {
         return $this->belongsTo(VocabQuantityUnit::class);

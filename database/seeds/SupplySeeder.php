@@ -2,7 +2,7 @@
 
 use App\Models\Contragent;
 use App\Models\Document\DocumentType;
-use App\Models\Product\Product;
+use App\Bundles\Product\Models\Product;
 use App\Models\Supply\OneTForm;
 use App\Models\Supply\ProductTransportWaybill;
 use App\Models\Supply\SupplyProduct;
