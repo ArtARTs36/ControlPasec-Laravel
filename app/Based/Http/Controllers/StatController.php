@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Stat;
+namespace App\Based\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Bundles\Contragent\Models\Contragent;
@@ -9,7 +9,7 @@ use App\Models\Supply\Supply;
 use App\User;
 use Illuminate\Support\Facades\DB;
 
-class StatController extends Controller
+final class StatController extends Controller
 {
     /**
      * Отобразить общую статистику системы
@@ -24,11 +24,15 @@ class StatController extends Controller
      */
     public function general(): array
     {
+        $getCount = function (string $table) {
+            return DB::table($table)->count('id');
+        };
+
         return [
-            'contragentsCount' => DB::table(Contragent::TABLE)->count('id'),
-            'suppliesCount' => DB::table(Supply::TABLE)->count('id'),
-            'usersCount' => DB::table(User::TABLE)->count('id'),
-            'externalNewsSourcesCount' => DB::table(ExternalNewsSource::TABLE)->count('id'),
+            'contragentsCount' => $getCount(Contragent::TABLE),
+            'suppliesCount' => $getCount(Supply::TABLE),
+            'usersCount' => $getCount(User::TABLE),
+            'externalNewsSourcesCount' => $getCount(ExternalNewsSource::TABLE),
         ];
     }
 }
