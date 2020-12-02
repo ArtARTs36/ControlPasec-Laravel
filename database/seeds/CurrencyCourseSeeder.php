@@ -2,7 +2,7 @@
 
 use App\Bundles\Vocab\Models\CurrencyCourse;
 use App\Bundles\Vocab\Models\VocabCurrency;
-use App\Services\CurrencyService;
+use App\Bundles\Vocab\Services\CurrencyService;
 
 class CurrencyCourseSeeder extends CommonSeeder
 {
