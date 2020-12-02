@@ -5,7 +5,7 @@ namespace App\Bundles\Contragent\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Bundles\Contragent\Http\Requests\UpdateContragentGroup;
 use App\Http\Responses\ActionResponse;
-use App\Models\Contragent;
+use App\Bundles\Contragent\Models\Contragent;
 use App\Models\Contragent\ContragentGroup;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 

@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Contragent;
+use App\Bundles\Contragent\Models\Contragent;
 use App\Models\Contragent\BankRequisites;
 use App\Models\Vocab\VocabBank;
 

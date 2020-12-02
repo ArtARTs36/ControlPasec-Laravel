@@ -2,7 +2,7 @@
 
 use App\Models\Contract\Contract;
 use App\Models\Contract\ContractTemplate;
-use App\Models\Contragent;
+use App\Bundles\Contragent\Models\Contragent;
 
 class ContractSeeder extends CommonSeeder
 {

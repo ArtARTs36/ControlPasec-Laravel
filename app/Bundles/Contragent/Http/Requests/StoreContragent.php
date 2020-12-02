@@ -1,22 +1,28 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Bundles\Contragent\Http\Requests;
 
+use App\Bundles\Contragent\Models\Contragent;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ContragentRequest extends FormRequest
+class StoreContragent extends FormRequest
 {
-    public function rules()
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    public function rules(): array
     {
         return [
             'title' => 'required|string',
             'full_title' => 'string',
             'full_title_with_opf' => 'string',
 
-            'inn' => 'required|integer',
+            Contragent::FIELD_INN => 'required|integer',
             'kpp' => 'sometimes',
 
-            'ogrn' => 'sometimes',
+            Contragent::FIELD_OGRN => 'sometimes',
             'okato' => 'sometimes',
             'oktmo' => 'sometimes',
 

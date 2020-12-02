@@ -3,20 +3,13 @@
 namespace App\Bundles\Contragent\Repositories;
 
 use App\Based\Contracts\Repository;
-use App\Models\Contragent;
+use App\Bundles\Contragent\Models\Contragent;
 use App\Models\Contragent\ContragentManager;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 
 class ContragentRepository extends Repository
 {
-    /**
-     * @todo переместить модель
-     */
-    protected function getModelClass(): string
-    {
-        return Contragent::class;
-    }
-
     public function paginate(int $page): LengthAwarePaginator
     {
         return $this->newQuery()->with([
@@ -37,5 +30,16 @@ class ContragentRepository extends Repository
             ->where(Contragent::FIELD_INN, $innOrOrgn)
             ->where(Contragent::FIELD_OGRN, $innOrOrgn)
             ->first();
+    }
+
+    public function findLikeByFields(array $fields, string $term): Collection
+    {
+        $query = $this->newQuery();
+
+        foreach ($fields as $field) {
+            $query->orWhere($field, 'LIKE', "%{$term}%");
+        }
+
+        return $query->get();
     }
 }

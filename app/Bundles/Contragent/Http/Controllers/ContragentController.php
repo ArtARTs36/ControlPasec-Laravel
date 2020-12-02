@@ -3,15 +3,14 @@
 namespace App\Bundles\Contragent\Http\Controllers;
 
 use App\Bundles\Contragent\Support\Finder;
-use App\Models\Contragent\ContragentManager;
-use App\Http\Requests\ContragentRequest;
+use App\Bundles\Contragent\Http\Requests\StoreContragent;
 use App\Http\Responses\ActionResponse;
-use App\Models\Contragent;
+use App\Bundles\Contragent\Models\Contragent;
 use App\Http\Controllers\Controller;
 use App\Models\Sync\SyncWithExternalSystemType;
 use App\Models\User\Permission;
 use App\Bundles\Contragent\Repositories\ContragentRepository;
-use App\Services\ContragentService;
+use App\Bundles\Contragent\Services\ContragentService;
 use App\Services\SyncWithExternalSystemService;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
@@ -28,9 +27,12 @@ final class ContragentController extends Controller
 
     private $repository;
 
-    public function __construct(ContragentRepository $repository)
+    private $service;
+
+    public function __construct(ContragentRepository $repository, ContragentService $service)
     {
         $this->repository = $repository;
+        $this->service = $service;
     }
 
     /**
@@ -55,24 +57,24 @@ final class ContragentController extends Controller
         return $this->repository->paginate($page);
     }
 
-    public function store(ContragentRequest $request): ActionResponse
+    public function store(StoreContragent $request): ActionResponse
     {
         return $this->createModelAndResponse($request, Contragent::class);
     }
 
     public function show(Contragent $contragent): ActionResponse
     {
-        return new ActionResponse(true, ContragentService::getFullInfo($contragent));
+        return new ActionResponse(true, $this->service->getFullInfo($contragent));
     }
 
     /**
      * Обновить данные о контрагенте
      */
-    public function update(ContragentRequest $request, Contragent $contragent)
+    public function update(StoreContragent $request, Contragent $contragent)
     {
         $this->updateModel($request, $contragent);
 
-        ContragentService::updateScoresInRequisiteByRequest($request);
+        $this->service->updateScoresInRequisiteByRequest($request);
 
         return new ActionResponse(true, $contragent);
     }
@@ -164,16 +166,10 @@ final class ContragentController extends Controller
      *     @OA\Response(response="default", description="Contragents: live find in Base")
      * )
      */
-    public function liveFind(string $term)
+    public function liveFind(string $term): ActionResponse
     {
-        $contragents = Contragent::where('title', 'LIKE', "%{$term}%")
-            ->orWhere('full_title', 'LIKE', "%{$term}%")
-            ->orWhere('full_title_with_opf', 'LIKE', "%{$term}%")
-            ->orWhere('inn', 'LIKE', "%{$term}%")
-            ->orWhere('kpp', 'LIKE', "%{$term}%")
-            ->get()
-            ->all();
+        $contragents = $this->service->relevantSearch($term);
 
-        return new ActionResponse(count($contragents) > 0, $contragents);
+        return new ActionResponse($contragents->count() > 0, $contragents->all());
     }
 }

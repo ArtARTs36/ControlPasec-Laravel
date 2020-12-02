@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Stat;
 
 use App\Http\Controllers\Controller;
-use App\Models\Contragent;
+use App\Bundles\Contragent\Models\Contragent;
 use App\Bundles\ExternalNews\Models\ExternalNewsSource;
 use App\Models\Supply\Supply;
 use App\User;

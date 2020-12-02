@@ -2,7 +2,7 @@
 
 namespace App\Models\Contract;
 
-use App\Models\Contragent;
+use App\Bundles\Contragent\Models\Contragent;
 use App\Models\Supply\Supply;
 use App\Models\Traits\WithSupplierAndCustomer;
 use Illuminate\Database\Eloquent\Model;

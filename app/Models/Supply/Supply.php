@@ -3,7 +3,7 @@
 namespace App\Models\Supply;
 
 use App\Models\Contract\Contract;
-use App\Models\Contragent;
+use App\Bundles\Contragent\Models\Contragent;
 use App\Models\Traits\WithOrderNumber;
 use App\Models\Traits\WithSupplierAndCustomer;
 use App\Models\VariableDefinition;

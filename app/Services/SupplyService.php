@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\Contragent;
+use App\Bundles\Contragent\Models\Contragent;
 use App\Models\Supply\Supply;
 use App\Models\Supply\SupplyProduct;
 use Illuminate\Support\Collection;

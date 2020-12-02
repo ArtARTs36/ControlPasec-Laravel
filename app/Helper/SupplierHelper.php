@@ -2,20 +2,20 @@
 
 namespace App\Helper;
 
-use App\Models\Contragent;
+use App\Bundles\Contragent\Models\Contragent;
+use App\Models\Contragent\MyContragent;
 
 class SupplierHelper
 {
     /** @var Contragent */
     private $supplier;
 
-    /** @var Contragent\MyContragent */
     private $myContragent;
 
     /** @var static[] */
     private static $instances;
 
-    public function __construct(Contragent $supplier, Contragent\MyContragent $myContragent)
+    public function __construct(Contragent $supplier, MyContragent $myContragent)
     {
         $this->supplier = $supplier;
         $this->myContragent = $myContragent;

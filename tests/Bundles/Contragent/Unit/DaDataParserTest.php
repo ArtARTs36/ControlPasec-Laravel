@@ -4,7 +4,7 @@ namespace Tests\Bundles\Contragent\Unit;
 
 use App\Bundles\Contragent\Events\ExternalManagerCreated;
 use App\Bundles\Contragent\Support\Finder;
-use App\Models\Contragent;
+use App\Bundles\Contragent\Models\Contragent;
 use Tests\TestCase;
 
 final class DaDataParserTest extends TestCase

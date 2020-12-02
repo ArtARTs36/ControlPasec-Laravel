@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Models\Contragent;
+use App\Bundles\Contragent\Models\Contragent;
 use App\Bundles\Product\Models\Product;
 use App\Models\Supply\Supply;
 use App\Models\Supply\SupplyProduct;

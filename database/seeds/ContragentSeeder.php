@@ -1,7 +1,7 @@
 <?php
 
 use App\Bundles\Contragent\Support\Finder;
-use App\Models\Contragent;
+use App\Bundles\Contragent\Models\Contragent;
 
 class ContragentSeeder extends CommonSeeder
 {
@@ -25,7 +25,7 @@ class ContragentSeeder extends CommonSeeder
     {
         $contragentIds = [];
         for ($i = 0; $i < $count; $i++) {
-            $contragent = new App\Models\Contragent();
+            $contragent = new App\Bundles\Contragent\Models\Contragent();
 
             $name = \App\Based\Support\RuFaker::fio();
 
@@ -57,7 +57,7 @@ class ContragentSeeder extends CommonSeeder
         for ($i = 0; $i < rand(1, 5); $i++) {
             $gender = \App\Based\Support\RuFaker::gender();
 
-            $manager = new Contragent\ContragentManager();
+            $manager = new \App\Models\Contragent\ContragentManager();
             $manager->name = \App\Based\Support\RuFaker::name($gender);
             $manager->patronymic = \App\Based\Support\RuFaker::patronymic($gender);
             $manager->family = \App\Based\Support\RuFaker::family($gender);

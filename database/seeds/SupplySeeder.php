@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Contragent;
+use App\Bundles\Contragent\Models\Contragent;
 use App\Models\Document\DocumentType;
 use App\Bundles\Product\Models\Product;
 use App\Models\Supply\OneTForm;

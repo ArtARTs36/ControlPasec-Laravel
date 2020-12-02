@@ -3,7 +3,7 @@
 namespace Tests\Bundles\Contragent\Feature;
 
 use App\Bundles\Contragent\Http\Resources\ContragentGroupResource;
-use App\Models\Contragent;
+use App\Bundles\Contragent\Models\Contragent;
 use App\Models\Contragent\ContragentGroup;
 use Tests\BaseTestCase;
 

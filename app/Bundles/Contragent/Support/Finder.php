@@ -3,7 +3,7 @@
 namespace App\Bundles\Contragent\Support;
 
 use App\Bundles\Contragent\Events\ExternalManagerCreated;
-use App\Models\Contragent;
+use App\Bundles\Contragent\Models\Contragent;
 use App\Models\Contragent\ContragentManager;
 use Illuminate\Support\Collection;
 

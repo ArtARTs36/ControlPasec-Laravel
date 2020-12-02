@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Contract\Contract;
-use App\Models\Contragent;
+use App\Bundles\Contragent\Models\Contragent;
 use App\Models\User\Permission;
 use Tests\BaseTestCase;
 

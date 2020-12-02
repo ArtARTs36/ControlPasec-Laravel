@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Bundles\Contragent\Models;
 
 use App\Models\Contragent\ContragentManager;
 use App\Models\Contract\Contract;
@@ -42,19 +42,40 @@ class Contragent extends Model
 
     public const TABLE = 'contragents';
 
+    public const FIELD_TITLE = 'title';
+    public const FIELD_FULL_TITLE = 'full_title';
+    public const FIELD_FULL_TITLE_WITH_OPF = 'full_title_with_opf';
+    public const FIELD_KPP = 'kpp';
+    public const FIELD_INN = 'inn';
+    public const FIELD_OGRN = 'ogrn';
+    public const FIELD_OKATO = 'okato';
+    public const FIELD_OKTMO = 'oktmo';
+    public const FIELD_OKVED = 'okved';
+    public const FIELD_OKVED_TYPE = 'okved_type';
+    public const FIELD_ADDRESS = 'address';
+    public const FIELD_ADDRESS_POSTAL = 'address_postal';
+    public const FIELD_STATUS = 'status';
+
     public const RELATION_CONTRACTS = 'contracts';
+    public const RELATION_MANAGERS = 'managers';
     public const RELATION_REQUISITES = 'requisites';
 
     protected $fillable = [
-        'title', 'full_title', 'full_title_with_opf',
-        'ogrn', 'okato', 'oktmo', 'okved', 'okved_type',
-        'address', 'address_postal',
+        self::FIELD_TITLE,
+        self::FIELD_FULL_TITLE,
+        self::FIELD_FULL_TITLE_WITH_OPF,
+        self::FIELD_OGRN,
+        self::FIELD_OKATO,
+        self::FIELD_OKTMO,
+        self::FIELD_OKVED,
+        self::FIELD_OKVED_TYPE,
+        self::FIELD_ADDRESS,
+        self::FIELD_ADDRESS_POSTAL,
+        self::FIELD_STATUS,
         self::FIELD_INN,
         self::FIELD_OGRN,
+        self::FIELD_KPP,
     ];
-
-    public const FIELD_INN = 'inn';
-    public const FIELD_OGRN = 'ogrn';
 
     /**
      * @codeCoverageIgnore
@@ -80,6 +101,9 @@ class Contragent extends Model
         return $this->hasMany(Contract::class, 'customer_id');
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function groups(): BelongsToMany
     {
         return $this->belongsToMany(

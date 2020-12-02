@@ -2,7 +2,7 @@
 
 namespace App\Models\Traits;
 
-use App\Models\Contragent;
+use App\Bundles\Contragent\Models\Contragent;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 trait WithSupplierAndCustomer

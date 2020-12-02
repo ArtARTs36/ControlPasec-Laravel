@@ -2,7 +2,7 @@
 
 namespace App\Models\Contragent;
 
-use App\Models\Contragent;
+use App\Bundles\Contragent\Models\Contragent;
 use App\Models\Vocab\VocabBank;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -18,9 +18,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 final class BankRequisites extends Model
 {
-    const PSEUDO = 'requisites';
-
     public const FIELD_SCORE = 'score';
+
+    public const RELATION_BANK = 'bank';
 
     protected $fillable = [
         self::FIELD_SCORE,

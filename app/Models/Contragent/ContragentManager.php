@@ -2,7 +2,7 @@
 
 namespace App\Models\Contragent;
 
-use App\Models\Contragent;
+use App\Bundles\Contragent\Models\Contragent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Query\Builder;

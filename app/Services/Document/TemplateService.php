@@ -2,7 +2,7 @@
 
 namespace App\Services\Document;
 
-use App\Models\Contragent;
+use App\Bundles\Contragent\Models\Contragent;
 use ArtARTs36\RuSpelling\Number;
 
 class TemplateService

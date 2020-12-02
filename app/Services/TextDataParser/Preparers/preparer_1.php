@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Contragent;
+use App\Bundles\Contragent\Models\Contragent;
 use App\Models\Supply\ScoreForPayment;
 use App\Models\VariableDefinition;
 use App\Services\Supply\SupplyProductService;
