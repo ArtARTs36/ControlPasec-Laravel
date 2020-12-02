@@ -2,18 +2,25 @@
 
 namespace App\Bundles\Vocab\Providers;
 
+use App\Based\Contracts\BundleProvider;
+use App\Bundles\Vocab\Console\ClearCurrencyCoursesCommand;
 use App\Bundles\Vocab\Console\GetCurrencyCourseCommand;
 use App\Bundles\Vocab\Console\GetCurrencyCourseOfWeekCommand;
 use App\Bundles\Vocab\Services\NameInclinator;
 use ArtARTs36\CbrCourseFinder\Contracts\Finder;
 use ArtARTs36\Morpher\Client;
 use ArtARTs36\Morpher\Morpher;
-use Illuminate\Support\ServiceProvider;
 use ArtARTs36\Morpher\Contracts\Morpher as MorpherContract;
 use App\Bundles\Vocab\Contracts\NameInclinator as NameInclinatorContract;
 
-class VocabProvider extends ServiceProvider
+final class VocabProvider extends BundleProvider
 {
+    protected $commands = [
+        GetCurrencyCourseOfWeekCommand::class,
+        GetCurrencyCourseCommand::class,
+        ClearCurrencyCoursesCommand::class,
+    ];
+
     public function register()
     {
         $this->app->singleton(Finder::class, function () {
@@ -24,11 +31,6 @@ class VocabProvider extends ServiceProvider
         $this->app->singleton(NameInclinatorContract::class, NameInclinator::class);
 
         $this->app->register(VocabRouteProvider::class);
-
-        $this->commands([
-            GetCurrencyCourseOfWeekCommand::class,
-            GetCurrencyCourseCommand::class
-        ]);
     }
 
     protected function registerMorpher(): void
