@@ -2,35 +2,43 @@
 
 namespace App\Models\Contragent;
 
+use App\Models\Contragent;
 use App\Models\Vocab\VocabBank;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Query\Builder;
 
 /**
- * Class BankRequisites
+ * Модель "Банковские реквизиты"
  *
  * @property int $id
  * @property string $score
  * @property int $contragent_id
  * @property int $bank_id
  * @property VocabBank $bank
- *
- * @mixin Builder
  */
 final class BankRequisites extends Model
 {
     const PSEUDO = 'requisites';
 
+    public const FIELD_SCORE = 'score';
+
     protected $fillable = [
-        'score'
+        self::FIELD_SCORE,
     ];
 
     /**
-     * @return BelongsTo
+     * @codeCoverageIgnore
      */
     public function bank(): BelongsTo
     {
         return $this->belongsTo(VocabBank::class);
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public function contragent(): BelongsTo
+    {
+        return $this->belongsTo(Contragent::class);
     }
 }

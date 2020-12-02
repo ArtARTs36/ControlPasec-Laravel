@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * Class Contragent
+ * Модель "Контрагент"
  *
  * @property int $id
  * @property string $title
@@ -43,6 +43,7 @@ class Contragent extends Model
     public const TABLE = 'contragents';
 
     public const RELATION_CONTRACTS = 'contracts';
+    public const RELATION_REQUISITES = 'requisites';
 
     protected $fillable = [
         'title', 'full_title', 'full_title_with_opf',
@@ -56,7 +57,7 @@ class Contragent extends Model
     public const FIELD_OGRN = 'ogrn';
 
     /**
-     * @return HasMany
+     * @codeCoverageIgnore
      */
     public function managers(): HasMany
     {
@@ -64,7 +65,7 @@ class Contragent extends Model
     }
 
     /**
-     * @return HasMany
+     * @codeCoverageIgnore
      */
     public function requisites(): HasMany
     {
@@ -72,7 +73,7 @@ class Contragent extends Model
     }
 
     /**
-     * @return HasMany
+     * @codeCoverageIgnore
      */
     public function contracts(): HasMany
     {
@@ -89,10 +90,7 @@ class Contragent extends Model
         );
     }
 
-    /**
-     * @return BankRequisites
-     */
-    public function getDefaultRequisite(): BankRequisites
+    public function getDefaultRequisite(): ?BankRequisites
     {
         return $this->requisites[0] ?? null;
     }

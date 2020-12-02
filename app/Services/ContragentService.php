@@ -17,7 +17,7 @@ final class ContragentService
     {
         return $contragent->load([
             ContragentManager::PSEUDO,
-            Contragent\BankRequisites::PSEUDO => function ($query) {
+            Contragent::RELATION_REQUISITES => function ($query) {
                 return $query->with('bank');
             },
         ]);

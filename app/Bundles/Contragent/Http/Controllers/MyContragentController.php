@@ -1,19 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Contragent;
+namespace App\Bundles\Contragent\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MyContragentRequest;
 use App\Models\Contragent\MyContragent;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class MyContragentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
-     */
-    public function index()
+    public function index(): LengthAwarePaginator
     {
         return MyContragent::paginate(10);
     }

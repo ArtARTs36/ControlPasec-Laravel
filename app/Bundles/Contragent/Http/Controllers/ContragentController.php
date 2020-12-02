@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Contragent;
+namespace App\Bundles\Contragent\Http\Controllers;
 
 use App\Bundles\Contragent\Support\Finder;
 use App\Models\Contragent\ContragentManager;
@@ -15,7 +15,7 @@ use App\Services\ContragentService;
 use App\Services\SyncWithExternalSystemService;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
-class ContragentController extends Controller
+final class ContragentController extends Controller
 {
     public const PERMISSIONS = [
         'index' => Permission::CONTRAGENTS_LIST_VIEW,
@@ -25,6 +25,13 @@ class ContragentController extends Controller
         'destroy' => Permission::CONTRAGENTS_DELETE,
         'findInExternalNetworkByInn' => Permission::CONTRAGENTS_FIND_EXTERNAL_SYSTEM,
     ];
+
+    private $repository;
+
+    public function __construct(ContragentRepository $repository)
+    {
+        $this->repository = $repository;
+    }
 
     /**
      * Отобразить список контрагентов
@@ -42,34 +49,17 @@ class ContragentController extends Controller
      *     @OA\Response(response="default", description="View Contragents")
      * )
      *
-     * @param int $page
-     * @return LengthAwarePaginator
      */
-    public function index(int $page = 1)
+    public function index(int $page = 1): LengthAwarePaginator
     {
-        return Contragent::with([
-            ContragentManager::PSEUDO,
-            Contragent\BankRequisites::PSEUDO
-        ])->paginate(10, ['*'], 'ContragentsList', $page);
+        return $this->repository->paginate($page);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param ContragentRequest $request
-     * @return ActionResponse
-     */
     public function store(ContragentRequest $request): ActionResponse
     {
         return $this->createModelAndResponse($request, Contragent::class);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param Contragent $contragent
-     * @return ActionResponse
-     */
     public function show(Contragent $contragent): ActionResponse
     {
         return new ActionResponse(true, ContragentService::getFullInfo($contragent));
@@ -77,10 +67,6 @@ class ContragentController extends Controller
 
     /**
      * Обновить данные о контрагенте
-     *
-     * @param ContragentRequest $request
-     * @param Contragent $contragent
-     * @return ActionResponse
      */
     public function update(ContragentRequest $request, Contragent $contragent)
     {
@@ -94,9 +80,6 @@ class ContragentController extends Controller
     /**
      * Удалить контрагента
      *
-     * @param Contragent $contragent
-     * @return ActionResponse
-     *
      * @OA\Delete(
      *     path="/api/contragents/{id}",
      *     description="Contragents: delete item",
@@ -109,7 +92,7 @@ class ContragentController extends Controller
      *     @OA\Response(response="default", description="Contragents: delete item")
      * )
      */
-    public function destroy(Contragent $contragent)
+    public function destroy(Contragent $contragent): ActionResponse
     {
         $contragent->delete();
 
