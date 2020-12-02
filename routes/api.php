@@ -5,7 +5,6 @@ Route::group([
         \App\Http\Middleware\CheckPermissions::class,
     ],
 ], function () {
-    require 'apis/api.landing.php';
     require 'apis/api.auth.php';
     require 'apis/api.user.php';
     require 'apis/api.scores.php';

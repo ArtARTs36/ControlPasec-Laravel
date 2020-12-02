@@ -1,15 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Landing;
+namespace App\Bundles\Landing\Http\Requests;
 
-use App\Models\Landing\LandingFeedBack;
 use Illuminate\Foundation\Http\FormRequest;
 
-/**
- * Class LandingFeedBackRequest
- * @mixin LandingFeedBack
- */
-class LandingFeedBackRequest extends FormRequest
+class StoreFeedBack extends FormRequest
 {
     public function rules(): array
     {

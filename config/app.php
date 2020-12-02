@@ -194,6 +194,8 @@ return [
         \App\Bundles\Contragent\Providers\ContragentProvider::class,
 
         \App\Bundles\Vocab\Providers\VocabProvider::class,
+
+        \App\Bundles\Landing\Http\Providers\LandingProvider::class,
     ],
 
     /*

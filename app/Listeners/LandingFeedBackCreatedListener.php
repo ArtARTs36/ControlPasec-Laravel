@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\LandingFeedBackCreated;
+use App\Bundles\Landing\Events\FeedBackCreated;
 use App\Models\User\UserNotificationType;
 use ArtARTs36\PushAllSender\Interfaces\PusherInterface;
 use ArtARTs36\PushAllSender\Push;
@@ -12,10 +12,10 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class LandingFeedBackCreatedListener implements ShouldQueue
 {
     /**
-     * @param LandingFeedBackCreated $event
+     * @param FeedBackCreated $event
      * @throws \Throwable
      */
-    public function handle(LandingFeedBackCreated $event): void
+    public function handle(FeedBackCreated $event): void
     {
         $message = view('messages/landing_feed_back_created', [
             'feedback' => $event->feedback

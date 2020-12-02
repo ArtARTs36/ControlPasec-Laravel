@@ -2,15 +2,15 @@
 
 namespace Tests\Feature;
 
+use App\Bundles\Landing\Events\FeedBackCreated;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\BaseTestCase;
 
-/**
- * @group BaseTest
- */
-class LandingFeedBackTest extends BaseTestCase
+final class FeedBackTest extends BaseTestCase
 {
     use WithFaker;
+
+    private const BASE_URL = '/api/landing/feedbacks';
 
     public function setUp(): void
     {
@@ -19,8 +19,13 @@ class LandingFeedBackTest extends BaseTestCase
         $this->setUpFaker();
     }
 
-    public function testSend(): void
+    /**
+     * @covers \App\Bundles\Landing\Http\Controllers\FeedBackController::store
+     */
+    public function testStore(): void
     {
+        $this->expectsEvents(FeedBackCreated::class);
+
         $data = [
             'people_title' => $this->faker()->title,
             'people_email' => $this->faker()->email,
@@ -28,7 +33,9 @@ class LandingFeedBackTest extends BaseTestCase
             'message' => $this->faker()->text(),
         ];
 
-        $response = $this->postJson('/api/landing/send-feedback', $data);
+        $response = $this->postJson(static::BASE_URL, $data);
+
+        $response->dump();
 
         $response->assertOk();
 

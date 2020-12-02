@@ -6,7 +6,7 @@ use App\Bundles\Contragent\Events\ExternalManagerCreated;
 use App\Bundles\Contragent\Listeners\ExternalManagerCreatedListener;
 use App\Events\DocumentOfQueueGenerated;
 use App\Events\ExceptionNotified;
-use App\Events\LandingFeedBackCreated;
+use App\Bundles\Landing\Events\FeedBackCreated;
 use App\Events\TechSupportReportCreated;
 use App\Bundles\User\Events\UserRegistered;
 use App\Listeners\DocumentOfQueueGenerateListener;
@@ -32,7 +32,7 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
             UserRegisteredListener::class,
         ],
-        LandingFeedBackCreated::class => [
+        FeedBackCreated::class => [
             LandingFeedBackCreatedListener::class,
         ],
         TechSupportReportCreated::class => [
