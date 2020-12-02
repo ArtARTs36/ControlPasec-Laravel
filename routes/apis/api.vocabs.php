@@ -25,4 +25,3 @@ Route::apiResource('vocab-banks', 'Vocab\VocabBankController');
 
 Route::get('vocab-currencies/page-{page}', 'Vocab\VocabCurrencyController@index');
 Route::apiResource('vocab-currencies', 'Vocab\VocabCurrencyController');
-Route::get('vocab/currency-courses', 'Vocab\CurrencyCourseController@chart');

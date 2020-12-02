@@ -1,18 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Vocab;
+namespace App\Bundles\Vocab\Http\Controllers;
 
+use App\Bundles\Vocab\Repositories\CurrencyCourseRepository;
 use App\Http\Controllers\Controller;
-use App\Repositories\CurrencyCourseRepository;
 
-/**
- * Class CurrencyCourseController
- * @package App\Http\Controllers\Vocab
- */
-class CurrencyCourseController extends Controller
+final class CurrencyCourseController extends Controller
 {
+    private $repository;
+
+    public function __construct(CurrencyCourseRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     /**
-     * @return array
      * @throws \Exception
      */
     public function chart(): array
@@ -22,7 +24,7 @@ class CurrencyCourseController extends Controller
             'labels' => []
         ];
 
-        foreach (CurrencyCourseRepository::last() as $course) {
+        foreach ($this->repository->last() as $course) {
             if (($date = $course->getActualDate()) && !in_array($date, $data['labels'])) {
                 $data['labels'][] = $date;
             }

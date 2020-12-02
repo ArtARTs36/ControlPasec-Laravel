@@ -6,3 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('vocab-words/page-{page}', 'VocabWordController@index');
 Route::apiResource('vocab-words', 'VocabWordController');
+
+// API для курсов валют
+
+Route::get('vocab/currency-courses', 'CurrencyCourseController@chart');

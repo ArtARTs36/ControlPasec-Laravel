@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Bundles\Vocab\Repositories;
 
+use App\Based\Contracts\Repository;
 use App\Bundles\Vocab\Models\CurrencyCourse;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -9,14 +10,14 @@ use Illuminate\Database\Eloquent\Collection;
  * Class CurrencyCourseRepository
  * @package App\Repositories
  */
-class CurrencyCourseRepository
+class CurrencyCourseRepository extends Repository
 {
     /**
      * @return Collection|CurrencyCourse[]
      */
-    public static function last(): Collection
+    public function last(): Collection
     {
-        return CurrencyCourse::query()
+        return $this->newQuery()
             ->with(CurrencyCourse::RELATION_CURRENCY)
             ->orderBy(CurrencyCourse::FIELD_ACTUAL_DATE, 'desc')
             ->take(100)
