@@ -20,7 +20,7 @@ $factory->define(User::class, function (Faker $faker) {
         'position' => $faker->userName,
         'is_active' => $faker->boolean,
         'gender' => $gender,
-        'avatar_url' => \App\Support\Avatar::byGender($gender),
+        'avatar_url' => \App\Based\Support\Avatar::byGender($gender),
         'about_me' => $faker->text(250),
     ];
 });

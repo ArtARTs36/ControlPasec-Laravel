@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Support\Avatar;
+use App\Based\Support\Avatar;
 use App\Support\SqlRawString;
 use App\User;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;

@@ -1,14 +1,11 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Based\Unit;
 
-use App\Support\Avatar;
+use App\Based\Support\Avatar;
 use App\User;
 use Tests\BaseTestCase;
 
-/**
- * @group BaseTest
- */
 class AvatarTest extends BaseTestCase
 {
     public function testGetByUser(): void
