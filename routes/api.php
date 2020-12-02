@@ -8,7 +8,6 @@ Route::group([
     require 'apis/api.auth.php';
     require 'apis/api.user.php';
     require 'apis/api.scores.php';
-    require 'apis/api.contragents.php';
     require 'apis/api.contracts.php';
     require 'apis/api.supplies.php';
     require 'apis/api.documents.php';

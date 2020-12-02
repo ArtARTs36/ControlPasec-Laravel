@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Profile\UpdateAboutMeRequest;
+use App\Http\Requests\Profile\UpdateAboutMe;
 use App\Http\Resource\ProfileResource;
 use App\Repositories\UserRepository;
 use App\User;
@@ -24,7 +24,7 @@ class ProfileController extends Controller
         return new ProfileResource($profile);
     }
 
-    public function updateAboutMe(UpdateAboutMeRequest $request): ProfileResource
+    public function updateAboutMe(UpdateAboutMe $request): ProfileResource
     {
         /** @var User $user */
         $user = auth()->user();

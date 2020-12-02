@@ -18,6 +18,12 @@ use Illuminate\Database\Query\Builder;
  */
 final class ContragentManager extends Model
 {
+    public const FIELD_NAME = 'name';
+    public const FIELD_PATRONYMIC = 'patronymic';
+    public const FIELD_FAMILY = 'family';
+    public const FIELD_CONTRAGENT_ID = 'contragent_id';
+    public const FIELD_POST = 'post';
+
     /**
      * @codeCoverageIgnore
      */

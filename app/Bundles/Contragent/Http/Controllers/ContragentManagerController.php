@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Contragent\Http\Controllers;
 
-use App\Http\Requests\ContragentManagerRequest;
+use App\Bundles\Contragent\Http\Requests\StoreManager;
 use App\Http\Responses\ActionResponse;
 use App\Bundles\Contragent\Models\ContragentManager;
 use App\Http\Controllers\Controller;
@@ -16,7 +16,7 @@ class ContragentManagerController extends Controller
             ->paginate(10, ['*'], 'ContragentsList', $page);
     }
 
-    public function store(ContragentManagerRequest $request): ActionResponse
+    public function store(StoreManager $request): ActionResponse
     {
         $manager = new ContragentManager();
         $manager->fill($request->toArray());
@@ -29,7 +29,7 @@ class ContragentManagerController extends Controller
         return $contragentManager;
     }
 
-    public function update(ContragentManagerRequest $request, ContragentManager $contragentManager): ActionResponse
+    public function update(StoreManager $request, ContragentManager $contragentManager): ActionResponse
     {
         return new ActionResponse($contragentManager->update($request->toArray()), $contragentManager);
     }

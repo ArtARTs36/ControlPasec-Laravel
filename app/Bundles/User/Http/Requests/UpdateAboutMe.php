@@ -8,7 +8,7 @@ use Illuminate\Foundation\Http\FormRequest;
  * Class UpdateAboutMeRequest
  * @property string $about_me
  */
-class UpdateAboutMeRequest extends FormRequest
+class UpdateAboutMe extends FormRequest
 {
     public function rules(): array
     {
