@@ -4,7 +4,7 @@ namespace App\Bundles\Vocab\Models;
 
 use App\Helper\ModelPrioritiesRefresher\ModelWithPriorityInterface;
 use App\Helper\ModelPrioritiesRefresher\WithPriority;
-use App\Scopes\PriorityScope;
+use App\Based\Scopes\PriorityScope;
 use Illuminate\Database\Eloquent\Model;
 
 /**

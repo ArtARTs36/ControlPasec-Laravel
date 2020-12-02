@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Scopes;
+namespace App\Based\Scopes;
 
 use App\Models\User\UserNotification;
 use App\User;
