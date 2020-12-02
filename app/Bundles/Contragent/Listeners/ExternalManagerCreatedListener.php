@@ -4,7 +4,6 @@ namespace App\Bundles\Contragent\Listeners;
 
 use App\Bundles\Contragent\Events\ExternalManagerCreated;
 use App\Bundles\Vocab\Services\WordService;
-use App\Models\Contragent\ContragentManager;
 
 final class ExternalManagerCreatedListener
 {

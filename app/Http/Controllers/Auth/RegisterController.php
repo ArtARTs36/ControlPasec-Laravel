@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Events\UserRegistered;
+use App\Bundles\User\Events\UserRegistered;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRegisterRequest;
 use App\Http\Responses\UserRegisteredResponse;

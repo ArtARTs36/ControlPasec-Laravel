@@ -8,7 +8,7 @@ use App\Events\DocumentOfQueueGenerated;
 use App\Events\ExceptionNotified;
 use App\Events\LandingFeedBackCreated;
 use App\Events\TechSupportReportCreated;
-use App\Events\UserRegistered;
+use App\Bundles\User\Events\UserRegistered;
 use App\Listeners\DocumentOfQueueGenerateListener;
 use App\Listeners\ExceptionNotifiedListener;
 use App\Listeners\LandingFeedBackCreatedListener;

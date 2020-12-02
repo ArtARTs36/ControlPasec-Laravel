@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace App\Bundles\User\Events;
 
 use App\User;
 use Illuminate\Auth\Events\Registered;
@@ -13,17 +13,8 @@ class UserRegistered extends Registered
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    /**
-     * @var User
-     */
     public $user;
 
-    /**
-     * Create a new event instance.
-     *
-     * @param User $user
-     * @return void
-     */
     public function __construct(User $user)
     {
         $this->user = $user;
@@ -31,11 +22,6 @@ class UserRegistered extends Registered
         parent::__construct($user);
     }
 
-    /**
-     * Get the channels the event should broadcast on.
-     *
-     * @return \Illuminate\Broadcasting\Channel|array
-     */
     public function broadcastOn()
     {
         return new PrivateChannel('channel-name');
