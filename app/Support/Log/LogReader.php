@@ -2,7 +2,7 @@
 
 namespace App\Support\Log;
 
-use App\Helper\FileHelper;
+use App\Based\Support\FileHelper;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;

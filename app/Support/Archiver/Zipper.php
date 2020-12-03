@@ -2,7 +2,7 @@
 
 namespace App\Support\Archiver;
 
-use App\Helper\FileHelper;
+use App\Based\Support\FileHelper;
 use App\Services\ArchiveService;
 use ArtARTs36\ShellCommand\ShellCommand;
 

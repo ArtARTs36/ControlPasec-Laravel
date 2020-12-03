@@ -2,7 +2,7 @@
 
 namespace App\Services\Document;
 
-use App\Helper\FileHelper;
+use App\Based\Support\FileHelper;
 use App\Models\Document\Document;
 use ArtARTs36\ShellCommand\ShellCommand;
 

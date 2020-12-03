@@ -3,7 +3,7 @@
 namespace App\Based\Console\Commands;
 
 use App\Based\Support\OS;
-use App\Helper\FileHelper;
+use App\Based\Support\FileHelper;
 use App\Services\Go\GoProgramExecutor;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
