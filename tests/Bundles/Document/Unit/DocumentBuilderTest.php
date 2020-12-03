@@ -1,8 +1,7 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Bundles\Document\Unit;
 
-use App\Models\Document\Document;
 use App\Models\Document\DocumentType;
 use App\Models\Supply\QualityCertificate;
 use App\Models\Supply\Supply;
@@ -11,9 +10,6 @@ use App\Services\Document\DocumentCreator;
 use Tests\BaseTestCase;
 use Tests\Traits\RandomDocumentTrait;
 
-/**
- * @group BaseTest
- */
 class DocumentBuilderTest extends BaseTestCase
 {
     use RandomDocumentTrait;

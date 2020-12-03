@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Bundles\Document\Unit;
 
 use App\Models\Document\DocumentType;
 use App\Models\Supply\Supply;

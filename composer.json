@@ -95,7 +95,7 @@
             "@php artisan key:generate --ansi"
         ],
         "test": [
-            "vendor/phpunit/phpunit/phpunit --group=BaseTest"
+            "vendor/phpunit/phpunit/phpunit"
         ]
     }
 }
