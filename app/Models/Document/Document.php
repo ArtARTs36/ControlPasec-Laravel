@@ -91,7 +91,7 @@ class Document extends Model
      */
     public function getFileName(): string
     {
-        return Text::translitToEng($this->title);
+        return str_replace(' ', '_', Text::translitToEng($this->title));
     }
 
     /**

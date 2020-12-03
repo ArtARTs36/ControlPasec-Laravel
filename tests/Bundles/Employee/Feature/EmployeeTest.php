@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Bundles\Employee\Feature;
 
 use App\Bundles\Employee\Http\Requests\EmployeeStoreRequest;
 use App\Models\Document\Document;
@@ -10,10 +10,7 @@ use Dba\ControlTime\Models\WorkCondition;
 use Illuminate\Http\Response;
 use Tests\BaseTestCase;
 
-/**
- * @group BaseTest
- */
-class EmployeeTest extends BaseTestCase
+final class EmployeeTest extends BaseTestCase
 {
     private const API_PATH = '/api/employees';
 
