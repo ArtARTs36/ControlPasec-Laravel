@@ -17,5 +17,4 @@ Route::group([
     require 'apis/api.controltime.php';
     require 'apis/api.admin_services.php';
     require 'apis/api.logs.php';
-    require __DIR__ . '/../app/Bundles/Employee/Http/routes/api.php';
 });

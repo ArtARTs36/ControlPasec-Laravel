@@ -204,6 +204,8 @@ return [
         \App\Bundles\Document\Providers\DocumentProvider::class,
 
         \App\Bundles\Cron\Providers\CronProvider::class,
+
+        \App\Bundles\Employee\Providers\EmployeeProvider::class,
     ],
 
     /*
