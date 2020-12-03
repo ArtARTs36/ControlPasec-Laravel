@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string|null $full_title
  * @property string|null $full_title_with_opf
  * @property integer|null $inn
- * @property integer|null $kpp
+ * @property int $kpp
  * @property integer|null $ogrn
  * @property integer|null $okato
  * @property integer|null $oktmo

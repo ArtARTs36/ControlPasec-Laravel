@@ -2,12 +2,14 @@
 
 namespace App\Bundles\Contragent\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use App\Based\Contracts\BundleProvider;
 use App\Bundles\Contragent\Support\DaDataClient;
 use GuzzleHttp\Client;
 
-class ContragentProvider extends ServiceProvider
+class ContragentProvider extends BundleProvider
 {
+    protected $factoriesPath = __DIR__ . '/../Database/Factories';
+
     public function register(): void
     {
         $this->app->singleton(DaDataClient::class, function () {
@@ -17,5 +19,7 @@ class ContragentProvider extends ServiceProvider
         });
 
         $this->app->register(RouteProvider::class);
+
+        $this->registerFactories();
     }
 }

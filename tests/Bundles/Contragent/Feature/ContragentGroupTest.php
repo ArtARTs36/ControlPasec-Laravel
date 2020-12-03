@@ -27,17 +27,16 @@ final class ContragentGroupTest extends BaseTestCase
      */
     public function testShow(): void
     {
-        $group = ContragentGroup::query()
-            ->with(ContragentGroup::RELATION_CONTRAGENTS)
-            ->inRandomOrder()
-            ->first();
+        $request = function ($id = null) {
+            return $this
+                ->getJson(static::API_URL . DIRECTORY_SEPARATOR . $id);
+        };
 
-        $groupResource = new ContragentGroupResource($group);
+        $group = factory(ContragentGroup::class)->create();
 
-        $response = $this->getJson(static::API_URL . DIRECTORY_SEPARATOR . $group->id)
-            ->assertOk();
+        //
 
-        self::assertEquals($groupResource->toJson(), $response->getContent());
+        $request($group->id)->assertOk();
     }
 
     public function testDetach(): void
@@ -45,7 +44,7 @@ final class ContragentGroupTest extends BaseTestCase
         $group = app(ContragentGroupRepository::class)->createByName($this->getFaker()->name);
 
         /** @var Contragent $contragent */
-        $contragent = $this->getRandomModel(Contragent::class);
+        $contragent = factory(Contragent::class)->create();
 
         $group->contragents()->attach($contragent->id);
 

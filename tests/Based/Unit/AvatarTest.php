@@ -8,9 +8,12 @@ use Tests\BaseTestCase;
 
 class AvatarTest extends BaseTestCase
 {
+    /**
+     * @covers Avatar::byUser
+     */
     public function testGetByUser(): void
     {
-        $user = User::query()->where('gender', User::GENDER_MALE)->first();
+        $user = factory(User::class)->create();
 
         $avatar = Avatar::byUser($user);
         $condition = preg_match('/males/i', $avatar) > 0;

@@ -25,8 +25,7 @@ final class DaDataParserTest extends TestCase
     {
         $this->expectsEvents(ExternalManagerCreated::class);
 
-        $contragent = new Contragent();
-        $contragent->id = 1;
+        $contragent = factory(Contragent::class)->create();
 
         $data = [
             'management' => [
