@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resource;
+namespace App\Bundles\User\Http\Resources;
 
 use App\Bundles\User\Models\UserNotification;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -16,7 +16,7 @@ class UserNotificationResource extends JsonResource
      * @param \Illuminate\Http\Request $request
      * @return array
      */
-    public function toArray($request)
+    public function toArray($request): array
     {
         return [
             'id' => $this->id,
