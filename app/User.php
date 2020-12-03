@@ -6,7 +6,7 @@ use App\Bundles\User\Models\DialogMessage;
 use App\Bundles\User\Models\Permission;
 use App\Bundles\User\Models\Role;
 use App\Bundles\User\Models\UserNotification;
-use App\Repositories\PermissionRepository;
+use App\Bundles\User\Repositories\PermissionRepository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;

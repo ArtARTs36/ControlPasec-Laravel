@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Bundles\User\Repositories;
 
 use App\Based\Contracts\Repository;
 use App\Http\Resource\DialogsListResource;

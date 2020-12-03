@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Bundles\User\Repositories;
 
 use App\Based\Contracts\Repository;
 use App\Bundles\User\Models\Permission;
@@ -15,7 +15,9 @@ final class PermissionRepository extends Repository
 
     public function paginate(int $page): LengthAwarePaginator
     {
-        return Permission::latest('id')
+        return $this
+            ->newQuery()
+            ->latest('id')
             ->paginate(10, ['*'], 'PermissionsList', $page);
     }
 }

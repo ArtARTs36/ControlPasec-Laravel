@@ -3,10 +3,7 @@
 namespace App\Http\Resource;
 
 use App\Bundles\User\Models\Dialog;
-use App\Repositories\DialogMessageRepository;
-use App\Bundles\User\Services\DialogMessageService;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Auth;
 

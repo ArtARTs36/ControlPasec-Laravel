@@ -5,7 +5,7 @@ namespace App\Bundles\User\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Bundles\User\Http\Requests\UpdateAboutMe;
 use App\Http\Resource\ProfileResource;
-use App\Repositories\UserRepository;
+use App\Bundles\User\Repositories\UserRepository;
 use App\User;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;

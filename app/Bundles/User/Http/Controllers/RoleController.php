@@ -5,7 +5,7 @@ namespace App\Bundles\User\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Bundles\User\Models\Permission;
 use App\Bundles\User\Models\Role;
-use App\Repositories\RoleRepository;
+use App\Bundles\User\Repositories\RoleRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 

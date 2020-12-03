@@ -2,9 +2,9 @@
 
 namespace App\Bundles\User\Http\Controllers;
 
+use App\Bundles\User\Repositories\PermissionRepository;
 use App\Http\Controllers\Controller;
 use App\Bundles\User\Models\Permission;
-use App\Repositories\PermissionRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 final class PermissionController extends Controller

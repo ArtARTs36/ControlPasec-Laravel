@@ -6,7 +6,7 @@ use App\Http\Actions\UserMeAction;
 use App\Http\Controllers\Controller;
 use App\Bundles\User\Http\Requests\AuthRequest;
 use App\Http\Resource\UserResource;
-use App\Repositories\UserRepository;
+use App\Bundles\User\Repositories\UserRepository;
 use App\Services\Jwt;
 use App\User;
 use Illuminate\Foundation\Auth\ThrottlesLogins;

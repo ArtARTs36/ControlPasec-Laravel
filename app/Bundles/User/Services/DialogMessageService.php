@@ -4,7 +4,7 @@ namespace App\Bundles\User\Services;
 
 use App\Bundles\User\Models\Dialog;
 use App\Bundles\User\Models\DialogMessage;
-use App\Repositories\DialogMessageRepository;
+use App\Bundles\User\Repositories\DialogMessageRepository;
 use App\User;
 use Illuminate\Http\Response;
 use Illuminate\Support\Collection;

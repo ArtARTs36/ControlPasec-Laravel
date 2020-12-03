@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRegisterRequest;
 use App\Http\Responses\UserRegisteredResponse;
 use App\Bundles\User\Models\Role;
-use App\Repositories\UserRepository;
+use App\Bundles\User\Repositories\UserRepository;
 use App\User;
 use Illuminate\Http\Request;
 

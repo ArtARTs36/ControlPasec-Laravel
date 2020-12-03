@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Bundles\User\Repositories;
 
 use App\Based\Contracts\Repository;
 use App\Based\Support\Avatar;
@@ -52,14 +52,16 @@ class UserRepository extends Repository
 
     public function create(array $data): User
     {
-        return User::query()->create(array_merge(
-            $data,
-            [
-                'is_active' => false,
-                'password' => Hash::make($data['password']),
-                'avatar_url' => Avatar::random(),
-            ]
-        ));
+        return $this
+            ->newQuery()
+            ->create(array_merge(
+                $data,
+                [
+                    'is_active' => false,
+                    'password' => Hash::make($data['password']),
+                    'avatar_url' => Avatar::random(),
+                ]
+            ));
     }
 
     public function findActive(int $id): ?User

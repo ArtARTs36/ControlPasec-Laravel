@@ -9,7 +9,7 @@ use App\Http\Resource\UserResource;
 use App\Http\Responses\ActionResponse;
 use App\Bundles\User\Models\Permission;
 use App\Bundles\User\Models\Role;
-use App\Repositories\UserRepository;
+use App\Bundles\User\Repositories\UserRepository;
 use App\User;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 

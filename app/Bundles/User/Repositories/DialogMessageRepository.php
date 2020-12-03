@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Bundles\User\Repositories;
 
 use App\Bundles\User\Models\Dialog;
 use App\Bundles\User\Models\DialogMessage;

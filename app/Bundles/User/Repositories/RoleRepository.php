@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Bundles\User\Repositories;
 
 use App\Based\Contracts\Repository;
 use App\Bundles\User\Models\Role;
@@ -13,6 +13,9 @@ final class RoleRepository extends Repository
      */
     public function getAllowedForSignUp(): Collection
     {
-        return Role::where(Role::FIELD_IS_ALLOWED_FOR_SIGN_UP, true)->get();
+        return $this
+            ->newQuery()
+            ->where(Role::FIELD_IS_ALLOWED_FOR_SIGN_UP, true)
+            ->get();
     }
 }

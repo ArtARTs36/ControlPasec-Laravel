@@ -2,11 +2,11 @@
 
 namespace App\Bundles\User\Http\Controllers;
 
+use App\Bundles\User\Repositories\DialogRepository;
 use App\Bundles\User\Services\DialogService;
 use App\Http\Resource\DialogResource;
 use App\Bundles\User\Models\Dialog;
 use App\Http\Controllers\Controller;
-use App\Repositories\DialogRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Auth;

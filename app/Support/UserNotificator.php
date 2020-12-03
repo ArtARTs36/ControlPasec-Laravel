@@ -3,8 +3,7 @@
 namespace App\Support;
 
 use App\Bundles\User\Models\UserNotification;
-use App\Repositories\UserNotificationTypeRepository;
-use App\User;
+use App\Bundles\User\Repositories\UserNotificationTypeRepository;
 use Illuminate\Database\Eloquent\Model;
 
 class UserNotificator
