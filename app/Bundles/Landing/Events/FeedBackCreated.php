@@ -7,7 +7,7 @@ use App\Events\BaseEvent;
 
 final class FeedBackCreated extends BaseEvent
 {
-    public $feedback;
+    private $feedback;
 
     public function __construct(FeedBack $feedBack)
     {
