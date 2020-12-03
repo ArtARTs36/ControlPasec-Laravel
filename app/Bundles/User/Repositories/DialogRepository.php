@@ -3,7 +3,6 @@
 namespace App\Bundles\User\Repositories;
 
 use App\Based\Contracts\Repository;
-use App\Http\Resource\DialogsListResource;
 use App\Bundles\User\Models\Dialog;
 use App\User;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -16,13 +15,11 @@ final class DialogRepository extends Repository
      */
     public function findByUser(User $user, int $page = 1): AnonymousResourceCollection
     {
-        $dialogs = Dialog::query()
+        return Dialog::query()
             ->where(Dialog::FIELD_ONE_USER_ID, $user->id)
             ->orWhere(Dialog::FIELD_TWO_USER_ID, $user->id)
             ->latest(Dialog::FIELD_UPDATED_AT)
             ->paginate(10, ['*'], 'DialogsList', $page);
-
-        return DialogsListResource::collection($dialogs);
     }
 
     public function findByCurrentUserAndToUser(User $author, User $toUser): ?Dialog

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resource;
+namespace App\Bundles\User\Http\Resources;
 
 use App\Bundles\User\Models\DialogMessage;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -12,7 +12,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  */
 class DialogMessageResource extends JsonResource
 {
-    public function toArray($request)
+    public function toArray($request): array
     {
         return [
             'id' => $this->id,

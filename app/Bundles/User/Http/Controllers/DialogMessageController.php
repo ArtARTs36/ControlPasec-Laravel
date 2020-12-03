@@ -5,7 +5,7 @@ namespace App\Bundles\User\Http\Controllers;
 use App\Bundles\User\Repositories\DialogRepository;
 use App\Http\Controllers\Controller;
 use App\Bundles\User\Http\Requests\StoreMessage;
-use App\Http\Resource\DialogMessageResource;
+use App\Bundles\User\Http\Resources\DialogMessageResource;
 use App\Bundles\User\Models\Dialog;
 use App\Bundles\User\Models\DialogMessage;
 use App\Bundles\User\Services\DialogMessageService;

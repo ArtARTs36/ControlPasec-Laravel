@@ -2,9 +2,10 @@
 
 namespace App\Bundles\User\Http\Controllers;
 
+use App\Bundles\User\Http\Resources\DialogsListResource;
 use App\Bundles\User\Repositories\DialogRepository;
 use App\Bundles\User\Services\DialogService;
-use App\Http\Resource\DialogResource;
+use App\Bundles\User\Http\Resources\DialogResource;
 use App\Bundles\User\Models\Dialog;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -34,7 +35,7 @@ final class DialogController extends Controller
      */
     public function user(int $page = 1): AnonymousResourceCollection
     {
-        return $this->repository->findByUser(auth()->user(), $page);
+        return DialogsListResource::collection($this->repository->findByUser(auth()->user(), $page));
     }
 
     public function show(Dialog $dialog, int $page = 1): DialogResource

@@ -4,6 +4,7 @@ namespace App\Bundles\User\Models;
 
 use App\Models\Traits\WithFieldIsRead;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -18,7 +19,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $text
  * @property string $created_at
  * @property User $fromUser
- * @mixin Builder
+ * @property Carbon $updated_at
  */
 class DialogMessage extends Model
 {

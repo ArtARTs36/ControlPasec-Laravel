@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resource;
+namespace App\Bundles\User\Http\Resources;
 
 use App\Bundles\User\Models\Dialog;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
