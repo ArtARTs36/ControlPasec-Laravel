@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Bundles\Document\Jobs;
 
 use App\Based\Interfaces\JobInterface;
 use App\Events\DocumentOfQueueGenerated;
@@ -11,23 +11,12 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-/**
- * Class DocumentBuildJob
- * @package App\Jobs
- */
-class DocumentBuildJob implements ShouldQueue, JobInterface
+final class DocumentBuildJob implements ShouldQueue, JobInterface
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    /**
-     * @var Document
-     */
-    public $document;
+    protected $document;
 
-    /**
-     * DocumentBuildJob constructor.
-     * @param Document $document
-     */
     public function __construct(Document $document)
     {
         $this->document = $document;
