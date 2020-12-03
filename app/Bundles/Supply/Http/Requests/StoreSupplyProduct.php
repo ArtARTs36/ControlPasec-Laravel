@@ -1,12 +1,17 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Bundles\Supply\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SupplyProductRequest extends FormRequest
+class StoreSupplyProduct extends FormRequest
 {
-    public function rules()
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    public function rules(): array
     {
         return [
             'quantity' => 'required',

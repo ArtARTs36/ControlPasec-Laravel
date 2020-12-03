@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Supply;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ManySuppliesRequest;
+use App\Bundles\Supply\Http\Requests\ManySuppliesRequest;
 use App\Http\Requests\ScoreForPaymentRequest;
 use App\Http\Resource\DocumentResource;
 use App\Http\Responses\ActionResponse;

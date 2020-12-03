@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Supply;
 
+use App\Bundles\Supply\Http\Requests\StoreSupply;
 use App\Bundles\Supply\Http\Resources\SupplyResource;
 use App\Helper\SupplierHelper;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Supply\SupplyStoreManyRequest;
-use App\Http\Requests\SupplyRequest;
+use App\Bundles\Supply\Http\Requests\StoreManySupply;
 use App\Http\Responses\ActionResponse;
 use App\Models\Supply\Supply;
 use App\Bundles\User\Models\Permission;
@@ -38,10 +38,10 @@ class SupplyController extends Controller
     /**
      * Создать поставку
      *
-     * @param SupplyRequest $request
+     * @param StoreSupply $request
      * @return ActionResponse
      */
-    public function store(SupplyRequest $request): ActionResponse
+    public function store(StoreSupply $request): ActionResponse
     {
         $supply = $this->makeModel($request, Supply::class);
         $supply->supplier_id = $request->get('supplier_id', SupplierHelper::getDefaultId());
@@ -66,11 +66,11 @@ class SupplyController extends Controller
     /**
      * Обновить данные о поставке
      *
-     * @param SupplyRequest $request
+     * @param StoreSupply $request
      * @param Supply $supply
      * @return ActionResponse
      */
-    public function update(SupplyRequest $request, Supply $supply): ActionResponse
+    public function update(StoreSupply $request, Supply $supply): ActionResponse
     {
         $this->updateModel($request, $supply);
 
@@ -101,10 +101,10 @@ class SupplyController extends Controller
     }
 
     /**
-     * @param SupplyStoreManyRequest $request
+     * @param StoreManySupply $request
      * @return ActionResponse
      */
-    public function storeMany(SupplyStoreManyRequest $request): ActionResponse
+    public function storeMany(StoreManySupply $request): ActionResponse
     {
         return SupplyCreator::many($request->getItems(), $request->getOptions());
     }
