@@ -1,14 +1,10 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Based\Unit;
 
 use Tests\TestCase;
 
-/**
- * Class HelpersTest
- * @package Tests\Unit
- */
-class HelpersTest extends TestCase
+final class HelpersTest extends TestCase
 {
     public const TEST_CONST = 5555;
 
