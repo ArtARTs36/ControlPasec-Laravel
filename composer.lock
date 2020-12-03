@@ -599,12 +599,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ArtARTs36/ControlTime-Package.git",
-                "reference": "60584680aeffaa0a218bcb308e2231868c2dff51"
+                "reference": "4507da0cf9087f28644ba0a98dcea468c132d77e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ArtARTs36/ControlTime-Package/zipball/60584680aeffaa0a218bcb308e2231868c2dff51",
-                "reference": "60584680aeffaa0a218bcb308e2231868c2dff51",
+                "url": "https://api.github.com/repos/ArtARTs36/ControlTime-Package/zipball/4507da0cf9087f28644ba0a98dcea468c132d77e",
+                "reference": "4507da0cf9087f28644ba0a98dcea468c132d77e",
                 "shasum": ""
             },
             "require": {
@@ -638,7 +638,7 @@
                 "source": "https://github.com/ArtARTs36/ControlTime-Package/tree/master",
                 "issues": "https://github.com/ArtARTs36/ControlTime-Package/issues"
             },
-            "time": "2020-06-08T00:25:09+00:00"
+            "time": "2020-12-03T18:34:34+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
