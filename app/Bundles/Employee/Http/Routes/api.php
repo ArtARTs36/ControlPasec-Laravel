@@ -1,5 +1,6 @@
 <?php
 
+use Dba\ControlTime\Support\Proxy;
 use Illuminate\Support\Facades\Route;
 
 // API для сотрудников
@@ -11,3 +12,13 @@ Route::prefix('employees')->group(function () {
 });
 
 Route::apiResource('employees', '\App\Bundles\Employee\Http\Controllers\EmployeeController');
+
+Route::get(
+    Proxy::apiRoute('report') . '/{employee}/{start}/{end}',
+    'ControlTime\TimeReportController@byPeriod'
+);
+
+Route::get(
+    Proxy::apiRoute('report-month') . '/{employee}',
+    'ControlTime\TimeReportController@byLastMonth'
+);

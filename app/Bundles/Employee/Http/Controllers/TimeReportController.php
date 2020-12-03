@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\ControlTime;
+namespace App\Bundles\Employee\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resource\DocumentResource;

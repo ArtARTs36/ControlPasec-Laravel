@@ -2,7 +2,7 @@
 
 namespace Tests\Bundles\Employee\Feature;
 
-use App\Http\Controllers\ControlTime\TimeReportController;
+use App\Bundles\Employee\Http\Controllers\TimeReportController;
 use App\Http\Resource\DocumentResource;
 use App\Models\Document\Document;
 use App\Bundles\Employee\Models\Employee;
@@ -13,7 +13,7 @@ use Tests\BaseTestCase;
 final class TimeReportTest extends BaseTestCase
 {
     /**
-     * @covers \App\Http\Controllers\ControlTime\TimeReportController::byPeriod
+     * @covers \App\Bundles\Employee\Http\Controllers\TimeReportController::byPeriod
      * @throws \Exception
      */
     public function testByPeriod(): void
@@ -30,7 +30,7 @@ final class TimeReportTest extends BaseTestCase
     }
 
     /**
-     * @covers \App\Http\Controllers\ControlTime\TimeReportController::byLastMonth
+     * @covers \App\Bundles\Employee\Http\Controllers\TimeReportController::byLastMonth
      */
     public function testByLastMonth(): void
     {
