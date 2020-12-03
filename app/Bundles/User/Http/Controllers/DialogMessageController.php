@@ -3,7 +3,7 @@
 namespace App\Bundles\User\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\DialogMessageRequest;
+use App\Bundles\User\Http\Requests\StoreMessage;
 use App\Http\Resource\DialogMessageResource;
 use App\Bundles\User\Models\Dialog;
 use App\Bundles\User\Models\DialogMessage;
@@ -25,7 +25,7 @@ final class DialogMessageController extends Controller
         $this->service = $service;
     }
 
-    public function store(DialogMessageRequest $request): DialogMessage
+    public function store(StoreMessage $request): DialogMessage
     {
         $currentUser = Auth::user();
 
@@ -40,13 +40,13 @@ final class DialogMessageController extends Controller
         return $this->service->create($dialog, $currentUser, $request->text);
     }
 
-    public function createByDialog(Dialog $dialog, DialogMessageRequest $request): DialogMessageResource
+    public function createByDialog(Dialog $dialog, StoreMessage $request): DialogMessageResource
     {
         if ($dialog->isNotTookPart(Auth::user())) {
             throw new \LogicException('Вы не являетесь участником диалога');
         }
 
-        $message = $this->service->create($dialog, auth()->user(), $request->text);
+        $message = $this->service->create($dialog, Auth::user(), $request->text);
 
         return new DialogMessageResource($message);
     }
