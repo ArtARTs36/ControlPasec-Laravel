@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Bundles\Landing\Http\Providers;
+namespace App\Bundles\Landing\Providers;
 
 use App\Based\Contracts\BundleProvider;
 
