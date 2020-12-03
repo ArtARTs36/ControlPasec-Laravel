@@ -2,7 +2,7 @@
 
 namespace App\Bundles\TechSupport\Models;
 
-use App\Models\Traits\WithFieldIsRead;
+use App\Based\ModelSupport\WithFieldIsRead;
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;

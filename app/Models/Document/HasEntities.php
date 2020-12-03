@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
  */
 trait HasEntities
 {
-    use \App\Models\Traits\HasEntities;
+    use \App\Based\ModelSupport\HasEntities;
 
     /**
      * @return MorphToMany
