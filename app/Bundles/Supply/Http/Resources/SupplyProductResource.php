@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resource;
+namespace App\Bundles\Supply\Http\Resources;
 
 use App\Models\Supply\SupplyProduct;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -13,7 +13,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  */
 class SupplyProductResource extends JsonResource
 {
-    public function toArray($request)
+    public function toArray($request): array
     {
         return [
             'id' => $this->id,

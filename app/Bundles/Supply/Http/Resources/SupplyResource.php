@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resource;
+namespace App\Bundles\Supply\Http\Resources;
 
 use App\Models\Supply\Supply;
 use App\Services\SupplyService;

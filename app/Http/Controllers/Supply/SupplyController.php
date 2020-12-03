@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Supply;
 
+use App\Bundles\Supply\Http\Resources\SupplyResource;
 use App\Helper\SupplierHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Supply\SupplyStoreManyRequest;
 use App\Http\Requests\SupplyRequest;
-use App\Http\Resource\SupplyResource;
 use App\Http\Responses\ActionResponse;
 use App\Models\Supply\Supply;
 use App\Bundles\User\Models\Permission;
