@@ -8,5 +8,5 @@ class RouteProvider extends RouteServiceProvider
 {
     protected $namespace = 'App\Bundles\Landing\Http\Controllers';
 
-    protected $routesApiFile = __DIR__ . '/../Routes/api.php';
+    protected $routesApiFile = __DIR__ . '/../Http/Routes/api.php';
 }
