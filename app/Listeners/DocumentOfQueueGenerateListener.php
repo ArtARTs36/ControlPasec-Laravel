@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\DocumentOfQueueGenerated;
+use App\Bundles\Document\Events\DocumentOfQueueGenerated;
 use App\Bundles\User\Models\UserNotificationType;
 use ArtARTs36\PushAllSender\Interfaces\PusherInterface;
 use ArtARTs36\PushAllSender\Push;
@@ -18,13 +18,13 @@ class DocumentOfQueueGenerateListener implements ShouldQueue
     public function handle(DocumentOfQueueGenerated $event): void
     {
         $message = view('messages/document_of_queue_generated', [
-            'document' => $event->document,
+            'document' => $event->document(),
         ])->render();
 
         \app(PusherInterface::class)->push(
-            new Push('Документ '. $event->document->title . ' готов', $message)
+            new Push('Документ '. $event->document()->title . ' готов', $message)
         );
 
-        UserNotificator::notify(UserNotificationType::DOCUMENT_OF_QUEUE_GENERATED, $message, $event->document);
+        UserNotificator::notify(UserNotificationType::DOCUMENT_OF_QUEUE_GENERATED, $message, $event->document());
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Bundles\Document\Jobs;
 
 use App\Based\Interfaces\JobInterface;
-use App\Events\DocumentOfQueueGenerated;
+use App\Bundles\Document\Events\DocumentOfQueueGenerated;
 use App\Models\Document\Document;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -15,7 +15,7 @@ final class DocumentBuildJob implements ShouldQueue, JobInterface
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $document;
+    private $document;
 
     public function __construct(Document $document)
     {
