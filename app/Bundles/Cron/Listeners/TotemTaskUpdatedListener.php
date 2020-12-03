@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Listeners;
+namespace App\Bundles\Cron\Listeners;
 
 use ArtARTs36\ShellCommand\ShellCommand;
 use Illuminate\Contracts\Queue\ShouldQueue;

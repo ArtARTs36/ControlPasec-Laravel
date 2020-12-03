@@ -8,10 +8,7 @@ use App\Based\Events\ExceptionNotified;
 use App\Bundles\TechSupport\Events\ReportCreated;
 use App\Based\Listeners\ExceptionNotifiedListener;
 use App\Bundles\TechSupport\Listeners\TechSupportReportCreatedListener;
-use App\Listeners\TotemTaskUpdatedListener;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Studio\Totem\Events\Created as TotemTaskCreated;
-use Studio\Totem\Events\Updated as TotemTaskUpdated;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -26,12 +23,6 @@ class EventServiceProvider extends ServiceProvider
         ],
         ExceptionNotified::class => [
             ExceptionNotifiedListener::class,
-        ],
-        TotemTaskCreated::class => [
-            TotemTaskUpdatedListener::class
-        ],
-        TotemTaskUpdated::class => [
-            TotemTaskUpdatedListener::class,
         ],
         ExternalManagerCreated::class => [
             ExternalManagerCreatedListener::class,

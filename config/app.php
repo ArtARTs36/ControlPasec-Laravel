@@ -202,6 +202,8 @@ return [
         \App\Bundles\User\Providers\UserProvider::class,
 
         \App\Bundles\Document\Providers\DocumentProvider::class,
+
+        \App\Bundles\Cron\Providers\CronProvider::class,
     ],
 
     /*
