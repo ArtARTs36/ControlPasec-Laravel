@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Support\Archiver;
+namespace App\Based\Support\Archiver;
 
 abstract class AbstractArchiver implements ArchiverInterface
 {

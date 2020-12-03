@@ -16,7 +16,7 @@ use App\Bundles\Document\Repositories\DocumentRepository;
 use App\Models\Supply\ScoreForPayment;
 use App\Services\Document\DocumentService;
 use App\Services\Document\DocumentCreator;
-use App\Support\Archiver\Zipper;
+use App\Based\Support\Archiver\Zipper;
 
 class DocumentGenerateController extends Controller
 {

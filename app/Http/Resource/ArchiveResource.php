@@ -2,7 +2,7 @@
 
 namespace App\Http\Resource;
 
-use App\Support\Archiver\Archive;
+use App\Based\Support\Archiver\Archive;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**

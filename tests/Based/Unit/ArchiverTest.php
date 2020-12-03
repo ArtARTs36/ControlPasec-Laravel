@@ -2,9 +2,9 @@
 
 namespace Tests\Based\Unit;
 
-use App\Support\Archiver\ArchiverFactory;
-use App\Support\Archiver\ArchiverInterface;
-use App\Support\Archiver\Zipper;
+use App\Based\Support\Archiver\ArchiverFactory;
+use App\Based\Support\Archiver\ArchiverInterface;
+use App\Based\Support\Archiver\Zipper;
 use Tests\BaseTestCase;
 
 class ArchiverTest extends BaseTestCase

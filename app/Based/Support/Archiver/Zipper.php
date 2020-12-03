@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Support\Archiver;
+namespace App\Based\Support\Archiver;
 
 use App\Based\Support\FileHelper;
 use App\Services\ArchiveService;
@@ -10,9 +10,6 @@ class Zipper extends AbstractArchiver
 {
     /**
      * Сжать файлы, сохраняя относительные пути
-     * @param array $files
-     * @param string $archiveName
-     * @return Archive
      */
     public function compress(array $files, string $archiveName): Archive
     {
