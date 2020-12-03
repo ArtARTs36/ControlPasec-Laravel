@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Vocab;
 
-use App\Helper\ModelPrioritiesRefresher\ModelPrioritiesRefresher;
+use App\Based\Support\ModelPrioritiesRefresher;
 use App\Http\Controllers\Controller;
 use App\Http\Responses\ActionResponse;
 use App\Bundles\User\Models\Permission;
@@ -10,7 +10,7 @@ use App\Bundles\Vocab\Models\VocabCurrency;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 
-class VocabCurrencyController extends Controller
+final class VocabCurrencyController extends Controller
 {
     public const PERMISSIONS = [
         'index' => Permission::VOCAB_BANKS_LIST_VIEW,
@@ -22,9 +22,6 @@ class VocabCurrencyController extends Controller
 
     /**
      * Отобразить список валют
-     *
-     * @param int $page
-     * @return LengthAwarePaginator
      */
     public function index($page = 1): LengthAwarePaginator
     {
@@ -33,9 +30,6 @@ class VocabCurrencyController extends Controller
 
     /**
      * Добавить валюту в справочник
-     *
-     * @param Request $request
-     * @return ActionResponse
      */
     public function store(Request $request): ActionResponse
     {
@@ -47,9 +41,6 @@ class VocabCurrencyController extends Controller
 
     /**
      * Отобразить валюту
-     *
-     * @param VocabCurrency $vocabCurrency
-     * @return VocabCurrency
      */
     public function show(VocabCurrency $vocabCurrency): VocabCurrency
     {
@@ -58,10 +49,6 @@ class VocabCurrencyController extends Controller
 
     /**
      * Обновить данные валюты
-     *
-     * @param Request $request
-     * @param VocabCurrency $vocabCurrency
-     * @return ActionResponse
      */
     public function update(Request $request, VocabCurrency $vocabCurrency): ActionResponse
     {
@@ -75,9 +62,6 @@ class VocabCurrencyController extends Controller
 
     /**
      * Удалить валюту из справочника
-     *
-     * @param VocabCurrency $vocabCurrency
-     * @return ActionResponse
      * @throws \Exception
      */
     public function destroy(VocabCurrency $vocabCurrency): ActionResponse

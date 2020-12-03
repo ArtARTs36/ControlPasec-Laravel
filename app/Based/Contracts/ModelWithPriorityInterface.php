@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helper\ModelPrioritiesRefresher;
+namespace App\Based\Contracts;
 
 use Illuminate\Database\Eloquent\Builder;
 

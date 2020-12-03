@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Helper\ModelPrioritiesRefresher;
+namespace App\Based\Support;
+
+use App\Based\Contracts\ModelWithPriorityInterface;
 
 class ModelPrioritiesRefresher
 {

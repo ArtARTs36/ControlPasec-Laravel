@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helper\ModelPrioritiesRefresher;
+namespace App\Based\ModelSupport;
 
 /**
  * Trait WithPriority
