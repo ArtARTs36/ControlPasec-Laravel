@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Supply;
 
+use App\Bundles\Supply\Contracts\Creator;
 use App\Bundles\Supply\Http\Requests\StoreSupply;
 use App\Bundles\Supply\Http\Resources\SupplyResource;
 use App\Helper\SupplierHelper;
@@ -11,7 +12,6 @@ use App\Http\Responses\ActionResponse;
 use App\Models\Supply\Supply;
 use App\Bundles\User\Models\Permission;
 use App\Repositories\SupplyRepository;
-use App\Services\Supply\SupplyCreator;
 use App\Services\SupplyService;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
@@ -104,8 +104,8 @@ class SupplyController extends Controller
      * @param StoreManySupply $request
      * @return ActionResponse
      */
-    public function storeMany(StoreManySupply $request): ActionResponse
+    public function storeMany(StoreManySupply $request, Creator $creator): ActionResponse
     {
-        return SupplyCreator::many($request->getItems(), $request->getOptions());
+        return $creator->many($request->getItems(), $request->getOptions());
     }
 }

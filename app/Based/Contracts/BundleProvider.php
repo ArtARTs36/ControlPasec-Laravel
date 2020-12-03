@@ -28,4 +28,15 @@ abstract class BundleProvider extends ServiceProvider
 
         return $this;
     }
+
+    protected function getInstances(array $classes): array
+    {
+        $instances = [];
+
+        foreach ($classes as $key => $class) {
+            $instances[$key] = app($class);
+        }
+
+        return $instances;
+    }
 }

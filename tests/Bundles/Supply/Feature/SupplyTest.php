@@ -4,11 +4,12 @@ namespace Tests\Bundles\Supply\Feature;
 
 use App\Bundles\Contragent\Models\Contragent;
 use App\Bundles\Product\Models\Product;
+use App\Bundles\Supply\Services\SupplyCreateOptions\CreateScoreForPayment;
 use App\Models\Supply\Supply;
 use App\Models\Supply\SupplyProduct;
 use App\Bundles\User\Models\Permission;
 use App\Models\Vocab\VocabQuantityUnit;
-use App\Services\Supply\SupplyCreator;
+use App\Bundles\Supply\Services\SupplyCreator;
 use Illuminate\Http\Response;
 use Tests\BaseTestCase;
 
@@ -61,7 +62,7 @@ class SupplyTest extends BaseTestCase
     {
         $data = [
             'options' => [
-                SupplyCreator::OPTION_SCORE_FOR_PAYMENT,
+                CreateScoreForPayment::OPTION_NAME,
             ]
         ];
 

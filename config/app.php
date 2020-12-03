@@ -206,6 +206,8 @@ return [
         \App\Bundles\Cron\Providers\CronProvider::class,
 
         \App\Bundles\Employee\Providers\EmployeeProvider::class,
+
+        \App\Bundles\Supply\Providers\SupplyProvider::class,
     ],
 
     /*
