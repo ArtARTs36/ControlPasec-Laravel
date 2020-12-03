@@ -1,8 +1,7 @@
 <?php
 
-namespace Tests\Bundles\USerFeature;
+namespace Tests\Bundles\User\Feature;
 
-use App\Http\Resource\UserResource;
 use App\User;
 use Tests\BaseTestCase;
 use Tymon\JWTAuth\Facades\JWTAuth;

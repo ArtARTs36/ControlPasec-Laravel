@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Console;
+namespace App\Based\Console;
 
-use App\Console\Commands\CompileFontFromDompdfCommand;
-use App\Console\Commands\GetCurrencyCourseCommand;
+use App\Based\Console\Commands\CompileFontFromDompdfCommand;
 use App\Bundles\ExternalNews\Console\GetExternalNewsCommand;
+use App\Bundles\Vocab\Console\GetCurrencyCourseCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 

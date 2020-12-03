@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Based\Console\Commands;
 
 use App\Based\Support\OS;
 use App\Helper\FileHelper;
