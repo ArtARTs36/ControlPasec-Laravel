@@ -40,11 +40,7 @@ class CompileFontFromDompdfCommand extends Command
      */
     public function handle()
     {
-        //$fontName = $this->input->getArguments();
         $fontName = 'calibri';
-        if (empty($fontName)) {
-            throw new \LogicException('Не получено название шрифта!');
-        }
 
         $domPdf = new Dompdf();
 
