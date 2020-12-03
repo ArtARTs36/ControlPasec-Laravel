@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Models\ControlTime;
+namespace App\Bundles\Employee\Models;
 
 use App\Models\Document\Document;
-use App\Bundles\Employee\Models\Employee;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -22,6 +21,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class TimeReport extends Model
 {
     public const RELATION_EMPLOYEE = 'employee';
+
     public const FIELD_EMPLOYEE_ID = 'employee_id';
     public const FIELD_START_DATE = 'start_date';
     public const FIELD_END_DATE = 'end_date';
@@ -38,7 +38,7 @@ class TimeReport extends Model
     }
 
     /**
-     * @return BelongsTo
+     * @codeCoverageIgnore
      */
     public function employee(): BelongsTo
     {
@@ -46,7 +46,7 @@ class TimeReport extends Model
     }
 
     /**
-     * @return BelongsTo
+     * @codeCoverageIgnore
      */
     public function document(): BelongsTo
     {

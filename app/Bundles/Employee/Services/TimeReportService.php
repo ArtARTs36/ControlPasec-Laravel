@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Employee\Services;
 
-use App\Models\ControlTime\TimeReport;
+use App\Bundles\Employee\Models\TimeReport;
 use App\Models\Document\DocumentType;
 use App\Bundles\Employee\Models\Employee;
 use App\Services\Document\DocumentCreator;

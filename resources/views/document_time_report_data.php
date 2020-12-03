@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\ControlTime\TimeReport;
+use App\Bundles\Employee\Models\TimeReport;
 use App\Bundles\Employee\Models\Employee;
 use Carbon\Carbon;
 use Dba\ControlTime\Models\WorkCondition;

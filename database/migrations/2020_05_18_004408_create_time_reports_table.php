@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\ControlTime\TimeReport;
+use App\Bundles\Employee\Models\TimeReport;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
