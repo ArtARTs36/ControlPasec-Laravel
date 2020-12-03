@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Bundles\Employee\Services;
 
 use App\Bundles\Employee\Models\Employee;
 use Dba\ControlTime\Models\WorkCondition;
@@ -15,18 +15,18 @@ class EmployeeService
         WorkCondition::FIELD_AMOUNT_MONTH,
     ];
 
-    public static function updateWorkConditions(Employee $employee, array $newConditions)
+    public function updateWorkConditions(Employee $employee, array $newConditions)
     {
         $newConditions = Arr::only($newConditions, static::FIELDS);
 
-        if (!static::isRequireNewCondition($employee, $newConditions)) {
+        if (! $this->isRequireNewCondition($employee, $newConditions)) {
             return $employee->getCurrentWorkCondition();
         }
 
         return $employee->workConditions()->create($newConditions);
     }
 
-    public static function isRequireNewCondition(Employee $employee, array $newConditions)
+    public function isRequireNewCondition(Employee $employee, array $newConditions)
     {
         $currentConditions = $employee->getCurrentWorkCondition()->only(static::FIELDS);
 
