@@ -12,7 +12,6 @@ Route::group([
     require 'apis/api.vocabs.php';
     require 'apis/api.variable_definitions.php';
     require 'apis/api.parsers.php';
-    require 'apis/api.dialogs.php';
     require 'apis/api.stat.php';
     require(__DIR__ . '/../vendor/dba/controltime/routes/api.php');
     require 'apis/api.controltime.php';

@@ -2,7 +2,7 @@
 
 namespace App\Http\Resource;
 
-use App\Models\Dialog\DialogMessage;
+use App\Bundles\User\Models\DialogMessage;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**

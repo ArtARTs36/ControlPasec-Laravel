@@ -2,21 +2,19 @@
 
 namespace App\Repositories;
 
+use App\Based\Contracts\Repository;
 use App\Http\Resource\DialogsListResource;
-use App\Models\Dialog\Dialog;
+use App\Bundles\User\Models\Dialog;
 use App\User;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class DialogRepository
+final class DialogRepository extends Repository
 {
     /**
      * Искать последние 10 диалогов пользователя
-     * @param User $user
-     * @param int $page
-     * @return AnonymousResourceCollection
      */
-    public static function findByUser(User $user, int $page = 1): AnonymousResourceCollection
+    public function findByUser(User $user, int $page = 1): AnonymousResourceCollection
     {
         $dialogs = Dialog::query()
             ->where(Dialog::FIELD_ONE_USER_ID, $user->id)
@@ -27,24 +25,22 @@ class DialogRepository
         return DialogsListResource::collection($dialogs);
     }
 
-    public static function findByCurrentUserAndToUser(User $toUser): ?Dialog
+    public function findByCurrentUserAndToUser(User $author, User $toUser): ?Dialog
     {
-        $currentUserId = auth()->user()->id;
-
         return Dialog::query()
-            ->where(Dialog::FIELD_ONE_USER_ID, $currentUserId)
+            ->where(Dialog::FIELD_ONE_USER_ID, $author->id)
             ->where(Dialog::FIELD_TWO_USER_ID, $toUser->id)
             ->orWhere(Dialog::FIELD_ONE_USER_ID, $toUser->id)
-            ->where(Dialog::FIELD_TWO_USER_ID, $currentUserId)
+            ->where(Dialog::FIELD_TWO_USER_ID, $author->id)
             ->first();
     }
 
-    public static function createByCurrentUserAndToUser(User $toUser): Dialog
+    public function create(User $author, User $recipient): Dialog
     {
         $dialog = new Dialog();
 
-        $dialog->one_user_id = auth()->user()->id;
-        $dialog->two_user_id = $toUser->id;
+        $dialog->one_user_id = $author->id;
+        $dialog->two_user_id = $recipient->id;
 
         $dialog->save();
 
@@ -53,14 +49,15 @@ class DialogRepository
 
     /**
      * Получить или создать диалог
-     * @param User $toUser
+     * @param User $recipient
      * @return Dialog
      */
-    public static function getOrCreate(User $toUser): Dialog
+    public function getOrCreate(User $author, User $recipient): Dialog
     {
-        $dialog = static::findByCurrentUserAndToUser($toUser);
+        $dialog = $this->findByCurrentUserAndToUser($author, $recipient);
+
         if ($dialog === null) {
-            $dialog = static::createByCurrentUserAndToUser($toUser);
+            $dialog = $this->create($author, $recipient);
         }
 
         return $dialog;
@@ -70,7 +67,7 @@ class DialogRepository
      * @param int $page
      * @return LengthAwarePaginator
      */
-    public static function paginate(int $page): LengthAwarePaginator
+    public function paginate(int $page): LengthAwarePaginator
     {
         return Dialog::query()
             ->latest()

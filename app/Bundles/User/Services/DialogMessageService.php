@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Services\Dialog;
+namespace App\Bundles\User\Services;
 
-use App\Models\Dialog\Dialog;
-use App\Models\Dialog\DialogMessage;
+use App\Bundles\User\Models\Dialog;
+use App\Bundles\User\Models\DialogMessage;
 use App\Repositories\DialogMessageRepository;
 use App\User;
 use Illuminate\Http\Response;
@@ -11,22 +11,21 @@ use Illuminate\Support\Collection;
 
 class DialogMessageService
 {
+    private $repository;
+
+    public function __construct(DialogMessageRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     /**
      * @param array|DialogMessage[] $messages
      */
-    public static function readMessages(array $messages): void
+    public function readMessages(array $messages): void
     {
         foreach ($messages as $message) {
             $message->read();
         }
-    }
-
-    /**
-     * @return \Illuminate\Support\Collection|DialogMessage[]
-     */
-    public static function findRecievedMessagesByCurrentUser()
-    {
-        return DialogMessageRepository::findRecievedMessagesByUser(auth()->user());
     }
 
     /**
@@ -35,19 +34,24 @@ class DialogMessageService
      * @param string $text
      * @return DialogMessage|null
      */
-    public static function create(Dialog $dialog, User $user, string $text): ?DialogMessage
+    public function create(Dialog $dialog, User $user, string $text): ?DialogMessage
     {
-        if (($msg = DialogMessageRepository::getLastMessageOfDialogByUser($dialog, $user)) && $msg->text === $text) {
+        if ($this->isEqualsLastMessage($dialog, $user, $text)) {
             abort(Response::HTTP_CONFLICT, 'Вы уже отправляли сообщение с подобным содержанием');
         }
 
         $message = $dialog->messages()->make();
         $message->from_user_id = $user->id;
-        $message->to_user_id = $dialog->getInterUser()->id;
+        $message->to_user_id = $dialog->getInterUser($user)->id;
         $message->text = $text;
         $message->save();
 
         return $message;
+    }
+
+    protected function isEqualsLastMessage(Dialog $dialog, User $user, string $text): bool
+    {
+        return ($msg = $this->repository->getLastMessageOfDialogByUser($dialog, $user)) && $msg->text === $text;
     }
 
     /**

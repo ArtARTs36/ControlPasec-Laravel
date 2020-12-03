@@ -1,15 +1,12 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Bundles\User\Feature;
 
 use App\Based\Support\RuFaker;
 use App\User;
 use Tests\BaseTestCase;
 
-/**
- * @group BaseTest
- */
-class DialogTest extends BaseTestCase
+final class DialogTest extends BaseTestCase
 {
     /**
      * @var array
@@ -23,6 +20,9 @@ class DialogTest extends BaseTestCase
     protected function setUp(): void
     {
         parent::setUp();
+
+        $this->seed(\RoleSeeder::class);
+        $this->seed(\UserSeeder::class);
 
         $this->admin = User::where('name', 'admin')->first();
         $this->simpleUser = User::query()->inRandomOrder()->where('email', '<>', $this->admin->email)->first();
@@ -66,7 +66,7 @@ class DialogTest extends BaseTestCase
 
         $this->actingAs($this->simpleUser);
 
-        $response = $this->get('/api/dialogs/'. $dialogId);
+        $response = $this->getJson('/api/dialogs/'. $dialogId);
 
         $dialog = $this->decodeResponse($response);
 

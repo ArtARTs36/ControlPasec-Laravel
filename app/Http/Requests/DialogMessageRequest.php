@@ -11,7 +11,7 @@ use Illuminate\Foundation\Http\FormRequest;
  */
 class DialogMessageRequest extends FormRequest
 {
-    public function rules()
+    public function rules(): array
     {
         return [
             'to_user_id' => 'required|integer|exists:users,id',

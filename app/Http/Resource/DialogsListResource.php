@@ -2,8 +2,9 @@
 
 namespace App\Http\Resource;
 
-use App\Models\Dialog\Dialog;
+use App\Bundles\User\Models\Dialog;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class DialogsListResource
@@ -14,7 +15,7 @@ class DialogsListResource extends JsonResource
 {
     public function toArray($request): array
     {
-        $interUser = $this->getInterUser();
+        $interUser = $this->getInterUser(Auth::user());
 
         $message = $this->messages->last()->toArray();
 

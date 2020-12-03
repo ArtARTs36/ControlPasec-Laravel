@@ -2,11 +2,13 @@
 
 namespace App\Http\Resource;
 
-use App\Models\Dialog\Dialog;
+use App\Bundles\User\Models\Dialog;
 use App\Repositories\DialogMessageRepository;
-use App\Services\Dialog\DialogMessageService;
+use App\Bundles\User\Services\DialogMessageService;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class DialogResource
@@ -15,16 +17,18 @@ use Illuminate\Http\Resources\Json\JsonResource;
  */
 class DialogResource extends JsonResource
 {
+    protected $messages;
+
+    public function __construct(Dialog $resource, LengthAwarePaginator $messages)
+    {
+        parent::__construct($resource);
+
+        $this->messages = $messages;
+    }
+
     public function toArray($request): array
     {
-        $interUser = $this->getInterUser();
-
-        $page = $this->getPage($request);
-
-        $messages = $this->messages()->latest('created_at')
-            ->paginate(10, ['*'], 'DialogView', $page);
-
-        DialogMessageService::readMessages($messages->items());
+        $interUser = $this->getInterUser(Auth::user());
 
         return [
             'id' => $this->id,
@@ -33,19 +37,11 @@ class DialogResource extends JsonResource
                 'full_name' => $interUser->getFullName(),
                 'avatar_url' => $interUser->getAvatarUrl(),
             ],
-            'messages' => DialogMessageResource::collection($messages),
+            'messages' => DialogMessageResource::collection($this->messages),
             'meta' => [
-                'total' => $messages->total(),
-                'last_page' => $messages->lastPage(),
+                'total' => $this->messages->total(),
+                'last_page' => $this->messages->lastPage(),
             ],
         ];
-    }
-
-    private function getPage(Request $request): int
-    {
-        $parse = explode("/", $request->getRequestUri());
-        $pageParse = explode('page-', end($parse));
-
-        return (int) end($pageParse);
     }
 }

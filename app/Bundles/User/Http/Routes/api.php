@@ -59,3 +59,22 @@ Route::group([
     Route::post('token/issue', 'Auth\AuthController@issueToken');
     Route::post('token/refresh', 'Auth\AuthController@refreshToken');
 });
+
+// Dialogs
+
+// API для для работы с диалогами
+
+Route::prefix('dialog-messages')->group(function () {
+    Route::put('{message}/read', 'DialogMessageController@read');
+    Route::post('create-by-dialog/{dialog}', 'DialogMessageController@createByDialog');
+});
+
+Route::apiResource('dialog-messages', 'DialogMessageController');
+
+Route::prefix('dialogs')->group(function () {
+    Route::get('user', 'DialogController@user');
+    Route::get('user/page-{page}', 'DialogController@user');
+    Route::get('{dialog}/page-{page}', 'DialogController@show');
+});
+
+Route::apiResource('dialogs', 'DialogController');

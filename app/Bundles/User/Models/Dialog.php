@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Dialog;
+namespace App\Bundles\User\Models;
 
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
@@ -27,13 +27,15 @@ class Dialog extends Model
     public const FIELD_TWO_USER_ID = 'two_user_id';
     public const FIELD_UPDATED_AT = 'updated_at';
 
+    public const RELATION_MESSAGES = 'messages';
+
     protected static function boot()
     {
         parent::boot();
 
         static::addGlobalScope('lastMessages', function (Builder $builder) {
-            $builder->with(['messages' => function (HasMany $builder) {
-                $builder->latest('created_at');
+            $builder->with([static::RELATION_MESSAGES => function (HasMany $builder) {
+                $builder->latest(DialogMessage::CREATED_AT);
             }]);
         });
     }
@@ -47,31 +49,28 @@ class Dialog extends Model
     }
 
     /**
-     * @return BelongsTo
+     * @codeCoverageIgnore
      */
     public function twoUser(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * @return User
-     */
-    public function getInterUser(): User
+    public function getInterUser(User $comparedUser): User
     {
-        $currentUserId = auth()->user()->id;
-        if ($this->one_user_id === $currentUserId) {
+        if ($this->one_user_id === $comparedUser->id) {
             return $this->twoUser;
         }
 
-        return $this->oneUser;
+        if ($this->two_user_id === $comparedUser->id) {
+            return $this->oneUser;
+        }
+
+        throw new \LogicException('Пользователь не учавствует в диалоге!');
     }
 
     /**
      * Учавствует ли $user в диалоге
-     *
-     * @param User $user
-     * @return bool
      */
     public function isTookPart(User $user): bool
     {
@@ -79,27 +78,15 @@ class Dialog extends Model
     }
 
     /**
-     * Учавствует ли авторизованный пользователь в диалоге
-     *
-     * @return bool
+     * НЕ учавствует ли $user в диалоге
      */
-    public function isTookPartCurrentUser()
+    public function isNotTookPart(User $user): bool
     {
-        return $this->isTookPart(auth()->user());
+        return ! $this->isTookPart($user);
     }
 
     /**
-     * Не учавствует ли авторизованный пользователь в диалоге
-     *
-     * @return bool
-     */
-    public function isNotTookPartCurrentUser()
-    {
-        return ! $this->isTookPart(auth()->user());
-    }
-
-    /**
-     * @return HasMany
+     * @codeCoverageIgnore
      */
     public function messages(): HasMany
     {
@@ -114,16 +101,6 @@ class Dialog extends Model
         $this->loadMissing('messages');
 
         return $this->messages->last();
-    }
-
-    /**
-     * Скрыть диалог для текущего пользователя
-     *
-     * @return $this
-     */
-    public function hideForCurrentUser(): self
-    {
-        return $this->hide(auth()->user());
     }
 
     /**

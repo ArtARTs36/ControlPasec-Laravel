@@ -2,8 +2,8 @@
 
 namespace App\Repositories;
 
-use App\Models\Dialog\Dialog;
-use App\Models\Dialog\DialogMessage;
+use App\Bundles\User\Models\Dialog;
+use App\Bundles\User\Models\DialogMessage;
 use App\User;
 use Illuminate\Support\Collection;
 
@@ -11,11 +11,9 @@ class DialogMessageRepository
 {
     /**
      * Получить последние 10 сообщений, полученные текущим пользователем
-     * @param User $user
-     * @param int $count
      * @return Collection|DialogMessage[]
      */
-    public static function findRecievedMessagesByUser(User $user, int $count = 10)
+    public function findRecievedMessagesByUser(User $user, int $count = 10): Collection
     {
         return $user->recievedDialogMessages()
             ->with([DialogMessage::RELATION_FROM_USER])
@@ -24,12 +22,7 @@ class DialogMessageRepository
             ->get();
     }
 
-    /**
-     * @param Dialog $dialog
-     * @param User $user
-     * @return DialogMessage|null
-     */
-    public static function getLastMessageOfDialogByUser(Dialog $dialog, User $user): ?DialogMessage
+    public function getLastMessageOfDialogByUser(Dialog $dialog, User $user): ?DialogMessage
     {
         return $dialog->messages()
             ->where(DialogMessage::FIELD_FROM_USER_ID, $user->id)

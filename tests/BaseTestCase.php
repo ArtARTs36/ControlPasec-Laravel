@@ -8,11 +8,14 @@ use App\User;
 use Faker\Factory;
 use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\TestResponse;
 use Illuminate\Support\Facades\DB;
 
 abstract class BaseTestCase extends TestCase
 {
+    use DatabaseTransactions;
+
     /** @var Faker|null */
     protected $faker = null;
 

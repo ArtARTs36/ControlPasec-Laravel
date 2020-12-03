@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Models\Dialog\DialogMessage;
+use App\Bundles\User\Models\DialogMessage;
 use App\Models\User\Permission;
 use App\Models\User\Role;
 use App\Models\User\UserNotification;

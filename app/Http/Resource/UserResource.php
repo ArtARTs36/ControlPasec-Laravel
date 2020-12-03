@@ -2,7 +2,7 @@
 
 namespace App\Http\Resource;
 
-use App\Services\Dialog\DialogMessageService;
+use App\Bundles\User\Services\DialogMessageService;
 use App\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;

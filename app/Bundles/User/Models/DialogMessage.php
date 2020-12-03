@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Dialog;
+namespace App\Bundles\User\Models;
 
 use App\Models\Traits\WithFieldIsRead;
 use App\User;
