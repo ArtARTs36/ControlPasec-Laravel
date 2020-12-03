@@ -2,7 +2,7 @@
 
 namespace App\Based\Events;
 
-use App\Events\BaseEvent;
+use App\Based\Events\BaseEvent;
 
 final class ExceptionNotified extends BaseEvent
 {

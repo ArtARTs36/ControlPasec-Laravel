@@ -3,7 +3,7 @@
 namespace App\Bundles\Landing\Events;
 
 use App\Bundles\Landing\Models\FeedBack;
-use App\Events\BaseEvent;
+use App\Based\Events\BaseEvent;
 
 final class FeedBackCreated extends BaseEvent
 {

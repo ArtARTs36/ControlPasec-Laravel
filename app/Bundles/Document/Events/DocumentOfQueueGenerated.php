@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Document\Events;
 
-use App\Events\BaseEvent;
+use App\Based\Events\BaseEvent;
 use App\Models\Document\Document;
 
 final class DocumentOfQueueGenerated extends BaseEvent

@@ -3,7 +3,7 @@
 namespace App\Bundles\TechSupport\Events;
 
 use App\Bundles\TechSupport\Models\TechSupportReport;
-use App\Events\BaseEvent;
+use App\Based\Events\BaseEvent;
 
 final class ReportCreated extends BaseEvent
 {
