@@ -1,23 +1,15 @@
 <?php
 
-namespace App\Services\ControlTime;
+namespace App\Bundles\Employee\Services;
 
 use App\Models\ControlTime\TimeReport;
 use App\Models\Document\DocumentType;
 use App\Bundles\Employee\Models\Employee;
 use App\Services\Document\DocumentCreator;
 
-/**
- * Class TimeReportService
- * @package App\Services\ControlTime
- */
 class TimeReportService
 {
     /**
-     * @param Employee $employee
-     * @param \DateTime $start
-     * @param \DateTime $end
-     * @return TimeReport
      * @throws \Throwable
      */
     public function create(Employee $employee, \DateTime $start, \DateTime $end): TimeReport

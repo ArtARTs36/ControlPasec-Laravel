@@ -5,7 +5,7 @@ namespace App\Http\Controllers\ControlTime;
 use App\Http\Controllers\Controller;
 use App\Http\Resource\DocumentResource;
 use App\Bundles\Employee\Models\Employee;
-use App\Services\ControlTime\TimeReportService;
+use App\Bundles\Employee\Services\TimeReportService;
 use App\Services\Document\DocumentBuilder;
 use Carbon\Carbon;
 

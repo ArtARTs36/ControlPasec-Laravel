@@ -66,7 +66,7 @@ $app->bind(
     \ArtARTs36\ShellCommand\ShellCommand::class
 );
 
-$app->singleton(\App\Services\ControlTime\TimeReportService::class);
+$app->singleton(\App\Bundles\Employee\Services\TimeReportService::class);
 
 /*
 |--------------------------------------------------------------------------
