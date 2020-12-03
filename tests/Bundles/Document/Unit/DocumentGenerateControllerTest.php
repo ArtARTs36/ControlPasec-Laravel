@@ -8,7 +8,10 @@ use Tests\BaseTestCase;
 
 class DocumentGenerateControllerTest extends BaseTestCase
 {
-    public function testGenerateManyTypes()
+    /**
+     * @covers \App\Http\Controllers\Document\DocumentGenerateController::generateManyTypes
+     */
+    public function testGenerateManyTypes(): void
     {
         $supply = $this->getRandomModel(Supply::class);
 
@@ -22,6 +25,8 @@ class DocumentGenerateControllerTest extends BaseTestCase
         ]);
 
         $decode = $this->decodeResponse($response);
+
+        $response->dump();
 
         $response->assertOk();
 

@@ -57,7 +57,7 @@ abstract class BaseTestCase extends TestCase
     protected function actingAsUserWithPermission(string $permission): void
     {
         /** @var Permission $permission */
-        $permission = Permission::findByName($permission);
+        $permission = Permission::findOrCreate($permission);
         $user = \factory(User::class)->create();
 
         DB::table('model_has_permissions')->insert([

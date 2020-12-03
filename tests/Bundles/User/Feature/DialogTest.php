@@ -21,9 +21,6 @@ final class DialogTest extends BaseTestCase
     {
         parent::setUp();
 
-        $this->seed(\RoleSeeder::class);
-        $this->seed(\UserSeeder::class);
-
         $this->admin = User::where('name', 'admin')->first();
         $this->simpleUser = User::query()->inRandomOrder()->where('email', '<>', $this->admin->email)->first();
     }

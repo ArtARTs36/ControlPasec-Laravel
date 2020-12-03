@@ -7,6 +7,7 @@ use App\Models\Document\Document;
 use App\Models\Supply\OneTForm;
 use App\Models\Supply\ProductTransportWaybill;
 use App\Models\Supply\QualityCertificate;
+use App\Models\Supply\ScoreForPayment;
 use App\Services\Document\DocumentCreator;
 
 class DocumentRepository
@@ -64,6 +65,7 @@ class DocumentRepository
             OneTForm::class => 'addOneTForms',
             ProductTransportWaybill::class => 'addProductTransportWaybills',
             QualityCertificate::class => 'addQualityCertificates',
+            ScoreForPayment::class => 'addScores',
         ];
 
         $method = $methods[$this->modelClass];

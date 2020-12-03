@@ -10,14 +10,6 @@ final class UserApiTest extends BaseTestCase
 {
     private const BASE_URL = '/api/users/';
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->seed(\RoleSeeder::class);
-        $this->seed(\PermissionSeeder::class);
-    }
-
     /**
      * @covers \App\Bundles\User\Http\Controllers\UserController::show
      */
@@ -30,6 +22,8 @@ final class UserApiTest extends BaseTestCase
         $user = factory(User::class)->create();
 
         //
+
+        $this->actingAsUserWithPermission(Permission::USERS_VIEW);
 
         $request($user)->assertOk();
     }
