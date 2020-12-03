@@ -4,10 +4,8 @@ namespace App\Providers;
 
 use App\Bundles\Contragent\Events\ExternalManagerCreated;
 use App\Bundles\Contragent\Listeners\ExternalManagerCreatedListener;
-use App\Bundles\Document\Events\DocumentOfQueueGenerated;
 use App\Based\Events\ExceptionNotified;
 use App\Bundles\TechSupport\Events\ReportCreated;
-use App\Listeners\DocumentOfQueueGenerateListener;
 use App\Based\Listeners\ExceptionNotifiedListener;
 use App\Bundles\TechSupport\Listeners\TechSupportReportCreatedListener;
 use App\Listeners\TotemTaskUpdatedListener;
@@ -25,9 +23,6 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         ReportCreated::class => [
             TechSupportReportCreatedListener::class,
-        ],
-        DocumentOfQueueGenerated::class => [
-            DocumentOfQueueGenerateListener::class,
         ],
         ExceptionNotified::class => [
             ExceptionNotifiedListener::class,
