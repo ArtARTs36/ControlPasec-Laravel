@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\Supply\ScoreForPayment;
-use App\Repositories\ScoreForPaymentRepository;
+use App\Bundles\Supply\Repositories\ScoreForPaymentRepository;
 
 /**
  * Class ScoreForPaymentService
@@ -11,6 +11,13 @@ use App\Repositories\ScoreForPaymentRepository;
  */
 class ScoreForPaymentService
 {
+    private $repository;
+
+    public function __construct(ScoreForPaymentRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     /**
      * Получить или создать счета по поставкам
      *
@@ -18,15 +25,15 @@ class ScoreForPaymentService
      * @return array
      * @throws \Exception
      */
-    public static function getOrCreateBySupplies(array $supplies): array
+    public function getOrCreateBySupplies(array $supplies): array
     {
-        $scores = ScoreForPaymentRepository::findBySupplies($supplies);
+        $scores = $this->repository->findBySupplies($supplies);
 
         $suppliesWithoutScore = array_diff($supplies, $scores->pluck('id')->all());
 
-        if (!empty($suppliesWithoutScore)) {
+        if (! empty($suppliesWithoutScore)) {
             foreach ($suppliesWithoutScore as $supply) {
-                $scores->push(ScoreForPayment::createBySupply($supply));
+                $scores->push($this->repository->createBySupply($supply));
             }
         }
 

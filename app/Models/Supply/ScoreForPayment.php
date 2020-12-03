@@ -6,17 +6,13 @@ use App\Based\Interfaces\ModelWithDocuments;
 use App\Models\Contract\Contract;
 use App\Models\Document\Document;
 use App\Models\Document\DocumentType;
-use App\Models\Supply\Supply;
 use App\Models\Traits\WithDocuments;
 use App\Models\Traits\WithOrderNumber;
 use App\Models\Traits\WithSupply;
 use App\Models\VariableDefinition;
-use App\Services\VariableDefinitionService;
 use Creatortsv\EloquentPipelinesModifier\WithModifier;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Query\Builder;
 
 /**
  * Class ScoreForPayment
@@ -28,8 +24,6 @@ use Illuminate\Database\Query\Builder;
  * @property Supply $supply
  * @property int $order_number
  * @property Document[] $documents
- *
- * @mixin Builder
  */
 final class ScoreForPayment extends Model implements ModelWithDocuments
 {
@@ -52,16 +46,11 @@ final class ScoreForPayment extends Model implements ModelWithDocuments
         self::FIELD_ORDER_NUMBER,
     ];
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function contract(): BelongsTo
     {
         return $this->belongsTo(Contract::class);
-    }
-
-    public static function createBySupply(Supply $supply): ScoreForPayment
-    {
-        return static::query()->create([
-            static::FIELD_SUPPLY_ID => $supply->id,
-            static::FIELD_DATE => $supply->planned_date,
-        ]);
     }
 }

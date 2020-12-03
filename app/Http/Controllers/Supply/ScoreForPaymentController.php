@@ -8,26 +8,29 @@ use App\Http\Requests\ScoreForPaymentRequest;
 use App\Http\Resource\DocumentResource;
 use App\Http\Responses\ActionResponse;
 use App\Models\Document\DocumentType;
-use App\Repositories\ScoreForPaymentRepository;
+use App\Bundles\Supply\Repositories\ScoreForPaymentRepository;
 use App\Models\Supply\ScoreForPayment;
 use App\Services\Document\DocumentService;
 use App\Services\Document\DocumentCreator;
 use App\Services\ScoreForPaymentService;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Http\Request;
 use Throwable;
 
-class ScoreForPaymentController extends Controller
+final class ScoreForPaymentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @param int $page
-     * @return LengthAwarePaginator
-     */
+    private $repository;
+
+    private $service;
+
+    public function __construct(ScoreForPaymentRepository $repository, ScoreForPaymentService $service)
+    {
+        $this->repository = $repository;
+        $this->service = $service;
+    }
+
     public function index(int $page = 1): LengthAwarePaginator
     {
-        return ScoreForPaymentRepository::paginate($page);
+        return $this->repository->paginate($page);
     }
 
     /**
@@ -90,16 +93,17 @@ class ScoreForPaymentController extends Controller
     /**
      * Создать документ из нескольких счетов
      *
-     * @param Request $request
+     * @param ManySuppliesRequest $request
      * @return DocumentResource
      * @throws Throwable
+     * @throws \ReflectionException
      */
     public function checkOrCreateDocumentOfManyScores(ManySuppliesRequest $request)
     {
         $supplies = $request->get(ManySuppliesRequest::FIELD_SUPPLIES);
 
         $document = DocumentCreator::getInstance(DocumentType::SCORES_FOR_PAYMENTS_ID)
-            ->addScores(ScoreForPaymentService::getOrCreateBySupplies($supplies))
+            ->addScores($this->service->getOrCreateBySupplies($supplies))
             ->get();
 
         DocumentService::buildWithSpeedAnalyse($document);

@@ -11,8 +11,8 @@ trait WithOrderNumber
      */
     public function initOrderNumber(): void
     {
-        if (!$this->order_number) {
-            $this->order_number = VariableDefinitionService::inc(self::ORDER_NUMBER_TYPE);
+        if (! $this->order_number) {
+            $this->order_number = VariableDefinitionService::inc(static::ORDER_NUMBER_TYPE);
         }
     }
 

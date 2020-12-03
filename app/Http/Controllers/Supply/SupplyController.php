@@ -15,7 +15,7 @@ use App\Repositories\SupplyRepository;
 use App\Services\SupplyService;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class SupplyController extends Controller
+final class SupplyController extends Controller
 {
     public const PERMISSIONS = [
         'index' => Permission::SUPPLIES_VIEW,
@@ -25,21 +25,26 @@ class SupplyController extends Controller
         'destroy' => Permission::SUPPLIES_DELETE,
     ];
 
+    private $repository;
+
+    private $service;
+
+    public function __construct(SupplyRepository $repository, SupplyService $service)
+    {
+        $this->repository = $repository;
+        $this->service = $service;
+    }
+
     /**
      * Получить список поставок
-     *
-     * @return AnonymousResourceCollection
      */
     public function index(): AnonymousResourceCollection
     {
-        return SupplyResource::collection(SupplyRepository::paginate());
+        return SupplyResource::collection($this->repository->paginate());
     }
 
     /**
      * Создать поставку
-     *
-     * @param StoreSupply $request
-     * @return ActionResponse
      */
     public function store(StoreSupply $request): ActionResponse
     {
@@ -47,41 +52,32 @@ class SupplyController extends Controller
         $supply->supplier_id = $request->get('supplier_id', SupplierHelper::getDefaultId());
         $supply->save();
 
-        SupplyService::checkProductsInSupply($request, $supply->id);
+        $this->service->checkProductsInSupply($request->toArray(), $supply->id);
 
         return new ActionResponse(true, $supply);
     }
 
     /**
      * Открыть поставку
-     *
-     * @param Supply $supply
-     * @return SupplyResource
      */
     public function show(Supply $supply): SupplyResource
     {
-        return new SupplyResource(SupplyRepository::fullLoad($supply));
+        return new SupplyResource($this->repository->fullLoad($supply));
     }
 
     /**
      * Обновить данные о поставке
-     *
-     * @param StoreSupply $request
-     * @param Supply $supply
-     * @return ActionResponse
      */
     public function update(StoreSupply $request, Supply $supply): ActionResponse
     {
         $this->updateModel($request, $supply);
 
-        SupplyService::checkProductsInSupply($request->all());
+        $this->service->checkProductsInSupply($request->all());
 
         return new ActionResponse(true, $supply);
     }
 
     /**
-     * @param Supply $supply
-     * @return ActionResponse
      * @throws \Exception
      */
     public function destroy(Supply $supply)
@@ -95,15 +91,11 @@ class SupplyController extends Controller
      */
     public function findByCustomer(int $customerId): ActionResponse
     {
-        $supplies = SupplyRepository::findByCustomer($customerId);
+        $supplies = $this->repository->findByCustomer($customerId);
 
         return new ActionResponse($supplies->isNotEmpty(), $supplies);
     }
 
-    /**
-     * @param StoreManySupply $request
-     * @return ActionResponse
-     */
     public function storeMany(StoreManySupply $request, Creator $creator): ActionResponse
     {
         return $creator->many($request->getItems(), $request->getOptions());

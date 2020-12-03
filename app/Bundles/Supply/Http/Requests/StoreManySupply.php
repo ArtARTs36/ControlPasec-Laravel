@@ -5,10 +5,6 @@ namespace App\Bundles\Supply\Http\Requests;
 use App\Models\Supply\Supply;
 use Illuminate\Foundation\Http\FormRequest;
 
-/**
- * Class SupplyStoreManyRequest
- * @package App\Http\Requests\Supply
- */
 class StoreManySupply extends FormRequest
 {
     public function authorize(): bool

@@ -1,23 +1,25 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Bundles\Supply\Repositories;
 
+use App\Based\Contracts\Repository;
 use App\Models\Supply\ScoreForPayment;
 use App\Models\Supply\Supply;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
-/**
- * Class ScoreForPaymentRepository
- * @package App\Repositories
- */
-class ScoreForPaymentRepository
+class ScoreForPaymentRepository extends Repository
 {
+    protected function getModelClass(): string
+    {
+        return ScoreForPayment::class;
+    }
+
     /**
      * @param int $page
      * @return LengthAwarePaginator
      */
-    public static function paginate(int $page = 1): LengthAwarePaginator
+    public function paginate(int $page = 1): LengthAwarePaginator
     {
         return ScoreForPayment::modify()->with([
             ScoreForPayment::RELATION_SUPPLY => function ($query) {
@@ -31,11 +33,11 @@ class ScoreForPaymentRepository
     }
 
     /**
-     * @param array $supplies
-     * @param array $fields
-     * @return Collection
+     * @param array<int> $supplies
+     * @param array<string> $fields
+     * @return Collection<ScoreForPayment>
      */
-    public static function findBySupplies(
+    public function findBySupplies(
         array $supplies,
         array $fields = ['id', ScoreForPayment::FIELD_SUPPLY_ID]
     ): Collection {
@@ -44,5 +46,13 @@ class ScoreForPaymentRepository
             ->latest('id')
             ->whereIn(ScoreForPayment::FIELD_SUPPLY_ID, $supplies)
             ->get($fields);
+    }
+
+    public function createBySupply(Supply $supply): ScoreForPayment
+    {
+        return $this->newQuery()->create([
+            ScoreForPayment::FIELD_SUPPLY_ID => $supply->id,
+            ScoreForPayment::FIELD_DATE => $supply->planned_date,
+        ]);
     }
 }

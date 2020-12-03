@@ -2,19 +2,24 @@
 
 namespace App\Repositories;
 
+use App\Based\Contracts\Repository;
 use App\Models\Supply\Supply;
 use App\Models\Supply\SupplyProduct;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
 
-class SupplyRepository
+class SupplyRepository extends Repository
 {
     /**
-     * @param int $page
-     * @return LengthAwarePaginator
+     * @todo
      */
-    public static function paginate(int $page = null): LengthAwarePaginator
+    protected function getModelClass(): string
+    {
+        return Supply::class;
+    }
+
+    public function paginate(int $page = 1): LengthAwarePaginator
     {
         return Supply::modify()
             ->with([
@@ -26,11 +31,7 @@ class SupplyRepository
             ->paginate(null, ['*'], null, $page);
     }
 
-    /**
-     * @param Supply $supply
-     * @return Supply
-     */
-    public static function fullLoad(Supply $supply): Supply
+    public function fullLoad(Supply $supply): Supply
     {
         return $supply->load([
             Supply::RELATION_PRODUCTS => function (HasMany $query) {
@@ -39,13 +40,10 @@ class SupplyRepository
         ]);
     }
 
-    /**
-     * @param int $customerId
-     * @return Collection
-     */
-    public static function findByCustomer(int $customerId): Collection
+    public function findByCustomer(int $customerId): Collection
     {
-        return Supply::query()
+        return $this
+            ->newQuery()
             ->where(Supply::FIELD_CUSTOMER_ID, $customerId)
             ->get();
     }

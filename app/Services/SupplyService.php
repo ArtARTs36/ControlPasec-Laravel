@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Bundles\Contragent\Models\Contragent;
 use App\Models\Supply\Supply;
 use App\Models\Supply\SupplyProduct;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
 /**
@@ -42,27 +43,29 @@ final class SupplyService
         return $totalPrice;
     }
 
-    public static function checkProductsInSupply($data, $supplyId = null)
+    public function checkProductsInSupply(array $data, int $supplyId = null)
     {
         $supplyId = $supplyId ?? $data['id'];
 
-        if (!isset($data['products'])) {
+        if (! isset($data['products'])) {
             return null;
         }
 
+        $supplyProducts = SupplyProduct::query()
+            ->findMany(Arr::pluck($data['products'], 'id'))
+            ->pluck(null, 'id');
+
         foreach ($data['products'] as $productData) {
-            if (!isset($productData['id'])) {
+            if (! isset($productData['id'])) {
                 $product = new SupplyProduct();
-                $product->supply_id = $supplyId;
                 $product->fill($productData);
+                $product->supply_id = $supplyId;
                 $product->save();
 
                 continue;
             }
 
-            SupplyProduct::query()
-                ->find($productData['id'])
-                ->update($productData);
+            $supplyProducts[$productData['id']]->update($productData);
         }
     }
 

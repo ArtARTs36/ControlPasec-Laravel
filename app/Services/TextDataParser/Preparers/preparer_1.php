@@ -1,7 +1,7 @@
 <?php
 
 use App\Bundles\Contragent\Models\Contragent;
-use App\Models\Supply\ScoreForPayment;
+use App\Bundles\Supply\Repositories\ScoreForPaymentRepository;
 use App\Models\VariableDefinition;
 use App\Services\Supply\SupplyProductService;
 use App\Services\SupplyService;
@@ -11,6 +11,8 @@ use App\Services\VariableDefinitionService;
 
 $result = [];
 $supplier = Contragent::find(env('ONE_SUPPLIER_ID'));
+
+$repository = app(ScoreForPaymentRepository::class);
 
 /** @var array $item */
 foreach ($items as $item) {
@@ -24,7 +26,7 @@ foreach ($items as $item) {
     $supplyProduct->quantity = $item[5];
     $supplyProduct->save();
 
-    $score = ScoreForPayment::createBySupply($supply);
+    $score = $repository->createBySupply($supply);
 
     $result[] = [
         'customer' => $customer,

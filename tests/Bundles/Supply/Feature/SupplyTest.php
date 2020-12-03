@@ -99,7 +99,7 @@ class SupplyTest extends BaseTestCase
                 ->where(Supply::FIELD_CUSTOMER_ID, $supplyData[Supply::FIELD_CUSTOMER_ID])
                 ->first();
 
-            self::assertTrue($supply->exists);
+            self::assertNotNull($supply);
 
             self::assertEquals(1, $supply->scoreForPayments()->count());
 
