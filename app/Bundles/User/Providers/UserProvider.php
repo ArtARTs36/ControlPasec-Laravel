@@ -11,6 +11,7 @@ final class UserProvider extends BundleProvider
     public function register()
     {
         $this->app->register(RouteProvider::class);
+        $this->app->register(EventProvider::class);
         $this->registerFactories();
     }
 }

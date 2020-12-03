@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Listeners;
+namespace App\Bundles\User\Listeners;
 
 use App\Bundles\User\Events\UserRegistered;
 use App\Bundles\User\Models\UserNotificationType;
