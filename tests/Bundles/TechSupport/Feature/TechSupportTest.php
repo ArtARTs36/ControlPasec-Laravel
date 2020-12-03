@@ -2,11 +2,12 @@
 
 namespace Tests\Bundles\TechSupport\Feature;
 
+use App\Bundles\TechSupport\Events\ReportCreated;
 use App\Bundles\TechSupport\Models\TechSupportReport;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\BaseTestCase;
 
-class TechSupportTest extends BaseTestCase
+final class TechSupportTest extends BaseTestCase
 {
     use WithFaker;
 
@@ -24,6 +25,8 @@ class TechSupportTest extends BaseTestCase
      */
     public function testStoreByGuest(): void
     {
+        $this->expectsEvents(ReportCreated::class);
+
         $report = [
             TechSupportReport::FIELD_AUTHOR_CONTACT => $this->faker()->phoneNumber,
             TechSupportReport::FIELD_AUTHOR_TITLE => $this->faker()->name,
@@ -35,8 +38,13 @@ class TechSupportTest extends BaseTestCase
         $response->assertCreated();
     }
 
+    /**
+     * @covers \App\Bundles\TechSupport\Http\Controllers\TechSupportReportController::store
+     */
     public function testStoreByUser(): void
     {
+        $this->expectsEvents(ReportCreated::class);
+
         $this->actingAsRandomUser();
 
         $report = [
@@ -48,6 +56,9 @@ class TechSupportTest extends BaseTestCase
         $response->assertCreated();
     }
 
+    /**
+     * @covers \App\Bundles\TechSupport\Http\Controllers\TechSupportReportController::store
+     */
     public function testShow(): void
     {
         $report = factory(TechSupportReport::class)->create();

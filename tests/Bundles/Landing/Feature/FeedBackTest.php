@@ -35,8 +35,6 @@ final class FeedBackTest extends BaseTestCase
 
         $response = $this->postJson(static::BASE_URL, $data);
 
-        $response->dump();
-
         $response->assertOk();
 
         $decode = $this->decodeResponse($response);

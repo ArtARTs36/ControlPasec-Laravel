@@ -2,7 +2,7 @@
 
 namespace App\Bundles\User\Support;
 
-use App\Bundles\User\Models\UserNotification;
+use App\Bundles\User\Repositories\UserNotificationRepository;
 use App\Bundles\User\Repositories\UserNotificationTypeRepository;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
@@ -10,16 +10,19 @@ use Illuminate\Support\Arr;
 
 class UserMessageNotifier
 {
+    private $typeRepository;
+
     private $repository;
 
-    public function __construct(UserNotificationTypeRepository $repository)
+    public function __construct(UserNotificationTypeRepository $typeRepository, UserNotificationRepository $repository)
     {
+        $this->typeRepository = $typeRepository;
         $this->repository = $repository;
     }
 
     public function notify(string $type, string $message, Model $aboutModel): void
     {
-        $type = $this->repository->findByName($type);
+        $type = $this->typeRepository->findByName($type);
 
         if ($type === null) {
             throw new \LogicException('Не верно задан тип уведомления!');
