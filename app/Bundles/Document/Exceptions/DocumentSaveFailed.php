@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exceptions;
+namespace App\Bundles\Document\Exceptions;
 
 use App\Models\Document\Document;
 use Throwable;
@@ -12,7 +12,7 @@ use Throwable;
  *
  * @package DocumentBundle\Exception
  */
-class DocumentFailedToSaveException extends \Exception
+class DocumentSaveFailed extends \Exception
 {
     public function __construct(Document $document, int $code = 0, Throwable $previous = null)
     {
