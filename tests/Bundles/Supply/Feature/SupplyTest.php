@@ -60,6 +60,10 @@ class SupplyTest extends BaseTestCase
 
     public function testStoreMany(): void
     {
+        $request = function (array $data = []) {
+            return $this->postJson(static::API_URL . '/store-many', $data);
+        };
+
         $data = [
             'options' => [
                 CreateScoreForPayment::OPTION_NAME,
@@ -82,7 +86,7 @@ class SupplyTest extends BaseTestCase
             ];
         }
 
-        $response = $this->postJson(static::API_URL . '/store-many', $data)
+        $response = $request($data)
             ->assertOk()
             ->decodeResponseJson();
 

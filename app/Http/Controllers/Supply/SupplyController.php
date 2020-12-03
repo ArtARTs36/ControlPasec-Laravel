@@ -11,7 +11,7 @@ use App\Bundles\Supply\Http\Requests\StoreManySupply;
 use App\Http\Responses\ActionResponse;
 use App\Models\Supply\Supply;
 use App\Bundles\User\Models\Permission;
-use App\Repositories\SupplyRepository;
+use App\Bundles\Supply\Repositories\SupplyRepository;
 use App\Services\SupplyService;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
