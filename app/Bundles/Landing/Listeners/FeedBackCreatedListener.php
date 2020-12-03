@@ -4,10 +4,6 @@ namespace App\Bundles\Landing\Listeners;
 
 use App\Bundles\Landing\Events\FeedBackCreated;
 use App\Bundles\Landing\Support\FeedBackNotifier;
-use App\Bundles\User\Models\UserNotificationType;
-use ArtARTs36\PushAllSender\Interfaces\PusherInterface;
-use ArtARTs36\PushAllSender\Push;
-use App\Support\UserNotificator;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 final class FeedBackCreatedListener implements ShouldQueue

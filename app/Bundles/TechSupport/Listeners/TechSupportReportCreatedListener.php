@@ -6,16 +6,19 @@ use App\Bundles\TechSupport\Events\ReportCreated;
 use App\Bundles\User\Models\UserNotificationType;
 use ArtARTs36\PushAllSender\Interfaces\PusherInterface;
 use ArtARTs36\PushAllSender\Push;
-use App\Support\UserNotificator;
+use App\Bundles\User\Support\UserMessageNotifier;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 final class TechSupportReportCreatedListener implements ShouldQueue
 {
     private $pusher;
 
-    public function __construct(PusherInterface $pusher)
+    private $userNotifier;
+
+    public function __construct(PusherInterface $pusher, UserMessageNotifier $userNotifier)
     {
         $this->pusher = $pusher;
+        $this->userNotifier = $userNotifier;
     }
 
     /**
@@ -29,6 +32,6 @@ final class TechSupportReportCreatedListener implements ShouldQueue
 
         $this->pusher->push(new Push('Тех. поддержка: '. $event->getReport()->id, $message));
 
-        UserNotificator::notify(UserNotificationType::TECH_SUPPORT_REPORT_CREATED, $message, $event->getReport());
+        $this->userNotifier->notify(UserNotificationType::TECH_SUPPORT_REPORT_CREATED, $message, $event->getReport());
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Based\Contracts;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 abstract class Repository
 {
@@ -21,5 +22,12 @@ abstract class Repository
     protected function newQuery(): Builder
     {
         return $this->modelClass::query();
+    }
+
+    protected function model(): Model
+    {
+        $class = $this->modelClass;
+
+        return new $class();
     }
 }

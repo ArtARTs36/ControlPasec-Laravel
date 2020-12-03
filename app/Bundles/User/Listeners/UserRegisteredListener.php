@@ -6,17 +6,19 @@ use App\Bundles\User\Events\UserRegistered;
 use App\Bundles\User\Models\UserNotificationType;
 use ArtARTs36\PushAllSender\Interfaces\PusherInterface;
 use ArtARTs36\PushAllSender\Push;
-use App\Support\UserNotificator;
+use App\Bundles\User\Support\UserMessageNotifier;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Support\Facades\App;
 
 final class UserRegisteredListener implements ShouldQueue
 {
     private $pusher;
 
-    public function __construct(PusherInterface $pusher)
+    private $userNotifier;
+
+    public function __construct(PusherInterface $pusher, UserMessageNotifier $userNotifier)
     {
         $this->pusher = $pusher;
+        $this->userNotifier = $userNotifier;
     }
 
     /**
@@ -30,6 +32,6 @@ final class UserRegisteredListener implements ShouldQueue
 
         $this->pusher->push(new Push('Заявка на регистрацию', $message));
 
-        UserNotificator::notify(UserNotificationType::USER_REGISTERED, $message, $event->user);
+        $this->userNotifier->notify(UserNotificationType::USER_REGISTERED, $message, $event->user);
     }
 }

@@ -4,7 +4,7 @@ namespace App\Bundles\Landing\Support;
 
 use App\Bundles\Landing\Models\FeedBack;
 use App\Bundles\User\Models\UserNotificationType;
-use App\Support\UserNotificator;
+use App\Bundles\User\Support\UserMessageNotifier;
 use ArtARTs36\PushAllSender\Interfaces\PusherInterface;
 use ArtARTs36\PushAllSender\Push;
 
@@ -12,9 +12,12 @@ class FeedBackNotifier
 {
     protected $pusher;
 
-    public function __construct(PusherInterface $pusher)
+    protected $userNotifier;
+
+    public function __construct(PusherInterface $pusher, UserMessageNotifier $userNotifier)
     {
         $this->pusher = $pusher;
+        $this->userNotifier = $userNotifier;
     }
 
     /**
@@ -31,6 +34,6 @@ class FeedBackNotifier
             new Push('Обратная связь: '. $feedBack->id, $message)
         );
 
-        UserNotificator::notify(UserNotificationType::LANDING_FEED_BACK_CREATED, $message, $feedBack);
+        $this->userNotifier->notify(UserNotificationType::LANDING_FEED_BACK_CREATED, $message, $feedBack);
     }
 }

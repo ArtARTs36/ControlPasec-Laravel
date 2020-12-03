@@ -4,7 +4,7 @@ namespace App\Bundles\Document\Support;
 
 use App\Bundles\User\Models\UserNotificationType;
 use App\Models\Document\Document;
-use App\Support\UserNotificator;
+use App\Bundles\User\Support\UserMessageNotifier;
 use ArtARTs36\PushAllSender\Interfaces\PusherInterface;
 use ArtARTs36\PushAllSender\Push;
 
@@ -12,9 +12,12 @@ class DocumentNotifier
 {
     protected $pusher;
 
-    public function __construct(PusherInterface $pusher)
+    protected $userNotifier;
+
+    public function __construct(PusherInterface $pusher, UserMessageNotifier $userNotifier)
     {
         $this->pusher = $pusher;
+        $this->userNotifier = $userNotifier;
     }
 
     /**
@@ -31,6 +34,6 @@ class DocumentNotifier
             new Push('Документ '. $document->title . ' готов', $message)
         );
 
-        UserNotificator::notify(UserNotificationType::DOCUMENT_OF_QUEUE_GENERATED, $message, $document);
+        $this->userNotifier->notify(UserNotificationType::DOCUMENT_OF_QUEUE_GENERATED, $message, $document);
     }
 }
