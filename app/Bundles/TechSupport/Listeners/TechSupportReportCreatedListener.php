@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Listeners;
+namespace App\Bundles\TechSupport\Listeners;
 
 use App\Events\TechSupportReportCreated;
 use App\Models\User\UserNotificationType;
