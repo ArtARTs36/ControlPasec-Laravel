@@ -35,7 +35,7 @@ jobs:
     - name: Directory Permissions
       run: chmod -R 777 storage bootstrap/cache
     - name: Execute tests (Unit and Feature tests) via PHPUnit
-      run: vendor/phpunit/phpunit/phpunit --group=BaseTest
+      run: vendor/phpunit/phpunit/phpunit
     - name: Deploy
       uses: appleboy/ssh-action@master
       with:
