@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Resource;
+namespace App\Bundles\User\Http\Resources;
 
 use App\Bundles\User\Services\DialogMessageService;
 use App\User;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 

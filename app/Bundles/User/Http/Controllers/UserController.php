@@ -2,10 +2,10 @@
 
 namespace App\Bundles\User\Http\Controllers;
 
+use App\Bundles\User\Http\Resources\UserResource;
 use App\Http\Actions\UserMeAction;
 use App\Http\Controllers\Controller;
 use App\Bundles\User\Http\Requests\StoreUser;
-use App\Http\Resource\UserResource;
 use App\Http\Responses\ActionResponse;
 use App\Bundles\User\Models\Permission;
 use App\Bundles\User\Models\Role;

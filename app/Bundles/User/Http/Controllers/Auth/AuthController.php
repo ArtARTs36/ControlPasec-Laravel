@@ -2,10 +2,10 @@
 
 namespace App\Bundles\User\Http\Controllers\Auth;
 
+use App\Bundles\User\Http\Resources\UserResource;
 use App\Http\Actions\UserMeAction;
 use App\Http\Controllers\Controller;
 use App\Bundles\User\Http\Requests\AuthRequest;
-use App\Http\Resource\UserResource;
 use App\Bundles\User\Repositories\UserRepository;
 use App\Services\Jwt;
 use App\User;

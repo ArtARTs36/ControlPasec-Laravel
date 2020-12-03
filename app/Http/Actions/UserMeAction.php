@@ -2,7 +2,7 @@
 
 namespace App\Http\Actions;
 
-use App\Http\Resource\UserResource;
+use App\Bundles\User\Http\Resources\UserResource;
 use App\User;
 
 class UserMeAction

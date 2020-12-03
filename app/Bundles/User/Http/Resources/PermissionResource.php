@@ -1,22 +1,21 @@
 <?php
 
-namespace App\Http\Resource;
+namespace App\Bundles\User\Http\Resources;
 
-use App\Bundles\User\Models\Role;
+use App\Bundles\User\Models\Permission;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * Class RoleResource
- * @mixin Role
- * @extends JsonResource<Role>
+ * Class PermissionResource
+ * @mixin Permission
+ * @extends JsonResource<Permission>
  */
-class RoleResource extends JsonResource
+class PermissionResource extends JsonResource
 {
     public function toArray($request): array
     {
         return [
             'id' => $this->id,
-            'title' => $this->title,
             'name' => $this->name,
         ];
     }
