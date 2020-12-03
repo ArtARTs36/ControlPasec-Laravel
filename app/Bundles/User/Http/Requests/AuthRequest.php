@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Bundles\User\Http\Requests;
 
+use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
@@ -11,14 +12,11 @@ use Illuminate\Foundation\Http\FormRequest;
  */
 class AuthRequest extends FormRequest
 {
-    /**
-     * @return array
-     */
-    public function rules()
+    public function rules(): array
     {
         return [
-            'email' => 'required|string|email',
-            'password' => 'required|string',
+            User::FIELD_EMAIL => 'required|string|email',
+            User::FIELD_PASSWORD => 'required|string',
         ];
     }
 }

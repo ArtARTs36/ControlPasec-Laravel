@@ -4,7 +4,7 @@ namespace App\Bundles\User\Http\Controllers\Auth;
 
 use App\Http\Actions\UserMeAction;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AuthRequest;
+use App\Bundles\User\Http\Requests\AuthRequest;
 use App\Http\Resource\UserResource;
 use App\Repositories\UserRepository;
 use App\Services\Jwt;

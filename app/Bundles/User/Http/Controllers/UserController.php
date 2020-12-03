@@ -4,7 +4,7 @@ namespace App\Bundles\User\Http\Controllers;
 
 use App\Http\Actions\UserMeAction;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UserRequest;
+use App\Bundles\User\Http\Requests\StoreUser;
 use App\Http\Resource\UserResource;
 use App\Http\Responses\ActionResponse;
 use App\Models\User\Permission;
@@ -77,20 +77,20 @@ final class UserController extends Controller
     }
 
     /**
-     * @param UserRequest $request
+     * @param StoreUser $request
      * @param User $user
      * @return ActionResponse
      */
-    public function update(UserRequest $request, User $user): ActionResponse
+    public function update(StoreUser $request, User $user): ActionResponse
     {
         return new ActionResponse($this->updateModel($request, $user), new UserResource($user));
     }
 
     /**
-     * @param UserRequest $request
+     * @param StoreUser $request
      * @return ActionResponse
      */
-    public function store(UserRequest $request): ActionResponse
+    public function store(StoreUser $request): ActionResponse
     {
         return new ActionResponse(true, $this->repository->create($request->toArray()));
     }
