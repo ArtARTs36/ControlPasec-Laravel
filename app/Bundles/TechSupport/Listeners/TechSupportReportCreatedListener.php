@@ -2,7 +2,7 @@
 
 namespace App\Bundles\TechSupport\Listeners;
 
-use App\Events\TechSupportReportCreated;
+use App\Bundles\TechSupport\Events\ReportCreated;
 use App\Bundles\User\Models\UserNotificationType;
 use ArtARTs36\PushAllSender\Interfaces\PusherInterface;
 use ArtARTs36\PushAllSender\Push;
@@ -21,14 +21,14 @@ final class TechSupportReportCreatedListener implements ShouldQueue
     /**
      * @throws \Throwable
      */
-    public function handle(TechSupportReportCreated $event): void
+    public function handle(ReportCreated $event): void
     {
         $message = view('messages/tech_support_report_created', [
-            'report' => $event->report
+            'report' => $event->getReport(),
         ])->render();
 
-        $this->pusher->push(new Push('Тех. поддержка: '. $event->report->id, $message));
+        $this->pusher->push(new Push('Тех. поддержка: '. $event->getReport()->id, $message));
 
-        UserNotificator::notify(UserNotificationType::TECH_SUPPORT_REPORT_CREATED, $message, $event->report);
+        UserNotificator::notify(UserNotificationType::TECH_SUPPORT_REPORT_CREATED, $message, $event->getReport());
     }
 }

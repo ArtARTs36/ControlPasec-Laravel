@@ -2,7 +2,7 @@
 
 namespace App\Bundles\TechSupport\Http\Controllers;
 
-use App\Events\TechSupportReportCreated;
+use App\Bundles\TechSupport\Events\ReportCreated;
 use App\Http\Controllers\Controller;
 use App\Bundles\TechSupport\Http\Requests\StoreReport;
 use App\Bundles\TechSupport\Http\Resources\ReportResource;
@@ -35,7 +35,7 @@ class TechSupportReportController extends Controller
             TechSupportReport::FIELD_AUTHOR_CONTACT => $request->get(TechSupportReport::FIELD_AUTHOR_CONTACT),
         ]);
 
-        event(new TechSupportReportCreated($report));
+        event(new ReportCreated($report));
 
         return new ReportResource($report);
     }
