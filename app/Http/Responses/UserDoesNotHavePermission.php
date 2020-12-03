@@ -2,7 +2,7 @@
 
 namespace App\Http\Responses;
 
-use App\Models\User\Permission;
+use App\Bundles\User\Models\Permission;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 

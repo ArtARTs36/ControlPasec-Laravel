@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Bundles\Product\Http\Requests\StoreProduct;
 use App\Http\Responses\ActionResponse;
 use App\Bundles\Product\Models\Product;
-use App\Models\User\Permission;
+use App\Bundles\User\Models\Permission;
 
 final class ProductController extends Controller
 {

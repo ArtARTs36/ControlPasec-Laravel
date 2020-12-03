@@ -3,7 +3,7 @@
 namespace App\Bundles\Vocab\Http\Controllers;
 
 use App\Bundles\Vocab\Http\Requests\StoreVocabWord;
-use App\Models\User\Permission;
+use App\Bundles\User\Models\Permission;
 use App\Bundles\Vocab\Models\VocabWord;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;

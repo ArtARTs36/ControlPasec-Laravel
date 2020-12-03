@@ -2,7 +2,7 @@
 
 namespace Tests\Bundles\User\Feature;
 
-use App\Models\User\Role;
+use App\Bundles\User\Models\Role;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\BaseTestCase;
 

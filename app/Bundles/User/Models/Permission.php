@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\User;
+namespace App\Bundles\User\Models;
 
 use App\User;
 use Illuminate\Database\Query\Builder;

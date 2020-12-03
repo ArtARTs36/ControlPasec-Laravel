@@ -3,7 +3,7 @@
 namespace App\Bundles\User\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\User\Permission;
+use App\Bundles\User\Models\Permission;
 use App\Repositories\PermissionRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 

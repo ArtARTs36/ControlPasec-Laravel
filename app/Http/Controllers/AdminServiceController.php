@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resource\AdminService\AdminServiceRedirectResource;
 use App\Models\AdminService;
-use App\Models\User\Role;
+use App\Bundles\User\Models\Role;
 use Illuminate\Http\Request;
 
 class AdminServiceController extends Controller

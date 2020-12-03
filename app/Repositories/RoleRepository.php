@@ -3,7 +3,7 @@
 namespace App\Repositories;
 
 use App\Based\Contracts\Repository;
-use App\Models\User\Role;
+use App\Bundles\User\Models\Role;
 use Illuminate\Database\Eloquent\Collection;
 
 final class RoleRepository extends Repository

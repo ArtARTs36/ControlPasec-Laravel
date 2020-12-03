@@ -6,7 +6,7 @@ use App\Bundles\Contragent\Models\Contragent;
 use App\Bundles\Product\Models\Product;
 use App\Models\Supply\Supply;
 use App\Models\Supply\SupplyProduct;
-use App\Models\User\Permission;
+use App\Bundles\User\Models\Permission;
 use App\Models\Vocab\VocabQuantityUnit;
 use App\Services\Supply\SupplyCreator;
 use Illuminate\Http\Response;

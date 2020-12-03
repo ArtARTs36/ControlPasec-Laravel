@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Vocab;
 
 use App\Http\Controllers\Controller;
 use App\Http\Responses\ActionResponse;
-use App\Models\User\Permission;
+use App\Bundles\User\Models\Permission;
 use App\Models\Vocab\VocabGosStandard;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;

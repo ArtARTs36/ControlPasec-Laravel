@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\User\UserNotificationType;
+use App\Bundles\User\Models\UserNotificationType;
 
 class UserNotificationTypeRepository
 {

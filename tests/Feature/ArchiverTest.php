@@ -17,7 +17,7 @@ class ArchiverTest extends BaseTestCase
         $zipper = new Zipper();
 
         $archive = $zipper->compressDirectory(
-            app_path('Console'),
+            app_path('Based/Console'),
             'test.zip'
         );
 
@@ -28,7 +28,7 @@ class ArchiverTest extends BaseTestCase
         //
 
         $archive = $zipper->compress(
-            [app_path('Console/Kernel.php')],
+            [app_path('Based/Console/Kernel.php')],
             'test2.zip'
         );
 

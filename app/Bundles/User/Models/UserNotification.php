@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\User;
+namespace App\Bundles\User\Models;
 
 use App\Models\Traits\WithFieldIsRead;
 use App\User;
@@ -29,11 +29,17 @@ class UserNotification extends Model
     public const FIELD_IS_READ = 'is_read';
     public const FIELD_CREATED_AT = 'created_at';
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function type(): BelongsTo
     {
         return $this->belongsTo(UserNotificationType::class);

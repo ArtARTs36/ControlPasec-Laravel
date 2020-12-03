@@ -2,7 +2,7 @@
 
 namespace Tests\Bundles\Vocab\Feature;
 
-use App\Models\User\Permission;
+use App\Bundles\User\Models\Permission;
 use App\Bundles\Vocab\Models\VocabWord;
 use Tests\BaseTestCase;
 

@@ -3,7 +3,7 @@
 namespace App\Listeners;
 
 use App\Bundles\Landing\Events\FeedBackCreated;
-use App\Models\User\UserNotificationType;
+use App\Bundles\User\Models\UserNotificationType;
 use ArtARTs36\PushAllSender\Interfaces\PusherInterface;
 use ArtARTs36\PushAllSender\Push;
 use App\Support\UserNotificator;

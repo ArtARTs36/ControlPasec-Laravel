@@ -2,7 +2,7 @@
 
 namespace Tests\Bundles\Contragent\Feature;
 
-use App\Models\User\Permission;
+use App\Bundles\User\Models\Permission;
 use Tests\BaseTestCase;
 
 final class ContragentTest extends BaseTestCase

@@ -3,7 +3,7 @@
 namespace App\Repositories;
 
 use App\Based\Contracts\Repository;
-use App\Models\User\Permission;
+use App\Bundles\User\Models\Permission;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 final class PermissionRepository extends Repository

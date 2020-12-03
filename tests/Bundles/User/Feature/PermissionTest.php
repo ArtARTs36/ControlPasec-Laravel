@@ -2,7 +2,7 @@
 
 namespace Tests\Bundles\User\Feature;
 
-use App\Models\User\Permission;
+use App\Bundles\User\Models\Permission;
 use Tests\BaseTestCase;
 
 final class PermissionTest extends BaseTestCase

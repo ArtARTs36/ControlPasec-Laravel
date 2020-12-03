@@ -2,7 +2,7 @@
 
 namespace App\Based\Scopes;
 
-use App\Models\User\UserNotification;
+use App\Bundles\User\Models\UserNotification;
 use App\User;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Scope;

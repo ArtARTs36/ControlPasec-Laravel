@@ -2,7 +2,7 @@
 
 namespace App\Http\Resource;
 
-use App\Models\User\UserNotification;
+use App\Bundles\User\Models\UserNotification;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**

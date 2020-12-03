@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User\Role;
+use App\Bundles\User\Models\Role;
 use App\User;
 use Illuminate\Support\Str;
 

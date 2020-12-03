@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Contract\Contract;
 use App\Bundles\Contragent\Models\Contragent;
-use App\Models\User\Permission;
+use App\Bundles\User\Models\Permission;
 use Tests\BaseTestCase;
 
 /**

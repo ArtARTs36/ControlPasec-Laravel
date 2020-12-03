@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ContractRequest;
 use App\Http\Responses\ActionResponse;
 use App\Models\Contract\Contract;
-use App\Models\User\Permission;
+use App\Bundles\User\Models\Permission;
 use App\Repositories\ContractRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 

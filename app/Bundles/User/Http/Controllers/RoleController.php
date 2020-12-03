@@ -3,8 +3,8 @@
 namespace App\Bundles\User\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\User\Permission;
-use App\Models\User\Role;
+use App\Bundles\User\Models\Permission;
+use App\Bundles\User\Models\Role;
 use App\Repositories\RoleRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;

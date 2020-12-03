@@ -2,7 +2,7 @@
 
 namespace App\Http\Resource;
 
-use App\Models\User\Role;
+use App\Bundles\User\Models\Role;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**

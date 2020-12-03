@@ -6,7 +6,7 @@ use App\Bundles\User\Events\UserRegistered;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRegisterRequest;
 use App\Http\Responses\UserRegisteredResponse;
-use App\Models\User\Role;
+use App\Bundles\User\Models\Role;
 use App\Repositories\UserRepository;
 use App\User;
 use Illuminate\Http\Request;

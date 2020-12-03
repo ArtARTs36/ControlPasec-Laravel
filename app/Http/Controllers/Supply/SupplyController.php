@@ -9,7 +9,7 @@ use App\Http\Requests\SupplyRequest;
 use App\Http\Resource\SupplyResource;
 use App\Http\Responses\ActionResponse;
 use App\Models\Supply\Supply;
-use App\Models\User\Permission;
+use App\Bundles\User\Models\Permission;
 use App\Repositories\SupplyRepository;
 use App\Services\Supply\SupplyCreator;
 use App\Services\SupplyService;

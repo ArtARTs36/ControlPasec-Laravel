@@ -2,7 +2,7 @@
 
 namespace App\Http\Resource;
 
-use App\Models\User\Permission;
+use App\Bundles\User\Models\Permission;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\User;
+namespace App\Bundles\User\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Spatie\Permission\Models\Role as BaseRole;

@@ -3,7 +3,7 @@
 namespace Tests\Bundles\Product\Feature;
 
 use App\Bundles\Product\Models\Product;
-use App\Models\User\Permission;
+use App\Bundles\User\Models\Permission;
 use App\Models\Vocab\SizeOfUnit;
 use App\Bundles\Vocab\Models\VocabCurrency;
 use App\Models\Vocab\VocabGosStandard;

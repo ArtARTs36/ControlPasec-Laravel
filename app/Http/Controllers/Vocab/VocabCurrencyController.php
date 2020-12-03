@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Vocab;
 use App\Helper\ModelPrioritiesRefresher\ModelPrioritiesRefresher;
 use App\Http\Controllers\Controller;
 use App\Http\Responses\ActionResponse;
-use App\Models\User\Permission;
+use App\Bundles\User\Models\Permission;
 use App\Bundles\Vocab\Models\VocabCurrency;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;

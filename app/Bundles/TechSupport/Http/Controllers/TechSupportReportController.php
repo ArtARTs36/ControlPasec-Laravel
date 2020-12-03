@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Bundles\TechSupport\Http\Requests\StoreReport;
 use App\Bundles\TechSupport\Http\Resources\ReportResource;
 use App\Bundles\TechSupport\Models\TechSupportReport;
-use App\Models\User\Permission;
+use App\Bundles\User\Models\Permission;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class TechSupportReportController extends Controller

@@ -8,7 +8,7 @@ use App\Http\Responses\ActionResponse;
 use App\Bundles\Contragent\Models\Contragent;
 use App\Http\Controllers\Controller;
 use App\Models\Sync\SyncWithExternalSystemType;
-use App\Models\User\Permission;
+use App\Bundles\User\Models\Permission;
 use App\Bundles\Contragent\Repositories\ContragentRepository;
 use App\Bundles\Contragent\Services\ContragentService;
 use App\Services\SyncWithExternalSystemService;

@@ -3,9 +3,9 @@
 namespace App;
 
 use App\Bundles\User\Models\DialogMessage;
-use App\Models\User\Permission;
-use App\Models\User\Role;
-use App\Models\User\UserNotification;
+use App\Bundles\User\Models\Permission;
+use App\Bundles\User\Models\Role;
+use App\Bundles\User\Models\UserNotification;
 use App\Repositories\PermissionRepository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;

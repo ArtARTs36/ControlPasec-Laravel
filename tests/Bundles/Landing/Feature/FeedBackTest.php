@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Bundles\Landing\Feature;
 
 use App\Bundles\Landing\Events\FeedBackCreated;
 use Illuminate\Foundation\Testing\WithFaker;
