@@ -2,10 +2,10 @@
 
 namespace App\Bundles\Document\Events;
 
-use App\Based\Events\BaseEvent;
+use App\Based\Events\Event;
 use App\Models\Document\Document;
 
-final class DocumentOfQueueGenerated extends BaseEvent
+final class DocumentOfQueueGenerated extends Event
 {
     private $document;
 

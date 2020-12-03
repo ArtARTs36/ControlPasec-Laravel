@@ -7,7 +7,7 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-abstract class BaseEvent
+abstract class Event
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 

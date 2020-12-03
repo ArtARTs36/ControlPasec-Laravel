@@ -3,9 +3,9 @@
 namespace App\Bundles\Landing\Events;
 
 use App\Bundles\Landing\Models\FeedBack;
-use App\Based\Events\BaseEvent;
+use App\Based\Events\Event;
 
-final class FeedBackCreated extends BaseEvent
+final class FeedBackCreated extends Event
 {
     private $feedback;
 

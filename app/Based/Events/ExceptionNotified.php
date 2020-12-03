@@ -2,9 +2,7 @@
 
 namespace App\Based\Events;
 
-use App\Based\Events\BaseEvent;
-
-final class ExceptionNotified extends BaseEvent
+final class ExceptionNotified extends Event
 {
     private $exception;
 
