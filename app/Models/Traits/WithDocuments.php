@@ -3,7 +3,7 @@
 namespace App\Models\Traits;
 
 use App\Models\Document\Document;
-use App\Repositories\DocumentRepository;
+use App\Bundles\Document\Repositories\DocumentRepository;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Collection;
 

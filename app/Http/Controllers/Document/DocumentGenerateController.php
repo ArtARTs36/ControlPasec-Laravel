@@ -12,7 +12,7 @@ use App\Models\Supply\OneTForm;
 use App\Models\Supply\ProductTransportWaybill;
 use App\Models\Supply\QualityCertificate;
 use App\Models\Supply\Supply;
-use App\Repositories\DocumentRepository;
+use App\Bundles\Document\Repositories\DocumentRepository;
 use App\Models\Supply\ScoreForPayment;
 use App\Services\Document\DocumentService;
 use App\Services\Document\DocumentCreator;

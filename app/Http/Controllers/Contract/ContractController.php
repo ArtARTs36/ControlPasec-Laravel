@@ -7,7 +7,7 @@ use App\Http\Requests\ContractRequest;
 use App\Http\Responses\ActionResponse;
 use App\Models\Contract\Contract;
 use App\Bundles\User\Models\Permission;
-use App\Repositories\ContractRepository;
+use App\Bundles\Contract\Repositories\ContractRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class ContractController extends Controller
