@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Based\Unit;
 
 use App\Bundles\Contragent\Models\Contragent;
 use App\Models\Supply\Supply;
@@ -9,9 +9,6 @@ use App\Models\TextDataParser\TextDataParserComponent;
 use App\Services\TextDataParser\LightTextDataParser;
 use Tests\BaseTestCase;
 
-/**
- * @group BaseTest
- */
 class LightTextDataParserTest extends BaseTestCase
 {
     public function testParseFirstComponent(): void

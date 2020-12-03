@@ -1,15 +1,12 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Bundles\Admin\Unit;
 
 use App\Models\VariableDefinition;
 use Illuminate\Database\Eloquent\Model;
 use Tests\BaseTestCase;
 
-/**
- * @group BaseTest
- */
-class VariableDefinitionTest extends BaseTestCase
+final class VariableDefinitionTest extends BaseTestCase
 {
     public function testGetModel(): void
     {

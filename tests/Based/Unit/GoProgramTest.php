@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Based\Unit;
 
 use App\Models\Document\Document;
 use App\Models\Document\DocumentType;

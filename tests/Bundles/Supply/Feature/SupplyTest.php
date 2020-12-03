@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Bundles\Supply\Feature;
 
 use App\Bundles\Contragent\Models\Contragent;
 use App\Bundles\Product\Models\Product;
@@ -12,9 +12,6 @@ use App\Services\Supply\SupplyCreator;
 use Illuminate\Http\Response;
 use Tests\BaseTestCase;
 
-/**
- * @group BaseTest
- */
 class SupplyTest extends BaseTestCase
 {
     private const API_URL = '/api/supplies';

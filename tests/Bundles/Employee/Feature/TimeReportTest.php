@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Bundles\Employee\Feature;
 
 use App\Http\Controllers\ControlTime\TimeReportController;
 use App\Http\Resource\DocumentResource;
@@ -10,10 +10,7 @@ use Carbon\Carbon;
 use Dba\ControlTime\Models\WorkCondition;
 use Tests\BaseTestCase;
 
-/**
- * @group BaseTest
- */
-class TimeReportTest extends BaseTestCase
+final class TimeReportTest extends BaseTestCase
 {
     /**
      * @covers \App\Http\Controllers\ControlTime\TimeReportController::byPeriod

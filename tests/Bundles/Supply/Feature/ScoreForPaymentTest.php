@@ -1,18 +1,13 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Bundles\Supply\Feature;
 
 use App\Models\Supply\Supply;
-use App\Models\Supply\ScoreForPayment;
-use App\Services\ScoreForPaymentService;
 use Tests\BaseTestCase;
 
-/**
- * @group BaseTest
- */
-class ScoreForPaymentTest extends BaseTestCase
+final class ScoreForPaymentTest extends BaseTestCase
 {
-    const API_URL = '/api/score-for-payments';
+    private const API_URL = '/api/score-for-payments';
 
     /**
      * TEST POST /api/score-for-payments

@@ -1,16 +1,13 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Bundles\Contract\Feature;
 
 use App\Models\Contract\Contract;
 use App\Bundles\Contragent\Models\Contragent;
 use App\Bundles\User\Models\Permission;
 use Tests\BaseTestCase;
 
-/**
- * @group BaseTest
- */
-class ContractTest extends BaseTestCase
+final class ContractTest extends BaseTestCase
 {
     private const API_URL = '/api/contracts/';
 

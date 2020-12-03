@@ -1,15 +1,12 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Based\Unit;
 
 use App\Support\Archiver\ArchiverFactory;
 use App\Support\Archiver\ArchiverInterface;
 use App\Support\Archiver\Zipper;
 use Tests\BaseTestCase;
 
-/**
- * @group BaseTest
- */
 class ArchiverTest extends BaseTestCase
 {
     public function testZipper(): void
