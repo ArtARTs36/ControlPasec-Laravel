@@ -9,10 +9,16 @@ use ArtARTs36\PushAllSender\Push;
 use App\Support\UserNotificator;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class TechSupportReportCreatedListener implements ShouldQueue
+final class TechSupportReportCreatedListener implements ShouldQueue
 {
+    private $pusher;
+
+    public function __construct(PusherInterface $pusher)
+    {
+        $this->pusher = $pusher;
+    }
+
     /**
-     * @param TechSupportReportCreated $event
      * @throws \Throwable
      */
     public function handle(TechSupportReportCreated $event): void
@@ -21,7 +27,7 @@ class TechSupportReportCreatedListener implements ShouldQueue
             'report' => $event->report
         ])->render();
 
-        \app(PusherInterface::class)->push(new Push('Тех. поддержка: '. $event->report->id, $message));
+        $this->pusher->push(new Push('Тех. поддержка: '. $event->report->id, $message));
 
         UserNotificator::notify(UserNotificationType::TECH_SUPPORT_REPORT_CREATED, $message, $event->report);
     }
