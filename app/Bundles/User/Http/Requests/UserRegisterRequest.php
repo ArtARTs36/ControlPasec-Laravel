@@ -1,20 +1,18 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Bundles\User\Http\Requests;
 
-use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
  * Class UserRegisterRequest
  * @property int $role_id
- * @mixin User
  */
 class UserRegisterRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return !auth()->check();
+        return auth()->guest();
     }
 
     public function rules(): array
