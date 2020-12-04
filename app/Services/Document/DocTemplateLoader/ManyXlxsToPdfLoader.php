@@ -2,9 +2,9 @@
 
 namespace App\Services\Document\DocTemplateLoader;
 
+use App\Bundles\Document\Services\Converters\PDF;
 use App\Models\Document\Document;
 use App\Services\Document\DocumentService;
-use App\Services\Document\DocumentConverter;
 use App\Services\Document\DocumentJoiner\PDFJoiner;
 
 /**
@@ -23,8 +23,8 @@ class ManyXlxsToPdfLoader extends AbstractDocTemplateLoader
     protected function make(Document $document): string
     {
         $document->load('children');
-        if (!$document->children()->exists()) {
-            return null;
+        if (! $document->children()->exists()) {
+            throw new \LogicException();
         }
 
         return $this->makeMany($document->children);
@@ -40,7 +40,7 @@ class ManyXlxsToPdfLoader extends AbstractDocTemplateLoader
         $paths = [];
         foreach ($documents as $document) {
             DocumentService::buildIfNotExists($document);
-            $paths[] = DocumentConverter::xlsxToPdf($document);
+            $paths[] = PDF::ofPath($document->getFullPath());
         }
 
         return (new PDFJoiner($paths))->join();

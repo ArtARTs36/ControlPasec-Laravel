@@ -177,6 +177,11 @@ class FileHelper
         return $info['filename'] . '.' . $info['extension'];
     }
 
+    public static function getName(string $path): string
+    {
+        return pathinfo($path, PATHINFO_FILENAME);
+    }
+
     public static function removeDir(string $dir): bool
     {
         $files = [];
@@ -199,5 +204,10 @@ class FileHelper
         }
 
         return $file . '.' . $extension;
+    }
+
+    public static function getDir(string $path): string
+    {
+        return pathinfo($path, PATHINFO_DIRNAME);
     }
 }

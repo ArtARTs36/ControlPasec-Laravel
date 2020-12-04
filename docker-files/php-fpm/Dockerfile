@@ -10,7 +10,7 @@ RUN apt-get update \
     supervisor
 
 COPY ./supervisord.conf /etc/supervisor
-COPY ./supervisor-apps/* /etc/supervisor/conf.d
+COPY ./supervisor-apps/* /etc/supervisor/conf.d/
 
 # Install selected extensions and other stuff
 RUN apt-get update \
@@ -46,5 +46,16 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php composer-setup.php \
     && rm composer-setup.php \
     && mv composer.phar /usr/local/bin/composer
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get -y install \
+  default-jre \
+  libreoffice-java-common \
+  libreoffice-common \
+  unoconv \
+  hyphen-af hyphen-en-us \
+  fonts-dejavu fonts-dejavu-core fonts-dejavu-extra \
+  fonts-droid-fallback fonts-dustin fonts-f500 fonts-fanwood fonts-freefont-ttf fonts-liberation \
+  fonts-lmodern fonts-lyx fonts-sil-gentium fonts-texgyre fonts-tlwg-purisa fonts-opensymbol && \
+  rm -rf /var/lib/apt/lists/*
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
