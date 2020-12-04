@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Contract;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ContractRequest;
+use App\Bundles\Supply\Http\Requests\StoreContract;
 use App\Http\Responses\ActionResponse;
 use App\Bundles\Supply\Models\Contract;
 use App\Bundles\User\Models\Permission;
@@ -29,9 +29,6 @@ final class ContractController extends Controller
 
     /**
      * Отобразить договора
-     *
-     * @param int $page
-     * @return LengthAwarePaginator
      */
     public function index(int $page = 1): LengthAwarePaginator
     {
@@ -41,10 +38,10 @@ final class ContractController extends Controller
     /**
      * Создать договор
      *
-     * @param ContractRequest $request
+     * @param StoreContract $request
      * @return ActionResponse
      */
-    public function store(ContractRequest $request): ActionResponse
+    public function store(StoreContract $request): ActionResponse
     {
         $contract = $this->makeModel($request, Contract::class);
         $contract->supplier_id = env('ONE_SUPPLIER_ID');
@@ -67,11 +64,11 @@ final class ContractController extends Controller
     /**
      * Обновить договор
      *
-     * @param ContractRequest $request
+     * @param StoreContract $request
      * @param Contract $contract
      * @return ActionResponse
      */
-    public function update(ContractRequest $request, Contract $contract): ActionResponse
+    public function update(StoreContract $request, Contract $contract): ActionResponse
     {
         return $this->updateModelAndResponse($request, $contract);
     }

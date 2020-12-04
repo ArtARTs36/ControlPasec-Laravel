@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resource;
+namespace App\Bundles\Supply\Http\Resources;
 
 use App\Bundles\Supply\Models\Contract;
 use Illuminate\Http\Request;
@@ -16,13 +16,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
  */
 class ContractResource extends JsonResource
 {
-    /**
-     * @param Request $request
-     * @return array
-     *
-     * @OA\Property(property="id", type="integer")
-     * @OA\Property(property="customer", type="object")
-     */
     public function toArray($request): array
     {
         return [
