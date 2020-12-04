@@ -6,14 +6,13 @@ use App\Based\Contracts\Repository;
 use App\Bundles\User\Models\Dialog;
 use App\User;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 final class DialogRepository extends Repository
 {
     /**
      * Искать последние 10 диалогов пользователя
      */
-    public function findByUser(User $user, int $page = 1): AnonymousResourceCollection
+    public function findByUser(User $user, int $page = 1): LengthAwarePaginator
     {
         return Dialog::query()
             ->where(Dialog::FIELD_ONE_USER_ID, $user->id)

@@ -82,7 +82,7 @@ final class DialogTest extends BaseTestCase
 
         $this->actingAs($this->simpleUser);
 
-        $response = $this->get('/api/dialogs/user');
+        $response = $this->getJson('/api/dialogs/user');
 
         $response->assertOk();
 
