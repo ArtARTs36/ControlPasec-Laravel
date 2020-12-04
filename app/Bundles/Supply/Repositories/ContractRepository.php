@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Bundles\Contract\Repositories;
+namespace App\Bundles\Supply\Repositories;
 
 use App\Models\Contract\Contract;
 use App\Models\Supply\Supply;
