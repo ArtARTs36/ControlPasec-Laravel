@@ -13,6 +13,7 @@ class DocumentGenerateControllerTest extends BaseTestCase
      */
     public function testGenerateManyTypes(): void
     {
+        // @todo нужно править
         $supply = $this->getRandomModel(Supply::class);
 
         $response = $this->postJson('/api/generate-documents/'. $supply->id, [
@@ -24,9 +25,7 @@ class DocumentGenerateControllerTest extends BaseTestCase
             ]
         ]);
 
-        $decode = $this->decodeResponse($response);
-
-        $response->dump();
+        $decode = $response->decodeResponseJson();
 
         $response->assertOk();
 
