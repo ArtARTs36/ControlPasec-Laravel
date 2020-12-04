@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Bundles\Contract\Feature;
+namespace Tests\Bundles\Supply\Feature;
 
-use App\Models\Contract\Contract;
+use App\Bundles\Supply\Models\Contract;
 use App\Bundles\Contragent\Models\Contragent;
 use App\Bundles\User\Models\Permission;
 use Tests\BaseTestCase;
@@ -38,12 +38,12 @@ final class ContractTest extends BaseTestCase
         self::assertEquals($supplierId, $response['data']['supplier_id']);
     }
 
+    /**
+     * @covers ContractController::findByCustomer
+     */
     public function testFindByCustomer(): void
     {
-        $customer = Contragent::query()
-            ->whereHas(Contragent::RELATION_CONTRACTS)
-            ->inRandomOrder()
-            ->first();
+        $customer = factory(Contragent::class)->create();
 
         $response = $this->getJson("/api/contracts/find-by-customer/{$customer->id}");
 

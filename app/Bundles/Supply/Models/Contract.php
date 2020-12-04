@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Contract;
+namespace App\Bundles\Supply\Models;
 
 use App\Bundles\Contragent\Models\Contragent;
 use App\Models\Supply\Supply;

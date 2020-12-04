@@ -1,22 +1,23 @@
 <?php
 
-namespace App\Models\Contract;
+namespace App\Bundles\Supply\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
 
 /**
- * Class ContractTemplate
- *
  * @property int $id
  * @property string $name
  * @property string $contract_title
- *
- * @mixin Builder
  */
 class ContractTemplate extends Model
 {
+    public const FIELD_ID = 'id';
+    public const FIELD_NAME = 'name';
+    public const FIELD_TITLE = 'contract_title';
+
     protected $fillable = [
-        'id', 'name', 'contract_title'
+        self::FIELD_NAME,
+        self::FIELD_TITLE,
     ];
 }

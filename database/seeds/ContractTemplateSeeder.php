@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Contract\ContractTemplate;
+use App\Bundles\Supply\Models\ContractTemplate;
 
 /**
  * Class ContractTemplateSeeder

@@ -2,7 +2,7 @@
 
 namespace App\Models\Supply;
 
-use App\Models\Contract\Contract;
+use App\Bundles\Supply\Models\Contract;
 use App\Bundles\Contragent\Models\Contragent;
 use App\Models\Traits\WithOrderNumber;
 use App\Models\Traits\WithSupplierAndCustomer;

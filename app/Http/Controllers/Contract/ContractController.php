@@ -5,12 +5,12 @@ namespace App\Http\Controllers\Contract;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ContractRequest;
 use App\Http\Responses\ActionResponse;
-use App\Models\Contract\Contract;
+use App\Bundles\Supply\Models\Contract;
 use App\Bundles\User\Models\Permission;
 use App\Bundles\Supply\Repositories\ContractRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
-class ContractController extends Controller
+final class ContractController extends Controller
 {
     public const PERMISSIONS = [
         'index' => Permission::CONTRACTS_LIST_VIEW,
@@ -20,6 +20,13 @@ class ContractController extends Controller
         'destroy' => Permission::CONTRACTS_DELETE,
     ];
 
+    private $repository;
+
+    public function __construct(ContractRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     /**
      * Отобразить договора
      *
@@ -28,7 +35,7 @@ class ContractController extends Controller
      */
     public function index(int $page = 1): LengthAwarePaginator
     {
-        return ContractRepository::paginate($page);
+        return $this->repository->paginate($page);
     }
 
     /**
@@ -54,7 +61,7 @@ class ContractController extends Controller
      */
     public function show(Contract $contract): Contract
     {
-        return ContractRepository::loadFull($contract);
+        return $this->repository->loadFull($contract);
     }
 
     /**
@@ -89,7 +96,7 @@ class ContractController extends Controller
      */
     public function findByCustomer(int $customerId): ActionResponse
     {
-        $contracts = ContractRepository::findByCustomer($customerId);
+        $contracts = $this->repository->findByCustomer($customerId);
 
         return new ActionResponse($contracts->isNotEmpty(), $contracts);
     }

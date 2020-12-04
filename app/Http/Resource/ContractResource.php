@@ -2,7 +2,7 @@
 
 namespace App\Http\Resource;
 
-use App\Models\Contract\Contract;
+use App\Bundles\Supply\Models\Contract;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 

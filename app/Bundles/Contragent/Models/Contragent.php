@@ -3,7 +3,7 @@
 namespace App\Bundles\Contragent\Models;
 
 use App\Bundles\Contragent\Models\ContragentManager;
-use App\Models\Contract\Contract;
+use App\Bundles\Supply\Models\Contract;
 use App\Bundles\Contragent\Models\ContragentGroup;
 use Creatortsv\EloquentPipelinesModifier\WithModifier;
 use Illuminate\Database\Eloquent\Builder;

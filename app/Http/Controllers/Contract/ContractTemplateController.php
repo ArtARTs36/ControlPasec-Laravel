@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Contract;
 
 use App\Http\Controllers\Controller;
 use App\Http\Responses\ActionResponse;
-use App\Models\Contract\ContractTemplate;
+use App\Bundles\Supply\Models\ContractTemplate;
 use Illuminate\Http\Request;
 
 class ContractTemplateController extends Controller
