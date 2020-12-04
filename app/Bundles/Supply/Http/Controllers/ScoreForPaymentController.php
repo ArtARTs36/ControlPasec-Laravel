@@ -4,7 +4,7 @@ namespace App\Bundles\Supply\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Bundles\Supply\Http\Requests\ManySuppliesRequest;
-use App\Http\Requests\ScoreForPaymentRequest;
+use App\Bundles\Supply\Http\Requests\StoreScore;
 use App\Http\Resource\DocumentResource;
 use App\Http\Responses\ActionResponse;
 use App\Models\Document\DocumentType;
@@ -36,10 +36,10 @@ final class ScoreForPaymentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param ScoreForPaymentRequest $request
+     * @param StoreScore $request
      * @return ActionResponse
      */
-    public function store(ScoreForPaymentRequest $request): ActionResponse
+    public function store(StoreScore $request): ActionResponse
     {
         $score = new ScoreForPayment();
         $score->fill($request->all());
@@ -66,11 +66,11 @@ final class ScoreForPaymentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param ScoreForPaymentRequest $request
+     * @param StoreScore $request
      * @param ScoreForPayment $scoreForPayment
      * @return ActionResponse
      */
-    public function update(ScoreForPaymentRequest $request, ScoreForPayment $scoreForPayment)
+    public function update(StoreScore $request, ScoreForPayment $scoreForPayment)
     {
         $scoreForPayment->setRawAttributes($request->only(
             ['supply_id', 'contract_id', 'date']

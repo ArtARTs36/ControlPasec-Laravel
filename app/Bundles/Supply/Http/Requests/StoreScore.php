@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Bundles\Supply\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ScoreForPaymentRequest extends FormRequest
+class StoreScore extends FormRequest
 {
     public function rules(): array
     {
