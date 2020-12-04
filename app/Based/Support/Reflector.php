@@ -71,8 +71,13 @@ class Reflector
     {
         $reflection = new \ReflectionClass($object);
         $methods = [];
+
         foreach ($reflection->getMethods() as $method) {
-            if ($method->getReturnType() == $type) {
+            if ($method->getReturnType() === null) {
+                continue;
+            }
+
+            if ($method->getReturnType()->getName() == $type) {
                 $methods[] = $method->getName();
             }
         }
