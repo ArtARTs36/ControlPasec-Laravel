@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Supply;
+namespace App\Bundles\Supply\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Bundles\Supply\Http\Requests\ManySuppliesRequest;
