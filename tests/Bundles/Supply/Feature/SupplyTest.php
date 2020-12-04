@@ -9,15 +9,17 @@ use App\Models\Supply\Supply;
 use App\Models\Supply\SupplyProduct;
 use App\Bundles\User\Models\Permission;
 use App\Models\Vocab\VocabQuantityUnit;
-use App\Bundles\Supply\Services\SupplyCreator;
 use Illuminate\Http\Response;
 use Tests\BaseTestCase;
 
-class SupplyTest extends BaseTestCase
+final class SupplyTest extends BaseTestCase
 {
     private const API_URL = '/api/supplies';
 
-    public function testGetAll(): void
+    /**
+     * @covers \App\Bundles\Supply\Http\Controllers\SupplyController::index
+     */
+    public function testIndex(): void
     {
         $this->actingAsUserWithPermission(Permission::SUPPLIES_VIEW);
 
@@ -29,7 +31,7 @@ class SupplyTest extends BaseTestCase
     }
 
     /**
-     * @covers \App\Http\Controllers\Supply\SupplyController::store
+     * @covers \App\Bundles\Supply\Http\Controllers\SupplyController::store
      */
     public function testCreate(): void
     {

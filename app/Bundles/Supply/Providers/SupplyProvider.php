@@ -16,5 +16,7 @@ class SupplyProvider extends BundleProvider
                 CreateScoreForPayment::OPTION_NAME => CreateScoreForPayment::class,
             ]));
         });
+
+        $this->app->register(RouteProvider::class);
     }
 }

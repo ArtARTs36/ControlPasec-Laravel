@@ -7,7 +7,6 @@ Route::group([
 ], function () {
     require 'apis/api.scores.php';
     require 'apis/api.contracts.php';
-    require 'apis/api.supplies.php';
     require 'apis/api.documents.php';
     require 'apis/api.vocabs.php';
     require 'apis/api.variable_definitions.php';
