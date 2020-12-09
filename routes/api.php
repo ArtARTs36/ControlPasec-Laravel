@@ -5,7 +5,6 @@ Route::group([
         \App\Http\Middleware\CheckPermissions::class,
     ],
 ], function () {
-    require 'apis/api.contracts.php';
     require 'apis/api.documents.php';
     require 'apis/api.vocabs.php';
     require 'apis/api.parsers.php';

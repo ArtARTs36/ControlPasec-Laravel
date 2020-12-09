@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Contract;
+namespace App\Bundles\Supply\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Responses\ActionResponse;
