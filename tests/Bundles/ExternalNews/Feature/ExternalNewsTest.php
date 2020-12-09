@@ -5,10 +5,7 @@ namespace Tests\Bundles\ExternalNews\Feature;
 use App\Bundles\ExternalNews\Models\ExternalNews;
 use Tests\BaseTestCase;
 
-/**
- * @group BaseTest
- */
-class ExternalNewsTest extends BaseTestCase
+final class ExternalNewsTest extends BaseTestCase
 {
     private const API_INDEX = '/api/external-news';
 
@@ -19,7 +16,7 @@ class ExternalNewsTest extends BaseTestCase
     {
         $defaultCount = 6;
 
-        $this->seed(\ExternalNewsSeeder::class);
+        factory(ExternalNews::class, $defaultCount)->create();
 
         $this->actingAsRandomUser();
 

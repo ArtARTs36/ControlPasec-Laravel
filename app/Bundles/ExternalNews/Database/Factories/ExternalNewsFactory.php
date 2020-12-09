@@ -15,7 +15,7 @@ $factory->define(ExternalNews::class, function (Faker $faker, $params) {
     ];
 
     if (empty($params[ExternalNews::FIELD_SOURCE_ID])) {
-        $data[ExternalNews::FIELD_SOURCE_ID] = ExternalNewsSource::query()->inRandomOrder()->first()->id;
+        $data[ExternalNews::FIELD_SOURCE_ID] = factory(ExternalNewsSource::class)->create()->id;
     }
 
     return $data;

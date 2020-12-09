@@ -2,14 +2,16 @@
 
 namespace App\Bundles\ExternalNews\Providers;
 
+use App\Based\Contracts\BundleProvider;
 use App\Bundles\ExternalNews\Console\GetExternalNewsCommand;
 use App\Bundles\ExternalNews\Contracts\ExternalNewsRepository;
 use App\Bundles\ExternalNews\Contracts\RssParser;
 use App\Bundles\ExternalNews\Support\Rss;
-use Illuminate\Support\ServiceProvider;
 
-class ExternalNewsProvider extends ServiceProvider
+final class ExternalNewsProvider extends BundleProvider
 {
+    protected $factoriesPath = __DIR__ . '/../Database/Factories';
+
     public function register()
     {
         $this->app->register(ExternalNewsRouteProvider::class);
@@ -18,8 +20,12 @@ class ExternalNewsProvider extends ServiceProvider
 
         $this->app->singleton(RssParser::class, Rss::class);
 
-        $this->commands([
-            GetExternalNewsCommand::class,
-        ]);
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                GetExternalNewsCommand::class,
+            ]);
+
+            $this->registerFactories();
+        }
     }
 }
