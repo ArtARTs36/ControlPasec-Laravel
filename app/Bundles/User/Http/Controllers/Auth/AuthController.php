@@ -2,12 +2,12 @@
 
 namespace App\Bundles\User\Http\Controllers\Auth;
 
+use App\Bundles\User\Contracts\Tokenizer;
 use App\Bundles\User\Http\Resources\UserResource;
 use App\Http\Actions\UserMeAction;
 use App\Http\Controllers\Controller;
 use App\Bundles\User\Http\Requests\AuthRequest;
 use App\Bundles\User\Repositories\UserRepository;
-use App\Services\Jwt;
 use App\User;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
@@ -16,9 +16,16 @@ use Illuminate\Support\Facades\Lang;
 use Symfony\Component\HttpFoundation\Response as HttpResponse;
 use Tymon\JWTAuth\JWTAuth;
 
-class AuthController extends Controller
+final class AuthController extends Controller
 {
     use ThrottlesLogins;
+
+    private $tokenizer;
+
+    public function __construct(Tokenizer $tokenizer)
+    {
+        $this->tokenizer = $tokenizer;
+    }
 
     /**
      * Issue a JWT token when valid login credentials are
@@ -137,11 +144,11 @@ class AuthController extends Controller
      * @param string $token
      * @return UserResource
      */
-    protected function sendLoginResponse(Request $request, $token)
+    protected function sendLoginResponse(Request $request, string $token)
     {
         $this->clearLoginAttempts($request);
 
-        $token_ttl = (new Jwt($token))->getTokenTTL();
+        $token_ttl = $this->tokenizer->getTokenTTL($token);
 
         return UserMeAction::get()->additional(compact('token', 'token_ttl'));
     }
@@ -207,16 +214,15 @@ class AuthController extends Controller
      */
     public function refreshToken(Request $request)
     {
-        $token = $this->guard()->refresh();
-
-        $token_ttl = (new Jwt($token))->getTokenTTL();
-
-        return response()->json(compact('token', 'token_ttl'));
+        return response()->json([
+            'token' => $token = $this->guard()->refresh(),
+            'token_ttl' => $this->tokenizer->getTokenTtl($token),
+        ]);
     }
 
     public function username(): string
     {
-        return 'email';
+        return User::FIELD_EMAIL;
     }
 
     protected function guard()
