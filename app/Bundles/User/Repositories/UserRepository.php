@@ -4,7 +4,7 @@ namespace App\Bundles\User\Repositories;
 
 use App\Based\Contracts\Repository;
 use App\Based\Support\Avatar;
-use App\Support\SqlRawString;
+use App\Based\Support\Query\RawFactory;
 use App\User;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
@@ -33,14 +33,14 @@ class UserRepository extends Repository
             ->where(User::FIELD_IS_ACTIVE, true)
             ->where(function (Builder $query) use ($find, $findWithoutFirstSymbol) {
                 $query
-                    ->where(...SqlRawString::byLowerAndLike(User::FIELD_NAME, $find))
-                    ->orWhere(...SqlRawString::byLowerAndLike(User::FIELD_NAME, $findWithoutFirstSymbol))
-                    ->orWhere(...SqlRawString::byLowerAndLike(User::FIELD_PATRONYMIC, $find))
-                    ->orWhere(...SqlRawString::byLowerAndLike(User::FIELD_PATRONYMIC, $findWithoutFirstSymbol))
-                    ->orWhere(...SqlRawString::byLowerAndLike(User::FIELD_FAMILY, $find))
-                    ->orWhere(...SqlRawString::byLowerAndLike(User::FIELD_FAMILY, $findWithoutFirstSymbol))
-                    ->orWhere(...SqlRawString::byLowerAndLike(User::FIELD_POSITION, $find))
-                    ->orWhere(...SqlRawString::byLowerAndLike(User::FIELD_POSITION, $findWithoutFirstSymbol));
+                    ->where(...RawFactory::byLowerAndLike(User::FIELD_NAME, $find))
+                    ->orWhere(...RawFactory::byLowerAndLike(User::FIELD_NAME, $findWithoutFirstSymbol))
+                    ->orWhere(...RawFactory::byLowerAndLike(User::FIELD_PATRONYMIC, $find))
+                    ->orWhere(...RawFactory::byLowerAndLike(User::FIELD_PATRONYMIC, $findWithoutFirstSymbol))
+                    ->orWhere(...RawFactory::byLowerAndLike(User::FIELD_FAMILY, $find))
+                    ->orWhere(...RawFactory::byLowerAndLike(User::FIELD_FAMILY, $findWithoutFirstSymbol))
+                    ->orWhere(...RawFactory::byLowerAndLike(User::FIELD_POSITION, $find))
+                    ->orWhere(...RawFactory::byLowerAndLike(User::FIELD_POSITION, $findWithoutFirstSymbol));
             })
             ->get();
     }
