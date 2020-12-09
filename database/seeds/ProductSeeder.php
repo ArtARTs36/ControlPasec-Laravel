@@ -4,7 +4,7 @@ use App\Bundles\Product\Models\Product;
 use App\Models\Vocab\SizeOfUnit;
 use App\Bundles\Vocab\Models\VocabCurrency;
 use App\Models\Vocab\VocabGosStandard;
-use App\Models\Vocab\VocabPackageType;
+use App\Bundles\Vocab\Models\VocabPackageType;
 use App\Models\Vocab\VocabQuantityUnit;
 
 /**

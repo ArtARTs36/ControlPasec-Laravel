@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Vocab;
+namespace App\Bundles\Vocab\Http\Controllers;
 
+use App\Bundles\Vocab\Http\Requests\StoreVocabPackageType;
 use App\Http\Responses\ActionResponse;
 use App\Bundles\User\Models\Permission;
-use App\Models\Vocab\VocabPackageType;
+use App\Bundles\Vocab\Models\VocabPackageType;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class VocabPackageTypeController extends Controller
@@ -32,13 +32,13 @@ class VocabPackageTypeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param VocabPackageType $request
+     * @param StoreVocabPackageType $request
      * @return ActionResponse
      */
-    public function store(VocabPackageType $request): ActionResponse
+    public function store(StoreVocabPackageType $request): ActionResponse
     {
         $type = new VocabPackageType();
-        $type->name = $request->name;
+        $type->fillOfRequest($request);
 
         return new ActionResponse($type->save(), $type);
     }
@@ -57,11 +57,11 @@ class VocabPackageTypeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param StoreVocabPackageType $request
      * @param VocabPackageType $vocabPackageType
      * @return ActionResponse
      */
-    public function update(Request $request, VocabPackageType $vocabPackageType): ActionResponse
+    public function update(StoreVocabPackageType $request, VocabPackageType $vocabPackageType): ActionResponse
     {
         return new ActionResponse($vocabPackageType->update($request->all()));
     }

@@ -10,3 +10,7 @@ Route::apiResource('vocab-words', 'VocabWordController');
 // API для курсов валют
 
 Route::get('vocab/currency-courses', 'CurrencyCourseController@chart');
+
+// API Vocab Package Type
+
+Route::apiResource('vocab/package-types', 'VocabPackageTypeController');

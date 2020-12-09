@@ -7,7 +7,7 @@ use App\Bundles\Admin\Models\VariableDefinition;
 use App\Models\Vocab\SizeOfUnit;
 use App\Bundles\Vocab\Models\VocabCurrency;
 use App\Models\Vocab\VocabGosStandard;
-use App\Models\Vocab\VocabPackageType;
+use App\Bundles\Vocab\Models\VocabPackageType;
 use App\Models\Vocab\VocabQuantityUnit;
 use Creatortsv\EloquentPipelinesModifier\WithModifier;
 use Illuminate\Database\Eloquent\Builder;
