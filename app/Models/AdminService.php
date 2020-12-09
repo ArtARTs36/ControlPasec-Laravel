@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Services\AdminService\AdminServiceAccess;
+use App\Bundles\Admin\Support\ServiceAccess as AdminServiceAccess;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -16,18 +16,13 @@ use Illuminate\Database\Eloquent\Model;
  */
 class AdminService extends Model
 {
-    /** @var AdminServiceAccess|null */
     private $access = null;
 
     public const NAME_HORIZON = 'horizon';
     public const NAME_TOTEM = 'totem';
 
-    /** @var string */
     public const FIELD_NAME = 'name';
 
-    /**
-     * @return AdminServiceAccess|null
-     */
     public function access(): ?AdminServiceAccess
     {
         if ($this->isSelf() && $this->access === null) {
@@ -37,27 +32,16 @@ class AdminService extends Model
         return $this->access;
     }
 
-    /**
-     * @return bool
-     */
     public function isSelf(): bool
     {
         return $this->is_external === false;
     }
 
-    /**
-     * @return string
-     */
     public function getUrl(): string
     {
         return ($this->isSelf() ? request()->getSchemeAndHttpHost() : '') .  $this->path;
     }
 
-    /**
-     * @param string $name
-     * @param string $ip
-     * @return bool
-     */
     public static function isAllowed(string $name, string $ip): bool
     {
         return AdminService::query()
