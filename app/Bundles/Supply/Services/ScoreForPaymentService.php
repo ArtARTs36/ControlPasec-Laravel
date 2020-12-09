@@ -1,14 +1,9 @@
 <?php
 
-namespace App\Services;
+namespace App\Bundles\Supply\Services;
 
-use App\Models\Supply\ScoreForPayment;
 use App\Bundles\Supply\Repositories\ScoreForPaymentRepository;
 
-/**
- * Class ScoreForPaymentService
- * @package App\Services
- */
 class ScoreForPaymentService
 {
     private $repository;

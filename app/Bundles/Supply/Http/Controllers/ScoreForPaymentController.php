@@ -12,7 +12,7 @@ use App\Bundles\Supply\Repositories\ScoreForPaymentRepository;
 use App\Models\Supply\ScoreForPayment;
 use App\Services\Document\DocumentService;
 use App\Services\Document\DocumentCreator;
-use App\Services\ScoreForPaymentService;
+use App\Bundles\Supply\Services\ScoreForPaymentService;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Throwable;
 
