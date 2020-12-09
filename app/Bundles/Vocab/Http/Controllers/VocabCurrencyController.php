@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Vocab;
+namespace App\Bundles\Vocab\Http\Controllers;
 
 use App\Based\Support\ModelPrioritiesRefresher;
 use App\Http\Controllers\Controller;

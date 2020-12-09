@@ -15,6 +15,8 @@ use App\Bundles\Vocab\Contracts\NameInclinator as NameInclinatorContract;
 
 final class VocabProvider extends BundleProvider
 {
+    protected $factoriesPath = __DIR__ . '/../Database/Factories';
+
     protected $commands = [
         GetCurrencyCourseOfWeekCommand::class,
         GetCurrencyCourseCommand::class,
@@ -32,6 +34,7 @@ final class VocabProvider extends BundleProvider
 
         $this->app->register(VocabRouteProvider::class);
         $this->registerCommands();
+        $this->registerFactories();
     }
 
     protected function registerMorpher(): void

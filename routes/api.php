@@ -6,7 +6,6 @@ Route::group([
     ],
 ], function () {
     require 'apis/api.documents.php';
-    require 'apis/api.vocabs.php';
     require 'apis/api.parsers.php';
     require 'apis/api.stat.php';
     require(__DIR__ . '/../vendor/dba/controltime/routes/api.php');

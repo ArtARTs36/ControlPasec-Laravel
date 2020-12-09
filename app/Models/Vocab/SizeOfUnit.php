@@ -5,8 +5,6 @@ namespace App\Models\Vocab;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class SizeOfUnit
- *
  * @property string $name
  * @property string $short_name
  * @property string $name_en
@@ -15,7 +13,18 @@ use Illuminate\Database\Eloquent\Model;
  */
 final class SizeOfUnit extends Model
 {
+    public const FIELD_ID = 'id';
+    public const FIELD_NAME = 'name';
+    public const FIELD_SHORT_NAME = 'short_name';
+    public const FIELD_NAME_EN = 'name_en';
+    public const FIELD_SHORT_NAME_EN = 'short_name_en';
+    public const FIELD_OKEI = 'okei';
+
     protected $fillable = [
-        'id', 'name', 'short_name', 'name_en', 'short_name_en'
+        self::FIELD_NAME,
+        self::FIELD_SHORT_NAME,
+        self::FIELD_NAME_EN,
+        self::FIELD_SHORT_NAME_EN,
+        self::FIELD_OKEI,
     ];
 }

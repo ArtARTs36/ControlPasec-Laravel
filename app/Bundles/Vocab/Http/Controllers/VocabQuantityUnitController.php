@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Vocab;
+namespace App\Bundles\Vocab\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Responses\ActionResponse;
