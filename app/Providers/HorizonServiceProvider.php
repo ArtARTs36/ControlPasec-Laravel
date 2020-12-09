@@ -2,7 +2,8 @@
 
 namespace App\Providers;
 
-use App\Models\AdminService;
+use App\Bundles\Admin\Models\AdminService;
+use App\Bundles\Admin\Support\Accessor;
 use App\User;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Horizon\HorizonApplicationServiceProvider;
@@ -35,7 +36,7 @@ class HorizonServiceProvider extends HorizonApplicationServiceProvider
     protected function gate()
     {
         Gate::define('viewHorizon', function (User $user = null) {
-            return AdminService::isAllowed(AdminService::NAME_HORIZON, request()->getClientIp());
+            return $this->app->get(Accessor::class)->allowed(AdminService::NAME_HORIZON, request()->getClientIp());
         });
     }
 }

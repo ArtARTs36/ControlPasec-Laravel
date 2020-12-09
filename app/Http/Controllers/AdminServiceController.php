@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resource\AdminService\AdminServiceRedirectResource;
-use App\Models\AdminService;
+use App\Bundles\Admin\Models\AdminService;
 use App\Bundles\User\Models\Role;
 use Illuminate\Http\Request;
 

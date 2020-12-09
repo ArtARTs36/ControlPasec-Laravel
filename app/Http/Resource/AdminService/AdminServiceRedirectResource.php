@@ -2,7 +2,7 @@
 
 namespace App\Http\Resource\AdminService;
 
-use App\Models\AdminService;
+use App\Bundles\Admin\Models\AdminService;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**

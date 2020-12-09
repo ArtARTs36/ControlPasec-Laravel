@@ -2,10 +2,7 @@
 
 namespace App\Providers;
 
-use App\Models\AdminService;
-use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
-use Studio\Totem\Totem;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,10 +16,6 @@ class AppServiceProvider extends ServiceProvider
         if (! $this->app->environment('production')) {
             $this->app->register(\JKocik\Laravel\Profiler\ServiceProvider::class);
         }
-
-        Totem::auth(function (Request $request) {
-            return AdminService::isAllowed(AdminService::NAME_TOTEM, $request->getClientIp());
-        });
     }
 
     /**

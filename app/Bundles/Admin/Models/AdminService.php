@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Bundles\Admin\Models;
 
 use App\Bundles\Admin\Support\ServiceAccess as AdminServiceAccess;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class AdminService
  * @property int $id
  * @property string $name
  * @property string $title
@@ -40,14 +39,5 @@ class AdminService extends Model
     public function getUrl(): string
     {
         return ($this->isSelf() ? request()->getSchemeAndHttpHost() : '') .  $this->path;
-    }
-
-    public static function isAllowed(string $name, string $ip): bool
-    {
-        return AdminService::query()
-            ->where(AdminService::FIELD_NAME, $name)
-            ->firstOrFail()
-            ->access()
-            ->isAllowed($ip);
     }
 }

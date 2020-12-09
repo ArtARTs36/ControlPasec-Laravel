@@ -182,6 +182,8 @@ return [
          */
         Dba\ControlTime\Providers\ControlTimeProvider::class,
 
+        \App\Bundles\Admin\Providers\AdminProvider::class,
+
         /*
          * Horizon Queue Provider
          */
@@ -208,8 +210,6 @@ return [
         \App\Bundles\Employee\Providers\EmployeeProvider::class,
 
         \App\Bundles\Supply\Providers\SupplyProvider::class,
-
-        \App\Bundles\Admin\Providers\AdminProvider::class,
     ],
 
     /*

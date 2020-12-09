@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Admin\Support;
 
-use App\Models\AdminService;
+use App\Bundles\Admin\Models\AdminService;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
