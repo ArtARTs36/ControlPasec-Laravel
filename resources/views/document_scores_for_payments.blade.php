@@ -78,7 +78,7 @@
         /** @var \App\Models\Supply\SupplyProduct[] $products */
         $products = $supply->products;
 
-        $totalPrice = \App\Services\SupplyService::bringTotalPrice($supply);
+        $totalPrice = app(\App\Bundles\Supply\Services\SupplyService::class)->bringTotalPrice($supply);
     @endphp
 
     @if($scoreIndex > 0)

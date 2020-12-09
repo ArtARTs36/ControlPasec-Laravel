@@ -15,7 +15,7 @@ $products = $supply->products;
 
 $plannedDate = new DateTime($supply->planned_date);
 
-$fullTotalPrice = \App\Services\SupplyService::bringTotalPrice($supply);
+$fullTotalPrice = app(\App\Bundles\Supply\Services\SupplyService::class)->bringTotalPrice($supply);
 
 $data = [
     'ГРУЗОПОЛУЧАТЕЛЬ' => \App\Services\Document\TemplateService::renderContragent($supply->customer),

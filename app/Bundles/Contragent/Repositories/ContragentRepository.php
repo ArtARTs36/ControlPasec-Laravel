@@ -42,4 +42,15 @@ class ContragentRepository extends Repository
 
         return $query->get();
     }
+
+    /**
+     * Поиск контрагентов по названиям
+     */
+    public function getByTitles(array $titles): Collection
+    {
+        return $this
+            ->newQuery()
+            ->whereIn(Contragent::FIELD_TITLE, $titles)
+            ->get();
+    }
 }

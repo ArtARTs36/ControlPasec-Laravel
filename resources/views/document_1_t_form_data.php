@@ -4,7 +4,7 @@
 use App\Models\Document\Document;
 use App\Models\Supply\SupplyProduct;
 use App\Services\Document\TemplateService;
-use App\Services\SupplyService;
+use App\Bundles\Supply\Services\SupplyService;
 use ArtARTs36\RuSpelling\Month;
 
 $document = $document->load('productTransportWaybills');
@@ -19,7 +19,7 @@ $products = $supply->products;
 
 $plannedDate = new \DateTime($supply->planned_date);
 
-$fullTotalPrice = SupplyService::bringTotalPrice($supply);
+$fullTotalPrice = app(SupplyService::class)->bringTotalPrice($supply);
 
 $data = [
     'ГРУЗОПОЛУЧАТЕЛЬ' => TemplateService::renderContragent($supply->customer),

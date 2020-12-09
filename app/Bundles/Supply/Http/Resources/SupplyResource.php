@@ -3,7 +3,7 @@
 namespace App\Bundles\Supply\Http\Resources;
 
 use App\Models\Supply\Supply;
-use App\Services\SupplyService;
+use App\Bundles\Supply\Services\SupplyService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 

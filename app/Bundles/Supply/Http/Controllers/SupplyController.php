@@ -12,7 +12,7 @@ use App\Http\Responses\ActionResponse;
 use App\Models\Supply\Supply;
 use App\Bundles\User\Models\Permission;
 use App\Bundles\Supply\Repositories\SupplyRepository;
-use App\Services\SupplyService;
+use App\Bundles\Supply\Services\SupplyService;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 final class SupplyController extends Controller
