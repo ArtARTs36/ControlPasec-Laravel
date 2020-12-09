@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Vocab;
+namespace App\Bundles\Vocab\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

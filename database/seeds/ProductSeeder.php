@@ -1,11 +1,11 @@
 <?php
 
 use App\Bundles\Product\Models\Product;
-use App\Models\Vocab\SizeOfUnit;
+use App\Bundles\Vocab\Models\SizeOfUnit;
 use App\Bundles\Vocab\Models\VocabCurrency;
-use App\Models\Vocab\VocabGosStandard;
+use App\Bundles\Vocab\Models\VocabGosStandard;
 use App\Bundles\Vocab\Models\VocabPackageType;
-use App\Models\Vocab\VocabQuantityUnit;
+use App\Bundles\Vocab\Models\VocabQuantityUnit;
 
 /**
  * Class ProductSeeder

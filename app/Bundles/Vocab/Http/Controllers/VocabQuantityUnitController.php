@@ -5,7 +5,7 @@ namespace App\Bundles\Vocab\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Responses\ActionResponse;
 use App\Bundles\User\Models\Permission;
-use App\Models\Vocab\VocabQuantityUnit;
+use App\Bundles\Vocab\Models\VocabQuantityUnit;
 use Illuminate\Http\Request;
 
 class VocabQuantityUnitController extends Controller

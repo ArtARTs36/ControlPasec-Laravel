@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Vocab\Http\Requests;
 
-use App\Models\Vocab\SizeOfUnit;
+use App\Bundles\Vocab\Models\SizeOfUnit;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreSizeOfUnit extends FormRequest

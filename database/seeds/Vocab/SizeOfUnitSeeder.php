@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Vocab\SizeOfUnit;
+use App\Bundles\Vocab\Models\SizeOfUnit;
 
 /**
  * Class SizeOfUnitSeeder

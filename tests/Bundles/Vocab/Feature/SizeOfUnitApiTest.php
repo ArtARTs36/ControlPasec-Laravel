@@ -2,7 +2,7 @@
 
 namespace Tests\Bundles\Vocab\Feature;
 
-use App\Models\Vocab\SizeOfUnit;
+use App\Bundles\Vocab\Models\SizeOfUnit;
 use Tests\BaseTestCase;
 
 final class SizeOfUnitApiTest extends BaseTestCase

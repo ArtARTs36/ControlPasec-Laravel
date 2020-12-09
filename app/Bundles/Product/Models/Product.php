@@ -4,11 +4,11 @@ namespace App\Bundles\Product\Models;
 
 use App\Models\Traits\WithOrderNumber;
 use App\Bundles\Admin\Models\VariableDefinition;
-use App\Models\Vocab\SizeOfUnit;
+use App\Bundles\Vocab\Models\SizeOfUnit;
 use App\Bundles\Vocab\Models\VocabCurrency;
-use App\Models\Vocab\VocabGosStandard;
+use App\Bundles\Vocab\Models\VocabGosStandard;
 use App\Bundles\Vocab\Models\VocabPackageType;
-use App\Models\Vocab\VocabQuantityUnit;
+use App\Bundles\Vocab\Models\VocabQuantityUnit;
 use Creatortsv\EloquentPipelinesModifier\WithModifier;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;

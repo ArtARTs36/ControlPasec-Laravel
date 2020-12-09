@@ -2,12 +2,14 @@
 
 namespace App\Bundles\Vocab\Http\Controllers;
 
+use App\Bundles\Vocab\Http\Requests\StoreGosStandard;
 use App\Http\Controllers\Controller;
 use App\Http\Responses\ActionResponse;
 use App\Bundles\User\Models\Permission;
-use App\Models\Vocab\VocabGosStandard;
+use App\Bundles\Vocab\Models\VocabGosStandard;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class VocabGosStandardController extends Controller
 {
@@ -34,34 +36,24 @@ class VocabGosStandardController extends Controller
 
     /**
      * Добавить ГОСТ
-     *
-     * @param Request $request
-     * @return ActionResponse
      */
-    public function store(Request $request): ActionResponse
+    public function store(StoreGosStandard $request): JsonResource
     {
-        return $this->createModelAndResponse($request, VocabGosStandard::class);
+        return new JsonResource((new VocabGosStandard())->fillOfRequest($request));
     }
 
     /**
      * Отобразить данные ГОСТа
-     *
-     * @param VocabGosStandard $vocabGosStandard
-     * @return VocabGosStandard
      */
-    public function show(VocabGosStandard $vocabGosStandard): VocabGosStandard
+    public function show(VocabGosStandard $vocabGosStandard): JsonResource
     {
-        return $vocabGosStandard;
+        return new JsonResource($vocabGosStandard);
     }
 
     /**
      * Обновления данных ГОСТа
-     *
-     * @param Request $request
-     * @param VocabGosStandard $vocabGosStandard
-     * @return ActionResponse
      */
-    public function update(Request $request, VocabGosStandard $vocabGosStandard)
+    public function update(StoreGosStandard $request, VocabGosStandard $vocabGosStandard)
     {
         return $this->updateModelAndResponse($request, $vocabGosStandard);
     }

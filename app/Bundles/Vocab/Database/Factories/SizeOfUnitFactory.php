@@ -4,12 +4,12 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(\App\Models\Vocab\SizeOfUnit::class, function (Faker $faker) {
+$factory->define(\App\Bundles\Vocab\Models\SizeOfUnit::class, function (Faker $faker) {
     return [
-        \App\Models\Vocab\SizeOfUnit::FIELD_NAME => $faker->word,
-        \App\Models\Vocab\SizeOfUnit::FIELD_NAME_EN => $faker->word,
-        \App\Models\Vocab\SizeOfUnit::FIELD_OKEI => $faker->randomNumber(),
-        \App\Models\Vocab\SizeOfUnit::FIELD_SHORT_NAME => $faker->word,
-        \App\Models\Vocab\SizeOfUnit::FIELD_SHORT_NAME_EN => $faker->word,
+        \App\Bundles\Vocab\Models\SizeOfUnit::FIELD_NAME => $faker->word,
+        \App\Bundles\Vocab\Models\SizeOfUnit::FIELD_NAME_EN => $faker->word,
+        \App\Bundles\Vocab\Models\SizeOfUnit::FIELD_OKEI => $faker->randomNumber(),
+        \App\Bundles\Vocab\Models\SizeOfUnit::FIELD_SHORT_NAME => $faker->word,
+        \App\Bundles\Vocab\Models\SizeOfUnit::FIELD_SHORT_NAME_EN => $faker->word,
     ];
 });

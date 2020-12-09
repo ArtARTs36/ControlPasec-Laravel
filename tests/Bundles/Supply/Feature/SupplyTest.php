@@ -8,7 +8,7 @@ use App\Bundles\Supply\Services\SupplyCreateOptions\CreateScoreForPayment;
 use App\Models\Supply\Supply;
 use App\Models\Supply\SupplyProduct;
 use App\Bundles\User\Models\Permission;
-use App\Models\Vocab\VocabQuantityUnit;
+use App\Bundles\Vocab\Models\VocabQuantityUnit;
 use Illuminate\Http\Response;
 use Tests\BaseTestCase;
 

@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Contragent\Models;
 
-use App\Models\Vocab\VocabBank;
+use App\Bundles\Vocab\Models\VocabBank;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
