@@ -2,7 +2,7 @@
 
 namespace Tests\Bundles\Admin\Unit;
 
-use App\Models\VariableDefinition;
+use App\Bundles\Admin\Models\VariableDefinition;
 use Illuminate\Database\Eloquent\Model;
 use Tests\BaseTestCase;
 

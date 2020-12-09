@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App\Bundles\Admin\Models;
 
+use App\Models\ModelType;
 use App\Models\Traits\WithModelType;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Query\Builder;
 
 /**
- * Class VariableDefinition
- *
  * @property int $id
  * @property string $name
  * @property string $value
@@ -16,8 +14,6 @@ use Illuminate\Database\Query\Builder;
  * @property bool $is_take_of_parent
  * @property ModelType|null $modelType
  * @property int|null $model_type_id
- *
- * @mixin Builder
  */
 final class VariableDefinition extends Model
 {
@@ -31,10 +27,14 @@ final class VariableDefinition extends Model
     public const QUALITY_CERTIFICATE_ORDER_NUMBER = 'quality_certificate_order_number';
     public const TORG_12_ORDER_NUMBER = 'torg_12_order_number';
 
+    public const FIELD_NAME = 'name';
+    public const FIELD_DESCRIPTION = 'description';
     public const FIELD_VALUE = 'value';
 
     protected $fillable = [
         self::FIELD_VALUE,
+        self::FIELD_NAME,
+        self::FIELD_DESCRIPTION,
     ];
 
     /**

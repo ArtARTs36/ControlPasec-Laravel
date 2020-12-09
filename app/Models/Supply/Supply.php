@@ -6,7 +6,7 @@ use App\Bundles\Supply\Models\Contract;
 use App\Bundles\Contragent\Models\Contragent;
 use App\Models\Traits\WithOrderNumber;
 use App\Models\Traits\WithSupplierAndCustomer;
-use App\Models\VariableDefinition;
+use App\Bundles\Admin\Models\VariableDefinition;
 use Creatortsv\EloquentPipelinesModifier\WithModifier;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;

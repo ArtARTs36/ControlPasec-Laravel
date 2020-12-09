@@ -208,6 +208,8 @@ return [
         \App\Bundles\Employee\Providers\EmployeeProvider::class,
 
         \App\Bundles\Supply\Providers\SupplyProvider::class,
+
+        \App\Bundles\Admin\Providers\AdminProvider::class,
     ],
 
     /*

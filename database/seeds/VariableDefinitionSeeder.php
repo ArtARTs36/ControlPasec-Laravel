@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\ModelType;
-use App\Models\VariableDefinition;
+use App\Bundles\Admin\Models\VariableDefinition;
 
 class VariableDefinitionSeeder extends CommonSeeder
 {

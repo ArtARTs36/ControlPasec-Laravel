@@ -8,7 +8,6 @@ Route::group([
     require 'apis/api.contracts.php';
     require 'apis/api.documents.php';
     require 'apis/api.vocabs.php';
-    require 'apis/api.variable_definitions.php';
     require 'apis/api.parsers.php';
     require 'apis/api.stat.php';
     require(__DIR__ . '/../vendor/dba/controltime/routes/api.php');

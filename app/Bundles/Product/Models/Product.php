@@ -3,7 +3,7 @@
 namespace App\Bundles\Product\Models;
 
 use App\Models\Traits\WithOrderNumber;
-use App\Models\VariableDefinition;
+use App\Bundles\Admin\Models\VariableDefinition;
 use App\Models\Vocab\SizeOfUnit;
 use App\Bundles\Vocab\Models\VocabCurrency;
 use App\Models\Vocab\VocabGosStandard;

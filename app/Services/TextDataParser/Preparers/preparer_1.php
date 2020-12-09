@@ -2,7 +2,7 @@
 
 use App\Bundles\Contragent\Models\Contragent;
 use App\Bundles\Supply\Repositories\ScoreForPaymentRepository;
-use App\Models\VariableDefinition;
+use App\Bundles\Admin\Models\VariableDefinition;
 use App\Services\Supply\SupplyProductService;
 use App\Bundles\Supply\Services\SupplyService;
 use App\Services\VariableDefinitionService;
