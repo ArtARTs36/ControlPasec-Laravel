@@ -14,6 +14,11 @@ abstract class Repository
         $this->modelClass = $this->getModelClass();
     }
 
+    public function forceFind(int $id): ?Model
+    {
+        return $this->force()->where('id', $id)->first();
+    }
+
     protected function getModelClass(): string
     {
         return str_replace(['Repositories', 'Repository'], ['Models', ''], static::class);
@@ -29,5 +34,10 @@ abstract class Repository
         $class = $this->modelClass;
 
         return new $class();
+    }
+
+    protected function force(): Builder
+    {
+        return $this->newQuery()->withoutGlobalScopes();
     }
 }

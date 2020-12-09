@@ -22,3 +22,7 @@ Route::get('contragents/find-external-by-inn/{inn}', 'ContragentController@findI
 //
 
 Route::apiResource('contragent-managers', 'ContragentManagerController');
+
+//
+
+Route::apiResource('my-contragents', 'MyContragentController');

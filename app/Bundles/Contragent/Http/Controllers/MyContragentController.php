@@ -3,9 +3,10 @@
 namespace App\Bundles\Contragent\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MyContragentRequest;
+use App\Bundles\Contragent\Http\Requests\StoreMyContragent;
 use App\Bundles\Contragent\Models\MyContragent;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class MyContragentController extends Controller
 {
@@ -14,46 +15,21 @@ class MyContragentController extends Controller
         return MyContragent::paginate(10);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param MyContragentRequest $request
-     * @return void
-     */
-    public function store(MyContragentRequest $request)
+    public function store(StoreMyContragent $request): JsonResource
     {
-        //
+        return new JsonResource((new MyContragent())->fillOfRequest($request));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param MyContragent $myContragent
-     * @return MyContragent
-     */
     public function show(MyContragent $myContragent)
     {
         return $myContragent;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param MyContragentRequest $request
-     * @param MyContragent $myContragent
-     * @return void
-     */
-    public function update(MyContragentRequest $request, MyContragent $myContragent)
+    public function update(StoreMyContragent $request, MyContragent $myContragent): JsonResource
     {
-        //
+        return new JsonResource($myContragent->fillOfRequest($request));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param MyContragent $myContragent
-     * @return void
-     */
     public function destroy(MyContragent $myContragent)
     {
         $myContragent->delete();
