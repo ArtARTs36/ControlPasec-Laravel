@@ -6,6 +6,6 @@ class LowerValueLike extends LowerValue
 {
     protected function preparedValue($value): string
     {
-        return '%'. mb_strtolower($value) . '%';
+        return '\'%'. mb_strtolower($value) . '%\'';
     }
 }

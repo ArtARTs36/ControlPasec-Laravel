@@ -2,6 +2,7 @@
 
 namespace Tests\Bundles\User\Feature;
 
+use App\User;
 use Tests\BaseTestCase;
 
 final class ProfileTest extends BaseTestCase
@@ -14,6 +15,10 @@ final class ProfileTest extends BaseTestCase
     public function testSearch(): void
     {
         $this->actingAsRandomUser();
+
+        $user = factory(User::class)->create();
+        $user->name = 'admin';
+        $user->save();
 
         $response = $this->getJson(static::SEARCH_URL);
         $data = $this->decodeResponse($response);
