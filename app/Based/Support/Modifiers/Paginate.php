@@ -1,17 +1,13 @@
 <?php
 
-namespace App\Support\Modifiers;
+namespace App\Based\Support\Modifiers;
 
 use Creatortsv\EloquentPipelinesModifier\Modifiers\ModifierAbstract;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Arr;
 
-/**
- * Class Paginate
- * @package App\Support\Modifiers
- */
-class Paginate extends ModifierAbstract
+final class Paginate extends ModifierAbstract
 {
     /**
      * @inheritDoc
