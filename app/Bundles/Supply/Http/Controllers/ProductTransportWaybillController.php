@@ -1,53 +1,42 @@
 <?php
 
-namespace App\Http\Controllers\Supply;
+namespace App\Bundles\Supply\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ProductTransportWaybillRequest;
+use App\Bundles\Supply\Http\Requests\StoreProductTransportWaybill;
 use App\Http\Responses\ActionResponse;
 use App\Models\Supply\ProductTransportWaybill;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Http\Resources\Json\JsonResource;
 
-class ProductTransportWaybillController extends Controller
+final class ProductTransportWaybillController extends Controller
 {
     /**
      * Получить список накладных
-     *
-     * @return LengthAwarePaginator
      */
-    public function index()
+    public function index(): LengthAwarePaginator
     {
         return ProductTransportWaybill::paginate(10);
     }
 
-    public function store(ProductTransportWaybillRequest $request)
+    public function store(StoreProductTransportWaybill $request): JsonResource
     {
-        $waybill = new ProductTransportWaybill();
-        $waybill->fill($request->toArray())
-                ->save();
-
-        return new ActionResponse(true, $waybill);
+        return new JsonResource((new ProductTransportWaybill())->fillOfRequest($request));
     }
 
     /**
      * Показать накладную
      *
-     * @param ProductTransportWaybill $waybill
-     * @return ProductTransportWaybill
      */
-    public function show(ProductTransportWaybill $waybill)
+    public function show(ProductTransportWaybill $waybill): JsonResource
     {
-        return $waybill;
+        return new JsonResource($waybill);
     }
 
     /**
      * Обновить накладную
-     *
-     * @param ProductTransportWaybillRequest $request
-     * @param ProductTransportWaybill $waybill
-     * @return ActionResponse
      */
-    public function update(ProductTransportWaybillRequest $request, ProductTransportWaybill $waybill)
+    public function update(StoreProductTransportWaybill $request, ProductTransportWaybill $waybill)
     {
         return new ActionResponse($waybill->update($request->all()), $waybill);
     }
