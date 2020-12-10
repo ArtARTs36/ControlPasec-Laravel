@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Document;
+namespace App\Bundles\Document\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Services\ArchiveService;

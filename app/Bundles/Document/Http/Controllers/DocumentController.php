@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Document;
+namespace App\Bundles\Document\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resource\DocumentShowResource;
@@ -11,35 +11,17 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class DocumentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @param int $page
-     * @return LengthAwarePaginator
-     */
     public function index(int $page = 1): LengthAwarePaginator
     {
         return Document::query()
             ->paginate(10, ['*'], 'DocumentsList', $page);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param Document $document
-     * @return DocumentShowResource
-     */
     public function show(Document $document): DocumentShowResource
     {
         return new DocumentShowResource($document);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param Document $document
-     * @return ActionResponse
-     */
     public function destroy(Document $document): ActionResponse
     {
         $document->deleteFile();
@@ -55,7 +37,7 @@ class DocumentController extends Controller
     public function download(int $documentId)
     {
         $document = Document::find($documentId);
-        if (!$document->fileExists()) {
+        if (! $document->fileExists()) {
             return null;
         }
 
