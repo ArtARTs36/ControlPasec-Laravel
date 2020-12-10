@@ -18,12 +18,15 @@ class TextSignature
 
     public function get(Contragent $contragent): string
     {
-        if (empty($this->container[$contragent->id]) &&
-            ($myContragent = $this->repository->findByContragent($contragent->id))) {
-
+        if ($this->notHas($contragent) && ($myContragent = $this->repository->findByContragent($contragent->id))) {
             return $this->container[$contragent->id] = $myContragent->signature;
         }
 
         return $contragent->title_for_document;
+    }
+
+    protected function notHas(Contragent $contragent): bool
+    {
+        return empty($this->container[$contragent->id]);
     }
 }

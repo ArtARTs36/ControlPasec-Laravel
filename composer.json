@@ -95,6 +95,9 @@
         ],
         "test": [
             "vendor/phpunit/phpunit/phpunit"
+        ],
+        "lint": [
+            "vendor/bin/phpcs --colors --report-summary --report-source --report-width=1080 --warning-severity=0 --standard=PSR2 --extensions=php app config routes"
         ]
     }
 }
