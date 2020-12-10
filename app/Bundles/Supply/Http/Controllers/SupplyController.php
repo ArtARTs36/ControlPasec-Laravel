@@ -5,7 +5,6 @@ namespace App\Bundles\Supply\Http\Controllers;
 use App\Bundles\Supply\Contracts\Creator;
 use App\Bundles\Supply\Http\Requests\StoreSupply;
 use App\Bundles\Supply\Http\Resources\SupplyResource;
-use App\Helper\SupplierHelper;
 use App\Based\Contracts\Controller;
 use App\Bundles\Supply\Http\Requests\StoreManySupply;
 use App\Based\Http\Responses\ActionResponse;
@@ -49,7 +48,7 @@ final class SupplyController extends Controller
     public function store(StoreSupply $request): ActionResponse
     {
         $supply = $this->makeModel($request, Supply::class);
-        $supply->supplier_id = $request->get('supplier_id', SupplierHelper::getDefaultId());
+        $supply->supplier_id = $request->get('supplier_id', $this->service->getDefaultId());
         $supply->save();
 
         $this->service->checkProductsInSupply($request->toArray(), $supply->id);

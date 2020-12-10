@@ -11,7 +11,7 @@
     $supply = $score->supply;
     $supplier = $supply->supplier;
 
-    $supplierHelper = \App\Helper\SupplierHelper::getInstance($supplier);
+    $signature = app(\App\Bundles\Contragent\Support\TextSignature::class)->get($supplier);
 
     $customer = $supply->customer;
 
@@ -257,7 +257,7 @@
     Подпись
     <span style="float:right; text-align: right;">
         <i>
-            {{ $supplierHelper->getSignature() }}
+            {{ $signature }}
         </i>
     </span>
     <div style="position:relative; margin-left: 65px; background-color:#000000; width:100%; font-size:1px; height:2px;">&nbsp;</div>

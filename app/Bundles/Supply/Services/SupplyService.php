@@ -6,7 +6,6 @@ use App\Bundles\Contragent\Models\Contragent;
 use App\Models\Supply\Supply;
 use App\Models\Supply\SupplyProduct;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
 
 final class SupplyService
 {
@@ -76,5 +75,15 @@ final class SupplyService
         $supply->save();
 
         return $supply;
+    }
+
+    /**
+     * @todo уйти от .env
+     * сделать в таблице поле position
+     * @return int
+     */
+    public function getDefaultId(): int
+    {
+        return (int) env('ONE_SUPPLIER_ID');
     }
 }
