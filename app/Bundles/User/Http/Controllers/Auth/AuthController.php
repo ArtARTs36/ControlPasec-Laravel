@@ -5,7 +5,7 @@ namespace App\Bundles\User\Http\Controllers\Auth;
 use App\Bundles\User\Contracts\Tokenizer;
 use App\Bundles\User\Http\Resources\UserResource;
 use App\Bundles\User\Http\Actions\FetchMyUser;
-use App\Http\Controllers\Controller;
+use App\Based\Contracts\Controller;
 use App\Bundles\User\Http\Requests\AuthRequest;
 use App\Bundles\User\Repositories\UserRepository;
 use App\User;

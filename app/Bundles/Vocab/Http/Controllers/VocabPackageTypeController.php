@@ -7,7 +7,7 @@ use App\Http\Responses\ActionResponse;
 use App\Bundles\User\Models\Permission;
 use App\Bundles\Vocab\Models\VocabPackageType;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use App\Http\Controllers\Controller;
+use App\Based\Contracts\Controller;
 
 class VocabPackageTypeController extends Controller
 {

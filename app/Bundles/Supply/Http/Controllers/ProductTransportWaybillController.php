@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Supply\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Based\Contracts\Controller;
 use App\Bundles\Supply\Http\Requests\StoreProductTransportWaybill;
 use App\Http\Responses\ActionResponse;
 use App\Models\Supply\ProductTransportWaybill;

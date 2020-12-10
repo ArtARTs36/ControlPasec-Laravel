@@ -5,7 +5,7 @@ namespace App\Bundles\Admin\Http\Controllers;
 use App\Bundles\Admin\Http\Resources\ServiceRedirectResource;
 use App\Bundles\Admin\Models\AdminService;
 use App\Bundles\User\Models\Role;
-use App\Http\Controllers\Controller;
+use App\Based\Contracts\Controller;
 use Illuminate\Http\Request;
 
 class AdminServiceController extends Controller

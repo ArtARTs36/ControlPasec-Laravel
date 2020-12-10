@@ -4,7 +4,7 @@ namespace App\Bundles\Product\Http\Controllers;
 
 use App\Bundles\Product\Repositories\ProductRepository;
 use App\Bundles\Product\Services\ProductService;
-use App\Http\Controllers\Controller;
+use App\Based\Contracts\Controller;
 use App\Bundles\Product\Http\Requests\StoreProduct;
 use App\Http\Responses\ActionResponse;
 use App\Bundles\Product\Models\Product;

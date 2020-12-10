@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Vocab\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Based\Contracts\Controller;
 use App\Http\Responses\ActionResponse;
 use App\Bundles\User\Models\Permission;
 use App\Bundles\Vocab\Models\VocabBank;

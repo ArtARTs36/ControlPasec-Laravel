@@ -6,7 +6,7 @@ use App\Bundles\Supply\Contracts\Creator;
 use App\Bundles\Supply\Http\Requests\StoreSupply;
 use App\Bundles\Supply\Http\Resources\SupplyResource;
 use App\Helper\SupplierHelper;
-use App\Http\Controllers\Controller;
+use App\Based\Contracts\Controller;
 use App\Bundles\Supply\Http\Requests\StoreManySupply;
 use App\Http\Responses\ActionResponse;
 use App\Models\Supply\Supply;

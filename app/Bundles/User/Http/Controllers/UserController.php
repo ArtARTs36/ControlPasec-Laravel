@@ -4,7 +4,7 @@ namespace App\Bundles\User\Http\Controllers;
 
 use App\Bundles\User\Http\Resources\UserResource;
 use App\Bundles\User\Http\Actions\FetchMyUser;
-use App\Http\Controllers\Controller;
+use App\Based\Contracts\Controller;
 use App\Bundles\User\Http\Requests\StoreUser;
 use App\Http\Responses\ActionResponse;
 use App\Bundles\User\Models\Permission;

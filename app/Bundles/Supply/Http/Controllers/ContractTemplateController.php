@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Supply\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Based\Contracts\Controller;
 use App\Http\Responses\ActionResponse;
 use App\Bundles\Supply\Models\ContractTemplate;
 use Illuminate\Http\Request;

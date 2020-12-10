@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Supply\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Based\Contracts\Controller;
 use App\Bundles\Supply\Http\Requests\ManySuppliesRequest;
 use App\Bundles\Supply\Http\Requests\StoreScore;
 use App\Bundles\Document\Http\Resources\DocumentResource;

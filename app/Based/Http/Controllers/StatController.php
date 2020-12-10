@@ -2,7 +2,7 @@
 
 namespace App\Based\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Based\Contracts\Controller;
 use App\Bundles\Contragent\Models\Contragent;
 use App\Bundles\ExternalNews\Models\ExternalNewsSource;
 use App\Models\Supply\Supply;

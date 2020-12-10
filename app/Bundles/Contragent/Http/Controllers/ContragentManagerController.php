@@ -5,7 +5,7 @@ namespace App\Bundles\Contragent\Http\Controllers;
 use App\Bundles\Contragent\Http\Requests\StoreManager;
 use App\Http\Responses\ActionResponse;
 use App\Bundles\Contragent\Models\ContragentManager;
-use App\Http\Controllers\Controller;
+use App\Based\Contracts\Controller;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class ContragentManagerController extends Controller

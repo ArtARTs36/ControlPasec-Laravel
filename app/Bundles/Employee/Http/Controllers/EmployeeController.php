@@ -3,7 +3,7 @@
 namespace App\Bundles\Employee\Http\Controllers;
 
 use App\Bundles\Employee\Http\Requests\EmployeeStoreRequest;
-use App\Http\Controllers\Controller;
+use App\Based\Contracts\Controller;
 use App\Http\Responses\ActionResponse;
 use App\Bundles\Employee\Models\Employee;
 use App\Bundles\Employee\Repositories\EmployeeRepository;

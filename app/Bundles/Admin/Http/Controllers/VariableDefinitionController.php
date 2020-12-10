@@ -3,7 +3,7 @@
 namespace App\Bundles\Admin\Http\Controllers;
 
 use App\Bundles\Admin\Http\Requests\UpdateVariableDefinition;
-use App\Http\Controllers\Controller;
+use App\Based\Contracts\Controller;
 use App\Http\Responses\ActionResponse;
 use App\Bundles\Admin\Models\VariableDefinition;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;

@@ -3,7 +3,7 @@
 namespace App\Bundles\User\Http\Controllers\Auth;
 
 use App\Bundles\User\Events\UserRegistered;
-use App\Http\Controllers\Controller;
+use App\Based\Contracts\Controller;
 use App\Bundles\User\Http\Requests\UserRegisterRequest;
 use App\Bundles\User\Http\Responses\UserRegisteredResponse;
 use App\Bundles\User\Models\Role;

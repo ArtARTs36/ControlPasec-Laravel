@@ -2,7 +2,7 @@
 
 namespace App\Bundles\User\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Based\Contracts\Controller;
 use App\Bundles\User\Models\Permission;
 use App\Bundles\User\Models\Role;
 use App\Bundles\User\Repositories\RoleRepository;

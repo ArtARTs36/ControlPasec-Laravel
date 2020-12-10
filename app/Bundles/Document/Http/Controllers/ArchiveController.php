@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Document\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Based\Contracts\Controller;
 use App\Bundles\Document\Support\ArchivePath;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 

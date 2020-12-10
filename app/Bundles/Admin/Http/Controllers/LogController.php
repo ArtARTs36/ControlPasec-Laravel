@@ -5,7 +5,7 @@ namespace App\Bundles\Admin\Http\Controllers;
 use App\Bundles\Admin\Contracts\LogRepositoryInterface;
 use App\Bundles\Admin\Http\Resources\ShowLog;
 use App\Bundles\Admin\Services\LogService;
-use App\Http\Controllers\Controller;
+use App\Based\Contracts\Controller;
 use App\Bundles\Admin\Http\Requests\SearchLog;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;

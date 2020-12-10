@@ -6,7 +6,7 @@ use App\Bundles\Contragent\Support\Finder;
 use App\Bundles\Contragent\Http\Requests\StoreContragent;
 use App\Http\Responses\ActionResponse;
 use App\Bundles\Contragent\Models\Contragent;
-use App\Http\Controllers\Controller;
+use App\Based\Contracts\Controller;
 use App\Models\Sync\SyncWithExternalSystemType;
 use App\Bundles\User\Models\Permission;
 use App\Bundles\Contragent\Repositories\ContragentRepository;

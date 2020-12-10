@@ -2,7 +2,7 @@
 
 namespace App\Bundles\User\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
+use App\Based\Contracts\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 

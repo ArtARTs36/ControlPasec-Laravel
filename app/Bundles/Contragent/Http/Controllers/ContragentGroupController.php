@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Contragent\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Based\Contracts\Controller;
 use App\Bundles\Contragent\Http\Requests\UpdateContragentGroup;
 use App\Http\Responses\ActionResponse;
 use App\Bundles\Contragent\Models\Contragent;

@@ -4,7 +4,7 @@ namespace App\Bundles\ExternalNews\Http\Controllers;
 
 use App\Bundles\ExternalNews\Http\Requests\UpdateRequest;
 use App\Bundles\ExternalNews\Contracts\ExternalNewsRepository;
-use App\Http\Controllers\Controller;
+use App\Based\Contracts\Controller;
 use App\Http\Responses\ActionResponse;
 use App\Bundles\ExternalNews\Models\ExternalNews;
 use App\Bundles\User\Models\Permission;

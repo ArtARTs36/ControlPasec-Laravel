@@ -4,7 +4,7 @@ namespace App\Bundles\Landing\Http\Controllers;
 
 use App\Bundles\Landing\Repositories\FeedBackRepository;
 use App\Bundles\Landing\Events\FeedBackCreated;
-use App\Http\Controllers\Controller;
+use App\Based\Contracts\Controller;
 use App\Bundles\Landing\Http\Requests\StoreFeedBack;
 use App\Http\Responses\ActionResponse;
 use App\Bundles\Landing\Models\FeedBack;

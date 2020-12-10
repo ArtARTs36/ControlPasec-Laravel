@@ -7,7 +7,7 @@ use App\Bundles\User\Repositories\DialogRepository;
 use App\Bundles\User\Services\DialogService;
 use App\Bundles\User\Http\Resources\DialogResource;
 use App\Bundles\User\Models\Dialog;
-use App\Http\Controllers\Controller;
+use App\Based\Contracts\Controller;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Auth;

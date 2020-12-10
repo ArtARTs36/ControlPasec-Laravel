@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Document\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Based\Contracts\Controller;
 use App\Bundles\Document\Http\Requests\GenerateManyTypesRequest;
 use App\Bundles\Document\Http\Resources\ShowArchive;
 use App\Bundles\Document\Http\Resources\DocumentResource;

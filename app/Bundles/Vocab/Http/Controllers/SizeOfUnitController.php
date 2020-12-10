@@ -3,7 +3,7 @@
 namespace App\Bundles\Vocab\Http\Controllers;
 
 use App\Bundles\Vocab\Http\Requests\StoreSizeOfUnit;
-use App\Http\Controllers\Controller;
+use App\Based\Contracts\Controller;
 use App\Http\Responses\ActionResponse;
 use App\Bundles\Vocab\Models\SizeOfUnit;
 

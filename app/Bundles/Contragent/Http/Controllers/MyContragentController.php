@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Contragent\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Based\Contracts\Controller;
 use App\Bundles\Contragent\Http\Requests\StoreMyContragent;
 use App\Bundles\Contragent\Models\MyContragent;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;

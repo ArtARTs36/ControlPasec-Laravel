@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Document\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Based\Contracts\Controller;
 use App\Bundles\Document\Http\Resources\DocumentShowResource;
 use App\Http\Responses\ActionResponse;
 use App\Models\Document\Document;

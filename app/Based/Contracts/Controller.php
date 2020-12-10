@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Based\Contracts;
 
 use App\Http\Responses\ActionResponse;
 use Illuminate\Database\Eloquent\Model;

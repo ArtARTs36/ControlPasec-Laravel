@@ -3,7 +3,7 @@
 namespace App\Bundles\User\Http\Controllers;
 
 use App\Bundles\User\Http\Resources\ProfileResource;
-use App\Http\Controllers\Controller;
+use App\Based\Contracts\Controller;
 use App\Bundles\User\Http\Requests\UpdateAboutMe;
 use App\Bundles\User\Repositories\UserRepository;
 use App\User;

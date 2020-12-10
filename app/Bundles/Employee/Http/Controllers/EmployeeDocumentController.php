@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Employee\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Based\Contracts\Controller;
 use App\Bundles\Document\Http\Resources\DocumentResource;
 use App\Bundles\Employee\Models\Employee;
 use App\Services\Document\DocumentCreator;
