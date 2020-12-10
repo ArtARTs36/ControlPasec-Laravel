@@ -37,8 +37,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ExternalNewsSourceSeeder::class);
         $this->call(ExternalNewsSeeder::class);
 
-        $this->textDataParser();
-
         $this->call(SyncWithExternalSystemTypeSeeder::class);
 
         $this->call(SupplySeeder::class);
@@ -81,11 +79,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(ContractTemplateSeeder::class);
         $this->call(ContractSeeder::class);
-    }
-
-    private function textDataParser(): void
-    {
-        $this->call(TextDataParserComponentSeeder::class);
     }
 
     private function documents(): void
