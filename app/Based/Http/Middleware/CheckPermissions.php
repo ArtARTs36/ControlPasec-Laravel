@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace App\Based\Http\Middleware;
 
 use App\Bundles\User\Http\Responses\UserDoesNotHavePermission;
 use App\User;

@@ -8,7 +8,7 @@ abstract class RouteServiceProvider extends \Illuminate\Foundation\Support\Provi
 {
     protected $routesApiFile;
 
-    protected $middlewares = ['api', \App\Http\Middleware\CheckPermissions::class];
+    protected $middlewares = ['api', \App\Based\Http\Middleware\CheckPermissions::class];
 
     public function map(): void
     {

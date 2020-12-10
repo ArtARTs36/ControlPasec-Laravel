@@ -2,7 +2,7 @@
 
 Route::group([
     'middleware' => [
-        \App\Http\Middleware\CheckPermissions::class,
+        \App\Based\Http\Middleware\CheckPermissions::class,
     ],
 ], function () {
     require 'apis/api.parsers.php';
