@@ -3,7 +3,7 @@
 namespace App\Bundles\User\Http\Controllers;
 
 use App\Bundles\User\Http\Resources\UserResource;
-use App\Http\Actions\UserMeAction;
+use App\Bundles\User\Http\Actions\FetchMyUser;
 use App\Http\Controllers\Controller;
 use App\Bundles\User\Http\Requests\StoreUser;
 use App\Http\Responses\ActionResponse;
@@ -53,9 +53,9 @@ final class UserController extends Controller
      *      @OA\Response(response=404, description="Resource Not found"),
      * )
      */
-    public function me()
+    public function me(FetchMyUser $user): UserResource
     {
-        return UserMeAction::get();
+        return $user->toResource();
     }
 
     /**

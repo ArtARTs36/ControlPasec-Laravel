@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Actions;
+namespace App\Bundles\User\Http\Actions;
 
 use App\Bundles\User\Http\Resources\UserResource;
 use App\User;
 
-class UserMeAction
+class FetchMyUser
 {
-    public static function get(): UserResource
+    public function toResource(): UserResource
     {
         /** @var User $user */
         if (($user = auth()->user()) === null) {
@@ -19,7 +19,7 @@ class UserMeAction
         return new UserResource($user);
     }
 
-    private static function fullLoad(User $user): void
+    private function fullLoad(User $user): void
     {
         if ($user->getAttributeValue('notifications') === null) {
             $user->load(User::RELATION_UNREAD_NOTIFICATIONS);

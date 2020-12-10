@@ -4,7 +4,7 @@ namespace App\Bundles\User\Http\Controllers\Auth;
 
 use App\Bundles\User\Contracts\Tokenizer;
 use App\Bundles\User\Http\Resources\UserResource;
-use App\Http\Actions\UserMeAction;
+use App\Bundles\User\Http\Actions\FetchMyUser;
 use App\Http\Controllers\Controller;
 use App\Bundles\User\Http\Requests\AuthRequest;
 use App\Bundles\User\Repositories\UserRepository;
@@ -150,7 +150,9 @@ final class AuthController extends Controller
 
         $token_ttl = $this->tokenizer->getTokenTTL($token);
 
-        return UserMeAction::get()->additional(compact('token', 'token_ttl'));
+        return (new FetchMyUser())
+            ->toResource()
+            ->additional(compact('token', 'token_ttl'));
     }
 
     /**
