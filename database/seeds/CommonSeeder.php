@@ -1,6 +1,6 @@
 <?php
 
-use App\Helper\CSVHelper;
+use App\Based\Support\CSV\CSV;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -24,7 +24,7 @@ abstract class CommonSeeder extends Seeder
     {
         $path = __DIR__ .'/data/'. $file . (($isTypeFileCsv === true) ? '.csv' : '');
 
-        return CSVHelper::loadFile($path);
+        return CSV::ofFile($path);
     }
 
     public function getStringsOfResource($file, $isTypeFileCsv = true)

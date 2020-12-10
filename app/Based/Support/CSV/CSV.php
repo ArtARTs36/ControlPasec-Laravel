@@ -1,20 +1,14 @@
 <?php
 
-namespace App\Helper;
+namespace App\Based\Support\CSV;
 
-use App\Helper\CSVHelper\CSVResource;
-use App\Helper\CSVHelper\CSVString;
 use Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException;
 
-class CSVHelper
+class CSV
 {
-    /**
-     * @param string $file
-     * @return CSVResource
-     */
-    public static function loadFile(string $file)
+    public static function ofFile(string $file): CSVResource
     {
-        if (!file_exists($file)) {
+        if (! file_exists($file)) {
             throw new FileNotFoundException($file);
         }
 
@@ -33,11 +27,6 @@ class CSVHelper
         return new CSVResource($csvStrings, $keys);
     }
 
-    /**
-     * @param array $data
-     * @param array $keys
-     * @return CSVString
-     */
     protected static function createCsvString(array $data, array $keys)
     {
         $map = null;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helper\CSVHelper;
+namespace App\Based\Support\CSV;
 
 class CSVString
 {
@@ -10,6 +10,7 @@ class CSVString
     {
         $this->_array = $values;
 
+        // @todo
         foreach ($values as $key => $value) {
             $this->$key = $value;
         }
