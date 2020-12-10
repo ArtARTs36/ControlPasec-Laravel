@@ -3,14 +3,10 @@
 namespace App\Bundles\Employee\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resource\DocumentResource;
+use App\Bundles\Document\Http\Resources\DocumentResource;
 use App\Bundles\Employee\Models\Employee;
 use App\Services\Document\DocumentCreator;
 
-/**
- * Class EmployeeDocumentController
- * @package App\Bundles\Employee\Http\Controllers
- */
 class EmployeeDocumentController extends Controller
 {
     /**

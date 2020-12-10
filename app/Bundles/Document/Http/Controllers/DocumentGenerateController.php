@@ -4,8 +4,8 @@ namespace App\Bundles\Document\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Bundles\Document\Http\Requests\GenerateManyTypesRequest;
-use App\Http\Resource\ArchiveResource;
-use App\Http\Resource\DocumentResource;
+use App\Bundles\Document\Http\Resources\ShowArchive;
+use App\Bundles\Document\Http\Resources\DocumentResource;
 use App\Based\Interfaces\ModelWithDocuments;
 use App\Models\Document\DocumentType;
 use App\Models\Supply\OneTForm;
@@ -43,7 +43,7 @@ class DocumentGenerateController extends Controller
         return new DocumentResource($form->getDocument());
     }
 
-    public function generateManyTypes(Supply $supply, GenerateManyTypesRequest $request): ArchiveResource
+    public function generateManyTypes(Supply $supply, GenerateManyTypesRequest $request): ShowArchive
     {
         $files = [];
 
@@ -55,7 +55,7 @@ class DocumentGenerateController extends Controller
 
         $archive = (new Zipper())->compress($files, 'archive.zip');
 
-        return new ArchiveResource($archive);
+        return new ShowArchive($archive);
     }
 
     private function build(Supply $supply, int $typeId): ModelWithDocuments

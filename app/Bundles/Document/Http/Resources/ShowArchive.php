@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Http\Resource;
+namespace App\Bundles\Document\Http\Resources;
 
 use App\Based\Support\Archiver\Archive;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * Class ArchiveResource
  * @mixin Archive
  * @extends JsonResource<Archive>
  */
-class ArchiveResource extends JsonResource
+class ShowArchive extends JsonResource
 {
     /**
      * @param \Illuminate\Http\Request $request

@@ -5,7 +5,7 @@ namespace App\Bundles\Supply\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Bundles\Supply\Http\Requests\ManySuppliesRequest;
 use App\Bundles\Supply\Http\Requests\StoreScore;
-use App\Http\Resource\DocumentResource;
+use App\Bundles\Document\Http\Resources\DocumentResource;
 use App\Http\Responses\ActionResponse;
 use App\Models\Document\DocumentType;
 use App\Bundles\Supply\Repositories\ScoreForPaymentRepository;

@@ -3,10 +3,9 @@
 namespace App\Bundles\Document\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resource\DocumentShowResource;
+use App\Bundles\Document\Http\Resources\DocumentShowResource;
 use App\Http\Responses\ActionResponse;
 use App\Models\Document\Document;
-use App\Bundles\ExternalNews\Models\ExternalNewsSource;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class DocumentController extends Controller

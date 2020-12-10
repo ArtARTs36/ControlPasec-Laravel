@@ -3,7 +3,7 @@
 namespace Tests\Bundles\Employee\Feature;
 
 use App\Bundles\Employee\Http\Controllers\TimeReportController;
-use App\Http\Resource\DocumentResource;
+use App\Bundles\Document\Http\Resources\DocumentResource;
 use App\Models\Document\Document;
 use App\Bundles\Employee\Models\Employee;
 use Carbon\Carbon;

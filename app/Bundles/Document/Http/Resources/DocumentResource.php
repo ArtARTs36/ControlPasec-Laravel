@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Http\Resource;
+namespace App\Bundles\Document\Http\Resources;
 
 use App\Models\Document\Document;
-use App\Services\Document\DocumentService;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * Class DocumentResource
- *
  * @property string $document_url
  * @mixin Document
  * @extends JsonResource<Document>
