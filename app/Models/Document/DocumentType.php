@@ -20,18 +20,19 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 final class DocumentType extends Model
 {
-    const SCORE_FOR_PAYMENT_ID = 1;
-    const SCORES_FOR_PAYMENTS_ID = 2;
-    const TORG_12_ID = 3;
-    const QUALITY_CERTIFICATE_ID = 4;
-    const MANY_TORG_12_ID = 5;
-    const ONE_T_FORM_ID = 6;
-    const ROLE_SYSTEM_ID = 7;
-    const TIME_REPORT_ID = 8;
-    const SZV_TD_ID = 9;
+    // Счет на оплату
+    public const SCORE_FOR_PAYMENT_ID = 1;
+    public const SCORES_FOR_PAYMENTS_ID = 2;
+    public const TORG_12_ID = 3;
+    public const QUALITY_CERTIFICATE_ID = 4;
+    public const MANY_TORG_12_ID = 5;
+    public const ONE_T_FORM_ID = 6;
+    public const ROLE_SYSTEM_ID = 7;
+    public const TIME_REPORT_ID = 8;
+    public const SZV_TD_ID = 9;
 
     /**
-     * @return BelongsTo
+     * @codeCoverageIgnore
      */
     public function loader(): BelongsTo
     {

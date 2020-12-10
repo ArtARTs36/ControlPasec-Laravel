@@ -15,10 +15,10 @@ Route::apiResource('employees', '\App\Bundles\Employee\Http\Controllers\Employee
 
 Route::get(
     Proxy::apiRoute('report') . '/{employee}/{start}/{end}',
-    'ControlTime\TimeReportController@byPeriod'
+    '\App\Bundles\Employee\Http\Controllers\TimeReportController@byPeriod'
 );
 
 Route::get(
     Proxy::apiRoute('report-month') . '/{employee}',
-    'ControlTime\TimeReportController@byLastMonth'
+    '\App\Bundles\Employee\Http\Controllers\TimeReportController@byLastMonth'
 );

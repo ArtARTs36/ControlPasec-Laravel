@@ -130,6 +130,10 @@ final class ContragentController extends Controller
 
         $contragent = $finder->findByInnOrOgrn($inn)->first();
 
+        if (! $contragent) {
+            abort(404);
+        }
+
         return new ActionResponse(true, [
             'message' => 'Контрагент '. $contragent->title . ' найден!',
             'contragent' => $contragent,

@@ -3,6 +3,7 @@
 namespace App\Bundles\Supply\Repositories;
 
 use App\Based\Contracts\Repository;
+use App\Bundles\Contragent\Models\Contragent;
 use App\Models\Supply\Supply;
 use App\Models\Supply\SupplyProduct;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -46,5 +47,23 @@ class SupplyRepository extends Repository
             ->newQuery()
             ->where(Supply::FIELD_CUSTOMER_ID, $customerId)
             ->get();
+    }
+
+    /**
+     * @return Collection|Supply[]
+     */
+    public function getWithCustomerByDates(\DateTimeInterface $start, \DateTimeInterface $end): Collection
+    {
+        return $this
+            ->newQuery()
+            ->with([Supply::RELATION_CUSTOMER => function ($query) {
+                $query->select(Contragent::FIELD_TITLE);
+            }])
+            ->whereDate(Supply::FIELD_PLANNED_DATE, '>=', $start)
+            ->whereDate(Supply::FIELD_PLANNED_DATE, '<=', $end)
+            ->get([
+                'id',
+                Supply::FIELD_PLANNED_DATE,
+            ]);
     }
 }
