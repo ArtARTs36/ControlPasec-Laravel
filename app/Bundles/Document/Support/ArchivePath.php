@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services;
+namespace App\Bundles\Document\Support;
 
-final class ArchiveService
+final class ArchivePath
 {
     public static function getStoragePath(int $timestamp, string $archiveName): string
     {

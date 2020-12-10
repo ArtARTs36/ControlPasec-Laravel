@@ -3,7 +3,7 @@
 namespace App\Based\Support\Archiver;
 
 use App\Based\Support\FileHelper;
-use App\Services\ArchiveService;
+use App\Bundles\Document\Support\ArchivePath;
 use ArtARTs36\ShellCommand\ShellCommand;
 
 class Zipper extends AbstractArchiver
@@ -88,6 +88,6 @@ class Zipper extends AbstractArchiver
 
         $archiveName = FileHelper::changeExtensionIfNotOur($archiveName, 'zip');
 
-        return ArchiveService::getStoragePath($timestamp, $archiveName);
+        return ArchivePath::getStoragePath($timestamp, $archiveName);
     }
 }

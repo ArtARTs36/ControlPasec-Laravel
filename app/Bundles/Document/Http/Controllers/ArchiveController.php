@@ -3,7 +3,7 @@
 namespace App\Bundles\Document\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Services\ArchiveService;
+use App\Bundles\Document\Support\ArchivePath;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 final class ArchiveController extends Controller
@@ -11,7 +11,7 @@ final class ArchiveController extends Controller
     public function download(int $timestamp, string $name): BinaryFileResponse
     {
         return response()->download(
-            ArchiveService::getStoragePath($timestamp, $name)
+            ArchivePath::getStoragePath($timestamp, $name)
         )->deleteFileAfterSend();
     }
 }
