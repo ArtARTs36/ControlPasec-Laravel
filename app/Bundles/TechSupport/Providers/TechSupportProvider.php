@@ -2,10 +2,12 @@
 
 namespace App\Bundles\TechSupport\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use App\Based\Contracts\BundleProvider;
 
-class TechSupportProvider extends ServiceProvider
+class TechSupportProvider extends BundleProvider
 {
+    protected $factoriesPath = __DIR__ . '/../Database/Factories';
+
     public function register()
     {
         $this->app->register(RouteProvider::class);
