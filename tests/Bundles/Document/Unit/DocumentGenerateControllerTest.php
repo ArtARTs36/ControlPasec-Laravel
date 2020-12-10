@@ -9,7 +9,7 @@ use Tests\BaseTestCase;
 class DocumentGenerateControllerTest extends BaseTestCase
 {
     /**
-     * @covers \App\Http\Controllers\Document\DocumentGenerateController::generateManyTypes
+     * @covers \App\Bundles\Document\Http\Controllers\DocumentGenerateController::generateManyTypes
      */
     public function testGenerateManyTypes(): void
     {
