@@ -6,7 +6,7 @@ use App\Bundles\User\Http\Resources\UserResource;
 use App\Bundles\User\Http\Actions\FetchMyUser;
 use App\Based\Contracts\Controller;
 use App\Bundles\User\Http\Requests\StoreUser;
-use App\Http\Responses\ActionResponse;
+use App\Based\Http\Responses\ActionResponse;
 use App\Bundles\User\Models\Permission;
 use App\Bundles\User\Models\Role;
 use App\Bundles\User\Repositories\UserRepository;

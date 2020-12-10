@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Supply\Contracts;
 
-use App\Http\Responses\ActionResponse;
+use App\Based\Http\Responses\ActionResponse;
 
 interface Creator
 {

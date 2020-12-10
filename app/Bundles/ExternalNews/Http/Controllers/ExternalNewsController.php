@@ -5,7 +5,7 @@ namespace App\Bundles\ExternalNews\Http\Controllers;
 use App\Bundles\ExternalNews\Http\Requests\UpdateRequest;
 use App\Bundles\ExternalNews\Contracts\ExternalNewsRepository;
 use App\Based\Contracts\Controller;
-use App\Http\Responses\ActionResponse;
+use App\Based\Http\Responses\ActionResponse;
 use App\Bundles\ExternalNews\Models\ExternalNews;
 use App\Bundles\User\Models\Permission;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;

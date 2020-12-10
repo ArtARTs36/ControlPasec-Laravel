@@ -4,7 +4,7 @@ namespace App\Bundles\Vocab\Http\Controllers;
 
 use App\Based\Support\ModelPrioritiesRefresher;
 use App\Based\Contracts\Controller;
-use App\Http\Responses\ActionResponse;
+use App\Based\Http\Responses\ActionResponse;
 use App\Bundles\User\Models\Permission;
 use App\Bundles\Vocab\Models\VocabCurrency;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;

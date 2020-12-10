@@ -6,7 +6,7 @@ use App\Bundles\Product\Repositories\ProductRepository;
 use App\Bundles\Product\Services\ProductService;
 use App\Based\Contracts\Controller;
 use App\Bundles\Product\Http\Requests\StoreProduct;
-use App\Http\Responses\ActionResponse;
+use App\Based\Http\Responses\ActionResponse;
 use App\Bundles\Product\Models\Product;
 use App\Bundles\User\Models\Permission;
 

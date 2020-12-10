@@ -4,7 +4,7 @@ namespace App\Bundles\Employee\Http\Controllers;
 
 use App\Bundles\Employee\Http\Requests\EmployeeStoreRequest;
 use App\Based\Contracts\Controller;
-use App\Http\Responses\ActionResponse;
+use App\Based\Http\Responses\ActionResponse;
 use App\Bundles\Employee\Models\Employee;
 use App\Bundles\Employee\Repositories\EmployeeRepository;
 use App\Bundles\Employee\Services\EmployeeService;
@@ -53,7 +53,7 @@ final class EmployeeController extends Controller
 
     /**
      * @param EmployeeStoreRequest $request
-     * @return \App\Http\Responses\ActionResponse
+     * @return \App\Based\Http\Responses\ActionResponse
      */
     public function store(EmployeeStoreRequest $request)
     {

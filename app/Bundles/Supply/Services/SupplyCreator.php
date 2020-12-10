@@ -4,7 +4,7 @@ namespace App\Bundles\Supply\Services;
 
 use App\Bundles\Supply\Contracts\Creator;
 use App\Bundles\Supply\Contracts\SupplyCreateOption;
-use App\Http\Responses\ActionResponse;
+use App\Based\Http\Responses\ActionResponse;
 use App\Models\Supply\Supply;
 use App\Models\Supply\SupplyProduct;
 use Illuminate\Http\Response;

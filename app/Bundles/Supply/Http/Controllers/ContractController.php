@@ -4,7 +4,7 @@ namespace App\Bundles\Supply\Http\Controllers;
 
 use App\Based\Contracts\Controller;
 use App\Bundles\Supply\Http\Requests\StoreContract;
-use App\Http\Responses\ActionResponse;
+use App\Based\Http\Responses\ActionResponse;
 use App\Bundles\Supply\Models\Contract;
 use App\Bundles\User\Models\Permission;
 use App\Bundles\Supply\Repositories\ContractRepository;

@@ -2,7 +2,7 @@
 
 namespace App\Based\Contracts;
 
-use App\Http\Responses\ActionResponse;
+use App\Based\Http\Responses\ActionResponse;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;

@@ -4,7 +4,7 @@ namespace App\Bundles\Contragent\Http\Controllers;
 
 use App\Bundles\Contragent\Support\Finder;
 use App\Bundles\Contragent\Http\Requests\StoreContragent;
-use App\Http\Responses\ActionResponse;
+use App\Based\Http\Responses\ActionResponse;
 use App\Bundles\Contragent\Models\Contragent;
 use App\Based\Contracts\Controller;
 use App\Models\Sync\SyncWithExternalSystemType;

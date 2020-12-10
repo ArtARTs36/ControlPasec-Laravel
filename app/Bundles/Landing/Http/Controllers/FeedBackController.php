@@ -6,7 +6,7 @@ use App\Bundles\Landing\Repositories\FeedBackRepository;
 use App\Bundles\Landing\Events\FeedBackCreated;
 use App\Based\Contracts\Controller;
 use App\Bundles\Landing\Http\Requests\StoreFeedBack;
-use App\Http\Responses\ActionResponse;
+use App\Based\Http\Responses\ActionResponse;
 use App\Bundles\Landing\Models\FeedBack;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Resources\Json\JsonResource;

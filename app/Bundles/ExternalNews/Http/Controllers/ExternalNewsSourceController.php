@@ -4,7 +4,7 @@ namespace App\Bundles\ExternalNews\Http\Controllers;
 
 use App\Bundles\ExternalNews\Http\Requests\ExternalNewsSourceRequest;
 use App\Based\Contracts\Controller;
-use App\Http\Responses\ActionResponse;
+use App\Based\Http\Responses\ActionResponse;
 use App\Bundles\ExternalNews\Models\ExternalNewsSource;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
