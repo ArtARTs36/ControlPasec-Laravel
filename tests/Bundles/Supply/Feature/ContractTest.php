@@ -30,8 +30,6 @@ final class ContractTest extends BaseTestCase
             'executed_date' => '2020-02-09',
         ]);
 
-        $response->dump();
-
         $response = $response->assertOk()
             ->decodeResponseJson();
 

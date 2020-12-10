@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Document;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Document\GenerateManyTypesRequest;
+use App\Bundles\Document\Http\Requests\GenerateManyTypesRequest;
 use App\Http\Resource\ArchiveResource;
 use App\Http\Resource\DocumentResource;
 use App\Based\Interfaces\ModelWithDocuments;
