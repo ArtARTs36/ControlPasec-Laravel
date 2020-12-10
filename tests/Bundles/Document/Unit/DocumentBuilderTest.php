@@ -40,7 +40,7 @@ class DocumentBuilderTest extends BaseTestCase
      */
     public function testBuildQualityCertificate(): void
     {
-        $supply = $this->getRandomModel(Supply::class);
+        $supply = factory(Supply::class)->create();
 
         $certificate = new QualityCertificate();
         $certificate->supply_id = $supply->id;
@@ -50,10 +50,7 @@ class DocumentBuilderTest extends BaseTestCase
             ->addQualityCertificates($certificate)
             ->save();
 
-        $build = DocumentBuilder::build(
-            $document,
-            true
-        );
+        $build = DocumentBuilder::build($document);
 
         self::assertFileExists($build);
     }

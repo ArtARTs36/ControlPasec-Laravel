@@ -58,7 +58,7 @@ class PhpWordDocTemplateLoader extends AbstractDocTemplateLoader
 
         if (!empty($data['tables']) && ($tables = $data['tables']) && is_array($tables)) {
             foreach ($tables as $triggerMapKey => $values) {
-                if (!is_array($values)) {
+                if (! is_array($values) || empty($values)) {
                     continue;
                 }
 

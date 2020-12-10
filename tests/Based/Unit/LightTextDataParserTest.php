@@ -31,7 +31,7 @@ class LightTextDataParserTest extends BaseTestCase
     {
         return implode('	', [
             rand(1, 99),
-            $this->getRandomModel(Contragent::class)->title,
+            factory(Contragent::class)->create()->title,
             '',
             rand(1, 99),
             rand(1, 99),
