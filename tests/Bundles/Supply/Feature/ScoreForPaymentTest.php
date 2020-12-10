@@ -29,7 +29,7 @@ final class ScoreForPaymentTest extends BaseTestCase
     public function testCreate(): void
     {
         $response = $this->postJson(self::API_URL, [
-            'supply_id' => $this->getRandomModel(Supply::class)->id,
+            'supply_id' => factory(Supply::class)->create()->id,
             'date' => date('Y-m-d'),
         ]);
 
