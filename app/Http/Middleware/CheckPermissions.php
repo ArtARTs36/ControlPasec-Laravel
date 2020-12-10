@@ -2,15 +2,11 @@
 
 namespace App\Http\Middleware;
 
-use App\Http\Responses\UserDoesNotHavePermission;
+use App\Bundles\User\Http\Responses\UserDoesNotHavePermission;
 use App\User;
 use Closure;
 use Illuminate\Support\Facades\Route;
 
-/**
- * Class CheckPermissions
- * @package App\Http\Middleware
- */
 class CheckPermissions
 {
     /**

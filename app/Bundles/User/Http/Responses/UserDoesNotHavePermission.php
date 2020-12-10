@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Responses;
+namespace App\Bundles\User\Http\Responses;
 
 use App\Bundles\User\Models\Permission;
 use Illuminate\Http\JsonResponse;
