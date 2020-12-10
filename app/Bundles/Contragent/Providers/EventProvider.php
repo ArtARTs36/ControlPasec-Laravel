@@ -4,7 +4,7 @@ namespace App\Bundles\Contragent\Providers;
 
 use App\Bundles\Contragent\Events\ExternalManagerCreated;
 use App\Bundles\Contragent\Listeners\ExternalManagerCreatedListener;
-use App\Providers\EventServiceProvider;
+use Illuminate\Foundation\Support\Providers\EventServiceProvider;
 
 final class EventProvider extends EventServiceProvider
 {

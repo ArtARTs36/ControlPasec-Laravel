@@ -34,8 +34,6 @@ class StoreContragent extends FormRequest
 
             'requisites.score' => 'sometimes|string',
             'requisites.bank_id' => 'sometimes|integer',
-
-            //'status' => 'default_value:0'
         ];
     }
 }

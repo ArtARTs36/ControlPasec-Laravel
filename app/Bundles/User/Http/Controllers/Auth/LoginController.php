@@ -3,7 +3,7 @@
 namespace App\Bundles\User\Http\Controllers\Auth;
 
 use App\Based\Contracts\Controller;
-use App\Providers\RouteServiceProvider;
+use App\Based\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller

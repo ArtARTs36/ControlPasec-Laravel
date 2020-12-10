@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace App\Based\Providers;
 
 use App\Based\Events\ExceptionNotified;
 use App\Based\Listeners\ExceptionNotifiedListener;
@@ -10,24 +10,10 @@ class EventServiceProvider extends ServiceProvider
 {
     /**
      * The event listener mappings for the application.
-     *
-     * @var array
      */
     protected $listen = [
         ExceptionNotified::class => [
             ExceptionNotifiedListener::class,
         ],
     ];
-
-    /**
-     * Register any events for your application.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        parent::boot();
-
-        //
-    }
 }
