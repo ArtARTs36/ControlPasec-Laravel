@@ -6,7 +6,7 @@ use App\Based\Interfaces\ModelWithDocuments;
 use App\Based\ModelSupport\WithFillOfRequest;
 use App\Models\Document\DocumentType;
 use App\Models\Traits\WithDocuments;
-use App\Models\Traits\WithOrderNumber;
+use App\Based\ModelSupport\WithOrderNumber;
 use App\Models\Traits\WithSupply;
 use App\Bundles\Admin\Models\VariableDefinition;
 use Illuminate\Database\Eloquent\Model;

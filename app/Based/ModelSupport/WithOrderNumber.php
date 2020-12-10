@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Traits;
+namespace App\Based\ModelSupport;
 
 use App\Services\VariableDefinitionService;
 

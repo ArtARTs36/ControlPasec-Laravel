@@ -4,7 +4,7 @@ namespace App\Models\Supply;
 
 use App\Bundles\Supply\Models\Contract;
 use App\Bundles\Contragent\Models\Contragent;
-use App\Models\Traits\WithOrderNumber;
+use App\Based\ModelSupport\WithOrderNumber;
 use App\Models\Traits\WithSupplierAndCustomer;
 use App\Bundles\Admin\Models\VariableDefinition;
 use Creatortsv\EloquentPipelinesModifier\WithModifier;
