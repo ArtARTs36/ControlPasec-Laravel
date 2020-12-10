@@ -81,7 +81,7 @@ final class SupplyTest extends BaseTestCase
                     return [
                             SupplyProduct::FIELD_PRICE => rand(1000, 100000),
                             SupplyProduct::FIELD_QUANTITY => rand(1000, 100000),
-                            SupplyProduct::FIELD_PARENT_ID => $this->getRandomModel(Product::class)->id,
+                            SupplyProduct::FIELD_PARENT_ID => factory(Product::class)->create()->id,
                             SupplyProduct::QUANTITY_UNIT_ID => factory(VocabQuantityUnit::class)->create()->id,
                         ];
                 }, range(0, 10)),
