@@ -1,18 +1,13 @@
 <?php
 
-namespace App\Support\Log;
+namespace App\Bundles\Admin\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/**
- * Class LogResource
- * @package App\Support\Log
- */
-class LogResource extends JsonResource
+class ShowLog extends JsonResource
 {
     /**
      * @param \Illuminate\Http\Request $request
-     * @return array
      */
     public function toArray($request): array
     {

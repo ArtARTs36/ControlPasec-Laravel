@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Support\Log;
+namespace App\Bundles\Admin\Contracts;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;

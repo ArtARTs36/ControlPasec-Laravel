@@ -1,23 +1,16 @@
 <?php
 
-namespace App\Support\Log;
+namespace App\Bundles\Admin\Repositories;
 
+use App\Bundles\Admin\Contracts\LogReaderInterface;
+use App\Bundles\Admin\Contracts\LogRepositoryInterface;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 
-/**
- * Class LogRepository
- * @package App\Support\Log
- */
 class LogRepository implements LogRepositoryInterface
 {
-    /** @var LogReaderInterface  */
     private $reader;
 
-    /**
-     * LogRepository constructor.
-     * @param LogReaderInterface $reader
-     */
     public function __construct(LogReaderInterface $reader)
     {
         $this->reader = $reader;

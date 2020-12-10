@@ -42,17 +42,17 @@ $app->singleton(
 );
 
 $app->singleton(
-    \App\Support\Log\LogRepositoryInterface::class,
-    \App\Support\Log\LogRepository::class
+    \App\Bundles\Admin\Contracts\LogRepositoryInterface::class,
+    \App\Bundles\Admin\Repositories\LogRepository::class
 );
 
 $app->singleton(
-    \App\Support\Log\LogReaderInterface::class,
-    \App\Support\Log\LogReader::class
+    \App\Bundles\Admin\Contracts\LogReaderInterface::class,
+    \App\Bundles\Admin\Support\LogReader::class
 );
 
 $app->singleton(
-    \App\Support\Log\LogService::class
+    \App\Bundles\Admin\Services\LogService::class,
 );
 $app->singleton(
     \ArtARTs36\PushAllSender\Interfaces\PusherInterface::class,

@@ -1,26 +1,16 @@
 <?php
 
-namespace App\Support\Log;
+namespace App\Bundles\Admin\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-/**
- * Class LogSearchRequest
- * @package App\Support\Log
- */
-final class LogSearchRequest extends FormRequest
+final class SearchLog extends FormRequest
 {
-    /**
-     * @return bool
-     */
     public function authorize(): bool
     {
         return true;
     }
 
-    /**
-     * @return array
-     */
     public function rules(): array
     {
         return [

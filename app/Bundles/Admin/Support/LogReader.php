@@ -1,16 +1,13 @@
 <?php
 
-namespace App\Support\Log;
+namespace App\Bundles\Admin\Support;
 
 use App\Based\Support\FileHelper;
+use App\Bundles\Admin\Contracts\LogReaderInterface;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 
-/**
- * Class LogReader
- * @package App\Support\Log
- */
 class LogReader implements LogReaderInterface
 {
     public const FILE_DATE_FORMAT = 'Y-m-d';
