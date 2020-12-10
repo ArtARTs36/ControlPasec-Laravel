@@ -5,9 +5,7 @@ namespace App\Providers;
 use App\Bundles\Contragent\Events\ExternalManagerCreated;
 use App\Bundles\Contragent\Listeners\ExternalManagerCreatedListener;
 use App\Based\Events\ExceptionNotified;
-use App\Bundles\TechSupport\Events\ReportCreated;
 use App\Based\Listeners\ExceptionNotifiedListener;
-use App\Bundles\TechSupport\Listeners\TechSupportReportCreatedListener;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -18,9 +16,6 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        ReportCreated::class => [
-            TechSupportReportCreatedListener::class,
-        ],
         ExceptionNotified::class => [
             ExceptionNotifiedListener::class,
         ],
