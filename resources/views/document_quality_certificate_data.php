@@ -4,6 +4,11 @@ use App\Services\Document\TemplateService;
 
 /** @var \App\Models\Document\Document $document */
 $document->load('qualityCertificates');
+
+if (! $document->getQualityCertificate()) {
+    throw new \LogicException('Не достаточно данных!');
+}
+
 $supply = $document->getQualityCertificate()->supply;
 
 $data['variables'] = [

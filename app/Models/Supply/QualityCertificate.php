@@ -21,7 +21,9 @@ class QualityCertificate extends Model implements ModelWithDocuments
 {
     use WithDocuments, WithOrderNumber, WithSupply;
 
-    const TARGET_TYPE = DocumentType::QUALITY_CERTIFICATE_ID;
+    public const FIELD_ORDER_NUMBER = 'order_number';
+    public const FIELD_SUPPLY_ID = 'supply_id';
 
-    const ORDER_NUMBER_TYPE = VariableDefinition::QUALITY_CERTIFICATE_ORDER_NUMBER;
+    public const TARGET_TYPE = DocumentType::QUALITY_CERTIFICATE_ID;
+    public const ORDER_NUMBER_TYPE = VariableDefinition::QUALITY_CERTIFICATE_ORDER_NUMBER;
 }

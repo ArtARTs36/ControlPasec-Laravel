@@ -2,7 +2,6 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-
 use App\Bundles\Contragent\Models\Contragent;
 use App\Bundles\Supply\Models\Contract;
 use App\Models\Supply\Supply;
