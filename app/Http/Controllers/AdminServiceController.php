@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resource\AdminService\AdminServiceRedirectResource;
+use App\Bundles\Admin\Http\Resources\ServiceRedirectResource;
 use App\Bundles\Admin\Models\AdminService;
 use App\Bundles\User\Models\Role;
 use Illuminate\Http\Request;
@@ -12,9 +12,9 @@ class AdminServiceController extends Controller
     /**
      * @param string $name
      * @param Request $request
-     * @return AdminServiceRedirectResource
+     * @return ServiceRedirectResource
      */
-    public function redirect(string $name, Request $request): AdminServiceRedirectResource
+    public function redirect(string $name, Request $request): ServiceRedirectResource
     {
         if (!($user = auth()->user()) || !$user->hasRole(Role::ADMIN)) {
             abort(403);
@@ -24,6 +24,6 @@ class AdminServiceController extends Controller
         $service = AdminService::query()->where(AdminService::FIELD_NAME, $name)->first();
         $service->access()->give($request->getClientIp());
 
-        return new AdminServiceRedirectResource($service);
+        return new ServiceRedirectResource($service);
     }
 }

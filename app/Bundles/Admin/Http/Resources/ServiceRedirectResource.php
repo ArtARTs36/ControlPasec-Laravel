@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resource\AdminService;
+namespace App\Bundles\Admin\Http\Resources;
 
 use App\Bundles\Admin\Models\AdminService;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -10,7 +10,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * @mixin AdminService
  * @extends JsonResource<AdminService>
  */
-class AdminServiceRedirectResource extends JsonResource
+class ServiceRedirectResource extends JsonResource
 {
     public function toArray($request): array
     {
