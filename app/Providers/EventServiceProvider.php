@@ -2,8 +2,6 @@
 
 namespace App\Providers;
 
-use App\Bundles\Contragent\Events\ExternalManagerCreated;
-use App\Bundles\Contragent\Listeners\ExternalManagerCreatedListener;
 use App\Based\Events\ExceptionNotified;
 use App\Based\Listeners\ExceptionNotifiedListener;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -18,9 +16,6 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         ExceptionNotified::class => [
             ExceptionNotifiedListener::class,
-        ],
-        ExternalManagerCreated::class => [
-            ExternalManagerCreatedListener::class,
         ],
     ];
 
