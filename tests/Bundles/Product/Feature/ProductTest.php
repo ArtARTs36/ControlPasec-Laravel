@@ -88,11 +88,11 @@ class ProductTest extends BaseTestCase
             Product::FIELD_NAME_FOR_DOCUMENT => RuFaker::product(),
             Product::FIELD_PRICE => $this->getFaker()->randomFloat(),
             Product::FIELD_SIZE => $this->getFaker()->randomFloat(),
-            Product::FIELD_CURRENCY_ID => $this->getRandomModel(VocabCurrency::class)->id,
-            Product::FIELD_SIZE_OF_UNIT_ID => $this->getRandomModel(SizeOfUnit::class)->id,
-            Product::FIELD_QUANTITY_UNIT_ID => $this->getRandomModel(VocabQuantityUnit::class)->id,
-            Product::FIELD_PACKAGE_TYPE_ID => $this->getRandomModel(VocabPackageType::class)->id,
-            Product::FIELD_GOS_STANDARD_ID => $this->getRandomModel(VocabGosStandard::class)->id,
+            Product::FIELD_CURRENCY_ID => factory(VocabCurrency::class)->create()->id,
+            Product::FIELD_SIZE_OF_UNIT_ID => factory(SizeOfUnit::class)->create()->id,
+            Product::FIELD_QUANTITY_UNIT_ID => factory(VocabQuantityUnit::class)->create()->id,
+            Product::FIELD_PACKAGE_TYPE_ID => factory(VocabPackageType::class)->create()->id,
+            Product::FIELD_GOS_STANDARD_ID => factory(VocabGosStandard::class)->create()->id,
         ];
     }
 

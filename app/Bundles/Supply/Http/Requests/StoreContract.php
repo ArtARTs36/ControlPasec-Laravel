@@ -16,7 +16,8 @@ class StoreContract extends FormRequest
     {
         return [
             Contract::FIELD_TITLE => 'required|string',
-            Contract::FIELD_CUSTOMER_ID => 'required',
+            Contract::FIELD_SUPPLIER_ID => 'sometimes|int',
+            Contract::FIELD_CUSTOMER_ID => 'required|int',
             Contract::FIELD_PLANNED_DATE => 'sometimes|date',
             Contract::FIELD_EXECUTED_DATE => 'sometimes|date',
             Contract::FIELD_TEMPLATE_ID => 'sometimes',

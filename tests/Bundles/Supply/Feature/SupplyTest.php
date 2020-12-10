@@ -35,8 +35,8 @@ final class SupplyTest extends BaseTestCase
      */
     public function testCreate(): void
     {
-        $supplierId = $this->getRandomModel(Contragent::class)->id;
-        $customerId = $this->getRandomModel(Contragent::class)->id;
+        $supplierId = factory(Contragent::class)->create()->id;
+        $customerId = factory(Contragent::class)->create()->id;
 
         $this->actingAsUserWithPermission(Permission::SUPPLIES_CREATE);
 
@@ -75,14 +75,14 @@ final class SupplyTest extends BaseTestCase
         for ($i = 0; $i < 20; $i++) {
             $data['items'][] = [
                 Supply::FIELD_PLANNED_DATE => $this->getFaker()->dateTime()->format('Y-m-d H:i:s'),
-                Supply::FIELD_SUPPLIER_ID => $this->getRandomModel(Contragent::class)->id,
-                Supply::FIELD_CUSTOMER_ID => $this->getRandomModel(Contragent::class)->id,
+                Supply::FIELD_SUPPLIER_ID => factory(Contragent::class)->create()->id,
+                Supply::FIELD_CUSTOMER_ID => factory(Contragent::class)->create()->id,
                 Supply::RELATION_PRODUCTS => array_map(function () {
                     return [
                             SupplyProduct::FIELD_PRICE => rand(1000, 100000),
                             SupplyProduct::FIELD_QUANTITY => rand(1000, 100000),
                             SupplyProduct::FIELD_PARENT_ID => $this->getRandomModel(Product::class)->id,
-                            SupplyProduct::QUANTITY_UNIT_ID => $this->getRandomModel(VocabQuantityUnit::class)->id,
+                            SupplyProduct::QUANTITY_UNIT_ID => factory(VocabQuantityUnit::class)->create()->id,
                         ];
                 }, range(0, 10)),
             ];

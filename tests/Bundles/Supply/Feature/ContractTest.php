@@ -16,7 +16,8 @@ final class ContractTest extends BaseTestCase
      */
     public function testContractCreate(): void
     {
-        $customerId = $this->getRandomModel(Contragent::class)->id;
+        $customerId = factory(Contragent::class)->create()->id;
+        // @todo
         $supplierId = env('ONE_SUPPLIER_ID');
 
         $this->actingAsUserWithPermission(Permission::CONTRACTS_CREATE);
@@ -28,6 +29,8 @@ final class ContractTest extends BaseTestCase
             'planned_date' => '2020-02-09',
             'executed_date' => '2020-02-09',
         ]);
+
+        $response->dump();
 
         $response = $response->assertOk()
             ->decodeResponseJson();
@@ -56,7 +59,7 @@ final class ContractTest extends BaseTestCase
     public function testContractDelete(): void
     {
         /** @var Contract $contract */
-        $contract = $this->getRandomModel(Contract::class);
+        $contract = factory(Contract::class)->create();
 
         $this->actingAsUserWithPermission(Permission::CONTRACTS_DELETE);
 

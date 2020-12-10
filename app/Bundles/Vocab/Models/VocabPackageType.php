@@ -17,7 +17,6 @@ final class VocabPackageType extends Model
     public const FIELD_NAME = 'name';
 
     protected $fillable = [
-        self::FIELD_ID,
         self::FIELD_NAME,
     ];
 }

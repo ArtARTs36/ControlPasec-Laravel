@@ -5,7 +5,7 @@ namespace Tests\Bundles\Admin\Feature;
 use App\Bundles\Admin\Models\VariableDefinition;
 use Tests\TestCase;
 
-final class ApiTest extends TestCase
+final class VariableDefinitionApiTest extends TestCase
 {
     private const BASE_URL = '/api/variable-definitions/';
 

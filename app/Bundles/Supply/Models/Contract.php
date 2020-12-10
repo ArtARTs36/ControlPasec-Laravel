@@ -7,11 +7,8 @@ use App\Models\Traits\WithSupplierAndCustomer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Query\Builder;
 
 /**
- * Class Contract
- *
  * @property int $id
  * @property string $title
  * @property string $planned_date
@@ -20,8 +17,6 @@ use Illuminate\Database\Query\Builder;
  * @property int $customer_id
  * @property int $template_id
  * @property ContractTemplate $template
- *
- * @mixin Builder
  */
 class Contract extends Model
 {

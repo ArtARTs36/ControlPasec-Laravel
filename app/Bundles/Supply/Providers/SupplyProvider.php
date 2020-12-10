@@ -9,6 +9,8 @@ use App\Bundles\Supply\Services\SupplyCreator;
 
 class SupplyProvider extends BundleProvider
 {
+    protected $factoriesPath = __DIR__ . '/../Database/Factories';
+
     public function register()
     {
         $this->app->bind(Creator::class, function () {
@@ -18,5 +20,7 @@ class SupplyProvider extends BundleProvider
         });
 
         $this->app->register(RouteProvider::class);
+
+        $this->registerFactories();
     }
 }

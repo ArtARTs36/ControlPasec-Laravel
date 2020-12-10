@@ -46,6 +46,8 @@ abstract class BaseTestCase extends TestCase
     }
 
     /**
+     * @todo
+     * @deprecated
      * @param $class
      * @return Model
      */
