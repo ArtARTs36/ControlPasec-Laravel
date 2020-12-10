@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace App\Bundles\Cron\Providers;
 
 use App\Bundles\Admin\Models\AdminService;
 use App\Bundles\Admin\Support\Accessor;

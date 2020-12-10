@@ -186,7 +186,7 @@ return [
         /*
          * Horizon Queue Provider
          */
-        App\Providers\HorizonServiceProvider::class,
+        App\Bundles\Cron\Providers\HorizonServiceProvider::class,
 
         \App\Bundles\ExternalNews\Providers\ExternalNewsProvider::class,
 
