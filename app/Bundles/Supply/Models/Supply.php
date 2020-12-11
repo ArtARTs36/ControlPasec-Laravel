@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Models\Supply;
+namespace App\Bundles\Supply\Models;
 
-use App\Bundles\Supply\Models\Contract;
 use App\Bundles\Contragent\Models\Contragent;
 use App\Based\ModelSupport\WithOrderNumber;
 use App\Bundles\Supply\Support\WithSupplierAndCustomer;
@@ -14,8 +13,6 @@ use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
 
 /**
- * Class Supply
- *
  * Модель "поставка"
  *
  * @property integer $id

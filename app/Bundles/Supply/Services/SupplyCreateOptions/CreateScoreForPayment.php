@@ -4,8 +4,8 @@ namespace App\Bundles\Supply\Services\SupplyCreateOptions;
 
 use App\Bundles\Supply\Contracts\SupplyCreateOption;
 use App\Bundles\Supply\Repositories\ScoreForPaymentRepository;
-use App\Models\Supply\ScoreForPayment;
-use App\Models\Supply\Supply;
+use App\Bundles\Supply\Models\ScoreForPayment;
+use App\Bundles\Supply\Models\Supply;
 
 class CreateScoreForPayment implements SupplyCreateOption
 {

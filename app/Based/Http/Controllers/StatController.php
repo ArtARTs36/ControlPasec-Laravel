@@ -5,7 +5,7 @@ namespace App\Based\Http\Controllers;
 use App\Based\Contracts\Controller;
 use App\Bundles\Contragent\Models\Contragent;
 use App\Bundles\ExternalNews\Models\ExternalNewsSource;
-use App\Models\Supply\Supply;
+use App\Bundles\Supply\Models\Supply;
 use App\User;
 use Illuminate\Support\Facades\DB;
 

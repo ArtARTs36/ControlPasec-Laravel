@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Supply\Contracts;
 
-use App\Models\Supply\Supply;
+use App\Bundles\Supply\Models\Supply;
 
 interface SupplyCreateOption
 {

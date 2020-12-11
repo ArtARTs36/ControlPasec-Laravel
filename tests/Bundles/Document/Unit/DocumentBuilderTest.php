@@ -3,8 +3,8 @@
 namespace Tests\Bundles\Document\Unit;
 
 use App\Models\Document\DocumentType;
-use App\Models\Supply\QualityCertificate;
-use App\Models\Supply\Supply;
+use App\Bundles\Supply\Models\QualityCertificate;
+use App\Bundles\Supply\Models\Supply;
 use App\Services\Document\DocumentBuilder;
 use App\Services\Document\DocumentCreator;
 use Tests\BaseTestCase;

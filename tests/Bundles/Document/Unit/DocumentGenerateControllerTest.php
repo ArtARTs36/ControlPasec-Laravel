@@ -3,7 +3,7 @@
 namespace Tests\Bundles\Document\Unit;
 
 use App\Models\Document\DocumentType;
-use App\Models\Supply\Supply;
+use App\Bundles\Supply\Models\Supply;
 use Tests\BaseTestCase;
 
 class DocumentGenerateControllerTest extends BaseTestCase

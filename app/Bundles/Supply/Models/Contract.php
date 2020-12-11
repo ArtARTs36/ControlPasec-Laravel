@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Supply\Models;
 
-use App\Models\Supply\Supply;
+use App\Bundles\Supply\Models\Supply;
 use App\Bundles\Supply\Support\WithSupplierAndCustomer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

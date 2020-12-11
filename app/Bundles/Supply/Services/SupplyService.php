@@ -3,8 +3,8 @@
 namespace App\Bundles\Supply\Services;
 
 use App\Bundles\Contragent\Models\Contragent;
-use App\Models\Supply\Supply;
-use App\Models\Supply\SupplyProduct;
+use App\Bundles\Supply\Models\Supply;
+use App\Bundles\Supply\Models\SupplyProduct;
 use Illuminate\Support\Arr;
 
 final class SupplyService

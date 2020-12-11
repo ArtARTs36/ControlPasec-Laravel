@@ -2,8 +2,8 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Supply\QualityCertificate;
-use App\Models\Supply\Supply;
+use App\Bundles\Supply\Models\QualityCertificate;
+use App\Bundles\Supply\Models\Supply;
 use Faker\Generator as Faker;
 
 $factory->define(QualityCertificate::class, function (Faker $faker, array $params) {

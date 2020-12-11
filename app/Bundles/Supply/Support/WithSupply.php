@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Supply\Support;
 
-use App\Models\Supply\Supply;
+use App\Bundles\Supply\Models\Supply;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 trait WithSupply

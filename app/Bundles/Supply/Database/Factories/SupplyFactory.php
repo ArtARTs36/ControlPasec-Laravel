@@ -4,7 +4,7 @@
 
 use App\Bundles\Contragent\Models\Contragent;
 use App\Bundles\Supply\Models\Contract;
-use App\Models\Supply\Supply;
+use App\Bundles\Supply\Models\Supply;
 use Faker\Generator as Faker;
 
 $factory->define(Supply::class, function (Faker $faker) {

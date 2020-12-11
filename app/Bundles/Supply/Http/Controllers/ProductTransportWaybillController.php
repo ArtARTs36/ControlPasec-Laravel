@@ -5,7 +5,7 @@ namespace App\Bundles\Supply\Http\Controllers;
 use App\Based\Contracts\Controller;
 use App\Bundles\Supply\Http\Requests\StoreProductTransportWaybill;
 use App\Based\Http\Responses\ActionResponse;
-use App\Models\Supply\ProductTransportWaybill;
+use App\Bundles\Supply\Models\ProductTransportWaybill;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Resources\Json\JsonResource;
 

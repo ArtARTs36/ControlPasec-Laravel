@@ -3,11 +3,11 @@
 use App\Bundles\Contragent\Models\Contragent;
 use App\Models\Document\DocumentType;
 use App\Bundles\Product\Models\Product;
-use App\Models\Supply\OneTForm;
-use App\Models\Supply\ProductTransportWaybill;
-use App\Models\Supply\SupplyProduct;
+use App\Bundles\Supply\Models\OneTForm;
+use App\Bundles\Supply\Models\ProductTransportWaybill;
+use App\Bundles\Supply\Models\SupplyProduct;
 use App\Bundles\Vocab\Models\VocabQuantityUnit;
-use App\Models\Supply\ScoreForPayment;
+use App\Bundles\Supply\Models\ScoreForPayment;
 use App\Services\Document\DocumentCreator;
 
 /**
@@ -38,7 +38,7 @@ class SupplySeeder extends CommonSeeder
 
         foreach ($contragents as $contragent) {
             for ($i = 0; $i < rand(1, 5); $i++) {
-                $supply = new App\Models\Supply\Supply();
+                $supply = new App\Bundles\Supply\Models\Supply();
                 $supply->planned_date = $this->faker()->date();
                 $supply->execute_date = $this->faker()->date();
                 $supply->supplier_id = env('ONE_SUPPLIER_ID');
@@ -131,7 +131,7 @@ class SupplySeeder extends CommonSeeder
      */
     private function createQualityCertificate(int $supplyId): void
     {
-        $certificate = new \App\Models\Supply\QualityCertificate();
+        $certificate = new \App\Bundles\Supply\Models\QualityCertificate();
         $certificate->supply_id = $supplyId;
         $certificate->save();
 

@@ -2,7 +2,7 @@
 
 namespace Tests\Bundles\Supply\Feature;
 
-use App\Models\Supply\Supply;
+use App\Bundles\Supply\Models\Supply;
 use Tests\BaseTestCase;
 
 final class ScoreForPaymentTest extends BaseTestCase

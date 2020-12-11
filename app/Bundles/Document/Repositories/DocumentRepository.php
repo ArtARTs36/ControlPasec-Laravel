@@ -4,10 +4,10 @@ namespace App\Bundles\Document\Repositories;
 
 use App\Based\Interfaces\ModelWithDocuments;
 use App\Models\Document\Document;
-use App\Models\Supply\OneTForm;
-use App\Models\Supply\ProductTransportWaybill;
-use App\Models\Supply\QualityCertificate;
-use App\Models\Supply\ScoreForPayment;
+use App\Bundles\Supply\Models\OneTForm;
+use App\Bundles\Supply\Models\ProductTransportWaybill;
+use App\Bundles\Supply\Models\QualityCertificate;
+use App\Bundles\Supply\Models\ScoreForPayment;
 use App\Services\Document\DocumentCreator;
 
 class DocumentRepository

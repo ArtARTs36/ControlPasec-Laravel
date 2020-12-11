@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Supply;
+namespace App\Bundles\Supply\Models;
 
 use App\Bundles\Product\Models\Product;
 use App\Bundles\Vocab\Models\VocabQuantityUnit;

@@ -9,7 +9,7 @@ use App\Bundles\Document\Http\Resources\DocumentResource;
 use App\Based\Http\Responses\ActionResponse;
 use App\Models\Document\DocumentType;
 use App\Bundles\Supply\Repositories\ScoreForPaymentRepository;
-use App\Models\Supply\ScoreForPayment;
+use App\Bundles\Supply\Models\ScoreForPayment;
 use App\Services\Document\DocumentService;
 use App\Services\Document\DocumentCreator;
 use App\Bundles\Supply\Services\ScoreForPaymentService;

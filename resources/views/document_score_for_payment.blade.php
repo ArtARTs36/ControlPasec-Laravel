@@ -15,7 +15,7 @@
 
     $customer = $supply->customer;
 
-    /** @var \App\Models\Supply\SupplyProduct[] $products */
+    /** @var \App\Bundles\Supply\Models\SupplyProduct[] $products */
     $products = $supply->products;
 
     $totalPrice = app(\App\Bundles\Supply\Services\SupplyService::class)->bringTotalPrice($supply);

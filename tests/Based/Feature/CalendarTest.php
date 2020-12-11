@@ -2,7 +2,7 @@
 
 namespace Tests\Based\Feature;
 
-use App\Models\Supply\Supply;
+use App\Bundles\Supply\Models\Supply;
 use Carbon\Carbon;
 use Tests\BaseTestCase;
 

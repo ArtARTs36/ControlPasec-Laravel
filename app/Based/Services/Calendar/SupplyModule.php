@@ -4,7 +4,7 @@ namespace App\Based\Services\Calendar;
 
 use App\Based\Contracts\CalendarModule;
 use App\Bundles\Supply\Repositories\SupplyRepository;
-use App\Models\Supply\Supply;
+use App\Bundles\Supply\Models\Supply;
 use Carbon\Carbon;
 
 class SupplyModule implements CalendarModule

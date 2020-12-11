@@ -2,8 +2,8 @@
 
     /** @var Document $document */
     use App\Models\Document\Document;
-    use App\Models\Supply\ProductTransportWaybill;
-    use App\Models\Supply\SupplyProduct;
+    use App\Bundles\Supply\Models\ProductTransportWaybill;
+    use App\Bundles\Supply\Models\SupplyProduct;
     use App\Services\Document\TemplateService;
     use App\Bundles\Supply\Services\SupplyService;
     use ArtARTs36\RuSpelling\Month;

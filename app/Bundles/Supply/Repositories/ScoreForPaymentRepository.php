@@ -3,8 +3,8 @@
 namespace App\Bundles\Supply\Repositories;
 
 use App\Based\Contracts\Repository;
-use App\Models\Supply\ScoreForPayment;
-use App\Models\Supply\Supply;
+use App\Bundles\Supply\Models\ScoreForPayment;
+use App\Bundles\Supply\Models\Supply;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 

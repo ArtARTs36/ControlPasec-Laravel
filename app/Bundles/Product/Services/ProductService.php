@@ -3,7 +3,7 @@
 namespace App\Bundles\Product\Services;
 
 use App\Bundles\Product\Models\Product;
-use App\Models\Supply\SupplyProduct;
+use App\Bundles\Supply\Models\SupplyProduct;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Collection;

@@ -2,14 +2,14 @@
 
 /** @var Document $document */
 use App\Models\Document\Document;
-use App\Models\Supply\SupplyProduct;
+use App\Bundles\Supply\Models\SupplyProduct;
 use App\Services\Document\TemplateService;
 use App\Bundles\Supply\Services\SupplyService;
 use ArtARTs36\RuSpelling\Month;
 
 $document = $document->load('productTransportWaybills');
 
-/** @var \App\Models\Supply\OneTForm $waybill */
+/** @var \App\Bundles\Supply\Models\OneTForm $waybill */
 $waybill = $document->getOneTForm();
 
 $supply = $waybill->supply;

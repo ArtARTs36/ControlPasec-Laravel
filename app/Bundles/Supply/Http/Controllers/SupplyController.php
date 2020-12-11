@@ -8,7 +8,7 @@ use App\Bundles\Supply\Http\Resources\SupplyResource;
 use App\Based\Contracts\Controller;
 use App\Bundles\Supply\Http\Requests\StoreManySupply;
 use App\Based\Http\Responses\ActionResponse;
-use App\Models\Supply\Supply;
+use App\Bundles\Supply\Models\Supply;
 use App\Bundles\User\Models\Permission;
 use App\Bundles\Supply\Repositories\SupplyRepository;
 use App\Bundles\Supply\Services\SupplyService;

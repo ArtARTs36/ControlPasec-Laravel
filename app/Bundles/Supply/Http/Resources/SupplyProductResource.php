@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Supply\Http\Resources;
 
-use App\Models\Supply\SupplyProduct;
+use App\Bundles\Supply\Models\SupplyProduct;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**

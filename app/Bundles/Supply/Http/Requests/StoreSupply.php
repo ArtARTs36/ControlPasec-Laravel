@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Supply\Http\Requests;
 
-use App\Models\Supply\Supply;
+use App\Bundles\Supply\Models\Supply;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreSupply extends FormRequest

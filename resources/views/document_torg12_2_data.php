@@ -6,7 +6,7 @@ use ArtARTs36\RuSpelling\Month;
 
 $document = $document->load('productTransportWaybills');
 
-/** @var \App\Models\Supply\ProductTransportWaybill $waybill */
+/** @var \App\Bundles\Supply\Models\ProductTransportWaybill $waybill */
 $waybill = $document->getProductTransportWaybill();
 
 $supply = $waybill->supply;

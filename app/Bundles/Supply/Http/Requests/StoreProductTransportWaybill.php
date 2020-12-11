@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Supply\Http\Requests;
 
-use App\Models\Supply\ProductTransportWaybill;
+use App\Bundles\Supply\Models\ProductTransportWaybill;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreProductTransportWaybill extends FormRequest

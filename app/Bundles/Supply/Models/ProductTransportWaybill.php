@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Supply;
+namespace App\Bundles\Supply\Models;
 
 use App\Based\Interfaces\ModelWithDocuments;
 use App\Based\ModelSupport\WithFillOfRequest;

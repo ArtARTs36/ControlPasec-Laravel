@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Models\Supply;
+namespace App\Bundles\Supply\Models;
 
 use App\Based\Interfaces\ModelWithDocuments;
-use App\Bundles\Supply\Models\Contract;
 use App\Models\Document\Document;
 use App\Models\Document\DocumentType;
 use App\Bundles\Document\Support\WithDocuments;
@@ -15,8 +14,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * Class ScoreForPayment
- *
  * @property int $id
  * @property integer $supply_id
  * @property integer $contract_id

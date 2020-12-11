@@ -3,10 +3,10 @@
 namespace App\Models\Document;
 
 use App\Bundles\Employee\Models\Employee;
-use App\Models\Supply\OneTForm;
-use App\Models\Supply\ProductTransportWaybill;
-use App\Models\Supply\QualityCertificate;
-use App\Models\Supply\ScoreForPayment;
+use App\Bundles\Supply\Models\OneTForm;
+use App\Bundles\Supply\Models\ProductTransportWaybill;
+use App\Bundles\Supply\Models\QualityCertificate;
+use App\Bundles\Supply\Models\ScoreForPayment;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 /**
