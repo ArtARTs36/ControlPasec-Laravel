@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $model_id
  * @property string $response
  */
-class SyncWithExternalSystem extends Model
+class ExternalSystemExchange extends Model
 {
     use WithModelType;
 

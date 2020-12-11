@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Based\Models\ModelType;
-use App\Based\Models\SyncWithExternalSystem;
+use App\Based\Models\ExternalSystemExchange;
 use App\Based\Models\ExternalSystem;
 use Illuminate\Database\Eloquent\Model;
 
@@ -57,11 +57,11 @@ class ExternalSynchronizer
 
     /**
      * @param string|null $response
-     * @return SyncWithExternalSystem
+     * @return ExternalSystemExchange
      */
-    public function create(?string $response = null): SyncWithExternalSystem
+    public function create(?string $response = null): ExternalSystemExchange
     {
-        $sync = new SyncWithExternalSystem();
+        $sync = new ExternalSystemExchange();
         $sync->fill([
             'type_id' => $this->getType()->id,
             'model_type_id' => $this->getModelType()->id,
