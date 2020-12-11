@@ -2,27 +2,22 @@
 
 namespace App\Services\Go;
 
+use App\Based\GoBridge\GoProgram;
+
 class PdfCpuGoProgram extends GoProgram
 {
-    const NAME = 'pdfcpu';
-    const IS_BINARY = true;
+    public const NAME = 'pdfcpu';
+    protected const IS_BINARY = true;
 
-    public function merge(array $files, string $savePath)
+    public function merge(array $files, string $savePath): string
     {
-        $this->getExecutor()->getCommand()
+        $this
+            ->getExecutor()->getCommand()
             ->addParameter('merge')
             ->addParameter($savePath)
             ->addParameters($files)
             ->execute();
-    }
 
-    protected function process()
-    {
-        // TODO: Implement process() method.
-    }
-
-    protected function response()
-    {
-        // TODO: Implement response() method.
+        return $savePath;
     }
 }

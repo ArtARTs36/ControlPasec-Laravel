@@ -10,7 +10,10 @@ use Tests\BaseTestCase;
 
 final class PDFJoinerTest extends BaseTestCase
 {
-    public function testJoin()
+    /**
+     * @covers \App\Services\Document\DocumentJoiner\PDFJoiner::join
+     */
+    public function testJoin(): void
     {
         $docs = Document::query()
             ->where('type_id', DocumentType::SCORE_FOR_PAYMENT_ID)

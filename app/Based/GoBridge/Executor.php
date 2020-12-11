@@ -1,14 +1,10 @@
 <?php
 
-namespace App\Services\Go;
+namespace App\Based\GoBridge;
 
 use ArtARTs36\ShellCommand\ShellCommand;
 
-/**
- * Class GoProgramExecutor
- * @package App\Services\Go
- */
-class GoProgramExecutor
+class Executor
 {
     /** @var string Путь к папке с программами Go */
     const GO_ROOT_DIR = __DIR__ . '/../../../go-programs';
@@ -34,12 +30,6 @@ class GoProgramExecutor
     /** @var ShellCommand */
     private $command = null;
 
-    /**
-     * GoProgramExecutor constructor.
-     * @param string $programName
-     * @param array|null $parameters
-     * @param bool $isBinary
-     */
     public function __construct(string $programName, array $parameters = null, bool $isBinary = false)
     {
         $this->programName = $programName;

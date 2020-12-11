@@ -3,7 +3,7 @@
 namespace App\Services\Document\DocTemplateLoader;
 
 use App\Models\Document\Document;
-use App\Services\Go\XlsxRenderGoProgram;
+use App\Services\Go\XlsxRender;
 
 /**
  * Class ExcelDocTemplateLoader
@@ -19,10 +19,10 @@ class ExcelDocTemplateLoader extends AbstractDocTemplateLoader
      */
     protected function make(Document $document): string
     {
-        return XlsxRenderGoProgram::createByDocument(
+        return XlsxRender::renderByDocument(
             $document,
             $this->includeData($document)
-        )->execute();
+        );
     }
 
     /**

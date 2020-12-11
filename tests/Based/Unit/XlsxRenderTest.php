@@ -5,14 +5,14 @@ namespace Tests\Based\Unit;
 use App\Models\Document\Document;
 use App\Models\Document\DocumentType;
 use App\Services\Document\DocumentBuilder;
-use App\Services\Go\XlsxRenderGoProgram;
+use App\Services\Go\XlsxRender;
 use Tests\BaseTestCase;
 
-/**
- * @group BaseTest
- */
-class GoProgramTest extends BaseTestCase
+final class XlsxRenderTest extends BaseTestCase
 {
+    /**
+     * @todo уйти от поиска рандомного документа
+     */
     public function testCreateByDocument(): void
     {
         /** @var Document $randomDocument */
@@ -42,13 +42,15 @@ class GoProgramTest extends BaseTestCase
             ];
         }
 
-        $program = XlsxRenderGoProgram::createByDocument($randomDocument, $data);
+        $executed = XlsxRender::renderByDocument($randomDocument, $data);
 
-        $executed = $program->execute();
-
+        self::assertFileExists($executed);
         self::assertNotFalse($executed);
     }
 
+    /**
+     * @todo уйти от поиска рандомного документа
+     */
     public function testByBuilder(): void
     {
         $randomDocument = Document::query()

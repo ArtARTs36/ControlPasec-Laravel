@@ -2,9 +2,9 @@
 
 namespace App\Based\Console\Commands;
 
+use App\Based\GoBridge\Executor;
 use App\Based\Support\OS;
 use App\Based\Support\FileHelper;
-use App\Services\Go\GoProgramExecutor;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 
@@ -78,7 +78,7 @@ class ProjectInstallCommand extends Command
 
     private function checkGoPrograms(): void
     {
-        $dir = GoProgramExecutor::GO_ROOT_DIR;
+        $dir = Executor::GO_ROOT_DIR;
         $elementsOfDir = array_diff(scandir($dir), ['.', '..']);
 
         $folders = array_filter(array_values($elementsOfDir), function ($folder) use ($dir) {
