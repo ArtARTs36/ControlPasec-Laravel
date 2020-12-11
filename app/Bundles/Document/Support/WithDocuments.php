@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Traits;
+namespace App\Bundles\Document\Support;
 
 use App\Models\Document\Document;
 use App\Bundles\Document\Repositories\DocumentRepository;
@@ -8,17 +8,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Collection;
 
 /**
- * Trait WithDocuments
  * @property Collection|Document[] $documents
- * @package App\Models\Traits
  */
 trait WithDocuments
 {
     private static $docRepo = null;
 
     /**
-     * Получить список документов
-     * @return BelongsToMany
+     * @codeCoverageIgnore
      */
     public function documents(): BelongsToMany
     {

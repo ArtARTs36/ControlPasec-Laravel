@@ -6,7 +6,7 @@ use App\Based\Interfaces\ModelWithDocuments;
 use App\Bundles\Supply\Models\Contract;
 use App\Models\Document\Document;
 use App\Models\Document\DocumentType;
-use App\Models\Traits\WithDocuments;
+use App\Bundles\Document\Support\WithDocuments;
 use App\Based\ModelSupport\WithOrderNumber;
 use App\Bundles\Supply\Support\WithSupply;
 use App\Bundles\Admin\Models\VariableDefinition;
