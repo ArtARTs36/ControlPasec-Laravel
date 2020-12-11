@@ -2,7 +2,7 @@
 
 namespace App\Services\Document\DocumentJoiner;
 
-use App\Services\Go\PdfCpuGoProgram;
+use App\Bundles\Document\Support\PdfCpu;
 
 /**
  * @todo переделать
@@ -13,7 +13,7 @@ class PDFJoiner extends AbstractDocumentJoiner
 
     public function join()
     {
-        $pdfCpu = new PdfCpuGoProgram();
+        $pdfCpu = new PdfCpu();
         $pdfCpu->merge($this->filesPaths, $this->savePath);
 
         return file_exists($this->savePath) ? $this->savePath : false;
