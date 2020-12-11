@@ -4,10 +4,10 @@ namespace App\Services;
 
 use App\Based\Models\ModelType;
 use App\Based\Models\SyncWithExternalSystem;
-use App\Based\Models\SyncWithExternalSystemType;
+use App\Based\Models\ExternalSystem;
 use Illuminate\Database\Eloquent\Model;
 
-class SyncWithExternalSystemService
+class ExternalSynchronizer
 {
     /** @var Model */
     private $model;
@@ -18,7 +18,7 @@ class SyncWithExternalSystemService
     /** @var string */
     private $typeSlug;
 
-    /** @var SyncWithExternalSystemType */
+    /** @var ExternalSystem */
     private $type = null;
 
     /** @var string|null */
@@ -32,12 +32,12 @@ class SyncWithExternalSystemService
     }
 
     /**
-     * @return SyncWithExternalSystemType
+     * @return ExternalSystem
      */
-    private function getType(): SyncWithExternalSystemType
+    private function getType(): ExternalSystem
     {
         if ($this->type === null) {
-            $this->type = SyncWithExternalSystemType::where('slug', $this->typeSlug)->first();
+            $this->type = ExternalSystem::where('slug', $this->typeSlug)->first();
         }
 
         return $this->type;

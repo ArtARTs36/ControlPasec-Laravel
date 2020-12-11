@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSyncWithExternalSystemTypesTable extends Migration
+class CreateExternalSystemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateSyncWithExternalSystemTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('sync_with_external_system_types', function (Blueprint $table) {
+        Schema::create('external_systems', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
 
@@ -29,6 +29,6 @@ class CreateSyncWithExternalSystemTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sync_with_external_system_types');
+        Schema::dropIfExists('external_systems');
     }
 }

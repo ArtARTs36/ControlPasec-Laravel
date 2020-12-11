@@ -24,7 +24,7 @@ class CreateSyncWithExternalSystemsTable extends Migration
 
             $table->foreign('type_id')
                 ->references('id')
-                ->on('sync_with_external_system_types')
+                ->on('external_systems')
                 ->onDelete('cascade');
 
             $table->foreign('model_type_id')

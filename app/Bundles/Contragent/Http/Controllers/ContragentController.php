@@ -7,11 +7,11 @@ use App\Bundles\Contragent\Http\Requests\StoreContragent;
 use App\Based\Http\Responses\ActionResponse;
 use App\Bundles\Contragent\Models\Contragent;
 use App\Based\Contracts\Controller;
-use App\Based\Models\SyncWithExternalSystemType;
+use App\Based\Models\ExternalSystem;
 use App\Bundles\User\Models\Permission;
 use App\Bundles\Contragent\Repositories\ContragentRepository;
 use App\Bundles\Contragent\Services\ContragentService;
-use App\Services\SyncWithExternalSystemService;
+use App\Services\ExternalSynchronizer;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 final class ContragentController extends Controller
@@ -147,7 +147,7 @@ final class ContragentController extends Controller
     {
         $response = $finder->findByInnOrOgrn($contragent->inn ?? $contragent->ogrn, false);
 
-        return (new SyncWithExternalSystemService($contragent, SyncWithExternalSystemType::SLUG_CONTRAGENT_DADATA))
+        return (new ExternalSynchronizer($contragent, ExternalSystem::SLUG_CONTRAGENT_DADATA))
             ->create($response)
             ->getComparedData();
     }

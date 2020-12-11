@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $id
  * @property int $type_id
- * @property SyncWithExternalSystemType $type
+ * @property ExternalSystem $type
  * @property int $model_type_id
  * @property ModelType $modelType
  * @property int $model_id
