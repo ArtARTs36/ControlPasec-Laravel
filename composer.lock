@@ -55,16 +55,16 @@
         },
         {
             "name": "artarts36/cbr-course-finder",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ArtARTs36/cbr-course-finder.git",
-                "reference": "d2bf9228478930b57736e51f85349ab5187861dc"
+                "reference": "88f41a9dc2bc04839bed0747fa35c378731bc931"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ArtARTs36/cbr-course-finder/zipball/d2bf9228478930b57736e51f85349ab5187861dc",
-                "reference": "d2bf9228478930b57736e51f85349ab5187861dc",
+                "url": "https://api.github.com/repos/ArtARTs36/cbr-course-finder/zipball/88f41a9dc2bc04839bed0747fa35c378731bc931",
+                "reference": "88f41a9dc2bc04839bed0747fa35c378731bc931",
                 "shasum": ""
             },
             "require": {
@@ -89,7 +89,7 @@
                 }
             ],
             "description": "CBR Course Finder",
-            "time": "2020-11-21T00:14:00+00:00"
+            "time": "2020-12-10T15:49:31+00:00"
         },
         {
             "name": "artarts36/employee-interfaces",
