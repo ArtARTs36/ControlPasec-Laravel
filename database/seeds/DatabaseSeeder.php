@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 
 require_once 'vendor/dba/controltime/database/seeds/WorkConditionSeeder.php';
 require_once 'vendor/dba/controltime/database/seeds/TimeSeeder.php';
+require_once 'vendor/artarts36/laravel-holiday/database/Seeders/HolidayDatabaseSeeder.php';
 
 class DatabaseSeeder extends Seeder
 {
@@ -48,6 +49,8 @@ class DatabaseSeeder extends Seeder
         $this->call(TimeSeeder::class);
 
         $this->call(AdminServiceSeeder::class);
+
+        $this->call(HolidayDatabaseSeeder::class);
     }
 
     private function vocabs(): void
