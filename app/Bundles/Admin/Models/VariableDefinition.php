@@ -3,7 +3,7 @@
 namespace App\Bundles\Admin\Models;
 
 use App\Models\ModelType;
-use App\Models\Traits\WithModelType;
+use App\Based\ModelSupport\WithModelType;
 use Illuminate\Database\Eloquent\Model;
 
 /**

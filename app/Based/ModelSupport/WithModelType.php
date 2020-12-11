@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Traits;
+namespace App\Based\ModelSupport;
 
 use App\Models\ModelType;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 trait WithModelType
 {
     /**
-     * @return BelongsTo
+     * @codeCoverageIgnore
      */
     public function modelType(): BelongsTo
     {
