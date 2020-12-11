@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Go;
+namespace App\Bundles\Document\Support;
 
 use App\Based\GoBridge\GoProgram;
 use App\Models\Document\Document;

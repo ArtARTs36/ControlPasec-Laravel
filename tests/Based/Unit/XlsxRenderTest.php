@@ -2,10 +2,10 @@
 
 namespace Tests\Based\Unit;
 
+use App\Bundles\Document\Support\XlsxRender;
 use App\Models\Document\Document;
 use App\Models\Document\DocumentType;
 use App\Services\Document\DocumentBuilder;
-use App\Services\Go\XlsxRender;
 use Tests\BaseTestCase;
 
 final class XlsxRenderTest extends BaseTestCase

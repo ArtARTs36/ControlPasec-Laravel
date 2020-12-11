@@ -11,7 +11,7 @@ abstract class GoProgram
     /** @var Executor  */
     private $executor;
 
-    public function getExecutor(): Executor
+    protected function getExecutor(): Executor
     {
         if ($this->executor === null) {
             $this->executor = new Executor(static::NAME, null, static::IS_BINARY);
