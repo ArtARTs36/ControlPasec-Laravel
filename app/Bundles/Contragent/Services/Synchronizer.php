@@ -7,7 +7,7 @@ use App\Based\Models\ExternalSystemExchange;
 use App\Based\Repositories\ExternalSystemRepository;
 use App\Bundles\Contragent\Models\Contragent;
 use App\Bundles\Contragent\Support\Finder;
-use App\Services\ExternalExchanger;
+use App\Based\Services\ExternalExchanger;
 
 class Synchronizer
 {
