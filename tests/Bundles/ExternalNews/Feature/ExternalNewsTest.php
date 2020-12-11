@@ -81,7 +81,7 @@ final class ExternalNewsTest extends BaseTestCase
      */
     public function testTruncate(): void
     {
-        $this->seed(\ExternalNewsSeeder::class);
+        factory(ExternalNews::class, 20)->create();
 
         $request = function () {
             return $this->getJson(static::API_INDEX . "/truncate/");
