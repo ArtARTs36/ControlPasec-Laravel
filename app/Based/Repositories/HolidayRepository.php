@@ -20,7 +20,7 @@ class HolidayRepository extends Repository
     {
         return $this
             ->newQuery()
-            ->with('workType')
+            ->with(Holiday::RELATION_WORK_TYPE)
             ->whereDate(Holiday::FIELD_DATE, '>=', $start)
             ->whereDate(Holiday::FIELD_DATE, '<=', $end)
             ->get();
