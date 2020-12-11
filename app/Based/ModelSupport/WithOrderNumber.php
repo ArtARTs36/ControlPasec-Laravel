@@ -2,7 +2,7 @@
 
 namespace App\Based\ModelSupport;
 
-use App\Services\VariableDefinitionService;
+use App\Based\Services\VariableDefinitionService;
 
 trait WithOrderNumber
 {

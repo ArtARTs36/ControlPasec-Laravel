@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Based\Services;
 
 use App\Based\Repositories\VariableDefinitionRepository;
 use App\Bundles\Admin\Models\VariableDefinition;
