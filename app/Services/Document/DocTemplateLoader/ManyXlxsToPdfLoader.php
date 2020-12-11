@@ -3,14 +3,10 @@
 namespace App\Services\Document\DocTemplateLoader;
 
 use App\Bundles\Document\Services\Converters\PDF;
+use App\Bundles\Document\Support\PDFJoiner;
 use App\Models\Document\Document;
 use App\Services\Document\DocumentService;
-use App\Services\Document\DocumentJoiner\PDFJoiner;
 
-/**
- * Class ManyXlxsToPdfLoader
- * @package App\Services\Document\DocTemplateLoader
- */
 class ManyXlxsToPdfLoader extends AbstractDocTemplateLoader
 {
     const NAME = 'ManyXlxsToPdfLoader';
@@ -38,11 +34,12 @@ class ManyXlxsToPdfLoader extends AbstractDocTemplateLoader
     protected function makeMany($documents): string
     {
         $paths = [];
+
         foreach ($documents as $document) {
             DocumentService::buildIfNotExists($document);
             $paths[] = PDF::ofPath($document->getFullPath());
         }
 
-        return (new PDFJoiner($paths))->join();
+        return app(PDFJoiner::class)->joinByPaths($paths);
     }
 }

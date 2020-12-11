@@ -3,8 +3,9 @@
 namespace App\Bundles\Document\Support;
 
 use App\Based\GoBridge\GoProgram;
+use App\Bundles\Document\Contracts\PDFUtility;
 
-class PdfCpu extends GoProgram
+class PdfCpu extends GoProgram implements PDFUtility
 {
     public const NAME = 'pdfcpu';
     protected const IS_BINARY = true;
