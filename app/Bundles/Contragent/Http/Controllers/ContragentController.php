@@ -2,6 +2,7 @@
 
 namespace App\Bundles\Contragent\Http\Controllers;
 
+use App\Bundles\Contragent\Services\Synchronizer;
 use App\Bundles\Contragent\Support\Finder;
 use App\Bundles\Contragent\Http\Requests\StoreContragent;
 use App\Based\Http\Responses\ActionResponse;
@@ -11,7 +12,7 @@ use App\Based\Models\ExternalSystem;
 use App\Bundles\User\Models\Permission;
 use App\Bundles\Contragent\Repositories\ContragentRepository;
 use App\Bundles\Contragent\Services\ContragentService;
-use App\Services\ExternalSynchronizer;
+use App\Services\ExternalExchanger;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 final class ContragentController extends Controller
@@ -143,13 +144,9 @@ final class ContragentController extends Controller
     /**
      * Синхронизировать контрагента с данными из внешней системы
      */
-    public function syncWithExternalSystem(Contragent $contragent, Finder $finder): array
+    public function syncWithExternalSystem(Contragent $contragent, Synchronizer $synchronizer): array
     {
-        $response = $finder->findByInnOrOgrn($contragent->getInnOrOgrn(), false);
-
-        return (new ExternalSynchronizer($contragent, ExternalSystem::SLUG_CONTRAGENT_DADATA))
-            ->create($response)
-            ->getComparedData();
+        return $synchronizer->exchange($contragent)->getComparedData();
     }
 
     /**

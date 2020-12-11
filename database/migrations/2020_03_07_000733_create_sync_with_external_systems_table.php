@@ -17,12 +17,12 @@ class CreateSyncWithExternalSystemsTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
 
-            $table->unsignedInteger('type_id');
+            $table->unsignedInteger('system_id');
             $table->unsignedInteger('model_type_id');
             $table->integer('model_id');
             $table->json('response');
 
-            $table->foreign('type_id')
+            $table->foreign('system_id')
                 ->references('id')
                 ->on('external_systems')
                 ->onDelete('cascade');

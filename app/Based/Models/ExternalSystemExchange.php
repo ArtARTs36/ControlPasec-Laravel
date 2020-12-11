@@ -4,6 +4,7 @@ namespace App\Based\Models;
 
 use App\Based\ModelSupport\WithModelType;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int $id
@@ -18,11 +19,24 @@ class ExternalSystemExchange extends Model
 {
     use WithModelType;
 
+    public const FIELD_SYSTEM_ID = 'system_id';
+    public const FIELD_MODEL_TYPE_ID = 'model_type_id';
+    public const FIELD_MODEL_ID = 'model_id';
+    public const FIELD_RESPONSE = 'response';
+
     protected $fillable = [
-        'type_id', 'model_type_id', 'model_id', 'response',
+        self::FIELD_SYSTEM_ID,
+        self::FIELD_MODEL_TYPE_ID,
+        self::FIELD_MODEL_ID,
+        self::FIELD_RESPONSE,
     ];
 
     private $model;
+
+    public function system(): BelongsTo
+    {
+        return $this->belongsTo(ExternalSystem::class);
+    }
 
     public function getModel(): Model
     {
