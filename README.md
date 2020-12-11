@@ -6,7 +6,6 @@
 
 Для проекта написан ряд библиотек:
 
-
 | #   | Название  | Описание   |
 | ------------ | ------------ | ------------ |
 | 1  | artarts36/cbr-course-finder  | Работа с курсами валют. Получение и обработка данных их внешнего источника (https://www.cbr-xml-daily.ru/)  |
@@ -22,18 +21,16 @@
 - php artisan key:generate
 - php artisan project-install
 
-## Запуск
-- php artisan serve
-
 ## Команды
 
 | #   | Команда  | Описание   |
 | ------------ | ------------ | ------------ |
-| 1 | composer test | Запуск тестов |
-| 2 | composer lint | Запуск проверки на соответствие кода стандартам PSR |
-| 3  | php artisan get-currency-course:now | Получить курсы валют за сегодня |
-| 4  | php artisan get-currency-course:week | Получить курсы валют за неделю |
-| 5 | php artisan get-external-news | Получить новости из внешних источников |
+| 1 | php artisan serve | Запуск проекта |
+| 2 | composer test | Запуск тестов |
+| 3 | composer lint | Запуск проверки на соответствие кода стандартам PSR |
+| 4  | php artisan get-currency-course:now | Получить курсы валют за сегодня |
+| 5  | php artisan get-currency-course:week | Получить курсы валют за неделю |
+| 6 | php artisan get-external-news | Получить новости из внешних источников |
 
 ## Посмотреть документацию
 - php artisan serve --port=8000
@@ -42,13 +39,6 @@
 ## Вспомогательные команды
 - php artisan l5-swagger:generate
 - ./vendor/bin/phpstan analyse --memory-limit=2G
-
-## Профайлер
-- установка:
-- `npm install laravel-profiler-client --save-dev`
-- запуск:
-- `php artisan profiler:server`
-- `php artisan profiler:client`
 
 ## Запуск очередей
 - `php artisan queue:work redis --queue=document`
@@ -61,18 +51,14 @@
 - sh docker-project-install.sh
 - Открыть http://localhost:8085
 
-## Команды проекта под докером
-* Проверка версий установленных пакетов: <br/>
-    `sh docker-check-versions-packages.sh`
-    
-* Сборка фронта: <br/>
-    `sh docker-yarn-build.sh`
-    
-* Сборка зависимостей бэка: <br/>
-    `sh docker-composer-install.sh`
+## Документация по проекту
+* [Работа с проектом в docker-окружении](docs/run.docker.md)
+
+## Полезная документация
+* [Профилирование](docs/profiling.md)
+* [Команды докера](docs/docker.commands.md)
 
 ## Инструменты
-* [Команды докера](docs/docker.commands.md)
 * [Удобный редактор readme](https://pandao.github.io/editor.md/en.html)
 * [Удобный редактор swagger](https://editor.swagger.io)
 
