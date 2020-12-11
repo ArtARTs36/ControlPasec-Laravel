@@ -1,18 +1,14 @@
 <?php
 
-namespace App\Models\Traits;
+namespace App\Bundles\Supply\Support;
 
 use App\Models\Supply\Supply;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-/**
- * Trait WithSupply
- * @package App\Models\Traits
- */
 trait WithSupply
 {
     /**
-     * @return BelongsTo
+     * @codeCoverageIgnore
      */
     public function supply(): BelongsTo
     {

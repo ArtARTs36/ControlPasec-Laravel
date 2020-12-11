@@ -7,7 +7,7 @@ use App\Models\Document\Document;
 use App\Models\Document\DocumentType;
 use App\Models\Traits\WithDocuments;
 use App\Based\ModelSupport\WithOrderNumber;
-use App\Models\Traits\WithSupply;
+use App\Bundles\Supply\Support\WithSupply;
 use App\Bundles\Admin\Models\VariableDefinition;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
