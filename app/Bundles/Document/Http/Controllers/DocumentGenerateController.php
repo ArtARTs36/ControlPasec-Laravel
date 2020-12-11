@@ -6,7 +6,7 @@ use App\Based\Contracts\Controller;
 use App\Bundles\Document\Http\Requests\GenerateManyTypesRequest;
 use App\Bundles\Document\Http\Resources\ShowArchive;
 use App\Bundles\Document\Http\Resources\DocumentResource;
-use App\Based\Interfaces\ModelWithDocuments;
+use App\Based\Contracts\ModelWithDocuments;
 use App\Bundles\Document\Models\DocumentType;
 use App\Bundles\Supply\Models\OneTForm;
 use App\Bundles\Supply\Models\ProductTransportWaybill;

@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Supply\Models;
 
-use App\Based\Interfaces\ModelWithDocuments;
+use App\Based\Contracts\ModelWithDocuments;
 use App\Based\ModelSupport\WithFillOfRequest;
 use App\Bundles\Document\Models\DocumentType;
 use App\Bundles\Document\Support\WithDocuments;

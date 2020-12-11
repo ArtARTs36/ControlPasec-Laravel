@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Based\Interfaces;
+namespace App\Based\Contracts;
 
 use App\Bundles\Document\Models\Document;
 use App\Bundles\Document\Repositories\DocumentRepository;

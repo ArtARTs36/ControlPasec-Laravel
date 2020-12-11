@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Document\Repositories;
 
-use App\Based\Interfaces\ModelWithDocuments;
+use App\Based\Contracts\ModelWithDocuments;
 use App\Bundles\Document\Models\Document;
 use App\Bundles\Supply\Models\OneTForm;
 use App\Bundles\Supply\Models\ProductTransportWaybill;
