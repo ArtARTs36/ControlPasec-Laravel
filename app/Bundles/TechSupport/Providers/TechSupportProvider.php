@@ -12,5 +12,7 @@ class TechSupportProvider extends BundleProvider
     {
         $this->app->register(RouteProvider::class);
         $this->app->register(EventProvider::class);
+
+        $this->registerFactories();
     }
 }
