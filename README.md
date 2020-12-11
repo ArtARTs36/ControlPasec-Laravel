@@ -15,12 +15,6 @@
 | 5  | artarts36/ru-spelling  | Работа с орфографией. Транслит,  преобразование чисел в формат нетто; справочник дней и месяцев  |
 | 6  | artarts36/shell-command  | Объектно-ориентированная обертка над shell_exec. Позволяет строить сложные команды для выполнения bash интерпритатором  |
 
-## Установка
-
-- composer install
-- php artisan key:generate
-- php artisan project-install
-
 ## Команды
 
 | #   | Команда  | Описание   |
@@ -31,6 +25,7 @@
 | 4  | php artisan get-currency-course:now | Получить курсы валют за сегодня |
 | 5  | php artisan get-currency-course:week | Получить курсы валют за неделю |
 | 6 | php artisan get-external-news | Получить новости из внешних источников |
+| 7 | php artisan migrate:fresh && php artisan db:seed | Очистить базу и заполнить тестовыми данными |
 
 ## Посмотреть документацию
 - php artisan serve --port=8000
@@ -44,14 +39,8 @@
 - `php artisan queue:work redis --queue=document`
 - `php artisan horizon`
 
-## Обновить БД
-- `php artisan db:wipe && php artisan migrate && php artisan db:seed`
-
-## Установка и запуск под докером
-- sh docker-project-install.sh
-- Открыть http://localhost:8085
-
 ## Документация по проекту
+* [Установка проекта на локальной машине](docs/install.local.md)
 * [Работа с проектом в docker-окружении](docs/run.docker.md)
 
 ## Полезная документация
