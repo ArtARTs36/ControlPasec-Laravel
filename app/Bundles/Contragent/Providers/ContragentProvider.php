@@ -23,8 +23,11 @@ final class ContragentProvider extends BundleProvider
         $this->app->register(RouteProvider::class);
         $this->app->register(EventProvider::class);
 
-        Contragent::observe(ContragentObserver::class);
-
         $this->registerFactories();
+    }
+
+    public function boot(): void
+    {
+        Contragent::observe(ContragentObserver::class);
     }
 }
