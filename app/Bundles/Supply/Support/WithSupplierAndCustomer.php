@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Traits;
+namespace App\Bundles\Supply\Support;
 
 use App\Bundles\Contragent\Models\Contragent;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -9,7 +9,7 @@ trait WithSupplierAndCustomer
 {
     /**
      * Получить поставщика
-     * @return BelongsTo
+     * @codeCoverageIgnore
      */
     public function supplier(): BelongsTo
     {
@@ -18,7 +18,7 @@ trait WithSupplierAndCustomer
 
     /**
      * Получить заказчика
-     * @return BelongsTo
+     * @codeCoverageIgnore
      */
     public function customer(): BelongsTo
     {
