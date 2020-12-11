@@ -3,8 +3,8 @@
 namespace App\Services;
 
 use App\Models\ModelType;
-use App\Models\Sync\SyncWithExternalSystem;
-use App\Models\Sync\SyncWithExternalSystemType;
+use App\Based\Models\SyncWithExternalSystem;
+use App\Based\Models\SyncWithExternalSystemType;
 use Illuminate\Database\Eloquent\Model;
 
 class SyncWithExternalSystemService

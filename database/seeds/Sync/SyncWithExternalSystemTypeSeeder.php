@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Sync\SyncWithExternalSystemType;
+use App\Based\Models\SyncWithExternalSystemType;
 
 class SyncWithExternalSystemTypeSeeder extends CommonSeeder
 {

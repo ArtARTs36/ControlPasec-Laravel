@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Models\Sync;
+namespace App\Based\Models;
 
 use App\Models\ModelType;
 use App\Based\ModelSupport\WithModelType;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class SyncWithExternalSystem
  * @property int $id
  * @property int $type_id
  * @property SyncWithExternalSystemType $type
