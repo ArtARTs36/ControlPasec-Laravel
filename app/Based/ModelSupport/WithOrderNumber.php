@@ -12,7 +12,7 @@ trait WithOrderNumber
     public function initOrderNumber(): void
     {
         if (! $this->order_number) {
-            $this->order_number = VariableDefinitionService::inc(static::ORDER_NUMBER_TYPE);
+            $this->order_number = app(VariableDefinitionService::class)->incByName(static::ORDER_NUMBER_TYPE);
         }
     }
 

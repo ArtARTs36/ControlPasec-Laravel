@@ -2,48 +2,28 @@
 
 namespace App\Services;
 
+use App\Based\Repositories\VariableDefinitionRepository;
 use App\Bundles\Admin\Models\VariableDefinition;
-use Illuminate\Database\Eloquent\Model;
 
-/**
- * Class VariableDefinitionService
- */
 class VariableDefinitionService
 {
-    public static function inc(string $name)
-    {
-        $variable = self::get($name);
-        $variable->value++;
-        $variable->save();
+    protected $repository;
 
-        return $variable->value;
+    public function __construct(VariableDefinitionRepository $repository)
+    {
+        $this->repository = $repository;
     }
 
-    public static function dec(string $name)
+    public function incByName(string $name)
     {
-        $variable = self::get($name);
-        $variable->value--;
-        $variable->save();
-
-        return $variable->value;
+        return $this->inc($this->repository->findByName($name));
     }
 
-    public static function getValue(string $name)
+    public function inc(VariableDefinition $definition)
     {
-        return self::get($name)->value;
-    }
+        $definition->value++;
+        $definition->save();
 
-    public static function get(string $name): VariableDefinition
-    {
-        return VariableDefinition::where('name', $name)->first();
-    }
-
-    public static function getModel(string $name): Model
-    {
-        return VariableDefinition::with('modelType')
-            ->where('name', $name)
-            ->get()
-            ->first()
-            ->getModel();
+        return $definition->value;
     }
 }
