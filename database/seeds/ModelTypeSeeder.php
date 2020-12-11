@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\ModelType;
+use App\Based\Models\ModelType;
 
 class ModelTypeSeeder extends CommonSeeder
 {

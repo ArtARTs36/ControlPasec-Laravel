@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\ModelType;
+use App\Based\Models\ModelType;
 use App\Bundles\Admin\Models\VariableDefinition;
 
 class VariableDefinitionSeeder extends CommonSeeder

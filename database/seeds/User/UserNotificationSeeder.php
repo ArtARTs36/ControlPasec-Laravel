@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\ModelType;
+use App\Based\Models\ModelType;
 use App\Bundles\User\Models\Permission;
 use App\Bundles\User\Models\UserNotificationType;
 

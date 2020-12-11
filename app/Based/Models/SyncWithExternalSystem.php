@@ -2,7 +2,6 @@
 
 namespace App\Based\Models;
 
-use App\Models\ModelType;
 use App\Based\ModelSupport\WithModelType;
 use Illuminate\Database\Eloquent\Model;
 

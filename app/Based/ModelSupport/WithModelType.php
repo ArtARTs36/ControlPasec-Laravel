@@ -2,7 +2,7 @@
 
 namespace App\Based\ModelSupport;
 
-use App\Models\ModelType;
+use App\Based\Models\ModelType;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 trait WithModelType

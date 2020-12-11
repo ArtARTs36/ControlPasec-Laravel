@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Admin\Models;
 
-use App\Models\ModelType;
+use App\Based\Models\ModelType;
 use App\Based\ModelSupport\WithModelType;
 use Illuminate\Database\Eloquent\Model;
 

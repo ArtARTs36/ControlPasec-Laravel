@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Based\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
