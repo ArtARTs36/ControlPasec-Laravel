@@ -18,6 +18,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 final class BankRequisites extends Model
 {
     public const FIELD_SCORE = 'score';
+    public const FIELD_CONTRAGENT_ID = 'contragent_id';
+    public const FIELD_BANK_ID = 'bank_id';
 
     public const RELATION_BANK = 'bank';
 

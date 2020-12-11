@@ -3,10 +3,12 @@
 namespace App\Bundles\Contragent\Providers;
 
 use App\Based\Contracts\BundleProvider;
+use App\Bundles\Contragent\Models\Contragent;
+use App\Bundles\Contragent\Observers\ContragentObserver;
 use App\Bundles\Contragent\Support\DaDataClient;
 use GuzzleHttp\Client;
 
-class ContragentProvider extends BundleProvider
+final class ContragentProvider extends BundleProvider
 {
     protected $factoriesPath = __DIR__ . '/../Database/Factories';
 
@@ -20,6 +22,8 @@ class ContragentProvider extends BundleProvider
 
         $this->app->register(RouteProvider::class);
         $this->app->register(EventProvider::class);
+
+        Contragent::observe(ContragentObserver::class);
 
         $this->registerFactories();
     }

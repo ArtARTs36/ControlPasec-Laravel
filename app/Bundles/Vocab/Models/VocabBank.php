@@ -10,12 +10,18 @@ use Illuminate\Database\Query\Builder;
  * @property string $full_name
  * @property int $bik
  * @property int $score
- *
- * @mixin Builder
  */
 final class VocabBank extends Model
 {
+    public const FIELD_SHORT_NAME = 'short_name';
+    public const FIELD_FULL_NAME = 'full_name';
+    public const FIELD_BIK = 'bik';
+    public const FIELD_SCORE = 'score';
+
     protected $fillable = [
-        'short_name', 'full_name', 'bik', 'score'
+        self::FIELD_SHORT_NAME,
+        self::FIELD_FULL_NAME,
+        self::FIELD_BIK,
+        self::FIELD_SCORE,
     ];
 }

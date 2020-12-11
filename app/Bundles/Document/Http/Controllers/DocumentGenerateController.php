@@ -43,7 +43,7 @@ class DocumentGenerateController extends Controller
         return new DocumentResource($form->getDocument());
     }
 
-    public function generateManyTypes(Supply $supply, GenerateManyTypesRequest $request): ShowArchive
+    public function generateManyTypes(Supply $supply, GenerateManyTypesRequest $request, Zipper $zipper): ShowArchive
     {
         $files = [];
 
@@ -53,7 +53,7 @@ class DocumentGenerateController extends Controller
             $files[] = $form->getDocument()->getFullPath();
         }
 
-        $archive = (new Zipper())->compress($files, 'archive.zip');
+        $archive = $zipper->compress($files, 'archive.zip');
 
         return new ShowArchive($archive);
     }

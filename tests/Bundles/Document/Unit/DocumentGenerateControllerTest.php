@@ -3,8 +3,13 @@
 namespace Tests\Bundles\Document\Unit;
 
 use App\Bundles\Document\Models\DocumentType;
+use App\Bundles\Supply\Models\OneTForm;
+use App\Bundles\Supply\Models\ProductTransportWaybill;
+use App\Bundles\Supply\Models\QualityCertificate;
+use App\Bundles\Supply\Models\ScoreForPayment;
 use App\Bundles\Supply\Models\Supply;
 use Tests\BaseTestCase;
+use Tests\Bundles\Contragent\Generators\ContragentGenerator;
 
 class DocumentGenerateControllerTest extends BaseTestCase
 {
@@ -13,8 +18,29 @@ class DocumentGenerateControllerTest extends BaseTestCase
      */
     public function testGenerateManyTypes(): void
     {
-        // @todo нужно править
-        $supply = $this->getRandomModel(Supply::class);
+        $supplier = ContragentGenerator::gen();
+
+        $supply = factory(Supply::class)->create([
+            Supply::FIELD_SUPPLIER_ID => $supplier->id,
+        ]);
+
+        factory(ScoreForPayment::class)->create([
+            ScoreForPayment::FIELD_SUPPLY_ID => $supply->id,
+        ]);
+
+        factory(QualityCertificate::class)->create([
+            QualityCertificate::FIELD_SUPPLY_ID => $supply->id,
+        ]);
+
+        factory(OneTForm::class)->create([
+            OneTForm::FIELD_SUPPLY_ID => $supply->id,
+        ]);
+
+        factory(ProductTransportWaybill::class)->create([
+            ProductTransportWaybill::FIELD_SUPPLY_ID => $supply->id,
+        ]);
+
+        //
 
         $response = $this->postJson('/api/generate-documents/'. $supply->id, [
             'types' => [

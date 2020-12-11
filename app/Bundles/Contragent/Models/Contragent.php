@@ -52,6 +52,7 @@ class Contragent extends Model
     public const FIELD_ADDRESS = 'address';
     public const FIELD_ADDRESS_POSTAL = 'address_postal';
     public const FIELD_STATUS = 'status';
+    public const FIELD_TITLE_FOR_DOCUMENT = 'title_for_document';
 
     public const RELATION_CONTRACTS = 'contracts';
     public const RELATION_MANAGERS = 'managers';

@@ -233,7 +233,9 @@
 <div>
     Всего наименований {{ count($supply->products) }},
     на сумму {{ \App\Services\Document\TemplateService::formatPriceOne($totalPrice) }}
-    {{ $products[0]->parent->currency->short_name}}.
+    @if(isset($products[0]))
+        {{ $products[0]->parent->currency->short_name}}.
+    @endif
     <br/>
     <strong>
     {{ \App\Services\Document\TemplateService::sum2words($totalPrice) }}

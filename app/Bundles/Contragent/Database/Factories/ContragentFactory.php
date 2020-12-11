@@ -10,5 +10,6 @@ $factory->define(Contragent::class, function (Faker $faker) {
         Contragent::FIELD_TITLE => $faker->word,
         Contragent::FIELD_STATUS => $faker->randomNumber(),
         Contragent::FIELD_INN => rand(11111, 999999),
+        Contragent::FIELD_TITLE_FOR_DOCUMENT => $faker->word,
     ];
 });

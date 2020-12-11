@@ -22,6 +22,7 @@ class CreateContragentsTable extends Migration
             $table->string('title', 500);
             $table->string('full_title', 500)->nullable();
             $table->string('full_title_with_opf', 500)->nullable();
+            $table->string('title_for_document', 120);
 
             $table->bigInteger('inn');
             $table->bigInteger('kpp')->nullable();

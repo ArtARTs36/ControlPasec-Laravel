@@ -2,7 +2,6 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Bundles\TechSupport\Models\TechSupportReport;
 use App\Bundles\Vocab\Models\VocabWord;
 use Faker\Generator as Faker;
 
