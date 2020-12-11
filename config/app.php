@@ -209,6 +209,8 @@ return [
         \App\Bundles\Employee\Providers\EmployeeProvider::class,
 
         \App\Bundles\Supply\Providers\SupplyProvider::class,
+
+        \ArtARTs36\LaravelHoliday\Providers\HolidayProvider::class,
     ],
 
     /*

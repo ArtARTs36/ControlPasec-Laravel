@@ -3,6 +3,7 @@
 namespace App\Based\Providers;
 
 use App\Based\Services\Calendar\Calendar;
+use App\Based\Services\Calendar\HolidayModule;
 use App\Based\Services\Calendar\SupplyModule;
 use Illuminate\Support\ServiceProvider;
 
@@ -22,6 +23,7 @@ final class AppServiceProvider extends ServiceProvider
         $this->app->bind(Calendar::class, function () {
             return new Calendar([
                 $this->app->make(SupplyModule::class),
+                $this->app->make(HolidayModule::class),
             ]);
         });
     }
