@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Document\Services\Converters;
 
-use App\Services\Document\DocumentConvertException;
+use App\Bundles\Document\Exceptions\DocumentConvertFailed;
 use ArtARTs36\ShellCommand\Interfaces\ShellCommandInterface;
 use ArtARTs36\ShellCommand\ShellCommand;
 
@@ -14,12 +14,12 @@ abstract class ConsoleConverter
     }
 
     /**
-     * @throws DocumentConvertException
+     * @throws DocumentConvertFailed
      */
     protected function ensureExceptionWhenCommandFailed(ShellCommandInterface $command, string $file, string $ext): void
     {
         if ($command->getShellResult() === null) {
-            throw new DocumentConvertException($file, $ext);
+            throw new DocumentConvertFailed($file, $ext);
         }
     }
 }

@@ -11,11 +11,6 @@ class ManyXlxsToPdfLoader extends AbstractDocTemplateLoader
 {
     const NAME = 'ManyXlxsToPdfLoader';
 
-    /**
-     * @param Document $document
-     * @return string
-     * @throws \App\Services\Document\DocumentConvertException
-     */
     protected function make(Document $document): string
     {
         $document->load('children');
@@ -29,7 +24,6 @@ class ManyXlxsToPdfLoader extends AbstractDocTemplateLoader
     /**
      * @param Document[] $documents
      * @return bool|false|string
-     * @throws \App\Services\Document\DocumentConvertException
      */
     protected function makeMany($documents): string
     {

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Services\Document;
+namespace App\Bundles\Document\Exceptions;
 
 use Throwable;
 
-class DocumentConvertException extends \Exception
+class DocumentConvertFailed extends \Exception
 {
     public function __construct($filePath, $extension, Throwable $previous = null)
     {

@@ -7,16 +7,13 @@ use App\Models\Document\DocumentExtension;
 
 class PDF extends ConsoleConverter
 {
-    /**
-     * @throws \App\Services\Document\DocumentConvertException
-     */
     public static function ofPath(string $path): string
     {
         return (new static())->convertOfPath($path);
     }
 
     /**
-     * @throws \App\Services\Document\DocumentConvertException
+     * @throws \App\Bundles\Document\Exceptions\DocumentConvertFailed
      */
     public function convertOfPath(string $path): string
     {
