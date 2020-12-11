@@ -2,9 +2,7 @@
 
 namespace App\Bundles\Contragent\Models;
 
-use App\Bundles\Contragent\Models\ContragentManager;
 use App\Bundles\Supply\Models\Contract;
-use App\Bundles\Contragent\Models\ContragentGroup;
 use Creatortsv\EloquentPipelinesModifier\WithModifier;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -125,5 +123,10 @@ class Contragent extends Model
     public function getTitleForDocument(): string
     {
         return $this->title_for_document ?? $this->title;
+    }
+
+    public function getInnOrOgrn(): int
+    {
+        return $this->inn ?? $this->ogrn;
     }
 }

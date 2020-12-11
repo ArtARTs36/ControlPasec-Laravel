@@ -145,7 +145,7 @@ final class ContragentController extends Controller
      */
     public function syncWithExternalSystem(Contragent $contragent, Finder $finder): array
     {
-        $response = $finder->findByInnOrOgrn($contragent->inn ?? $contragent->ogrn, false);
+        $response = $finder->findByInnOrOgrn($contragent->getInnOrOgrn(), false);
 
         return (new ExternalSynchronizer($contragent, ExternalSystem::SLUG_CONTRAGENT_DADATA))
             ->create($response)
