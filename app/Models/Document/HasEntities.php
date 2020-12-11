@@ -8,10 +8,13 @@ use App\Bundles\Supply\Models\ProductTransportWaybill;
 use App\Bundles\Supply\Models\QualityCertificate;
 use App\Bundles\Supply\Models\ScoreForPayment;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Support\Collection;
 
 /**
- * Trait HasEntities
- * @package App\Models\Document
+ * @property Collection|OneTForm[] $oneTForms
+ * @property Collection|QualityCertificate[] $qualityCertificates
+ * @property Collection|ScoreForPayment[] $scoreForPayments
+ * @property Collection|ProductTransportWaybill[] $productTransportWaybills
  */
 trait HasEntities
 {

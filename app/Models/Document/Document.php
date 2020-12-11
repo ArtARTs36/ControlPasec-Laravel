@@ -2,17 +2,11 @@
 
 namespace App\Models\Document;
 
-use App\Bundles\Supply\Models\OneTForm;
-use App\Bundles\Supply\Models\ProductTransportWaybill;
-use App\Bundles\Supply\Models\QualityCertificate;
-use App\Bundles\Supply\Models\ScoreForPayment;
 use App\Services\Document\DocumentService;
 use App\Services\Document\DocumentBuilder;
 use ArtARTs36\RuSpelling\Text;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Query\Builder;
-use Illuminate\Support\Collection;
 use Ramsey\Uuid\Uuid;
 
 /**
@@ -24,15 +18,9 @@ use Ramsey\Uuid\Uuid;
  * @property int $status
  * @property DocumentType $type
  * @property string $uuid
- * @property Collection|ScoreForPayment[] $scoreForPayments
  * @property int $folder
- * @property Collection|ProductTransportWaybill[] $productTransportWaybills
  * @property string $paper_size
  * @property Document[] $children
- * @property Collection|OneTForm[] $oneTForms
- * @property Collection|QualityCertificate[] $qualityCertificates
- *
- * @mixin Builder
  */
 class Document extends Model
 {
