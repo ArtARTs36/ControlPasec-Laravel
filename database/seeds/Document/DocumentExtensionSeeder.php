@@ -1,7 +1,7 @@
 <?php
 
 
-use App\Models\Document\DocumentExtension;
+use App\Bundles\Document\Models\DocumentExtension;
 
 class DocumentExtensionSeeder extends CommonSeeder
 {

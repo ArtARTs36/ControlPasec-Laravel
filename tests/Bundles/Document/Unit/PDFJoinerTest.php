@@ -3,8 +3,8 @@
 namespace Tests\Bundles\Document\Unit;
 
 use App\Bundles\Document\Support\PDFJoiner;
-use App\Models\Document\Document;
-use App\Models\Document\DocumentType;
+use App\Bundles\Document\Models\Document;
+use App\Bundles\Document\Models\DocumentType;
 use App\Services\Document\DocumentService;
 use Tests\BaseTestCase;
 

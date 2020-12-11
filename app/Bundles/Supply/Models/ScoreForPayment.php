@@ -3,8 +3,8 @@
 namespace App\Bundles\Supply\Models;
 
 use App\Based\Interfaces\ModelWithDocuments;
-use App\Models\Document\Document;
-use App\Models\Document\DocumentType;
+use App\Bundles\Document\Models\Document;
+use App\Bundles\Document\Models\DocumentType;
 use App\Bundles\Document\Support\WithDocuments;
 use App\Based\ModelSupport\WithOrderNumber;
 use App\Bundles\Supply\Support\WithSupply;

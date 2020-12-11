@@ -3,7 +3,7 @@
 namespace App\Bundles\Document\Support;
 
 use App\Bundles\Document\Contracts\PDFUtility;
-use App\Models\Document\Document;
+use App\Bundles\Document\Models\Document;
 use App\Services\Document\DocumentService;
 
 class PDFJoiner

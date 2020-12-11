@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Document\Http\Resources;
 
-use App\Models\Document\Document;
+use App\Bundles\Document\Models\Document;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**

@@ -3,7 +3,7 @@
 namespace App\Services\Document;
 
 use App\Bundles\Document\Jobs\DocumentBuildJob;
-use App\Models\Document\Document;
+use App\Bundles\Document\Models\Document;
 
 class DocumentService
 {

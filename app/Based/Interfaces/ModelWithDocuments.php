@@ -2,7 +2,7 @@
 
 namespace App\Based\Interfaces;
 
-use App\Models\Document\Document;
+use App\Bundles\Document\Models\Document;
 use App\Bundles\Document\Repositories\DocumentRepository;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;

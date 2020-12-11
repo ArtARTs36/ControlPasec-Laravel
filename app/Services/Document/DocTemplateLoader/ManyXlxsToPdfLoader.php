@@ -4,7 +4,7 @@ namespace App\Services\Document\DocTemplateLoader;
 
 use App\Bundles\Document\Services\Converters\PDF;
 use App\Bundles\Document\Support\PDFJoiner;
-use App\Models\Document\Document;
+use App\Bundles\Document\Models\Document;
 use App\Services\Document\DocumentService;
 
 class ManyXlxsToPdfLoader extends AbstractDocTemplateLoader

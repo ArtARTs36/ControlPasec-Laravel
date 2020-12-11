@@ -3,8 +3,8 @@
 namespace Tests\Bundles\Employee\Feature;
 
 use App\Bundles\Employee\Http\Requests\EmployeeStoreRequest;
-use App\Models\Document\Document;
-use App\Models\Document\DocumentType;
+use App\Bundles\Document\Models\Document;
+use App\Bundles\Document\Models\DocumentType;
 use App\Bundles\Employee\Models\Employee;
 use Dba\ControlTime\Models\WorkCondition;
 use Illuminate\Http\Response;

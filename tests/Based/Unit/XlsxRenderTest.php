@@ -3,8 +3,8 @@
 namespace Tests\Based\Unit;
 
 use App\Bundles\Document\Support\XlsxRender;
-use App\Models\Document\Document;
-use App\Models\Document\DocumentType;
+use App\Bundles\Document\Models\Document;
+use App\Bundles\Document\Models\DocumentType;
 use App\Services\Document\DocumentBuilder;
 use Tests\BaseTestCase;
 

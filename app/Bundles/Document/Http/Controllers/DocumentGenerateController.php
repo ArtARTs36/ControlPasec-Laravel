@@ -7,7 +7,7 @@ use App\Bundles\Document\Http\Requests\GenerateManyTypesRequest;
 use App\Bundles\Document\Http\Resources\ShowArchive;
 use App\Bundles\Document\Http\Resources\DocumentResource;
 use App\Based\Interfaces\ModelWithDocuments;
-use App\Models\Document\DocumentType;
+use App\Bundles\Document\Models\DocumentType;
 use App\Bundles\Supply\Models\OneTForm;
 use App\Bundles\Supply\Models\ProductTransportWaybill;
 use App\Bundles\Supply\Models\QualityCertificate;

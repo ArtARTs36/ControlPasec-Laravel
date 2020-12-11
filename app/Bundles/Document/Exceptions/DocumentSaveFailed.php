@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Document\Exceptions;
 
-use App\Models\Document\Document;
+use App\Bundles\Document\Models\Document;
 use Throwable;
 
 /**

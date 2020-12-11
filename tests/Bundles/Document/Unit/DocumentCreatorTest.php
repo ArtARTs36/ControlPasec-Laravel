@@ -2,8 +2,8 @@
 
 namespace Tests\Bundles\Document\Unit;
 
-use App\Models\Document\Document;
-use App\Models\Document\DocumentType;
+use App\Bundles\Document\Models\Document;
+use App\Bundles\Document\Models\DocumentType;
 use App\Services\Document\DocumentService;
 use App\Services\Document\DocumentCreator;
 use Tests\BaseTestCase;

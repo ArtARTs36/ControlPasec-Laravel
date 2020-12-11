@@ -1,7 +1,7 @@
 <?php
 
 use App\Bundles\Contragent\Models\Contragent;
-use App\Models\Document\DocumentType;
+use App\Bundles\Document\Models\DocumentType;
 use App\Bundles\Product\Models\Product;
 use App\Bundles\Supply\Models\OneTForm;
 use App\Bundles\Supply\Models\ProductTransportWaybill;

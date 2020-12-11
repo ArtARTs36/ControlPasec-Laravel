@@ -3,7 +3,7 @@
 namespace App\Bundles\Document\Support;
 
 use App\Based\GoBridge\GoProgram;
-use App\Models\Document\Document;
+use App\Bundles\Document\Models\Document;
 use App\Services\Document\DocumentService;
 
 class XlsxRender extends GoProgram

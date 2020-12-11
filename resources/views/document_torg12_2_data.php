@@ -1,6 +1,6 @@
 <?php
 
-/** @var \App\Models\Document\Document $document */
+/** @var \App\Bundles\Document\Models\Document $document */
 
 use ArtARTs36\RuSpelling\Month;
 

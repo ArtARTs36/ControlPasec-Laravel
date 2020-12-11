@@ -2,7 +2,7 @@
 
 namespace Tests\Bundles\Document\Unit;
 
-use App\Models\Document\DocumentType;
+use App\Bundles\Document\Models\DocumentType;
 use App\Bundles\Supply\Models\QualityCertificate;
 use App\Bundles\Supply\Models\Supply;
 use App\Services\Document\DocumentBuilder;

@@ -4,7 +4,7 @@ namespace Tests\Bundles\Employee\Feature;
 
 use App\Bundles\Employee\Http\Controllers\TimeReportController;
 use App\Bundles\Document\Http\Resources\DocumentResource;
-use App\Models\Document\Document;
+use App\Bundles\Document\Models\Document;
 use App\Bundles\Employee\Models\Employee;
 use Carbon\Carbon;
 use Dba\ControlTime\Models\WorkCondition;

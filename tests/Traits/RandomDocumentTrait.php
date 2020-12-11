@@ -2,7 +2,7 @@
 
 namespace Tests\Traits;
 
-use App\Models\Document\Document;
+use App\Bundles\Document\Models\Document;
 use App\Services\Document\DocumentBuilder;
 
 trait RandomDocumentTrait

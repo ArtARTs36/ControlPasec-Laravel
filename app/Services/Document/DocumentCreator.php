@@ -2,8 +2,8 @@
 
 namespace App\Services\Document;
 
-use App\Models\Document\Document;
-use App\Models\Document\DocumentType;
+use App\Bundles\Document\Models\Document;
+use App\Bundles\Document\Models\DocumentType;
 use App\Bundles\Supply\Models\ProductTransportWaybill;
 use App\Bundles\Supply\Models\ScoreForPayment;
 use App\Services\Document\DocumentService;

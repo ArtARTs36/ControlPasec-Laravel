@@ -1,7 +1,7 @@
 <?php
 
     /** @var Document $document */
-    use App\Models\Document\Document;
+    use App\Bundles\Document\Models\Document;
     use App\Bundles\Supply\Models\ProductTransportWaybill;
     use App\Bundles\Supply\Models\SupplyProduct;
     use App\Services\Document\TemplateService;

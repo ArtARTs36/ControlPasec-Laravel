@@ -2,7 +2,7 @@
 
 namespace App\Services\Document\DocTemplateLoader;
 
-use App\Models\Document\Document;
+use App\Bundles\Document\Models\Document;
 use PhpOffice\PhpWord\TemplateProcessor;
 
 class PhpWordDocTemplateLoader extends AbstractDocTemplateLoader

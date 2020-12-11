@@ -3,7 +3,7 @@
 namespace App\Bundles\Document\Services\Converters;
 
 use App\Based\Support\FileHelper;
-use App\Models\Document\DocumentExtension;
+use App\Bundles\Document\Models\DocumentExtension;
 
 class PDF extends ConsoleConverter
 {

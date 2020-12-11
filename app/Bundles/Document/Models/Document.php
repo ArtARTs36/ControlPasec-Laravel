@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Document;
+namespace App\Bundles\Document\Models;
 
 use App\Services\Document\DocumentService;
 use App\Services\Document\DocumentBuilder;
@@ -10,8 +10,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Ramsey\Uuid\Uuid;
 
 /**
- * Class Document
- *
  * @property int $id
  * @property int $type_id
  * @property string $title
@@ -39,7 +37,7 @@ class Document extends Model
     private $fullPath = null;
 
     /**
-     * @return BelongsTo|DocumentType
+     * @codeCoverageIgnore
      */
     public function type(): BelongsTo
     {
@@ -47,7 +45,7 @@ class Document extends Model
     }
 
     /**
-     * @return string
+     * Получить название расширения/формата файла
      */
     public function getExtensionName(): string
     {
@@ -56,8 +54,6 @@ class Document extends Model
 
     /**
      * Получить название шаблона
-     *
-     * @return string
      */
     public function getTemplate()
     {
@@ -66,8 +62,6 @@ class Document extends Model
 
     /**
      * Получить полный путь к шаблону
-     *
-     * @return string
      */
     public function getTemplateFullPath(): string
     {
@@ -75,7 +69,7 @@ class Document extends Model
     }
 
     /**
-     * @return string
+     * Получить название файла
      */
     public function getFileName(): string
     {
@@ -83,7 +77,7 @@ class Document extends Model
     }
 
     /**
-     * @return string
+     * Получить название загрузчика
      */
     public function getLoaderName(): string
     {
@@ -159,7 +153,7 @@ class Document extends Model
 
     public function build(): string
     {
-        (!$this->exists) && $this->save();
+        (! $this->exists) && $this->save();
 
         return DocumentBuilder::build($this);
     }

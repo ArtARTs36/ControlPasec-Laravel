@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Document;
+namespace App\Bundles\Document\Models;
 
 use App\Bundles\Employee\Models\Employee;
 use App\Bundles\Supply\Models\OneTForm;

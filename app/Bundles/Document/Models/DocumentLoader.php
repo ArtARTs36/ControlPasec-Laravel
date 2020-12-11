@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Models\Document;
+namespace App\Bundles\Document\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * Class DocumentLoader
- *
  * @property int $id
  * @property string $name
  * @property int $extension_id

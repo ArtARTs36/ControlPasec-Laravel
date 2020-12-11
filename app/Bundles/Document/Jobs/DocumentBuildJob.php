@@ -4,7 +4,7 @@ namespace App\Bundles\Document\Jobs;
 
 use App\Based\Interfaces\JobInterface;
 use App\Bundles\Document\Events\DocumentOfQueueGenerated;
-use App\Models\Document\Document;
+use App\Bundles\Document\Models\Document;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;

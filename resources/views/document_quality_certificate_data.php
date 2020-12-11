@@ -2,7 +2,7 @@
 
 use App\Services\Document\TemplateService;
 
-/** @var \App\Models\Document\Document $document */
+/** @var \App\Bundles\Document\Models\Document $document */
 $document->load('qualityCertificates');
 
 if (! $document->getQualityCertificate()) {

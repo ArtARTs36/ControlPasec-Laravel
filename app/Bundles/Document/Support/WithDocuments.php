@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Document\Support;
 
-use App\Models\Document\Document;
+use App\Bundles\Document\Models\Document;
 use App\Bundles\Document\Repositories\DocumentRepository;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Collection;

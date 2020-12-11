@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Employee\Models;
 
-use App\Models\Document\Document;
+use App\Bundles\Document\Models\Document;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

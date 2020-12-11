@@ -3,7 +3,7 @@
 namespace App\Bundles\Document\Repositories;
 
 use App\Based\Interfaces\ModelWithDocuments;
-use App\Models\Document\Document;
+use App\Bundles\Document\Models\Document;
 use App\Bundles\Supply\Models\OneTForm;
 use App\Bundles\Supply\Models\ProductTransportWaybill;
 use App\Bundles\Supply\Models\QualityCertificate;

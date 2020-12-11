@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Models\Document;
+namespace App\Bundles\Document\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * Class DocumentType
- *
  * @property int $id
  * @property string $name
  * @property string $title

@@ -7,7 +7,7 @@ use App\Bundles\Supply\Http\Requests\ManySuppliesRequest;
 use App\Bundles\Supply\Http\Requests\StoreScore;
 use App\Bundles\Document\Http\Resources\DocumentResource;
 use App\Based\Http\Responses\ActionResponse;
-use App\Models\Document\DocumentType;
+use App\Bundles\Document\Models\DocumentType;
 use App\Bundles\Supply\Repositories\ScoreForPaymentRepository;
 use App\Bundles\Supply\Models\ScoreForPayment;
 use App\Services\Document\DocumentService;

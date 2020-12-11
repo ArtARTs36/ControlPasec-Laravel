@@ -3,7 +3,7 @@
 namespace App\Services\Document;
 
 use App\Based\Support\Reflector;
-use App\Models\Document\Document;
+use App\Bundles\Document\Models\Document;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class DocumentBuildSpeedAnalyser

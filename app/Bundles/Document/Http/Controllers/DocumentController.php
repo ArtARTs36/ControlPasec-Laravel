@@ -5,7 +5,7 @@ namespace App\Bundles\Document\Http\Controllers;
 use App\Based\Contracts\Controller;
 use App\Bundles\Document\Http\Resources\DocumentShowResource;
 use App\Based\Http\Responses\ActionResponse;
-use App\Models\Document\Document;
+use App\Bundles\Document\Models\Document;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class DocumentController extends Controller
