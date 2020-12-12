@@ -43,7 +43,7 @@ final class ContractController extends Controller
     public function store(StoreContract $request): ActionResponse
     {
         $contract = $this->makeModel($request, Contract::class);
-        $contract->supplier_id = env('ONE_SUPPLIER_ID');
+        $contract->supplier_id = $contract->supplier_id ?? env('ONE_SUPPLIER_ID');
         $contract->save();
 
         return new ActionResponse(true, $contract);

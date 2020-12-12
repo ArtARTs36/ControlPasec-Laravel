@@ -13,6 +13,7 @@ final class ContractTest extends BaseTestCase
 
     /**
      * Тест на создание договора
+     * @covers \App\Bundles\Supply\Http\Controllers\ContractController::store
      */
     public function testContractCreate(): void
     {
