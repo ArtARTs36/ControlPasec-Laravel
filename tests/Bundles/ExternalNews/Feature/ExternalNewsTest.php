@@ -15,12 +15,12 @@ final class ExternalNewsTest extends BaseTestCase
     public function testChart(): void
     {
         $defaultCount = 6;
+        $count = rand(5, 15);
 
-        factory(ExternalNews::class, $defaultCount)->create();
+        factory(ExternalNews::class, $count)->create();
 
         $this->actingAsRandomUser();
 
-        $count = rand(5, 15);
         $response = $this->getJson(static::API_INDEX . "/chart/{$count}");
 
         $response->assertOk();

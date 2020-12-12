@@ -16,7 +16,13 @@ class VariableDefinitionService
 
     public function incByName(string $name)
     {
-        return $this->inc($this->repository->findByName($name));
+        $definition = $this->repository->findByName($name);
+
+        if (! $definition) {
+            throw new \RuntimeException('Variable Definition Not Founf!');
+        }
+
+        return $this->inc($definition);
     }
 
     public function inc(VariableDefinition $definition)

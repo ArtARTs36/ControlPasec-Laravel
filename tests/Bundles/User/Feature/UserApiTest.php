@@ -5,6 +5,7 @@ namespace Tests\Bundles\User\Feature;
 use App\Bundles\User\Models\Permission;
 use App\User;
 use Tests\BaseTestCase;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 final class UserApiTest extends BaseTestCase
 {
@@ -53,5 +54,20 @@ final class UserApiTest extends BaseTestCase
             'password' => '123456',
             'email' => 'test@mail.ru',
         ])->assertOk();
+    }
+
+    /**
+     * @covers \App\Bundles\User\Http\Controllers\UserController::me
+     */
+    public function testMe(): void
+    {
+        $user = factory(User::class)->create();
+        $token = JWTAuth::fromUser($user);
+
+        $response = $this
+            ->withHeaders(['Authorization' => 'Bearer ' . $token])
+            ->get('/api/me');
+
+        $response->assertStatus(200);
     }
 }

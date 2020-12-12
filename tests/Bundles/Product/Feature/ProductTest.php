@@ -13,7 +13,7 @@ use App\Based\Support\RuFaker;
 use Illuminate\Http\Response;
 use Tests\BaseTestCase;
 
-class ProductTest extends BaseTestCase
+final class ProductTest extends BaseTestCase
 {
     private const API_INDEX = '/api/products' . DIRECTORY_SEPARATOR;
 
@@ -35,6 +35,9 @@ class ProductTest extends BaseTestCase
         self::assertGreaterThan(0, $decode['data']);
     }
 
+    /**
+     * @covers \App\Bundles\Product\Http\Controllers\ProductController::store
+     */
     public function testStore(): void
     {
         $this->actingAsUserWithPermission(Permission::PRODUCTS_CREATE);
@@ -67,6 +70,9 @@ class ProductTest extends BaseTestCase
         $response->assertOk();
     }
 
+    /**
+     * @covers \App\Bundles\Product\Http\Controllers\ProductController::destroy
+     */
     public function testDestroy(): void
     {
         $this->actingAsUserWithPermission(Permission::PRODUCTS_DELETE);

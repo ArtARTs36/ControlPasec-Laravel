@@ -17,8 +17,7 @@ final class ContractTest extends BaseTestCase
     public function testContractCreate(): void
     {
         $customerId = factory(Contragent::class)->create()->id;
-        // @todo
-        $supplierId = env('ONE_SUPPLIER_ID');
+        $supplierId = factory(Contragent::class)->create()->id;
 
         $this->actingAsUserWithPermission(Permission::CONTRACTS_CREATE);
 

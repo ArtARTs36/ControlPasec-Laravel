@@ -21,8 +21,8 @@ final class DialogTest extends BaseTestCase
     {
         parent::setUp();
 
-        $this->admin = User::where('name', 'admin')->first();
-        $this->simpleUser = User::query()->inRandomOrder()->where('email', '<>', $this->admin->email)->first();
+        $this->admin = factory(User::class)->create();
+        $this->simpleUser = factory(User::class)->create();
     }
 
     public function testSendAndGetMessage(): void
