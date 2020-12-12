@@ -11,5 +11,9 @@ class TestSeeder extends Seeder
         $this->call(ModelTypeSeeder::class);
         $this->call(VariableDefinitionSeeder::class);
         $this->call(UserNotificationSeeder::class);
+
+        $this->call(DocumentExtensionSeeder::class);
+        $this->call(DocumentLoaderSeeder::class);
+        $this->call(DocumentTypeSeeder::class);
     }
 }
