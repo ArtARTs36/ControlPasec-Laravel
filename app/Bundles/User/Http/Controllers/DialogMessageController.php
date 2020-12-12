@@ -25,6 +25,9 @@ final class DialogMessageController extends Controller
         $this->service = $service;
     }
 
+    /**
+     * @tag Dialog
+     */
     public function store(StoreMessage $request): DialogMessage
     {
         $currentUser = Auth::user();
@@ -40,6 +43,9 @@ final class DialogMessageController extends Controller
         return $this->service->create($dialog, $currentUser, $request->text);
     }
 
+    /**
+     * @tag Dialog
+     */
     public function createByDialog(Dialog $dialog, StoreMessage $request): DialogMessageResource
     {
         if ($dialog->isNotTookPart(Auth::user())) {
@@ -51,6 +57,9 @@ final class DialogMessageController extends Controller
         return new DialogMessageResource($message);
     }
 
+    /**
+     * @tag Dialog
+     */
     public function read(DialogMessage $message): DialogMessage
     {
         return $message->read();

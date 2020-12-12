@@ -29,6 +29,7 @@ final class ContractController extends Controller
 
     /**
      * Отобразить договора
+     * @tag Contract
      */
     public function index(int $page = 1): LengthAwarePaginator
     {
@@ -37,9 +38,7 @@ final class ContractController extends Controller
 
     /**
      * Создать договор
-     *
-     * @param StoreContract $request
-     * @return ActionResponse
+     * @tag Contract
      */
     public function store(StoreContract $request): ActionResponse
     {
@@ -52,9 +51,7 @@ final class ContractController extends Controller
 
     /**
      * Отобразить договор
-     *
-     * @param Contract $contract
-     * @return Contract
+     * @tag Contract
      */
     public function show(Contract $contract): Contract
     {
@@ -63,10 +60,7 @@ final class ContractController extends Controller
 
     /**
      * Обновить договор
-     *
-     * @param StoreContract $request
-     * @param Contract $contract
-     * @return ActionResponse
+     * @tag Contract
      */
     public function update(StoreContract $request, Contract $contract): ActionResponse
     {
@@ -75,10 +69,7 @@ final class ContractController extends Controller
 
     /**
      * Удалить договор
-     *
-     * @param Contract $contract
-     * @return bool|string
-     * @throws \Exception
+     * @tag Contract
      */
     public function destroy(Contract $contract)
     {
@@ -87,9 +78,7 @@ final class ContractController extends Controller
 
     /**
      * Поиск договоров по заказчику
-     *
-     * @param int $customerId
-     * @return ActionResponse
+     * @tag Contract
      */
     public function findByCustomer(int $customerId): ActionResponse
     {

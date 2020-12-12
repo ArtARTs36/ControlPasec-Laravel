@@ -24,25 +24,33 @@ final class DialogController extends Controller
         $this->service = $service;
     }
 
-
     public function index(int $page = 1): LengthAwarePaginator
     {
         return $this->repository->paginate($page);
     }
 
     /**
-     * Получить диалоги пользователя
+     * Получить диалоги текущего пользователя
+     * @tag dialog
      */
     public function user(int $page = 1): AnonymousResourceCollection
     {
         return DialogsListResource::collection($this->repository->findByUser(auth()->user(), $page));
     }
 
+    /**
+     * Получить диалог
+     * @tag dialog
+     */
     public function show(Dialog $dialog, int $page = 1): DialogResource
     {
         return new DialogResource(...$this->service->show($dialog, $page));
     }
 
+    /**
+     * Удалить диалог
+     * @tag dialog
+     */
     public function destroy(Dialog $dialog): Dialog
     {
         return $dialog->hide(Auth::user());

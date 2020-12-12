@@ -24,11 +24,7 @@ class TimeReportController extends Controller
     }
 
     /**
-     * @param Employee $employee
-     * @param string $start
-     * @param string $end
-     * @return DocumentResource
-     * @throws \Throwable
+     * @tag Employee
      */
     public function byPeriod(Employee $employee, string $start, string $end): DocumentResource
     {
@@ -40,9 +36,7 @@ class TimeReportController extends Controller
     }
 
     /**
-     * @param Employee $employee
-     * @return DocumentResource
-     * @throws \Throwable
+     * @tag Employee
      */
     public function byLastMonth(Employee $employee)
     {

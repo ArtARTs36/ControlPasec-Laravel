@@ -10,12 +10,18 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class ContragentManagerController extends Controller
 {
+    /**
+     * @tag ContragentManager
+     */
     public function index(int $page = 1): LengthAwarePaginator
     {
         return ContragentManager::with('contragent')
             ->paginate(10, ['*'], 'ContragentsList', $page);
     }
 
+    /**
+     * @tag ContragentManager
+     */
     public function store(StoreManager $request): ActionResponse
     {
         $manager = new ContragentManager();
@@ -24,16 +30,25 @@ class ContragentManagerController extends Controller
         return new ActionResponse($manager->save(), $manager);
     }
 
+    /**
+     * @tag ContragentManager
+     */
     public function show(ContragentManager $contragentManager): ContragentManager
     {
         return $contragentManager;
     }
 
+    /**
+     * @tag ContragentManager
+     */
     public function update(StoreManager $request, ContragentManager $contragentManager): ActionResponse
     {
         return new ActionResponse($contragentManager->update($request->toArray()), $contragentManager);
     }
 
+    /**
+     * @tag ContragentManager
+     */
     public function destroy(ContragentManager $contragentManager): ActionResponse
     {
         return new ActionResponse($contragentManager->delete());

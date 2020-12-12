@@ -10,17 +10,26 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class DocumentController extends Controller
 {
+    /**
+     * @tag Docs
+     */
     public function index(int $page = 1): LengthAwarePaginator
     {
         return Document::query()
             ->paginate(10, ['*'], 'DocumentsList', $page);
     }
 
+    /**
+     * @tag Docs
+     */
     public function show(Document $document): DocumentShowResource
     {
         return new DocumentShowResource($document);
     }
 
+    /**
+     * @tag Docs
+     */
     public function destroy(Document $document): ActionResponse
     {
         $document->deleteFile();
@@ -30,6 +39,7 @@ class DocumentController extends Controller
 
     /**
      * Скачать документ / Download Document
+     * @tag Docs
      * @param int $documentId
      * @return void|null
      */

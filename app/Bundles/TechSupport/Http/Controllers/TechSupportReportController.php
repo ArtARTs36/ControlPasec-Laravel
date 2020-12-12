@@ -17,6 +17,9 @@ class TechSupportReportController extends Controller
         'read' => Permission::TECH_SUPPORT_REPORT_SET_READ,
     ];
 
+    /**
+     * @tag TechSupportReport
+     */
     public function index(int $page = 1): AnonymousResourceCollection
     {
         return ReportResource::collection(
@@ -24,6 +27,9 @@ class TechSupportReportController extends Controller
         );
     }
 
+    /**
+     * @tag TechSupportReport
+     */
     public function store(StoreReport $request): ReportResource
     {
         /** @var TechSupportReport $report */
@@ -40,11 +46,17 @@ class TechSupportReportController extends Controller
         return new ReportResource($report);
     }
 
+    /**
+     * @tag TechSupportReport
+     */
     public function show(TechSupportReport $techSupportReport): ReportResource
     {
         return new ReportResource($techSupportReport);
     }
 
+    /**
+     * @tag TechSupportReport
+     */
     public function read(TechSupportReport $report): TechSupportReport
     {
         return $report->read();

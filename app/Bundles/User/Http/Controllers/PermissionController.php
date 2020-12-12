@@ -20,6 +20,9 @@ final class PermissionController extends Controller
         $this->repository = $repository;
     }
 
+    /**
+     * @tag User
+     */
     public function index($page = 1): LengthAwarePaginator
     {
         return $this->repository->paginate($page);

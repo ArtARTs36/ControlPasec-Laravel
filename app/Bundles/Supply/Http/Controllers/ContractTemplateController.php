@@ -6,24 +6,22 @@ use App\Based\Contracts\Controller;
 use App\Based\Http\Responses\ActionResponse;
 use App\Bundles\Supply\Models\ContractTemplate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class ContractTemplateController extends Controller
 {
     /**
      * Отобразить все шаблоны договоров
-     *
-     * @return ContractTemplate[]|\Illuminate\Database\Eloquent\Collection
+     * @tag ContractTemplate
      */
-    public function index()
+    public function index(): Collection
     {
         return ContractTemplate::all();
     }
 
     /**
      * Создать шаблон договора
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return ContractTemplate
+     * @tag ContractTemplate
      */
     public function store(Request $request): ContractTemplate
     {
@@ -32,9 +30,7 @@ class ContractTemplateController extends Controller
 
     /**
      * Отобразить шаблон документа
-     *
-     * @param ContractTemplate $contractTemplate
-     * @return ContractTemplate
+     * @tag ContractTemplate
      */
     public function show(ContractTemplate $contractTemplate)
     {
@@ -43,10 +39,7 @@ class ContractTemplateController extends Controller
 
     /**
      * Обновить шаблон договора
-     *
-     * @param Request $request
-     * @param ContractTemplate $contractTemplate
-     * @return ActionResponse
+     * @tag ContractTemplate
      */
     public function update(Request $request, ContractTemplate $contractTemplate)
     {
@@ -55,9 +48,7 @@ class ContractTemplateController extends Controller
 
     /**
      * Удалить шаблон договора
-     *
-     * @param ContractTemplate $contractTemplate
-     * @return void
+     * @tag ContractTemplate
      */
     public function destroy(ContractTemplate $contractTemplate)
     {

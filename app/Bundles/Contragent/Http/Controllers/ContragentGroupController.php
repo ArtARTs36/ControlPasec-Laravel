@@ -13,8 +13,7 @@ class ContragentGroupController extends Controller
 {
     /**
      * Получить список групп контрагентов
-     *
-     * @return LengthAwarePaginator
+     * @tag ContragentGroup
      */
     public function index(): LengthAwarePaginator
     {
@@ -24,8 +23,7 @@ class ContragentGroupController extends Controller
     }
 
     /**
-     * @param UpdateContragentGroup $request
-     * @return ActionResponse
+     * @tag ContragentGroup
      */
     public function store(UpdateContragentGroup $request)
     {
@@ -38,8 +36,7 @@ class ContragentGroupController extends Controller
     }
 
     /**
-     * @param ContragentGroup $contragentGroup
-     * @return ContragentGroup
+     * @tag ContragentGroup
      */
     public function show(ContragentGroup $contragentGroup): ContragentGroup
     {
@@ -47,9 +44,7 @@ class ContragentGroupController extends Controller
     }
 
     /**
-     * @param UpdateContragentGroup $request
-     * @param ContragentGroup $contragentGroup
-     * @return ActionResponse
+     * @tag ContragentGroup
      */
     public function update(UpdateContragentGroup $request, ContragentGroup $contragentGroup)
     {
@@ -62,6 +57,7 @@ class ContragentGroupController extends Controller
 
     /**
      * @throws \Exception
+     * @tag ContragentGroup
      */
     public function destroy(ContragentGroup $contragentGroup): ActionResponse
     {
@@ -69,9 +65,7 @@ class ContragentGroupController extends Controller
     }
 
     /**
-     * @param ContragentGroup $group
-     * @param Contragent $contragent
-     * @return ActionResponse
+     * @tag ContragentGroup
      */
     public function detach(ContragentGroup $group, Contragent $contragent): ActionResponse
     {
@@ -79,8 +73,7 @@ class ContragentGroupController extends Controller
     }
 
     /**
-     * @param ContragentGroup $group
-     * @return ActionResponse
+     * @tag ContragentGroup
      */
     public function detachAll(ContragentGroup $group): ActionResponse
     {

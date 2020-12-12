@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1ac77c2e8a15e43bcf7814f9b21fa6b7",
+    "content-hash": "71fdb3976cb971b85d3d5317cf2639ac",
     "packages": [
         {
             "name": "alhimik1986/php-excel-templator",
@@ -4387,12 +4387,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ArtARTs36/laravel-totem.git",
-                "reference": "f97cdc3d141db3dbddf1599c82aba2f8085422f8"
+                "reference": "6e5f85d983e8dc0ea90668bbae3586b942d5213d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ArtARTs36/laravel-totem/zipball/f97cdc3d141db3dbddf1599c82aba2f8085422f8",
-                "reference": "f97cdc3d141db3dbddf1599c82aba2f8085422f8",
+                "url": "https://api.github.com/repos/ArtARTs36/laravel-totem/zipball/6e5f85d983e8dc0ea90668bbae3586b942d5213d",
+                "reference": "6e5f85d983e8dc0ea90668bbae3586b942d5213d",
                 "shasum": ""
             },
             "require": {
@@ -8175,6 +8175,68 @@
             "time": "2020-08-11T18:10:13+00:00"
         },
         {
+            "name": "mtrajano/laravel-swagger",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ArtARTs36/laravel-swagger.git",
+                "reference": "b0b717424a788540599895c6b541bcb08739a7ff"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ArtARTs36/laravel-swagger/zipball/b0b717424a788540599895c6b541bcb08739a7ff",
+                "reference": "b0b717424a788540599895c6b541bcb08739a7ff",
+                "shasum": ""
+            },
+            "require": {
+                "phpdocumentor/reflection-docblock": "*"
+            },
+            "require-dev": {
+                "laravel/passport": "^8.0",
+                "orchestra/testbench": "~4.0",
+                "php": ">=7.0",
+                "phpunit/phpunit": "^8.0|^9.0"
+            },
+            "suggest": {
+                "ext-yaml": "Required to use the YAML output option"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Mtrajano\\LaravelSwagger\\SwaggerServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Mtrajano\\LaravelSwagger\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Mtrajano\\LaravelSwagger\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mauricio Trajano",
+                    "email": "mauriciot1993@gmail.com"
+                }
+            ],
+            "description": "Auto generates the swagger documentation for a laravel project",
+            "support": {
+                "source": "https://github.com/ArtARTs36/laravel-swagger/tree/master"
+            },
+            "time": "2020-12-12T01:23:10+00:00"
+        },
+        {
             "name": "myclabs/deep-copy",
             "version": "1.10.2",
             "source": {
@@ -10133,7 +10195,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "dba/controltime": 20,
-        "tymon/jwt-auth": 20
+        "tymon/jwt-auth": 20,
+        "mtrajano/laravel-swagger": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

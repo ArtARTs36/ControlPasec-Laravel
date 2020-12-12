@@ -30,36 +30,57 @@ final class ProductController extends Controller
         $this->service = $service;
     }
 
+    /**
+     * @tag Product
+     */
     public function index(int $page = 1)
     {
         return $this->repository->paginate($page);
     }
 
+    /**
+     * @tag Product
+     */
     public function store(StoreProduct $request): Product
     {
         return $this->createModel($request, Product::class);
     }
 
+    /**
+     * @tag Product
+     */
     public function show(Product $product): ActionResponse
     {
         return new ActionResponse(true, $product);
     }
 
+    /**
+     * @tag Product
+     */
     public function update(StoreProduct $request, Product $product): ActionResponse
     {
         return $this->updateModelAndResponse($request, $product);
     }
 
+    /**
+     * @tag Product
+     */
     public function destroy(Product $product): ActionResponse
     {
         return $this->deleteModelAndResponse($product);
     }
 
+    /**
+     * @tag Product
+     */
     public function topChart(): array
     {
         return $this->service->getStat(5);
     }
 
+    /**
+     * @tag Product
+     */
     public function refreshTopChart(): array
     {
         $this->service->cleanStatCache();

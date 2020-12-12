@@ -18,16 +18,25 @@ class VocabQuantityUnitController extends Controller
         'destroy' => Permission::VOCAB_QUANTITY_UNITS_DELETE,
     ];
 
+    /**
+     * @tag VocabQuantityUnit
+     */
     public function index(int $page = 0)
     {
         return VocabQuantityUnit::paginate(10, ['*'], 'VocabQuantityUnitsList', $page);
     }
 
+    /**
+     * @tag VocabQuantityUnit
+     */
     public function show(VocabQuantityUnit $vocabQuantityUnit): VocabQuantityUnit
     {
         return $vocabQuantityUnit;
     }
 
+    /**
+     * @tag VocabQuantityUnit
+     */
     public function store(Request $request)
     {
         $unit = new VocabQuantityUnit();
@@ -36,6 +45,9 @@ class VocabQuantityUnitController extends Controller
         return new ActionResponse($unit->save(), $unit);
     }
 
+    /**
+     * @tag VocabQuantityUnit
+     */
     public function update(Request $request, VocabQuantityUnit $vocabQuantityUnit)
     {
         $vocabQuantityUnit->update($request->all());
@@ -43,6 +55,9 @@ class VocabQuantityUnitController extends Controller
         return new ActionResponse($vocabQuantityUnit->save(), $vocabQuantityUnit);
     }
 
+    /**
+     * @tag VocabQuantityUnit
+     */
     public function destroy(VocabQuantityUnit $vocabQuantityUnit)
     {
         return new ActionResponse($vocabQuantityUnit->delete());

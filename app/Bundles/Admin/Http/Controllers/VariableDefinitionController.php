@@ -12,6 +12,7 @@ final class VariableDefinitionController extends Controller
 {
     /**
      * Получить список переменных
+     * @tag VariableDefinition
      */
     public function index(int $page = 1): LengthAwarePaginator
     {
@@ -20,6 +21,7 @@ final class VariableDefinitionController extends Controller
 
     /**
      * Показать переменную
+     * @tag VariableDefinition
      */
     public function show(VariableDefinition $textDataParserDefaultVariable)
     {
@@ -28,6 +30,7 @@ final class VariableDefinitionController extends Controller
 
     /**
      * Обновить значение переменной
+     * @tag VariableDefinition
      */
     public function update(UpdateVariableDefinition $request, VariableDefinition $variableDefinition): ActionResponse
     {

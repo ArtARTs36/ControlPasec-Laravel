@@ -28,6 +28,9 @@ final class ScoreForPaymentController extends Controller
         $this->service = $service;
     }
 
+    /**
+     * @tag ScoreForPayment
+     */
     public function index(int $page = 1): LengthAwarePaginator
     {
         return $this->repository->paginate($page);
@@ -35,9 +38,7 @@ final class ScoreForPaymentController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param StoreScore $request
-     * @return ActionResponse
+     * @tag ScoreForPayment
      */
     public function store(StoreScore $request): ActionResponse
     {
@@ -51,8 +52,7 @@ final class ScoreForPaymentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param ScoreForPayment $scoreForPayment
-     * @return ScoreForPayment
+     * @tag ScoreForPayment
      */
     public function show(ScoreForPayment $scoreForPayment)
     {
@@ -66,9 +66,7 @@ final class ScoreForPaymentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param StoreScore $request
-     * @param ScoreForPayment $scoreForPayment
-     * @return ActionResponse
+     * @tag ScoreForPayment
      */
     public function update(StoreScore $request, ScoreForPayment $scoreForPayment)
     {
@@ -82,8 +80,7 @@ final class ScoreForPaymentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param ScoreForPayment $scoreForPayment
-     * @return ActionResponse
+     * @tag ScoreForPayment
      */
     public function destroy(ScoreForPayment $scoreForPayment): ActionResponse
     {
@@ -93,8 +90,7 @@ final class ScoreForPaymentController extends Controller
     /**
      * Создать документ из нескольких счетов
      *
-     * @param ManySuppliesRequest $request
-     * @return DocumentResource
+     * @tag ScoreForPayment
      * @throws Throwable
      * @throws \ReflectionException
      */

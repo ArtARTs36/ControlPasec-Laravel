@@ -10,10 +10,7 @@ use App\Services\Document\DocumentCreator;
 class EmployeeDocumentController extends Controller
 {
     /**
-     * @param Employee $employee
-     * @param int $typeId
-     * @return DocumentResource
-     * @throws \Throwable
+     * @tag Employee
      */
     public function byType(Employee $employee, int $typeId): DocumentResource
     {

@@ -12,9 +12,7 @@ class ExternalNewsSourceController extends Controller
 {
     /**
      * Отобразить внешние источники новостей
-     *
-     * @param int $page
-     * @return LengthAwarePaginator
+     * @tag ExternalNewsSource
      */
     public function index(int $page = 1)
     {
@@ -23,10 +21,8 @@ class ExternalNewsSourceController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  ExternalNewsSourceRequest  $request
-     * @return ExternalNewsSource
+     * Добавить источник внешних новостей
+     * @tag ExternalNewsSource
      */
     public function store(ExternalNewsSourceRequest $request): ExternalNewsSource
     {
@@ -34,10 +30,8 @@ class ExternalNewsSourceController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param ExternalNewsSource $externalNewsSource
-     * @return ExternalNewsSource
+     * Показать источник внешних новостей
+     * @tag ExternalNewsSource
      */
     public function show(ExternalNewsSource $externalNewsSource): ExternalNewsSource
     {
@@ -45,11 +39,8 @@ class ExternalNewsSourceController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  ExternalNewsSourceRequest  $request
-     * @param  ExternalNewsSource  $externalNewsSource
-     * @return ActionResponse
+     * Обновить источник внешних новостей
+     * @tag ExternalNewsSource
      */
     public function update(ExternalNewsSourceRequest $request, ExternalNewsSource $externalNewsSource)
     {
@@ -57,10 +48,8 @@ class ExternalNewsSourceController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  ExternalNewsSource  $externalNewsSource
-     * @return ActionResponse
+     * Удалить источник
+     * @tag ExternalNewsSource
      */
     public function destroy(ExternalNewsSource $externalNewsSource)
     {

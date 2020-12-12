@@ -17,11 +17,17 @@ class VocabWordController
         'update' => Permission::VOCAB_WORD_UPDATE,
     ];
 
+    /**
+     * @tag VocabWord
+     */
     public function index(int $page = 1): LengthAwarePaginator
     {
         return VocabWord::paginate(10, ['*'], 'VocabWordsList', $page);
     }
 
+    /**
+     * @tag VocabWord
+     */
     public function store(StoreVocabWord $request): VocabWord
     {
         $word = new VocabWord();
@@ -31,15 +37,29 @@ class VocabWordController
         return $word;
     }
 
+    /**
+     * @tag VocabWord
+     */
     public function show(VocabWord $vocabWord): VocabWord
     {
         return $vocabWord;
     }
 
+    /**
+     * @tag VocabWord
+     */
     public function update(Request $request, VocabWord $vocabWord)
     {
         $vocabWord->setRawAttributes($request->all());
 
         return $vocabWord;
+    }
+
+    /**
+     * @tag VocabWord
+     */
+    public function destroy(VocabWord $word)
+    {
+        return $word->delete();
     }
 }

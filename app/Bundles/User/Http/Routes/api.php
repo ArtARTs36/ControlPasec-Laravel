@@ -8,7 +8,9 @@ Route::put('profiles/update-about-me', 'ProfileController@updateAboutMe');
 Route::get('profiles/search/{query}', 'ProfileController@search')->middleware(
     'throttle:1555,1'
 );
-Route::apiResource('profiles', 'ProfileController');
+Route::apiResource('profiles', 'ProfileController')->only([
+    'show',
+]);
 
 //
 
@@ -19,7 +21,12 @@ Route::get('users/{user}/activate', 'UserController@activate');
 Route::get('users/{user}/deactivate', 'UserController@deactivate');
 Route::get('users/{user}/detach-role/{role}', 'UserController@detachRole');
 Route::get('users/{user}/attach-role/{role}', 'UserController@attachRole');
-Route::apiResource('users', 'UserController');
+Route::apiResource('users', 'UserController')->only([
+    'index',
+    'show',
+    'update',
+    'store',
+]);
 
 //
 
@@ -31,7 +38,9 @@ Route::prefix('roles')->group(function () {
     Route::get('{role}/detach-allowed-for-sign', 'RoleController@detachAllowedForSignUp');
 });
 
-Route::apiResource('roles', 'RoleController');
+Route::apiResource('roles', 'RoleController')->only([
+    'index',
+]);
 
 // Permissions
 
@@ -39,7 +48,9 @@ Route::prefix('permissions')->group(function () {
     Route::get('page-{page}', 'PermissionController@index');
 });
 
-Route::apiResource('permissions', 'PermissionController');
+Route::apiResource('permissions', 'PermissionController')->only([
+    'index',
+]);
 
 Route::prefix('user-notifications')->group(function () {
     Route::put('{notification}/read', 'UserNotificationController@read');
@@ -47,17 +58,16 @@ Route::prefix('user-notifications')->group(function () {
 
 // Auth
 
-Route::get('signup-roles', 'User\RoleController@getRolesForSignUp');
-Route::post('signup', 'Auth\RegisterController@store');
+Route::get('signup-roles', 'RoleController@getRolesForSignUp');
+Route::post('signup', '\App\Bundles\User\Http\Controllers\Auth\RegisterController@store');
 
 Route::group([
     'prefix' => 'auth'
 ], function () {
-    Route::post('login', 'Auth\AuthController@login');
-    Route::post('token/revoke', 'Auth\AuthController@revokeToken');
-    Route::post('refresh', 'Auth\AuthController@refresh');
-    Route::post('token/issue', 'Auth\AuthController@issueToken');
-    Route::post('token/refresh', 'Auth\AuthController@refreshToken');
+    Route::post('token/revoke', '\App\Bundles\User\Http\Controllers\Auth\AuthController@revokeToken');
+    Route::post('refresh', '\App\Bundles\User\Http\Controllers\Auth\AuthController@refreshToken');
+    Route::post('token/issue', '\App\Bundles\User\Http\Controllers\Auth\AuthController@issueToken');
+    Route::post('token/refresh', '\App\Bundles\User\Http\Controllers\Auth\AuthController@refreshToken');
 });
 
 // Dialogs
@@ -69,7 +79,9 @@ Route::prefix('dialog-messages')->group(function () {
     Route::post('create-by-dialog/{dialog}', 'DialogMessageController@createByDialog');
 });
 
-Route::apiResource('dialog-messages', 'DialogMessageController');
+Route::apiResource('dialog-messages', 'DialogMessageController')->only([
+    'store',
+]);
 
 Route::prefix('dialogs')->group(function () {
     Route::get('user', 'DialogController@user');
@@ -77,4 +89,8 @@ Route::prefix('dialogs')->group(function () {
     Route::get('{dialog}/page-{page}', 'DialogController@show');
 });
 
-Route::apiResource('dialogs', 'DialogController');
+Route::apiResource('dialogs', 'DialogController')->only([
+    'index',
+    'show',
+    'destroy',
+]);

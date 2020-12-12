@@ -11,7 +11,12 @@ Route::prefix('employees')->group(function () {
     Route::get('page-{page}', '\App\Bundles\Employee\Http\Controllers\EmployeeController@index');
 });
 
-Route::apiResource('employees', '\App\Bundles\Employee\Http\Controllers\EmployeeController');
+Route::apiResource('employees', '\App\Bundles\Employee\Http\Controllers\EmployeeController')->only([
+    'index',
+    'show',
+    'store',
+    'update',
+]);
 
 Route::get(
     Proxy::apiRoute('report') . '/{employee}/{start}/{end}',

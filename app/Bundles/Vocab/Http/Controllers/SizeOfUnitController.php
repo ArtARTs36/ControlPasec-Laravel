@@ -10,27 +10,31 @@ use App\Bundles\Vocab\Models\SizeOfUnit;
 class SizeOfUnitController extends Controller
 {
     /**
-     * @return ActionResponse
+     * @tag SizeOfUnit
      */
     public function index()
     {
         return new ActionResponse(true, SizeOfUnit::all());
     }
 
+    /**
+     * @tag SizeOfUnit
+     */
     public function store(StoreSizeOfUnit $request): ActionResponse
     {
         return $this->createModelAndResponse($request, SizeOfUnit::class);
     }
 
+    /**
+     * @tag SizeOfUnit
+     */
     public function show(SizeOfUnit $sizeOfUnit): SizeOfUnit
     {
         return $sizeOfUnit;
     }
 
     /**
-     * @param StoreSizeOfUnit $request
-     * @param SizeOfUnit $sizeOfUnit
-     * @return ActionResponse
+     * @tag SizeOfUnit
      */
     public function update(StoreSizeOfUnit $request, SizeOfUnit $sizeOfUnit)
     {
@@ -38,6 +42,7 @@ class SizeOfUnitController extends Controller
     }
 
     /**
+     * @tag SizeOfUnit
      * @param SizeOfUnit $sizeOfUnit
      * @return ActionResponse
      * @throws \Exception

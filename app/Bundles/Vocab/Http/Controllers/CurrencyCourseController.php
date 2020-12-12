@@ -16,6 +16,7 @@ final class CurrencyCourseController extends Controller
 
     /**
      * @throws \Exception
+     * @tag CurrencyCourse
      */
     public function chart(): array
     {

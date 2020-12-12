@@ -35,32 +35,24 @@ final class ContragentController extends Controller
     }
 
     /**
-     * Отобразить список контрагентов
-     *
-     * @OA\Get(
-     *     path="/api/contragents/page-{page}",
-     *     description="Contragents: index Page",
-     *     tags={"Contragent Actions"},
-     *     @OA\Parameter(
-     *      name="page",
-     *      in="path",
-     *      required=true,
-     *      @OA\Schema(type="int")
-     *     ),
-     *     @OA\Response(response="default", description="View Contragents")
-     * )
-     *
+     * @tag Contragent
      */
     public function index(int $page = 1): LengthAwarePaginator
     {
         return $this->repository->paginate($page);
     }
 
+    /**
+     * @tag Contragent
+     */
     public function store(StoreContragent $request): ActionResponse
     {
         return $this->createModelAndResponse($request, Contragent::class);
     }
 
+    /**
+     * @tag Contragent
+     */
     public function show(Contragent $contragent): ActionResponse
     {
         return new ActionResponse(true, $this->service->loadFullInfo($contragent));
@@ -68,6 +60,7 @@ final class ContragentController extends Controller
 
     /**
      * Обновить данные о контрагенте
+     * @tag Contragent
      */
     public function update(StoreContragent $request, Contragent $contragent)
     {
@@ -80,18 +73,7 @@ final class ContragentController extends Controller
 
     /**
      * Удалить контрагента
-     *
-     * @OA\Delete(
-     *     path="/api/contragents/{id}",
-     *     description="Contragents: delete item",
-     *     tags={"Contragent Actions"},
-     *     @OA\Parameter(
-     *      name="id",
-     *      in="path",
-     *      required=true
-     *     ),
-     *     @OA\Response(response="default", description="Contragents: delete item")
-     * )
+     * @tag Contragent
      */
     public function destroy(Contragent $contragent): ActionResponse
     {
@@ -102,21 +84,7 @@ final class ContragentController extends Controller
 
     /**
      * Поиск контрагента во внешней системе
-     *
-     * @param int $inn
-     * @return ActionResponse
-     *
-     * @OA\Get(
-     *     path="/api/contragents/find-external-by-inn/{inn}",
-     *     description="Contragents: find Contragent in external System",
-     *     tags={"Contragent Actions"},
-     *     @OA\Parameter(
-     *      name="inn",
-     *      in="path",
-     *      required=true
-     *     ),
-     *     @OA\Response(response="default", description="Contragents: find Contragent in external System")
-     * )
+     * @tag Contragent
      */
     public function findInExternalNetworkByInn($inn, Finder $finder, ContragentRepository $repository): ActionResponse
     {
@@ -141,6 +109,7 @@ final class ContragentController extends Controller
 
     /**
      * Синхронизировать контрагента с данными из внешней системы
+     * @tag Contragent
      */
     public function syncWithExternalSystem(Contragent $contragent, Synchronizer $synchronizer): array
     {
@@ -149,21 +118,7 @@ final class ContragentController extends Controller
 
     /**
      * Живой поиск контрагента в базе
-     *
-     * @param string $term
-     * @return ActionResponse
-     *
-     * @OA\Get(
-     *     path="/api/contragents/live-find/{term}",
-     *     description="Contragents: live find in Base",
-     *     tags={"Contragent Actions"},
-     *     @OA\Parameter(
-     *      name="inn",
-     *      in="path",
-     *      required=true
-     *     ),
-     *     @OA\Response(response="default", description="Contragents: live find in Base")
-     * )
+     * @tag Contragent
      */
     public function liveFind(string $term): ActionResponse
     {

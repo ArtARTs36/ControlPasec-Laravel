@@ -29,22 +29,7 @@ class ExternalNewsController extends Controller
 
     /**
      * Отобразить новости из внешних источников
-     *
-     * @OA\Get(
-     *     path="/api/external-news/page-{page}",
-     *     description="External News: index Page",
-     *     tags={"External News"},
-     *     @OA\Response(response="default", description="View News"),
-     *     @OA\Parameter(
-     *      name="page",
-     *      in="path",
-     *      required=false,
-     *      @OA\Schema(type="int")
-     *     )
-     * )
-     *
-     * @param int $page
-     * @return LengthAwarePaginator
+     * @tag ExternalNews
      */
     public function index(int $page = 1)
     {
@@ -53,22 +38,7 @@ class ExternalNewsController extends Controller
 
     /**
      * Отобразить несколько последних новостей из внешних источников
-     *
-     * @OA\Get(
-     *     path="/api/external-news/chart/{count}",
-     *     description="External News: index Page",
-     *     tags={"External News"},
-     *     @OA\Parameter(
-     *      name="count",
-     *      in="path",
-     *      required=false,
-     *      @OA\Schema(type="int")
-     *     ),
-     *     @OA\Response(response="default", description="View Latest News")
-     * )
-     *
-     * @param int $count
-     * @return LengthAwarePaginator
+     * @tag ExternalNews
      */
     public function chart(int $count = 6): LengthAwarePaginator
     {
@@ -80,8 +50,8 @@ class ExternalNewsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param ExternalNews $externalNews
-     * @return ExternalNews
+     * Показать новость
+     * @tag ExternalNews
      */
     public function show(ExternalNews $externalNews)
     {
@@ -89,9 +59,8 @@ class ExternalNewsController extends Controller
     }
 
     /**
-     * @param ExternalNews $externalNews
-     * @param UpdateRequest $request
-     * @return ActionResponse
+     * Обновить новость
+     * @tag ExternalNews
      */
     public function update(ExternalNews $externalNews, UpdateRequest $request): ActionResponse
     {
@@ -99,10 +68,8 @@ class ExternalNewsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param ExternalNews $externalNews
-     * @return ActionResponse
+     * Удалить новость
+     * @tag ExternalNews
      */
     public function destroy(ExternalNews $externalNews): ActionResponse
     {
@@ -110,7 +77,8 @@ class ExternalNewsController extends Controller
     }
 
     /**
-     * @return ActionResponse
+     * Удалить все новости
+     * @tag ExternalNews
      */
     public function truncate(): ActionResponse
     {

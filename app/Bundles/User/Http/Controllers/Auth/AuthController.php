@@ -157,9 +157,6 @@ final class AuthController extends Controller
 
     /**
      * Return error message after determining invalid credentials.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\JsonResponse
      */
     protected function sendFailedLoginResponse(Request $request)
     {
@@ -171,8 +168,7 @@ final class AuthController extends Controller
     /**
      * Redirect the user after determining they are locked out.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @tag Auth
      */
     public function sendLockoutResponse(Request $request)
     {
@@ -190,16 +186,7 @@ final class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      *
-     * @OA\Post(
-     *      path="/auth/token/revoke",
-     *      operationId="logoutUser",
-     *      tags={"Authentication"},
-     *      security={{"bearerAuth": {}}},
-     *      summary="Logout user",
-     *      description="Revoke token authenticated user",
-     *      @OA\Response(response=200, description="successful operation"),
-     *      @OA\Response(response=404, description="Resource Not found"),
-     * )
+     * @tag Auth
      */
     public function revokeToken()
     {
@@ -209,10 +196,7 @@ final class AuthController extends Controller
     }
 
     /**
-     * Refresh the user's token.
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @tag Auth
      */
     public function refreshToken(Request $request)
     {

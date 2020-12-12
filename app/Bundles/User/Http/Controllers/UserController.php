@@ -31,27 +31,7 @@ final class UserController extends Controller
     }
 
     /**
-     *
-     * @return UserResource
-     *
-     * @OA\Get(
-     *      path="/api/me",
-     *      operationId="User me Profile",
-     *      tags={"Me Current User"},
-     *      description="Get authenticated user meta",
-     *      @OA\Response(
-     *          response=200,
-     *          description="successful operation",
-     *          @OA\JsonContent(
-     *              type="object",
-     *              @OA\Property(
-     *                  property="data",
-     *                  @OA\Schema(ref="#/components/schemas/User"),
-     *              ),
-     *          ),
-     *      ),
-     *      @OA\Response(response=404, description="Resource Not found"),
-     * )
+     * @tag User
      */
     public function me(FetchMyUser $user): UserResource
     {
@@ -59,8 +39,7 @@ final class UserController extends Controller
     }
 
     /**
-     * @param int $page
-     * @return LengthAwarePaginator
+     * @tag User
      */
     public function index(int $page = 1): LengthAwarePaginator
     {
@@ -68,8 +47,7 @@ final class UserController extends Controller
     }
 
     /**
-     * @param User $user
-     * @return UserResource
+     * @tag User
      */
     public function show(User $user): UserResource
     {
@@ -77,9 +55,7 @@ final class UserController extends Controller
     }
 
     /**
-     * @param StoreUser $request
-     * @param User $user
-     * @return ActionResponse
+     * @tag User
      */
     public function update(StoreUser $request, User $user): ActionResponse
     {
@@ -87,8 +63,7 @@ final class UserController extends Controller
     }
 
     /**
-     * @param StoreUser $request
-     * @return ActionResponse
+     * @tag User
      */
     public function store(StoreUser $request): ActionResponse
     {
@@ -97,9 +72,7 @@ final class UserController extends Controller
 
     /**
      * Открепить роль у пользователя
-     * @param User $user
-     * @param Role $role
-     * @return ActionResponse
+     * @tag User
      */
     public function detachRole(User $user, Role $role): ActionResponse
     {
@@ -108,9 +81,7 @@ final class UserController extends Controller
 
     /**
      * Добавить роль пользователю
-     * @param User $user
-     * @param Role $role
-     * @return ActionResponse
+     * @tag User
      */
     public function attachRole(User $user, Role $role): ActionResponse
     {
@@ -119,8 +90,7 @@ final class UserController extends Controller
 
     /**
      * Активировать профиль пользователя
-     * @param User $user
-     * @return User
+     * @tag User
      */
     public function activate(User $user): User
     {
@@ -129,8 +99,7 @@ final class UserController extends Controller
 
     /**
      * Деактивировать профиль пользователя
-     * @param User $user
-     * @return User
+     * @tag User
      */
     public function deactivate(User $user): User
     {

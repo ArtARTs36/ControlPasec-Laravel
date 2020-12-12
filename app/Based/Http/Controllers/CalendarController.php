@@ -10,6 +10,9 @@ use Illuminate\Support\Carbon;
 
 class CalendarController extends Controller
 {
+    /**
+     * Показать записи из календаря
+     */
     public function showByDates(FetchingCalendar $request, Calendar $calendar): JsonResource
     {
         return new JsonResource($calendar->getByDates(

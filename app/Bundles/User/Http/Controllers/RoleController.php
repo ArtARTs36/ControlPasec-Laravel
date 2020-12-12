@@ -24,7 +24,7 @@ final class RoleController extends Controller
 
     /**
      * Получить роли, доступные для регистрации
-     * @return Collection
+     * @tag User
      */
     public function getRolesForSignUp(): Collection
     {
@@ -32,8 +32,7 @@ final class RoleController extends Controller
     }
 
     /**
-     * @param int $page
-     * @return LengthAwarePaginator
+     * @tag User
      */
     public function index(int $page = 1): LengthAwarePaginator
     {
@@ -43,8 +42,7 @@ final class RoleController extends Controller
 
     /**
      * Разрешить регистрацию пользователя с ролью $role
-     * @param Role $role
-     * @return Role
+     * @tag User
      */
     public function attachAllowedForSignUp(Role $role): Role
     {
@@ -53,8 +51,7 @@ final class RoleController extends Controller
 
     /**
      * Запретить регистрацию пользователя с ролью $role
-     * @param Role $role
-     * @return Role
+     * @tag User
      */
     public function detachAllowedForSignUp(Role $role): Role
     {

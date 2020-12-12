@@ -13,14 +13,6 @@ final class StatController extends Controller
 {
     /**
      * Отобразить общую статистику системы
-     *
-     * @OA\Get(
-     *     path="/stat/general",
-     *     description="System Statistic: general",
-     *     @OA\Response(response="default", description="View general System Statistic")
-     * )
-     *
-     * @return array
      */
     public function general(): array
     {

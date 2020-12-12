@@ -36,6 +36,7 @@ final class SupplyController extends Controller
 
     /**
      * Получить список поставок
+     * @tag Supply
      */
     public function index(): AnonymousResourceCollection
     {
@@ -44,6 +45,7 @@ final class SupplyController extends Controller
 
     /**
      * Создать поставку
+     * @tag Supply
      */
     public function store(StoreSupply $request): ActionResponse
     {
@@ -58,6 +60,7 @@ final class SupplyController extends Controller
 
     /**
      * Открыть поставку
+     * @tag Supply
      */
     public function show(Supply $supply): SupplyResource
     {
@@ -66,6 +69,7 @@ final class SupplyController extends Controller
 
     /**
      * Обновить данные о поставке
+     * @tag Supply
      */
     public function update(StoreSupply $request, Supply $supply): ActionResponse
     {
@@ -78,6 +82,7 @@ final class SupplyController extends Controller
 
     /**
      * @throws \Exception
+     * @tag Supply
      */
     public function destroy(Supply $supply)
     {
@@ -85,8 +90,7 @@ final class SupplyController extends Controller
     }
 
     /**
-     * @param int $customerId
-     * @return ActionResponse
+     * @tag Supply
      */
     public function findByCustomer(int $customerId): ActionResponse
     {
@@ -95,6 +99,9 @@ final class SupplyController extends Controller
         return new ActionResponse($supplies->isNotEmpty(), $supplies);
     }
 
+    /**
+     * @tag Supply
+     */
     public function storeMany(StoreManySupply $request, Creator $creator): ActionResponse
     {
         return $creator->many($request->getItems(), $request->getOptions());

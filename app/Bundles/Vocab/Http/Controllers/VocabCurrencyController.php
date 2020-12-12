@@ -22,6 +22,7 @@ final class VocabCurrencyController extends Controller
 
     /**
      * Отобразить список валют
+     * @tag VocabCurrency
      */
     public function index($page = 1): LengthAwarePaginator
     {
@@ -30,6 +31,7 @@ final class VocabCurrencyController extends Controller
 
     /**
      * Добавить валюту в справочник
+     * @tag VocabCurrency
      */
     public function store(Request $request): ActionResponse
     {
@@ -41,6 +43,7 @@ final class VocabCurrencyController extends Controller
 
     /**
      * Отобразить валюту
+     * @tag VocabCurrency
      */
     public function show(VocabCurrency $vocabCurrency): VocabCurrency
     {
@@ -49,6 +52,7 @@ final class VocabCurrencyController extends Controller
 
     /**
      * Обновить данные валюты
+     * @tag VocabCurrency
      */
     public function update(Request $request, VocabCurrency $vocabCurrency): ActionResponse
     {
@@ -62,6 +66,7 @@ final class VocabCurrencyController extends Controller
 
     /**
      * Удалить валюту из справочника
+     * @tag VocabCurrency
      * @throws \Exception
      */
     public function destroy(VocabCurrency $vocabCurrency): ActionResponse

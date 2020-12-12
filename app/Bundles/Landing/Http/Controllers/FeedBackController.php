@@ -20,16 +20,25 @@ final class FeedBackController extends Controller
         $this->repository = $repository;
     }
 
+    /**
+     * @tag Landing
+     */
     public function index(int $page = 1): LengthAwarePaginator
     {
         return $this->repository->paginate($page);
     }
 
+    /**
+     * @tag Landing
+     */
     public function show(FeedBack $feedback): JsonResource
     {
         return new JsonResource($feedback);
     }
 
+    /**
+     * @tag Landing
+     */
     public function store(StoreFeedBack $request): ActionResponse
     {
         $feedback = new FeedBack();

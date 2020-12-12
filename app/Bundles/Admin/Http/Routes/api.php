@@ -6,7 +6,11 @@ Route::prefix('variable-definitions')->group(function () {
     Route::get('page-{page}', 'VariableDefinitionController@index');
 });
 
-Route::apiResource('variable-definitions', 'VariableDefinitionController');
+Route::apiResource('variable-definitions', 'VariableDefinitionController')->only([
+    'index',
+    'show',
+    'update',
+]);
 
 // LOGS
 

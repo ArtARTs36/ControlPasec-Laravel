@@ -21,8 +21,7 @@ class VocabPackageTypeController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
-     * @return LengthAwarePaginator
+     * @tag VocabPackageType
      */
     public function index()
     {
@@ -31,9 +30,7 @@ class VocabPackageTypeController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param StoreVocabPackageType $request
-     * @return ActionResponse
+     * @tag VocabPackageType
      */
     public function store(StoreVocabPackageType $request): ActionResponse
     {
@@ -45,9 +42,7 @@ class VocabPackageTypeController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param VocabPackageType $vocabPackageType
-     * @return VocabPackageType
+     * @tag VocabPackageType
      */
     public function show(VocabPackageType $vocabPackageType): VocabPackageType
     {
@@ -56,10 +51,7 @@ class VocabPackageTypeController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param StoreVocabPackageType $request
-     * @param VocabPackageType $vocabPackageType
-     * @return ActionResponse
+     * @tag VocabPackageType
      */
     public function update(StoreVocabPackageType $request, VocabPackageType $vocabPackageType): ActionResponse
     {
@@ -68,9 +60,7 @@ class VocabPackageTypeController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param VocabPackageType $vocabPackageType
-     * @return ActionResponse
+     * @tag VocabPackageType
      */
     public function destroy(VocabPackageType $vocabPackageType): ActionResponse
     {

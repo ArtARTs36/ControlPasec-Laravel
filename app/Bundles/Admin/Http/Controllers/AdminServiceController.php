@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 
 class AdminServiceController extends Controller
 {
+    /**
+     * @tag AdminService
+     */
     public function redirect(string $name, Request $request): ServiceRedirectResource
     {
         if (!($user = auth()->user()) || !$user->hasRole(Role::ADMIN)) {

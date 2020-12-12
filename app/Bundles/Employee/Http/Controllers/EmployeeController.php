@@ -24,8 +24,7 @@ final class EmployeeController extends Controller
     }
 
     /**
-     * @param int $page
-     * @return LengthAwarePaginator
+     * @tag Employee
      */
     public function index(int $page = 1): LengthAwarePaginator
     {
@@ -33,8 +32,7 @@ final class EmployeeController extends Controller
     }
 
     /**
-     * @param int $employeeId
-     * @return Employee
+     * @tag Employee
      */
     public function show(int $employeeId): Employee
     {
@@ -43,6 +41,7 @@ final class EmployeeController extends Controller
 
     /**
      * Обновить данные о сотруднике
+     * @tag Employee
      */
     public function update(EmployeeStoreRequest $request, Employee $employee)
     {
@@ -52,8 +51,8 @@ final class EmployeeController extends Controller
     }
 
     /**
-     * @param EmployeeStoreRequest $request
-     * @return \App\Based\Http\Responses\ActionResponse
+     * Добавить сотрудника
+     * @tag Employee
      */
     public function store(EmployeeStoreRequest $request)
     {
@@ -67,8 +66,7 @@ final class EmployeeController extends Controller
     }
 
     /**
-     * @param string $query
-     * @return Collection
+     * @tag Employee
      */
     public function liveFind(string $query): Collection
     {

@@ -20,10 +20,8 @@ class VocabBankController extends Controller
     ];
 
     /**
-     * Display a listing of the resource.
-     *
-     * @param int $page
-     * @return LengthAwarePaginator
+     * Получить список банков
+     * @tag VocabBank
      */
     public function index(int $page = 1): LengthAwarePaginator
     {
@@ -33,9 +31,7 @@ class VocabBankController extends Controller
 
     /**
      * Добавления нового банка в справочник
-     *
-     * @param Request $request
-     * @return ActionResponse
+     * @tag VocabBank
      */
     public function store(Request $request)
     {
@@ -46,9 +42,7 @@ class VocabBankController extends Controller
 
     /**
      * Отображение данных о банке
-     *
-     * @param VocabBank $vocabBank
-     * @return VocabBank
+     * @tag VocabBank
      */
     public function show(VocabBank $vocabBank): VocabBank
     {
@@ -57,10 +51,7 @@ class VocabBankController extends Controller
 
     /**
      * Обновление данных о банке
-     *
-     * @param Request $request
-     * @param VocabBank $vocabBank
-     * @return ActionResponse
+     * @tag VocabBank
      */
     public function update(Request $request, VocabBank $vocabBank)
     {
@@ -69,10 +60,7 @@ class VocabBankController extends Controller
 
     /**
      * Удаление банка из справочника
-     *
-     * @param VocabBank $vocabBank
-     * @return ActionResponse
-     * @throws \Exception
+     * @tag VocabBank
      */
     public function destroy(VocabBank $vocabBank): ActionResponse
     {

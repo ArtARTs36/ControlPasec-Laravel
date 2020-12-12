@@ -13,12 +13,16 @@ final class ProductTransportWaybillController extends Controller
 {
     /**
      * Получить список накладных
+     * @tag ProductTransportWaybill
      */
     public function index(): LengthAwarePaginator
     {
         return ProductTransportWaybill::paginate(10);
     }
 
+    /**
+     * @tag ProductTransportWaybill
+     */
     public function store(StoreProductTransportWaybill $request): JsonResource
     {
         return new JsonResource((new ProductTransportWaybill())->fillOfRequest($request));
@@ -26,7 +30,7 @@ final class ProductTransportWaybillController extends Controller
 
     /**
      * Показать накладную
-     *
+     * @tag ProductTransportWaybill
      */
     public function show(ProductTransportWaybill $waybill): JsonResource
     {
@@ -35,6 +39,7 @@ final class ProductTransportWaybillController extends Controller
 
     /**
      * Обновить накладную
+     * @tag ProductTransportWaybill
      */
     public function update(StoreProductTransportWaybill $request, ProductTransportWaybill $waybill)
     {
@@ -44,8 +49,7 @@ final class ProductTransportWaybillController extends Controller
     /**
      * Обновить накладную
      *
-     * @param ProductTransportWaybill $waybill
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response|string
+     * @tag ProductTransportWaybill
      */
     public function destroy(ProductTransportWaybill $waybill)
     {

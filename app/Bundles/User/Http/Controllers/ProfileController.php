@@ -19,6 +19,9 @@ final class ProfileController extends Controller
         $this->repository = $repository;
     }
 
+    /**
+     * @tag User
+     */
     public function show(int $profileId): ProfileResource
     {
         $profile = $this->repository->findActive($profileId);
@@ -30,6 +33,9 @@ final class ProfileController extends Controller
         return new ProfileResource($profile);
     }
 
+    /**
+     * @tag User
+     */
     public function updateAboutMe(UpdateAboutMe $request): ProfileResource
     {
         /** @var User $user */
@@ -41,6 +47,9 @@ final class ProfileController extends Controller
         return new ProfileResource($user);
     }
 
+    /**
+     * @tag User
+     */
     public function search(string $query): AnonymousResourceCollection
     {
         return ProfileResource::collection($this->repository->liveFind($query));

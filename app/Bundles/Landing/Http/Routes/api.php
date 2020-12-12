@@ -3,4 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('landing/feedbacks/page-{page}', 'FeedBackController@index');
-Route::apiResource('landing/feedbacks', 'FeedBackController');
+Route::apiResource('landing/feedbacks', 'FeedBackController')->only([
+    'index',
+    'store',
+    'show',
+]);

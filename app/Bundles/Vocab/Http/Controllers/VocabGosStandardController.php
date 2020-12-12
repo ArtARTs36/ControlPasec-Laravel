@@ -23,9 +23,7 @@ class VocabGosStandardController extends Controller
 
     /**
      * Отобразить список ГОСТов
-     *
-     * @param int $page
-     * @return LengthAwarePaginator
+     * @tag VocabGosStandard
      */
     public function index(int $page = 1)
     {
@@ -36,6 +34,7 @@ class VocabGosStandardController extends Controller
 
     /**
      * Добавить ГОСТ
+     * @tag VocabGosStandard
      */
     public function store(StoreGosStandard $request): JsonResource
     {
@@ -44,6 +43,7 @@ class VocabGosStandardController extends Controller
 
     /**
      * Отобразить данные ГОСТа
+     * @tag VocabGosStandard
      */
     public function show(VocabGosStandard $vocabGosStandard): JsonResource
     {
@@ -52,6 +52,7 @@ class VocabGosStandardController extends Controller
 
     /**
      * Обновления данных ГОСТа
+     * @tag VocabGosStandard
      */
     public function update(StoreGosStandard $request, VocabGosStandard $vocabGosStandard)
     {
@@ -60,9 +61,7 @@ class VocabGosStandardController extends Controller
 
     /**
      * Удалить ГОСТ
-     *
-     * @param VocabGosStandard $vocabGosStandard
-     * @return ActionResponse
+     * @tag VocabGosStandard
      * @throws \Exception
      */
     public function destroy(VocabGosStandard $vocabGosStandard)
