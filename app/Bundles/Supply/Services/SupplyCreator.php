@@ -31,7 +31,7 @@ class SupplyCreator implements Creator
 
     /**
      * @param array $supplies
-     * @param array|null $options
+     * @param array $options
      * @return ActionResponse
      */
     public function many(array $supplies, array $options = []): ActionResponse

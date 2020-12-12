@@ -26,13 +26,13 @@
 | 5  | php artisan get-currency-course:week | Получить курсы валют за неделю |
 | 6 | php artisan get-external-news | Получить новости из внешних источников |
 | 7 | php artisan migrate:fresh && php artisan db:seed | Очистить базу и заполнить тестовыми данными |
+| 8 | composer api-docs | Генерация Open API |
 
 ## Посмотреть документацию
 - php artisan serve --port=8000
 - http://localhost:8000/api/documentation
 
 ## Вспомогательные команды
-- php artisan l5-swagger:generate
 - ./vendor/bin/phpstan analyse --memory-limit=2G
 
 ## Запуск очередей
