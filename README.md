@@ -27,6 +27,9 @@
 | 6 | php artisan get-external-news | Получить новости из внешних источников |
 | 7 | php artisan migrate:fresh && php artisan db:seed | Очистить базу и заполнить тестовыми данными |
 | 8 | composer api-docs | Генерация Open API |
+| 9 | holiday:fetch current-year  | Загрузить выходные дни за текущий год  |
+| 10 | holiday:fetch current-month | Загрузить выходные дни за текущий месяц |
+| 11 | holiday:fetch {year} | Загрузить выходные дни за конкретный год |
 
 ## Посмотреть документацию
 - php artisan serve --port=8000
