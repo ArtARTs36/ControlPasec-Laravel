@@ -7,12 +7,12 @@ use Illuminate\Console\Command;
 
 final class GetExternalNewsCommand extends Command
 {
-    protected $signature = 'get-external-news';
+    protected $signature = 'external-news:fetch';
 
     protected $description = 'Command description';
 
-    public function handle()
+    public function handle(ExternalNewsCreator $creator)
     {
-        app(ExternalNewsCreator::class)->create();
+        $creator->create();
     }
 }

@@ -24,7 +24,7 @@
 | 3 | composer lint | Запуск проверки на соответствие кода стандартам PSR |
 | 4  | php artisan get-currency-course:now | Получить курсы валют за сегодня |
 | 5  | php artisan get-currency-course:week | Получить курсы валют за неделю |
-| 6 | php artisan get-external-news | Получить новости из внешних источников |
+| 6 | php artisan external-news:fetch | Получить новости из внешних источников |
 | 7 | php artisan migrate:fresh && php artisan db:seed | Очистить базу и заполнить тестовыми данными |
 | 8 | composer api-docs | Генерация Open API |
 | 9 | holiday:fetch current-year  | Загрузить выходные дни за текущий год  |
