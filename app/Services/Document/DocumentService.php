@@ -2,11 +2,8 @@
 
 namespace App\Services\Document;
 
-use App\Jobs\DocumentBuildJob;
-use App\Models\Document\Document;
-use App\Services\Document\DocumentBuilder;
-use App\Services\Document\DocumentBuildSpeedAnalyser;
-use App\User;
+use App\Bundles\Document\Jobs\DocumentBuildJob;
+use App\Bundles\Document\Models\Document;
 
 class DocumentService
 {

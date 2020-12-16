@@ -11,14 +11,14 @@
     $supply = $score->supply;
     $supplier = $supply->supplier;
 
-    $supplierHelper = \App\Helper\SupplierHelper::getInstance($supplier);
+    $signature = app(\App\Bundles\Contragent\Support\TextSignature::class)->get($supplier);
 
     $customer = $supply->customer;
 
-    /** @var \App\Models\Supply\SupplyProduct[] $products */
+    /** @var \App\Bundles\Supply\Models\SupplyProduct[] $products */
     $products = $supply->products;
 
-    $totalPrice = \App\Services\SupplyService::bringTotalPrice($supply);
+    $totalPrice = app(\App\Bundles\Supply\Services\SupplyService::class)->bringTotalPrice($supply);
 @endphp
 
 <!doctype html>
@@ -233,7 +233,9 @@
 <div>
     Всего наименований {{ count($supply->products) }},
     на сумму {{ \App\Services\Document\TemplateService::formatPriceOne($totalPrice) }}
-    {{ $products[0]->parent->currency->short_name}}.
+    @if(isset($products[0]))
+        {{ $products[0]->parent->currency->short_name}}.
+    @endif
     <br/>
     <strong>
     {{ \App\Services\Document\TemplateService::sum2words($totalPrice) }}
@@ -257,7 +259,7 @@
     Подпись
     <span style="float:right; text-align: right;">
         <i>
-            {{ $supplierHelper->getSignature() }}
+            {{ $signature }}
         </i>
     </span>
     <div style="position:relative; margin-left: 65px; background-color:#000000; width:100%; font-size:1px; height:2px;">&nbsp;</div>

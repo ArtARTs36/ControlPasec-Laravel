@@ -1,11 +1,11 @@
 <?php
 
-use App\Models\Contragent;
-use App\Models\Contragent\ContragentGroup;
+use App\Bundles\Contragent\Models\Contragent;
+use App\Bundles\Contragent\Models\ContragentGroup;
 
 class ContragentGroupSeeder extends CommonSeeder
 {
-    public function run()
+    public function run(): void
     {
         if (env('APP_ENV') == 'local') {
             $this->randomData(20);

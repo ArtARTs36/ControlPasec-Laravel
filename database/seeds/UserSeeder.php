@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User\Role;
+use App\Bundles\User\Models\Role;
 use App\User;
 use Illuminate\Support\Str;
 
@@ -32,7 +32,7 @@ class UserSeeder extends CommonSeeder
         $user->remember_token = Str::random(10);
         $user->is_active = true;
         $user->gender = User::GENDER_MALE;
-        $user->avatar_url = \App\Support\Avatar::byUser($user);
+        $user->avatar_url = \App\Based\Support\Avatar::byUser($user);
         $user->about_me = $this->faker('en_US')->text(250);
         $user->save();
 

@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Contragent\MyContragent;
+use App\Bundles\Contragent\Models\MyContragent;
 
 class MyContragentSeeder extends CommonSeeder
 {

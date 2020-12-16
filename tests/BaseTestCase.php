@@ -2,17 +2,20 @@
 
 namespace Tests;
 
-use App\Models\User\Permission;
-use App\Models\Vocab\VocabQuantityUnit;
+use App\Bundles\User\Models\Permission;
+use App\Bundles\Vocab\Models\VocabQuantityUnit;
 use App\User;
 use Faker\Factory;
 use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\TestResponse;
 use Illuminate\Support\Facades\DB;
 
 abstract class BaseTestCase extends TestCase
 {
+    use DatabaseTransactions;
+
     /** @var Faker|null */
     protected $faker = null;
 
@@ -43,6 +46,8 @@ abstract class BaseTestCase extends TestCase
     }
 
     /**
+     * @todo
+     * @deprecated
      * @param $class
      * @return Model
      */
@@ -54,7 +59,7 @@ abstract class BaseTestCase extends TestCase
     protected function actingAsUserWithPermission(string $permission): void
     {
         /** @var Permission $permission */
-        $permission = Permission::findByName($permission);
+        $permission = Permission::findOrCreate($permission);
         $user = \factory(User::class)->create();
 
         DB::table('model_has_permissions')->insert([

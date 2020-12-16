@@ -2,27 +2,19 @@
 
 namespace App\Services\Document\DocTemplateLoader;
 
-use App\Models\Document\Document;
-use App\Services\Go\XlsxRenderGoProgram;
+use App\Bundles\Document\Models\Document;
+use App\Bundles\Document\Support\XlsxRender;
 
-/**
- * Class ExcelDocTemplateLoader
- * @package App\Services\Document\DocTemplateLoader
- */
 class ExcelDocTemplateLoader extends AbstractDocTemplateLoader
 {
     const NAME = 'ExcelDocTemplateLoader';
 
-    /**
-     * @param Document $document
-     * @return string
-     */
     protected function make(Document $document): string
     {
-        return XlsxRenderGoProgram::createByDocument(
+        return XlsxRender::renderByDocument(
             $document,
             $this->includeData($document)
-        )->execute();
+        );
     }
 
     /**

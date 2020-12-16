@@ -1,9 +1,12 @@
 <?php
 
-/** @var \App\Models\Document\Document $document */
+/** @var \App\Bundles\Document\Models\Document $document */
+
+use ArtARTs36\RuSpelling\Month;
+
 $document = $document->load('productTransportWaybills');
 
-/** @var \App\Models\Supply\ProductTransportWaybill $waybill */
+/** @var \App\Bundles\Supply\Models\ProductTransportWaybill $waybill */
 $waybill = $document->getProductTransportWaybill();
 
 $supply = $waybill->supply;
@@ -12,13 +15,13 @@ $products = $supply->products;
 
 $plannedDate = new DateTime($supply->planned_date);
 
-$fullTotalPrice = \App\Services\SupplyService::bringTotalPrice($supply);
+$fullTotalPrice = app(\App\Bundles\Supply\Services\SupplyService::class)->bringTotalPrice($supply);
 
 $data = [
     'ГРУЗОПОЛУЧАТЕЛЬ' => \App\Services\Document\TemplateService::renderContragent($supply->customer),
     'ГРУЗООТПРАВИТЕЛЬ' => \App\Services\Document\TemplateService::renderContragent($supply->supplier),
     'ДЕНЬ' => $plannedDate->format('d'),
-    'МЕСЯЦ_Р' => \App\Services\SpellingService::getMonthName($plannedDate, 'gen', true),
+    'МЕСЯЦ_Р' => mb_strtolower(Month::getGenitiveName($plannedDate)),
     'ГОД' => $plannedDate->format('Y'),
     'ДАТА' => $plannedDate->format('d.m.Y'),
     'ПОЛНАЯ_СУММА' => \App\Services\Document\TemplateService::sum2words($fullTotalPrice)

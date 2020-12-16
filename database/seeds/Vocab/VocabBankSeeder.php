@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Vocab\VocabBank;
+use App\Bundles\Vocab\Models\VocabBank;
 
 /**
  * Class VocabBankSeeder

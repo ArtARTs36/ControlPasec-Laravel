@@ -2,17 +2,15 @@
 
 namespace App\Services\Document;
 
-use App\Models\Contragent;
-use App\Services\SpellingService\NumberTrait;
+use App\Bundles\Contragent\Models\Contragent;
+use ArtARTs36\RuSpelling\Number;
 
 class TemplateService
 {
-    use NumberTrait;
-
     const VARIABLES_FIELD = 'variables';
     const TABLES_FIELD = 'tables';
 
-    public static function renderContragent(Contragent$contragent, $withKpp = false): string
+    public static function renderContragent(Contragent $contragent, $withKpp = false): string
     {
         $data = [
             $contragent->title,
@@ -121,12 +119,12 @@ class TemplateService
      */
     public static function sum2words($n)
     {
-        list($rub, $kop) = explode('.', number_format($n, 2));
+        [$rub, $kop] = explode('.', number_format($n, 2));
         $parts = explode(',', $rub);
 
         for ($str = '', $l = count($parts), $i = 0; $i < count($parts); $i++, $l--) {
             if (intval($num = $parts[$i])) {
-                foreach (self::$numbersToWords as $key => $value) {
+                foreach (Number::NUMBERS_TO_WORDS as $key => $value) {
                     if ($num >= $key) {
                         // Fix для одной тысячи
                         if ($l == 2 && $key == 1) {
@@ -140,8 +138,8 @@ class TemplateService
                         $num -= $key;
                     }
                 }
-                if (isset(self::$numberLevels[$l])) {
-                    $str .= ' ' . self::num2word($parts[$i], self::$numberLevels[$l]);
+                if (isset(Number::NUMBER_LEVELS[$l])) {
+                    $str .= ' ' . self::num2word($parts[$i], Number::NUMBER_LEVELS[$l]);
                 }
             }
         }
@@ -159,12 +157,12 @@ class TemplateService
 
     public static function numberToWord($number)
     {
-        list($rub, $kop) = explode('.', number_format($number, 2));
+        [$rub, $kop] = explode('.', number_format($number, 2));
         $parts = explode(',', $rub);
 
         for ($str = '', $l = count($parts), $i = 0; $i < count($parts); $i++, $l--) {
             if (intval($num = $parts[$i])) {
-                foreach (self::$numbersToWords as $key => $value) {
+                foreach (Number::NUMBERS_TO_WORDS as $key => $value) {
                     if ($num >= $key) {
                         // Fix для одной тысячи
                         if ($l == 2 && $key == 1) {
@@ -178,8 +176,8 @@ class TemplateService
                         $num -= $key;
                     }
                 }
-                if (isset(self::$numberLevels[$l])) {
-                    $str .= ' ' . self::num2word($parts[$i], self::$numberLevels[$l]);
+                if (isset(Number::NUMBER_LEVELS[$l])) {
+                    $str .= ' ' . self::num2word($parts[$i], Number::NUMBER_LEVELS[$l]);
                 }
             }
         }

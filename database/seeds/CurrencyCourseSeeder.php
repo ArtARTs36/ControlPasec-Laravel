@@ -1,9 +1,8 @@
 <?php
 
-use App\Models\Vocab\CurrencyCourse;
-use App\Models\Vocab\VocabCurrency;
-use App\Services\CurrencyCourseFinder\CurrencyCourseFinder;
-use App\Services\CurrencyService;
+use App\Bundles\Vocab\Models\CurrencyCourse;
+use App\Bundles\Vocab\Models\VocabCurrency;
+use App\Bundles\Vocab\Services\CurrencyService;
 
 class CurrencyCourseSeeder extends CommonSeeder
 {
@@ -32,16 +31,15 @@ class CurrencyCourseSeeder extends CommonSeeder
         $interval = new DateInterval('P1D');
         $dateRange = new DatePeriod($start, $interval, $end);
 
-        try {
-            $finder = CurrencyCourseFinder::actualFinder();
-            CurrencyService::saveCourses($finder);
-        } catch (Exception $exception) {
-        }
+        /** @var \ArtARTs36\CbrCourseFinder\Contracts\Finder $finder */
+        $finder = app(\ArtARTs36\CbrCourseFinder\Contracts\Finder::class);
+
+        /** @var CurrencyService $service */
+        $service = app(CurrencyService::class);
 
         foreach ($dateRange as $date) {
             try {
-                $finder = CurrencyCourseFinder::previousFinder($date);
-                CurrencyService::saveCourses($finder);
+                $service->createOfExternals($finder->getOnDate($date));
             } catch (Exception $exception) {
             }
         }

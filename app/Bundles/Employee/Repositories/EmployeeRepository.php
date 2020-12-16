@@ -2,21 +2,18 @@
 
 namespace App\Bundles\Employee\Repositories;
 
+use App\Based\Contracts\Repository;
 use App\Bundles\Employee\Models\Employee;
 use Dba\ControlTime\Scopes\CurrentWorkConditionScope;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
-class EmployeeRepository
+class EmployeeRepository extends Repository
 {
-    /**
-     * @param int $page
-     * @return LengthAwarePaginator
-     */
-    public static function paginate(int $page = 1): LengthAwarePaginator
+    public function paginate(int $page = 1): LengthAwarePaginator
     {
-        return Employee::query()
+        return $this->newQuery()
             ->latest('id')
             ->paginate(10, ['*'], 'EmployeeList', $page);
     }
@@ -25,9 +22,9 @@ class EmployeeRepository
      * @param string $query
      * @return Collection
      */
-    public static function liveFind(string $query): Collection
+    public function liveFind(string $query): Collection
     {
-        return Employee::query()
+        return $this->newQuery()
             ->where(function (Builder $builder) use ($query) {
                 $builder
                     ->where(Employee::FIELD_NAME, 'LIKE', "%{$query}%")
@@ -41,9 +38,9 @@ class EmployeeRepository
      * @param int $id
      * @return Employee|null
      */
-    public static function fullLoad(int $id): ?Employee
+    public function fullLoad(int $id): ?Employee
     {
-        return Employee::query()
+        return $this->newQuery()
             ->withGlobalScope(CurrentWorkConditionScope::NAME, new CurrentWorkConditionScope())
             ->find($id);
     }

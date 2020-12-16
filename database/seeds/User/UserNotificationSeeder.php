@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\ModelType;
-use App\Models\User\Permission;
-use App\Models\User\UserNotificationType;
+use App\Based\Models\ModelType;
+use App\Bundles\User\Models\Permission;
+use App\Bundles\User\Models\UserNotificationType;
 
 class UserNotificationSeeder extends CommonSeeder
 {

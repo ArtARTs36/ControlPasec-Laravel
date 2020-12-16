@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User\Permission;
+use App\Bundles\User\Models\Permission;
 
 class PermissionSeeder extends CommonSeeder
 {

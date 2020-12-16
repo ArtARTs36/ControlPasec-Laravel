@@ -169,12 +169,11 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
-        \App\Providers\ValidationServiceProvider::class,
+        App\Based\Providers\AppServiceProvider::class,
+        App\Based\Providers\AuthServiceProvider::class,
+        App\Based\Providers\EventServiceProvider::class,
+        App\Based\Providers\RouteServiceProvider::class,
+        \App\Based\Providers\ValidationServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
 
         /*
@@ -182,10 +181,36 @@ return [
          */
         Dba\ControlTime\Providers\ControlTimeProvider::class,
 
+        \App\Bundles\Admin\Providers\AdminProvider::class,
+
         /*
          * Horizon Queue Provider
          */
-        App\Providers\HorizonServiceProvider::class,
+        App\Bundles\Cron\Providers\HorizonServiceProvider::class,
+
+        \App\Bundles\ExternalNews\Providers\ExternalNewsProvider::class,
+
+        \App\Bundles\TechSupport\Providers\TechSupportProvider::class,
+
+        \App\Bundles\Contragent\Providers\ContragentProvider::class,
+
+        \App\Bundles\Vocab\Providers\VocabProvider::class,
+
+        \App\Bundles\Landing\Providers\LandingProvider::class,
+
+        \App\Bundles\Product\Providers\ProductProvider::class,
+
+        \App\Bundles\User\Providers\UserProvider::class,
+
+        \App\Bundles\Document\Providers\DocumentProvider::class,
+
+        \App\Bundles\Cron\Providers\CronProvider::class,
+
+        \App\Bundles\Employee\Providers\EmployeeProvider::class,
+
+        \App\Bundles\Supply\Providers\SupplyProvider::class,
+
+        \ArtARTs36\LaravelHoliday\Providers\HolidayProvider::class,
     ],
 
     /*

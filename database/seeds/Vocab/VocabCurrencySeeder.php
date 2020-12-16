@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Vocab\VocabCurrency;
+use App\Bundles\Vocab\Models\VocabCurrency;
 
 class VocabCurrencySeeder extends CommonSeeder
 {

@@ -2,9 +2,8 @@
 
 namespace App\Services\Document\DocTemplateLoader;
 
-use App\Models\Document\Document;
-use App\Exceptions\DocumentFailedToSaveException;
-use PhpOffice\PhpWord\TemplateProcessor;
+use App\Bundles\Document\Models\Document;
+use App\Bundles\Document\Exceptions\DocumentSaveFailed;
 
 abstract class AbstractDocTemplateLoader
 {
@@ -67,18 +66,18 @@ abstract class AbstractDocTemplateLoader
      *
      * @param Document $document
      * @param string $output
-     * @param string $path
+     * @param string|null $path
      * @return string
      * @throws \Exception
      */
-    protected function saveDocument(Document $document, string $output, $path = null)
+    protected function saveDocument(Document $document, string $output, string $path = null)
     {
         if ($path === null) {
             $path = $this->getSavePath($document);
         }
 
         if (file_put_contents($path, $output) === false) {
-            throw new DocumentFailedToSaveException($document);
+            throw new DocumentSaveFailed($document);
         }
 
         return $path;

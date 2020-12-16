@@ -4,8 +4,8 @@ use App\Services\Document\TemplateService;
 
 //
 
-$permissions = \App\Models\User\Permission::all();
-$roles = \App\Models\User\Role::all();
+$permissions = \App\Bundles\User\Models\Permission::all();
+$roles = \App\Bundles\User\Models\Role::all();
 
 $data[TemplateService::VARIABLES_FIELD] = [
     'АКТУАЛЬНОСТЬ_ДАТА' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),

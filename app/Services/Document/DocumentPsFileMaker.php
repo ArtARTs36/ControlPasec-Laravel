@@ -2,9 +2,9 @@
 
 namespace App\Services\Document;
 
-use App\Helper\FileHelper;
-use App\Models\Document\Document;
+use App\Based\Support\FileHelper;
 use ArtARTs36\ShellCommand\ShellCommand;
+use Illuminate\Support\Collection;
 
 /**
  * Class DocumentPsFileMaker
@@ -13,28 +13,27 @@ use ArtARTs36\ShellCommand\ShellCommand;
  */
 class DocumentPsFileMaker
 {
-    /** @var Document[] */
-    private $documents = null;
-
     /** @var string */
     private $baseFileName = null;
 
-    public function __construct(array $documents)
+    private $libreOffice;
+
+    public function __construct(string $libreOffice)
     {
-        $this->documents = $documents;
+        $this->libreOffice = $libreOffice;
     }
 
     /**
      * @return string
      */
-    public function join(): string
+    public function join(Collection $documents): string
     {
         $inputDir = $outDir = '';
 
         $this->createTmpFolders($inputDir, $outDir);
-        $this->copyFilesToInputDir($inputDir);
+        $this->copyFilesToInputDir($documents, $inputDir);
 
-        $command = (new ShellCommand('soffice', false))
+        $command = (new ShellCommand($this->libreOffice, false))
             ->addOption('headless')
             ->addOption('print-to-file')
             ->addOption('outdir')
@@ -51,7 +50,7 @@ class DocumentPsFileMaker
             'ps'
         );
 
-        if (!file_exists($outputFile)) {
+        if (! file_exists($outputFile)) {
             $this->handleException();
         }
 
@@ -61,9 +60,9 @@ class DocumentPsFileMaker
     /**
      * @param string $inputDir
      */
-    private function copyFilesToInputDir(string $inputDir)
+    private function copyFilesToInputDir(Collection $documents, string $inputDir)
     {
-        foreach ($this->documents as $key => $document) {
+        foreach ($documents as $key => $document) {
             $path = DocumentService::getDownloadLink($document, true);
             $newFileName = 'file-'. $key . '-'. $document->getFileName();
             $newPath = $inputDir . $newFileName;
@@ -99,25 +98,8 @@ class DocumentPsFileMaker
         mkdir($outputDir, 0775);
     }
 
-    /**
-     * @param Document $document
-     * @return $this
-     */
-    public function addDocument(Document $document): self
+    private function handleException(): void
     {
-        $this->documents[] = $document;
-
-        return $this;
-    }
-
-
-    private function handleException()
-    {
-        throw new \LogicException("Не удалось объединить файлы: \n" . implode(
-            "\n",
-            array_map(function (Document $document) {
-                return $document->getFileName();
-            }, $this->documents)
-        ));
+        throw new \LogicException("Не удалось объединить файлы");
     }
 }

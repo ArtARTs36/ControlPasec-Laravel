@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Vocab\VocabGosStandard;
+use App\Bundles\Vocab\Models\VocabGosStandard;
 
 class VocabGosStandardSeeder extends CommonSeeder
 {

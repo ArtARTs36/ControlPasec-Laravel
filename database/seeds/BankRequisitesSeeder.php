@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\Contragent;
-use App\Models\Contragent\BankRequisites;
-use App\Models\Vocab\VocabBank;
+use App\Bundles\Contragent\Models\BankRequisites;
+use App\Bundles\Contragent\Models\Contragent;
+use App\Bundles\Vocab\Models\VocabBank;
 
 /**
  * Class BankRequisitesSeeder

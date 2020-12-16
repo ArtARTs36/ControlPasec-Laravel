@@ -11,7 +11,7 @@ class ExternalNewsSeeder extends CommonSeeder
         if (env('APP_ENV') == 'local') {
             $this->randomData(100);
         } else {
-            ExternalNewsCreator::create();
+            app(ExternalNewsCreator::class)->create();
         }
     }
 

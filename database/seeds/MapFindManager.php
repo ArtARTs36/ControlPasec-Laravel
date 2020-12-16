@@ -1,5 +1,7 @@
 <?php
 
+use App\Based\Support\CSV\CSVString;
+
 class MapFindManager
 {
     /** @var MapFind[] */
@@ -15,12 +17,12 @@ class MapFindManager
         return array_keys($this->maps);
     }
 
-    public function getValues(\App\Helper\CSVHelper\CSVString $CSVString)
+    public function getValues(CSVString $str)
     {
         $values = [];
 
         foreach ($this->maps as $map) {
-            $slug = $CSVString->getByKey($map->getField());
+            $slug = $str->getByKey($map->getField());
 
             $values[$map->getFieldInModel()] = $map->find($slug);
         }

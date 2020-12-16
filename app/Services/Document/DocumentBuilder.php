@@ -2,7 +2,7 @@
 
 namespace App\Services\Document;
 
-use App\Models\Document\Document;
+use App\Bundles\Document\Models\Document;
 use App\Services\Document\DocTemplateLoader\AbstractDocTemplateLoader;
 use App\Services\Document\DocTemplateLoader\ExcelDocTemplateLoader;
 use App\Services\Document\DocTemplateLoader\ManyXlxsToPdfLoader;

@@ -2,11 +2,11 @@
 
 namespace App;
 
-use App\Models\Dialog\DialogMessage;
-use App\Models\User\Permission;
-use App\Models\User\Role;
-use App\Models\User\UserNotification;
-use App\Repositories\PermissionRepository;
+use App\Bundles\User\Models\DialogMessage;
+use App\Bundles\User\Models\Permission;
+use App\Bundles\User\Models\Role;
+use App\Bundles\User\Models\UserNotification;
+use App\Bundles\User\Repositories\PermissionRepository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -49,6 +49,7 @@ class User extends Authenticatable implements JWTSubject
     public const RELATION_NOTIFICATIONS = 'notifications';
     public const RELATION_UNREAD_NOTIFICATIONS = 'unreadNotifications';
 
+    public const FIELD_ID = 'id';
     public const FIELD_IS_ACTIVE = 'is_active';
     public const FIELD_NAME = 'name';
     public const FIELD_PATRONYMIC = 'patronymic';

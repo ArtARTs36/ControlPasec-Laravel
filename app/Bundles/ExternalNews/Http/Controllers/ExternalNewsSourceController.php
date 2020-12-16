@@ -3,8 +3,8 @@
 namespace App\Bundles\ExternalNews\Http\Controllers;
 
 use App\Bundles\ExternalNews\Http\Requests\ExternalNewsSourceRequest;
-use App\Http\Controllers\Controller;
-use App\Http\Responses\ActionResponse;
+use App\Based\Contracts\Controller;
+use App\Based\Http\Responses\ActionResponse;
 use App\Bundles\ExternalNews\Models\ExternalNewsSource;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
@@ -12,21 +12,18 @@ class ExternalNewsSourceController extends Controller
 {
     /**
      * Отобразить внешние источники новостей
-     *
-     * @param int $page
-     * @return LengthAwarePaginator
+     * @tag ExternalNewsSource
+     * @return LengthAwarePaginator<ExternalNewsSource>
      */
-    public function index(int $page = 1)
+    public function index(int $page = 1): LengthAwarePaginator
     {
         return ExternalNewsSource::query()
             ->paginate(10, ['*'], 'ExternalNewsSourcesList', $page);
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  ExternalNewsSourceRequest  $request
-     * @return ExternalNewsSource
+     * Добавить источник внешних новостей
+     * @tag ExternalNewsSource
      */
     public function store(ExternalNewsSourceRequest $request): ExternalNewsSource
     {
@@ -34,10 +31,8 @@ class ExternalNewsSourceController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param ExternalNewsSource $externalNewsSource
-     * @return ExternalNewsSource
+     * Показать источник внешних новостей
+     * @tag ExternalNewsSource
      */
     public function show(ExternalNewsSource $externalNewsSource): ExternalNewsSource
     {
@@ -45,11 +40,8 @@ class ExternalNewsSourceController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  ExternalNewsSourceRequest  $request
-     * @param  ExternalNewsSource  $externalNewsSource
-     * @return ActionResponse
+     * Обновить источник внешних новостей
+     * @tag ExternalNewsSource
      */
     public function update(ExternalNewsSourceRequest $request, ExternalNewsSource $externalNewsSource)
     {
@@ -57,10 +49,8 @@ class ExternalNewsSourceController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  ExternalNewsSource  $externalNewsSource
-     * @return ActionResponse
+     * Удалить источник
+     * @tag ExternalNewsSource
      */
     public function destroy(ExternalNewsSource $externalNewsSource)
     {

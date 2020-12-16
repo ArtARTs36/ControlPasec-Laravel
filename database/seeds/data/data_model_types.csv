@@ -1,6 +1,6 @@
 title;class
 Счет на оплату;App\Models\Supply\ScoreForPayment
-Товар;App\Models\Product\Product
+Товар;App\Bundles\Product\Models\Product
 Контрагент;App\Models\Contragent
 Пользователь;App\User
 Обратная связь с лэндинга;App\Models\Landing\LandingFeedBack

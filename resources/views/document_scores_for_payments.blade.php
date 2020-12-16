@@ -71,14 +71,14 @@
         $supply = $score->supply;
         $supplier = $supply->supplier;
 
-        $supplierHelper = \App\Helper\SupplierHelper::getInstance($supplier);
+        $signature = app(\App\Bundles\Contragent\Support\TextSignature::class)->get($supplier);
 
         $customer = $supply->customer;
 
-        /** @var \App\Models\Supply\SupplyProduct[] $products */
+        /** @var \App\Bundles\Supply\Models\SupplyProduct[] $products */
         $products = $supply->products;
 
-        $totalPrice = \App\Services\SupplyService::bringTotalPrice($supply);
+        $totalPrice = app(\App\Bundles\Supply\Services\SupplyService::class)->bringTotalPrice($supply);
     @endphp
 
     @if($scoreIndex > 0)
@@ -276,7 +276,7 @@
             @endif
         ">
         <i>
-            {{ $supplierHelper->getSignature() }}
+            {{ $signature }}
         </i>
     </span>
         <div style="

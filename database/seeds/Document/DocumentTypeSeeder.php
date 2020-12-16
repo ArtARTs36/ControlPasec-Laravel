@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Document\DocumentType;
+use App\Bundles\Document\Models\DocumentType;
 
 class DocumentTypeSeeder extends CommonSeeder
 {
@@ -8,7 +8,7 @@ class DocumentTypeSeeder extends CommonSeeder
     {
         $mapManager = new MapFindManager();
         $mapManager->add(
-            \App\Models\Document\DocumentLoader::class,
+            \App\Bundles\Document\Models\DocumentLoader::class,
             'loader_name',
             'loader_id',
             'name'

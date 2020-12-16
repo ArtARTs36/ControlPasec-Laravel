@@ -1,5 +1,5 @@
 name;value;description;model_type_class
-product_id;1;ID Стандартного продукта;App\Models\Product\Product
+product_id;1;ID Стандартного продукта;App\Bundles\Product\Models\Product
 supply_order_number;1;Порядковый номер Поставки;null
 product_order_number;1;Порядковый номер Продукта;null
 score_for_payment_order_number;1;Порядковый номер счета;null

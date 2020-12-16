@@ -13,18 +13,18 @@ class CreateSyncWithExternalSystemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sync_with_external_systems', function (Blueprint $table) {
+        Schema::create('external_system_exchanges', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
 
-            $table->unsignedInteger('type_id');
+            $table->unsignedInteger('system_id');
             $table->unsignedInteger('model_type_id');
             $table->integer('model_id');
             $table->json('response');
 
-            $table->foreign('type_id')
+            $table->foreign('system_id')
                 ->references('id')
-                ->on('sync_with_external_system_types')
+                ->on('external_systems')
                 ->onDelete('cascade');
 
             $table->foreign('model_type_id')
@@ -41,6 +41,6 @@ class CreateSyncWithExternalSystemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sync_with_external_systems');
+        Schema::dropIfExists('external_system_exchanges');
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\Contract\Contract;
-use App\Models\Contract\ContractTemplate;
-use App\Models\Contragent;
+use App\Bundles\Supply\Models\Contract;
+use App\Bundles\Supply\Models\ContractTemplate;
+use App\Bundles\Contragent\Models\Contragent;
 
 class ContractSeeder extends CommonSeeder
 {

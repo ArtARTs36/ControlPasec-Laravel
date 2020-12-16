@@ -3,22 +3,21 @@
 namespace App\Bundles\ExternalNews\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Query\Builder;
 
 /**
- * Class ExternalNewsSource
- *
  * @property int $id
  * @property string $name
  * @property string $link
- *
- * @mixin Builder
  */
 class ExternalNewsSource extends Model
 {
-    const TABLE = 'external_news_sources';
+    public const TABLE = 'external_news_sources';
+
+    public const FIELD_NAME = 'name';
+    public const FIELD_LINK = 'link';
 
     protected $fillable = [
-        'name', 'link',
+        self::FIELD_NAME,
+        self::FIELD_LINK,
     ];
 }

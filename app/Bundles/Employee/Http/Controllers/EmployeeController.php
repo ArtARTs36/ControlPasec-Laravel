@@ -3,53 +3,57 @@
 namespace App\Bundles\Employee\Http\Controllers;
 
 use App\Bundles\Employee\Http\Requests\EmployeeStoreRequest;
-use App\Http\Controllers\Controller;
-use App\Http\Responses\ActionResponse;
+use App\Based\Contracts\Controller;
+use App\Based\Http\Responses\ActionResponse;
 use App\Bundles\Employee\Models\Employee;
 use App\Bundles\Employee\Repositories\EmployeeRepository;
-use App\Services\EmployeeService;
+use App\Bundles\Employee\Services\EmployeeService;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
-/**
- * Class EmployeeController
- * @package App\Bundles\Employee\Http\Controllers
- */
-class EmployeeController extends Controller
+final class EmployeeController extends Controller
 {
+    private $service;
+
+    private $repository;
+
+    public function __construct(EmployeeService $service, EmployeeRepository $repository)
+    {
+        $this->service = $service;
+        $this->repository = $repository;
+    }
+
     /**
-     * @param int $page
-     * @return LengthAwarePaginator
+     * @tag Employee
+     * @return LengthAwarePaginator<Employee>
      */
     public function index(int $page = 1): LengthAwarePaginator
     {
-        return EmployeeRepository::paginate($page);
+        return $this->repository->paginate($page);
     }
 
     /**
-     * @param int $employeeId
-     * @return Employee
+     * @tag Employee
      */
     public function show(int $employeeId): Employee
     {
-        return EmployeeRepository::fullLoad($employeeId);
+        return $this->repository->fullLoad($employeeId);
     }
 
     /**
-     * @param EmployeeStoreRequest $request
-     * @param Employee $employee
-     * @return \App\Http\Responses\ActionResponse
+     * Обновить данные о сотруднике
+     * @tag Employee
      */
     public function update(EmployeeStoreRequest $request, Employee $employee)
     {
-        EmployeeService::updateWorkConditions($employee, $request->getWorkCondition());
+        $this->service->updateWorkConditions($employee, $request->getWorkCondition());
 
         return $this->updateModelAndResponse($request, $employee);
     }
 
     /**
-     * @param EmployeeStoreRequest $request
-     * @return \App\Http\Responses\ActionResponse
+     * Добавить сотрудника
+     * @tag Employee
      */
     public function store(EmployeeStoreRequest $request)
     {
@@ -63,11 +67,10 @@ class EmployeeController extends Controller
     }
 
     /**
-     * @param string $query
-     * @return Collection
+     * @tag Employee
      */
     public function liveFind(string $query): Collection
     {
-        return EmployeeRepository::liveFind($query);
+        return $this->repository->liveFind($query);
     }
 }

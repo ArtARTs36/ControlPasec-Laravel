@@ -3,11 +3,11 @@
 namespace App\Bundles\ExternalNews\Http\Controllers;
 
 use App\Bundles\ExternalNews\Http\Requests\UpdateRequest;
-use App\Http\Controllers\Controller;
-use App\Http\Responses\ActionResponse;
+use App\Bundles\ExternalNews\Contracts\ExternalNewsRepository;
+use App\Based\Contracts\Controller;
+use App\Based\Http\Responses\ActionResponse;
 use App\Bundles\ExternalNews\Models\ExternalNews;
-use App\Models\User\Permission;
-use App\Repositories\ExternalNews\ExternalNewsRepository;
+use App\Bundles\User\Models\Permission;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class ExternalNewsController extends Controller
@@ -20,48 +20,27 @@ class ExternalNewsController extends Controller
         'destroy' => Permission::EXTERNAL_NEWS_DELETE,
     ];
 
+    private $repository;
+
+    public function __construct(ExternalNewsRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     /**
      * Отобразить новости из внешних источников
-     *
-     * @OA\Get(
-     *     path="/api/external-news/page-{page}",
-     *     description="External News: index Page",
-     *     tags={"External News"},
-     *     @OA\Response(response="default", description="View News"),
-     *     @OA\Parameter(
-     *      name="page",
-     *      in="path",
-     *      required=false,
-     *      @OA\Schema(type="int")
-     *     )
-     * )
-     *
-     * @param int $page
-     * @return LengthAwarePaginator
+     * @tag ExternalNews
+     * @return LengthAwarePaginator<ExternalNews>
      */
-    public function index(int $page = 1)
+    public function index(int $page = 1): LengthAwarePaginator
     {
-        return ExternalNewsRepository::paginate($page);
+        return $this->repository->paginate($page);
     }
 
     /**
      * Отобразить несколько последних новостей из внешних источников
-     *
-     * @OA\Get(
-     *     path="/api/external-news/chart/{count}",
-     *     description="External News: index Page",
-     *     tags={"External News"},
-     *     @OA\Parameter(
-     *      name="count",
-     *      in="path",
-     *      required=false,
-     *      @OA\Schema(type="int")
-     *     ),
-     *     @OA\Response(response="default", description="View Latest News")
-     * )
-     *
-     * @param int $count
-     * @return LengthAwarePaginator
+     * @tag ExternalNews
+     * @return LengthAwarePaginator<ExternalNews>
      */
     public function chart(int $count = 6): LengthAwarePaginator
     {
@@ -71,20 +50,17 @@ class ExternalNewsController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param ExternalNews $externalNews
-     * @return ExternalNews
+     * Показать новость
+     * @tag ExternalNews
      */
-    public function show(ExternalNews $externalNews)
+    public function show(ExternalNews $externalNews): ExternalNews
     {
         return $externalNews;
     }
 
     /**
-     * @param ExternalNews $externalNews
-     * @param UpdateRequest $request
-     * @return ActionResponse
+     * Обновить новость
+     * @tag ExternalNews
      */
     public function update(ExternalNews $externalNews, UpdateRequest $request): ActionResponse
     {
@@ -92,10 +68,8 @@ class ExternalNewsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param ExternalNews $externalNews
-     * @return ActionResponse
+     * Удалить новость
+     * @tag ExternalNews
      */
     public function destroy(ExternalNews $externalNews): ActionResponse
     {
@@ -103,7 +77,8 @@ class ExternalNewsController extends Controller
     }
 
     /**
-     * @return ActionResponse
+     * Удалить все новости
+     * @tag ExternalNews
      */
     public function truncate(): ActionResponse
     {
