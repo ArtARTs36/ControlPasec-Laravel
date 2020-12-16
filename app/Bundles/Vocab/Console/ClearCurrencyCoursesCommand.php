@@ -10,9 +10,9 @@ use Illuminate\Console\Command;
  */
 final class ClearCurrencyCoursesCommand extends Command
 {
-    protected $signature = 'get-currency-course:clear';
+    protected $signature = 'currency-course:clear';
 
-    protected $description = 'Command description';
+    protected $description = 'Remove all currency courses';
 
     public function handle()
     {

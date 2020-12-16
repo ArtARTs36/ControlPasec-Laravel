@@ -8,9 +8,9 @@ use Illuminate\Console\Command;
 
 class GetCurrencyCourseCommand extends Command
 {
-    protected $signature = 'get-currency-course:now';
+    protected $signature = 'currency-course:now';
 
-    protected $description = 'Command description';
+    protected $description = 'Get currency courses for today';
 
     protected $finder;
 

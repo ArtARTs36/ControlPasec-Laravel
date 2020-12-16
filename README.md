@@ -22,14 +22,15 @@
 | 1 | php artisan serve | Запуск проекта |
 | 2 | composer test | Запуск тестов |
 | 3 | composer lint | Запуск проверки на соответствие кода стандартам PSR |
-| 4  | php artisan get-currency-course:now | Получить курсы валют за сегодня |
-| 5  | php artisan get-currency-course:week | Получить курсы валют за неделю |
-| 6 | php artisan external-news:fetch | Получить новости из внешних источников |
-| 7 | php artisan migrate:fresh && php artisan db:seed | Очистить базу и заполнить тестовыми данными |
-| 8 | composer api-docs | Генерация Open API |
-| 9 | holiday:fetch current-year  | Загрузить выходные дни за текущий год  |
-| 10 | holiday:fetch current-month | Загрузить выходные дни за текущий месяц |
-| 11 | holiday:fetch {year} | Загрузить выходные дни за конкретный год |
+| 4  | php artisan currency-course:now | Получить курсы валют за сегодня |
+| 5  | php artisan currency-course:week | Получить курсы валют за неделю |
+| 6 | php artisan currency-course:clear | Удалить все курсы валют |
+| 7 | php artisan external-news:fetch | Получить новости из внешних источников |
+| 8 | php artisan migrate:fresh && php artisan db:seed | Очистить базу и заполнить тестовыми данными |
+| 9 | composer api-docs | Генерация Open API |
+| 10 | holiday:fetch current-year  | Загрузить выходные дни за текущий год  |
+| 11 | holiday:fetch current-month | Загрузить выходные дни за текущий месяц |
+| 12 | holiday:fetch {year} | Загрузить выходные дни за конкретный год |
 
 ## Посмотреть документацию
 - php artisan serve --port=8000
