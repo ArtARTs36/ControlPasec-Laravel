@@ -14,4 +14,9 @@ final class AdminServiceRepository extends Repository
             ->where(AdminService::FIELD_NAME, $name)
             ->firstOrFail();
     }
+
+    public function findByName(string $name): ?AdminService
+    {
+        return $this->newQuery()->where(AdminService::FIELD_NAME, $name)->first();
+    }
 }
