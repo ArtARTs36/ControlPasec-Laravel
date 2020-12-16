@@ -4,11 +4,9 @@ namespace App\Bundles\Vocab\Http\Controllers;
 
 use App\Bundles\Vocab\Http\Requests\StoreGosStandard;
 use App\Based\Contracts\Controller;
-use App\Based\Http\Responses\ActionResponse;
 use App\Bundles\User\Models\Permission;
 use App\Bundles\Vocab\Models\VocabGosStandard;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class VocabGosStandardController extends Controller
@@ -24,8 +22,9 @@ class VocabGosStandardController extends Controller
     /**
      * Отобразить список ГОСТов
      * @tag VocabGosStandard
+     * @return LengthAwarePaginator<VocabGosStandard>
      */
-    public function index(int $page = 1)
+    public function index(int $page = 1): LengthAwarePaginator
     {
         return VocabGosStandard::modify()
             ->latest('id')

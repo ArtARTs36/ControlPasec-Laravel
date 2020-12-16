@@ -24,6 +24,9 @@ final class DialogController extends Controller
         $this->service = $service;
     }
 
+    /**
+     * @tag Dialog
+     */
     public function index(int $page = 1): LengthAwarePaginator
     {
         return $this->repository->paginate($page);
@@ -31,7 +34,8 @@ final class DialogController extends Controller
 
     /**
      * Получить диалоги текущего пользователя
-     * @tag dialog
+     * @tag Dialog
+     * @return AnonymousResourceCollection<DialogsListResource>
      */
     public function user(int $page = 1): AnonymousResourceCollection
     {
@@ -40,7 +44,7 @@ final class DialogController extends Controller
 
     /**
      * Получить диалог
-     * @tag dialog
+     * @tag Dialog
      */
     public function show(Dialog $dialog, int $page = 1): DialogResource
     {

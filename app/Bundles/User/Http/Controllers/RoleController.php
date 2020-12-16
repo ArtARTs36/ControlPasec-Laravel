@@ -33,6 +33,7 @@ final class RoleController extends Controller
 
     /**
      * @tag User
+     * @return LengthAwarePaginator<Role>
      */
     public function index(int $page = 1): LengthAwarePaginator
     {

@@ -139,12 +139,8 @@ final class AuthController extends Controller
 
     /**
      * Return the token and current user authenticated.
-     *
-     * @param Request $request
-     * @param string $token
-     * @return UserResource
      */
-    protected function sendLoginResponse(Request $request, string $token)
+    protected function sendLoginResponse(Request $request, string $token): UserResource
     {
         $this->clearLoginAttempts($request);
 

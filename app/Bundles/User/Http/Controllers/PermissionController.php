@@ -22,6 +22,7 @@ final class PermissionController extends Controller
 
     /**
      * @tag User
+     * @return LengthAwarePaginator<Permission>
      */
     public function index($page = 1): LengthAwarePaginator
     {

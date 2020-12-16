@@ -49,6 +49,7 @@ final class ProfileController extends Controller
 
     /**
      * @tag User
+     * @return AnonymousResourceCollection<ProfileResource>
      */
     public function search(string $query): AnonymousResourceCollection
     {

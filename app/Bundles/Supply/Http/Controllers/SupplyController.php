@@ -37,6 +37,7 @@ final class SupplyController extends Controller
     /**
      * Получить список поставок
      * @tag Supply
+     * @return AnonymousResourceCollection<SupplyResource>
      */
     public function index(): AnonymousResourceCollection
     {

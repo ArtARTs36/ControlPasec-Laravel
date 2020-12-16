@@ -18,7 +18,9 @@ class TechSupportReportController extends Controller
     ];
 
     /**
+     * Получить список всех обращений в тех.поддержку
      * @tag TechSupportReport
+     * @return AnonymousResourceCollection<ReportResource>
      */
     public function index(int $page = 1): AnonymousResourceCollection
     {
@@ -28,6 +30,7 @@ class TechSupportReportController extends Controller
     }
 
     /**
+     * Создать обращение в тех.поддержку
      * @tag TechSupportReport
      */
     public function store(StoreReport $request): ReportResource
@@ -47,6 +50,7 @@ class TechSupportReportController extends Controller
     }
 
     /**
+     * Показать обращение в тех.поддержку
      * @tag TechSupportReport
      */
     public function show(TechSupportReport $techSupportReport): ReportResource
@@ -55,10 +59,11 @@ class TechSupportReportController extends Controller
     }
 
     /**
+     * Сделать обращение прочитанным
      * @tag TechSupportReport
      */
-    public function read(TechSupportReport $report): TechSupportReport
+    public function read(TechSupportReport $report): ReportResource
     {
-        return $report->read();
+        return new ReportResource($report->read());
     }
 }

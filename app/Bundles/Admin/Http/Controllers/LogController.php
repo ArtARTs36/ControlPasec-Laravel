@@ -38,6 +38,7 @@ final class LogController extends Controller
 
     /**
      * @tag Log
+     * @return AnonymousResourceCollection<ShowLog>
      */
     public function find(LogRepositoryInterface $repository, SearchLog $request): AnonymousResourceCollection
     {

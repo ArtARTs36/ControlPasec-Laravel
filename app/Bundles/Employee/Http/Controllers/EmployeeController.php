@@ -25,6 +25,7 @@ final class EmployeeController extends Controller
 
     /**
      * @tag Employee
+     * @return LengthAwarePaginator<Employee>
      */
     public function index(int $page = 1): LengthAwarePaginator
     {

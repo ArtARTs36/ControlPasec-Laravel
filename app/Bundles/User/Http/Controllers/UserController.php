@@ -40,6 +40,7 @@ final class UserController extends Controller
 
     /**
      * @tag User
+     * @return LengthAwarePaginator<User>
      */
     public function index(int $page = 1): LengthAwarePaginator
     {

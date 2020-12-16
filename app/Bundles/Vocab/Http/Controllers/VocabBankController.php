@@ -22,6 +22,7 @@ class VocabBankController extends Controller
     /**
      * Получить список банков
      * @tag VocabBank
+     * @return LengthAwarePaginator<VocabBank>
      */
     public function index(int $page = 1): LengthAwarePaginator
     {

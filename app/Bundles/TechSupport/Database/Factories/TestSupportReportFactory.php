@@ -11,5 +11,6 @@ $factory->define(TechSupportReport::class, function (Faker $faker) {
         TechSupportReport::FIELD_AUTHOR_TITLE => $faker->name(),
         TechSupportReport::FIELD_AUTHOR_CONTACT => $faker->phoneNumber,
         TechSupportReport::FIELD_IP => $faker->ipv4,
+        TechSupportReport::FIELD_USER_ID => factory(\App\User::class)->create()->id,
     ];
 });

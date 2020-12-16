@@ -2,6 +2,7 @@
 
 namespace App\Bundles\Contragent\Http\Controllers;
 
+use App\Bundles\Contragent\Http\Resources\ShowContragent;
 use App\Bundles\Contragent\Services\Synchronizer;
 use App\Bundles\Contragent\Support\Finder;
 use App\Bundles\Contragent\Http\Requests\StoreContragent;
@@ -36,6 +37,7 @@ final class ContragentController extends Controller
 
     /**
      * @tag Contragent
+     * @return LengthAwarePaginator<Contragent>
      */
     public function index(int $page = 1): LengthAwarePaginator
     {
@@ -45,9 +47,11 @@ final class ContragentController extends Controller
     /**
      * @tag Contragent
      */
-    public function store(StoreContragent $request): ActionResponse
+    public function store(StoreContragent $request): ShowContragent
     {
-        return $this->createModelAndResponse($request, Contragent::class);
+        $contragent = $this->createModel($request, Contragent::class);
+
+        return new ShowContragent($contragent);
     }
 
     /**
@@ -62,13 +66,13 @@ final class ContragentController extends Controller
      * Обновить данные о контрагенте
      * @tag Contragent
      */
-    public function update(StoreContragent $request, Contragent $contragent)
+    public function update(StoreContragent $request, Contragent $contragent): ShowContragent
     {
         $this->updateModel($request, $contragent);
 
         $this->service->updateScoresInRequisiteByRequest($request);
 
-        return new ActionResponse(true, $contragent);
+        return new ShowContragent($contragent);
     }
 
     /**

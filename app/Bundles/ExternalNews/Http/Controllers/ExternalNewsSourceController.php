@@ -13,8 +13,9 @@ class ExternalNewsSourceController extends Controller
     /**
      * Отобразить внешние источники новостей
      * @tag ExternalNewsSource
+     * @return LengthAwarePaginator<ExternalNewsSource>
      */
-    public function index(int $page = 1)
+    public function index(int $page = 1): LengthAwarePaginator
     {
         return ExternalNewsSource::query()
             ->paginate(10, ['*'], 'ExternalNewsSourcesList', $page);

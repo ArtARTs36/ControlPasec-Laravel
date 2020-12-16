@@ -30,8 +30,9 @@ class ExternalNewsController extends Controller
     /**
      * Отобразить новости из внешних источников
      * @tag ExternalNews
+     * @return LengthAwarePaginator<ExternalNews>
      */
-    public function index(int $page = 1)
+    public function index(int $page = 1): LengthAwarePaginator
     {
         return $this->repository->paginate($page);
     }
@@ -39,6 +40,7 @@ class ExternalNewsController extends Controller
     /**
      * Отобразить несколько последних новостей из внешних источников
      * @tag ExternalNews
+     * @return LengthAwarePaginator<ExternalNews>
      */
     public function chart(int $count = 6): LengthAwarePaginator
     {
@@ -48,12 +50,10 @@ class ExternalNewsController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
      * Показать новость
      * @tag ExternalNews
      */
-    public function show(ExternalNews $externalNews)
+    public function show(ExternalNews $externalNews): ExternalNews
     {
         return $externalNews;
     }

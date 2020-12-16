@@ -2,6 +2,7 @@
 
 namespace App\Bundles\Vocab\Models;
 
+use App\Based\ModelSupport\WithFillOfRequest;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -13,6 +14,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 final class SizeOfUnit extends Model
 {
+    use WithFillOfRequest;
+
     public const FIELD_ID = 'id';
     public const FIELD_NAME = 'name';
     public const FIELD_SHORT_NAME = 'short_name';

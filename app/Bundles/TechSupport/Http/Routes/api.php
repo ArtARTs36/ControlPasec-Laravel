@@ -10,3 +10,7 @@ Route::apiResource('tech-support-reports', 'TechSupportReportController')->only(
     'store',
     'show',
 ]);
+
+Route::prefix('tech-support-reports')->group(function () {
+    Route::put('{report}/read', 'TechSupportReportController@read');
+});

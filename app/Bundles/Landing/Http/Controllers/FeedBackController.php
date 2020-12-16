@@ -2,6 +2,7 @@
 
 namespace App\Bundles\Landing\Http\Controllers;
 
+use App\Bundles\Landing\Http\Resources\FeedBackResource;
 use App\Bundles\Landing\Repositories\FeedBackRepository;
 use App\Bundles\Landing\Events\FeedBackCreated;
 use App\Based\Contracts\Controller;
@@ -9,7 +10,6 @@ use App\Bundles\Landing\Http\Requests\StoreFeedBack;
 use App\Based\Http\Responses\ActionResponse;
 use App\Bundles\Landing\Models\FeedBack;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 final class FeedBackController extends Controller
 {
@@ -22,6 +22,7 @@ final class FeedBackController extends Controller
 
     /**
      * @tag Landing
+     * @return LengthAwarePaginator<FeedBackResource>
      */
     public function index(int $page = 1): LengthAwarePaginator
     {
@@ -31,9 +32,9 @@ final class FeedBackController extends Controller
     /**
      * @tag Landing
      */
-    public function show(FeedBack $feedback): JsonResource
+    public function show(FeedBack $feedback): FeedBackResource
     {
-        return new JsonResource($feedback);
+        return new FeedBackResource($feedback);
     }
 
     /**

@@ -18,7 +18,9 @@ class VocabWordController
     ];
 
     /**
+     * Получить список слов
      * @tag VocabWord
+     * @return LengthAwarePaginator<VocabWord>
      */
     public function index(int $page = 1): LengthAwarePaginator
     {
@@ -26,6 +28,7 @@ class VocabWordController
     }
 
     /**
+     * Добавить новое слово
      * @tag VocabWord
      */
     public function store(StoreVocabWord $request): VocabWord
@@ -48,7 +51,7 @@ class VocabWordController
     /**
      * @tag VocabWord
      */
-    public function update(Request $request, VocabWord $vocabWord)
+    public function update(StoreVocabWord $request, VocabWord $vocabWord)
     {
         $vocabWord->setRawAttributes($request->all());
 

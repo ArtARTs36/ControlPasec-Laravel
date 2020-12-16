@@ -20,10 +20,11 @@ class VocabPackageTypeController extends Controller
     ];
 
     /**
-     * Display a listing of the resource.
+     * Показать все типы упаковок
      * @tag VocabPackageType
+     * @return LengthAwarePaginator<VocabPackageType>
      */
-    public function index()
+    public function index(): LengthAwarePaginator
     {
         return VocabPackageType::paginate(10);
     }

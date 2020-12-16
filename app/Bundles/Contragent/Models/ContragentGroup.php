@@ -26,7 +26,7 @@ final class ContragentGroup extends Model
     ];
 
     /**
-     * @return BelongsToMany
+     * @codeCoverageIgnore
      */
     public function contragents(): BelongsToMany
     {

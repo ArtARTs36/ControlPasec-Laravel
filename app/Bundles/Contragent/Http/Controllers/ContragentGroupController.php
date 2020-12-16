@@ -5,6 +5,7 @@ namespace App\Bundles\Contragent\Http\Controllers;
 use App\Based\Contracts\Controller;
 use App\Bundles\Contragent\Http\Requests\UpdateContragentGroup;
 use App\Based\Http\Responses\ActionResponse;
+use App\Bundles\Contragent\Http\Resources\ContragentGroupResource;
 use App\Bundles\Contragent\Models\Contragent;
 use App\Bundles\Contragent\Models\ContragentGroup;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -38,9 +39,9 @@ class ContragentGroupController extends Controller
     /**
      * @tag ContragentGroup
      */
-    public function show(ContragentGroup $contragentGroup): ContragentGroup
+    public function show(ContragentGroup $contragentGroup): ContragentGroupResource
     {
-        return $contragentGroup->load('contragents');
+        return new ContragentGroupResource($contragentGroup->load('contragents'));
     }
 
     /**

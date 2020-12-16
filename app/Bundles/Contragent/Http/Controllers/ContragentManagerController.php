@@ -12,6 +12,7 @@ class ContragentManagerController extends Controller
 {
     /**
      * @tag ContragentManager
+     * @return LengthAwarePaginator<ContragentManager>
      */
     public function index(int $page = 1): LengthAwarePaginator
     {

@@ -9,6 +9,7 @@ use App\Bundles\Product\Http\Requests\StoreProduct;
 use App\Based\Http\Responses\ActionResponse;
 use App\Bundles\Product\Models\Product;
 use App\Bundles\User\Models\Permission;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 final class ProductController extends Controller
 {
@@ -32,8 +33,9 @@ final class ProductController extends Controller
 
     /**
      * @tag Product
+     * @return LengthAwarePaginator<Product>
      */
-    public function index(int $page = 1)
+    public function index(int $page = 1): LengthAwarePaginator
     {
         return $this->repository->paginate($page);
     }

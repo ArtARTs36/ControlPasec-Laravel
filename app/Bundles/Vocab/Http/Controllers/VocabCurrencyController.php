@@ -23,6 +23,7 @@ final class VocabCurrencyController extends Controller
     /**
      * Отобразить список валют
      * @tag VocabCurrency
+     * @return LengthAwarePaginator<VocabCurrency>
      */
     public function index($page = 1): LengthAwarePaginator
     {
