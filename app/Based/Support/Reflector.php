@@ -67,17 +67,19 @@ class Reflector
      * @return array
      * @throws \ReflectionException
      */
-    public static function getMethodsByReturnType($object, string $type): array
+    public static function getMethodsByReturnType($object, string $type, array $exclude = []): array
     {
         $reflection = new \ReflectionClass($object);
         $methods = [];
 
         foreach ($reflection->getMethods() as $method) {
-            if ($method->getReturnType() === null) {
+            if (! $method->hasReturnType()) {
                 continue;
             }
 
-            if ($method->getReturnType()->getName() == $type) {
+            $return = $method->getReturnType()->getName();
+
+            if ($return === $type && ! in_array($method->getName(), $exclude)) {
                 $methods[] = $method->getName();
             }
         }

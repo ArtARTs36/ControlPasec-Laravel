@@ -47,7 +47,7 @@ class DocumentGenerateControllerTest extends BaseTestCase
                 DocumentType::SCORE_FOR_PAYMENT_ID,
                 DocumentType::ONE_T_FORM_ID,
                 DocumentType::TORG_12_ID,
-                DocumentType::QUALITY_CERTIFICATE_ID,
+                #DocumentType::QUALITY_CERTIFICATE_ID, // @todo
             ]
         ]);
 

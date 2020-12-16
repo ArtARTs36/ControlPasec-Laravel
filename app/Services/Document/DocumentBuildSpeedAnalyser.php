@@ -19,7 +19,9 @@ class DocumentBuildSpeedAnalyser
      */
     public static function analyse(Document $document)
     {
-        $relations = Reflector::getMethodsByReturnType(Document::class, MorphToMany::class);
+        $relations = Reflector::getMethodsByReturnType(Document::class, MorphToMany::class, [
+            'morphEntities',
+        ]);
 
         foreach ($relations as $relation) {
             $pagesCount = $document->$relation()->count();
