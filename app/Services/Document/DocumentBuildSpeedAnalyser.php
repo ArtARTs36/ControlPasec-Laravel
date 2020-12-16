@@ -5,6 +5,7 @@ namespace App\Services\Document;
 use App\Based\Support\Reflector;
 use App\Bundles\Document\Models\Document;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class DocumentBuildSpeedAnalyser
 {
@@ -18,8 +19,7 @@ class DocumentBuildSpeedAnalyser
      */
     public static function analyse(Document $document)
     {
-        $relations = Reflector::getMethodsByReturnType(Document::class, BelongsToMany::class);
-        $document->load($relations);
+        $relations = Reflector::getMethodsByReturnType(Document::class, MorphToMany::class);
 
         foreach ($relations as $relation) {
             $pagesCount = $document->$relation()->count();
