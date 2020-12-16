@@ -53,6 +53,8 @@ class DocumentGenerateControllerTest extends BaseTestCase
 
         $decode = $response->decodeResponseJson();
 
+        dump($decode);
+
         $response->assertOk();
 
         self::assertIsArray($decode);
@@ -61,7 +63,5 @@ class DocumentGenerateControllerTest extends BaseTestCase
         self::assertNotEmpty($decode['data']['title']);
         self::assertArrayHasKey('timestamp', $decode['data']);
         self::assertNotEmpty($decode['data']['timestamp']);
-
-        dump($decode);
     }
 }
