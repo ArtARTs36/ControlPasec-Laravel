@@ -144,16 +144,16 @@
         },
         {
             "name": "artarts36/laravel-holiday",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ArtARTs36/laravel-holiday.git",
-                "reference": "b8b5b5017aad57c508c4e9bdfc03ed9bf807b423"
+                "reference": "061d955615ffe462fd6cd40bba718ff7572cf33f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ArtARTs36/laravel-holiday/zipball/b8b5b5017aad57c508c4e9bdfc03ed9bf807b423",
-                "reference": "b8b5b5017aad57c508c4e9bdfc03ed9bf807b423",
+                "url": "https://api.github.com/repos/ArtARTs36/laravel-holiday/zipball/061d955615ffe462fd6cd40bba718ff7572cf33f",
+                "reference": "061d955615ffe462fd6cd40bba718ff7572cf33f",
                 "shasum": ""
             },
             "require": {
@@ -199,7 +199,7 @@
                 "holiday",
                 "laravel"
             ],
-            "time": "2020-12-12T04:35:56+00:00"
+            "time": "2020-12-16T23:32:37+00:00"
         },
         {
             "name": "artarts36/morpher",
