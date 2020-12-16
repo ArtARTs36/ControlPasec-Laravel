@@ -9,7 +9,7 @@ final class GetExternalNewsCommand extends Command
 {
     protected $signature = 'external-news:fetch';
 
-    protected $description = 'Command description';
+    protected $description = 'Get news of externals sources';
 
     public function handle(ExternalNewsCreator $creator)
     {
