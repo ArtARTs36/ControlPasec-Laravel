@@ -12,6 +12,10 @@ final class ExternalNewsProvider extends BundleProvider
 {
     protected $factoriesPath = __DIR__ . '/../Database/Factories';
 
+    protected $commands = [
+        GetExternalNewsCommand::class,
+    ];
+
     public function register()
     {
         $this->app->register(ExternalNewsRouteProvider::class);
@@ -20,12 +24,8 @@ final class ExternalNewsProvider extends BundleProvider
 
         $this->app->singleton(RssParser::class, Rss::class);
 
-        if ($this->app->runningInConsole()) {
-            $this->commands([
-                GetExternalNewsCommand::class,
-            ]);
+        $this->registerFactories();
 
-            $this->registerFactories();
-        }
+        $this->registerCommands();
     }
 }
