@@ -21,9 +21,6 @@ RUN chmod 0644 /etc/cron.d/cron
 # Create the log file to be able to run tail
 RUN touch /var/log/cron.log
 
-# Run the command on container startup
-CMD printenv > /etc/environment && echo "cron starting..." && (cron) && : > /var/log/cron.log && tail -f /var/log/cron.log
-
 COPY ./supervisord.conf /etc/supervisor
 COPY ./supervisor-apps/* /etc/supervisor/conf.d/
 
