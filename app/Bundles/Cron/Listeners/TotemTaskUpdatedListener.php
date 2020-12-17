@@ -2,20 +2,27 @@
 
 namespace App\Bundles\Cron\Listeners;
 
-use ArtARTs36\ShellCommand\ShellCommand;
+use App\Based\Support\Supervisor;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Artisan;
 use Studio\Totem\Events\Created;
+use Studio\Totem\Events\Deleted;
 use Studio\Totem\Events\Updated;
 
 class TotemTaskUpdatedListener implements ShouldQueue
 {
+    protected $supervisor;
+
+    public function __construct(Supervisor $supervisor)
+    {
+        $this->supervisor = $supervisor;
+    }
+
     /**
-     * @param Created|Updated $event
+     * @param Created|Updated|Deleted $event
      */
     public function handle($event)
     {
-        ShellCommand::getInstanceWithMoveDir(base_path(), '', false)
-            ->addParameter('sh docker-supervisor-restart-without-php.sh')
-            ->execute();
+        Artisan::call('cache:clear');
     }
 }
