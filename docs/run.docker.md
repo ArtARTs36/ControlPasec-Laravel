@@ -3,7 +3,7 @@
 ### Установка
 
 * Выполнить команду `sh docker-project-install.sh`
-* Открыть http://localhost:8085
+* Открыть http://localhost:8888
 
 ### Обслуживание
 
