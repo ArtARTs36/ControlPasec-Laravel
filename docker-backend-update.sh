@@ -10,6 +10,7 @@ composer dump-autoload --optimize
 php artisan migrate --force
 php artisan config:clear
 php artisan cache:clear
+php artisan route:clear
 " | docker exec -i Laravel-php-fpm bash
 
 sh docker-supervisor-update.sh
