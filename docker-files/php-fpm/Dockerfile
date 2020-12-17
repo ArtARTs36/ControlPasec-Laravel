@@ -13,7 +13,7 @@ RUN apt-get update \
 RUN apt-get install -y cron
 
 # Add crontab file in the cron directory
-ADD docker-files/php-fpm/crontab /etc/cron.d/cron
+ADD crontab /etc/cron.d/cron
 
 # Give execution rights on the cron job
 RUN chmod 0644 /etc/cron.d/cron
