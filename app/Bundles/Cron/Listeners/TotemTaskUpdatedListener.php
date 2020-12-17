@@ -24,5 +24,7 @@ class TotemTaskUpdatedListener implements ShouldQueue
     public function handle($event)
     {
         Artisan::call('cache:clear');
+
+        $this->supervisor->update();
     }
 }
