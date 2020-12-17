@@ -4,6 +4,11 @@ WORKDIR "/"
 # Fix debconf warnings upon build
 ARG DEBIAN_FRONTEND=noninteractive
 
+# Install Supervisor
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends \
+    supervisor
+
 # Install cron
 RUN apt-get install -y cron
 
@@ -18,11 +23,6 @@ RUN touch /var/log/cron.log
 
 # Run the command on container startup
 CMD printenv > /etc/environment && echo "cron starting..." && (cron) && : > /var/log/cron.log && tail -f /var/log/cron.log
-
-# Install Supervisor
-RUN apt-get update \
- && apt-get install -y --no-install-recommends \
-    supervisor
 
 COPY ./supervisord.conf /etc/supervisor
 COPY ./supervisor-apps/* /etc/supervisor/conf.d/
