@@ -95,4 +95,18 @@ final class ExternalNewsTest extends BaseTestCase
 
         self::assertEquals(0, $count);
     }
+
+    /**
+     * @covers \App\Bundles\ExternalNews\Http\Controllers\ExternalNewsController::show
+     */
+    public function testShow(): void
+    {
+        $request = function (int $id) {
+            return $this->getJson(static::API_INDEX . DIRECTORY_SEPARATOR . $id);
+        };
+
+        //
+
+        $request(999)->assertNotFound();
+    }
 }

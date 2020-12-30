@@ -33,6 +33,7 @@
 | 10 | holiday:fetch current-year  | Загрузить выходные дни за текущий год  |
 | 11 | holiday:fetch current-month | Загрузить выходные дни за текущий месяц |
 | 12 | holiday:fetch {year} | Загрузить выходные дни за конкретный год |
+| 13 | holiday:fetch next-week | Загрузить выходные дни на следующую неделю |
 
 ## Посмотреть документацию
 - php artisan serve --port=8000
