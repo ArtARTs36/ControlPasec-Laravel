@@ -9,7 +9,7 @@ use App\Bundles\Product\Http\Requests\StoreProduct;
 use App\Based\Http\Responses\ActionResponse;
 use App\Bundles\Product\Models\Product;
 use App\Bundles\User\Models\Permission;
-use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 final class ProductController extends Controller
 {

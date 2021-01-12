@@ -15,7 +15,7 @@ class ProductService
 
     public function getStat(int $count): array
     {
-        if (!($products = Cache::get(static::CACHE_TOP_CHART_KEY))) {
+        if (! ($products = Cache::get(static::CACHE_TOP_CHART_KEY))) {
             $products = array_slice(static::bringStat(), 0, $count, true);
 
             Cache::put(static::CACHE_TOP_CHART_KEY, $products, Carbon::now()->addHour(1));
@@ -45,7 +45,7 @@ class ProductService
 
         /** @var Collection|SupplyProduct[] $supplyProducts */
         foreach ($supplyProducts as $realization) {
-            if (!isset($products[$realization->product_id])) {
+            if (! isset($products[$realization->product_id])) {
                 $products[$realization->product_id] = $realization->parent;
                 $products[$realization->product_id]->quantities = 0;
                 $products[$realization->product_id]->prices = 0;

@@ -33,7 +33,7 @@ class DocumentPsFileMaker
         $this->createTmpFolders($inputDir, $outDir);
         $this->copyFilesToInputDir($documents, $inputDir);
 
-        $command = (new ShellCommand($this->libreOffice, false))
+        $command = (new ShellCommand($this->libreOffice))
             ->addOption('headless')
             ->addOption('print-to-file')
             ->addOption('outdir')

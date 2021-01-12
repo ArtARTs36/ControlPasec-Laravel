@@ -9,6 +9,7 @@ use App\Based\Contracts\Controller;
 use App\Bundles\Landing\Http\Requests\StoreFeedBack;
 use App\Based\Http\Responses\ActionResponse;
 use App\Bundles\Landing\Models\FeedBack;
+use App\Bundles\Landing\Services\FeedBackCreator;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 final class FeedBackController extends Controller
@@ -40,16 +41,9 @@ final class FeedBackController extends Controller
     /**
      * @tag Landing
      */
-    public function store(StoreFeedBack $request): ActionResponse
+    public function store(StoreFeedBack $request, FeedBackCreator $creator): ActionResponse
     {
-        $feedback = new FeedBack();
-
-        $feedback->fillOfRequest($request);
-        $feedback->ip = $request->getClientIp();
-
-        $feedback->save();
-
-        event(new FeedBackCreated($feedback));
+        $creator->fromRequest($request);
 
         return new ActionResponse(true);
     }

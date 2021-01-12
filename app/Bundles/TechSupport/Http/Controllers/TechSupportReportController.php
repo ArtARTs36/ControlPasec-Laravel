@@ -7,15 +7,23 @@ use App\Based\Contracts\Controller;
 use App\Bundles\TechSupport\Http\Requests\StoreReport;
 use App\Bundles\TechSupport\Http\Resources\ReportResource;
 use App\Bundles\TechSupport\Models\TechSupportReport;
+use App\Bundles\TechSupport\Repositories\TechSupportReportRepository;
 use App\Bundles\User\Models\Permission;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class TechSupportReportController extends Controller
+final class TechSupportReportController extends Controller
 {
     public const PERMISSIONS = [
         'index' => Permission::TECH_SUPPORT_REPORT_SHOW_LIST,
         'read' => Permission::TECH_SUPPORT_REPORT_SET_READ,
     ];
+
+    private $repository;
+
+    public function __construct(TechSupportReportRepository $repository)
+    {
+        $this->repository = $repository;
+    }
 
     /**
      * Получить список всех обращений в тех.поддержку
@@ -24,9 +32,7 @@ class TechSupportReportController extends Controller
      */
     public function index(int $page = 1): AnonymousResourceCollection
     {
-        return ReportResource::collection(
-            TechSupportReport::query()->paginate(10, ['*'], 'TechSupportReportList', $page)
-        );
+        return ReportResource::collection($this->repository->paginate($page));
     }
 
     /**
@@ -35,8 +41,7 @@ class TechSupportReportController extends Controller
      */
     public function store(StoreReport $request): ReportResource
     {
-        /** @var TechSupportReport $report */
-        $report = TechSupportReport::query()->create([
+        $report = $this->repository->create([
             TechSupportReport::FIELD_MESSAGE => $request->get(TechSupportReport::FIELD_MESSAGE),
             TechSupportReport::FIELD_IP => $request->getClientIp(),
             TechSupportReport::FIELD_USER_ID => auth()->user() ? auth()->user()->id : null,

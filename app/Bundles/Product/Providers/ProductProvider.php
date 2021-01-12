@@ -4,7 +4,7 @@ namespace App\Bundles\Product\Providers;
 
 use App\Based\Contracts\BundleProvider;
 
-class ProductProvider extends BundleProvider
+final class ProductProvider extends BundleProvider
 {
     protected $factoriesPath = __DIR__ . '/../Database/Factories';
 
