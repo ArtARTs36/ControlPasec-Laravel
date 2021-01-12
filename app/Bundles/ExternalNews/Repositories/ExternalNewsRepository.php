@@ -24,4 +24,11 @@ class ExternalNewsRepository extends Repository implements \App\Bundles\External
             ->whereIn(ExternalNews::FIELD_LINK, $links)
             ->get();
     }
+
+    public function chart(int $count): LengthAwarePaginator
+    {
+        return ExternalNews::with(ExternalNews::RELATION_SOURCE)
+            ->latest()
+            ->paginate($count);
+    }
 }

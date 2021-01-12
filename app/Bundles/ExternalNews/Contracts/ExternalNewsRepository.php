@@ -10,4 +10,6 @@ interface ExternalNewsRepository
     public function paginate(int $page = 1): LengthAwarePaginator;
 
     public function getByLinks(array $links): Collection;
+
+    public function chart(int $count): LengthAwarePaginator;
 }
