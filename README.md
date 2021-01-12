@@ -16,6 +16,7 @@
 | 6  | artarts36/shell-command  | Объектно-ориентированная обертка над shell_exec. Позволяет строить сложные команды для выполнения bash интерпритатором  |
 | 7 | controltime | Учет времени сотрудников |
 | 8 | artarts36/employee-interfaces | Интерфейсы сотрудников |
+| 9 | artarts36/laravel-blockip | Получение списка спам IP-адресов | 
 
 ## Команды
 
@@ -34,6 +35,7 @@
 | 11 | holiday:fetch current-month | Загрузить выходные дни за текущий месяц |
 | 12 | holiday:fetch {year} | Загрузить выходные дни за конкретный год |
 | 13 | holiday:fetch next-week | Загрузить выходные дни на следующую неделю |
+| 14 | blockip:get-new-ips | Обновить таблицу спам IP |
 
 ## Посмотреть документацию
 - php artisan serve --port=8000

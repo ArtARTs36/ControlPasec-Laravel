@@ -211,6 +211,8 @@ return [
         \App\Bundles\Supply\Providers\SupplyProvider::class,
 
         \ArtARTs36\LaravelHoliday\Providers\HolidayProvider::class,
+
+        \ArtARTs36\LaravelBlockIp\Providers\BlockIpProvider::class,
     ],
 
     /*

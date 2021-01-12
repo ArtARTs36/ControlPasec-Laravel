@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "71fdb3976cb971b85d3d5317cf2639ac",
+    "content-hash": "11768e4547d0bdfb1967ade8be1fd6cd",
     "packages": [
         {
             "name": "alhimik1986/php-excel-templator",
@@ -141,6 +141,49 @@
                 "issues": "https://github.com/ArtARTs36/employee-interfaces/issues"
             },
             "time": "2020-06-20T16:09:14+00:00"
+        },
+        {
+            "name": "artarts36/laravel-block-ip",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ArtARTs36/laravel-blockip.git",
+                "reference": "b8dd1013577599b8bf3b57504f3843bc4b3b8983"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ArtARTs36/laravel-blockip/zipball/b8dd1013577599b8bf3b57504f3843bc4b3b8983",
+                "reference": "b8dd1013577599b8bf3b57504f3843bc4b3b8983",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/dbal": "^2.6",
+                "ext-json": "*",
+                "laravel/framework": "6.* || 5.*",
+                "php": ">=7.2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "7.* | 8.*",
+                "squizlabs/php_codesniffer": "3.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ArtARTs36\\LaravelBlockIp\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "aukrainskiy",
+                    "email": "aukrainskiy@phoenixit.ru"
+                }
+            ],
+            "description": "Laravel Block IP",
+            "time": "2021-01-12T21:29:21+00:00"
         },
         {
             "name": "artarts36/laravel-holiday",

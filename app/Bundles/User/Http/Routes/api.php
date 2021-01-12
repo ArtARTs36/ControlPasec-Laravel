@@ -1,5 +1,6 @@
 <?php
 
+use ArtARTs36\LaravelBlockIp\Http\RejectBlockedIp;
 use Illuminate\Support\Facades\Route;
 
 // API для профиля
@@ -59,7 +60,8 @@ Route::prefix('user-notifications')->group(function () {
 // Auth
 
 Route::get('signup-roles', 'RoleController@getRolesForSignUp');
-Route::post('signup', '\App\Bundles\User\Http\Controllers\Auth\RegisterController@store');
+Route::post('signup', '\App\Bundles\User\Http\Controllers\Auth\RegisterController@store')
+    ->middleware(RejectBlockedIp::class);
 
 Route::group([
     'prefix' => 'auth'

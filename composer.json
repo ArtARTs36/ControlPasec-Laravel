@@ -29,6 +29,7 @@
         "ext-simplexml": "*",
         "alhimik1986/php-excel-templator": "^1.0",
         "artarts36/cbr-course-finder": "^1.0",
+        "artarts36/laravel-block-ip": "^0.1.0",
         "artarts36/laravel-holiday": "1.*",
         "artarts36/morpher": "^1.0",
         "artarts36/pushall-sender": "^0.1.1",
