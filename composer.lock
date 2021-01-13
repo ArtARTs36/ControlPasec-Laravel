@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d9387863e0ca5b583e5ae6996a4937a3",
+    "content-hash": "51602989634a1e838cb5f670e666dede",
     "packages": [
         {
             "name": "alhimik1986/php-excel-templator",
@@ -191,12 +191,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ArtARTs36/laravel-control-time.git",
-                "reference": "6c3792e26f463dc39b6106d32e7bee182c9ca8df"
+                "reference": "178ffafab3a13405b813ddecc99ac559e787091f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ArtARTs36/laravel-control-time/zipball/6c3792e26f463dc39b6106d32e7bee182c9ca8df",
-                "reference": "6c3792e26f463dc39b6106d32e7bee182c9ca8df",
+                "url": "https://api.github.com/repos/ArtARTs36/laravel-control-time/zipball/178ffafab3a13405b813ddecc99ac559e787091f",
+                "reference": "178ffafab3a13405b813ddecc99ac559e787091f",
                 "shasum": ""
             },
             "require": {
@@ -246,7 +246,7 @@
                 "source": "https://github.com/ArtARTs36/laravel-control-time/tree/master",
                 "issues": "https://github.com/ArtARTs36/laravel-control-time/issues"
             },
-            "time": "2021-01-13T19:31:00+00:00"
+            "time": "2021-01-13T21:15:53+00:00"
         },
         {
             "name": "artarts36/laravel-holiday",
@@ -10435,6 +10435,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "artarts36/laravel-control-time": 20,
         "tymon/jwt-auth": 20,
         "mtrajano/laravel-swagger": 20
     },

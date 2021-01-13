@@ -2,6 +2,7 @@
 
 namespace Tests\Based\Feature;
 
+use Illuminate\Routing\Route;
 use Tests\TestCase;
 
 final class ExampleTest extends TestCase

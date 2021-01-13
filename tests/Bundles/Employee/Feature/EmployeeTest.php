@@ -6,7 +6,7 @@ use App\Bundles\Employee\Http\Requests\EmployeeStoreRequest;
 use App\Bundles\Document\Models\Document;
 use App\Bundles\Document\Models\DocumentType;
 use App\Bundles\Employee\Models\Employee;
-use ArtARTs36\ControlTime\Models\WorkCondition;
+use App\Bundles\Employee\Models\WorkCondition;
 use Illuminate\Http\Response;
 use Tests\BaseTestCase;
 

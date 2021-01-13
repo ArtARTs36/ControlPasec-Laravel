@@ -4,8 +4,6 @@ namespace App\Bundles\Employee\Models;
 
 use ArtARTs36\EmployeeInterfaces\Employee\EmployeeInterface;
 use ArtARTs36\EmployeeInterfaces\Employee\EmployeeSettersAndGettersTrait;
-use ArtARTs36\ControlTime\Models\WorkCondition;
-use ArtARTs36\ControlTime\Traits\HasWorkConditions;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 

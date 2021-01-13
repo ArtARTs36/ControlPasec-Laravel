@@ -3,7 +3,7 @@
 use App\Bundles\Employee\Models\TimeReport;
 use App\Bundles\Employee\Models\Employee;
 use Carbon\Carbon;
-use ArtARTs36\ControlTime\Models\WorkCondition;
+use App\Bundles\Employee\Models\WorkCondition;
 use ArtARTs36\ControlTime\Services\TimeService;
 
 //

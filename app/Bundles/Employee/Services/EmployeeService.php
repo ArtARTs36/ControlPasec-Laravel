@@ -3,7 +3,7 @@
 namespace App\Bundles\Employee\Services;
 
 use App\Bundles\Employee\Models\Employee;
-use ArtARTs36\ControlTime\Models\WorkCondition;
+use App\Bundles\Employee\Models\WorkCondition;
 use Illuminate\Support\Arr;
 
 class EmployeeService
