@@ -13,4 +13,3 @@ $factory->define(WorkCondition::class, function (Faker $faker) {
         WorkCondition::FIELD_RATE => $faker->randomFloat(null, 0.1, 1),
     ];
 });
-
