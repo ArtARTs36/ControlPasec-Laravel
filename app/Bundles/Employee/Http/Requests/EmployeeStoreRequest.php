@@ -21,7 +21,6 @@ class EmployeeStoreRequest extends FormRequest
             Employee::FIELD_INSURANCE_NUMBER => 'required|string',
 
             static::prefixWc(WorkCondition::FIELD_RATE) => 'sometimes|double',
-            static::prefixWc(WorkCondition::FIELD_AMOUNT_MONTH) => 'sometimes|integer',
             static::prefixWc(WorkCondition::FIELD_AMOUNT_HOUR) => 'sometimes|integer',
             static::prefixWc(WorkCondition::FIELD_POSITION) => 'sometimes|string',
         ];
