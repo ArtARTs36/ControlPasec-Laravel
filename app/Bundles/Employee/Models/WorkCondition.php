@@ -27,7 +27,6 @@ class WorkCondition extends Model implements WorkConditionInterface
     const FIELD_RATE = 'rate';
     const FIELD_EMPLOYEE_ID = 'employee_id';
     const FIELD_AMOUNT_HOUR = 'amount_hour';
-    const FIELD_AMOUNT_MONTH = 'amount_month';
 
     protected $fillable = [
         self::FIELD_POSITION,

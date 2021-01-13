@@ -12,7 +12,6 @@ class EmployeeService
         WorkCondition::FIELD_RATE,
         WorkCondition::FIELD_POSITION,
         WorkCondition::FIELD_AMOUNT_HOUR,
-        WorkCondition::FIELD_AMOUNT_MONTH,
     ];
 
     public function updateWorkConditions(Employee $employee, array $newConditions)
