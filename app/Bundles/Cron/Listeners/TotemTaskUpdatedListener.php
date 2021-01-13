@@ -9,7 +9,7 @@ use Studio\Totem\Events\Created;
 use Studio\Totem\Events\Deleted;
 use Studio\Totem\Events\Updated;
 
-class TotemTaskUpdatedListener implements ShouldQueue
+final class TotemTaskUpdatedListener implements ShouldQueue
 {
     protected $supervisor;
 

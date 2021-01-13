@@ -9,7 +9,7 @@ class Supervisor
     public function update(): void
     {
         ShellCommand::getInstanceWithMoveDir(base_path(), '')
-            ->addParameter('sh docker-supervisor-update.sh')
+            ->addParameter('sh scripts/docker/supervisor-update.sh')
             ->execute();
     }
 }
