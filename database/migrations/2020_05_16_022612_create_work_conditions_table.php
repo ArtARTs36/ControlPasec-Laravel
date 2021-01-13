@@ -14,7 +14,7 @@ class CreateWorkConditionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('controltime_work_conditions', function (Blueprint $table) {
+        Schema::create('work_conditions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
 
@@ -36,6 +36,6 @@ class CreateWorkConditionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('controltime_work_conditions');
+        Schema::dropIfExists('work_conditions');
     }
 }
