@@ -3,12 +3,12 @@
 namespace App\Bundles\Employee\Services;
 
 use App\Bundles\Employee\Models\Employee;
-use Dba\ControlTime\Models\WorkCondition;
+use ArtARTs36\ControlTime\Models\WorkCondition;
 use Illuminate\Support\Arr;
 
 class EmployeeService
 {
-    const FIELDS = [
+    protected const FIELDS = [
         WorkCondition::FIELD_RATE,
         WorkCondition::FIELD_POSITION,
         WorkCondition::FIELD_AMOUNT_HOUR,

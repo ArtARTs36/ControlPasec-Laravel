@@ -1,6 +1,6 @@
 <?php
 
-use Dba\ControlTime\Support\Proxy;
+use ArtARTs36\ControlTime\Support\Proxy;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

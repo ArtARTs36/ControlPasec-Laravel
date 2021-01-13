@@ -4,7 +4,7 @@ namespace App\Bundles\ExternalNews\Providers;
 
 use App\Based\Contracts\RouteServiceProvider;
 
-class ExternalNewsRouteProvider extends RouteServiceProvider
+final class ExternalNewsRouteProvider extends RouteServiceProvider
 {
     protected $namespace = 'App\Bundles\ExternalNews\Http\Controllers';
 

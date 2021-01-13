@@ -27,7 +27,9 @@ class ExternalNewsRepository extends Repository implements \App\Bundles\External
 
     public function chart(int $count): LengthAwarePaginator
     {
-        return ExternalNews::with(ExternalNews::RELATION_SOURCE)
+        return $this
+            ->newQuery()
+            ->with(ExternalNews::RELATION_SOURCE)
             ->latest()
             ->paginate($count);
     }

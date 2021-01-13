@@ -4,7 +4,7 @@ namespace App\Bundles\Employee\Repositories;
 
 use App\Based\Contracts\Repository;
 use App\Bundles\Employee\Models\Employee;
-use Dba\ControlTime\Scopes\CurrentWorkConditionScope;
+use ArtARTs36\ControlTime\Scopes\CurrentWorkConditionScope;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;

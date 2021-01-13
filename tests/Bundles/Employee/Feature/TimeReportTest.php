@@ -7,7 +7,7 @@ use App\Bundles\Document\Http\Resources\DocumentResource;
 use App\Bundles\Document\Models\Document;
 use App\Bundles\Employee\Models\Employee;
 use Carbon\Carbon;
-use Dba\ControlTime\Models\WorkCondition;
+use ArtARTs36\ControlTime\Models\WorkCondition;
 use Tests\BaseTestCase;
 
 final class TimeReportTest extends BaseTestCase

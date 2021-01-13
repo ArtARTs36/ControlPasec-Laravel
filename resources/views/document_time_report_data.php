@@ -3,8 +3,12 @@
 use App\Bundles\Employee\Models\TimeReport;
 use App\Bundles\Employee\Models\Employee;
 use Carbon\Carbon;
-use Dba\ControlTime\Models\WorkCondition;
-use Dba\ControlTime\Services\TimeService;
+use ArtARTs36\ControlTime\Models\WorkCondition;
+use ArtARTs36\ControlTime\Services\TimeService;
+
+//
+
+$service = app(TimeService::class);
 
 //
 
@@ -25,7 +29,7 @@ $timeReport = TimeReport::query()
     ->where(TimeReport::FIELD_DOCUMENT_ID, $document->id)
     ->first();
 
-$times = TimeService::getByPeriod(
+$times = $service->getByPeriod(
     $timeReport->employee,
     Carbon::parse($timeReport->start_date),
     Carbon::parse($timeReport->end_date)

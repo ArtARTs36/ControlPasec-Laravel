@@ -3,7 +3,7 @@
 namespace App\Bundles\Employee\Http\Requests;
 
 use App\Bundles\Employee\Models\Employee;
-use Dba\ControlTime\Models\WorkCondition;
+use ArtARTs36\ControlTime\Models\WorkCondition;
 use Illuminate\Foundation\Http\FormRequest;
 
 class EmployeeStoreRequest extends FormRequest
