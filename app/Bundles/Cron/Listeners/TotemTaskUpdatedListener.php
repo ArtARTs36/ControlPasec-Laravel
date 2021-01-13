@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Cron\Listeners;
 
-use App\Bundles\Cron\Supervisor\DockerSupervisor;
+use App\Bundles\Cron\Contracts\Supervisor;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Artisan;
 use Studio\Totem\Events\Created;
@@ -13,7 +13,7 @@ final class TotemTaskUpdatedListener implements ShouldQueue
 {
     protected $supervisor;
 
-    public function __construct(DockerSupervisor $supervisor)
+    public function __construct(Supervisor $supervisor)
     {
         $this->supervisor = $supervisor;
     }

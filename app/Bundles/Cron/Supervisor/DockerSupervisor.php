@@ -2,9 +2,10 @@
 
 namespace App\Bundles\Cron\Supervisor;
 
+use App\Bundles\Cron\Contracts\Supervisor;
 use ArtARTs36\ShellCommand\ShellCommand;
 
-class DockerSupervisor
+class DockerSupervisor implements Supervisor
 {
     public function update(): void
     {
