@@ -4,14 +4,11 @@ namespace App\Bundles\Employee\Models;
 
 use ArtARTs36\EmployeeInterfaces\Employee\EmployeeInterface;
 use ArtARTs36\EmployeeInterfaces\Employee\EmployeeSettersAndGettersTrait;
-use Dba\ControlTime\Models\WorkCondition;
-use Dba\ControlTime\Support\Proxy;
-use Dba\ControlTime\Traits\HasWorkConditions;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Employee
+ * Модель "Сотрудник"
  * @property int $id
  * @property string $family
  * @property string $name
@@ -43,16 +40,7 @@ class Employee extends Model implements EmployeeInterface
         self::FIELD_HIRED_DATE,
     ];
 
-    /**
-     * Time constructor.
-     * @param array $attributes
-     */
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-
-        $this->table = Proxy::getEmployeeTable();
-    }
+    protected $table = 'controltime_employee';
 
     public function getFullName(): string
     {

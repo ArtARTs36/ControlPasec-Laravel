@@ -3,16 +3,15 @@
 namespace App\Bundles\Employee\Services;
 
 use App\Bundles\Employee\Models\Employee;
-use Dba\ControlTime\Models\WorkCondition;
+use App\Bundles\Employee\Models\WorkCondition;
 use Illuminate\Support\Arr;
 
 class EmployeeService
 {
-    const FIELDS = [
+    protected const FIELDS = [
         WorkCondition::FIELD_RATE,
         WorkCondition::FIELD_POSITION,
         WorkCondition::FIELD_AMOUNT_HOUR,
-        WorkCondition::FIELD_AMOUNT_MONTH,
     ];
 
     public function updateWorkConditions(Employee $employee, array $newConditions)

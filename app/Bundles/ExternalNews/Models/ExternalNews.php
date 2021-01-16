@@ -39,7 +39,7 @@ class ExternalNews extends Model
     ];
 
     /**
-     * @return BelongsTo
+     * @codeCoverageIgnore
      */
     public function source(): BelongsTo
     {

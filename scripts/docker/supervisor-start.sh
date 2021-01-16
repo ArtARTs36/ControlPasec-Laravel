@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# sh docker-supervisor-start.sh
+# sh scripts/docker/docker-supervisor-start.sh
 
 echo "
 /usr/bin/supervisord -c /etc/supervisor/supervisord.conf

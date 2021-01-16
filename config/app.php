@@ -179,7 +179,7 @@ return [
         /*
          * ControlTime Provider
          */
-        Dba\ControlTime\Providers\ControlTimeProvider::class,
+        \ArtARTs36\ControlTime\Providers\ControlTimeProvider::class,
 
         \App\Bundles\Admin\Providers\AdminProvider::class,
 

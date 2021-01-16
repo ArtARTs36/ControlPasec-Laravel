@@ -4,10 +4,10 @@ namespace App\Bundles\Employee\Repositories;
 
 use App\Based\Contracts\Repository;
 use App\Bundles\Employee\Models\Employee;
-use Dba\ControlTime\Scopes\CurrentWorkConditionScope;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
+use App\Bundles\Employee\Scopes\CurrentWorkConditionScope;
 
 class EmployeeRepository extends Repository
 {

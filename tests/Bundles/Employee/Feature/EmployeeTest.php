@@ -6,7 +6,7 @@ use App\Bundles\Employee\Http\Requests\EmployeeStoreRequest;
 use App\Bundles\Document\Models\Document;
 use App\Bundles\Document\Models\DocumentType;
 use App\Bundles\Employee\Models\Employee;
-use Dba\ControlTime\Models\WorkCondition;
+use App\Bundles\Employee\Models\WorkCondition;
 use Illuminate\Http\Response;
 use Tests\BaseTestCase;
 
@@ -53,7 +53,6 @@ final class EmployeeTest extends BaseTestCase
         $data = array_merge($employeeData, [
             EmployeeStoreRequest::PREFIX_WORK_CONDITION => [
                 WorkCondition::FIELD_RATE => $this->getFaker()->randomFloat(null, 0.1, 1),
-                WorkCondition::FIELD_AMOUNT_MONTH => rand(10000, 1000000),
                 WorkCondition::FIELD_AMOUNT_HOUR => rand(100, 1000),
                 WorkCondition::FIELD_POSITION => $this->getFaker()->word,
         ]]);

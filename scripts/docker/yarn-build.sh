@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# sh docker-yarn-build.sh
+# sh scripts/docker/yarn-build.sh
 
 echo "
 cd ControlPasec-Laravel/frontend

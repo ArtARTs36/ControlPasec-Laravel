@@ -2,14 +2,14 @@
 
 namespace App\Bundles\Cron\Listeners;
 
-use App\Based\Support\Supervisor;
+use App\Bundles\Cron\Contracts\Supervisor;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Artisan;
 use Studio\Totem\Events\Created;
 use Studio\Totem\Events\Deleted;
 use Studio\Totem\Events\Updated;
 
-class TotemTaskUpdatedListener implements ShouldQueue
+final class TotemTaskUpdatedListener implements ShouldQueue
 {
     protected $supervisor;
 

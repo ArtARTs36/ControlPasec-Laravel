@@ -10,7 +10,7 @@ use App\Bundles\ExternalNews\Models\ExternalNews;
 use App\Bundles\User\Models\Permission;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
-class ExternalNewsController extends Controller
+final class ExternalNewsController extends Controller
 {
     public const PERMISSIONS = [
         'index' => Permission::EXTERNAL_NEWS_LIST_VIEW,
@@ -44,9 +44,7 @@ class ExternalNewsController extends Controller
      */
     public function chart(int $count = 6): LengthAwarePaginator
     {
-        return ExternalNews::with('source')
-            ->latest()
-            ->paginate($count);
+        return $this->repository->chart($count);
     }
 
     /**

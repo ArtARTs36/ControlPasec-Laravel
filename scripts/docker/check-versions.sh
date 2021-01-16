@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# sh docker-check-versions-packages.sh
+# sh scripts/docker/check-versions.sh
 
 echo "
 php -v

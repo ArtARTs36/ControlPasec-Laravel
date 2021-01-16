@@ -3,7 +3,7 @@
 namespace App\Bundles\Employee\Http\Requests;
 
 use App\Bundles\Employee\Models\Employee;
-use Dba\ControlTime\Models\WorkCondition;
+use App\Bundles\Employee\Models\WorkCondition;
 use Illuminate\Foundation\Http\FormRequest;
 
 class EmployeeStoreRequest extends FormRequest
@@ -21,7 +21,6 @@ class EmployeeStoreRequest extends FormRequest
             Employee::FIELD_INSURANCE_NUMBER => 'required|string',
 
             static::prefixWc(WorkCondition::FIELD_RATE) => 'sometimes|double',
-            static::prefixWc(WorkCondition::FIELD_AMOUNT_MONTH) => 'sometimes|integer',
             static::prefixWc(WorkCondition::FIELD_AMOUNT_HOUR) => 'sometimes|integer',
             static::prefixWc(WorkCondition::FIELD_POSITION) => 'sometimes|string',
         ];
