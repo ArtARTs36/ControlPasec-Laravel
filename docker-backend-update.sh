@@ -13,4 +13,4 @@ php artisan cache:clear
 php artisan route:clear
 " | docker exec -i Laravel-php-fpm bash
 
-sh docker-supervisor-update.sh
+sh scripts/docker/supervisor-update.sh
