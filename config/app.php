@@ -213,6 +213,8 @@ return [
         \ArtARTs36\LaravelHoliday\Providers\HolidayProvider::class,
 
         \ArtARTs36\LaravelBlockIp\Providers\BlockIpProvider::class,
+
+        \App\Bundles\Plant\Providers\PlantProvider::class,
     ],
 
     /*

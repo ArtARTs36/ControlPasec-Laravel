@@ -15,6 +15,7 @@ class Plant extends Model
 {
     public const FIELD_NAME = 'name';
     public const FIELD_CATEGORY_ID = 'category_id';
+    public const RELATION_CATEGORY = 'category';
 
     protected $fillable = [
         self::FIELD_NAME,
