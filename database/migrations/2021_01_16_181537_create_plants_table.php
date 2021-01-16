@@ -22,6 +22,12 @@ class CreatePlantsTable extends Migration
             $table->foreign('category_id')
                 ->on('plant_categories')
                 ->references('id');
+
+            $table->integer('bloom_start_month');
+            $table->integer('bloom_start_day');
+
+            $table->integer('bloom_end_month');
+            $table->integer('bloom_end_day');
         });
     }
 

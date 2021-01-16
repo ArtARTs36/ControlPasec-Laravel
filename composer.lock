@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "51602989634a1e838cb5f670e666dede",
+    "content-hash": "5d158375e0996e980c6581f04b97c069",
     "packages": [
         {
             "name": "alhimik1986/php-excel-templator",
@@ -308,6 +308,85 @@
             "time": "2020-12-16T23:32:37+00:00"
         },
         {
+            "name": "artarts36/laravel-weather",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ArtARTs36/laravel-weather.git",
+                "reference": "08389a2968ddf650070bf95ef7573473a3f16361"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ArtARTs36/laravel-weather/zipball/08389a2968ddf650070bf95ef7573473a3f16361",
+                "reference": "08389a2968ddf650070bf95ef7573473a3f16361",
+                "shasum": ""
+            },
+            "require": {
+                "artarts36/weather-archive": "*",
+                "doctrine/dbal": "^2.6",
+                "ext-json": "*",
+                "laravel/framework": "6.*",
+                "php": ">=7.2.0"
+            },
+            "require-dev": {
+                "fzaninotto/faker": "^1.9",
+                "mockery/mockery": "^1.0",
+                "orchestra/testbench": "4.*",
+                "phpunit/phpunit": "7.* | 8.*",
+                "squizlabs/php_codesniffer": "3.*",
+                "symfony/thanks": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "ArtARTs36\\LaravelHoliday\\Providers\\HolidayProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ArtARTs36\\LaravelWeather\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "ArtARTs36\\LaravelWeather\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "./vendor/bin/phpunit -v --coverage-text --colors=never --configuration phpunit.xml --stop-on-failure --stop-on-risky"
+                ],
+                "test-coverage": [
+                    "vendor/bin/phpunit --coverage-html coverage"
+                ],
+                "lint": [
+                    "./vendor/bin/phpcs --standard=PSR2 src/",
+                    "./vendor/bin/phpcs --standard=PSR2 tests/"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ArtARTs36",
+                    "email": "temicska99@mail.ru"
+                }
+            ],
+            "description": "Laravel Weather",
+            "keywords": [
+                "Holiday",
+                "Laravel"
+            ],
+            "support": {
+                "source": "https://github.com/ArtARTs36/laravel-weather/tree/master",
+                "issues": "https://github.com/ArtARTs36/laravel-weather/issues"
+            },
+            "time": "2021-01-16T18:58:12+00:00"
+        },
+        {
             "name": "artarts36/morpher",
             "version": "1.0.3",
             "source": {
@@ -472,6 +551,66 @@
             ],
             "description": "OOP ShellCommand",
             "time": "2020-08-22T17:58:56+00:00"
+        },
+        {
+            "name": "artarts36/weather-archive",
+            "version": "0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ArtARTs36/php-weather-archive.git",
+                "reference": "4f6b5e6c27a0c5ddf71bcb444079aeb664664f9e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ArtARTs36/php-weather-archive/zipball/4f6b5e6c27a0c5ddf71bcb444079aeb664664f9e",
+                "reference": "4f6b5e6c27a0c5ddf71bcb444079aeb664664f9e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">= 7.1",
+                "phpunit/phpunit": "7.* | 8.*"
+            },
+            "require-dev": {
+                "squizlabs/php_codesniffer": "3.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ArtARTs36\\WeatherArchive\\": "src"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "ArtARTs36\\WeatherArchive\\Tests\\": "tests"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "./vendor/bin/phpunit -v --coverage-text --colors=never --configuration phpunit.xml --stop-on-failure --stop-on-risky"
+                ],
+                "test-coverage": [
+                    "vendor/bin/phpunit --coverage-html coverage"
+                ],
+                "lint": [
+                    "./vendor/bin/phpcs --standard=PSR2 src/",
+                    "./vendor/bin/phpcs --standard=PSR2 tests/"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ArtARTs36",
+                    "email": "temicska99@mail.ru"
+                }
+            ],
+            "description": "Weather Archive",
+            "support": {
+                "source": "https://github.com/ArtARTs36/php-weather-archive/tree/0.2.0",
+                "issues": "https://github.com/ArtARTs36/php-weather-archive/issues"
+            },
+            "time": "2021-01-16T12:59:07+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -10436,6 +10575,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "artarts36/laravel-control-time": 20,
+        "artarts36/laravel-weather": 20,
         "tymon/jwt-auth": 20,
         "mtrajano/laravel-swagger": 20
     },

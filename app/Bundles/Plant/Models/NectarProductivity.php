@@ -33,4 +33,9 @@ class NectarProductivity extends Model
     {
         return $this->belongsTo(Plant::class);
     }
+
+    public function isMinEqualsMax(): bool
+    {
+        return $this->nectar_min === $this->nectar_max;
+    }
 }
