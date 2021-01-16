@@ -3,6 +3,7 @@
 namespace App\Bundles\Plant\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int $id
@@ -24,4 +25,12 @@ class NectarProductivity extends Model
         self::FIELD_NECTAR_MIN,
         self::FIELD_NECTAR_MAX,
     ];
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public function plant(): BelongsTo
+    {
+        return $this->belongsTo(Plant::class);
+    }
 }
