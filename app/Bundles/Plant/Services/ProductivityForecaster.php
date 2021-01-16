@@ -32,6 +32,10 @@ class ProductivityForecaster
         foreach ($period as $date) {
             $availableNectar = $this->bringAvailableNectarOnDate($productivity, $date);
 
+            if ($availableNectar === 0) {
+                continue;
+            }
+
             $taken = ($bees * 10) * 0.00045;
 
             if ($availableNectar < $taken) {
