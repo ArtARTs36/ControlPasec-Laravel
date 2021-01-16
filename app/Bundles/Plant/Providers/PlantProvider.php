@@ -7,6 +7,8 @@ use App\Bundles\Plant\Contracts\PlantRepository;
 
 final class PlantProvider extends BundleProvider
 {
+    protected $factoriesPath = __DIR__ . '/../Database/Factories/';
+
     public function register(): void
     {
         $this->app->singleton(
@@ -15,5 +17,7 @@ final class PlantProvider extends BundleProvider
         );
 
         $this->app->register(RouteProvider::class);
+
+        $this->registerFactories();
     }
 }
