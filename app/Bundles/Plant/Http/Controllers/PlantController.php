@@ -4,8 +4,10 @@ namespace App\Bundles\Plant\Http\Controllers;
 
 use App\Based\Contracts\Controller;
 use App\Bundles\Plant\Contracts\PlantRepository;
+use App\Bundles\Plant\Http\Requests\UpdatePlant;
+use App\Bundles\Plant\Http\Resources\PlantIndexShow;
 use App\Bundles\Plant\Models\Plant;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class PlantController extends Controller
@@ -17,12 +19,9 @@ class PlantController extends Controller
         $this->repository = $repository;
     }
 
-    /**
-     * @return LengthAwarePaginator<Plant>
-     */
-    public function index(int $page = 1): LengthAwarePaginator
+    public function index(int $page = 1): AnonymousResourceCollection
     {
-        return $this->repository->paginate($page);
+        return PlantIndexShow::collection($this->repository->paginate($page));
     }
 
     /**
@@ -31,5 +30,21 @@ class PlantController extends Controller
     public function show(Plant $plant): JsonResource
     {
         return new JsonResource($plant);
+    }
+
+    /**
+     * @tag Plant
+     */
+    public function update(Plant $plant, UpdatePlant $request): JsonResource
+    {
+        return new JsonResource($plant->updateOfRequest($request));
+    }
+
+    /**
+     * @tag Plant
+     */
+    public function store(UpdatePlant $request): JsonResource
+    {
+        return new JsonResource((new Plant())->updateOfRequest($request));
     }
 }

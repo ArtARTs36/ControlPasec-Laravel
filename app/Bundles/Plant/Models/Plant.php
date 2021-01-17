@@ -2,6 +2,7 @@
 
 namespace App\Bundles\Plant\Models;
 
+use App\Based\ModelSupport\WithFillOfRequest;
 use App\Based\Support\Date;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -18,6 +19,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Plant extends Model
 {
+    use WithFillOfRequest;
+
     public const FIELD_NAME = 'name';
     public const FIELD_CATEGORY_ID = 'category_id';
     public const RELATION_CATEGORY = 'category';
