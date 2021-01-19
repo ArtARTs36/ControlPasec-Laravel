@@ -12,7 +12,7 @@ final class PlantRepository extends Repository implements MainContract
     public function paginate(int $page): LengthAwarePaginator
     {
         return $this
-            ->newQuery()
+            ->modify()
             ->with(Plant::RELATION_CATEGORY)
             ->paginate(10, ['*'], 'PlantList', $page);
     }
