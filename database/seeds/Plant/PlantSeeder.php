@@ -3,6 +3,7 @@
 use App\Bundles\Plant\Models\Category;
 use App\Bundles\Plant\Models\NectarProductivity;
 use App\Bundles\Plant\Models\Plant;
+use App\Bundles\Plant\Models\PlantBloom;
 
 class PlantSeeder extends CommonSeeder
 {
@@ -33,5 +34,9 @@ class PlantSeeder extends CommonSeeder
         );
 
         $this->fillModelWithMap(NectarProductivity::class, 'data_nectar_productivity', $mapManager);
+
+        //
+
+        $this->fillModel(PlantBloom::class, 'data_plant_blooms');
     }
 }

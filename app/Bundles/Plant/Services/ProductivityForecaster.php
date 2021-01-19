@@ -2,6 +2,7 @@
 
 namespace App\Bundles\Plant\Services;
 
+use App\Based\Support\Date;
 use App\Bundles\Plant\Models\NectarProductivity;
 use ArtARTs36\LaravelWeather\Models\Day;
 
@@ -57,15 +58,18 @@ class ProductivityForecaster
             return 0;
         }
 
+        // Получаем период цветения на текущую дату
+        $bloomPeriod = $productivity->plant->getBloomedPeriod($day->date);
+
         // Если цветок на данный день не цветет => 0
-        if (! $productivity->plant->isBloomedOnDate($day->date)) {
+        if (! $bloomPeriod) {
             return 0;
         }
 
         if ($productivity->isMinEqualsMax()) {
-            $diff = $productivity->nectar_min / $productivity->plant->getBloomedDays();
+            $diff = $productivity->nectar_min / Date::getCountFromPeriod($bloomPeriod);
         } else {
-            $diff = ($productivity->nectar_max - $productivity->nectar_min) / $productivity->plant->getBloomedDays();
+            $diff = ($productivity->nectar_max - $productivity->nectar_min) / Date::getCountFromPeriod($bloomPeriod);
         }
 
         return ($productivity->nectar_min + ($diff * $this->bringCoefficient($day))) * 0.5;

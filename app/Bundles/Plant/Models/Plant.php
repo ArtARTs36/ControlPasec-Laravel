@@ -6,16 +6,15 @@ use App\Based\ModelSupport\WithFillOfRequest;
 use App\Based\Support\Date;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Collection;
 
 /**
  * @property int $id
  * @property string $name
  * @property int $category_id
  * @property Category $category
- * @property int $bloom_start_month
- * @property int $bloom_start_day
- * @property int $bloom_end_month
- * @property int $bloom_end_day
+ * @property PlantBloom[]|Collection $blooms
  */
 class Plant extends Model
 {
@@ -24,6 +23,7 @@ class Plant extends Model
     public const FIELD_NAME = 'name';
     public const FIELD_CATEGORY_ID = 'category_id';
     public const RELATION_CATEGORY = 'category';
+    public const RELATION_BLOOMS = 'blooms';
 
     protected $fillable = [
         self::FIELD_NAME,
@@ -38,34 +38,31 @@ class Plant extends Model
         return $this->belongsTo(Category::class);
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
+    public function blooms(): HasMany
+    {
+        return $this->hasMany(PlantBloom::class);
+    }
+
     public function isBloomedOnDate(\DateTimeInterface $date): bool
     {
-        $start = $this->makeBloomedStartDateOnYear($year = $date->format('Y'));
-        $end = $this->makeBloomedEndDateOnYear($year);
-
-        return $date >= $start && $end >= $date;
+        return $this->getBloomedPeriod($date) !== null;
     }
 
-    public function getBloomedDays(): int
+    public function getBloomedPeriod(\DateTimeInterface $date): ?\DatePeriod
     {
-        return Date::getCountFromPeriod($this->getBloomedDatePeriod());
-    }
+        if ($this->blooms->isEmpty()) {
+            return null;
+        }
 
-    public function getBloomedDatePeriod(): \DatePeriod
-    {
-        $start = $this->makeBloomedStartDateOnYear($year = (new \DateTime())->format('Y'));
-        $end = $this->makeBloomedEndDateOnYear($year);
+        foreach ($this->blooms as $bloom) {
+            if ($bloom->isBloomedOnYear($date)) {
+                return $bloom->getBloomedDatePeriodOnYear($date->format('Y'));
+            }
+        }
 
-        return new \DatePeriod($start, \DateInterval::createFromDateString('1 day'), $end);
-    }
-
-    protected function makeBloomedStartDateOnYear(int $year): \DateTimeInterface
-    {
-        return (new \DateTime())->setDate($year, $this->bloom_start_month, $this->bloom_start_day);
-    }
-
-    protected function makeBloomedEndDateOnYear(int $year): \DateTimeInterface
-    {
-        return (new \DateTime())->setDate($year, $this->bloom_end_month, $this->bloom_end_day);
+        return null;
     }
 }

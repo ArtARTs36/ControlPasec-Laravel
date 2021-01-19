@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePlantsTable extends Migration
+class CreatePlantBloomsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,19 @@ class CreatePlantsTable extends Migration
      */
     public function up()
     {
-        Schema::create('plants', function (Blueprint $table) {
+        Schema::create('plant_blooms', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
             $table->timestamps();
 
-            $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')
-                ->on('plant_categories')
+            $table->integer('start_month');
+            $table->integer('start_day');
+
+            $table->integer('end_month');
+            $table->integer('end_day');
+
+            $table->unsignedBigInteger('plant_id');
+            $table->foreign('plant_id')
+                ->on('plants')
                 ->references('id');
         });
     }
@@ -32,6 +37,6 @@ class CreatePlantsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('plants');
+        Schema::dropIfExists('plant_blooms');
     }
 }
