@@ -22,7 +22,8 @@ class ProductivityForecaster
         \DateTimeInterface $startDate,
         \DateTimeInterface $endDate,
         array $days,
-        int $bees
+        int $bees,
+        int $square
     ): float {
         $this->days = $this->prepareDays($days);
 
@@ -31,7 +32,7 @@ class ProductivityForecaster
         $period = $this->createDatePeriod($startDate, $endDate);
 
         foreach ($period as $date) {
-            $availableNectar = $this->bringAvailableNectarOnDate($productivity, $date);
+            $availableNectar = $this->bringAvailableNectarOnDate($productivity, $date, $square);
 
             if ($availableNectar === 0) {
                 continue;
@@ -49,8 +50,11 @@ class ProductivityForecaster
         return $sum;
     }
 
-    protected function bringAvailableNectarOnDate(NectarProductivity $productivity, \DateTimeInterface $date): float
-    {
+    protected function bringAvailableNectarOnDate(
+        NectarProductivity $productivity,
+        \DateTimeInterface $date,
+        int $square
+    ): float {
         $day = $this->days[$date->format('Y-m-d')];
 
         // Температура меньше допустимой - пчела ничего не соберет
@@ -72,7 +76,7 @@ class ProductivityForecaster
             $diff = ($productivity->nectar_max - $productivity->nectar_min) / Date::getCountFromPeriod($bloomPeriod);
         }
 
-        return ($productivity->nectar_min + ($diff * $this->bringCoefficient($day))) * 0.5;
+        return $square * (($productivity->nectar_min + ($diff * $this->bringCoefficient($day))) * 0.5);
     }
 
     protected function bringCoefficient(Day $day): float

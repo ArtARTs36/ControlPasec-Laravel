@@ -21,12 +21,13 @@ class ForecastService
         NectarProductivity $productivity,
         \DateTimeInterface $startDate,
         \DateTimeInterface $endDate,
-        int $bees
+        int $bees,
+        int $square
     ): array {
         $days = $this->weatherRepository->getByDates($startDate, $endDate);
 
         return [
-            'weight' => $this->forecaster->bring($productivity, $startDate, $endDate, $days->all(), $bees),
+            'weight' => $this->forecaster->bring($productivity, $startDate, $endDate, $days->all(), $bees, $square),
             'days' => $days,
         ];
     }
