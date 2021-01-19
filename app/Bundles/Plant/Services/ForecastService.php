@@ -2,6 +2,7 @@
 
 namespace App\Bundles\Plant\Services;
 
+use App\Bundles\Plant\DTO\BringForecast;
 use App\Bundles\Plant\Models\NectarProductivity;
 use ArtARTs36\LaravelWeather\Repositories\DayRepository;
 
@@ -17,17 +18,12 @@ class ForecastService
         $this->forecaster = $forecaster;
     }
 
-    public function generate(
-        NectarProductivity $productivity,
-        \DateTimeInterface $startDate,
-        \DateTimeInterface $endDate,
-        int $bees,
-        int $square
-    ): array {
-        $days = $this->weatherRepository->getByDates($startDate, $endDate);
+    public function generate(NectarProductivity $productivity, BringForecast $request): array
+    {
+        $days = $this->weatherRepository->getByDates($request->start, $request->end);
 
         return [
-            'weight' => $this->forecaster->bring($productivity, $startDate, $endDate, $days->all(), $bees, $square),
+            'weight' => $this->forecaster->bring($productivity, $days->all(), $request),
             'days' => $days,
         ];
     }

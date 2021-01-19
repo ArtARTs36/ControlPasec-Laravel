@@ -3,6 +3,7 @@
 namespace App\Bundles\Plant\Services;
 
 use App\Based\Support\Date;
+use App\Bundles\Plant\DTO\BringForecast;
 use App\Bundles\Plant\Models\NectarProductivity;
 use ArtARTs36\LaravelWeather\Models\Day;
 
@@ -17,28 +18,22 @@ class ProductivityForecaster
     /**
      * @param Day[] $days
      */
-    public function bring(
-        NectarProductivity $productivity,
-        \DateTimeInterface $startDate,
-        \DateTimeInterface $endDate,
-        array $days,
-        int $bees,
-        int $square
-    ): float {
+    public function bring(NectarProductivity $productivity, array $days, BringForecast $request): float
+    {
         $this->days = $this->prepareDays($days);
 
         $sum = 0;
 
-        $period = $this->createDatePeriod($startDate, $endDate);
+        $period = $this->createDatePeriod($request->start, $request->end);
 
         foreach ($period as $date) {
-            $availableNectar = $this->bringAvailableNectarOnDate($productivity, $date, $square);
+            $availableNectar = $this->bringAvailableNectarOnDate($productivity, $date, $request->square);
 
             if ($availableNectar === 0) {
                 continue;
             }
 
-            $taken = ($bees * 10) * 0.00045;
+            $taken = ($request->bees * 10) * 0.00045;
 
             if ($availableNectar < $taken) {
                 $taken = $availableNectar;
