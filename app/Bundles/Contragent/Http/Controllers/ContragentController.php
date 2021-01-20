@@ -4,7 +4,7 @@ namespace App\Bundles\Contragent\Http\Controllers;
 
 use App\Bundles\Contragent\Http\Resources\ShowContragent;
 use App\Bundles\Contragent\Services\Synchronizer;
-use App\Bundles\Contragent\Support\Finder;
+use App\Bundles\Contragent\Contracts\ContragentFinder;
 use App\Bundles\Contragent\Http\Requests\StoreContragent;
 use App\Based\Http\Responses\ActionResponse;
 use App\Bundles\Contragent\Models\Contragent;
@@ -90,7 +90,7 @@ final class ContragentController extends Controller
      * Поиск контрагента во внешней системе
      * @tag Contragent
      */
-    public function findInExternalNetworkByInn($inn, Finder $finder, ContragentRepository $repository): ActionResponse
+    public function findInExternalNetworkByInn($inn, ContragentFinder $finder, ContragentRepository $repository): ActionResponse
     {
         if ($contragent = $repository->findByInnOrOgrn($inn)) {
             return new ActionResponse(true, [
@@ -99,7 +99,7 @@ final class ContragentController extends Controller
             ]);
         }
 
-        $contragent = $finder->findByInnOrOgrn($inn)->first();
+        $contragent = $finder->findAndCreateByInnOrOgrn($inn)->first();
 
         if (! $contragent) {
             abort(404);

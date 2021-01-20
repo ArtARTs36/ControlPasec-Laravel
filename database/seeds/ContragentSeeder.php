@@ -1,6 +1,6 @@
 <?php
 
-use App\Bundles\Contragent\Support\Finder;
+use App\Bundles\Contragent\Contracts\ContragentFinder;
 use App\Bundles\Contragent\Models\Contragent;
 
 class ContragentSeeder extends CommonSeeder
@@ -74,7 +74,7 @@ class ContragentSeeder extends CommonSeeder
         $data = $this->getStringsOfResource('external_contragents_inn');
 
         foreach ($data as $datum) {
-            app(Finder::class)->findByInnOrOgrn($datum->inn);
+            app(ContragentFinder::class)->findAndCreateByInnOrOgrn($datum->inn);
         }
     }
 }

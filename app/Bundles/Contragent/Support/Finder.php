@@ -2,12 +2,13 @@
 
 namespace App\Bundles\Contragent\Support;
 
+use App\Bundles\Contragent\Contracts\ContragentFinder;
 use App\Bundles\Contragent\Events\ExternalManagerCreated;
 use App\Bundles\Contragent\Models\Contragent;
 use App\Bundles\Contragent\Models\ContragentManager;
 use Illuminate\Support\Collection;
 
-class Finder
+class Finder implements ContragentFinder
 {
     protected $managers;
 
@@ -19,7 +20,21 @@ class Finder
         $this->client = $client;
     }
 
-    public function findByInnOrOgrn($slug, bool $save = true): Collection
+    /**
+     * @return Collection|Contragent[]
+     */
+    public function findAndCreateByInnOrOgrn(string $slug): Collection
+    {
+        return $this->findByInnOrOgrn($slug)
+            ->each(function (Contragent $contragent) {
+                $contragent->save();
+            });
+    }
+
+    /**
+     * @return Collection|Contragent[]
+     */
+    public function findByInnOrOgrn(string $slug): Collection
     {
         $contragents = collect();
 
@@ -35,8 +50,6 @@ class Finder
             $contragent = new Contragent();
 
             $this->fillContragent($contragent, $response);
-
-            $save && $contragent->save();
 
             $contragents->push($contragent);
 
