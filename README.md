@@ -17,6 +17,8 @@
 | 7 | controltime | Учет времени сотрудников |
 | 8 | artarts36/employee-interfaces | Интерфейсы сотрудников |
 | 9 | artarts36/laravel-blockip | Получение списка спам IP-адресов | 
+| 10 | artarts36/weather-archive | Получение данных о погоде из внешних источников |
+| 11 | artarts36/laravel-weather | Хранение и обработка данных о погоде |
 
 ## Команды
 
