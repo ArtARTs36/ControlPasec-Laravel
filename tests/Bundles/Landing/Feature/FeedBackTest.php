@@ -68,9 +68,7 @@ final class FeedBackTest extends BaseTestCase
 
         $response = $this->postJson(static::BASE_URL, $data);
 
-        $response->assertOk();
-
-        $decode = $this->decodeResponse($response);
+        $decode = $response->decodeResponseJson();
 
         self::assertNotEmpty($decode);
         self::assertArrayHasKey('success', $decode);

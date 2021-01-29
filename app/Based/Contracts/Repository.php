@@ -2,6 +2,7 @@
 
 namespace App\Based\Contracts;
 
+use Creatortsv\EloquentPipelinesModifier\ModifierFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -39,5 +40,10 @@ abstract class Repository
     protected function force(): Builder
     {
         return $this->newQuery()->withoutGlobalScopes();
+    }
+
+    protected function modify(): Builder
+    {
+        return ModifierFactory::modifyTo($this->newQuery());
     }
 }

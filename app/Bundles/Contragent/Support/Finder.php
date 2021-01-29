@@ -2,12 +2,14 @@
 
 namespace App\Bundles\Contragent\Support;
 
+use App\Bundles\Contragent\Contracts\ContragentFinder;
 use App\Bundles\Contragent\Events\ExternalManagerCreated;
 use App\Bundles\Contragent\Models\Contragent;
 use App\Bundles\Contragent\Models\ContragentManager;
+use ArtARTs36\RuSpelling\People;
 use Illuminate\Support\Collection;
 
-class Finder
+class Finder implements ContragentFinder
 {
     protected $managers;
 
@@ -19,7 +21,21 @@ class Finder
         $this->client = $client;
     }
 
-    public function findByInnOrOgrn($slug, bool $save = true): Collection
+    /**
+     * @return Collection|Contragent[]
+     */
+    public function findAndCreateByInnOrOgrn(string $slug): Collection
+    {
+        return $this->findByInnOrOgrn($slug)
+            ->each(function (Contragent $contragent) {
+                $contragent->save();
+            });
+    }
+
+    /**
+     * @return Collection|Contragent[]
+     */
+    public function findByInnOrOgrn(string $slug): Collection
     {
         $contragents = collect();
 
@@ -35,8 +51,6 @@ class Finder
             $contragent = new Contragent();
 
             $this->fillContragent($contragent, $response);
-
-            $save && $contragent->save();
 
             $contragents->push($contragent);
 
@@ -72,24 +86,20 @@ class Finder
 
     public function createManager(Contragent $contragent, array $response): ?ContragentManager
     {
-        $manageString = explode(' ', $response['management']['name']);
+        $people = People::fromFio($response['management']['name']);
 
-        if (count($manageString) !== 3) {
+        if ($people === null) {
             return null;
         }
 
         $manager = new ContragentManager();
 
-        $manager->name = $manageString[1];
-        $manager->patronymic = $manageString[2];
-        $manager->family = $manageString[0];
-
-        $words = [$manager->name, $manager->patronymic, $manager->family];
+        $manager->name = $people->name;
+        $manager->patronymic = $people->patronymic;
+        $manager->family = $people->family;
 
         if (! empty($response['management']['post'])) {
             $manager->post = $response['management']['post'];
-
-            $words[] = $manager->post;
         }
 
         $manager->contragent_id = $contragent->id;

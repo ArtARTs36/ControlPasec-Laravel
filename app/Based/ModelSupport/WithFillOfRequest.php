@@ -10,4 +10,12 @@ trait WithFillOfRequest
     {
         return $this->fill($request->only($this->getFillable()));
     }
+
+    public function updateOfRequest(Request $request): self
+    {
+        $this->fillOfRequest($request);
+        $this->save();
+
+        return $this;
+    }
 }

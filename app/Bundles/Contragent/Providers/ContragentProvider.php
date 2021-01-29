@@ -3,13 +3,19 @@
 namespace App\Bundles\Contragent\Providers;
 
 use App\Based\Contracts\BundleProvider;
+use App\Bundles\Contragent\Contracts\ContragentFinder;
 use App\Bundles\Contragent\Models\Contragent;
 use App\Bundles\Contragent\Observers\ContragentObserver;
 use App\Bundles\Contragent\Support\DaDataClient;
+use App\Bundles\Contragent\Support\Finder;
 use GuzzleHttp\Client;
 
 final class ContragentProvider extends BundleProvider
 {
+    public $bindings = [
+        ContragentFinder::class => Finder::class,
+    ];
+
     protected $factoriesPath = __DIR__ . '/../Database/Factories';
 
     public function register(): void

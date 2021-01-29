@@ -5,8 +5,8 @@ namespace App\Bundles\Contragent\Services;
 use App\Based\Models\ExternalSystem;
 use App\Based\Models\ExternalSystemExchange;
 use App\Based\Repositories\ExternalSystemRepository;
+use App\Bundles\Contragent\Contracts\ContragentFinder;
 use App\Bundles\Contragent\Models\Contragent;
-use App\Bundles\Contragent\Support\Finder;
 use App\Based\Services\ExternalExchanger;
 
 class Synchronizer
@@ -18,7 +18,7 @@ class Synchronizer
     protected $systemRepository;
 
     public function __construct(
-        Finder $finder,
+        ContragentFinder $finder,
         ExternalExchanger $synchronizer,
         ExternalSystemRepository $systemRepository
     ) {
@@ -29,7 +29,7 @@ class Synchronizer
 
     public function exchange(Contragent $contragent): ExternalSystemExchange
     {
-        $response = $this->finder->findByInnOrOgrn($contragent->getInnOrOgrn(), false);
+        $response = $this->finder->findByInnOrOgrn($contragent->getInnOrOgrn());
 
         return $this->synchronizer->create(
             $contragent,

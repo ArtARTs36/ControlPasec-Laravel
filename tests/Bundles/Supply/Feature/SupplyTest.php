@@ -49,7 +49,7 @@ final class SupplyTest extends BaseTestCase
 
         $response->assertOk();
 
-        $response = $this->decodeResponse($response);
+        $response = $response->decodeResponseJson();
 
         self::assertArrayHasKey('success', $response);
         self::assertTrue($response['success']);
