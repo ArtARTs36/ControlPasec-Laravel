@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# sh docker-backend-update.sh
+# sh scripts/docker/backend-update.sh
 
 git pull
 echo "

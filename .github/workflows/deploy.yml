@@ -45,5 +45,5 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
-        script: cd /var/web/ControlPasec-Laravel && sh docker-backend-update.sh
+        script: cd /var/web/ControlPasec-Laravel && sh scripts/docker/backend-update.sh
 

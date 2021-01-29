@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# sh docker-frontend-update.sh
+# sh scripts/docker/frontend-update.sh
 
 echo "
 cd ControlPasec-Laravel/frontend

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# sh docker-project-install.sh
+# sh scripts/docker/project-install.sh
 
 cp .env.docker.example .env
 
