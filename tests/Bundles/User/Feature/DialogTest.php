@@ -86,7 +86,7 @@ final class DialogTest extends BaseTestCase
 
         $response->assertOk();
 
-        $decode = $this->decodeResponse($response);
+        $decode = $response->decodeResponseJson();
 
         self::assertArrayHasKey('data', $decode);
 
