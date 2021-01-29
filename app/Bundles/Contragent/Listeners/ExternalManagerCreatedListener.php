@@ -17,11 +17,12 @@ final class ExternalManagerCreatedListener
     public function handle(ExternalManagerCreated $event): void
     {
         $manager = $event->manager();
+        $words = [$manager->name, $manager->patronymic, $manager->family,];
 
-        $this->wordService->getOrCreateByNominatives([
-            $manager->name,
-            $manager->patronymic,
-            $manager->family,
-        ]);
+        if (! empty($manager->post)) {
+            $words[] = $manager->post;
+        }
+
+        $this->wordService->getOrCreateByNominatives($words);
     }
 }

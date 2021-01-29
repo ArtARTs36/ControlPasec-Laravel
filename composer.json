@@ -49,6 +49,7 @@
         "artarts36/pushall-sender": "^0.1.1",
         "artarts36/ru-spelling": "^1.0",
         "artarts36/shell-command": "^1.1",
+        "artarts36/str": "^1.0",
         "creatortsv/eloquent-pipelines-modifier": "^1.0",
         "darkaonline/l5-swagger": "^6.0",
         "dompdf/dompdf": "^0.8.4",

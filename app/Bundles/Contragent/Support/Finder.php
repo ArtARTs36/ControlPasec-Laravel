@@ -6,6 +6,7 @@ use App\Bundles\Contragent\Contracts\ContragentFinder;
 use App\Bundles\Contragent\Events\ExternalManagerCreated;
 use App\Bundles\Contragent\Models\Contragent;
 use App\Bundles\Contragent\Models\ContragentManager;
+use ArtARTs36\RuSpelling\People;
 use Illuminate\Support\Collection;
 
 class Finder implements ContragentFinder
@@ -85,24 +86,20 @@ class Finder implements ContragentFinder
 
     public function createManager(Contragent $contragent, array $response): ?ContragentManager
     {
-        $manageString = explode(' ', $response['management']['name']);
+        $people = People::fromFio($response['management']['name']);
 
-        if (count($manageString) !== 3) {
+        if ($people === null) {
             return null;
         }
 
         $manager = new ContragentManager();
 
-        $manager->name = $manageString[1];
-        $manager->patronymic = $manageString[2];
-        $manager->family = $manageString[0];
-
-        $words = [$manager->name, $manager->patronymic, $manager->family];
+        $manager->name = $people->name;
+        $manager->patronymic = $people->patronymic;
+        $manager->family = $people->family;
 
         if (! empty($response['management']['post'])) {
             $manager->post = $response['management']['post'];
-
-            $words[] = $manager->post;
         }
 
         $manager->contragent_id = $contragent->id;

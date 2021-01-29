@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5d158375e0996e980c6581f04b97c069",
+    "content-hash": "48a9d4bfbfeffb3c1a72edb8e8718454",
     "packages": [
         {
             "name": "alhimik1986/php-excel-templator",
@@ -475,19 +475,20 @@
         },
         {
             "name": "artarts36/ru-spelling",
-            "version": "1.0.1",
+            "version": "1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ArtARTs36/ru-spelling.git",
-                "reference": "6dbe6c4f9e4068813c99bb2cdc3c86e339f466cf"
+                "reference": "acbcd13f536023a5849dfbc7b26122c9b7f34486"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ArtARTs36/ru-spelling/zipball/6dbe6c4f9e4068813c99bb2cdc3c86e339f466cf",
-                "reference": "6dbe6c4f9e4068813c99bb2cdc3c86e339f466cf",
+                "url": "https://api.github.com/repos/ArtARTs36/ru-spelling/zipball/acbcd13f536023a5849dfbc7b26122c9b7f34486",
+                "reference": "acbcd13f536023a5849dfbc7b26122c9b7f34486",
                 "shasum": ""
             },
             "require": {
+                "ext-mbstring": "*",
                 "php": ">= 7.2"
             },
             "require-dev": {
@@ -510,7 +511,7 @@
                 }
             ],
             "description": "Russian Spelling",
-            "time": "2020-12-11T22:31:29+00:00"
+            "time": "2021-01-29T21:51:24+00:00"
         },
         {
             "name": "artarts36/shell-command",
@@ -551,6 +552,46 @@
             ],
             "description": "OOP ShellCommand",
             "time": "2020-08-22T17:58:56+00:00"
+        },
+        {
+            "name": "artarts36/str",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ArtARTs36/str.git",
+                "reference": "691ccb338fce0d31fcb45bfa8e688fd0a0a02514"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ArtARTs36/str/zipball/691ccb338fce0d31fcb45bfa8e688fd0a0a02514",
+                "reference": "691ccb338fce0d31fcb45bfa8e688fd0a0a02514",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.3",
+                "squizlabs/php_codesniffer": "^3.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ArtARTs36\\Str\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ArtARTs36",
+                    "email": "temicska99@mail.ru"
+                }
+            ],
+            "description": "Str",
+            "time": "2020-09-23T00:22:58+00:00"
         },
         {
             "name": "artarts36/weather-archive",
@@ -9212,12 +9253,12 @@
             "version": "1.9.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/webmozart/assert.git",
+                "url": "https://github.com/webmozarts/assert.git",
                 "reference": "bafc69caeb4d49c39fd0779086c03a3738cbb389"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozart/assert/zipball/bafc69caeb4d49c39fd0779086c03a3738cbb389",
+                "url": "https://api.github.com/repos/webmozarts/assert/zipball/bafc69caeb4d49c39fd0779086c03a3738cbb389",
                 "reference": "bafc69caeb4d49c39fd0779086c03a3738cbb389",
                 "shasum": ""
             },
