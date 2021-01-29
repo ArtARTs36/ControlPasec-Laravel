@@ -38,6 +38,8 @@
 | 12 | holiday:fetch {year} | Загрузить выходные дни за конкретный год |
 | 13 | holiday:fetch next-week | Загрузить выходные дни на следующую неделю |
 | 14 | blockip:get-new-ips | Обновить таблицу спам IP |
+| 15 | weather:fetch current-month | Получить погоду за текущий месяц |
+| 15 | weather:fetch prev-month | Получить погоду за предыдущий месяц |
 
 ## Посмотреть документацию
 - php artisan serve --port=8000
