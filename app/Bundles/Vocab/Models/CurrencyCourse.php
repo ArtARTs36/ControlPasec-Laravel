@@ -2,6 +2,7 @@
 
 namespace App\Bundles\Vocab\Models;
 
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -11,18 +12,25 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $id
  * @property int $currency_id
  * @property VocabCurrency $currency
- * @property int $nominal
+ * @property float $nominal
  * @property float $value
- * @property string $actual_date
+ * @property \DateTimeInterface $actual_date
  */
 final class CurrencyCourse extends Model
 {
+    public const FIELD_CURRENCY_ID = 'currency_id';
+    public const FIELD_NOMINAL = 'nominal';
+    public const FIELD_VALUE = 'value';
     public const FIELD_ACTUAL_DATE = 'actual_date';
 
     public const RELATION_CURRENCY = 'currency';
 
     protected $fillable = [
         'currency_id', 'nominal', 'value',
+        self::FIELD_ACTUAL_DATE,
+    ];
+
+    protected $dates = [
         self::FIELD_ACTUAL_DATE,
     ];
 
@@ -48,6 +56,17 @@ final class CurrencyCourse extends Model
      */
     public function getActualDate(): string
     {
-        return (new \DateTime($this->actual_date))->format('d.m.Y');
+        return $this->actual_date->format('d.m.Y');
+    }
+
+    protected function asDateTime($value)
+    {
+        if (is_string($value) && str_contains($value, '+')) {
+            $parts = explode('+', $value);
+
+            return Carbon::parse($parts[0])->addHours((int) $parts[1]);
+        }
+
+        return parent::asDateTime($value);
     }
 }

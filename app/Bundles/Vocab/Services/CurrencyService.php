@@ -36,8 +36,11 @@ class CurrencyService
         return $created;
     }
 
-    protected function createOfExternal(Course $external, VocabCurrency $currency, \DateTimeInterface $date)
-    {
+    protected function createOfExternal(
+        Course $external,
+        VocabCurrency $currency,
+        \DateTimeInterface $date
+    ): CurrencyCourse {
         $course = new CurrencyCourse();
         $course->currency_id = $currency->id;
         $course->nominal = $external->getNominal();

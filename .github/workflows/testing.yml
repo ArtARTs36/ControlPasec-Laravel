@@ -39,5 +39,7 @@ jobs:
         run: php artisan project-install --no-dompdf-fonts
       - name: Directory Permissions
         run: chmod -R 777 storage bootstrap/cache
+      - name: Stat Analyse
+        run: composer stat-analyse
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         run: vendor/phpunit/phpunit/phpunit

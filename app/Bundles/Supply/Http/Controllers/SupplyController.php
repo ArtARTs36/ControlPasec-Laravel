@@ -50,6 +50,7 @@ final class SupplyController extends Controller
      */
     public function store(StoreSupply $request): ActionResponse
     {
+        /** @var Supply $supply */
         $supply = $this->makeModel($request, Supply::class);
         $supply->supplier_id = $request->get('supplier_id', $this->service->getDefaultId());
         $supply->save();

@@ -20,7 +20,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $date
  * @property Supply $supply
  * @property int $order_number
- * @property Document[] $documents
  */
 final class ScoreForPayment extends Model implements ModelWithDocuments
 {

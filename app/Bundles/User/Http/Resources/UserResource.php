@@ -2,10 +2,12 @@
 
 namespace App\Bundles\User\Http\Resources;
 
+use App\Bundles\User\Models\DialogMessage;
 use App\Bundles\User\Services\DialogMessageService;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Collection;
 
 /**
  * Class UserResource
@@ -25,6 +27,7 @@ class UserResource extends JsonResource
      */
     public function toArray($request): array
     {
+        /** @var Collection<DialogMessage> $messages */
         $messages = $this->recievedUnReadDialogMessages;
 
         return [

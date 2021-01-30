@@ -37,8 +37,7 @@ final class RoleController extends Controller
      */
     public function index(int $page = 1): LengthAwarePaginator
     {
-        return Role::latest('id')
-            ->paginate(10, ['*'], 'RolesList', $page);
+        return $this->repository->paginate($page);
     }
 
     /**

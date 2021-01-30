@@ -32,7 +32,7 @@ class UserMessageNotifier
             Arr::pluck($type->permission->getUsers(), User::FIELD_ID),
             $message,
             $type->id,
-            $aboutModel->id
+            $aboutModel->getKey()
         );
     }
 }

@@ -22,7 +22,7 @@ class ExternalExchanger
         return $exchange->fill([
             ExternalSystemExchange::FIELD_SYSTEM_ID => $system->id,
             ExternalSystemExchange::FIELD_MODEL_TYPE_ID => $this->getModelType($model)->id,
-            ExternalSystemExchange::FIELD_MODEL_ID => $model->id,
+            ExternalSystemExchange::FIELD_MODEL_ID => $model->getKey(),
             ExternalSystemExchange::FIELD_RESPONSE => $response,
         ]);
     }
@@ -32,6 +32,6 @@ class ExternalExchanger
      */
     private function getModelType(Model $model): ModelType
     {
-        return ModelType::where('class', get_class($model))->first();
+        return ModelType::query()->where(ModelType::FIELD_CLASS, get_class($model))->first();
     }
 }

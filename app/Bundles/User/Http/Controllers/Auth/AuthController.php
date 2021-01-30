@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
 use Symfony\Component\HttpFoundation\Response as HttpResponse;
-use Tymon\JWTAuth\JWTAuth;
+use Tymon\JWTAuth\JWT;
 
 final class AuthController extends Controller
 {
@@ -64,7 +64,7 @@ final class AuthController extends Controller
      *      @OA\Response(response=404, description="Resource Not found"),
      * )
      */
-    public function issueToken(AuthRequest $request, UserRepository $repository)
+    public function issueToken(AuthRequest $request, UserRepository $repository, JWT $jwt)
     {
         /** Determine if the user has too many failed login attempts. */
         if ($this->hasTooManyLoginAttempts($request)) {
@@ -84,7 +84,7 @@ final class AuthController extends Controller
             }
 
             $token = isset($user)
-                ? JWTAuth::fromUser($user)
+                ? $jwt->fromUser($user)
                 : $isAuthorize;
 
             return $this->sendLoginResponse($request, $token);
@@ -129,12 +129,12 @@ final class AuthController extends Controller
      *      @OA\Response(response=404, description="Resource Not found"),
      * )
      */
-    public function loginAs(User $user, Request $request): UserResource
+    public function loginAs(User $user, Request $request, JWT $jwt): UserResource
     {
         $this->guard()->logout();
         $this->guard()->login($user);
 
-        return $this->sendLoginResponse($request, JWTAuth::fromUser($user));
+        return $this->sendLoginResponse($request, $jwt->fromUser($user));
     }
 
     /**

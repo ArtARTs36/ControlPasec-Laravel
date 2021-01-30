@@ -11,9 +11,14 @@ parameters:
 
     ignoreErrors:
         - '#Unsafe usage of new static#'
-        - '#Access to an undefined property App\Http\Resource#'
+        - '#but returns Illuminate\\Database\\Eloquent\\Model#'
+        - '#Call to an undefined method ReflectionType::getName.#'
+        - '#LengthAwarePaginator is not generic#'
+        - '#but returns Illuminate\\Database\\Eloquent\\Collection<Illuminate\\Database\\Eloquent\\Model>#'
+        - '#pluck\(\) expects array\|string, null given#'
 
-    excludes_analyse:
-        - ./*/*/FileToBeExcluded.php
+    excludePaths:
+        - ./app/Bundles/*/Database/Factories/*.php
+        - ./app/Bundles/Product/Services/ProductService.php
 
     checkMissingIterableValueType: false

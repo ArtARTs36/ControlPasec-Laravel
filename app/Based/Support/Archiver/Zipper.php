@@ -42,7 +42,7 @@ class Zipper extends AbstractArchiver
      */
     public function compressWithDir(array $files, string $archiveName): Archive
     {
-        $command = (new ShellCommand('zip', false))
+        $command = (new ShellCommand('zip'))
             ->addCutOption('r')
             ->addParameter($archiveName)
             ->addParameters($files);
@@ -73,7 +73,7 @@ class Zipper extends AbstractArchiver
 
     private function createCommand(string $dir, string $archivePath, array $files): ShellCommand
     {
-        return (new ShellCommand('cd', false))
+        return (new ShellCommand('cd'))
             ->addParameter($dir)
             ->addAmpersands()
             ->addParameter('zip')

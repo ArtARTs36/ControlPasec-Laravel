@@ -27,9 +27,10 @@ class EmployeeService
 
     public function isRequireNewCondition(Employee $employee, array $newConditions)
     {
-        $currentConditions = $employee->getCurrentWorkCondition()->only(static::FIELDS);
+        /** @var WorkCondition $currentConditions */
+        $currentConditions = $employee->getCurrentWorkCondition();
 
-        foreach ($currentConditions as $key => $currentCondition) {
+        foreach ($currentConditions->only(static::FIELDS) as $key => $currentCondition) {
             if ($newConditions[$key] != $currentCondition) {
                 return true;
             }

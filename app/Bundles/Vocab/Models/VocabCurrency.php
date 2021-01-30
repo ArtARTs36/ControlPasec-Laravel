@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name_en
  * @property string $short_name_en
  * @property int $iso_code
- * @property int $iso_short_name
+ * @property string $iso_short_name
  * @property string $symbol
  * @property int $priority
  */

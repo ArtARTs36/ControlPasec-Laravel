@@ -18,7 +18,7 @@ class ProductService
         if (! ($products = Cache::get(static::CACHE_TOP_CHART_KEY))) {
             $products = array_slice(static::bringStat(), 0, $count, true);
 
-            Cache::put(static::CACHE_TOP_CHART_KEY, $products, Carbon::now()->addHour(1));
+            Cache::put(static::CACHE_TOP_CHART_KEY, $products, Carbon::now()->addHour());
         }
 
         return $products;
@@ -56,7 +56,7 @@ class ProductService
         }
 
         usort($products, function ($one, $two) {
-            return ($one['quantities'] < $two['quantities']);
+            return $one['quantities'] < $two['quantities'];
         });
 
         return $products;

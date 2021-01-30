@@ -56,9 +56,11 @@ class Plant extends Model
             return null;
         }
 
+        $year = (int) $date->format('Y');
+
         foreach ($this->blooms as $bloom) {
             if ($bloom->isBloomedOnYear($date)) {
-                return $bloom->getBloomedDatePeriodOnYear($date->format('Y'));
+                return $bloom->getBloomedDatePeriodOnYear($year);
             }
         }
 

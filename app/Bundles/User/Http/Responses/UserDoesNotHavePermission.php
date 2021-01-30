@@ -8,13 +8,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UserDoesNotHavePermission extends JsonResponse
 {
-    /**
-     * UserDoesNotHavePermission constructor.
-     * @param Permission|string permission
-     */
-    public function __construct($permission)
+    public function __construct(Permission $permission)
     {
-        if (!$permission instanceof Permission) {
+        if (! $permission instanceof Permission) {
             $permission = Permission::findByName($permission);
         }
 

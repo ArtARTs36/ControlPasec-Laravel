@@ -38,7 +38,7 @@ class TemplateService
     {
         $intPart = (string)(int)$price;
         $intPartLength = strlen($intPart);
-        $fracPart = str_replace("0.", "", round($price - $intPart, 2));
+        $fracPart = str_replace("0.", "", (string) round($price - $intPart, 2));
 
         $format = '';
 
@@ -60,7 +60,7 @@ class TemplateService
      * 250000.00 -> 250 000,00
      * 250000 -> 250 000,00
      *
-     * @param $price
+     * @param mixed $price
      * @return string
      */
     public static function formatPriceTwo($price)
@@ -104,7 +104,7 @@ class TemplateService
     /**
      * Склонение числительных
      *
-     * @param int|float|double $n
+     * @param scalar $n
      * @param array $words
      * @return mixed
      */
@@ -114,7 +114,7 @@ class TemplateService
     }
 
     /**
-     * @param $n
+     * @param mixed $n
      * @return string
      */
     public static function sum2words($n)

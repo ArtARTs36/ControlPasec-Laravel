@@ -64,11 +64,11 @@ class PhpExcelTemplateLoader extends AbstractDocTemplateLoader
     }
 
     /**
-     * @param $documents
+     * @param Document[] $documents
      * @return string
      */
     protected function makeMany($documents): string
     {
-        // TODO: Implement makeMany() method.
+        return '';
     }
 }

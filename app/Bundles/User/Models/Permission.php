@@ -3,6 +3,7 @@
 namespace App\Bundles\User\Models;
 
 use App\User;
+use FontLib\TrueType\Collection;
 use Illuminate\Database\Query\Builder;
 use Spatie\Permission\Models\Permission as BasePermission;
 
@@ -115,7 +116,7 @@ final class Permission extends BasePermission
     const USER_GET_NOTIFICATION_TECH_SUPPORT_REPORT_CREATED = 'user_get_notification_tech_support_report_created';
     const USER_GET_DOCUMENT_OF_QUEUE_GENERATED = 'user_get_document_of_queue_generated';
 
-    public static function getAllNames()
+    public static function getAllNames(): array
     {
         return array_merge([
             static::SUPPLIES_VIEW => 'Просмотр поставок',
@@ -229,6 +230,7 @@ final class Permission extends BasePermission
      */
     public function getUsers(): array
     {
+        /** @var Collection<Role> $roles */
         $roles = $this->roles()->get();
 
         $users = [];

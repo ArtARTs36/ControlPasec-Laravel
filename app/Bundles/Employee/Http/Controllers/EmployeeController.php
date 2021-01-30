@@ -57,6 +57,7 @@ final class EmployeeController extends Controller
      */
     public function store(EmployeeStoreRequest $request)
     {
+        /** @var Employee $employee */
         $employee = $this->createModel($request, Employee::class);
 
         if (($wc = $request->getWorkCondition())) {

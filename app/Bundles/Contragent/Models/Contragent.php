@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Collection;
 
 /**
  * Модель "Контрагент"
@@ -26,7 +27,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string|null $address
  * @property string|null $address_postal
  * @property int $status
- * @property BankRequisites $requisites
+ * @property Collection<BankRequisites> $requisites
  * @property ContragentGroup[] $groups
  * @property Contract[] $contracts
  * @property string $title_for_document
@@ -114,7 +115,7 @@ class Contragent extends Model
 
     public function getDefaultRequisite(): ?BankRequisites
     {
-        return $this->requisites[0] ?? null;
+        return $this->requisites->first();
     }
 
     /**

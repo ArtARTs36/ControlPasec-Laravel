@@ -177,12 +177,16 @@ class DocumentCreator
         return (is_array($array) ? $array : [$array]);
     }
 
-    private function arrIds($array)
+    /**
+     * @param mixed $array
+     * @return array<int>
+     */
+    private function arrIds($array): array
     {
         $array = $this->arr($array);
 
         return array_map(function ($value) {
-            return ($value instanceof Model) ? $value->id : $value;
+            return (int) ($value instanceof Model) ? $value->getKey() : $value;
         }, $array);
     }
 

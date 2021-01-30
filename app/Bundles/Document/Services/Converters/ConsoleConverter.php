@@ -10,7 +10,7 @@ abstract class ConsoleConverter
 {
     protected function newCommand(string $executor): ShellCommandInterface
     {
-        return new ShellCommand($executor, false);
+        return new ShellCommand($executor);
     }
 
     /**
