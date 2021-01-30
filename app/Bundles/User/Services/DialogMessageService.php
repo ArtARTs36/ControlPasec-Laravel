@@ -55,10 +55,10 @@ class DialogMessageService
     }
 
     /**
-     * @param Collection|DialogMessage[] $messages
+     * @param Collection<DialogMessage> $messages
      * @return int
      */
-    public static function bringUnReadCount(Collection $messages)
+    public static function bringUnReadCount(Collection $messages): int
     {
         return $messages->filter(function (DialogMessage $message) {
             return $message->isNotRead();

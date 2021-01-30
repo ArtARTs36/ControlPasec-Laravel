@@ -6,8 +6,8 @@ use App\Based\Contracts\Controller;
 use App\Based\Http\Responses\ActionResponse;
 use App\Bundles\User\Models\Permission;
 use App\Bundles\Vocab\Models\VocabQuantityUnit;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 class VocabQuantityUnitController extends Controller
 {
@@ -25,7 +25,8 @@ class VocabQuantityUnitController extends Controller
      */
     public function index(int $page = 0): LengthAwarePaginator
     {
-        return VocabQuantityUnit::paginate(10, ['*'], 'VocabQuantityUnitsList', $page);
+        return VocabQuantityUnit::query()
+            ->paginate(10, ['*'], 'VocabQuantityUnitsList', $page);
     }
 
     /**

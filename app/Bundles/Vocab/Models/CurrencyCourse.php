@@ -11,9 +11,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $id
  * @property int $currency_id
  * @property VocabCurrency $currency
- * @property int $nominal
+ * @property float $nominal
  * @property float $value
- * @property string $actual_date
+ * @property \DateTimeInterface $actual_date
  */
 final class CurrencyCourse extends Model
 {
@@ -23,6 +23,10 @@ final class CurrencyCourse extends Model
 
     protected $fillable = [
         'currency_id', 'nominal', 'value',
+        self::FIELD_ACTUAL_DATE,
+    ];
+
+    protected $dates = [
         self::FIELD_ACTUAL_DATE,
     ];
 
@@ -48,6 +52,6 @@ final class CurrencyCourse extends Model
      */
     public function getActualDate(): string
     {
-        return (new \DateTime($this->actual_date))->format('d.m.Y');
+        return $this->actual_date->format('d.m.Y');
     }
 }
