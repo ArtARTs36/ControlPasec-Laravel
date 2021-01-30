@@ -2,7 +2,7 @@
 
 namespace App\Bundles\Vocab\Models;
 
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -64,7 +64,7 @@ final class CurrencyCourse extends Model
         if (is_string($value) && str_contains($value, '+')) {
             $parts = explode('+', $value);
 
-            return Carbon::parse($parts[0])->addHours($parts[1]);
+            return Carbon::parse($parts[0])->addHours((int) $parts[1]);
         }
 
         return parent::asDateTime($value);
