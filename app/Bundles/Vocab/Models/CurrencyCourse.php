@@ -2,6 +2,7 @@
 
 namespace App\Bundles\Vocab\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -17,6 +18,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 final class CurrencyCourse extends Model
 {
+    public const FIELD_CURRENCY_ID = 'currency_id';
+    public const FIELD_NOMINAL = 'nominal';
+    public const FIELD_VALUE = 'value';
     public const FIELD_ACTUAL_DATE = 'actual_date';
 
     public const RELATION_CURRENCY = 'currency';
@@ -53,5 +57,16 @@ final class CurrencyCourse extends Model
     public function getActualDate(): string
     {
         return $this->actual_date->format('d.m.Y');
+    }
+
+    protected function asDateTime($value)
+    {
+        if (is_string($value) && str_contains($value, '+')) {
+            $parts = explode('+', $value);
+
+            return Carbon::parse($parts[0])->addHours($parts[1]);
+        }
+
+        return parent::asDateTime($value);
     }
 }
