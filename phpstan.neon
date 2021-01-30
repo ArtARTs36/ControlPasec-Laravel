@@ -15,7 +15,7 @@ parameters:
         - '#Call to an undefined method ReflectionType::getName.#'
         - '#LengthAwarePaginator is not generic#'
         - '#but returns Illuminate\\Database\\Eloquent\\Collection<Illuminate\\Database\\Eloquent\\Model>#'
-        - '#pluck\(\) expects array|string, null given#'
+        - '#pluck\(\) expects array\|string, null given#'
 
     excludePaths:
         - ./app/Bundles/*/Database/Factories/*.php
