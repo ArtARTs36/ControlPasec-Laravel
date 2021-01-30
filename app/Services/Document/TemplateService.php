@@ -60,7 +60,7 @@ class TemplateService
      * 250000.00 -> 250 000,00
      * 250000 -> 250 000,00
      *
-     * @param $price
+     * @param mixed $price
      * @return string
      */
     public static function formatPriceTwo($price)
@@ -114,7 +114,7 @@ class TemplateService
     }
 
     /**
-     * @param $n
+     * @param mixed $n
      * @return string
      */
     public static function sum2words($n)
