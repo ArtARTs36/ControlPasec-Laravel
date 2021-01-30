@@ -14,4 +14,5 @@ use Illuminate\Database\Query\Builder;
  */
 final class ModelType extends Model
 {
+    public const FIELD_CLASS = 'class';
 }

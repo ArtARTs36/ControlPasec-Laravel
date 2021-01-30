@@ -39,6 +39,6 @@ final class Jwt implements Tokenizer
     {
         $parts = explode('.', $token);
 
-        return count($parts) ? $parts : [];
+        return ! empty($parts) ? $parts : [];
     }
 }

@@ -51,9 +51,9 @@ class Executor
     private function initCommand(bool $isBinary): void
     {
         if ($isBinary) {
-            $this->command = new ShellCommand($this->pathToProgram, false);
+            $this->command = new ShellCommand($this->pathToProgram);
         } else {
-            $this->command = (new ShellCommand('go run', false))
+            $this->command = (new ShellCommand('go run'))
                 ->addParameter($this->pathToProgram);
         }
     }

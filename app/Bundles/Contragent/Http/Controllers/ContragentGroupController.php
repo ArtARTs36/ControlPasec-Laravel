@@ -28,6 +28,7 @@ class ContragentGroupController extends Controller
      */
     public function store(UpdateContragentGroup $request)
     {
+        /** @var ContragentGroup $group */
         $group = $this->createModel($request, ContragentGroup::class);
         $group->contragents()->sync(
             $request->get(UpdateContragentGroup::FIELD_CONTRAGENTS, [])

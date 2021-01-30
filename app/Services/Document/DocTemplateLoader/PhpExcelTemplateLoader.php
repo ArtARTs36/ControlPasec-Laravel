@@ -69,6 +69,6 @@ class PhpExcelTemplateLoader extends AbstractDocTemplateLoader
      */
     protected function makeMany($documents): string
     {
-        // TODO: Implement makeMany() method.
+        return '';
     }
 }

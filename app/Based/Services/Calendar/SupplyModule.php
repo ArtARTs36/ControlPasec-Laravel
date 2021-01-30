@@ -29,12 +29,9 @@ class SupplyModule implements CalendarModule
 
     protected function createTitle(Supply $supply): string
     {
-        $message = 'Поставка #'. $supply->id;
-
-        if ($supply->customer) {
-            $message .= '. Заказчик: '. $supply->customer->title;
-        }
-
-        return $message;
+        return implode('. ', [
+            'Поставка #'. $supply->id,
+            'Заказчик: '. $supply->customer->title,
+        ]);
     }
 }

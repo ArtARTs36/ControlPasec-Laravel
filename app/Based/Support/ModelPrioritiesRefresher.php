@@ -3,10 +3,12 @@
 namespace App\Based\Support;
 
 use App\Based\Contracts\ModelWithPriorityInterface;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 class ModelPrioritiesRefresher
 {
-    /** @var ModelWithPriorityInterface[] */
+    /** @var Collection<ModelWithPriorityInterface> */
     private $allModels;
 
     /** @var ModelWithPriorityInterface */
@@ -18,8 +20,7 @@ class ModelPrioritiesRefresher
      */
     public function __construct(ModelWithPriorityInterface $currentModel)
     {
-        $class = get_class($currentModel);
-        $this->allModels = $class::all();
+        $this->allModels = $currentModel::all();
         $this->currentModel = $currentModel;
     }
 
@@ -57,11 +58,11 @@ class ModelPrioritiesRefresher
     {
         $parts = [];
         foreach ($this->allModels as $model) {
-            if ($model->id == $this->currentModel->id) {
+            if ($model->getKey() == $this->currentModel->getKey()) {
                 continue;
             }
 
-            $parts[$model->priority][] = $model;
+            $parts[$model->getPriority()][] = $model;
         }
 
         return $this->addValue($parts, $newValue);
@@ -114,7 +115,7 @@ class ModelPrioritiesRefresher
      * Перегрузить массив
      *
      * @param array $array
-     * @return array
+     * @return array<Model>
      */
     private function reloadArray(array $array): array
     {

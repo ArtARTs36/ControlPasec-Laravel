@@ -8,8 +8,10 @@ use Illuminate\Database\Eloquent\Builder;
  * Interface ModelWithPriorityInterface
  * @mixin Builder
  */
-interface ModelWithPriorityInterface
+interface ModelWithPriorityInterface extends WithAll
 {
+    public function getKey();
+
     /**
      * @return int
      */

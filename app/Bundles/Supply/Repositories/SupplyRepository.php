@@ -29,7 +29,7 @@ class SupplyRepository extends Repository
                     return $query->with(SupplyProduct::RELATION_QUANTITY_UNIT);
                 }
             ])
-            ->paginate(null, ['*'], null, $page);
+            ->paginate(null, ['*'], 'SuppliesList', $page);
     }
 
     public function fullLoad(Supply $supply): Supply

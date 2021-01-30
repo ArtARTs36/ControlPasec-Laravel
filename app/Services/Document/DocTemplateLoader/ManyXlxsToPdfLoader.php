@@ -23,7 +23,6 @@ class ManyXlxsToPdfLoader extends AbstractDocTemplateLoader
 
     /**
      * @param Document[] $documents
-     * @return bool|false|string
      */
     protected function makeMany($documents): string
     {

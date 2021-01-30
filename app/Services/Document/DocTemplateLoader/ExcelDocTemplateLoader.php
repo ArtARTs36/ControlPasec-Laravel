@@ -18,11 +18,11 @@ class ExcelDocTemplateLoader extends AbstractDocTemplateLoader
     }
 
     /**
-     * @param $documents
+     * @param array $documents
      * @return string
      */
     protected function makeMany($documents): string
     {
-        // TODO: Implement makeMany() method.
+        return '';
     }
 }

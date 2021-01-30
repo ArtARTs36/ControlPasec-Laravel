@@ -21,7 +21,7 @@ if (! function_exists('const_exists')) {
 }
 
 if (! function_exists('views_path')) {
-    function views_path($path = null)
+    function views_path(?string $path = null): string
     {
         return resource_path('views/'. $path);
     }

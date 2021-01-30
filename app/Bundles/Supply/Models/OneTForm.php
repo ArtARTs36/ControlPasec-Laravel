@@ -15,7 +15,6 @@ use Illuminate\Database\Query\Builder;
 /**
  * @property int $id
  * @property int $order_number
- * @property Document[] $documents
  * @property int $supply_id
  * @property Supply $supply
  *

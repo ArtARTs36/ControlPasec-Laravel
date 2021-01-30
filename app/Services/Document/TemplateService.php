@@ -38,7 +38,7 @@ class TemplateService
     {
         $intPart = (string)(int)$price;
         $intPartLength = strlen($intPart);
-        $fracPart = str_replace("0.", "", round($price - $intPart, 2));
+        $fracPart = str_replace("0.", "", (string) round($price - $intPart, 2));
 
         $format = '';
 

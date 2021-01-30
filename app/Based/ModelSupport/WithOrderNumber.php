@@ -4,6 +4,9 @@ namespace App\Based\ModelSupport;
 
 use App\Based\Services\VariableDefinitionService;
 
+/**
+ * @property int $order_number
+ */
 trait WithOrderNumber
 {
     /**

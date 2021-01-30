@@ -5,12 +5,13 @@ namespace App\Based\Http\Middleware;
 use App\Bundles\User\Http\Responses\UserDoesNotHavePermission;
 use App\User;
 use Closure;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 class CheckPermissions
 {
     /**
-     * @param $request
+     * @param Request $request
      * @param Closure $next
      * @return mixed
      */
@@ -32,16 +33,16 @@ class CheckPermissions
      * @param array $permissions
      * @return UserDoesNotHavePermission|null
      */
-    private function check(string $method, array $permissions)
+    private function check(string $method, array $permissions): ?UserDoesNotHavePermission
     {
         if ((empty($permissions[$method])) || !($permission = $permissions[$method])) {
             return null;
         }
 
-        /** @var User $user */
+        /** @var User|null $user */
         $user = auth()->user();
 
-        if (! $user) {
+        if ($user === null) {
             return new UserDoesNotHavePermission($permission);
         }
 

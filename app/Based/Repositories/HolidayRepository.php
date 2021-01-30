@@ -14,7 +14,7 @@ class HolidayRepository extends Repository
     }
 
     /**
-     * @return Collection<Holiday>|Holiday[]
+     * @return Collection<Holiday>
      */
     public function getWithTypeByPeriod(\DateTimeInterface $start, \DateTimeInterface $end): Collection
     {

@@ -70,7 +70,7 @@
         "mockery/mockery": "^1.0",
         "mtrajano/laravel-swagger": "dev-master",
         "nunomaduro/collision": "^3.0",
-        "nunomaduro/larastan": "^0.5.5",
+        "nunomaduro/larastan": "^0.6.13",
         "phpunit/phpunit": "^8.0"
     },
     "config": {
@@ -120,6 +120,9 @@
         ],
         "api-docs": [
             "php artisan laravel-swagger:generate --filter=\"/api\" > docs/routes/api-docs.json"
+        ],
+        "stat-analyse": [
+            "./vendor/bin/phpstan analyse --memory-limit=2G"
         ]
     }
 }

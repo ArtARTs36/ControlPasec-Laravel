@@ -85,14 +85,13 @@ class Document extends Model
     }
 
     /**
-     * @return $this
      * @throws \Exception
      */
     public function beforeCreate(): self
     {
         $this->status = self::STATUS_NEW;
         $this->uuid = Uuid::getFactory()->uuid4()->toString();
-        $this->folder = trim(file_get_contents(base_path(env('DOCUMENT_SAVE_MAP'))));
+        $this->folder = (int) trim(file_get_contents(base_path(env('DOCUMENT_SAVE_MAP'))));
 
         return $this;
     }

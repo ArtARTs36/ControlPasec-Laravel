@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Collection;
 
 /**
- * @property Collection|Document[] $documents
+ * @property-read Collection<Document> $documents
  */
 trait WithDocuments
 {

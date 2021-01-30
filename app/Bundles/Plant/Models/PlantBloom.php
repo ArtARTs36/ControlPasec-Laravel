@@ -47,7 +47,7 @@ class PlantBloom extends Model
 
     public function isBloomedOnYear(\DateTimeInterface $date): bool
     {
-        $start = $this->makeBloomedStartDateOnYear($year = $date->format('Y'));
+        $start = $this->makeBloomedStartDateOnYear($year = (int) $date->format('Y'));
         $end = $this->makeBloomedEndDateOnYear($year);
 
         return $date >= $start && $end >= $date;

@@ -10,11 +10,11 @@ class UserDoesNotHavePermission extends JsonResponse
 {
     /**
      * UserDoesNotHavePermission constructor.
-     * @param Permission|string permission
+     * @param Permission|string $permission
      */
     public function __construct($permission)
     {
-        if (!$permission instanceof Permission) {
+        if (! $permission instanceof Permission) {
             $permission = Permission::findByName($permission);
         }
 
