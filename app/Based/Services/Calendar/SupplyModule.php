@@ -31,7 +31,7 @@ class SupplyModule implements CalendarModule
     {
         return implode('. ', [
             'Поставка #'. $supply->id,
-            'Заказчик: '. $supply->customer->title,
+            $supply->customer ? 'Заказчик: '. $supply->customer->title : '',
         ]);
     }
 }

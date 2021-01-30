@@ -20,7 +20,7 @@ use Illuminate\Support\Collection;
  * @property string|\DateTime $execute_date
  * @property int $supplier_id
  * @property int $customer_id
- * @property Contragent $customer
+ * @property Contragent|null $customer
  * @property Contragent $supplier
  * @property Collection|SupplyProduct[] $products
  * @property Contract $contract
