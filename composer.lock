@@ -250,16 +250,16 @@
         },
         {
             "name": "artarts36/laravel-holiday",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ArtARTs36/laravel-holiday.git",
-                "reference": "061d955615ffe462fd6cd40bba718ff7572cf33f"
+                "reference": "c59cbfadb31e85df4d54fe3129d46f21a85deb57"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ArtARTs36/laravel-holiday/zipball/061d955615ffe462fd6cd40bba718ff7572cf33f",
-                "reference": "061d955615ffe462fd6cd40bba718ff7572cf33f",
+                "url": "https://api.github.com/repos/ArtARTs36/laravel-holiday/zipball/c59cbfadb31e85df4d54fe3129d46f21a85deb57",
+                "reference": "c59cbfadb31e85df4d54fe3129d46f21a85deb57",
                 "shasum": ""
             },
             "require": {
@@ -305,7 +305,7 @@
                 "holiday",
                 "laravel"
             ],
-            "time": "2020-12-16T23:32:37+00:00"
+            "time": "2021-01-30T00:14:29+00:00"
         },
         {
             "name": "artarts36/laravel-weather",
@@ -6510,12 +6510,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ArtARTs36/laravel-totem.git",
-                "reference": "69829c281cb14f62585c1533f59011bbe0706e69"
+                "reference": "f97cdc3d141db3dbddf1599c82aba2f8085422f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ArtARTs36/laravel-totem/zipball/69829c281cb14f62585c1533f59011bbe0706e69",
-                "reference": "69829c281cb14f62585c1533f59011bbe0706e69",
+                "url": "https://api.github.com/repos/ArtARTs36/laravel-totem/zipball/f97cdc3d141db3dbddf1599c82aba2f8085422f8",
+                "reference": "f97cdc3d141db3dbddf1599c82aba2f8085422f8",
                 "shasum": ""
             },
             "require": {

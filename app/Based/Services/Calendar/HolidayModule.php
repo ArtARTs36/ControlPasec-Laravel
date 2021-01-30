@@ -3,7 +3,7 @@
 namespace App\Based\Services\Calendar;
 
 use App\Based\Contracts\CalendarModule;
-use App\Based\Repositories\HolidayRepository;
+use ArtARTs36\LaravelHoliday\Contracts\HolidayRepository;
 use Carbon\Carbon;
 
 class HolidayModule implements CalendarModule
