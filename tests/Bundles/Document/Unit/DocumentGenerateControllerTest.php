@@ -53,8 +53,6 @@ class DocumentGenerateControllerTest extends BaseTestCase
 
         $decode = $response->decodeResponseJson();
 
-        dump($decode);
-
         $response->assertOk();
 
         self::assertIsArray($decode);

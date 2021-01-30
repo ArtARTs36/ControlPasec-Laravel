@@ -17,6 +17,8 @@ final class CurrencyCourseApiTest extends BaseTestCase
             return $this->getJson(static::BASE_URL);
         };
 
+        dd($request()->decodeResponseJson());
+
         //
 
         $request()->assertOk();
