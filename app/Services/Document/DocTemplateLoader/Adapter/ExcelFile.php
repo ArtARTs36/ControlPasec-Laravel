@@ -49,8 +49,8 @@ class ExcelFile
             $this->templateFile,
             $this->fileName,
             $this->params,
-            null,
-            null,
+            [],
+            [],
             function (Spreadsheet $spreadsheet) {
                 $spreadsheet->getActiveSheet()
                     ->getPageSetup()

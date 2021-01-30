@@ -56,7 +56,7 @@ class ProductService
         }
 
         usort($products, function ($one, $two) {
-            return ($one['quantities'] < $two['quantities']);
+            return $one['quantities'] < $two['quantities'];
         });
 
         return $products;

@@ -29,7 +29,7 @@ class ProductivityForecaster
         foreach ($period as $date) {
             $availableNectar = $this->bringAvailableNectarOnDate($productivity, $date, $request->square);
 
-            if ($availableNectar === 0) {
+            if ($availableNectar == 0) {
                 continue;
             }
 

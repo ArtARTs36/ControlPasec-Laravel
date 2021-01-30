@@ -3,6 +3,7 @@
 namespace App\Based\Http\Middleware;
 
 use App\Bundles\User\Http\Responses\UserDoesNotHavePermission;
+use App\Bundles\User\Repositories\PermissionRepository;
 use App\User;
 use Closure;
 use Illuminate\Http\Request;
@@ -10,6 +11,13 @@ use Illuminate\Support\Facades\Route;
 
 class CheckPermissions
 {
+    protected $repository;
+
+    public function __construct(PermissionRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     /**
      * @param Request $request
      * @param Closure $next
@@ -42,12 +50,8 @@ class CheckPermissions
         /** @var User|null $user */
         $user = auth()->user();
 
-        if ($user === null) {
-            return new UserDoesNotHavePermission($permission);
-        }
-
-        if (! $user->hasApiPermission($permission)) {
-            return new UserDoesNotHavePermission($permission);
+        if ($user === null || ! $user->hasApiPermission($permission)) {
+            return new UserDoesNotHavePermission($this->repository->findByName($permission));
         }
 
         return null;

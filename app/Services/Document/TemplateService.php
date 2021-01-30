@@ -104,7 +104,7 @@ class TemplateService
     /**
      * Склонение числительных
      *
-     * @param int|float|double $n
+     * @param scalar $n
      * @param array $words
      * @return mixed
      */

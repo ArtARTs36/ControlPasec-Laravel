@@ -19,7 +19,7 @@ class VariableDefinitionService
         $definition = $this->repository->findByName($name);
 
         if (! $definition) {
-            throw new \RuntimeException('Variable Definition Not Founf!');
+            throw new \RuntimeException('Variable Definition Not Found!');
         }
 
         return $this->inc($definition);
