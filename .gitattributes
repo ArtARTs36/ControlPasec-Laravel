@@ -11,3 +11,4 @@ phpstan.neon    export-ignore
 /docs           export-ignore
 .editorconfig   export-ignore
 /tests          export-ignore
+.gitattributes  export-ignore
