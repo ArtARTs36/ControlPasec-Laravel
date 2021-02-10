@@ -31,21 +31,27 @@ class SupplyProduct extends Model
     public const FIELD_QUANTITY = 'quantity';
     public const FIELD_PARENT_ID = 'product_id';
     public const FIELD_SUPPLY_ID = 'supply_id';
-    public const QUANTITY_UNIT_ID = 'quantity_unit_id';
+    public const FIELD_QUANTITY_UNIT_ID = 'quantity_unit_id';
 
     protected $fillable = [
         self::FIELD_PRICE,
         self::FIELD_QUANTITY,
         self::FIELD_PARENT_ID,
         self::FIELD_SUPPLY_ID,
-        self::QUANTITY_UNIT_ID,
+        self::FIELD_QUANTITY_UNIT_ID,
     ];
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function parent(): BelongsTo
     {
-        return $this->belongsTo(Product::class, 'product_id');
+        return $this->belongsTo(Product::class, static::FIELD_PARENT_ID);
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function quantityUnit(): BelongsTo
     {
         return $this->belongsTo(VocabQuantityUnit::class);
