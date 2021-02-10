@@ -82,7 +82,7 @@ final class SupplyTest extends BaseTestCase
                             SupplyProduct::FIELD_PRICE => rand(1000, 100000),
                             SupplyProduct::FIELD_QUANTITY => rand(1000, 100000),
                             SupplyProduct::FIELD_PARENT_ID => factory(Product::class)->create()->id,
-                            SupplyProduct::QUANTITY_UNIT_ID => factory(VocabQuantityUnit::class)->create()->id,
+                            SupplyProduct::FIELD_QUANTITY_UNIT_ID => factory(VocabQuantityUnit::class)->create()->id,
                         ];
                 }, range(0, 10)),
             ];
@@ -115,7 +115,7 @@ final class SupplyTest extends BaseTestCase
                 self::assertEquals($productsData[$key][SupplyProduct::FIELD_PRICE], $product->price);
                 self::assertEquals($productsData[$key][SupplyProduct::FIELD_QUANTITY], $product->quantity);
                 self::assertEquals($productsData[$key][SupplyProduct::FIELD_PARENT_ID], $product->product_id);
-                self::assertEquals($productsData[$key][SupplyProduct::QUANTITY_UNIT_ID], $product->quantity_unit_id);
+                self::assertEquals($productsData[$key][SupplyProduct::FIELD_QUANTITY_UNIT_ID], $product->quantity_unit_id);
             }
         }
     }
