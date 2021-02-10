@@ -10,3 +10,4 @@ phpstan.neon    export-ignore
 /.github        export-ignore
 /docs           export-ignore
 .editorconfig   export-ignore
+/tests          export-ignore
