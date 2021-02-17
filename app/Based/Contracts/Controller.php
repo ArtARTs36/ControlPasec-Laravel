@@ -3,12 +3,14 @@
 namespace App\Based\Contracts;
 
 use App\Based\Http\Responses\ActionResponse;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * @OA\Info(title="ControlPasec API", version="0.1")
@@ -87,5 +89,10 @@ class Controller extends BaseController
     protected function deleteModelAndResponse(Model $model): ActionResponse
     {
         return new ActionResponse($model->delete());
+    }
+
+    protected function getUser(): ?User
+    {
+        return Auth::user();
     }
 }

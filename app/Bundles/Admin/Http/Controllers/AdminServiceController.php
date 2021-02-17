@@ -22,7 +22,7 @@ final class AdminServiceController extends Controller
      */
     public function redirect(string $name, Request $request): ServiceRedirectResource
     {
-        if (!($user = auth()->user()) || !$user->hasRole(Role::ADMIN)) {
+        if (! ($user = $this->getUser()) || ! $user->hasRole(Role::ADMIN)) {
             abort(403);
         }
 
