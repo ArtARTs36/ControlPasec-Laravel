@@ -5,6 +5,7 @@ namespace App\Bundles\Vocab\Services;
 use App\Bundles\Vocab\Repositories\VocabWordRepository;
 use App\Bundles\Vocab\Models\VocabWord;
 use Illuminate\Support\Collection;
+use App\Bundles\Vocab\Contracts\NameInclinator;
 
 class WordService
 {

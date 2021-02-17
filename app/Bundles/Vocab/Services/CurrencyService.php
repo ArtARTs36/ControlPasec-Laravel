@@ -23,7 +23,7 @@ class CurrencyService
         $created = collect();
 
         /** @var VocabCurrency $currency */
-        foreach ($this->vocabRepository->getWithoutRuble() as $currency) {
+        foreach ($this->getVocabWithoutRuble() as $currency) {
             $external = $courses->getByIsoCode($currency->iso_short_name);
 
             if ($external === null) {
@@ -34,6 +34,11 @@ class CurrencyService
         }
 
         return $created;
+    }
+
+    public function getVocabWithoutRuble(): Collection
+    {
+        return $this->vocabRepository->getWithoutCurrency(VocabCurrency::ISO_RUB);
     }
 
     protected function createOfExternal(

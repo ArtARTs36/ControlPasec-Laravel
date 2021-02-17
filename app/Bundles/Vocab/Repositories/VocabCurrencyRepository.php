@@ -8,11 +8,11 @@ use Illuminate\Support\Collection;
 
 class VocabCurrencyRepository extends Repository
 {
-    public function getWithoutRuble(): Collection
+    public function getWithoutCurrency(string $name): Collection
     {
         return $this
             ->newQuery()
-            ->where(VocabCurrency::FIELD_ISO_SHORT_NAME, '!=', VocabCurrency::ISO_RUB)
+            ->where(VocabCurrency::FIELD_ISO_SHORT_NAME, '!=', $name)
             ->get();
     }
 }

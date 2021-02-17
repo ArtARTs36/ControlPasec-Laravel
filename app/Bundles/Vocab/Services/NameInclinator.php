@@ -6,7 +6,7 @@ use App\Bundles\Vocab\Models\VocabWord;
 use ArtARTs36\Morpher\Entities\Noun;
 use ArtARTs36\Morpher\Morpher;
 
-class NameInclinator
+class NameInclinator implements \App\Bundles\Vocab\Contracts\NameInclinator
 {
     protected $morpher;
 
