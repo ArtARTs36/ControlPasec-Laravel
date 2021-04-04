@@ -1,6 +1,5 @@
 <?php
 
-use App\Bundles\Admin\Http\Controllers\AppHistoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('variable-definitions')->group(function () {

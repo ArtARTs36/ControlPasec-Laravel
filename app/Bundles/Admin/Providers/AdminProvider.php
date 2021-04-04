@@ -7,7 +7,6 @@ use App\Bundles\Admin\Contracts\AppChangeHistory;
 use App\Bundles\Admin\Models\AdminService;
 use App\Bundles\Admin\Services\GitAppChangeHistory;
 use App\Bundles\Admin\Support\Accessor;
-use ArtARTs36\GitHandler\Contracts\Logable;
 use ArtARTs36\GitHandler\GitSimpleFactory;
 use Illuminate\Http\Request;
 use Studio\Totem\Totem;
@@ -20,9 +19,7 @@ final class AdminProvider extends BundleProvider
     {
         $this->app->register(RouteProvider::class);
 
-        if ($this->app->runningInConsole()) {
-            $this->registerFactories();
-        }
+        $this->registerFactories();
 
         $this->app->singleton(Accessor::class);
 
