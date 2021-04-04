@@ -1,5 +1,6 @@
 <?php
 
+use App\Bundles\Admin\Http\Controllers\AppHistoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('variable-definitions')->group(function () {
@@ -24,4 +25,10 @@ Route::get('security/logs', 'LogController@index');
 
 Route::prefix('admin-services')->group(function () {
     Route::get('{name}', 'AdminServiceController@redirect');
+});
+
+// App Change History
+
+Route::prefix('admin')->group(function () {
+    Route::apiResource('app-history', 'AppHistoryController');
 });

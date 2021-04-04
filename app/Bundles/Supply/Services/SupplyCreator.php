@@ -60,15 +60,13 @@ class SupplyCreator implements Creator
 
             DB::commit();
 
-            $response = new ActionResponse(true);
+            return new ActionResponse(true);
         } catch (\Exception $e) {
             DB::rollBack();
 
-            $response = new ActionResponse(false, __('supply.create-many-error', [
+            return new ActionResponse(false, __('supply.create-many-error', [
                 'msg' => $e->getMessage(),
             ]), Response::HTTP_CONFLICT);
-        } finally {
-            return $response;
         }
     }
 

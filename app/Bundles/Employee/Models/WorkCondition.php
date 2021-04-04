@@ -42,6 +42,6 @@ class WorkCondition extends Model implements WorkConditionInterface
      */
     public function employee(): BelongsTo
     {
-        return $this->belongsTo(Proxy::getEmployeeClass());
+        return $this->belongsTo(Employee::class);
     }
 }

@@ -96,7 +96,7 @@ class CompileFontFromDompdfCommand extends Command
 
         // Copy the files to the font directory.
         foreach ($fonts as $var => $src) {
-            if (is_null($src)) {
+            if (empty($src)) {
                 $entry[$var] = $domPdf->getOptions()->get('fontDir') . '/' . mb_substr(basename($normal), 0, -4);
                 continue;
             }

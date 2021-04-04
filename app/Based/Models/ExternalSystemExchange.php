@@ -33,6 +33,9 @@ class ExternalSystemExchange extends Model
 
     private $model;
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function system(): BelongsTo
     {
         return $this->belongsTo(ExternalSystem::class);
