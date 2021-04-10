@@ -19,11 +19,11 @@ Route::apiResource('employees', '\App\Bundles\Employee\Http\Controllers\Employee
 ]);
 
 Route::get(
-    Proxy::apiRoute('report') . '/{employee}/{start}/{end}',
+    '/controltime/report/{employee}/{start}/{end}',
     '\App\Bundles\Employee\Http\Controllers\TimeReportController@byPeriod'
 );
 
 Route::get(
-    Proxy::apiRoute('report-month') . '/{employee}',
+    '/controltime/report-month/{employee}',
     '\App\Bundles\Employee\Http\Controllers\TimeReportController@byLastMonth'
 );
