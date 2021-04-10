@@ -237,12 +237,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ArtARTs36/laravel-control-time.git",
-                "reference": "af40de75717ba2e2a104a60dd2313a281dd5ebb4"
+                "reference": "ae5c8c3dd5785e876e3b9d678132e83220ddbaa6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ArtARTs36/laravel-control-time/zipball/af40de75717ba2e2a104a60dd2313a281dd5ebb4",
-                "reference": "af40de75717ba2e2a104a60dd2313a281dd5ebb4",
+                "url": "https://api.github.com/repos/ArtARTs36/laravel-control-time/zipball/ae5c8c3dd5785e876e3b9d678132e83220ddbaa6",
+                "reference": "ae5c8c3dd5785e876e3b9d678132e83220ddbaa6",
                 "shasum": ""
             },
             "require": {
@@ -293,7 +293,7 @@
                 "source": "https://github.com/ArtARTs36/laravel-control-time/tree/master",
                 "issues": "https://github.com/ArtARTs36/laravel-control-time/issues"
             },
-            "time": "2021-04-04T14:54:16+00:00"
+            "time": "2021-04-10T17:38:54+00:00"
         },
         {
             "name": "artarts36/laravel-holiday",

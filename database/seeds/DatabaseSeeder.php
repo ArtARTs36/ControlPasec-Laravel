@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(EmployeeSeeder::class);
         $this->call(WorkConditionSeeder::class);
-        $this->call(TimeSeeder::class);
+        $this->controlTime();
 
         $this->call(AdminServiceSeeder::class);
 
@@ -90,5 +90,12 @@ class DatabaseSeeder extends Seeder
         $this->call(DocumentExtensionSeeder::class);
         $this->call(DocumentLoaderSeeder::class);
         $this->call(DocumentTypeSeeder::class);
+    }
+
+    private function controlTime(): void
+    {
+        $this->call(ControlTimeSubjectTypeSeeder::class);
+        $this->call(ControlTimeSubjectSeeder::class);
+        $this->call(TimeSeeder::class);
     }
 }
