@@ -32,6 +32,14 @@
         {
             "type": "vcs",
             "url": "https://github.com/ArtARTs36/laravel-weather"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/ArtARTs36/php-file-storage-contracts"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/ArtARTs36/php-laravel-file-storage"
         }
     ],
     "require": {
@@ -62,7 +70,8 @@
         "phpoffice/phpword": "^0.17.0",
         "spatie/laravel-permission": "^3.11",
         "studio/laravel-totem": "6.0.2",
-        "tymon/jwt-auth": "dev-develop"
+        "tymon/jwt-auth": "dev-develop",
+        "artarts36/laravel-file-storage": "dev-master"
     },
     "require-dev": {
         "facade/ignition": "^1.4",

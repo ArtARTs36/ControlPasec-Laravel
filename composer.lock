@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9305b40341950675dc3eb755f577b28c",
+    "content-hash": "61ca2e4b794a2b527503aaec7345763a",
     "packages": [
         {
             "name": "alhimik1986/php-excel-templator",
@@ -141,6 +141,42 @@
                 "issues": "https://github.com/ArtARTs36/employee-interfaces/issues"
             },
             "time": "2020-06-20T16:09:14+00:00"
+        },
+        {
+            "name": "artarts36/file-storage-contracts",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:ArtARTs36/php-file-storage-contracts.git",
+                "reference": "02c422003b040a3f899046d39205d9996551a691"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ArtARTs36/php-file-storage-contracts/zipball/02c422003b040a3f899046d39205d9996551a691",
+                "reference": "02c422003b040a3f899046d39205d9996551a691",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ArtARTs36\\FileStorageContracts\\": "src"
+                }
+            },
+            "authors": [
+                {
+                    "name": "ArtARTs36",
+                    "email": "temicska99@mail.ru"
+                }
+            ],
+            "description": "File Storage Contracts",
+            "support": {
+                "source": "https://github.com/ArtARTs36/php-file-storage-contracts/tree/0.1.0",
+                "issues": "https://github.com/ArtARTs36/php-file-storage-contracts/issues"
+            },
+            "time": "2021-04-13T19:29:38+00:00"
         },
         {
             "name": "artarts36/git-handler",
@@ -294,6 +330,65 @@
                 "issues": "https://github.com/ArtARTs36/laravel-control-time/issues"
             },
             "time": "2021-04-10T17:38:54+00:00"
+        },
+        {
+            "name": "artarts36/laravel-file-storage",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:ArtARTs36/php-laravel-file-storage.git",
+                "reference": "a0397ba75962b55721308909477cbf55b709e2dc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ArtARTs36/php-laravel-file-storage/zipball/a0397ba75962b55721308909477cbf55b709e2dc",
+                "reference": "a0397ba75962b55721308909477cbf55b709e2dc",
+                "shasum": ""
+            },
+            "require": {
+                "artarts36/file-storage-contracts": "0.1.*",
+                "doctrine/dbal": "^2.6",
+                "laravel/framework": "6.*"
+            },
+            "require-dev": {
+                "orchestra/testbench": "*",
+                "phpunit/phpunit": "^8.5",
+                "squizlabs/php_codesniffer": "3.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ArtARTs36\\LaravelFileStorage\\": "src"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "ArtARTs36\\LaravelFileStorage\\Tests\\": "tests"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "./vendor/bin/phpunit -v --coverage-text --colors=never --configuration phpunit.xml --stop-on-failure --stop-on-risky"
+                ],
+                "test-coverage": [
+                    "vendor/bin/phpunit --coverage-html coverage"
+                ],
+                "lint": [
+                    "./vendor/bin/phpcs --standard=PSR2 src/",
+                    "./vendor/bin/phpcs --standard=PSR2 tests/Feature"
+                ]
+            },
+            "authors": [
+                {
+                    "name": "ArtARTs36",
+                    "email": "temicska99@mail.ru"
+                }
+            ],
+            "support": {
+                "source": "https://github.com/ArtARTs36/php-laravel-file-storage/tree/master",
+                "issues": "https://github.com/ArtARTs36/php-laravel-file-storage/issues"
+            },
+            "time": "2021-04-13T22:57:21+00:00"
         },
         {
             "name": "artarts36/laravel-holiday",
@@ -10775,6 +10870,7 @@
         "artarts36/laravel-control-time": 20,
         "artarts36/laravel-weather": 20,
         "tymon/jwt-auth": 20,
+        "artarts36/laravel-file-storage": 20,
         "mtrajano/laravel-swagger": 20
     },
     "prefer-stable": true,
