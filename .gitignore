@@ -27,3 +27,4 @@ install.lock
 /docker-files/postgres/
 /docker-files/postgres/*
 yarn.lock
+/storage/app-files/
