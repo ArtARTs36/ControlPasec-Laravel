@@ -29,7 +29,7 @@ class WorkCondition extends Model implements WorkConditionInterface
     public const FIELD_RATE = 'rate';
     public const FIELD_EMPLOYEE_ID = 'employee_id';
     public const FIELD_AMOUNT_HOUR = 'amount_hour';
-    public const FIELD_TAB_NUMBER = 'number';
+    public const FIELD_TAB_NUMBER = 'tab_number';
     public const FIELD_FIRE_DATE = 'fire_date';
     public const FIELD_HIRE_DATE = 'hire_date';
 
