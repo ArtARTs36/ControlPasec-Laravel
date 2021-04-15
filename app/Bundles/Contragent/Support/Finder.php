@@ -29,6 +29,10 @@ class Finder implements ContragentFinder
         return $this->findByInnOrOgrn($slug)
             ->each(function (Contragent $contragent) {
                 $contragent->save();
+                $contragent->managers->each(function (ContragentManager $manager) use ($contragent) {
+                    $manager->contragent_id = $contragent->id;
+                    $manager->save();
+                });
             });
     }
 
@@ -54,7 +58,7 @@ class Finder implements ContragentFinder
 
             $contragents->push($contragent);
 
-            if (! isset($response['management'])) {
+            if (isset($response['management']['name'])) {
                 $this->createManager($contragent, $response);
             }
         }
@@ -102,8 +106,7 @@ class Finder implements ContragentFinder
             $manager->post = $response['management']['post'];
         }
 
-        $manager->contragent_id = $contragent->id;
-        $manager->save();
+        $contragent->managers->push($manager);
 
         event(new ExternalManagerCreated($manager));
 
