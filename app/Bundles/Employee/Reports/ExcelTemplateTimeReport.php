@@ -15,7 +15,7 @@ class ExcelTemplateTimeReport extends PeriodReport
             $this,
             $title,
             $this->prepareData($data),
-            __DIR__  . '/../../../../resources/views/controltime_period_report.xlsx'
+            __DIR__  . '/../../../../resources/views/reports/employee/controltime_period_report.xlsx'
         );
     }
 
@@ -25,7 +25,10 @@ class ExcelTemplateTimeReport extends PeriodReport
             'items' => $data
             ->map(function (Time $time) {
                 return [
-                    'name' => $time->date,
+                    'date' => $time->date,
+                    'employee' => $time->employee->getFullName(),
+                    'hours' => $time->getHours(),
+                    'subject' => $time->subject->getFullTitle(),
                 ];
             })
             ->all()];
