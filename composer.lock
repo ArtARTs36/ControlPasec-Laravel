@@ -97,13 +97,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ArtARTs36/employee-interfaces.git",
-                "reference": "b7d2d00efd62a3e9d8d2baa42e6a529a9bfcd4f9"
+                "reference": "c2d72223c49ffff9b9790ddb2fdc39d99cf0b9f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ArtARTs36/employee-interfaces/zipball/b7d2d00efd62a3e9d8d2baa42e6a529a9bfcd4f9",
-                "reference": "b7d2d00efd62a3e9d8d2baa42e6a529a9bfcd4f9",
+                "url": "https://api.github.com/repos/ArtARTs36/employee-interfaces/zipball/c2d72223c49ffff9b9790ddb2fdc39d99cf0b9f1",
+                "reference": "c2d72223c49ffff9b9790ddb2fdc39d99cf0b9f1",
                 "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2"
             },
             "require-dev": {
                 "phpunit/phpunit": "^8.0",
@@ -113,10 +116,12 @@
             "autoload": {
                 "psr-4": {
                     "ArtARTs36\\EmployeeInterfaces\\": "src"
-                },
-                "exclude-from-classmap": [
-                    "**/Tests/"
-                ]
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "ArtARTs36\\EmployeeInterfaces\\Tests\\": "Tests"
+                }
             },
             "scripts": {
                 "lint": [
@@ -140,7 +145,7 @@
                 "source": "https://github.com/ArtARTs36/employee-interfaces/tree/master",
                 "issues": "https://github.com/ArtARTs36/employee-interfaces/issues"
             },
-            "time": "2020-06-20T16:09:14+00:00"
+            "time": "2021-04-15T10:08:45+00:00"
         },
         {
             "name": "artarts36/file-storage-contracts",

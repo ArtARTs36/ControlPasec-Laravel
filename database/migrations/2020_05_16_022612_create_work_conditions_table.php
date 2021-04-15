@@ -22,6 +22,9 @@ class CreateWorkConditionsTable extends Migration
             $table->double('rate');
             $table->unsignedInteger('employee_id');
             $table->integer('amount_hour');
+            $table->date('hire_date');
+            $table->date('fire_date')->nullable();
+            $table->string('tab_number');
 
             $table->foreign('employee_id')
                 ->references('id')
