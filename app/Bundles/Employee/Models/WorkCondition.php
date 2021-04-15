@@ -52,4 +52,14 @@ class WorkCondition extends Model implements WorkConditionInterface
     {
         return $this->belongsTo(Employee::class);
     }
+
+    public function getHireDate(): \DateTimeInterface
+    {
+        return Carbon::parse($this->hire_date);
+    }
+
+    public function getFireDate(): \DateTimeInterface
+    {
+        return Carbon::parse($this->fire_date);
+    }
 }
