@@ -126,6 +126,7 @@ final class EmployeeTest extends BaseTestCase
      */
     public function testCreateDocumentSZVTD(): void
     {
+        /** @var Employee $employee */
         $employee = factory(Employee::class)->create();
 
         $response = $this->getJson('/api/employees/'. $employee->id . '/document/'. DocumentType::SZV_TD_ID)

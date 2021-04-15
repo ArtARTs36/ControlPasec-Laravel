@@ -1,9 +1,14 @@
 <?php
 
 /** @var App\Bundles\Employee\Models\Employee $employee */
+
+use Carbon\Carbon;
+
 $employee = $document->employees()->first();
 
-$hiredDate = $employee->getCurrentWorkCondition()->getHireDate();
+$wc = $employee->getCurrentWorkCondition();
+
+$hiredDate = $wc ? $wc->getHireDate() : Carbon::now();
 
 $employeeData = [
     'СОТРУДНИК_ФАМИЛИЯ' => $employee->getFamily(),

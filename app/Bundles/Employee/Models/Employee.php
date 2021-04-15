@@ -25,7 +25,6 @@ class Employee extends Model implements EmployeeInterface
     public const FIELD_FAMILY = 'family';
     public const FIELD_NAME = 'name';
     public const FIELD_PATRONYMIC = 'patronymic';
-    public const FIELD_HIRED_DATE = 'hired_date';
     public const FIELD_HOLIDAY = 'holiday';
     public const FIELD_INSURANCE_NUMBER = 'insurance_number';
 
