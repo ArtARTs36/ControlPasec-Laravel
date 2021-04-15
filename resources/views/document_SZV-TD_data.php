@@ -3,7 +3,7 @@
 /** @var App\Bundles\Employee\Models\Employee $employee */
 $employee = $document->employees()->first();
 
-$hiredDate = \Carbon\Carbon::parse($employee->hired_date);
+$hiredDate = $employee->getCurrentWorkCondition()->getHireDate();
 
 $employeeData = [
     'СОТРУДНИК_ФАМИЛИЯ' => $employee->getFamily(),

@@ -16,13 +16,15 @@ class EmployeeStoreRequest extends FormRequest
             Employee::FIELD_FAMILY => 'required|string',
             Employee::FIELD_NAME => 'required|string',
             Employee::FIELD_PATRONYMIC => 'required|string',
-            Employee::FIELD_HIRED_DATE => 'required|string',
             Employee::FIELD_HOLIDAY => 'required|string',
             Employee::FIELD_INSURANCE_NUMBER => 'required|string',
 
             static::prefixWc(WorkCondition::FIELD_RATE) => 'sometimes|double',
             static::prefixWc(WorkCondition::FIELD_AMOUNT_HOUR) => 'sometimes|integer',
             static::prefixWc(WorkCondition::FIELD_POSITION) => 'sometimes|string',
+            static::prefixWc(WorkCondition::FIELD_TAB_NUMBER) => 'sometimes|string',
+            static::prefixWc(WorkCondition::FIELD_HIRE_DATE) => 'sometimes|string',
+            static::prefixWc(WorkCondition::FIELD_FIRE_DATE) => 'nullable|sometimes|string',
         ];
     }
 

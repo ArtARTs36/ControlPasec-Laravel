@@ -14,7 +14,7 @@ $service = app(TimeService::class);
 
 $getEmployeeData = function (Employee $employee, WorkCondition $conditions) {
     return [
-        'СОТРУДНИК_ДАТА_ПРИНЯТИЯ' => $employee->hired_date,
+        'СОТРУДНИК_ДАТА_ПРИНЯТИЯ' => $employee->getCurrentWorkCondition()->getHireDate()->format('Y-m-d'),
         'СОТРУДНИК_ДОЛЖНОСТЬ' => $conditions->position ?? "не указана",
         "СОТРУДНИК_СТАВКА" => $conditions->rate ?? "не указана",
         "СОТРУДНИК_ОПЛАТА_ЧАС" => $conditions->amount_hour ?? "не указана",

@@ -55,6 +55,8 @@ final class EmployeeTest extends BaseTestCase
                 WorkCondition::FIELD_RATE => $this->getFaker()->randomFloat(null, 0.1, 1),
                 WorkCondition::FIELD_AMOUNT_HOUR => rand(100, 1000),
                 WorkCondition::FIELD_POSITION => $this->getFaker()->word,
+                WorkCondition::FIELD_HIRE_DATE => $this->getFaker()->date(),
+                WorkCondition::FIELD_TAB_NUMBER => $this->getFaker()->uuid,
         ]]);
 
         $response = $this->postJson(self::API_PATH, $data)
