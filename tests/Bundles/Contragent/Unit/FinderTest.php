@@ -7,7 +7,7 @@ use App\Bundles\Contragent\Support\Finder;
 use App\Bundles\Contragent\Models\Contragent;
 use Tests\TestCase;
 
-final class DaDataParserTest extends TestCase
+final class FinderTest extends TestCase
 {
     /** @var Finder  */
     private $finder;
