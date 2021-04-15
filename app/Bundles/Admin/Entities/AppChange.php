@@ -25,4 +25,3 @@ class AppChange implements Arrayable
         $this->subject = $subject;
     }
 }
-
