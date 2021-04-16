@@ -5,7 +5,6 @@ namespace App\Bundles\Document\Support;
 use App\Based\GoBridge\GoProgram;
 use App\Bundles\Document\Models\Document;
 use App\Services\Document\DocumentService;
-use http\Exception\UnexpectedValueException;
 
 class XlsxRender extends GoProgram
 {
@@ -42,7 +41,7 @@ class XlsxRender extends GoProgram
             ->execute();
 
         if (! file_exists($savePath)) {
-            throw new UnexpectedValueException($result);
+            throw new \LogicException($result);
         }
 
         return $savePath;
