@@ -71,6 +71,6 @@ final class ContragentGroupTest extends BaseTestCase
 
         $request([
             'name' => 'New Group',
-        ])->assertOk();
+        ])->assertCreated();
     }
 }
