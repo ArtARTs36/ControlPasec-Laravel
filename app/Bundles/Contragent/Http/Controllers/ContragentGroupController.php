@@ -10,6 +10,7 @@ use App\Bundles\Contragent\Models\Contragent;
 use App\Bundles\Contragent\Models\ContragentGroup;
 use App\Bundles\Contragent\Services\ContragentGroupService;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class ContragentGroupController extends Controller
 {
@@ -34,9 +35,9 @@ class ContragentGroupController extends Controller
     /**
      * @tag ContragentGroup
      */
-    public function store(UpdateContragentGroup $request): ActionResponse
+    public function store(UpdateContragentGroup $request): JsonResource
     {
-        return new ActionResponse(true, $this->service->create(
+        return new JsonResource($this->service->create(
             $request->input(ContragentGroup::FIELD_NAME),
             $request->input(UpdateContragentGroup::FIELD_CONTRAGENTS, [])
         ));
