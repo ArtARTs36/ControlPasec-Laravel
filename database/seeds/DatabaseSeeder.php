@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 require_once 'vendor/artarts36/laravel-control-time/database/seeds/TimeSeeder.php';
+require_once 'vendor/artarts36/laravel-control-time/database/seeds/ControlTimeSubjectTypeSeeder.php';
+require_once 'vendor/artarts36/laravel-control-time/database/seeds/ControlTimeSubjectSeeder.php';
 require_once 'vendor/artarts36/laravel-holiday/database/Seeders/HolidayDatabaseSeeder.php';
 
 class DatabaseSeeder extends Seeder
@@ -44,7 +46,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(EmployeeSeeder::class);
         $this->call(WorkConditionSeeder::class);
-        $this->call(TimeSeeder::class);
+        $this->controlTime();
 
         $this->call(AdminServiceSeeder::class);
 
@@ -88,5 +90,12 @@ class DatabaseSeeder extends Seeder
         $this->call(DocumentExtensionSeeder::class);
         $this->call(DocumentLoaderSeeder::class);
         $this->call(DocumentTypeSeeder::class);
+    }
+
+    private function controlTime(): void
+    {
+        $this->call(ControlTimeSubjectTypeSeeder::class);
+        $this->call(ControlTimeSubjectSeeder::class);
+        $this->call(TimeSeeder::class);
     }
 }

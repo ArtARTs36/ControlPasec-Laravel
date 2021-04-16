@@ -7,15 +7,16 @@ use App\Bundles\Contragent\Support\Finder;
 use App\Bundles\Contragent\Models\Contragent;
 use Tests\TestCase;
 
-final class DaDataParserTest extends TestCase
+final class FinderTest extends TestCase
 {
+    /** @var Finder  */
     private $finder;
 
     public function setUp(): void
     {
         parent::setUp();
 
-        $this->finder = app(Finder::class);
+        $this->finder = $this->app->make(Finder::class);
     }
 
     /**
@@ -36,9 +37,8 @@ final class DaDataParserTest extends TestCase
 
         $manager = $this->finder->createManager($contragent, $data);
 
-        self::assertTrue(
-            $manager->family == 'Украинский' && $manager->name == 'Артем' &&
-            $manager->patronymic == 'Викторович' && $manager->contragent_id == $contragent->id
-        );
+        self::assertEquals('Украинский', $manager->family);
+        self::assertEquals('Артем', $manager->name);
+        self::assertEquals('Викторович', $manager->patronymic);
     }
 }

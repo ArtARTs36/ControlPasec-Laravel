@@ -31,6 +31,7 @@ use Illuminate\Support\Collection;
  * @property ContragentGroup[] $groups
  * @property Contract[] $contracts
  * @property string $title_for_document
+ * @property Collection<ContragentManager> $managers
  *
  * @mixin Builder
  */

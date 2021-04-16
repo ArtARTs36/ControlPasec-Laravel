@@ -14,7 +14,6 @@ $factory->define(Employee::class, function (Faker $faker) {
         Employee::FIELD_NAME => RuFaker::name($gender),
         Employee::FIELD_PATRONYMIC => RuFaker::patronymic($gender),
         Employee::FIELD_FAMILY => RuFaker::family($gender),
-        Employee::FIELD_HIRED_DATE => $faker->dateTime->format('Y-m-d'),
         Employee::FIELD_HOLIDAY => $faker->dateTime->format('Y-m-d'),
         Employee::FIELD_INSURANCE_NUMBER => RuFaker::insuranceNumber(),
     ];

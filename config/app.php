@@ -217,6 +217,8 @@ return [
         \App\Bundles\Plant\Providers\PlantProvider::class,
 
         \ArtARTs36\LaravelWeather\Providers\LaravelWeatherProvider::class,
+
+        \ArtARTs36\LaravelFileStorage\Providers\FileStorageProvider::class,
     ],
 
     /*

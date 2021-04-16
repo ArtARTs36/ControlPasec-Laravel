@@ -41,4 +41,9 @@ trait HasWorkConditions
 
         return $this->currentWorkCondition;
     }
+
+    public function getWorkConditions(): array
+    {
+        return $this->workConditions->all();
+    }
 }
