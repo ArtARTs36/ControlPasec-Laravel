@@ -16,7 +16,7 @@ final class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if (! $this->app->environment('production')) {
+        if (env('PROFILER_ENABLED', false) === true) {
             $this->app->register(\JKocik\Laravel\Profiler\ServiceProvider::class);
         }
 
