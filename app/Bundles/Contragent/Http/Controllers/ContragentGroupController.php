@@ -8,10 +8,18 @@ use App\Based\Http\Responses\ActionResponse;
 use App\Bundles\Contragent\Http\Resources\ContragentGroupResource;
 use App\Bundles\Contragent\Models\Contragent;
 use App\Bundles\Contragent\Models\ContragentGroup;
+use App\Bundles\Contragent\Services\ContragentGroupService;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class ContragentGroupController extends Controller
 {
+    protected $service;
+
+    public function __construct(ContragentGroupService $service)
+    {
+        $this->service = $service;
+    }
+
     /**
      * Получить список групп контрагентов
      * @tag ContragentGroup
@@ -26,15 +34,12 @@ class ContragentGroupController extends Controller
     /**
      * @tag ContragentGroup
      */
-    public function store(UpdateContragentGroup $request)
+    public function store(UpdateContragentGroup $request): ActionResponse
     {
-        /** @var ContragentGroup $group */
-        $group = $this->createModel($request, ContragentGroup::class);
-        $group->contragents()->sync(
-            $request->get(UpdateContragentGroup::FIELD_CONTRAGENTS, [])
-        );
-
-        return new ActionResponse($group->exists, $group);
+        return new ActionResponse(true, $this->service->create(
+            $request->input(ContragentGroup::FIELD_NAME),
+            $request->input(UpdateContragentGroup::FIELD_CONTRAGENTS, [])
+        ));
     }
 
     /**
