@@ -38,7 +38,7 @@ class XlsxRender extends GoProgram
             ->addParameter(realpath($template))
             ->addParameter($savePath)
             ->addParameter($dataFilePath)
-            ->execute();
+            ->getShellResult();
 
         if (! file_exists($savePath)) {
             throw new \LogicException($result);
