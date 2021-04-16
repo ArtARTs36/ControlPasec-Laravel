@@ -11,7 +11,7 @@ class DaDataClient
 
     protected $accessKey;
 
-    public function __construct(ClientInterface $requester, string $accessKey)
+    public function __construct(ClientInterface $requester, DaDataAccessKey $accessKey)
     {
         $this->requester = $requester;
         $this->accessKey = $accessKey;
@@ -34,7 +34,7 @@ class DaDataClient
         return [
             'headers' => [
                 'Accept' => 'application/json',
-                'Authorization' => 'Token '. $this->accessKey,
+                'Authorization' => 'Token '. $this->accessKey->get(),
             ],
         ];
     }

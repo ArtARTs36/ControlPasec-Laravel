@@ -278,12 +278,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ArtARTs36/laravel-control-time.git",
-                "reference": "57ad0ef81052863ea261013c88a7b02358a93fb1"
+                "reference": "1051a7f305bc68cd3e3eb8b2ba91bf20be2cdf7d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ArtARTs36/laravel-control-time/zipball/57ad0ef81052863ea261013c88a7b02358a93fb1",
-                "reference": "57ad0ef81052863ea261013c88a7b02358a93fb1",
+                "url": "https://api.github.com/repos/ArtARTs36/laravel-control-time/zipball/1051a7f305bc68cd3e3eb8b2ba91bf20be2cdf7d",
+                "reference": "1051a7f305bc68cd3e3eb8b2ba91bf20be2cdf7d",
                 "shasum": ""
             },
             "require": {
@@ -340,7 +340,7 @@
                 "source": "https://github.com/ArtARTs36/laravel-control-time/tree/master",
                 "issues": "https://github.com/ArtARTs36/laravel-control-time/issues"
             },
-            "time": "2021-04-15T23:56:42+00:00"
+            "time": "2021-04-16T00:07:32+00:00"
         },
         {
             "name": "artarts36/laravel-file-storage",
