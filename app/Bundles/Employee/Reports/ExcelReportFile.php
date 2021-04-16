@@ -28,7 +28,7 @@ class ExcelReportFile extends AbstractReportFile implements ReportFile
     {
         $render = new XlsxRender();
 
-        $path = $render->render(storage_path('test.xlsx'), $this->template, $this->data);
+        $path = $render->render('otchet.xlsx', $this->template, $this->data);
 
         return $storage->save($path, $this->getTitle(), false, $section);
     }
