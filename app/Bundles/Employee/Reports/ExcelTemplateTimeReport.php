@@ -15,7 +15,7 @@ class ExcelTemplateTimeReport extends PeriodReport
             $this,
             $title,
             $this->prepareData($data),
-            __DIR__  . '/../../../../resources/views/reports/employee/controltime_period_report.xlsx'
+            __DIR__  . '/../../../../resources/reports/employee/controltime_period_report.xlsx'
         );
     }
 
