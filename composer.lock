@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b514fd3a33c68b8d8db6fbc47c754d97",
+    "content-hash": "0b305ef219461d4e43883c95c6c25057",
     "packages": [
         {
             "name": "alhimik1986/php-excel-templator",
@@ -709,16 +709,16 @@
         },
         {
             "name": "artarts36/str",
-            "version": "1.3.10",
+            "version": "1.3.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ArtARTs36/str.git",
-                "reference": "3b6193b6c28249d18eac9840258efd73eb28a5a4"
+                "reference": "8af1093050a7e2b5bd9ac9e888e85d16ddc4e27d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ArtARTs36/str/zipball/3b6193b6c28249d18eac9840258efd73eb28a5a4",
-                "reference": "3b6193b6c28249d18eac9840258efd73eb28a5a4",
+                "url": "https://api.github.com/repos/ArtARTs36/str/zipball/8af1093050a7e2b5bd9ac9e888e85d16ddc4e27d",
+                "reference": "8af1093050a7e2b5bd9ac9e888e85d16ddc4e27d",
                 "shasum": ""
             },
             "require": {
@@ -746,7 +746,60 @@
                 }
             ],
             "description": "Str",
-            "time": "2021-04-01T22:34:40+00:00"
+            "support": {
+                "issues": "https://github.com/ArtARTs36/str/issues",
+                "source": "https://github.com/ArtARTs36/str/tree/1.3.13"
+            },
+            "time": "2021-04-17T01:18:27+00:00"
+        },
+        {
+            "name": "artarts36/system-info",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:ArtARTs36/system-info.git",
+                "reference": "648b544cba20fd0218079ed393a1accfb4f23b86"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ArtARTs36/system-info/zipball/648b544cba20fd0218079ed393a1accfb4f23b86",
+                "reference": "648b544cba20fd0218079ed393a1accfb4f23b86",
+                "shasum": ""
+            },
+            "require": {
+                "artarts36/shell-command": "*",
+                "artarts36/str": "*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=7.5"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ArtARTs36\\SystemInfo\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "ArtARTs36\\SystemInfo\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ArtARTs36",
+                    "email": "temicska99@mail.ru"
+                }
+            ],
+            "description": "System Info",
+            "support": {
+                "source": "https://github.com/ArtARTs36/system-info/tree/master",
+                "issues": "https://github.com/ArtARTs36/system-info/issues"
+            },
+            "time": "2021-04-17T13:53:25+00:00"
         },
         {
             "name": "artarts36/weather-archive",
@@ -10960,6 +11013,7 @@
         "artarts36/laravel-weather": 20,
         "tymon/jwt-auth": 20,
         "artarts36/laravel-file-storage": 20,
+        "artarts36/system-info": 20,
         "mtrajano/laravel-swagger": 20
     },
     "prefer-stable": true,

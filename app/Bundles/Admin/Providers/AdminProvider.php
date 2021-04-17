@@ -8,6 +8,8 @@ use App\Bundles\Admin\Models\AdminService;
 use App\Bundles\Admin\Services\GitAppChangeHistory;
 use App\Bundles\Admin\Support\Accessor;
 use ArtARTs36\GitHandler\GitSimpleFactory;
+use ArtARTs36\SystemInfo\Contracts\System;
+use ArtARTs36\SystemInfo\SystemFacade;
 use Illuminate\Http\Request;
 use Studio\Totem\Totem;
 
@@ -35,5 +37,9 @@ final class AdminProvider extends BundleProvider
         });
 
         $this->app->singleton(AppChangeHistory::class, GitAppChangeHistory::class);
+
+        $this->app->bind(System::class, function () {
+            return SystemFacade::get();
+        });
     }
 }

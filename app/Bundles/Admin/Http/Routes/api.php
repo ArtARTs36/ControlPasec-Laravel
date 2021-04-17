@@ -30,4 +30,8 @@ Route::prefix('admin-services')->group(function () {
 
 Route::prefix('admin')->group(function () {
     Route::apiResource('app-history', 'AppHistoryController');
+
+    Route::prefix('system')->group(function () {
+        Route::get('snapshot', 'SystemController@snapshot');
+    });
 });

@@ -40,6 +40,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/ArtARTs36/php-laravel-file-storage"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/ArtARTs36/system-info"
         }
     ],
     "require": {
@@ -70,7 +74,8 @@
         "spatie/laravel-permission": "^3.11",
         "studio/laravel-totem": "6.0.2",
         "tymon/jwt-auth": "dev-develop",
-        "artarts36/laravel-file-storage": "dev-master"
+        "artarts36/laravel-file-storage": "dev-master",
+        "artarts36/system-info": "dev-master"
     },
     "require-dev": {
         "facade/ignition": "^1.4",
