@@ -758,12 +758,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:ArtARTs36/system-info.git",
-                "reference": "648b544cba20fd0218079ed393a1accfb4f23b86"
+                "reference": "dcc0bc03e8a0a0b55adb363dbe3c016c703c4c45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ArtARTs36/system-info/zipball/648b544cba20fd0218079ed393a1accfb4f23b86",
-                "reference": "648b544cba20fd0218079ed393a1accfb4f23b86",
+                "url": "https://api.github.com/repos/ArtARTs36/system-info/zipball/dcc0bc03e8a0a0b55adb363dbe3c016c703c4c45",
+                "reference": "dcc0bc03e8a0a0b55adb363dbe3c016c703c4c45",
                 "shasum": ""
             },
             "require": {
@@ -799,7 +799,7 @@
                 "source": "https://github.com/ArtARTs36/system-info/tree/master",
                 "issues": "https://github.com/ArtARTs36/system-info/issues"
             },
-            "time": "2021-04-17T13:53:25+00:00"
+            "time": "2021-04-17T16:25:30+00:00"
         },
         {
             "name": "artarts36/weather-archive",
