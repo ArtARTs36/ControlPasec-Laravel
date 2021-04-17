@@ -20,4 +20,3 @@ class SystemController extends Controller
         return new SnapshotResource($this->system->createSnapshot());
     }
 }
-
