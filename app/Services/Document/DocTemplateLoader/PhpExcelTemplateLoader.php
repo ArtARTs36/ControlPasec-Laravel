@@ -14,12 +14,22 @@ class PhpExcelTemplateLoader extends AbstractDocTemplateLoader
     const NAME = 'PhpExcelDocTemplateLoader';
 
     /**
-     * @param Document $document
-     * @param bool $save
-     * @return string
      * @throws \PhpOffice\PhpSpreadsheet\Exception
-     * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception
-     * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
+     */
+    public function makeRaw(string $templatePath, string $savePath, array $data): bool
+    {
+        $this->createFolder($savePath);
+
+        return (new ExcelFile(
+            $savePath,
+            $templatePath,
+            $this->prepareData($data),
+            'A4'
+        ))->save();
+    }
+
+    /**
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
      * @throws \Throwable
      */
     protected function make(Document $document, $save = false): string
@@ -45,7 +55,7 @@ class PhpExcelTemplateLoader extends AbstractDocTemplateLoader
         }
     }
 
-    private function prepareData($data)
+    private function prepareData($data): array
     {
         $newData = [];
 

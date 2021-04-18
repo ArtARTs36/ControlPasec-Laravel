@@ -348,12 +348,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:ArtARTs36/php-laravel-file-storage.git",
-                "reference": "4907f71d74a9cabfd420714cab390db65fb20664"
+                "reference": "164afd51d6f602f0f8dd5d275300ef246029526a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ArtARTs36/php-laravel-file-storage/zipball/4907f71d74a9cabfd420714cab390db65fb20664",
-                "reference": "4907f71d74a9cabfd420714cab390db65fb20664",
+                "url": "https://api.github.com/repos/ArtARTs36/php-laravel-file-storage/zipball/164afd51d6f602f0f8dd5d275300ef246029526a",
+                "reference": "164afd51d6f602f0f8dd5d275300ef246029526a",
                 "shasum": ""
             },
             "require": {
@@ -366,6 +366,7 @@
                 "phpunit/phpunit": "^8.5",
                 "squizlabs/php_codesniffer": "3.*"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -399,7 +400,7 @@
                 "source": "https://github.com/ArtARTs36/php-laravel-file-storage/tree/master",
                 "issues": "https://github.com/ArtARTs36/php-laravel-file-storage/issues"
             },
-            "time": "2021-04-14T23:06:40+00:00"
+            "time": "2021-04-18T12:59:06+00:00"
         },
         {
             "name": "artarts36/laravel-holiday",
