@@ -4,36 +4,24 @@ namespace App\Based\GoBridge;
 
 use ArtARTs36\ShellCommand\ShellCommand;
 
-class Executor
+final class Executor
 {
     /** @var string Путь к папке с программами Go */
-    const GO_ROOT_DIR = __DIR__ . '/../../../go-programs';
+    public const GO_ROOT_DIR = __DIR__ . '/../../../go-programs';
 
-    /** @var string */
     private $programName;
 
-    /** @var array */
-    private $parameters = [];
-
-    /** @var string */
     private $dirToProgram;
 
-    /** @var string */
     private $pathToProgram;
 
-    /** @var string */
     protected $pathToData;
 
-    /** @var bool */
-    private $isExecuted = false;
+    private $command;
 
-    /** @var ShellCommand */
-    private $command = null;
-
-    public function __construct(string $programName, array $parameters = null, bool $isBinary = false)
+    public function __construct(string $programName, bool $isBinary = false)
     {
         $this->programName = $programName;
-        $this->parameters = $parameters;
 
         $this->dirToProgram = self::GO_ROOT_DIR . DIRECTORY_SEPARATOR . $programName;
         $this->pathToData = $this->dirToProgram . DIRECTORY_SEPARATOR . 'data'. DIRECTORY_SEPARATOR;
@@ -65,8 +53,6 @@ class Executor
      */
     public function execute(): void
     {
-        $this->isExecuted = true;
-
         $this->command->execute();
     }
 
