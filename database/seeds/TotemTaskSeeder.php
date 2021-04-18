@@ -18,10 +18,9 @@ class TotemTaskSeeder extends Seeder
             ['12:00', '18:00']
         );
 
-        $manager->createDailyAt(
+        $manager->createMonthly(
             'Получить погоду за текущий месяц',
-            'weather:fetch current-month',
-            ['12:00']
+            'weather:fetch current-month'
         );
 
         $manager->createDailyAt(
@@ -30,10 +29,9 @@ class TotemTaskSeeder extends Seeder
             ['23:00']
         );
 
-        $manager->createDailyAt(
+        $manager->createSunday(
             'Загрузить выходные дни на следующую неделю',
             'holiday:fetch next-week',
-            ['23:00']
         );
     }
 }
