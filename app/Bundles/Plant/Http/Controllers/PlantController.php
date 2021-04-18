@@ -47,4 +47,9 @@ class PlantController extends Controller
     {
         return new JsonResource((new Plant())->updateOfRequest($request));
     }
+
+    public function showAll(): AnonymousResourceCollection
+    {
+        return JsonResource::collection($this->repository->all());
+    }
 }

@@ -50,7 +50,11 @@ class ProductivityForecaster
         \DateTimeInterface $date,
         int $square
     ): float {
-        $day = $this->days[$date->format('Y-m-d')];
+        $day = $this->days[$date->format('Y-m-d')] ?? null;
+
+        if ($day === null) {
+            return 0;
+        }
 
         // Температура меньше допустимой - пчела ничего не соберет
         if ($day->temperature < static::MIN_AVAILABLE_TEMPERATURE) {

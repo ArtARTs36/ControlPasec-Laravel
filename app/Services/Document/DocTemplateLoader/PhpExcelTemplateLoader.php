@@ -20,12 +20,12 @@ class PhpExcelTemplateLoader extends AbstractDocTemplateLoader
     {
         $this->createFolder($savePath);
 
-        return (new ExcelFile(
+        return ! empty((new ExcelFile(
             $savePath,
             $templatePath,
             $this->prepareData($data),
             'A4'
-        ))->save();
+        ))->save());
     }
 
     /**

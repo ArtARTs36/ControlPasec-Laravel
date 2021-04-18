@@ -14,6 +14,7 @@ use Illuminate\Support\Collection;
  * @property int $category_id
  * @property Category $category
  * @property PlantBloom[]|Collection $blooms
+ * @property NectarProductivity[]|Collection $productivities
  */
 class Plant extends Model
 {
@@ -65,5 +66,10 @@ class Plant extends Model
         }
 
         return null;
+    }
+
+    public function productivities(): HasMany
+    {
+        return $this->hasMany(NectarProductivity::class);
     }
 }

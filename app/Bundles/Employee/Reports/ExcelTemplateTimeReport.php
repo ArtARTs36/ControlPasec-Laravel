@@ -21,10 +21,6 @@ class ExcelTemplateTimeReport extends PeriodReport
         );
     }
 
-    /**
-     * @param Collection|iterable<Time> $data
-     * @return array|iterable<string, string>
-     */
     protected function prepareData(Collection $data): array
     {
         $values = [];
