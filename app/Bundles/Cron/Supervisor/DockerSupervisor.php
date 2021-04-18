@@ -9,15 +9,15 @@ class DockerSupervisor implements Supervisor
 {
     public function update(): void
     {
-        ShellCommand::getInstanceWithMoveDir(base_path(), '')
-            ->addParameter('sh scripts/docker/supervisor-update.sh')
+        ShellCommand::getInstanceWithMoveDir(base_path(), 'sh')
+            ->addParameter('scripts/docker/supervisor-update.sh')
             ->execute();
     }
 
     public function start(): void
     {
-        ShellCommand::getInstanceWithMoveDir(base_path(), '')
-            ->addParameter('sh scripts/docker/supervisor-start.sh')
+        ShellCommand::getInstanceWithMoveDir(base_path(), 'sh')
+            ->addParameter('scripts/docker/supervisor-start.sh')
             ->execute();
     }
 }
