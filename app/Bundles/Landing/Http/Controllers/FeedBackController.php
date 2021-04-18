@@ -41,10 +41,8 @@ final class FeedBackController extends Controller
     /**
      * @tag Landing
      */
-    public function store(StoreFeedBack $request, FeedBackCreator $creator): ActionResponse
+    public function store(StoreFeedBack $request, FeedBackCreator $creator): FeedBack
     {
-        $creator->fromRequest($request);
-
-        return new ActionResponse(true);
+        return $creator->fromRequest($request);
     }
 }

@@ -12,7 +12,7 @@ class StoreFeedBack extends FormRequest
             'people_title' => 'required|string',
             'people_email' => 'required|string',
             'people_phone' => 'required|string',
-            'people_ip'    => 'required|string',
+            'ip'           => 'required|string',
             'message' => 'required|string',
         ];
     }
