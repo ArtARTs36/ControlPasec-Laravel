@@ -14,11 +14,16 @@
 |  4 |  artarts36/pushall-sender  | Работа с PUSH уведомлениями. Работает с API сервиса http://pushall.ru  |
 | 5  | artarts36/ru-spelling  | Работа с орфографией. Транслит,  преобразование чисел в формат нетто; справочник дней и месяцев  |
 | 6  | artarts36/shell-command  | Объектно-ориентированная обертка над shell_exec. Позволяет строить сложные команды для выполнения bash интерпритатором  |
-| 7 | controltime | Учет времени сотрудников |
+| 7 | artarts36/laravel-controltime | Учет времени сотрудников |
 | 8 | artarts36/employee-interfaces | Интерфейсы сотрудников |
 | 9 | artarts36/laravel-blockip | Получение списка спам IP-адресов | 
 | 10 | artarts36/weather-archive | Получение данных о погоде из внешних источников |
 | 11 | artarts36/laravel-weather | Хранение и обработка данных о погоде |
+| 12 | artarts36/file-storage-contracts | Интерфейсы для работы с файловым хранилищем |
+| 13 | artarts36/laravel-file-storage | Реализация интерфейсов для работы с файловым хранилищем на Laravel |
+| 14 | artarts36/str | Обертка над примитивным типом string |
+| 15 | artarts36/system-info | Информация о системе: ЦПУ, память |
+| 16 | artarts36/git-handler | Инструмент для работы с Git |
 
 ## Команды
 
