@@ -9,6 +9,11 @@ use Illuminate\Database\Eloquent\Collection;
 
 final class RoleRepository extends Repository
 {
+    public function find(int $id): ?Role
+    {
+        return $this->newQuery()->find($id);
+    }
+
     /**
      * @return Collection<Role>
      */

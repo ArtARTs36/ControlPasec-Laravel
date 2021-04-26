@@ -2,14 +2,13 @@
 
 namespace App\Bundles\User\Http\Requests;
 
+use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 
-/**
- * Class UserRegisterRequest
- * @property int $role_id
- */
-class UserRegisterRequest extends FormRequest
+final class UserRegisterRequest extends FormRequest
 {
+    public const FIELD_ROLE_ID = 'role_id';
+
     public function authorize(): bool
     {
         return auth()->guest();
@@ -18,12 +17,12 @@ class UserRegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string',
-            'patronymic' => 'required|string',
-            'family' => 'required|string',
-            'role_id' => 'required|int',
-            'password' => 'required|string',
-            'email' => 'required|not_exists:users,email',
+            User::FIELD_NAME => 'required|string',
+            User::FIELD_PATRONYMIC => 'required|string',
+            User::FIELD_FAMILY => 'required|string',
+            self::FIELD_ROLE_ID => 'required|int',
+            User::FIELD_PASSWORD => 'required|string|min:8',
+            User::FIELD_EMAIL => 'required|not_exists:users,email',
         ];
     }
 }

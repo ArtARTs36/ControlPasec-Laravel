@@ -74,12 +74,13 @@ final class AuthController extends Controller
             return $this->sendLockoutResponse($request);
         }
 
-        $credentials = array_merge($request->only('email', 'password'), [
-            User::FIELD_IS_ACTIVE => true
+        $credentials = array_merge($request->only([User::FIELD_EMAIL, User::FIELD_PASSWORD]), [
+            User::FIELD_IS_ACTIVE => true,
         ]);
 
         if ($isAuthorize = $this->guard()->attempt($credentials)) {
-            if ($this->guard()->check() !== true && $user = $repository->findByEmail($credentials['email'])) {
+            if ($this->guard()->check() !== true &&
+                $user = $repository->findByEmail($credentials[User::FIELD_EMAIL])) {
                 $this->guard()->login($user);
             }
 

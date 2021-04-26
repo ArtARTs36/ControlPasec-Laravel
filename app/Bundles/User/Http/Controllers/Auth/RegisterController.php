@@ -7,6 +7,7 @@ use App\Based\Contracts\Controller;
 use App\Bundles\User\Http\Requests\UserRegisterRequest;
 use App\Bundles\User\Http\Responses\UserRegisteredResponse;
 use App\Bundles\User\Models\Role;
+use App\Bundles\User\Repositories\RoleRepository;
 use App\Bundles\User\Repositories\UserRepository;
 use App\User;
 use Illuminate\Http\Request;
@@ -30,9 +31,10 @@ class RegisterController extends Controller
      * @param UserRegisterRequest $request
      * @return UserRegisteredResponse
      */
-    public function store(UserRegisterRequest $request): UserRegisteredResponse
+    public function store(UserRegisterRequest $request, RoleRepository $roles): UserRegisteredResponse
     {
-        $role = Role::query()->find($request->role_id);
+        $role = $roles->find(UserRegisterRequest::FIELD_ROLE_ID);
+
         if ($role === null || $role->isNotAllowedForSignUp()) {
             return new UserRegisteredResponse(false, 'Роль недоступна для регистрации');
         }
