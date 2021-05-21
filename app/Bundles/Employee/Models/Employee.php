@@ -36,7 +36,7 @@ class Employee extends Model implements EmployeeInterface
         self::FIELD_INSURANCE_NUMBER,
     ];
 
-    protected $table = 'controltime_employee';
+    protected $table = 'employees';
 
     public function getFullName(): string
     {
