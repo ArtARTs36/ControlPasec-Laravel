@@ -26,7 +26,7 @@ class CreateTimeReportsTable extends Migration
 
             $table->foreign(TimeReport::FIELD_EMPLOYEE_ID)
                 ->references('id')
-                ->on(\ArtARTs36\ControlTime\Support\Proxy::getEmployeeTable());
+                ->on('controltime_employee');
 
             $table->foreign(TimeReport::FIELD_DOCUMENT_ID)
                 ->references('id')

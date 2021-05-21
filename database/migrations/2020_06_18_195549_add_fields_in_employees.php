@@ -1,6 +1,5 @@
 <?php
 
-use ArtARTs36\ControlTime\Support\Proxy;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,7 +13,7 @@ class AddFieldsInEmployees extends Migration
      */
     public function up()
     {
-        Schema::table(Proxy::getEmployeeTable(), function (Blueprint $table) {
+        Schema::table('controltime_employee', function (Blueprint $table) {
             $table->date('holiday');
             $table->string('insurance_number', 15);
         });
@@ -27,7 +26,7 @@ class AddFieldsInEmployees extends Migration
      */
     public function down()
     {
-        Schema::table(Proxy::getEmployeeTable(), function (Blueprint $table) {
+        Schema::table('controltime_employee', function (Blueprint $table) {
             $table->dropColumn([
                'holiday',
                'insurance_number',

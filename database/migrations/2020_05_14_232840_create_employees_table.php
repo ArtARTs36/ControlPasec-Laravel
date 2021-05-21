@@ -18,13 +18,13 @@ class CreateEmployeesTable extends Migration
      */
     public function up()
     {
-        Schema::create(Proxy::getEmployeeTable(), function (Blueprint $table) {
+        Schema::create('controltime_employee', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
 
-            $table->string(Employee::FIELD_FAMILY, 20);
-            $table->string(Employee::FIELD_NAME, 20);
-            $table->string(Employee::FIELD_PATRONYMIC, 20);
+            $table->string('family', 20);
+            $table->string('name', 20);
+            $table->string('patronymic', 20);
         });
     }
 
@@ -35,6 +35,6 @@ class CreateEmployeesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(Proxy::getEmployeeTable());
+        Schema::dropIfExists('controltime_employee');
     }
 }
