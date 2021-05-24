@@ -2,57 +2,36 @@
 
 namespace App\Bundles\User\Http\Controllers\Auth;
 
-use App\Bundles\User\Events\UserRegistered;
 use App\Based\Contracts\Controller;
 use App\Bundles\User\Http\Requests\UserRegisterRequest;
 use App\Bundles\User\Http\Responses\UserRegisteredResponse;
-use App\Bundles\User\Models\Role;
-use App\Bundles\User\Repositories\RoleRepository;
-use App\Bundles\User\Repositories\UserRepository;
-use App\User;
-use Illuminate\Http\Request;
+use App\Bundles\User\Services\RegistrationService;
 
 class RegisterController extends Controller
 {
-    private $repository;
+    private $service;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct(UserRepository $repository)
+    public function __construct(RegistrationService $service)
     {
-        $this->middleware('guest');
-        $this->repository = $repository;
+        $this->service = $service;
     }
 
-    /**
-     * @param UserRegisterRequest $request
-     * @return UserRegisteredResponse
-     */
-    public function store(UserRegisterRequest $request, RoleRepository $roles): UserRegisteredResponse
+    public function store(UserRegisterRequest $request): UserRegisteredResponse
     {
-        $role = $roles->find(UserRegisterRequest::FIELD_ROLE_ID);
+        try {
+            $this->service->registerByRoleId(
+                $request->toArray(),
+                $request->input(UserRegisterRequest::FIELD_ROLE_ID)
+            );
 
-        if ($role === null || $role->isNotAllowedForSignUp()) {
-            return new UserRegisteredResponse(false, 'Роль недоступна для регистрации');
+            $answer = [
+                true,
+                'Вы успешно зарегистрированы на сайте! Необходимо дождаться одобрения администрации портала',
+            ];
+        } catch (\Throwable $e) {
+            $answer = [false, $e->getMessage()];
+        } finally {
+            return new UserRegisteredResponse(...$answer);
         }
-
-        event(new UserRegistered($this->create($request, $role)));
-
-        return new UserRegisteredResponse(true);
-    }
-
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param Request $request
-     * @param Role $role
-     * @return User
-     */
-    private function create(Request $request, Role $role): User
-    {
-        return $this->repository->create($request->toArray())->attachRole($role);
     }
 }

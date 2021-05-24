@@ -7,6 +7,7 @@ use App\Bundles\Contragent\Events\ExternalManagerCreated;
 use App\Bundles\Contragent\Models\Contragent;
 use App\Bundles\Contragent\Models\ContragentManager;
 use ArtARTs36\RuSpelling\People;
+use Illuminate\Events\Dispatcher as EventDispatcher;
 use Illuminate\Support\Collection;
 
 class Finder implements ContragentFinder
@@ -15,10 +16,13 @@ class Finder implements ContragentFinder
 
     protected $client;
 
-    public function __construct(DaDataClient $client)
+    protected $events;
+
+    public function __construct(DaDataClient $client, EventDispatcher $events)
     {
         $this->managers = collect();
         $this->client = $client;
+        $this->events = $events;
     }
 
     /**
