@@ -43,9 +43,4 @@ class ContractRepository extends Repository
             },
         ]);
     }
-
-    public function delete(Contract $contract): bool
-    {
-        return (bool) $contract->delete();
-    }
 }

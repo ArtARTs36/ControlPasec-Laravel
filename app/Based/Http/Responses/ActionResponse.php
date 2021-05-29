@@ -15,4 +15,14 @@ class ActionResponse extends JsonResponse
 
         parent::__construct($array, $status ?? 200, [], 0);
     }
+
+    public static function fromMessage(string $message, bool $success, ?int $status = null): self
+    {
+        return new static($success, compact('message'), $status);
+    }
+
+    public static function fromFailedMessage(string $message, int $status = 409): self
+    {
+        return self::fromMessage($message, $status);
+    }
 }

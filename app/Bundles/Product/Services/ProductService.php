@@ -2,6 +2,7 @@
 
 namespace App\Bundles\Product\Services;
 
+use App\Bundles\Product\Exceptions\CannotDeleteBasicProduct;
 use App\Bundles\Product\Models\Product;
 use App\Bundles\Product\Repositories\ProductRepository;
 use App\Bundles\Supply\Models\SupplyProduct;
@@ -68,6 +69,15 @@ class ProductService
         });
 
         return $products;
+    }
+
+    public function delete(Product $product): bool
+    {
+        if ($this->realizations->hasByParentId($product->id)) {
+            throw new CannotDeleteBasicProduct();
+        }
+
+        return $this->products->delete($product);
     }
 
     public static function cleanStatCache(): void

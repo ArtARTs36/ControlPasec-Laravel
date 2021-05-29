@@ -30,4 +30,9 @@ class SupplyProductRepository extends Repository
                 SupplyProduct::FIELD_PRICE,
             ]);
     }
+
+    public function hasByParentId(int $parentId): bool
+    {
+        return SupplyProduct::query()->where(SupplyProduct::FIELD_PARENT_ID, $parentId)->exists();
+    }
 }
