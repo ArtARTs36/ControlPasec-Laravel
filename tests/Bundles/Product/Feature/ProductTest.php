@@ -107,6 +107,8 @@ final class ProductTest extends BaseTestCase
      */
     public function testTopChart(): void
     {
+        $this->actingAsUserWithPermission(Permission::PRODUCTS_LIST_VIEW);
+
         $request = function () {
             return $this->getJson(static::API_INDEX . 'top-chart');
         };
@@ -119,6 +121,8 @@ final class ProductTest extends BaseTestCase
      */
     public function testRefreshTopChart(): void
     {
+        $this->actingAsUserWithPermission(Permission::PRODUCTS_LIST_VIEW);
+
         $request = function () {
             return $this->getJson(static::API_INDEX . 'refresh-top-chart');
         };

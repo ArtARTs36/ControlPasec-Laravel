@@ -19,7 +19,7 @@ final class ProductController extends Controller
         'update' => Permission::PRODUCTS_UPDATE,
         'destroy' => Permission::PRODUCTS_DELETE,
         'topChart' => Permission::PRODUCTS_LIST_VIEW,
-        'refreshTopChar' => Permission::PRODUCTS_LIST_VIEW,
+        'refreshTopChart' => Permission::PRODUCTS_LIST_VIEW,
     ];
 
     private $service;
