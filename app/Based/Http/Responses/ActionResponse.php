@@ -23,6 +23,6 @@ class ActionResponse extends JsonResponse
 
     public static function fromFailedMessage(string $message, int $status = 409): self
     {
-        return self::fromMessage($message, $status);
+        return self::fromMessage($message, false, $status);
     }
 }

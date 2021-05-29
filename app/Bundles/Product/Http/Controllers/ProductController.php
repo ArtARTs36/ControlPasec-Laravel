@@ -2,7 +2,6 @@
 
 namespace App\Bundles\Product\Http\Controllers;
 
-use App\Bundles\Product\Exceptions\CannotDeleteBasicProduct;
 use App\Bundles\Product\Exceptions\ProductCannotBeDeleted;
 use App\Bundles\Product\Services\ProductService;
 use App\Based\Contracts\Controller;
@@ -11,7 +10,6 @@ use App\Based\Http\Responses\ActionResponse;
 use App\Bundles\Product\Models\Product;
 use App\Bundles\User\Models\Permission;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Http\Response;
 
 final class ProductController extends Controller
 {

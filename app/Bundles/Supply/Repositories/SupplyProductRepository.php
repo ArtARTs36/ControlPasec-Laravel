@@ -33,6 +33,6 @@ class SupplyProductRepository extends Repository
 
     public function hasByParentId(int $parentId): bool
     {
-        return SupplyProduct::query()->where(SupplyProduct::FIELD_PARENT_ID, $parentId)->exists();
+        return $this->newQuery()->where(SupplyProduct::FIELD_PARENT_ID, $parentId)->exists();
     }
 }
