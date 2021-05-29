@@ -157,7 +157,6 @@ final class Permission extends BasePermission
             static::PRODUCTS_LIST_VIEW => 'Просмотр списка товаров',
             static::PRODUCTS_VIEW => 'Просмотр товара',
             static::PRODUCTS_CREATE => 'Создание товара',
-            static::PRODUCTS_EDIT => 'Редактирование товара',
             static::PRODUCTS_DELETE => 'Удаление товара',
             static::PRODUCTS_UPDATE => 'Обновление товара',
 

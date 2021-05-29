@@ -2,7 +2,6 @@
 
 namespace App\Bundles\Product\Http\Controllers;
 
-use App\Bundles\Product\Repositories\ProductRepository;
 use App\Bundles\Product\Services\ProductService;
 use App\Based\Contracts\Controller;
 use App\Bundles\Product\Http\Requests\StoreProduct;
@@ -19,15 +18,14 @@ final class ProductController extends Controller
         'store' => Permission::PRODUCTS_CREATE,
         'update' => Permission::PRODUCTS_UPDATE,
         'destroy' => Permission::PRODUCTS_DELETE,
+        'topChart' => Permission::PRODUCTS_LIST_VIEW,
+        'refreshTopChar' => Permission::PRODUCTS_LIST_VIEW,
     ];
-
-    private $repository;
 
     private $service;
 
-    public function __construct(ProductRepository $repository, ProductService $service)
+    public function __construct(ProductService $service)
     {
-        $this->repository = $repository;
         $this->service = $service;
     }
 
@@ -37,7 +35,7 @@ final class ProductController extends Controller
      */
     public function index(int $page = 1): LengthAwarePaginator
     {
-        return $this->repository->paginate($page);
+        return $this->service->show($page);
     }
 
     /**

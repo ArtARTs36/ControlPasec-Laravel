@@ -53,6 +53,8 @@ RUN apt-get update
 
 RUN apt-get -y install yarn
 
+RUN apt-get install -y rsync
+
 # Install composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php composer-setup.php \

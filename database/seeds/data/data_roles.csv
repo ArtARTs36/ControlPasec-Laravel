@@ -3,3 +3,4 @@ admin;api;Администратор;false
 manager;api;Менеджер;true
 customer;api;Заказчик;true
 group_customer;api;Представитель группы заказчиков;true
+storekeeper;api;Кладовщик;true

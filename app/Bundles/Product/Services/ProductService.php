@@ -3,8 +3,11 @@
 namespace App\Bundles\Product\Services;
 
 use App\Bundles\Product\Models\Product;
+use App\Bundles\Product\Repositories\ProductRepository;
 use App\Bundles\Supply\Models\SupplyProduct;
+use App\Bundles\Supply\Repositories\SupplyProductRepository;
 use Carbon\Carbon;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
@@ -12,6 +15,24 @@ use Illuminate\Support\Facades\Cache;
 class ProductService
 {
     private const CACHE_TOP_CHART_KEY = 'product_top-chart';
+
+    protected $products;
+
+    protected $realizations;
+
+    public function __construct(ProductRepository $products, SupplyProductRepository $realizations)
+    {
+        $this->products = $products;
+        $this->realizations = $realizations;
+    }
+
+    /**
+     * @return LengthAwarePaginator|Product[]
+     */
+    public function show(int $page): LengthAwarePaginator
+    {
+        return $this->products->paginate($page);
+    }
 
     public function getStat(int $count): array
     {
@@ -26,20 +47,7 @@ class ProductService
 
     public function bringStat(): array
     {
-        $supplyProducts = SupplyProduct::query()
-            ->with([SupplyProduct::RELATION_PARENT => function (BelongsTo $product) {
-                $product
-                    ->distinct()
-                    ->with([
-                        Product::RELATION_CURRENCY => function (BelongsTo $query) {
-                            $query->distinct();
-                        },
-                    ]);
-            }])->get([
-                SupplyProduct::FIELD_PARENT_ID,
-                SupplyProduct::FIELD_QUANTITY,
-                SupplyProduct::FIELD_PRICE,
-            ]);
+        $supplyProducts = $this->realizations->getAllWithParentAndCurrency();
 
         $products = [];
 
