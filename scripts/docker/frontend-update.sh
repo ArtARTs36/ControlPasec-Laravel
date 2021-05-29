@@ -7,5 +7,5 @@ cd ControlPasec-Laravel/frontend
 git pull
 yarn
 yarn build
-mv dist/* build
+rsync -av --delete dist build
 " | docker exec -i Laravel-php-fpm bash
