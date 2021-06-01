@@ -6,8 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateSuppliesTable extends Migration
 {
-    const TABLE = 'supplies';
-
     /**
      * Run the migrations.
      *
@@ -15,18 +13,18 @@ class CreateSuppliesTable extends Migration
      */
     public function up()
     {
-        Schema::create(self::TABLE, function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
+        Schema::create('supplies', function (Blueprint $table) {
+            $table->bigIncrements('id')->comment('Идентификатор');
 
-            $table->date('planned_date');
-            $table->date('execute_date')->nullable();
+            $table->timestamp('created_at')->nullable()->comment('Дата создания УЗ');
+            $table->timestamp('updated_at')->nullable()->comment('Дата обновления УЗ');
 
-            $table->unsignedInteger('supplier_id');
-            $table->unsignedInteger('customer_id');
-        });
+            $table->date('planned_date')->comment('Планируемая дата поставки');
+            $table->date('execute_date')->nullable()->comment('Фактическая дата поставки');
 
-        Schema::table('supplies', function (Blueprint $table) {
+            $table->unsignedInteger('supplier_id')->comment('Идентификатор поставщика');
+            $table->unsignedInteger('customer_id')->comment('Идентификатор заказчика');
+
             $table->foreign('supplier_id')
                 ->references('id')
                 ->on('contragents');
@@ -44,6 +42,6 @@ class CreateSuppliesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(self::TABLE);
+        Schema::dropIfExists('supplies');
     }
 }

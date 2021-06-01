@@ -14,8 +14,8 @@ class CreatePlantsTable extends Migration
     public function up()
     {
         Schema::create('plants', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name');
+            $table->bigIncrements('id')->comment('Идентификатор');
+            $table->string('name')->comment('Название');
             $table->timestamps();
 
             $table->unsignedBigInteger('category_id');
