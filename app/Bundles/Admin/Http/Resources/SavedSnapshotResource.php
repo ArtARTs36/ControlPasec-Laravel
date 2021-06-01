@@ -18,11 +18,19 @@ class SavedSnapshotResource extends JsonResource
                 'user' => $this->cpu_user_usage,
                 'system' => $this->cpu_system_usage,
                 'idle' => $this->cpu_idle,
+                'state' => [
+                    'id' => $this->getCpuState(),
+                    'title' => $this->getCpuStateText(),
+                ],
             ],
             'memory' => [
                 'available' => $this->disk_available,
                 'used' => $this->disk_used,
                 'total' => $this->disk_total,
+                'state' => [
+                    'id' => $this->getDiskState(),
+                    'title' => $this->getDiskStateText(),
+                ],
             ],
         ];
     }
