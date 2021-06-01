@@ -1,6 +1,8 @@
 FROM phpdockerio/php73-fpm:latest
 WORKDIR "/"
 
+RUN chown -R www-data:www-data /
+
 # Fix debconf warnings upon build
 ARG DEBIAN_FRONTEND=noninteractive
 
