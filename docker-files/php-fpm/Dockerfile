@@ -72,6 +72,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get -y install \
   fonts-lmodern fonts-lyx fonts-sil-gentium fonts-texgyre fonts-tlwg-purisa fonts-opensymbol && \
   rm -rf /var/lib/apt/lists/*
 
+ADD . /ControlPasec-Laravel
 RUN chown -R www-data:www-data /ControlPasec-Laravel
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
