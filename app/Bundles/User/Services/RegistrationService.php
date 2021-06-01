@@ -46,7 +46,7 @@ class RegistrationService
     public function register(array $data, Role $role): User
     {
         if ($role->isNotAllowedForSignUp()) {
-            throw new \LogicException(false, 'Роль недоступна для регистрации');
+            throw new \LogicException('Роль недоступна для регистрации', 409);
         }
 
         $user = $this->users->create(array_merge(

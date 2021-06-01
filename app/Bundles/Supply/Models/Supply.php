@@ -8,6 +8,7 @@ use App\Bundles\Supply\Support\WithSupplierAndCustomer;
 use App\Bundles\Admin\Models\VariableDefinition;
 use Creatortsv\EloquentPipelinesModifier\WithModifier;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
@@ -25,6 +26,8 @@ use Illuminate\Support\Collection;
  * @property Collection|SupplyProduct[] $products
  * @property Contract $contract
  * @property int $contract_id
+ * @property int $status_id
+ * @property SupplyStatus $status
  *
  * @mixin Builder
  */
@@ -71,5 +74,10 @@ class Supply extends Model
     public function scoreForPayments(): HasMany
     {
         return $this->hasMany(ScoreForPayment::class);
+    }
+
+    public function status(): BelongsTo
+    {
+        return $this->belongsTo(SupplyStatus::class);
     }
 }
