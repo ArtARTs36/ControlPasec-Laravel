@@ -3,6 +3,7 @@
 namespace App\Bundles\Admin\Providers;
 
 use App\Based\Contracts\BundleProvider;
+use App\Bundles\Admin\Console\Commands\CreateSystemSnapshotCommand;
 use App\Bundles\Admin\Contracts\AppChangeHistory;
 use App\Bundles\Admin\Models\AdminService;
 use App\Bundles\Admin\Services\GitAppChangeHistory;
@@ -41,5 +42,7 @@ final class AdminProvider extends BundleProvider
         $this->app->bind(System::class, function () {
             return SystemFacade::get();
         });
+
+        $this->commands(CreateSystemSnapshotCommand::class);
     }
 }
