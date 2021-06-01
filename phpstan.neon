@@ -16,6 +16,7 @@ parameters:
         - '#LengthAwarePaginator is not generic#'
         - '#but returns Illuminate\\Database\\Eloquent\\Collection<Illuminate\\Database\\Eloquent\\Model>#'
         - '#pluck\(\) expects array\|string, null given#'
+        - '#is not subtype of native type Illuminate\\Support\\Collection#'
 
     excludePaths:
         - ./app/Bundles/*/Database/Factories/*.php

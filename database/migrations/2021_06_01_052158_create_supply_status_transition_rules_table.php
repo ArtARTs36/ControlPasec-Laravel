@@ -28,7 +28,10 @@ class CreateSupplyStatusTransitionRulesTable extends Migration
                 ->references('id')
                 ->on('supply_statuses');
 
-            $table->unsignedBigInteger('creator_id')->comment('Пользователь, создавший правило');
+            $table
+                ->unsignedBigInteger('creator_id')
+                ->nullable()
+                ->comment('Пользователь, создавший правило');
             $table
                 ->foreign('creator_id')
                 ->references('id')

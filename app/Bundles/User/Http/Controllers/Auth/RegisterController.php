@@ -30,8 +30,8 @@ class RegisterController extends Controller
             ];
         } catch (\Throwable $e) {
             $answer = [false, $e->getMessage()];
-        } finally {
-            return new UserRegisteredResponse(...$answer);
         }
+
+        return new UserRegisteredResponse(...$answer);
     }
 }

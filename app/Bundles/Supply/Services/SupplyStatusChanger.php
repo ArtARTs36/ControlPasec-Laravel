@@ -31,14 +31,20 @@ class SupplyStatusChanger
     {
         $transfer = new StatusesTransfer($supply->status, $toStatus);
 
+        // Статусы совпадают, не даем совершить переход
         if ($transfer->isStatusesEquals()) {
             throw new SupplyIsAlreadyRequestedStatus($toStatus);
         }
 
+        // Правило перехода - отсуствует
         if ($this->rules->exists($supply->status_id, $toStatus->id)) {
             throw new SupplyStatusTransitionNotAllowed($supply->status, $toStatus);
         }
 
+        // Устанвливаем новый статус
+        $supply->status()->associate($toStatus);
+
+        // Создаем переход
         return $this->transitions->create($supply, $transfer, $user);
     }
 }
