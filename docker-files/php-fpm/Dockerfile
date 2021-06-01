@@ -1,7 +1,7 @@
 FROM phpdockerio/php73-fpm:latest
 WORKDIR "/"
 
-RUN chown -R www-data:www-data /
+RUN chown -R www-data:www-data /ControlPasec-Laravel
 
 # Fix debconf warnings upon build
 ARG DEBIAN_FRONTEND=noninteractive
