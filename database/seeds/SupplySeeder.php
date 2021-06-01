@@ -22,6 +22,8 @@ class SupplySeeder extends CommonSeeder
      */
     public function run()
     {
+        $this->call(SupplyStatusSeeder::class);
+
         if (env('APP_ENV') == 'local') {
             $this->randomData();
         }
