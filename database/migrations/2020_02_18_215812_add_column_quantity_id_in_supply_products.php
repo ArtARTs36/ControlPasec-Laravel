@@ -14,7 +14,7 @@ class AddColumnQuantityIdInSupplyProducts extends Migration
     public function up()
     {
         Schema::table('supply_products', function (Blueprint $table) {
-            $table->unsignedInteger('quantity_unit_id');
+            $table->unsignedInteger('quantity_unit_id')->comment('Идентификатор единицы измерения');
 
             $table->foreign('quantity_unit_id')
                 ->references('id')
@@ -30,7 +30,8 @@ class AddColumnQuantityIdInSupplyProducts extends Migration
     public function down()
     {
         Schema::table('supply_products', function (Blueprint $table) {
-            //
+            $table->dropForeign('quantity_unit_id');
+            $table->dropColumn('quantity_unit_id');
         });
     }
 }

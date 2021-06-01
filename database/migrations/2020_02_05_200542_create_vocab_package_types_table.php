@@ -14,10 +14,11 @@ class CreateVocabPackageTypesTable extends Migration
     public function up()
     {
         Schema::create('vocab_package_types', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
+            $table->bigIncrements('id')->comment('Идентификатор');
+            $table->timestamp('created_at')->nullable()->comment('Дата создания');
+            $table->timestamp('updated_at')->nullable()->comment('Дата обновления');
 
-            $table->string('name');
+            $table->string('name')->comment('Название');
         });
     }
 
