@@ -1,8 +1,6 @@
 FROM phpdockerio/php73-fpm:latest
 WORKDIR "/"
 
-RUN chown -R www-data:www-data /ControlPasec-Laravel
-
 # Fix debconf warnings upon build
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -73,5 +71,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get -y install \
   fonts-droid-fallback fonts-dustin fonts-f500 fonts-fanwood fonts-freefont-ttf fonts-liberation \
   fonts-lmodern fonts-lyx fonts-sil-gentium fonts-texgyre fonts-tlwg-purisa fonts-opensymbol && \
   rm -rf /var/lib/apt/lists/*
+
+RUN chown -R www-data:www-data /ControlPasec-Laravel
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
