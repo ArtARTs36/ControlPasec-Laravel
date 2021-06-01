@@ -16,8 +16,8 @@ class CreateSuppliesTable extends Migration
         Schema::create('supplies', function (Blueprint $table) {
             $table->bigIncrements('id')->comment('Идентификатор');
 
-            $table->timestamp('created_at')->nullable()->comment('Дата создания УЗ');
-            $table->timestamp('updated_at')->nullable()->comment('Дата обновления УЗ');
+            $table->timestamp('created_at')->nullable()->comment('Дата создания');
+            $table->timestamp('updated_at')->nullable()->comment('Дата обновления');
 
             $table->date('planned_date')->comment('Планируемая дата поставки');
             $table->date('execute_date')->nullable()->comment('Фактическая дата поставки');

@@ -15,6 +15,8 @@ class SupplyStatus extends Model
     public const FIELD_TITLE = 'title';
     public const FIELD_SLUG = 'slug';
 
+    public const SLUG_NEW = 'new';
+
     protected $fillable = [
         self::FIELD_TITLE,
         self::FIELD_SLUG,

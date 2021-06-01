@@ -16,7 +16,10 @@ class CreateSupplyStatusTransitionsTable extends Migration
         Schema::create('supply_status_transitions', function (Blueprint $table) {
             $table->bigIncrements('id')->comment('Идентификатор перехода');
 
-            $table->unsignedBigInteger('from_status_id')->comment('Прежний статус');
+            $table
+                ->unsignedBigInteger('from_status_id')
+                ->nullable()
+                ->comment('Прежний статус');
             $table
                 ->foreign('from_status_id')
                 ->references('id')

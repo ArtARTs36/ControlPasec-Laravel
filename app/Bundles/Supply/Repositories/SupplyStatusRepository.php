@@ -14,4 +14,9 @@ class SupplyStatusRepository extends Repository
             SupplyStatus::FIELD_SLUG => $slug,
         ]);
     }
+
+    public function findBySlug(string $slug): SupplyStatus
+    {
+        return $this->newQuery()->where(SupplyStatus::FIELD_SLUG, $slug)->firstOrFail();
+    }
 }
