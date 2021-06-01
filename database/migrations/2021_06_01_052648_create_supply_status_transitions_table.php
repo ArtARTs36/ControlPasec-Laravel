@@ -35,6 +35,12 @@ class CreateSupplyStatusTransitionsTable extends Migration
                 ->on('users');
 
             $table->dateTime('executed_at')->comment('Дата и время выполнения перехода');
+
+            $table->unsignedBigInteger('supply_id')->comment('Идентификатор поставки');
+            $table
+                ->foreign('supply_id')
+                ->references('id')
+                ->on('supplies');
         });
     }
 
