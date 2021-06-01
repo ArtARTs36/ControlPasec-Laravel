@@ -6,8 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateScoreForPaymentsTable extends Migration
 {
-    const TABLE = 'score_for_payments';
-
     /**
      * Run the migrations.
      *
@@ -15,18 +13,17 @@ class CreateScoreForPaymentsTable extends Migration
      */
     public function up()
     {
-        Schema::create(self::TABLE, function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
+        Schema::create('score_for_payments', function (Blueprint $table) {
+            $table->bigIncrements('id')->comment('Идентификатор');
+            $table->timestamp('created_at')->nullable()->comment('Дата создания');
+            $table->timestamp('updated_at')->nullable()->comment('Дата обновления');
 
-            $table->date('date');
+            $table->date('date')->comment('Дата');
 
-            $table->unsignedInteger('supply_id');
-            $table->unsignedInteger('contract_id')->nullable();
-            $table->bigInteger('order_number')->nullable();
-        });
+            $table->unsignedInteger('supply_id')->comment('Идентификатор поставки');
+            $table->unsignedInteger('contract_id')->nullable()->comment('Идентификатор договора');
+            $table->bigInteger('order_number')->nullable()->comment('Порядковый номер');
 
-        Schema::table(self::TABLE, function (Blueprint $table) {
             $table->foreign('supply_id')
                 ->references('id')
                 ->on('supplies');
@@ -44,6 +41,6 @@ class CreateScoreForPaymentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(self::TABLE);
+        Schema::dropIfExists('score_for_payments');
     }
 }

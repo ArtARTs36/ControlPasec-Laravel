@@ -33,5 +33,6 @@ Route::prefix('admin')->group(function () {
 
     Route::prefix('system')->group(function () {
         Route::get('snapshot', 'SystemController@snapshot');
+        Route::get('snapshots', 'SystemController@snapshots');
     });
 });
