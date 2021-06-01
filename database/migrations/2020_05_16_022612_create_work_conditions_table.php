@@ -16,15 +16,17 @@ class CreateWorkConditionsTable extends Migration
     {
         Schema::create('work_conditions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
 
-            $table->string('position', 50)->nullable();
-            $table->double('rate');
-            $table->unsignedInteger('employee_id');
-            $table->integer('amount_hour');
-            $table->date('hire_date');
-            $table->date('fire_date')->nullable();
-            $table->string('tab_number');
+            $table->timestamp('created_at')->nullable()->comment('Дата создания');
+            $table->timestamp('updated_at')->nullable()->comment('Дата обновления');
+
+            $table->string('position', 50)->nullable()->comment('Должность');
+            $table->double('rate')->comment('Ставка');
+            $table->unsignedInteger('employee_id')->comment('Идентификатор сотрудника');
+            $table->integer('amount_hour')->comment('Сумма почасовой оплаты');
+            $table->date('hire_date')->comment('Дата найма');
+            $table->date('fire_date')->nullable()->comment('Дата увольнения');
+            $table->string('tab_number')->comment('Табельный номер');
 
             $table->foreign('employee_id')
                 ->references('id')

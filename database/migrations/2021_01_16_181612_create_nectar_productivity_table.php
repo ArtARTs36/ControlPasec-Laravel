@@ -14,16 +14,18 @@ class CreateNectarProductivityTable extends Migration
     public function up()
     {
         Schema::create('nectar_productivity', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
+            $table->bigIncrements('id')->comment('Идентификатор');
 
-            $table->unsignedBigInteger('plant_id');
+            $table->timestamp('created_at')->nullable()->comment('Дата создания');
+            $table->timestamp('updated_at')->nullable()->comment('Дата обновления');
+
+            $table->unsignedBigInteger('plant_id')->comment('Идентификатор растения');
             $table->foreign('plant_id')
                 ->references('id')
                 ->on('plants');
 
-            $table->integer('nectar_min');
-            $table->integer('nectar_max');
+            $table->integer('nectar_min')->comment('Минимальный объем нектара');
+            $table->integer('nectar_max')->comment('Максимальный объем нектара');
         });
     }
 

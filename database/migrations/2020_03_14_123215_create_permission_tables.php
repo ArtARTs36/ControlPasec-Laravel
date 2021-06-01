@@ -17,24 +17,26 @@ class CreatePermissionTables extends Migration
         $tableNames = config('permission.table_names');
         $columnNames = config('permission.column_names');
 
-        Schema::create($tableNames['permissions'], function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('guard_name');
-            $table->string('title');
-            $table->timestamps();
+        Schema::create('permissions', function (Blueprint $table) {
+            $table->bigIncrements('id')->comment('Идентификатор');
+            $table->string('name')->comment('Название');
+            $table->string('guard_name')->comment('Область полномочия: web/api');
+            $table->string('title')->comment('Кодовое название');
+            $table->timestamp('created_at')->nullable()->comment('Дата создания');
+            $table->timestamp('updated_at')->nullable()->comment('Дата обновления');
         });
 
-        Schema::create($tableNames['roles'], function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name');
+        Schema::create('roles', function (Blueprint $table) {
+            $table->bigIncrements('id')->comment('Идентификатор');
+            $table->string('name')->comment('Название');
             $table->string('guard_name');
-            $table->string('title');
-            $table->boolean('is_allowed_for_sign_up');
-            $table->timestamps();
+            $table->string('title')->comment('Кодовое название');
+            $table->boolean('is_allowed_for_sign_up')->comment('Доступно ли для регистрации');
+            $table->timestamp('created_at')->nullable()->comment('Дата создания');
+            $table->timestamp('updated_at')->nullable()->comment('Дата обновления');
         });
 
-        Schema::create($tableNames['model_has_permissions'], function (Blueprint $table) use ($tableNames, $columnNames) {
+        Schema::create('model_has_permissions', function (Blueprint $table) use ($tableNames, $columnNames) {
             $table->unsignedBigInteger('permission_id');
 
             $table->string('model_type');
@@ -52,10 +54,10 @@ class CreatePermissionTables extends Migration
             );
         });
 
-        Schema::create($tableNames['model_has_roles'], function (Blueprint $table) use ($tableNames, $columnNames) {
-            $table->unsignedBigInteger('role_id');
+        Schema::create('model_has_roles', function (Blueprint $table) use ($tableNames, $columnNames) {
+            $table->unsignedBigInteger('role_id')->comment('Идентификатор роли');
 
-            $table->string('model_type');
+            $table->string('model_type')->comment('Тип программной модели');
             $table->unsignedBigInteger($columnNames['model_morph_key']);
             $table->index([$columnNames['model_morph_key'], 'model_type'], 'model_has_roles_model_id_model_type_index');
 
@@ -70,18 +72,18 @@ class CreatePermissionTables extends Migration
             );
         });
 
-        Schema::create($tableNames['role_has_permissions'], function (Blueprint $table) use ($tableNames) {
+        Schema::create('role_has_permissions', function (Blueprint $table) use ($tableNames) {
             $table->unsignedBigInteger('permission_id');
             $table->unsignedBigInteger('role_id');
 
             $table->foreign('permission_id')
                 ->references('id')
-                ->on($tableNames['permissions'])
+                ->on('permissions')
                 ->onDelete('cascade');
 
             $table->foreign('role_id')
                 ->references('id')
-                ->on($tableNames['roles'])
+                ->on('roles')
                 ->onDelete('cascade');
 
             $table->primary(['permission_id', 'role_id'], 'role_has_permissions_permission_id_role_id_primary');

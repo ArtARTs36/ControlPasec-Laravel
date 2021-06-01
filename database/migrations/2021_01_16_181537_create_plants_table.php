@@ -16,9 +16,11 @@ class CreatePlantsTable extends Migration
         Schema::create('plants', function (Blueprint $table) {
             $table->bigIncrements('id')->comment('Идентификатор');
             $table->string('name')->comment('Название');
-            $table->timestamps();
 
-            $table->unsignedBigInteger('category_id');
+            $table->timestamp('created_at')->nullable()->comment('Дата создания');
+            $table->timestamp('updated_at')->nullable()->comment('Дата обновления');
+
+            $table->unsignedBigInteger('category_id')->comment('Идентификатор категории');
             $table->foreign('category_id')
                 ->on('plant_categories')
                 ->references('id');

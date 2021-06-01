@@ -14,16 +14,18 @@ class CreatePlantBloomsTable extends Migration
     public function up()
     {
         Schema::create('plant_blooms', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
+            $table->bigIncrements('id')->comment('Идентификатор');
 
-            $table->integer('start_month');
-            $table->integer('start_day');
+            $table->timestamp('created_at')->nullable()->comment('Дата создания');
+            $table->timestamp('updated_at')->nullable()->comment('Дата обновления');
 
-            $table->integer('end_month');
-            $table->integer('end_day');
+            $table->integer('start_month')->comment('Начало цветения. Месяц');
+            $table->integer('start_day')->comment('Начало цветения. День');
 
-            $table->unsignedBigInteger('plant_id');
+            $table->integer('end_month')->comment('Конец цветения. Месяц');
+            $table->integer('end_day')->comment('Конец цветения. Месяц');
+
+            $table->unsignedBigInteger('plant_id')->comment('Идентификатор растения');
             $table->foreign('plant_id')
                 ->on('plants')
                 ->references('id');
