@@ -52,7 +52,7 @@ final class RegisterTest extends BaseTestCase
             'patronymic' => $this->faker()->word,
             'family' => $this->faker()->word,
             'role_id' => $role->id,
-            'password' => $this->faker()->password,
+            'password' => $this->faker()->password(8),
             'email' => $this->faker()->email,
         ];
     }
