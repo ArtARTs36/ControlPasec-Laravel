@@ -9,10 +9,15 @@ use App\Based\Contracts\Controller;
 use App\Bundles\Supply\Http\Requests\StoreManySupply;
 use App\Based\Http\Responses\ActionResponse;
 use App\Bundles\Supply\Models\Supply;
+use App\Bundles\Supply\Models\SupplyStatus;
+use App\Bundles\Supply\Services\SupplyStatusChanger;
 use App\Bundles\User\Models\Permission;
 use App\Bundles\Supply\Repositories\SupplyRepository;
 use App\Bundles\Supply\Services\SupplyService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Auth;
 
 final class SupplyController extends Controller
 {
@@ -107,5 +112,14 @@ final class SupplyController extends Controller
     public function storeMany(StoreManySupply $request, Creator $creator): ActionResponse
     {
         return $creator->many($request->getItems(), $request->getOptions());
+    }
+
+    /**
+     * Установить статус процедуры
+     * @throws \App\Bundles\Supply\Exceptions\SupplyIsAlreadyRequestedStatus
+     */
+    public function setStatus(Supply $supply, SupplyStatus $status, SupplyStatusChanger $statusChanger): JsonResource
+    {
+        return new JsonResource($statusChanger->change($supply, $status, Auth::user()));
     }
 }

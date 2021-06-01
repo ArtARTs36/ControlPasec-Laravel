@@ -10,6 +10,7 @@ Route::prefix('supplies')->group(function () {
 });
 
 Route::apiResource('supplies', 'SupplyController');
+Route::patch('supplies/{supply}/{status/', 'SupplyController@setStatus');
 
 // API Для счетов на оплату
 
