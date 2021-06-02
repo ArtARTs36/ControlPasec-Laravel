@@ -23,7 +23,7 @@ class CreateTransitionForNewSupply
     {
         $this->transitions->createByStatus(
             $event->supply,
-            $this->statuses->findBySlug(SupplyStatus::FIELD_SLUG),
+            $this->statuses->findBySlug(SupplyStatus::SLUG_NEW),
             $event->creator
         );
     }

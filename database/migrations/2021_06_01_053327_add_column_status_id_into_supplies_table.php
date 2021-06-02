@@ -14,7 +14,7 @@ class AddColumnStatusIdIntoSuppliesTable extends Migration
     public function up()
     {
         Schema::table('supplies', function (Blueprint $table) {
-            $table->unsignedBigInteger('status_id')->nullable()->comment('Текущий статус');
+            $table->unsignedBigInteger('status_id')->default(1)->comment('Текущий статус');
 
             $table->foreign('status_id')->on('supply_statuses')->references('id');
         });
