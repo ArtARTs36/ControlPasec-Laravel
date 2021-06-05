@@ -52,6 +52,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call(HolidayDatabaseSeeder::class);
         $this->call(PlantSeeder::class);
+
+        $this->call(TotemTaskSeeder::class);
     }
 
     private function vocabs(): void

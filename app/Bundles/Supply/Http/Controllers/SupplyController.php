@@ -15,10 +15,8 @@ use App\Bundles\Supply\Services\SupplyStatusChanger;
 use App\Bundles\User\Models\Permission;
 use App\Bundles\Supply\Repositories\SupplyRepository;
 use App\Bundles\Supply\Services\SupplyService;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Facades\Auth;
 
 final class SupplyController extends Controller
 {
@@ -121,7 +119,7 @@ final class SupplyController extends Controller
      */
     public function setStatus(Supply $supply, SupplyStatus $status, SupplyStatusChanger $statusChanger): JsonResource
     {
-        return new JsonResource($statusChanger->change($supply, $status, Auth::user()));
+        return new JsonResource($statusChanger->change($supply, $status, $this->getUser()));
     }
 
     public function history(Supply $supply, SupplyStatusTransitionRepository $transitions): JsonResource
