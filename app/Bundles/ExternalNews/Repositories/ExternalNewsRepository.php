@@ -17,10 +17,11 @@ class ExternalNewsRepository extends Repository implements \App\Bundles\External
             ->paginate(10, ['*'], 'ExternalNewsList', $page);
     }
 
-    public function getByLinks(array $links): Collection
+    public function getByLinks(array $links, array $columns = ['*']): Collection
     {
         return $this
             ->newQuery()
+            ->select($columns)
             ->whereIn(ExternalNews::FIELD_LINK, $links)
             ->get();
     }

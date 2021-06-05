@@ -17,5 +17,7 @@ final class ClearCurrencyCoursesCommand extends Command
     public function handle()
     {
         CurrencyCourse::query()->truncate();
+
+        $this->info('Курсы валют успешно очищены!');
     }
 }

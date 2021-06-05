@@ -39,6 +39,23 @@ abstract class Repository
         return $this->force()->where('id', $id)->first();
     }
 
+    public function truncate(): int
+    {
+        $count = $this->newQuery()->count();
+
+        $this->newQuery()->truncate();
+
+        return $count;
+    }
+
+    /**
+     * @param array<array<string, mixed>> $values
+     */
+    public function insertOrIgnore(array $values): int
+    {
+        return $this->newQuery()->insertOrIgnore($values);
+    }
+
     protected function getModelClass(): string
     {
         return str_replace(['Repositories', 'Repository'], ['Models', ''], static::class);
