@@ -8,6 +8,7 @@ use App\Bundles\Supply\Models\Supply;
 use App\Bundles\Supply\Models\SupplyStatus;
 use App\Bundles\Supply\Models\SupplyStatusTransition;
 use App\User;
+use Illuminate\Support\Collection;
 
 class SupplyStatusTransitionRepository extends Repository
 {
@@ -33,5 +34,21 @@ class SupplyStatusTransitionRepository extends Repository
             SupplyStatusTransition::FIELD_USER_ID => $user->id,
             SupplyStatusTransition::FIELD_EXECUTED_AT => new \DateTime(),
         ]);
+    }
+
+    /**
+     * @return Collection|iterable<SupplyStatusTransition>
+     */
+    public function getBySupply(Supply $supply): Collection
+    {
+        return $this
+            ->newQuery()
+            ->where(SupplyStatusTransition::FIELD_SUPPLY_ID, $supply->id)
+            ->with([
+                SupplyStatusTransition::RELATION_FROM_STATUS,
+                SupplyStatusTransition::RELATION_TO_STATUS,
+                SupplyStatusTransition::RELATION_USER,
+            ])
+            ->get();
     }
 }

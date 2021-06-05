@@ -30,6 +30,10 @@ class SupplyStatusTransition extends Model
     public const FIELD_USER_ID = 'user_id';
     public const FIELD_EXECUTED_AT = 'executed_at';
 
+    public const RELATION_FROM_STATUS = 'fromStatus';
+    public const RELATION_TO_STATUS = 'toStatus';
+    public const RELATION_USER = 'user';
+
     public $timestamps = false;
 
     protected $fillable = [

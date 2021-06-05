@@ -10,6 +10,7 @@ use App\Bundles\Supply\Http\Requests\StoreManySupply;
 use App\Based\Http\Responses\ActionResponse;
 use App\Bundles\Supply\Models\Supply;
 use App\Bundles\Supply\Models\SupplyStatus;
+use App\Bundles\Supply\Repositories\SupplyStatusTransitionRepository;
 use App\Bundles\Supply\Services\SupplyStatusChanger;
 use App\Bundles\User\Models\Permission;
 use App\Bundles\Supply\Repositories\SupplyRepository;
@@ -121,5 +122,10 @@ final class SupplyController extends Controller
     public function setStatus(Supply $supply, SupplyStatus $status, SupplyStatusChanger $statusChanger): JsonResource
     {
         return new JsonResource($statusChanger->change($supply, $status, Auth::user()));
+    }
+
+    public function history(Supply $supply, SupplyStatusTransitionRepository $transitions): JsonResource
+    {
+        return JsonResource::collection($transitions->getBySupply($supply));
     }
 }
