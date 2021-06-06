@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $user_id
  * @property User $user
  * @property \DateTimeInterface $executed_at
+ * @property string $comment
  */
 class SupplyStatusTransition extends Model
 {
@@ -29,6 +30,7 @@ class SupplyStatusTransition extends Model
     public const FIELD_TO_STATUS_ID = 'to_status_id';
     public const FIELD_USER_ID = 'user_id';
     public const FIELD_EXECUTED_AT = 'executed_at';
+    public const FIELD_COMMENT = 'comment';
 
     public const RELATION_FROM_STATUS = 'fromStatus';
     public const RELATION_TO_STATUS = 'toStatus';
@@ -42,6 +44,7 @@ class SupplyStatusTransition extends Model
         self::FIELD_TO_STATUS_ID,
         self::FIELD_USER_ID,
         self::FIELD_EXECUTED_AT,
+        self::FIELD_COMMENT,
     ];
 
     protected $dates = [

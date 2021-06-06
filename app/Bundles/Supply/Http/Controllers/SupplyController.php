@@ -3,13 +3,16 @@
 namespace App\Bundles\Supply\Http\Controllers;
 
 use App\Bundles\Supply\Contracts\Creator;
+use App\Bundles\Supply\DataObjects\StatusesTransfer;
 use App\Bundles\Supply\Http\Requests\StoreSupply;
+use App\Bundles\Supply\Http\Requests\SupplyTransitionRequest;
 use App\Bundles\Supply\Http\Resources\SupplyResource;
 use App\Based\Contracts\Controller;
 use App\Bundles\Supply\Http\Requests\StoreManySupply;
 use App\Based\Http\Responses\ActionResponse;
 use App\Bundles\Supply\Models\Supply;
-use App\Bundles\Supply\Models\SupplyStatus;
+use App\Bundles\Supply\Models\SupplyStatusTransition;
+use App\Bundles\Supply\Models\SupplyStatusTransitionRule;
 use App\Bundles\Supply\Repositories\SupplyStatusTransitionRepository;
 use App\Bundles\Supply\Services\SupplyStatusChanger;
 use App\Bundles\User\Models\Permission;
@@ -114,12 +117,25 @@ final class SupplyController extends Controller
     }
 
     /**
-     * Установить статус процедуры
      * @throws \App\Bundles\Supply\Exceptions\SupplyIsAlreadyRequestedStatus
      */
-    public function setStatus(Supply $supply, SupplyStatus $status, SupplyStatusChanger $statusChanger): JsonResource
-    {
-        return new JsonResource($statusChanger->change($supply, $status, $this->getUser()));
+    public function transition(
+        SupplyTransitionRequest $request,
+        Supply $supply,
+        SupplyStatusTransitionRule $rule,
+        SupplyStatusChanger $statusChanger
+    ): JsonResource {
+        return new JsonResource(
+            $statusChanger->change(
+                $supply,
+                new StatusesTransfer(
+                    $supply->status,
+                    $rule->toStatus,
+                    $this->getUser(),
+                    $request->input('comment')
+                )
+            )->load(SupplyStatusTransition::RELATION_TO_STATUS)
+        );
     }
 
     public function history(Supply $supply, SupplyStatusTransitionRepository $transitions): JsonResource

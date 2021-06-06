@@ -14,15 +14,15 @@ class SupplyStatusTransitionRepository extends Repository
 {
     public function create(
         Supply $supply,
-        StatusesTransfer $transfer,
-        User $user
+        StatusesTransfer $transfer
     ): SupplyStatusTransition {
         return $this->newQuery()->create([
             SupplyStatusTransition::FIELD_SUPPLY_ID => $supply->id,
             SupplyStatusTransition::FIELD_FROM_STATUS_ID => $transfer->getFromStatus()->id,
             SupplyStatusTransition::FIELD_TO_STATUS_ID => $transfer->getToStatus()->id,
-            SupplyStatusTransition::FIELD_USER_ID => $user->id,
+            SupplyStatusTransition::FIELD_USER_ID => $transfer->getUser()->id,
             SupplyStatusTransition::FIELD_EXECUTED_AT => new \DateTime(),
+            SupplyStatusTransition::FIELD_COMMENT => $transfer->getComment(),
         ]);
     }
 

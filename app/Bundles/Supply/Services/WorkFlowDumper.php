@@ -42,6 +42,10 @@ class WorkFlowDumper
         }
 
         foreach ($rules as $rule) {
+            if ($rule->from_status_id === null) {
+                continue;
+            }
+
             $vertexes[$rule->from_status_id]->createEdgeTo($vertexes[$rule->to_status_id]);
         }
 

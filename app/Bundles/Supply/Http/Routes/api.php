@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('supplies')->group(function () {
     Route::post('store-many', 'SupplyController@storeMany');
     Route::get('find-by-customer/{customerId}', 'SupplyController@findByCustomer');
-    Route::patch('{supply}/{status/', 'SupplyController@setStatus');
+    Route::post('{supply}/transition/{rule}', 'SupplyController@transition');
 });
 
 Route::apiResource('supplies', 'SupplyController');

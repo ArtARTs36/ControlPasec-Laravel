@@ -32,9 +32,15 @@ class SupplyStatusSeeder extends CommonSeeder
         //
 
         $transitionsRepo->create(
+            null,
+            $instances['new'],
+            'Создать поставку'
+        );
+
+        $transitionsRepo->create(
             $instances['new'],
             $instances['discussion_with_customer'],
-            'Создать поставку'
+            'Обсудить'
         );
 
         $transitionsRepo->create(
