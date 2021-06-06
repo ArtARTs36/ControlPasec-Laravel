@@ -12,7 +12,7 @@ class Rss implements RssParser
 
         $items = [];
 
-        foreach ($xml->children() as $key => $child) {
+        foreach ($xml->children() as $child) {
             foreach ($child->children() as $field => $value) {
                 if ($field == 'item') {
                     $items[] = (array) $value;

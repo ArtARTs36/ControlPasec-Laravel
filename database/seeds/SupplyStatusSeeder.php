@@ -32,63 +32,81 @@ class SupplyStatusSeeder extends CommonSeeder
         //
 
         $transitionsRepo->create(
+            null,
             $instances['new'],
-            $instances['discussion_with_customer']
+            'Создать поставку'
+        );
+
+        $transitionsRepo->create(
+            $instances['new'],
+            $instances['discussion_with_customer'],
+            'Обсудить'
         );
 
         $transitionsRepo->create(
             $instances['discussion_with_customer'],
-            $instances['confirmed']
+            $instances['confirmed'],
+            'Подтвердить поставку'
         );
 
         $transitionsRepo->create(
             $instances['discussion_with_customer'],
-            $instances['canceled']
+            $instances['canceled'],
+            'Отклонить поставку'
         );
 
         $transitionsRepo->create(
             $instances['discussion_with_customer'],
-            $instances['wait_repeat_discussion']
+            $instances['wait_repeat_discussion'],
+            'Обсудить повторно'
         );
 
         $transitionsRepo->create(
             $instances['wait_repeat_discussion'],
-            $instances['canceled']
+            $instances['canceled'],
+            'Отклонить поставку'
         );
 
         $transitionsRepo->create(
             $instances['payment_not_provided'],
-            $instances['wait_repeat_discussion']
+            $instances['wait_repeat_discussion'],
+            'Обсудить повторно'
         );
 
         $transitionsRepo->create(
             $instances['wait_repeat_discussion'],
-            $instances['confirmed']
+            $instances['confirmed'],
+            'Подтвердить поставку'
         );
 
         $transitionsRepo->create(
             $instances['confirmed'],
-            $instances['wait_payment']
+            $instances['wait_payment'],
+            'Ожидать оплату'
         );
 
         $transitionsRepo->create(
             $instances['wait_payment'],
-            $instances['payment_not_provided']
+            $instances['payment_not_provided'],
+            'Подтвердить неоплату'
         );
 
         $transitionsRepo->create(
             $instances['wait_payment'],
-            $instances['payment_provided']
+            $instances['payment_provided'],
+            'Подтвердить оплату'
         );
 
         $transitionsRepo->create(
             $instances['payment_provided'],
-            $instances['in_progress']
+            $instances['in_progress'],
+            'Отправить поставку'
         );
 
         $transitionsRepo->create(
             $instances['in_progress'],
-            $instances['completed']
+            $instances['completed'],
+            'Завершить поставку'
         );
     }
 }

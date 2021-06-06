@@ -7,6 +7,7 @@ use App\Bundles\Supply\Repositories\SupplyStatusTransitionRuleRepository;
 use Fhaculty\Graph\Graph;
 use Fhaculty\Graph\Vertex;
 use Graphp\GraphViz\GraphViz;
+use Illuminate\Support\Str;
 
 class WorkFlowDumper
 {
@@ -39,14 +40,38 @@ class WorkFlowDumper
 
         foreach ($statuses as $status) {
             $vertexes[$status->id] = $graph->createVertex($status->title);
+            $vertexes[$status->id]->setAttribute('graphviz.fontname', 'Calibri');
         }
 
         foreach ($rules as $rule) {
-            $vertexes[$rule->from_status_id]->createEdgeTo($vertexes[$rule->to_status_id]);
+            $process = $graph->createVertex($rule->title, true);
+            $process->setAttribute('graphviz.shape', 'record');
+            $process->setAttribute('graphviz.style', 'filled');
+            $process->setAttribute('graphviz.fontname', 'Calibri');
+
+            if ($rule === $rules->first()) {
+                $process->setAttribute('graphviz.fillcolor', '#afd8e5');
+                $process->setAttribute('graphviz.color', '#50595b');
+            }
+
+            if ($rule->from_status_id === null) {
+                $process->createEdgeTo($vertexes[$rule->to_status_id]);
+            } else {
+                $vertexes[$rule->from_status_id]->createEdgeTo($process);
+
+                $this->createEdgeWhenMissing($process, $vertexes[$rule->to_status_id]);
+            }
         }
 
         //
 
         return $this->graphViz->createImageFile($graph);
+    }
+
+    protected function createEdgeWhenMissing(Vertex $root, Vertex $vertex)
+    {
+        if (! $root->hasEdgeTo($vertex)) {
+            $root->createEdgeTo($vertex);
+        }
     }
 }

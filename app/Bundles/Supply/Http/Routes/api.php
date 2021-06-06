@@ -7,10 +7,14 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('supplies')->group(function () {
     Route::post('store-many', 'SupplyController@storeMany');
     Route::get('find-by-customer/{customerId}', 'SupplyController@findByCustomer');
+    Route::post('{supply}/transition/{rule}', 'SupplyController@transition');
 });
 
+Route::get('supplies/{supply}/history', 'SupplyController@history');
 Route::apiResource('supplies', 'SupplyController');
-Route::patch('supplies/{supply}/{status/', 'SupplyController@setStatus');
+
+Route::get('supply-status-rules/diagram', 'SupplyStatusRuleController@diagram');
+Route::apiResource('supply-status-rules', 'SupplyStatusRuleController');
 
 // API Для счетов на оплату
 

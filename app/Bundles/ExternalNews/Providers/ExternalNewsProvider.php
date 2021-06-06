@@ -3,6 +3,7 @@
 namespace App\Bundles\ExternalNews\Providers;
 
 use App\Based\Contracts\BundleProvider;
+use App\Bundles\ExternalNews\Console\ClearExternalNewsCommand;
 use App\Bundles\ExternalNews\Console\GetExternalNewsCommand;
 use App\Bundles\ExternalNews\Contracts\ExternalNewsRepository;
 use App\Bundles\ExternalNews\Contracts\RssParser;
@@ -14,6 +15,7 @@ final class ExternalNewsProvider extends BundleProvider
 
     protected $commands = [
         GetExternalNewsCommand::class,
+        ClearExternalNewsCommand::class,
     ];
 
     public function register()

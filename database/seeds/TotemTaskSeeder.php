@@ -33,5 +33,11 @@ class TotemTaskSeeder extends Seeder
             'Загрузить выходные дни на следующую неделю',
             'holiday:fetch next-week'
         );
+
+        $manager->createDailyAt(
+            'Создание снэпшота системы',
+            'system:create-snapshot',
+            ['12:00', '22:00']
+        );
     }
 }

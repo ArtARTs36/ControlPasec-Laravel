@@ -3,21 +3,23 @@
 namespace App\Bundles\Supply\Http\Controllers;
 
 use App\Bundles\Supply\Contracts\Creator;
+use App\Bundles\Supply\DataObjects\StatusesTransfer;
 use App\Bundles\Supply\Http\Requests\StoreSupply;
+use App\Bundles\Supply\Http\Requests\SupplyTransitionRequest;
 use App\Bundles\Supply\Http\Resources\SupplyResource;
 use App\Based\Contracts\Controller;
 use App\Bundles\Supply\Http\Requests\StoreManySupply;
 use App\Based\Http\Responses\ActionResponse;
 use App\Bundles\Supply\Models\Supply;
-use App\Bundles\Supply\Models\SupplyStatus;
+use App\Bundles\Supply\Models\SupplyStatusTransition;
+use App\Bundles\Supply\Models\SupplyStatusTransitionRule;
+use App\Bundles\Supply\Repositories\SupplyStatusTransitionRepository;
 use App\Bundles\Supply\Services\SupplyStatusChanger;
 use App\Bundles\User\Models\Permission;
 use App\Bundles\Supply\Repositories\SupplyRepository;
 use App\Bundles\Supply\Services\SupplyService;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Facades\Auth;
 
 final class SupplyController extends Controller
 {
@@ -115,11 +117,29 @@ final class SupplyController extends Controller
     }
 
     /**
-     * Установить статус процедуры
      * @throws \App\Bundles\Supply\Exceptions\SupplyIsAlreadyRequestedStatus
      */
-    public function setStatus(Supply $supply, SupplyStatus $status, SupplyStatusChanger $statusChanger): JsonResource
+    public function transition(
+        SupplyTransitionRequest $request,
+        Supply $supply,
+        SupplyStatusTransitionRule $rule,
+        SupplyStatusChanger $statusChanger
+    ): JsonResource {
+        return new JsonResource(
+            $statusChanger->change(
+                $supply,
+                new StatusesTransfer(
+                    $supply->status,
+                    $rule->toStatus,
+                    $this->getUser(),
+                    $request->input('comment')
+                )
+            )->load(SupplyStatusTransition::RELATION_TO_STATUS)
+        );
+    }
+
+    public function history(Supply $supply, SupplyStatusTransitionRepository $transitions): JsonResource
     {
-        return new JsonResource($statusChanger->change($supply, $status, Auth::user()));
+        return JsonResource::collection($transitions->getBySupply($supply));
     }
 }

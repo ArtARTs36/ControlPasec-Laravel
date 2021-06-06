@@ -6,6 +6,7 @@ use App\Based\Contracts\Repository;
 use App\Bundles\Contragent\Models\Contragent;
 use App\Bundles\Supply\Models\Supply;
 use App\Bundles\Supply\Models\SupplyProduct;
+use App\Bundles\Supply\Models\SupplyStatusTransitionRule;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
@@ -27,7 +28,14 @@ class SupplyRepository extends Repository
                 Supply::RELATION_CUSTOMER,
                 Supply::RELATION_PRODUCTS => function (HasMany $query) {
                     return $query->with(SupplyProduct::RELATION_QUANTITY_UNIT);
-                }
+                },
+                Supply::RELATION_STATUS,
+                Supply::RELATION_AVAILABLE_TRANSITION_RULES => function ($query) {
+                    $query->with([
+                        SupplyStatusTransitionRule::RELATION_FROM_STATUS,
+                        SupplyStatusTransitionRule::RELATION_TO_STATUS,
+                    ]);
+                },
             ])
             ->paginate(null, ['*'], 'SuppliesList', $page);
     }

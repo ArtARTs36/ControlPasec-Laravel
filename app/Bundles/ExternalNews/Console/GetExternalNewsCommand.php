@@ -13,6 +13,6 @@ final class GetExternalNewsCommand extends Command
 
     public function handle(ExternalNewsCreator $creator)
     {
-        $creator->create();
+        $this->info('Создано новостей: '. $creator->createFromAllSources());
     }
 }

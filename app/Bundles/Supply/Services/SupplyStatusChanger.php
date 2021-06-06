@@ -6,11 +6,9 @@ use App\Bundles\Supply\DataObjects\StatusesTransfer;
 use App\Bundles\Supply\Exceptions\SupplyIsAlreadyRequestedStatus;
 use App\Bundles\Supply\Exceptions\SupplyStatusTransitionNotAllowed;
 use App\Bundles\Supply\Models\Supply;
-use App\Bundles\Supply\Models\SupplyStatus;
 use App\Bundles\Supply\Models\SupplyStatusTransition;
 use App\Bundles\Supply\Repositories\SupplyStatusTransitionRepository;
 use App\Bundles\Supply\Repositories\SupplyStatusTransitionRuleRepository;
-use App\User;
 
 class SupplyStatusChanger
 {
@@ -27,24 +25,28 @@ class SupplyStatusChanger
     /**
      * @throws SupplyIsAlreadyRequestedStatus
      */
-    public function change(Supply $supply, SupplyStatus $toStatus, User $user): SupplyStatusTransition
+    public function change(Supply $supply, StatusesTransfer $transfer): SupplyStatusTransition
     {
-        $transfer = new StatusesTransfer($supply->status, $toStatus);
-
         // Статусы совпадают, не даем совершить переход
         if ($transfer->isStatusesEquals()) {
-            throw new SupplyIsAlreadyRequestedStatus($toStatus);
+            throw new SupplyIsAlreadyRequestedStatus($transfer->getToStatus());
         }
 
         // Правило перехода - отсуствует
-        if ($this->rules->exists($supply->status_id, $toStatus->id)) {
-            throw new SupplyStatusTransitionNotAllowed($supply->status, $toStatus);
+        if (! $this->rules->exists($supply->status_id, $transfer->getToStatus()->id)) {
+            throw new SupplyStatusTransitionNotAllowed($supply->status, $transfer->getToStatus());
         }
 
+        return $this->transition($supply, $transfer);
+    }
+
+    protected function transition(Supply $supply, StatusesTransfer $transfer): SupplyStatusTransition
+    {
         // Устанвливаем новый статус
-        $supply->status()->associate($toStatus);
+        $supply->status()->associate($transfer->getToStatus());
+        $supply->save();
 
         // Создаем переход
-        return $this->transitions->create($supply, $transfer, $user);
+        return $this->transitions->create($supply, $transfer);
     }
 }
