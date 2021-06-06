@@ -4,6 +4,7 @@ namespace App\Based\Contracts;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory as EloquentFactory;
+use Illuminate\Support\Str;
 
 abstract class BundleProvider extends ServiceProvider
 {
@@ -11,9 +12,11 @@ abstract class BundleProvider extends ServiceProvider
 
     protected $factoriesPath = '';
 
+    protected static $commandActivate = null;
+
     protected function registerCommands(): self
     {
-        if ($this->app->runningInConsole()) {
+        if ($this->isCommandActivate()) {
             $this->commands($this->commands);
         }
 
@@ -38,5 +41,15 @@ abstract class BundleProvider extends ServiceProvider
         }
 
         return $instances;
+    }
+
+    protected function isCommandActivate(): bool
+    {
+        if (static::$commandActivate !== null) {
+            return static::$commandActivate;
+        }
+
+        return static::$commandActivate = $this->app->runningInConsole()
+            || Str::contains(request()->url(), 'totem');
     }
 }

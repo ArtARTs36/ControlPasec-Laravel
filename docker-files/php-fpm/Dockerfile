@@ -49,7 +49,7 @@ RUN apt-get update && apt-get -y install nodejs
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 
-RUN apt-get update
+RUN apt-get update -y
 
 RUN apt-get -y install yarn
 
@@ -71,6 +71,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get -y install \
   fonts-droid-fallback fonts-dustin fonts-f500 fonts-fanwood fonts-freefont-ttf fonts-liberation \
   fonts-lmodern fonts-lyx fonts-sil-gentium fonts-texgyre fonts-tlwg-purisa fonts-opensymbol && \
   rm -rf /var/lib/apt/lists/*
+
+RUN apt-get install -y graphviz
 
 ADD . /ControlPasec-Laravel
 RUN chown -R www-data:www-data /ControlPasec-Laravel

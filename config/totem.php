@@ -234,6 +234,7 @@ return [
             \App\Bundles\Vocab\Console\ClearCurrencyCoursesCommand::class,
             \App\Bundles\ExternalNews\Console\GetExternalNewsCommand::class,
             \ArtARTs36\LaravelHoliday\Console\FetchHolidays::class,
+            \ArtARTs36\LaravelWeather\Console\Commands\FetchWeatherCommand::class,
         ],
     ],
     'database_connection' => env('DB_CONNECTION'),

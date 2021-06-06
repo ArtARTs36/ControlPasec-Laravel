@@ -26,6 +26,8 @@ final class AppServiceProvider extends ServiceProvider
                 $this->app->make(HolidayModule::class),
             ]);
         });
+
+        $this->app->register(BasedBundleProvider::class);
     }
 
     /**
