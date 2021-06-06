@@ -4,10 +4,6 @@ class SupplyStatusSeeder extends CommonSeeder
 {
     public function run(): void
     {
-        \App\Bundles\Supply\Models\SupplyStatus::query()->truncate();
-        \App\Bundles\Supply\Models\SupplyStatusTransitionRule::query()->truncate();
-        \App\Bundles\Supply\Models\SupplyStatusTransition::query()->truncate();
-
         /** @var \App\Bundles\Supply\Repositories\SupplyStatusRepository $repo */
         $repo = app(\App\Bundles\Supply\Repositories\SupplyStatusRepository::class);
 
