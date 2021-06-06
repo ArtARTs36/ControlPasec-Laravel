@@ -4,6 +4,7 @@ namespace App\Bundles\Supply\Http\Controllers;
 
 use App\Bundles\Supply\Contracts\Creator;
 use App\Bundles\Supply\DataObjects\StatusesTransfer;
+use App\Bundles\Supply\Events\SupplyCreated;
 use App\Bundles\Supply\Http\Requests\StoreSupply;
 use App\Bundles\Supply\Http\Requests\SupplyTransitionRequest;
 use App\Bundles\Supply\Http\Resources\SupplyResource;
@@ -20,6 +21,7 @@ use App\Bundles\Supply\Repositories\SupplyRepository;
 use App\Bundles\Supply\Services\SupplyService;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Auth;
 
 final class SupplyController extends Controller
 {
@@ -61,6 +63,8 @@ final class SupplyController extends Controller
         $supply = $this->makeModel($request, Supply::class);
         $supply->supplier_id = $request->get('supplier_id', $this->service->getDefaultId());
         $supply->save();
+
+        event(new SupplyCreated($supply, Auth::user()));
 
         $this->service->checkProductsInSupply($request->toArray(), $supply->id);
 

@@ -8,6 +8,7 @@ use App\Bundles\Supply\Models\ProductTransportWaybill;
 use App\Bundles\Supply\Models\ScoreForPayment;
 use App\Services\Document\DocumentService;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
 class DocumentCreator
@@ -169,21 +170,12 @@ class DocumentCreator
     }
 
     /**
-     * @param array|Model $array
-     * @return array
-     */
-    private function arr($array)
-    {
-        return (is_array($array) ? $array : [$array]);
-    }
-
-    /**
      * @param mixed $array
      * @return array<int>
      */
     private function arrIds($array): array
     {
-        $array = $this->arr($array);
+        $array = Arr::wrap($array);
 
         return array_map(function ($value) {
             return (int) ($value instanceof Model) ? $value->getKey() : $value;

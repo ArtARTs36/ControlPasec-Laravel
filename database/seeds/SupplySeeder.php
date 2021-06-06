@@ -38,6 +38,8 @@ class SupplySeeder extends CommonSeeder
     {
         $contragents = $this->getAllObjectByRelation(Contragent::class);
 
+        $admin = \App\User::query()->where(\App\User::FIELD_NAME, 'admin')->first();
+
         foreach ($contragents as $contragent) {
             for ($i = 0; $i < rand(1, 5); $i++) {
                 $supply = new App\Bundles\Supply\Models\Supply();
@@ -47,6 +49,8 @@ class SupplySeeder extends CommonSeeder
                 $supply->customer_id = $contragent;
 
                 $supply->save();
+
+                event(new \App\Bundles\Supply\Events\SupplyCreated($supply, $admin));
 
                 $this->createRandomSupplyProducts($supply->id);
                 $this->createScoreForPayment($supply->id);

@@ -11,7 +11,7 @@ $factory->define(ExternalNews::class, function (Faker $faker, $params) {
         ExternalNews::FIELD_TITLE => $faker->text(80),
         ExternalNews::FIELD_DESCRIPTION => $faker->text,
         ExternalNews::FIELD_PUB_DATE => $faker->dateTime(),
-        ExternalNews::FIELD_LINK => $faker->url,
+        ExternalNews::FIELD_LINK => $faker->unique()->url,
     ];
 
     if (empty($params[ExternalNews::FIELD_SOURCE_ID])) {

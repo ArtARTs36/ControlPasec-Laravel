@@ -26,13 +26,18 @@ class SupplyStatusTransitionRepository extends Repository
         ]);
     }
 
-    public function createByStatus(Supply $supply, SupplyStatus $status, User $user): SupplyStatusTransition
-    {
+    public function createByStatus(
+        Supply $supply,
+        SupplyStatus $status,
+        User $user,
+        string $comment
+    ): SupplyStatusTransition {
         return $this->newQuery()->create([
             SupplyStatusTransition::FIELD_SUPPLY_ID => $supply->id,
             SupplyStatusTransition::FIELD_TO_STATUS_ID => $status->id,
             SupplyStatusTransition::FIELD_USER_ID => $user->id,
             SupplyStatusTransition::FIELD_EXECUTED_AT => new \DateTime(),
+            SupplyStatusTransition::FIELD_COMMENT => $comment,
         ]);
     }
 
