@@ -24,9 +24,9 @@ class SupplyStatusRuleController extends Controller
         return response()->download($workflow->dump());
     }
 
-    public function destroy(SupplyStatusTransitionRule $rule): JsonResponse
+    public function destroy(SupplyStatusTransitionRule $supplyStatusRule): JsonResponse
     {
-        $rule->delete();
+        $supplyStatusRule->delete();
 
         return response()->json([], Response::HTTP_NO_CONTENT);
     }
