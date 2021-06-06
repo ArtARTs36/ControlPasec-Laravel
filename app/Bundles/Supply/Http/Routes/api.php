@@ -10,6 +10,7 @@ Route::prefix('supplies')->group(function () {
     Route::post('{supply}/transition/{rule}', 'SupplyController@transition');
 });
 
+Route::get('supplies/{supply}/history', 'SupplyController@history');
 Route::apiResource('supplies', 'SupplyController');
 
 Route::get('supply-status-rules/diagram', 'SupplyStatusRuleController@diagram');
