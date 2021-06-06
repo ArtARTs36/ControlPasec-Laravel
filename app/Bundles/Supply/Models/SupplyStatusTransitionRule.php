@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int $id
+ * @property string $title
  * @property int $from_status_id
  * @property int $to_status_id
  * @property \DateTimeInterface $created_at
@@ -16,11 +17,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class SupplyStatusTransitionRule extends Model
 {
+    public const FIELD_TITLE = 'title';
     public const FIELD_FROM_STATUS_ID = 'from_status_id';
     public const FIELD_TO_STATUS_ID = 'to_status_id';
     public const FIELD_CREATOR_ID = 'creator_id';
 
     protected $fillable = [
+        self::FIELD_TITLE,
         self::FIELD_FROM_STATUS_ID,
         self::FIELD_TO_STATUS_ID,
         self::CREATED_AT,

@@ -27,7 +27,9 @@ class SupplyRepository extends Repository
                 Supply::RELATION_CUSTOMER,
                 Supply::RELATION_PRODUCTS => function (HasMany $query) {
                     return $query->with(SupplyProduct::RELATION_QUANTITY_UNIT);
-                }
+                },
+                Supply::RELATION_STATUS,
+                Supply::RELATION_AVAILABLE_TRANSITION_RULES,
             ])
             ->paginate(null, ['*'], 'SuppliesList', $page);
     }

@@ -17,12 +17,13 @@ class SupplyStatusTransitionRuleRepository extends Repository
             ->exists();
     }
 
-    public function create(SupplyStatus $fromStatus, SupplyStatus $toStatus): SupplyStatusTransitionRule
+    public function create(SupplyStatus $fromStatus, SupplyStatus $toStatus, string $title): SupplyStatusTransitionRule
     {
         return $this->newQuery()->create([
             SupplyStatusTransitionRule::FIELD_FROM_STATUS_ID => $fromStatus->id,
             SupplyStatusTransitionRule::FIELD_TO_STATUS_ID => $toStatus->id,
             SupplyStatusTransitionRule::CREATED_AT => new \DateTime(),
+            SupplyStatusTransitionRule::FIELD_TITLE => $title,
         ]);
     }
 

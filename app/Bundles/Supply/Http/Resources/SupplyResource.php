@@ -41,7 +41,9 @@ class SupplyResource extends JsonResource
             'execute_date' => $this->execute_date,
             'products' => $this->products,
             'contract' => $this->contract,
-            'contract_id' => $this->contract_id
+            'contract_id' => $this->contract_id,
+            'available_transitions' => $this->availableTransitionRules,
+            'status' => $this->status,
         ];
     }
 }

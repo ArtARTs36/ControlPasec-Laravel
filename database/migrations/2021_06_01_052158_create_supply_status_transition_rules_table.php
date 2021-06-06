@@ -37,6 +37,8 @@ class CreateSupplyStatusTransitionRulesTable extends Migration
                 ->references('id')
                 ->on('users');
 
+            $table->string('title')->comment('Название процесса');
+
             $table->dateTime('created_at')->comment('Дата и время создания');
         });
     }
