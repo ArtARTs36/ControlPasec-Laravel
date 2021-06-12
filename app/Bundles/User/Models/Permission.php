@@ -42,7 +42,6 @@ final class Permission extends BasePermission
     const CONTRAGENTS_FIND_EXTERNAL_SYSTEM = 'contragents_find_external_system';
 
     const SETTINGS_VIEW = 'settings_view';
-    const VARIABLE_DEFINITIONS_LIST_VIEW = 'variable_definitions_list_view';
 
     const VOCABS_VIEW = 'vocabs_view';
 
@@ -116,6 +115,9 @@ final class Permission extends BasePermission
     const USER_GET_NOTIFICATION_TECH_SUPPORT_REPORT_CREATED = 'user_get_notification_tech_support_report_created';
     const USER_GET_DOCUMENT_OF_QUEUE_GENERATED = 'user_get_document_of_queue_generated';
 
+    const VARIABLE_DEFINITIONS_LIST_VIEW = 'variable_definitions_list_view';
+    const VARIABLE_DEFINITION_UPDATE = 'variable_definition_update';
+
     public static function getAllNames(): array
     {
         return array_merge([
@@ -142,7 +144,6 @@ final class Permission extends BasePermission
             static::CONTRAGENTS_FIND_EXTERNAL_SYSTEM => 'Поиск контрагента во внешней системе',
 
             static::SETTINGS_VIEW => 'Просмотр настроек',
-            static::VARIABLE_DEFINITIONS_LIST_VIEW => 'Просмотр определений переменных',
 
             static::USER_GET_NOTIFICATION_USER_REGISTERED => 'Получать уведомления о регистрациях пользователей',
             static::USER_GET_NOTIFICATION_LANDING_FEED_BACK_CREATED => 'Получать уведомления об обратной связи',
@@ -177,7 +178,7 @@ final class Permission extends BasePermission
             static::USER_GET_NOTIFICATION_TECH_SUPPORT_REPORT_CREATED => 'Получение уведомления' .
                 ' при создании обращения в тех.поддержку',
 
-        ], static::getVocabTypes());
+        ], static::getVocabTypes(), static::getVariableDefinitionsNames());
     }
 
     public static function getVocabTypes(): array
@@ -221,6 +222,15 @@ final class Permission extends BasePermission
             static::VOCAB_WORD_UPDATE => 'Обновления слова в словаре',
 
             static::VOCAB_SIZE_OF_UNIT_LIST_VIEW => 'Просмотр справочника единиц измерения массы',
+        ];
+    }
+
+    public static function getVariableDefinitionsNames(): array
+    {
+        return [
+            self::VARIABLE_DEFINITIONS_LIST_VIEW => 'Просмотр определений переменных',
+            self::VARIABLE_DEFINITION_SHOW => 'Просмотр переменной',
+            self::VARIABLE_DEFINITION_UPDATE => 'Обновление переменной',
         ];
     }
 
