@@ -3,15 +3,19 @@
 namespace App\Bundles\Admin\Services;
 
 use App\Bundles\Admin\Models\SystemSnapshot;
+use App\Bundles\Admin\Repositories\SystemSnapshotRepository;
 use ArtARTs36\SystemInfo\Contracts\System;
 
 class SystemSnapshotCreator
 {
     protected $system;
 
-    public function __construct(System $system)
+    protected $snapshots;
+
+    public function __construct(System $system, SystemSnapshotRepository $snapshots)
     {
         $this->system = $system;
+        $this->snapshots = $snapshots;
     }
 
     public function create(): SystemSnapshot
@@ -19,7 +23,7 @@ class SystemSnapshotCreator
         $snap = $this->system->createSnapshot();
         $disk = $snap->disks->getByLikeName(env('SYSTEM_DISK'));
 
-        return SystemSnapshot::query()->create([
+        return $this->snapshots->createFromAttributes([
             SystemSnapshot::FIELD_DISK_NAME => $disk->name,
             SystemSnapshot::FIELD_DISK_TOTAL => $disk->memory->totalGb,
             SystemSnapshot::FIELD_DISK_AVAILABLE => $disk->memory->availableGb,

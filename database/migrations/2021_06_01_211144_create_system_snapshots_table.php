@@ -25,7 +25,7 @@ class CreateSystemSnapshotsTable extends Migration
             $table->float('cpu_system_usage')->comment('Использование процессора системой');
             $table->float('cpu_idle')->comment('Бездействие системы');
 
-            $table->date('created_at')->comment('Дата создания');
+            $table->datetime('created_at')->comment('Дата создания');
         });
     }
 
