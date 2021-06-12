@@ -6,6 +6,7 @@ use App\Based\Contracts\Controller;
 use App\Bundles\Admin\Http\Resources\SavedSnapshotResource;
 use App\Bundles\Admin\Http\Resources\SnapshotResource;
 use App\Bundles\Admin\Models\SystemSnapshot;
+use App\Bundles\Admin\Repositories\SystemSnapshotRepository;
 use ArtARTs36\SystemInfo\Contracts\System;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Collection;
@@ -14,9 +15,12 @@ class SystemController extends Controller
 {
     protected $system;
 
-    public function __construct(System $system)
+    protected $snapshots;
+
+    public function __construct(System $system, SystemSnapshotRepository $snapshots)
     {
         $this->system = $system;
+        $this->snapshots = $snapshots;
     }
 
     /**
@@ -24,7 +28,7 @@ class SystemController extends Controller
      */
     public function snapshots(): AnonymousResourceCollection
     {
-        return SavedSnapshotResource::collection(SystemSnapshot::all());
+        return SavedSnapshotResource::collection($this->snapshots->all());
     }
 
     /**
