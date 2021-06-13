@@ -16,16 +16,15 @@ class CreateBankRequisitesTable extends Migration
     public function up()
     {
         Schema::create(self::TABLE, function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
+            $table->bigIncrements('id')->comment('Идентификатор');
+            $table->timestamp('created_at')->nullable()->comment('Дата создания');
+            $table->timestamp('updated_at')->nullable()->comment('Дата обновления');
 
-            $table->string('score', 55);
+            $table->string('score', 55)->comment('Номер счета');
 
-            $table->unsignedInteger('contragent_id');
-            $table->unsignedInteger('bank_id');
-        });
+            $table->unsignedInteger('contragent_id')->comment('Идентификатор контрагента');
+            $table->unsignedInteger('bank_id')->comment('Идентификатор банка');
 
-        Schema::table(self::TABLE, function (Blueprint $table) {
             $table->foreign('contragent_id')
                 ->references('id')
                 ->on('contragents')

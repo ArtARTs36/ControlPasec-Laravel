@@ -32,8 +32,6 @@ use Illuminate\Support\Collection;
  * @property Contract[] $contracts
  * @property string $title_for_document
  * @property Collection<ContragentManager> $managers
- *
- * @mixin Builder
  */
 class Contragent extends Model
 {

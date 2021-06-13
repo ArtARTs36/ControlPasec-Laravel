@@ -14,15 +14,16 @@ class CreateContragentGroupsTable extends Migration
     public function up()
     {
         Schema::create('contragent_groups', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
+            $table->bigIncrements('id')->comment('Идентификатор');
+            $table->timestamp('created_at')->nullable()->comment('Дата создания');
+            $table->timestamp('updated_at')->nullable()->comment('Дата обновления');
 
-            $table->string('name');
+            $table->string('name')->comment('Название');
         });
 
         Schema::create('contragent_group_related', function (Blueprint $table) {
-            $table->unsignedInteger('group_id');
-            $table->unsignedInteger('contragent_id');
+            $table->unsignedInteger('group_id')->comment('Идентификатор группы');
+            $table->unsignedInteger('contragent_id')->comment('Идентификатор контрагента');
 
             $table->foreign('group_id')
                 ->references('id')
